@@ -9,16 +9,16 @@
       "_record-uXSNv6cl.js"
     ]
   },
-  "_app-route-prefetch-policy-Ciw2oGdu.js": {
-    "file": "_next/static/chunks/app-route-prefetch-policy-Ciw2oGdu.js",
+  "_app-route-prefetch-policy-Cc4DxeXq.js": {
+    "file": "_next/static/chunks/app-route-prefetch-policy-Cc4DxeXq.js",
     "name": "app-route-prefetch-policy",
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
       "virtual:vinext-app-browser-entry"
     ]
   },
-  "_app-rsc-cache-busting-Cu0uEFgg.js": {
-    "file": "_next/static/chunks/app-rsc-cache-busting-Cu0uEFgg.js",
+  "_app-rsc-cache-busting-4lRonOth.js": {
+    "file": "_next/static/chunks/app-rsc-cache-busting-4lRonOth.js",
     "name": "app-rsc-cache-busting",
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
@@ -39,14 +39,14 @@
     "file": "_next/static/chunks/basic-specs-RsaIoQAa.js",
     "name": "basic-specs"
   },
-  "_createLucideIcon-C41fPBHM.js": {
-    "file": "_next/static/chunks/createLucideIcon-C41fPBHM.js",
+  "_createLucideIcon-BIgVGFuk.js": {
+    "file": "_next/static/chunks/createLucideIcon-BIgVGFuk.js",
     "name": "createLucideIcon",
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
       "virtual:vinext-app-browser-entry",
       "_framework-D_rUT4EX.js",
-      "_app-route-prefetch-policy-Ciw2oGdu.js",
+      "_app-route-prefetch-policy-Cc4DxeXq.js",
       "_deployment-id-DFhHa9wO.js",
       "_protocol-headers-B9-bVeat.js",
       "_query-DDhZxhdQ.js",
@@ -56,7 +56,7 @@
       "node_modules/vinext/dist/shims/internal/hybrid-client-route-owner.js",
       "virtual:vinext-app-browser-entry",
       "_app-elements-H_Dr48wG.js",
-      "_app-rsc-cache-busting-Cu0uEFgg.js",
+      "_app-rsc-cache-busting-4lRonOth.js",
       "_app-rsc-render-mode-CvTCGruk.js",
       "_headers-C_MtfdF4.js"
     ]
@@ -84,8 +84,8 @@
       "_protocol-headers-B9-bVeat.js"
     ]
   },
-  "_innovation-specs-gIi3bH7J.js": {
-    "file": "_next/static/chunks/innovation-specs-gIi3bH7J.js",
+  "_innovation-specs-DakyL6zY.js": {
+    "file": "_next/static/chunks/innovation-specs-DakyL6zY.js",
     "name": "innovation-specs"
   },
   "_navigation-errors-D5LMQqDL.js": {
@@ -112,109 +112,109 @@
     "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
     "name": "rolldown-runtime"
   },
-  "_rotate-ccw-QTXHDZ8J.js": {
-    "file": "_next/static/chunks/rotate-ccw-QTXHDZ8J.js",
+  "_rotate-ccw-BPTrRlYZ.js": {
+    "file": "_next/static/chunks/rotate-ccw-BPTrRlYZ.js",
     "name": "rotate-ccw",
     "imports": [
-      "_createLucideIcon-C41fPBHM.js"
+      "_createLucideIcon-BIgVGFuk.js"
     ]
   },
-  "_ruler-kRj3ZNJO.js": {
-    "file": "_next/static/chunks/ruler-kRj3ZNJO.js",
+  "_ruler-D4q8HlOR.js": {
+    "file": "_next/static/chunks/ruler-D4q8HlOR.js",
     "name": "ruler",
     "imports": [
-      "_createLucideIcon-C41fPBHM.js"
+      "_createLucideIcon-BIgVGFuk.js"
     ]
   },
   "_site-BDn1qKUj.js": {
     "file": "_next/static/chunks/site-BDn1qKUj.js",
     "name": "site"
   },
-  "_sparkles-SxKx12LX.js": {
-    "file": "_next/static/chunks/sparkles-SxKx12LX.js",
+  "_sparkles-CUHtLD34.js": {
+    "file": "_next/static/chunks/sparkles-CUHtLD34.js",
     "name": "sparkles",
     "imports": [
-      "_createLucideIcon-C41fPBHM.js"
+      "_createLucideIcon-BIgVGFuk.js"
     ]
   },
   "app/page.tsx": {
-    "file": "_next/static/chunks/page-C0ihPPo5.js",
+    "file": "_next/static/chunks/page-CGp1lHEf.js",
     "name": "page",
     "src": "app/page.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
       "components/site-shell.tsx",
       "_basic-specs-RsaIoQAa.js",
-      "_innovation-specs-gIi3bH7J.js",
+      "_innovation-specs-DakyL6zY.js",
       "_site-BDn1qKUj.js",
-      "_ruler-kRj3ZNJO.js",
-      "_sparkles-SxKx12LX.js",
+      "_ruler-D4q8HlOR.js",
+      "_sparkles-CUHtLD34.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/basic-matrix-calculator.tsx": {
-    "file": "_next/static/chunks/basic-matrix-calculator-NtqM5K9P.js",
+    "file": "_next/static/chunks/basic-matrix-calculator-Cj0GcU39.js",
     "name": "basic-matrix-calculator",
     "src": "components/basic-matrix-calculator.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
       "_basic-specs-RsaIoQAa.js",
       "_site-BDn1qKUj.js",
-      "_rotate-ccw-QTXHDZ8J.js",
-      "_sparkles-SxKx12LX.js",
+      "_rotate-ccw-BPTrRlYZ.js",
+      "_sparkles-CUHtLD34.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/calculators.tsx": {
-    "file": "_next/static/chunks/calculators-B3hUOX8P.js",
+    "file": "_next/static/chunks/calculators-LXQIDaMM.js",
     "name": "calculators",
     "src": "components/calculators.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
-      "_ruler-kRj3ZNJO.js",
-      "_sparkles-SxKx12LX.js",
+      "_ruler-D4q8HlOR.js",
+      "_sparkles-CUHtLD34.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/info-page.tsx": {
-    "file": "_next/static/chunks/info-page-DImHo2W5.js",
+    "file": "_next/static/chunks/info-page-Dkanvv3-.js",
     "name": "info-page",
     "src": "components/info-page.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
       "components/site-shell.tsx",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/innovation-calculator.tsx": {
-    "file": "_next/static/chunks/innovation-calculator-BsptHQZm.js",
+    "file": "_next/static/chunks/innovation-calculator-AFGeFLHN.js",
     "name": "innovation-calculator",
     "src": "components/innovation-calculator.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
-      "_innovation-specs-gIi3bH7J.js",
+      "_innovation-specs-DakyL6zY.js",
       "_site-BDn1qKUj.js",
-      "_rotate-ccw-QTXHDZ8J.js",
-      "_sparkles-SxKx12LX.js",
+      "_rotate-ccw-BPTrRlYZ.js",
+      "_sparkles-CUHtLD34.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/language-provider.tsx": {
-    "file": "_next/static/chunks/language-provider-D9dGIyeE.js",
+    "file": "_next/static/chunks/language-provider-C-xlUVXD.js",
     "name": "language-provider",
     "src": "components/language-provider.tsx",
     "isDynamicEntry": true,
@@ -228,25 +228,25 @@
     ]
   },
   "components/mortgage-calculator.tsx": {
-    "file": "_next/static/chunks/mortgage-calculator-BZkVEkjJ.js",
+    "file": "_next/static/chunks/mortgage-calculator-PqAotlkX.js",
     "name": "mortgage-calculator",
     "src": "components/mortgage-calculator.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
-      "_sparkles-SxKx12LX.js",
+      "_sparkles-CUHtLD34.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "components/site-shell.tsx": {
-    "file": "_next/static/chunks/site-shell-DbOg9rqu.js",
+    "file": "_next/static/chunks/site-shell-D_30KB5T.js",
     "name": "site-shell",
     "src": "components/site-shell.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_createLucideIcon-C41fPBHM.js",
+      "_createLucideIcon-BIgVGFuk.js",
       "components/language-provider.tsx",
       "_framework-D_rUT4EX.js"
     ]
@@ -258,7 +258,7 @@
     "isDynamicEntry": true
   },
   "node_modules/vinext/dist/shims/internal/hybrid-client-route-owner.js": {
-    "file": "_next/static/chunks/hybrid-client-route-owner-CepU-BXf.js",
+    "file": "_next/static/chunks/hybrid-client-route-owner-BDkKnKZi.js",
     "name": "hybrid-client-route-owner",
     "src": "node_modules/vinext/dist/shims/internal/hybrid-client-route-owner.js",
     "isDynamicEntry": true,
@@ -269,7 +269,7 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-C7W5ifNn.js",
+    "file": "_next/static/chunks/layout-segment-context-VQSYMG_J.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
@@ -291,7 +291,7 @@
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-B0tZ9Ltk.js",
+    "file": "_next/static/chunks/index-C7eQ22Z6.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
@@ -299,7 +299,7 @@
       "_rolldown-runtime-C60lm6uB.js",
       "_framework-D_rUT4EX.js",
       "_app-elements-H_Dr48wG.js",
-      "_app-rsc-cache-busting-Cu0uEFgg.js",
+      "_app-rsc-cache-busting-4lRonOth.js",
       "_headers-C_MtfdF4.js",
       "_navigation-errors-D5LMQqDL.js",
       "_hash-Cp347hhd.js",
@@ -307,7 +307,7 @@
     ],
     "dynamicImports": [
       "node_modules/vinext/dist/shims/internal/hybrid-client-route-owner.js",
-      "_app-route-prefetch-policy-Ciw2oGdu.js",
+      "_app-route-prefetch-policy-Cc4DxeXq.js",
       "components/mortgage-calculator.tsx",
       "virtual:vinext-app-browser-entry",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
