@@ -1,0 +1,29 @@
+name: Deploy CalcMintly Taxonomy and Spacing Fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/deploy-calcmintly-v4.yml'
+      - '.github/workflows/calcmintly-site-v4.tgz'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace site with verified static build
+        run: |
+          mkdir "$RUNNER_TEMP/calcmintly-site"
+          tar -xzf .github/workflows/calcmintly-site-v4.tgz -C "$RUNNER_TEMP/calcmintly-site"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$RUNNER_TEMP/calcmintly-site/." .
+      - name: Publish taxonomy and spacing fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish calculator taxonomy and unit spacing fix" || exit 0
+          git push
