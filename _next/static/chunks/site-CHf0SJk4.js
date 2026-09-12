@@ -1,0 +1,1 @@
+var e={name:`CalcMintly`,url:`https://calcmintly.com`,locale:`en_US`,language:`en`,description:`Free, transparent calculators for finance, health, math, conversions, business, and everyday decisions. Instant results with formulas and clear assumptions.`};export{e as t};

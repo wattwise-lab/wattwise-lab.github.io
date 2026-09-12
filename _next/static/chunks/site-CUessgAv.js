@@ -1,1 +1,0 @@
-var e={name:`CalcMintly`,url:`https://calcmintly.com`,locale:`zh_CN`,language:`zh-CN`,description:`免费、透明、无需注册的全品类在线计算器。输入即得结果，并展示公式、口径与适用限制。`};export{e as t};
