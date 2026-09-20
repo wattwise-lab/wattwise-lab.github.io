@@ -1,0 +1,32 @@
+name: Decision Engine Browser Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  browser-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright browsers
+        run: |
+          npm install --no-save playwright@latest
+          npx playwright install --with-deps chrome msedge webkit
+
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/calcmintly-http.log 2>&1 &
+          echo $! > /tmp/calcmintly-http.pid
+
+      - name: Test Chrome, Edge and Safari WebKit
+        run: node scripts/decision-engine-browser-test.mjs
