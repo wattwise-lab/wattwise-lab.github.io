@@ -173,65 +173,195 @@ function shared(tool,cfg,base){
 function shareUrl(tool,s){
  const u=new URL(location.href); u.searchParams.set(PARAM,JSON.stringify({v:1,tool,inputs:s.inputs,target:s.target,goal:s.goal})); return u.toString();
 }
-function fieldHTML(cfg,s){
- return '<div class="cmde-field-grid">'+fields(cfg).map(f=>{
-  const v=Number.isFinite(Number(s.inputs[f.key]))?Number(s.inputs[f.key]):"";
-  const min=f.min!==undefined?' min="'+f.min+'"':"",max=f.max!==undefined?' max="'+f.max+'"':"",step=f.step!==undefined?' step="'+f.step+'"':"";
-  return '<label class="cmde-field"><span>'+f.label+'</span><div class="cmde-input-wrap"><input data-cmde-input="'+f.key+'" type="number" inputmode="decimal" value="'+v+'"'+min+max+step+'><em>'+f.unit+'</em></div></label>';
- }).join("")+'</div>';
+function originalEl(f){
+  return document.querySelector('input[aria-label="'+f.aria.replace(/"/g,'\\"')+'"]');
 }
-function details(cfg,i){return (cfg.details?cfg.details(i):[]).map(d=>'<div class="cmde-detail"><span>'+d[0]+'</span><strong>'+fmt(d[1],d[2])+'</strong></div>').join("");}
-function solveHTML(cfg,s){
- const t=cfg.targets.find(x=>x[0]===s.target)||cfg.targets[0],needs=t[0]!=="metric",v=needs?(t[3]?t[3](s.inputs,s.goal):NaN):cfg.primary(s.inputs),bad=!Number.isFinite(v)||v<0;
- return '<div class="cmde-solve-layout"><div class="cmde-panel"><div class="cmde-panel-head"><div><p class="cmde-kicker">Assumptions</p><h3>Use the current calculator values</h3></div><button type="button" class="cmde-ghost" data-cmde-sync>Sync from calculator</button></div>'+fieldHTML(cfg,s)+'</div>'+
- '<div class="cmde-panel cmde-result-panel"><label class="cmde-field"><span>Solve for</span><div class="cmde-select-wrap"><select data-cmde-target>'+cfg.targets.map(x=>'<option value="'+x[0]+'"'+(x[0]===s.target?" selected":"")+'>'+x[1]+'</option>').join("")+'</select></div></label>'+
- (needs?'<label class="cmde-field cmde-goal"><span>'+cfg.goal+'</span><div class="cmde-input-wrap"><input data-cmde-goal type="number" inputmode="decimal" value="'+s.goal+'" step="0.01"><em>'+(cfg.kind==="percent"?"%":cfg.kind==="money"?"USD":"")+'</em></div></label>':"")+
- '<div class="cmde-result-box '+(bad?"is-invalid":"")+'"><span>'+t[1]+'</span><strong class="cmde-result-value" data-testid="cmde-result">'+(bad?"No feasible solution":fmt(v,t[2]||cfg.kind))+'</strong><small>'+(bad?"Try a less restrictive target or adjust the assumptions.":"Deterministic calculation — no AI-generated arithmetic.")+'</small></div><div class="cmde-details">'+details(cfg,s.inputs)+'</div></div></div>';
+function nativeSet(el,value){
+  if(!el) return;
+  const proto=Object.getPrototypeOf(el);
+  const desc=Object.getOwnPropertyDescriptor(proto,"value") || Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");
+  if(desc&&desc.set) desc.set.call(el,String(value)); else el.value=String(value);
+  el.dispatchEvent(new Event("input",{bubbles:true}));
+  el.dispatchEvent(new Event("change",{bubbles:true}));
 }
-function scenariosHTML(cfg,s){
- return '<div class="cmde-scenario-grid">'+cfg.scenarios(s.inputs).map((x,i)=>'<article class="cmde-scenario-card'+(i===1?" is-base":"")+'"><div class="cmde-scenario-top"><span>'+x[0]+'</span>'+(i===1?'<b>Baseline</b>':'')+'</div><p>'+x[1]+'</p><strong>'+fmt(cfg.primary(x[2]),cfg.kind)+'</strong><small>'+cfg.metric+'</small></article>').join("")+'</div><div class="cmde-panel cmde-explain"><h3>Why scenario comparison matters</h3><p>A single answer can hide risk. These cases keep the formula fixed and change only the stated assumptions.</p></div>';
+function applyInputs(cfg,data){
+  fields(cfg).forEach(f=>{
+    if(Number.isFinite(Number(data[f.key]))) nativeSet(originalEl(f),Number(data[f.key]));
+  });
+}
+function targetFor(cfg,s){
+  const fallback=cfg.targets[1]||cfg.targets[0];
+  return cfg.targets.find(t=>t[0]===s.target&&t[0]!=="metric")||fallback;
+}
+function currentState(cfg,s){
+  s.inputs=inputs(cfg);
+  const current=cfg.primary(s.inputs);
+  if(!Number.isFinite(s.goal)) s.goal=current;
+  if(!s.target||s.target==="metric") s.target=(cfg.targets[1]||cfg.targets[0])[0];
+  return current;
+}
+function deltaText(value,base,kind){
+  if(!Number.isFinite(value)||!Number.isFinite(base)) return "";
+  const d=value-base;
+  if(Math.abs(d)<1e-9) return "Current";
+  return (d>0?"+":"−")+fmt(Math.abs(d),kind)+" vs current";
+}
+function solvePanel(cfg,s){
+  const current=currentState(cfg,s);
+  const t=targetFor(cfg,s);
+  const solved=t[3]?t[3](s.inputs,s.goal):NaN;
+  const bad=!Number.isFinite(solved)||solved<0;
+  const canApply=!bad&&fields(cfg).some(f=>f.key===t[0]);
+  return '<div class="cmde-solve">'+
+    '<div class="cmde-solve-controls">'+
+      '<div class="cmde-eyebrow">Reverse solve</div>'+
+      '<h3>Set the outcome. Solve the input.</h3>'+
+      '<p>Uses the same deterministic formula as this calculator.</p>'+
+      '<div class="cmde-control-grid">'+
+        '<label><span>Target '+cfg.metric.toLowerCase()+'</span><div class="cmde-control-input"><input data-cmde-goal type="number" inputmode="decimal" step="0.01" value="'+s.goal+'"><em>'+(cfg.kind==="money"?"USD":cfg.kind==="percent"?"%":"")+'</em></div></label>'+
+        '<label><span>Solve for</span><select data-cmde-target>'+cfg.targets.filter(x=>x[0]!=="metric").map(x=>'<option value="'+x[0]+'"'+(x[0]===t[0]?" selected":"")+'>'+x[1]+'</option>').join("")+'</select></label>'+
+      '</div>'+
+      '<div class="cmde-mini-metrics"><span><small>Current</small><b data-testid="cmde-current">'+fmt(current,cfg.kind)+'</b></span><span><small>Target</small><b>'+fmt(s.goal,cfg.kind)+'</b></span></div>'+
+    '</div>'+
+    '<div class="cmde-solve-answer '+(bad?"is-invalid":"")+'">'+
+      '<small>Required '+t[1].toLowerCase()+'</small>'+
+      '<strong data-testid="cmde-result">'+(bad?"No feasible solution":fmt(solved,t[2]||"number"))+'</strong>'+
+      '<p>'+(bad?"Adjust the target or the current assumptions.":"Based on the values already entered above.")+'</p>'+
+      (canApply?'<button type="button" data-cmde-apply="'+t[0]+'">Apply to calculator</button>':'')+
+    '</div>'+
+  '</div>';
+}
+function comparePanel(cfg,s){
+  const current=currentState(cfg,s);
+  return '<div class="cmde-section-head"><div><div class="cmde-eyebrow">Scenario compare</div><h3>One result is not enough.</h3></div><p>Same formula. Only the named assumptions change.</p></div>'+
+  '<div class="cmde-compare-grid">'+cfg.scenarios(s.inputs).map((x,i)=>{
+    const v=cfg.primary(x[2]);
+    return '<article class="cmde-compare-card '+(i===1?"is-base":"")+'"><div><span>'+x[0]+'</span>'+(i===1?'<b>BASE</b>':'')+'</div><p>'+x[1]+'</p><strong>'+fmt(v,cfg.kind)+'</strong><small>'+deltaText(v,current,cfg.kind)+'</small></article>';
+  }).join("")+'</div>';
 }
 function sensRows(cfg,s){
- const base=cfg.primary(s.inputs); if(!Number.isFinite(base))return [];
- return cfg.sens.map(k=>{const f=fields(cfg).find(x=>x.key===k),v=n(s.inputs[k]);if(!f||Math.abs(v)<1e-12)return null;const lo=cfg.primary(cp(s.inputs,{[k]:v*.9})),hi=cfg.primary(cp(s.inputs,{[k]:v*1.1}));if(!Number.isFinite(lo)||!Number.isFinite(hi))return null;return {label:f.label,lo,hi,impact:Math.max(Math.abs(lo-base),Math.abs(hi-base))};}).filter(Boolean).sort((a,b)=>b.impact-a.impact);
+  const base=cfg.primary(s.inputs); if(!Number.isFinite(base)) return [];
+  return cfg.sens.map(k=>{
+    const f=fields(cfg).find(x=>x.key===k),v=n(s.inputs[k]);
+    if(!f||Math.abs(v)<1e-12) return null;
+    const lo=cfg.primary(cp(s.inputs,{[k]:v*.9})),hi=cfg.primary(cp(s.inputs,{[k]:v*1.1}));
+    if(!Number.isFinite(lo)||!Number.isFinite(hi)) return null;
+    return {label:f.label,lo,hi,impact:Math.max(Math.abs(lo-base),Math.abs(hi-base))};
+  }).filter(Boolean).sort((a,b)=>b.impact-a.impact);
 }
-function sensitivityHTML(cfg,s){
- const base=cfg.primary(s.inputs),rows=sensRows(cfg,s),max=rows.length?rows[0].impact:1;
- return '<div class="cmde-panel"><div class="cmde-panel-head"><div><p class="cmde-kicker">What matters most</p><h3>±10% sensitivity test</h3></div><div class="cmde-baseline"><span>Baseline</span><strong>'+fmt(base,cfg.kind)+'</strong></div></div><div class="cmde-sensitivity-list">'+
- (rows.length?rows.map((r,i)=>'<div class="cmde-sensitivity-row"><div class="cmde-rank">'+(i+1)+'</div><div class="cmde-sensitivity-main"><div class="cmde-sensitivity-title"><strong>'+r.label+'</strong><span>−10% → '+fmt(r.lo,cfg.kind)+' · +10% → '+fmt(r.hi,cfg.kind)+'</span></div><div class="cmde-bar"><i style="width:'+Math.max(4,r.impact/max*100)+'%"></i></div></div><div class="cmde-impact"><span>max move</span><strong>'+fmt(r.impact,cfg.kind)+'</strong></div></div>').join(""):'<p class="cmde-empty">Sensitivity needs at least one non-zero adjustable input.</p>')+
- '</div><p class="cmde-footnote">Ranking uses the largest absolute result change when one input moves by ±10% and all other inputs stay fixed.</p></div>';
+function insightsPanel(cfg,s){
+  const current=currentState(cfg,s),rows=sensRows(cfg,s).slice(0,4),top=rows[0],max=top?top.impact:1;
+  return '<div class="cmde-section-head"><div><div class="cmde-eyebrow">Sensitivity</div><h3>What changes the answer most?</h3></div><p>Each input moves ±10% while every other input stays fixed.</p></div>'+
+  (top?'<div class="cmde-top-insight"><span>Most sensitive</span><strong>'+top.label+'</strong><p>A 10% move changes '+cfg.metric.toLowerCase()+' by up to <b>'+fmt(top.impact,cfg.kind)+'</b>.</p></div>':'')+
+  '<div class="cmde-insight-list">'+rows.map((r,i)=>'<div class="cmde-insight-row"><span class="cmde-rank">'+(i+1)+'</span><div><div class="cmde-insight-title"><strong>'+r.label+'</strong><small>'+fmt(r.lo,cfg.kind)+' ↔ '+fmt(r.hi,cfg.kind)+'</small></div><i><b style="width:'+Math.max(7,r.impact/max*100)+'%"></b></i></div><em>'+fmt(r.impact,cfg.kind)+'</em></div>').join("")+'</div>';
 }
-function shareHTML(tool,s){
- const u=shareUrl(tool,s).replace(/"/g,"&quot;");
- return '<div class="cmde-share-grid"><div class="cmde-panel"><p class="cmde-kicker">Share calculation</p><h3>Send the exact assumptions and Decision Lab state</h3><p class="cmde-copy">The link stores inputs in the URL only. No account is required.</p><div class="cmde-share-box"><input id="cmde-share-url" readonly value="'+u+'"><button type="button" class="cmde-primary" data-cmde-copy>Copy link</button></div><small class="cmde-share-status" data-cmde-share-status>Anyone opening the link gets the same Decision Lab inputs.</small></div><div class="cmde-panel"><p class="cmde-kicker">Included</p><div class="cmde-included"><span>✓ Calculator type</span><span>✓ Current assumptions</span><span>✓ Solve-for target</span><span>✓ Desired result</span></div><button type="button" class="cmde-ghost cmde-reset-link" data-cmde-clear-share>Clear shared state from URL</button></div></div>';
+function sharePanel(tool,cfg,s){
+  currentState(cfg,s);
+  const u=shareUrl(tool,s).replace(/"/g,"&quot;");
+  return '<div class="cmde-share"><div><div class="cmde-eyebrow">Share</div><h3>Send this exact calculation.</h3><p>The assumptions are encoded in the link. No account and no server-side save.</p></div><button type="button" data-cmde-copy data-share-url="'+u+'"><span>Copy share link</span><small data-cmde-copy-status>Same inputs, same solve target.</small></button></div>';
 }
-function render(tool,cfg,s,el){
- let body=s.tab==="scenarios"?scenariosHTML(cfg,s):s.tab==="sensitivity"?sensitivityHTML(cfg,s):s.tab==="share"?shareHTML(tool,s):solveHTML(cfg,s);
- const tabs=[["solve","Solve backward"],["scenarios","Scenarios"],["sensitivity","What matters most"],["share","Share"]];
- el.innerHTML='<div class="cmde-heading"><div><div class="cmde-badge">Decision Engine</div><h2>'+cfg.title+'</h2><p>'+cfg.sub+'</p></div><button type="button" class="cmde-version">v'+VERSION+'</button></div><div class="cmde-tabs" role="tablist">'+tabs.map(t=>'<button type="button" role="tab" aria-selected="'+(s.tab===t[0])+'" data-cmde-tab="'+t[0]+'" class="'+(s.tab===t[0]?"is-active":"")+'">'+t[1]+'</button>').join("")+'</div><div class="cmde-body">'+body+'</div>';
- el.querySelectorAll("[data-cmde-tab]").forEach(b=>b.onclick=()=>{s.tab=b.dataset.cmdeTab;render(tool,cfg,s,el);});
- el.querySelectorAll("[data-cmde-input]").forEach(x=>x.onchange=()=>{s.inputs[x.dataset.cmdeInput]=n(x.value);render(tool,cfg,s,el);});
- const t=el.querySelector("[data-cmde-target]"); if(t)t.onchange=()=>{s.target=t.value;if(s.target!=="metric"&&(!Number.isFinite(s.goal)||s.goal===0))s.goal=cfg.primary(s.inputs);render(tool,cfg,s,el);};
- const g=el.querySelector("[data-cmde-goal]"); if(g)g.onchange=()=>{s.goal=n(g.value);render(tool,cfg,s,el);};
- const sync=el.querySelector("[data-cmde-sync]"); if(sync)sync.onclick=()=>{s.inputs=inputs(cfg);s.goal=cfg.primary(s.inputs);render(tool,cfg,s,el);};
- const copyBtn=el.querySelector("[data-cmde-copy]"); if(copyBtn)copyBtn.onclick=async()=>{const x=el.querySelector("#cmde-share-url"),st=el.querySelector("[data-cmde-share-status]");let ok=false;try{if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(x.value);ok=true;}}catch(_){}if(!ok){x.focus();x.select();try{ok=document.execCommand("copy");}catch(_){}}st.textContent=ok?"Link copied.":"Select and copy the link above.";};
- const clear=el.querySelector("[data-cmde-clear-share]"); if(clear)clear.onclick=()=>{const u=new URL(location.href);u.searchParams.delete(PARAM);history.replaceState({},"",u.toString());render(tool,cfg,s,el);};
+function panelHTML(tool,cfg,s){
+  if(s.mode==="solve") return solvePanel(cfg,s);
+  if(s.mode==="compare") return comparePanel(cfg,s);
+  if(s.mode==="insights") return insightsPanel(cfg,s);
+  if(s.mode==="share") return sharePanel(tool,cfg,s);
+  return "";
 }
-let mounted=null;
+function render(tool,cfg,s,rail,panel){
+  const modes=[["solve","Solve for"],["compare","Compare"],["insights","Insights"],["share","Share"]];
+  rail.innerHTML='<div class="cmde-rail-label"><span>Explore this result</span><small>Decision tools</small></div><div class="cmde-mode-switch">'+modes.map(m=>'<button type="button" data-cmde-mode="'+m[0]+'" class="'+(s.mode===m[0]?"is-active":"")+'" aria-pressed="'+(s.mode===m[0])+'">'+m[1]+'</button>').join("")+'</div>'+(s.mode?'<button type="button" class="cmde-close" data-cmde-close aria-label="Close decision tools">×</button>':'');
+  panel.hidden=!s.mode;
+  panel.innerHTML=s.mode?panelHTML(tool,cfg,s):"";
+
+  rail.querySelectorAll("[data-cmde-mode]").forEach(b=>b.onclick=()=>{
+    const next=b.dataset.cmdeMode;
+    s.mode=s.mode===next?null:next;
+    if(s.mode==="solve"){
+      const cur=cfg.primary(inputs(cfg));
+      if(!Number.isFinite(s.goal)||s.goal===0) s.goal=cur;
+      if(!s.target||s.target==="metric") s.target=(cfg.targets[1]||cfg.targets[0])[0];
+    }
+    render(tool,cfg,s,rail,panel);
+  });
+  const close=rail.querySelector("[data-cmde-close]");
+  if(close) close.onclick=()=>{s.mode=null;render(tool,cfg,s,rail,panel);};
+
+  const target=panel.querySelector("[data-cmde-target]");
+  if(target) target.onchange=()=>{s.target=target.value;render(tool,cfg,s,rail,panel);};
+  const goal=panel.querySelector("[data-cmde-goal]");
+  if(goal) goal.onchange=()=>{s.goal=n(goal.value);render(tool,cfg,s,rail,panel);};
+  const apply=panel.querySelector("[data-cmde-apply]");
+  if(apply) apply.onclick=()=>{
+    const t=targetFor(cfg,s),value=t[3]?t[3](inputs(cfg),s.goal):NaN;
+    const f=fields(cfg).find(x=>x.key===apply.dataset.cmdeApply);
+    if(f&&Number.isFinite(value)){
+      nativeSet(originalEl(f),value);
+      setTimeout(()=>render(tool,cfg,s,rail,panel),80);
+    }
+  };
+  const copyBtn=panel.querySelector("[data-cmde-copy]");
+  if(copyBtn) copyBtn.onclick=async()=>{
+    const value=copyBtn.dataset.shareUrl,status=copyBtn.querySelector("[data-cmde-copy-status]");
+    let ok=false;
+    try{if(navigator.clipboard&&isSecureContext){await navigator.clipboard.writeText(value);ok=true;}}catch(_){}
+    if(!ok){
+      const ta=document.createElement("textarea");ta.value=value;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+      try{ok=document.execCommand("copy");}catch(_){}
+      ta.remove();
+    }
+    if(status) status.textContent=ok?"Copied.":"Copy failed — try again.";
+  };
+}
+let mountedTool=null;
 function mount(){
- const tool=key(),cfg=C[tool],old=document.getElementById(ROOT);
- if(!cfg){if(old)old.remove();mounted=null;return;}
- if(old&&mounted===tool)return;
- if(old)old.remove();
- const base=inputs(cfg),loaded=shared(tool,cfg,base),s=loaded||{inputs:base,target:cfg.targets[0][0],goal:cfg.primary(base)};s.tab="solve";
- const el=document.createElement("section");el.id=ROOT;el.className="cmde-shell";el.dataset.tool=tool;
- const footer=document.querySelector("footer"),main=document.querySelector("main");
- if(footer&&footer.parentNode)footer.parentNode.insertBefore(el,footer);else if(main&&main.parentNode)main.parentNode.insertBefore(el,main.nextSibling);else document.body.appendChild(el);
- mounted=tool;render(tool,cfg,s,el);
+  const tool=key(),cfg=C[tool];
+  const existingRail=document.getElementById("cmde-rail"),existingPanel=document.getElementById(ROOT);
+  if(!cfg){
+    if(existingRail) existingRail.remove();
+    if(existingPanel) existingPanel.remove();
+    mountedTool=null;
+    return;
+  }
+  const calc=document.querySelector(".universal-calc");
+  if(!calc) return;
+  if(existingRail&&existingPanel&&mountedTool===tool) return;
+  if(existingRail) existingRail.remove();
+  if(existingPanel) existingPanel.remove();
+
+  const base=inputs(cfg),loaded=shared(tool,cfg,base);
+  const s=loaded||{inputs:base,target:(cfg.targets[1]||cfg.targets[0])[0],goal:cfg.primary(base)};
+  if(loaded){
+    applyInputs(cfg,loaded.inputs);
+    s.mode="solve";
+  }else{
+    s.mode=null;
+  }
+
+  calc.classList.add("cmde-enhanced");
+  const rail=document.createElement("div");
+  rail.id="cmde-rail";
+  rail.className="cmde-rail";
+  const panel=document.createElement("section");
+  panel.id=ROOT;
+  panel.className="cmde-inline";
+  panel.hidden=true;
+  calc.appendChild(rail);
+  calc.appendChild(panel);
+  mountedTool=tool;
+  render(tool,cfg,s,rail,panel);
+
+  const form=calc.querySelector("form");
+  if(form&&!form.dataset.cmdeBound){
+    form.dataset.cmdeBound="1";
+    let timer=0;
+    const refresh=()=>{clearTimeout(timer);timer=setTimeout(()=>{if(mountedTool===tool&&document.body.contains(panel)&&s.mode) render(tool,cfg,s,rail,panel);},90);};
+    form.addEventListener("input",refresh);
+    form.addEventListener("change",refresh);
+  }
 }
 const schedule=(ms=150)=>setTimeout(mount,ms);
 ["pushState","replaceState"].forEach(m=>{const o=history[m];if(!o||o.__cmde)return;const w=function(){const r=o.apply(this,arguments);schedule(180);return r;};w.__cmde=true;history[m]=w;});
 addEventListener("popstate",()=>schedule(180));
-addEventListener("load",()=>schedule(450));
-if(document.readyState==="complete")schedule(250);else document.addEventListener("DOMContentLoaded",()=>schedule(450),{once:true});
+addEventListener("load",()=>schedule(350));
+if(document.readyState==="complete")schedule(180);else document.addEventListener("DOMContentLoaded",()=>schedule(300),{once:true});
 })();

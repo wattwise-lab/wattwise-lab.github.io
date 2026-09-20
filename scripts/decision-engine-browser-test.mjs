@@ -26,52 +26,74 @@ for(const [browserName,launch] of browsers){
     for(const [file,expected,reverseExpected] of cases){
       const page=await context.newPage();
       await page.goto(base+"/"+file,{waitUntil:"load"});
-      await page.waitForSelector("#cm-decision-engine",{state:"visible",timeout:10000});
+      await page.waitForSelector("#cmde-rail",{state:"visible",timeout:10000});
 
-      const result=page.locator('[data-testid="cmde-result"]');
-      const baseline=parseValue((await result.textContent())?.trim());
-      if(!near(baseline,expected)) throw new Error(browserName+" "+file+": baseline "+baseline+" != "+expected);
+      const panel=page.locator("#cm-decision-engine");
+      if(!(await panel.isHidden())) throw new Error(browserName+" "+file+": decision panel should start closed");
 
-      const target=page.locator("[data-cmde-target]");
-      await target.selectOption({index:1});
+      await page.locator('[data-cmde-mode="solve"]').click();
+      await page.locator('[data-testid="cmde-current"]').waitFor({state:"visible"});
+
+      const current=parseValue((await page.locator('[data-testid="cmde-current"]').textContent())?.trim());
+      if(!near(current,expected)) throw new Error(browserName+" "+file+": current "+current+" != "+expected);
+
       const reverse=parseValue((await page.locator('[data-testid="cmde-result"]').textContent())?.trim());
       if(!near(reverse,reverseExpected)) throw new Error(browserName+" "+file+": reverse "+reverse+" != "+reverseExpected);
 
-      await page.locator('[data-cmde-tab="scenarios"]').click();
-      if(await page.locator(".cmde-scenario-card").count()<3) throw new Error(browserName+" "+file+": scenarios missing");
+      if(await page.locator("[data-cmde-apply]").count()<1) throw new Error(browserName+" "+file+": apply action missing");
 
-      await page.locator('[data-cmde-tab="sensitivity"]').click();
-      if(await page.locator(".cmde-sensitivity-row").count()<1) throw new Error(browserName+" "+file+": sensitivity missing");
+      await page.locator('[data-cmde-mode="compare"]').click();
+      if(await page.locator(".cmde-compare-card").count()<3) throw new Error(browserName+" "+file+": comparison cards missing");
 
-      await page.locator('[data-cmde-tab="share"]').click();
-      const share=await page.locator("#cmde-share-url").inputValue();
-      if(!share.includes("de=")) throw new Error(browserName+" "+file+": share state missing");
+      await page.locator('[data-cmde-mode="insights"]').click();
+      if(await page.locator(".cmde-insight-row").count()<1) throw new Error(browserName+" "+file+": insight rows missing");
+
+      await page.locator('[data-cmde-mode="share"]').click();
+      const share=await page.locator("[data-cmde-copy]").getAttribute("data-share-url");
+      if(!share || !share.includes("de=")) throw new Error(browserName+" "+file+": share URL state missing");
+
+      const duplicateInputs=await page.locator('#cm-decision-engine input[aria-label]').count();
+      if(duplicateInputs!==0) throw new Error(browserName+" "+file+": decision UI duplicated calculator inputs");
 
       await page.close();
     }
 
-    const mobile=await context.newPage();
-    await mobile.setViewportSize({width:390,height:844});
-    await mobile.goto(base+"/mortgage-calculator.html",{waitUntil:"load"});
-    await mobile.waitForSelector("#cm-decision-engine",{state:"visible",timeout:10000});
-    const overflow=await mobile.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
-    if(overflow) throw new Error(browserName+": mobile horizontal overflow");
-    await mobile.close();
+    const applyPage=await context.newPage();
+    await applyPage.goto(base+"/profit-calculator.html",{waitUntil:"load"});
+    await applyPage.waitForSelector("#cmde-rail",{state:"visible"});
+    await applyPage.locator('[data-cmde-mode="solve"]').click();
+    await applyPage.locator("[data-cmde-goal]").fill("30000");
+    await applyPage.locator("[data-cmde-goal]").dispatchEvent("change");
+    await applyPage.locator("[data-cmde-apply]").click();
+    await applyPage.waitForTimeout(150);
+    const revenue=Number(await applyPage.locator('input[aria-label="Revenue"]').inputValue());
+    if(!near(revenue,106000,.01)) throw new Error(browserName+": apply-to-calculator did not update Revenue");
+    await applyPage.close();
 
     const restore=await context.newPage();
     await restore.goto(base+"/profit-calculator.html",{waitUntil:"load"});
-    await restore.waitForSelector("#cm-decision-engine",{state:"visible",timeout:10000});
-    await restore.locator("[data-cmde-target]").selectOption({index:1});
-    await restore.locator('[data-cmde-tab="share"]').click();
-    const shareUrl=await restore.locator("#cmde-share-url").inputValue();
+    await restore.waitForSelector("#cmde-rail",{state:"visible"});
+    await restore.locator('[data-cmde-mode="solve"]').click();
+    await restore.locator("[data-cmde-target]").selectOption("fixedCosts");
+    await restore.locator('[data-cmde-mode="share"]').click();
+    const shareUrl=await restore.locator("[data-cmde-copy]").getAttribute("data-share-url");
     await restore.goto(shareUrl.replace("http://127.0.0.1:4173",base),{waitUntil:"load"});
-    await restore.waitForSelector("#cm-decision-engine",{state:"visible",timeout:10000});
-    if(await restore.locator("[data-cmde-target]").inputValue()!=="revenue") throw new Error(browserName+": shared target did not restore");
+    await restore.waitForSelector('[data-cmde-target]',{state:"visible",timeout:10000});
+    if(await restore.locator("[data-cmde-target]").inputValue()!=="fixedCosts") throw new Error(browserName+": shared solve target did not restore");
     await restore.close();
+
+    const mobile=await context.newPage();
+    await mobile.setViewportSize({width:390,height:844});
+    await mobile.goto(base+"/mortgage-calculator.html",{waitUntil:"load"});
+    await mobile.waitForSelector("#cmde-rail",{state:"visible",timeout:10000});
+    await mobile.locator('[data-cmde-mode="insights"]').click();
+    const overflow=await mobile.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
+    if(overflow) throw new Error(browserName+": mobile horizontal overflow");
+    await mobile.close();
 
     console.log("PASS:",browserName);
   }finally{
     await browser.close();
   }
 }
-console.log("All CalcMintly Decision Engine browser checks passed.");
+console.log("All CalcMintly integrated Decision UI checks passed.");
