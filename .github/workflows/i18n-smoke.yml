@@ -1,0 +1,25 @@
+name: I18n Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_next/static/chunks/language-provider-*.js'
+      - '_next/static/chunks/site-shell-*.js'
+      - 'scripts/i18n-smoke.mjs'
+      - '.github/workflows/i18n-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check _next/static/chunks/language-provider-Dh2x92in.js
+      - run: node --check _next/static/chunks/language-provider-C-xlUVXD.js
+      - run: node --check _next/static/chunks/site-shell-EXo-4ePF.js
+      - run: node --check _next/static/chunks/site-shell-D_30KB5T.js
+      - run: node scripts/i18n-smoke.mjs
