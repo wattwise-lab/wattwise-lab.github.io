@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Molar Mass Calculator | CalcMintly</title><meta name="description" content="Mass of one mole of a compound from its chemical formula — with the elemental composition alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Chemistry</span></p>
+<h1>Molar Mass Calculator</h1>
+<p class="sub">Mass of one mole of a compound from its chemical formula — with the elemental composition alongside.</p>
+
+<div class="hero">
+<section class="card"><h2>Your formula</h2>
+<div><label for="formula">Chemical formula (e.g. H2O, Ca(OH)2, C6H12O6)</label><input id="formula" type="text" value="H2O"></div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Element symbols with counts; parentheses allowed, e.g. Ca(OH)2. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Molar mass</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Composition: <strong id="chipComp">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>Molar mass = &Sigma; (count of each element &times; that element's atomic weight). Atomic weights are the standard relative atomic masses: H 1.008, C 12.011, N 14.007, O 15.999, and so on. Parentheses multiply everything inside them, so Ca(OH)2 means one calcium plus two of everything in (OH): Ca + 2 &times; O + 2 &times; H. The result is in grams per mole (g/mol).</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Water, H2O: 2 &times; 1.008 (hydrogen) + 1 &times; 15.999 (oxygen) = 2.016 + 15.999 = 18.015 g/mol. So one mole of water — 6.022 &times; 10²³ molecules — weighs 18.015 grams, about a tablespoon. By composition, water is 2.016 &divide; 18.015 = 11.19% hydrogen and 15.999 &divide; 18.015 = 88.81% oxygen by mass. Other checks: CO2 = 12.011 + 2 &times; 15.999 = 44.009 g/mol; table salt NaCl = 22.990 + 35.45 = 58.440 g/mol.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page covers common elements with standard atomic weights; it does not handle charges (ions), isotopes (deuterated water needs D as a separate entry, which is not included), hydrates written with a dot (write CuSO4·5H2O as CuSO4H10O5 instead), or structural formulas. Atomic weights are averages over natural isotope abundances, so they vary slightly by source — the third decimal may differ between tables. For laboratory work, confirm against your reference table; for teaching and estimation, these values are standard.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>What is a mole?</h3><p>A counting unit: one mole is 6.022 &times; 10²³ particles (Avogadro's number). Molar mass connects that count to something weighable — the grams in one mole of a substance.</p>
+<h3>Why is water 18.015 and not 18?</h3><p>Because atomic weights are not whole numbers: hydrogen averages 1.008 (mostly H-1 with a little heavier H-2) and oxygen 15.999. Whole-number masses are a school shortcut; 18.015 is the standard value.</p>
+<h3>How do parentheses work?</h3><p>The number after a closing parenthesis multiplies everything inside it. In Ca(OH)2, the 2 doubles both O and H: Ca + O2 + H2, giving 40.078 + 2 &times; 15.999 + 2 &times; 1.008 = 74.092 g/mol.</p>
+<h3>What if my element is not recognised?</h3><p>The page lists the elements it knows and reports unknown symbols instead of guessing. The table covers the elements most formulas use; rare earths and synthetics are left out deliberately rather than given approximate weights.</p>
+<h3>How do I use molar mass in practice?</h3><p>To convert mass to moles, divide grams by molar mass; to convert moles to mass, multiply. For example, 36.03 g of water is 36.03 &divide; 18.015 = 2.00 moles.</p>
+<h3>Is molar mass the same as molecular weight?</h3><p>Numerically yes, units differ: molecular weight is a relative number (unitless), molar mass is that number expressed in g/mol. People use the terms interchangeably in most contexts.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/ph-calculator">pH Calculator</a> — acidity from hydrogen ion concentration</li>
+<li><a href="https://calcmintly.com/unit-converter">Unit Converter</a> — grams, kilograms, moles, and other lab units</li>
+<li><a href="https://calcmintly.com/volume-converter">Volume Converter</a> — solution volumes for dilution work</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const AW={H:1.008,He:4.003,Li:6.94,Be:9.012,B:10.81,C:12.011,N:14.007,O:15.999,F:18.998,Ne:20.180,Na:22.990,Mg:24.305,Al:26.982,Si:28.085,P:30.974,S:32.06,Cl:35.45,Ar:39.948,K:39.098,Ca:40.078,Sc:44.956,Ti:47.867,V:50.942,Cr:51.996,Mn:54.938,Fe:55.845,Co:58.933,Ni:58.693,Cu:63.546,Zn:65.38,Br:79.904,I:126.90,Ba:137.33,Pb:207.2,Ag:107.87,Au:196.97,Hg:200.59,Sn:118.71};
+function parseFormula(f){
+  let i=0;
+  function num(){ let s=""; while(i<f.length && /[0-9]/.test(f[i])) s+=f[i++]; return s===""?1:parseInt(s,10); }
+  function group(){
+    const out={};
+    while(i<f.length && f[i]!==")"){
+      if(f[i]==="("){ i++; const inner=group(); if(f[i]!==")") throw "unbalanced"; i++; const m=num(); for(const k in inner) out[k]=(out[k]||0)+inner[k]*m; }
+      else if(/[A-Z]/.test(f[i])){ let sym=f[i++]; if(i<f.length && /[a-z]/.test(f[i])) sym+=f[i++]; if(!(sym in AW)) throw "unknown:"+sym; const m=num(); out[sym]=(out[sym]||0)+m; }
+      else throw "bad:"+f[i];
+    }
+    return out;
+  }
+  const res=group();
+  if(i!==f.length) throw "unbalanced";
+  return res;
+}
+function render(){
+  const f=$("formula").value.replace(/\s+/g,"");
+  if(!f){
+    $("result").textContent="—"; $("chipComp").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a chemical formula, e.g. H2O.";
+    return;
+  }
+  let counts;
+  try{ counts=parseFormula(f); }catch(e){
+    $("result").textContent="—"; $("chipComp").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent = String(e).indexOf("unknown:")===0 ? "Unknown element: "+String(e).slice(8)+". This table covers common elements only." : "Could not parse that formula. Use element symbols with counts, e.g. H2O or Ca(OH)2.";
+    return;
+  }
+  let total=0; for(const k in counts) total+=counts[k]*AW[k];
+  $("result").textContent=total.toLocaleString("en-US",{maximumFractionDigits:3,minimumFractionDigits:3})+" g/mol";
+  const parts=[]; for(const k in counts) parts.push(k+": "+(counts[k]*AW[k]/total*100).toFixed(2)+"%");
+  $("chipComp").textContent=parts.join(" · ");
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent="One mole of "+f+" weighs "+total.toFixed(3)+" grams.";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

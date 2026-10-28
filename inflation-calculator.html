@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inflation Calculator | CalcMintly</title><meta name="description" content="What past money is worth in today's money at an average inflation rate — and what today's money was worth back then.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Finance</span></p>
+<h1>Inflation Calculator</h1>
+<p class="sub">What past money is worth in today's money at an average inflation rate — and what today's money was worth back then.</p>
+
+<div class="hero">
+<section class="card"><h2>Your past amount</h2><div class="grid">
+<div><label for="amt">Amount in the past year ($)</label><input id="amt" type="number" value="100" min="0" step="any"></div>
+<div><label for="y1">Past year</label><input id="y1" type="number" value="2000" step="1"></div>
+<div><label for="y2">Current year</label><input id="y2" type="number" value="2026" step="1"></div>
+<div><label for="inf">Average annual inflation (%)</label><input id="inf" type="number" value="3" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">A single average rate for the whole period. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Value today</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Growth factor: <strong id="chipFac">—</strong></span><span class="chip">$100 today was worth then: <strong id="chipBack">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>Value today = past amount &times; (1 + i)<sup>t</sup>, where i is the average annual inflation rate and t is the number of years between the two years. The reverse direction — what today's money was worth in the past year — divides instead: past value = today's amount &divide; (1 + i)<sup>t</sup>. Both directions use the same growth factor (1 + i)<sup>t</sup>.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>$100 in 2000 at 3% average annual inflation for 26 years (to 2026): growth factor 1.03<sup>26</sup> = 2.1566, so $100 &times; 2.1566 = $215.66 today. In the other direction, $100 today was worth 100 &divide; 2.1566 = $46.37 in 2000 dollars. A dollar in 2000 buys what about $2.16 buys now — prices more than doubled, which is exactly what steady 3% compounding does over a quarter-century.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page applies one constant average inflation rate across the whole period. Real inflation varies year by year, and no single rate captures that path — for official figures, use a published CPI series for the exact years and country. It also measures general price levels, not any single item: housing, education, and healthcare have risen faster than the average in many periods, while electronics have fallen. The result is a purchasing-power comparison, not a price quote for anything specific.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Why does 3% for 26 years more than double prices?</h3><p>Compounding. Each year's increase applies to an already-increased price level, so the growth accelerates: 1.03<sup>26</sup> = 2.1566. At 2% the factor over 26 years is 1.67; at 5% it is 3.56. Small rate differences compound into large ones.</p>
+<h3>Is the average rate the same as actual CPI?</h3><p>Only if you enter the true average. Year-by-year CPI in most economies has ranged from near zero to double digits, so a flat 3% is a simplification. Use it for intuition and what-if comparisons; use a CPI table for historical claims.</p>
+<h3>What does "worth $46.37 in 2000 dollars" mean?</h3><p>It means $100 today buys roughly what $46.37 bought in 2000. It does not mean anyone held $46.37 — it is the same purchasing power expressed in the older year's prices.</p>
+<h3>How is this different from the present value calculator?</h3><p>The maths is identical — both use (1 + r)<sup>t</sup> — but the rate means something different. Present value discounts by a return or cost of capital; inflation adjustment rescales by price levels. Same formula, different question.</p>
+<h3>Can inflation be negative?</h3><p>Yes — deflation. A negative rate shrinks the growth factor below 1, so past money is worth less today than it was then. Enter a negative rate to model a deflationary period.</p>
+<h3>Why do old salaries sound so small?</h3><p>Because of exactly this factor. A $30,000 salary in 2000 equals about $64,700 in 2026 dollars at 3% average inflation (30,000 &times; 2.1566). Comparing nominal amounts across decades without adjusting misleads in both directions.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/compound-interest-calculator">Compound Interest Calculator</a> — the same compounding maths applied to savings</li>
+<li><a href="https://calcmintly.com/savings-goal-calculator">Savings Goal Calculator</a> — the monthly saving needed to reach a future target</li>
+<li><a href="https://calcmintly.com/retirement-calculator">Retirement Calculator</a> — long-horizon planning where inflation matters most</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function render(){
+  const amt=parseFloat($("amt").value)||0, y1=parseFloat($("y1").value)||0, y2=parseFloat($("y2").value)||0, i=(parseFloat($("inf").value)||0)/100;
+  const t=y2-y1;
+  if(!(amt>0) || !(t>0) || !(i>-1)){
+    $("result").textContent="—"; $("chipFac").textContent="—"; $("chipBack").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter an amount above zero and a current year later than the past year.";
+    return;
+  }
+  const fac=Math.pow(1+i,t);
+  $("result").textContent="$"+num(amt*fac);
+  $("chipFac").textContent=num(fac)+"×";
+  $("chipBack").textContent="$"+num(100/fac);
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent="Prices rose "+num((fac-1)*100)+"% over "+t+" years at "+num(i*100)+"% a year.";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

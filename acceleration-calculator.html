@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Acceleration Calculator | CalcMintly</title><meta name="description" content="Rate of velocity change from initial velocity, final velocity, and time — with distance covered alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Physics</span></p>
+<h1>Acceleration Calculator</h1>
+<p class="sub">Rate of velocity change from initial velocity, final velocity, and time — with the distance covered alongside.</p>
+
+<div class="hero">
+<section class="card"><h2>Your motion</h2><div class="grid">
+<div><label for="v0">Initial velocity (m/s)</label><input id="v0" type="number" value="0" step="any"></div>
+<div><label for="v1">Final velocity (m/s)</label><input id="v1" type="number" value="30" step="any"></div>
+<div><label for="t">Time (s)</label><input id="t" type="number" value="5" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Assumes constant acceleration. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Acceleration</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Distance: <strong id="chipDist">—</strong></span><span class="chip">Velocity change: <strong id="chipDv">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>Average acceleration a = (v₁ &minus; v₀) &divide; t, where v₀ is the initial velocity, v₁ the final velocity, and t the time taken. With constant acceleration, the distance covered is the average velocity times time: d = ((v₀ + v₁) &divide; 2) &times; t. A negative result means deceleration — velocity falling rather than rising. Units must match: velocities in m/s and time in seconds give acceleration in m/s² and distance in metres.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>From rest (0 m/s) to 30 m/s in 5 seconds: a = (30 &minus; 0) &divide; 5 = 6.00 m/s². The velocity change is 30 m/s, and the distance covered is ((0 + 30) &divide; 2) &times; 5 = 15 &times; 5 = 75 m. For scale, 6 m/s² is a brisk car launch — roughly 0 to 100 km/h in about 4.6 seconds at that rate (100 km/h is 27.78 m/s, and 27.78 &divide; 6 = 4.63 s).</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page computes average acceleration over the interval, assuming it is constant. Real acceleration usually varies (an engine's pull fades as speed rises), in which case this result is the average, not the peak. It is one-dimensional: direction changes, circular motion, and vector components are not covered. Time must be above zero — an instant change (t = 0) would imply infinite acceleration, which the page refuses rather than displays.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>What is the difference between velocity and acceleration?</h3><p>Velocity is how fast something moves; acceleration is how fast that velocity changes. A car cruising at a steady 30 m/s has high velocity and zero acceleration; the same car speeding up from 0 to 30 m/s has positive acceleration throughout.</p>
+<h3>What does a negative acceleration mean?</h3><p>Velocity is falling — braking, in everyday terms. Negative acceleration is still acceleration in the physics sense; "deceleration" is just the name for its negative case.</p>
+<h3>Why is the unit m/s²?</h3><p>Because acceleration is velocity change per unit time: (m/s) &divide; s = m/s². It reads as "metres per second, per second" — each second, velocity grows by that many m/s.</p>
+<h3>How does this relate to force?</h3><p>Newton's second law: force = mass &times; acceleration. A 1,000 kg car accelerating at 6 m/s² needs 6,000 N of net force. This page does not ask for mass, so it cannot report force.</p>
+<h3>Can I use km/h instead of m/s?</h3><p>Only if you convert first: divide km/h by 3.6 to get m/s, and convert time to seconds. Mixing km/h with seconds gives a number that is not m/s². The velocity calculator's conversions can help.</p>
+<h3>Is 9.8 m/s² special?</h3><p>Yes — it is g, Earth's surface gravity. An object in free fall (ignoring air resistance) accelerates downward at about 9.81 m/s². Enter v₀ = 0, v₁ = 9.81, t = 1 to see it.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/velocity-calculator">Velocity Calculator</a> — speed from distance and time</li>
+<li><a href="https://calcmintly.com/speed-converter">Speed Converter</a> — km/h, m/s, mph, and knots</li>
+<li><a href="https://calcmintly.com/pace-calculator">Pace Calculator</a> — minutes per kilometre from distance and time</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function render(){
+  const v0=parseFloat($("v0").value), v1=parseFloat($("v1").value), t=parseFloat($("t").value);
+  if(isNaN(v0)||isNaN(v1)||isNaN(t)||!(t>0)){
+    $("result").textContent="—"; $("chipDist").textContent="—"; $("chipDv").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter both velocities and a time above zero.";
+    return;
+  }
+  const a=(v1-v0)/t, d=((v0+v1)/2)*t;
+  $("result").textContent=num(a)+" m/s²";
+  $("chipDist").textContent=num(d)+" m";
+  $("chipDv").textContent=num(v1-v0)+" m/s";
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent = a>0 ? "Speeding up at "+num(a)+" m/s²." : a<0 ? "Slowing down at "+num(Math.abs(a))+" m/s²." : "Constant velocity: no acceleration.";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

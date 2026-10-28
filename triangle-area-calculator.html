@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Triangle Area Calculator | CalcMintly</title><meta name="description" content="Area of a triangle from base and height, or from three sides with Heron's formula — with perimeter alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Geometry</span></p>
+<h1>Triangle Area Calculator</h1>
+<p class="sub">Area from base and height — or from three sides with Heron's formula — with the perimeter alongside.</p>
+
+<div class="hero">
+<section class="card"><h2>Your triangle</h2><div class="grid">
+<div><label for="base">Base</label><input id="base" type="number" value="10" min="0" step="any"></div>
+<div><label for="height">Height</label><input id="height" type="number" value="6" min="0" step="any"></div>
+<div><label for="sa">Side a (for Heron)</label><input id="sa" type="number" value="3" min="0" step="any"></div>
+<div><label for="sb">Side b (for Heron)</label><input id="sb" type="number" value="4" min="0" step="any"></div>
+<div><label for="sc">Side c (for Heron)</label><input id="sc" type="number" value="5" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">All lengths in the same unit. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Area (base × height)</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Heron area: <strong id="chipHeron">—</strong></span><span class="chip">Perimeter: <strong id="chipPer">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>From base and height: area = &frac12; &times; base &times; height. From three sides a, b, c: first the semiperimeter s = (a + b + c) &divide; 2, then Heron's formula, area = &radic;(s(s &minus; a)(s &minus; b)(s &minus; c)). The two methods agree whenever the height matches the sides; they are independent checks on each other. The three sides must satisfy the triangle inequality — each side shorter than the sum of the other two — or no triangle exists.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Base 10 and height 6: area = &frac12; &times; 10 &times; 6 = 30. For the 3–4–5 triangle: s = (3 + 4 + 5) &divide; 2 = 6, so area = &radic;(6 &times; 3 &times; 2 &times; 1) = &radic;36 = 6, and the perimeter is 3 + 4 + 5 = 12. The 3–4–5 triangle is right-angled (3² + 4² = 5²), so its area also equals &frac12; &times; 3 &times; 4 = 6 — a third way to the same answer.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page computes area only; it does not find missing sides or angles (a right triangle's sides and angles are covered by the right triangle calculator). Heron's formula needs all three sides and a valid triangle: if any side is zero or negative, or the triangle inequality fails, the page says so instead of showing a square root of a negative number. Results are in square units of whatever length unit you entered — the page does not convert units.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Why half of base times height?</h3><p>Because a triangle is half of a parallelogram with the same base and height: two copies of the triangle make the parallelogram, whose area is base &times; height. Halving gives the triangle.</p>
+<h3>When do I use Heron's formula?</h3><p>When you know three sides but no height — for example, a plot of land measured along its three boundaries. If you know a base and its height, the simpler formula is enough.</p>
+<h3>What is the semiperimeter?</h3><p>Half the perimeter: s = (a + b + c) &divide; 2. Heron discovered that the area depends only on s and how far each side falls short of it. For 3–4–5, s = 6, and the shortfalls are 3, 2, and 1.</p>
+<h3>What if the sides cannot form a triangle?</h3><p>Then the triangle inequality fails — for example sides 1, 2, and 10, where 1 + 2 is less than 10. No such triangle exists, and the page reports that instead of a meaningless number.</p>
+<h3>Do the two methods always agree?</h3><p>For a genuine triangle, yes, provided the height belongs to the base you entered. If base-height area and Heron area disagree, one of the inputs is inconsistent — usually a height measured to the wrong base.</p>
+<h3>Does this work for any triangle type?</h3><p>Yes: acute, right, obtuse, isosceles, and equilateral all use the same two formulas. Equilateral triangles have a shortcut (area = &radic;3 &divide; 4 &times; side²), but Heron's formula gives the same result.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/circle-calculator">Circle Calculator</a> — area, circumference, and diameter from radius</li>
+<li><a href="https://calcmintly.com/square-area-calculator">Square Area Calculator</a> — area and perimeter of a rectangle</li>
+<li><a href="https://calcmintly.com/area-converter">Area Converter</a> — square metres, feet, acres, and more</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function render(){
+  const base=parseFloat($("base").value)||0, h=parseFloat($("height").value)||0,
+        a=parseFloat($("sa").value)||0, b=parseFloat($("sb").value)||0, c=parseFloat($("sc").value)||0;
+  if(!(base>0) || !(h>0)){
+    $("result").textContent="—"; $("chipHeron").textContent="—"; $("chipPer").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a base and a height above zero.";
+    return;
+  }
+  $("result").textContent=num(0.5*base*h);
+  const valid = a>0 && b>0 && c>0 && a<b+c && b<a+c && c<a+b;
+  if(valid){
+    const s=(a+b+c)/2;
+    $("chipHeron").textContent=num(Math.sqrt(s*(s-a)*(s-b)*(s-c)));
+    $("chipPer").textContent=num(a+b+c);
+    const vd=$("verdict"); vd.className="verdict";
+    $("verdictText").textContent="Sides "+num(a)+", "+num(b)+", "+num(c)+" form a valid triangle.";
+  } else {
+    $("chipHeron").textContent="invalid triangle";
+    $("chipPer").textContent=num(a+b+c);
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="The three sides do not satisfy the triangle inequality, so Heron's formula does not apply.";
+  }
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

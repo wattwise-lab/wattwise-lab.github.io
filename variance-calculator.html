@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Variance Calculator | CalcMintly</title><meta name="description" content="Population and sample variance of a data set — with mean and both standard deviations alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input,textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Statistics</span></p>
+<h1>Variance Calculator</h1>
+<p class="sub">Population and sample variance of a data set — with the mean and both standard deviations alongside.</p>
+
+<div class="hero">
+<section class="card"><h2>Your data</h2>
+<div><label for="data">Values (comma or space separated)</label><textarea id="data" rows="3">2, 4, 4, 4, 5, 5, 7, 9</textarea></div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Enter at least two numbers. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Population variance</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Sample variance: <strong id="chipSamp">—</strong></span><span class="chip">Mean: <strong id="chipMean">—</strong></span><span class="chip">SD (pop / sample): <strong id="chipSd">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>First the mean x̄ = (sum of values) &divide; n. Then the sum of squared deviations SS = &Sigma;(x &minus; x̄)². Population variance (when the data is the whole group) is SS &divide; n; sample variance (when the data is a sample from a larger group) is SS &divide; (n &minus; 1). Standard deviation is the square root of variance, back in the original units. The n &minus; 1 divisor (Bessel's correction) compensates for the fact that a sample's own mean sits closer to its points than the true mean does.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>2, 4, 4, 4, 5, 5, 7, 9: the sum is 40 and n = 8, so the mean is 5. The squared deviations are 9, 1, 1, 1, 0, 0, 4, 16, summing to SS = 32. Population variance = 32 &divide; 8 = 4.00 (SD 2.00); sample variance = 32 &divide; 7 = 4.57 (SD 2.14). The sample figure is larger because it divides by the smaller number — the standard adjustment when generalising from a sample to a population.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page describes spread only; it says nothing about the shape of the distribution, outliers, or whether the mean is a good summary. Variance is in squared units (square dollars, square centimetres), which is why standard deviation is usually the reported figure — it returns to the original units. A single extreme value inflates variance a lot, so for skewed data consider the median and interquartile range alongside. Sample variance needs at least two values; with one value it is undefined.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Which variance do I use, population or sample?</h3><p>Population when your data is everyone you care about (all employees, all products tested). Sample when your data is a subset meant to stand for a larger group (a survey, a trial batch). Most real-world analysis uses the sample version.</p>
+<h3>Why divide by n &minus; 1 for a sample?</h3><p>Because the sample mean is itself fitted to the data, the squared deviations around it are systematically a little too small. Dividing by n &minus; 1 instead of n corrects that bias on average — Bessel's correction.</p>
+<h3>Why square the deviations at all?</h3><p>Because plain deviations sum to zero by definition of the mean — positives cancel negatives. Squaring makes every deviation positive before averaging, and it also penalises large deviations more than small ones.</p>
+<h3>What is the difference between variance and standard deviation?</h3><p>Standard deviation is the square root of variance. Variance is the mathematically convenient quantity; standard deviation is the interpretable one, because it is back in the original units (dollars, centimetres, points).</p>
+<h3>Can variance be zero?</h3><p>Yes, when every value is identical — there is no spread at all. It can never be negative, since it is an average of squares.</p>
+<h3>Does variance tell me about outliers?</h3><p>Indirectly: a large variance relative to the mean often signals outliers or a wide spread, but variance alone cannot identify them. Look at the sorted values and the range alongside.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/mean-median-mode-calculator">Mean Median Mode Calculator</a> — the centre of a data set</li>
+<li><a href="https://calcmintly.com/standard-deviation-calculator">Standard Deviation Calculator</a> — spread as a single headline figure</li>
+<li><a href="https://calcmintly.com/percentage-calculator">Percentage Calculator</a> — percent changes and proportions</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function render(){
+  const vals=$("data").value.split(/[\s,]+/).filter(s=>s.length).map(Number).filter(v=>!isNaN(v));
+  if(vals.length<2){
+    $("result").textContent="—"; $("chipSamp").textContent="—"; $("chipMean").textContent="—"; $("chipSd").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter at least two numbers, separated by commas or spaces.";
+    return;
+  }
+  const n=vals.length, mean=vals.reduce((a,b)=>a+b,0)/n;
+  const ss=vals.reduce((a,b)=>a+(b-mean)*(b-mean),0);
+  const pop=ss/n, samp=ss/(n-1);
+  $("result").textContent=num(pop);
+  $("chipSamp").textContent=num(samp);
+  $("chipMean").textContent=num(mean);
+  $("chipSd").textContent=num(Math.sqrt(pop))+" / "+num(Math.sqrt(samp));
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent="n = "+n+", mean "+num(mean)+", sum of squared deviations "+num(ss)+".";
+}
+function resetExample(){document.querySelectorAll("input,textarea").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input,textarea").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>
