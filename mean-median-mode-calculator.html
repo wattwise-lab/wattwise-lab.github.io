@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mean Median Mode Calculator | CalcMintly</title><meta name="description" content="Central tendency of a data set: mean, median, and mode, with the sorted data, sum, count, and range shown alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+label{display:block;font-weight:600;margin-bottom:4px}textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem;min-height:90px}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Statistics</span></p>
+<h1>Mean Median Mode Calculator</h1>
+<p class="sub">The three central-tendency measures of a data set — mean, median, and mode — with the sorted data, sum, count, and range alongside.</p>
+
+<div class="hero">
+<section class="card"><h2>Your data</h2>
+<div><label for="data">Numbers, separated by commas or spaces</label><textarea id="data">4, 8, 6, 5, 3, 8, 9</textarea></div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Results update as you type. Non-numeric entries are ignored. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Mean</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Median: <strong id="chipMedian">—</strong></span><span class="chip">Mode: <strong id="chipMode">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Breakdown</h2>
+<div class="tblwrap"><table><tr><th>Measure</th><th class="num">Value</th></tr>
+<tr><td>Count</td><td class="num" id="bCount">—</td></tr>
+<tr><td>Sum</td><td class="num" id="bSum">—</td></tr>
+<tr><td>Mean</td><td class="num" id="bMean">—</td></tr>
+<tr><td>Median</td><td class="num" id="bMedian">—</td></tr>
+<tr><td>Mode</td><td class="num" id="bMode">—</td></tr>
+<tr><td>Range</td><td class="num" id="bRange">—</td></tr>
+<tr><td>Sorted data</td><td class="num" id="bSorted">—</td></tr></table></div></section>
+
+<section class="card"><h2>Formula</h2>
+<p>Mean = sum of all values &divide; count. Median = the middle value of the sorted data (or the average of the two middle values when the count is even). Mode = the value that appears most often; a data set can have several modes, or none when every value appears once.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Data 4, 8, 6, 5, 3, 8, 9: sorted, that is 3, 4, 5, 6, 8, 8, 9. Sum = 43, count = 7, so mean = 43 &divide; 7 = 6.14. The middle (4th) value is 6, so the median is 6. The value 8 appears twice — more than any other — so the mode is 8. Range = 9 &minus; 3 = 6.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>These are descriptive measures of the data you enter — they describe this set, not a wider population, and they say nothing about spread on their own (pair them with range or standard deviation for that). The mean is pulled by outliers: one very large value raises it even when most values are small, which is exactly when the median is the better summary. Modes are only meaningful for data where repeats are expected; with continuous measurements, exact repeats are rare and the mode may not exist.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Mean or median — which should I report?</h3><p>Report the mean for roughly symmetric data and the median when the data is skewed or has outliers. Income is the classic case: a few very high incomes raise the mean well above what a typical person earns, so median income is the standard headline figure.</p>
+<h3>What if there are two middle values?</h3><p>With an even count, the median is the average of the two middle values. For 2, 4, 7, 9 the median is (4 + 7) &divide; 2 = 5.50.</p>
+<h3>Can there be more than one mode?</h3><p>Yes. If two values tie for the highest frequency, the data is bimodal and both are modes. This page lists all tied values.</p>
+<h3>What does "no mode" mean?</h3><p>Every value appears exactly once, so nothing is most frequent. That is common with continuous measurements like heights recorded to the millimetre.</p>
+<h3>Do I need to sort the data first?</h3><p>No. Sorting is done for you; the median and the sorted list are computed from whatever order you paste in.</p>
+<h3>Are commas required?</h3><p>No. Commas, spaces, and line breaks all work as separators, so pasted spreadsheet columns work directly.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/standard-deviation-calculator">Standard Deviation Calculator</a> — spread around the mean, the natural companion to this page</li>
+<li><a href="https://calcmintly.com/percentage-calculator">Percentage Calculator</a> — shares and percent change for the values you just summarised</li>
+<li><a href="https://calcmintly.com/gpa-calculator">GPA Calculator</a> — a weighted average for grades</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function parseData(){
+  return $("data").value.split(/[\s,]+/).map(s=>parseFloat(s)).filter(x=>!isNaN(x));
+}
+function render(){
+  const d=parseData();
+  if(d.length===0){
+    $("result").textContent="—"; $("chipMedian").textContent="—"; $("chipMode").textContent="—";
+    ["bCount","bSum","bMean","bMedian","bMode","bRange","bSorted"].forEach(id=>{$(id).textContent="—";});
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter at least one number above.";
+    return;
+  }
+  const s=[...d].sort((a,b)=>a-b);
+  const sum=d.reduce((a,b)=>a+b,0), mean=sum/d.length;
+  const median=d.length%2===1 ? s[(d.length-1)/2] : (s[d.length/2-1]+s[d.length/2])/2;
+  const freq={}; s.forEach(x=>{freq[x]=(freq[x]||0)+1;});
+  const maxf=Math.max(...Object.values(freq));
+  const modes=maxf>1 ? Object.keys(freq).filter(k=>freq[k]===maxf).map(Number) : [];
+  $("result").textContent=num(mean);
+  $("chipMedian").textContent=num(median);
+  $("chipMode").textContent=modes.length?modes.map(num).join(", "):"none";
+  $("bCount").textContent=num(d.length);
+  $("bSum").textContent=num(sum);
+  $("bMean").textContent=num(mean);
+  $("bMedian").textContent=num(median);
+  $("bMode").textContent=modes.length?modes.map(num).join(", "):"none";
+  $("bRange").textContent=num(s[s.length-1]-s[0]);
+  $("bSorted").textContent=s.map(num).join(", ");
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent="Mean "+num(mean)+", median "+num(median)+", mode "+(modes.length?modes.map(num).join(", "):"none")+" across "+d.length+" values.";
+}
+function resetExample(){$("data").value=$("data").defaultValue;render();}
+$("data").addEventListener("input",render);render();
+</script></body></html>

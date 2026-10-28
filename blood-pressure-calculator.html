@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blood Pressure Category Calculator | CalcMintly</title><meta name="description" content="Blood pressure category from systolic and diastolic readings, using the standard adult bands, with pulse pressure shown alongside.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
+table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Health</span></p>
+<h1>Blood Pressure Category Calculator</h1>
+<p class="sub">Which standard adult band a reading falls in — plus pulse pressure. This is information only, not a diagnosis.</p>
+
+<div class="hero">
+<section class="card"><h2>Your reading</h2><div class="grid">
+<div><label for="sys">Systolic (top number, mmHg)</label><input id="sys" type="number" value="135" min="0" step="any"></div>
+<div><label for="dia">Diastolic (bottom number, mmHg)</label><input id="dia" type="number" value="85" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Enter one reading in mmHg. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Category</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Pulse pressure: <strong id="chipPulse">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Standard adult bands</h2>
+<div class="tblwrap"><table><tr><th>Category</th><th class="num">Systolic</th><th class="num">Diastolic</th></tr>
+<tr><td>Normal</td><td class="num">&lt; 120</td><td class="num">&lt; 80</td></tr>
+<tr><td>Elevated</td><td class="num">120–129</td><td class="num">&lt; 80</td></tr>
+<tr><td>Stage 1 hypertension</td><td class="num">130–139</td><td class="num">80–89</td></tr>
+<tr><td>Stage 2 hypertension</td><td class="num">≥ 140</td><td class="num">≥ 90</td></tr>
+<tr><td>Hypertensive crisis</td><td class="num">&gt; 180</td><td class="num">&gt; 120</td></tr></table></div>
+<p class="muted">A reading takes the higher of the two bands it qualifies for: 135/85 is Stage 1 because the diastolic 85 falls in the Stage 1 range even though the systolic 135 is also Stage 1. Bands follow the widely used adult classification; children, pregnancy, and some conditions use different thresholds.</p></section>
+
+<section class="card"><h2>Formula</h2>
+<p>Pulse pressure = systolic &minus; diastolic. Category is assigned from the higher of the systolic band and the diastolic band, with readings over 180 systolic or over 120 diastolic flagged as hypertensive crisis regardless of the other number.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>135/85: systolic 135 falls in 130–139 (Stage 1) and diastolic 85 falls in 80–89 (Stage 1), so the category is Stage 1 hypertension. Pulse pressure = 135 &minus; 85 = 50 mmHg. A single reading does not diagnose hypertension — diagnosis rests on repeated readings over time, interpreted by a clinician.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>One reading is a snapshot: blood pressure varies through the day, with stress, caffeine, exercise, and cuff position. This page does not diagnose, stage, or recommend treatment for any condition, and it does not replace a clinician's reading of your history. If you get a crisis-range reading, especially with chest pain, shortness of breath, or neurological symptoms, seek emergency care promptly rather than re-measuring repeatedly. Thresholds here are the standard adult bands; they do not apply to children or to pregnancy without clinical adjustment.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>What do the two numbers mean?</h3><p>Systolic is the pressure when the heart contracts; diastolic is the pressure between beats. Both matter — the category uses whichever falls in the higher band.</p>
+<h3>Does one high reading mean I have hypertension?</h3><p>No. Diagnosis requires repeated elevated readings over time, usually including readings taken outside the clinic. A single high reading is a reason to recheck, not a diagnosis.</p>
+<h3>Why is my clinic reading higher than at home?</h3><p>White-coat effect: stress in a clinical setting raises readings for many people. Home readings taken with correct technique are often lower and are part of the diagnostic picture.</p>
+<h3>How should I measure for a fair reading?</h3><p>Seated, back supported, feet flat, arm at heart height, correct cuff size, no caffeine or exercise in the prior 30 minutes, and a few minutes of rest first. Two readings a minute apart, averaged, beat one rushed reading.</p>
+<h3>What is pulse pressure?</h3><p>The gap between systolic and diastolic — 50 mmHg in the example. A wide gap can reflect stiff arteries, but it is interpreted alongside the absolute numbers, not alone.</p>
+<h3>When should I seek urgent care?</h3><p>For a reading over 180 systolic or over 120 diastolic, especially with chest pain, shortness of breath, back pain, numbness, weakness, vision changes, or difficulty speaking — seek emergency care promptly.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/bmi-calculator">BMI Calculator</a> — weight relative to height, another basic health metric</li>
+<li><a href="https://calcmintly.com/bmr-calculator">BMR Calculator</a> — resting daily energy expenditure</li>
+<li><a href="https://calcmintly.com/body-fat-calculator">Body Fat Calculator</a> — body composition estimate from measurements</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function bandSys(s){ if(s>180) return 4; if(s>=140) return 3; if(s>=130) return 2; if(s>=120) return 1; return 0; }
+function bandDia(d){ if(d>120) return 4; if(d>=90) return 3; if(d>=80) return 2; return 0; }
+function render(){
+  const v=get();
+  if(!(v.sys>0 && v.dia>0)){
+    $("result").textContent="—"; $("chipPulse").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter systolic and diastolic readings above zero.";
+    return;
+  }
+  const names=["Normal","Elevated","Stage 1 hypertension","Stage 2 hypertension","Hypertensive crisis"];
+  const b=Math.max(bandSys(v.sys),bandDia(v.dia));
+  $("result").textContent=names[b];
+  $("chipPulse").textContent=num(v.sys-v.dia)+" mmHg";
+  const vd=$("verdict");
+  if(b===4){vd.className="verdict bad";$("verdictText").textContent="Crisis range: over 180 systolic or over 120 diastolic. Seek emergency care promptly, especially with chest pain, shortness of breath, or neurological symptoms.";}
+  else if(b===3){vd.className="verdict bad";$("verdictText").textContent="Stage 2 range. A single reading is not a diagnosis — repeat readings and a clinician's assessment decide what happens next.";}
+  else if(b===2){vd.className="verdict warn";$("verdictText").textContent="Stage 1 range. Recheck with correct technique and discuss repeated readings with a clinician.";}
+  else if(b===1){vd.className="verdict warn";$("verdictText").textContent="Elevated: systolic 120–129 with diastolic under 80. Worth watching and rechecking.";}
+  else{vd.className="verdict";$("verdictText").textContent="Normal range for an adult reading.";}
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

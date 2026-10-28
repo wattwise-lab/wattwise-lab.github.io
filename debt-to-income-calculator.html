@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debt-to-Income Ratio Calculator | CalcMintly</title><meta name="description" content="Your debt-to-income ratio from gross monthly income and monthly debt payments, with the housing ratio and the bands lenders commonly use.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
+table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Finance</span></p>
+<h1>Debt-to-Income Ratio Calculator</h1>
+<p class="sub">Monthly debt payments as a share of gross monthly income — the back-end DTI lenders look at, plus the housing-only front-end ratio.</p>
+
+<div class="hero">
+<section class="card"><h2>Your monthly numbers</h2><div class="grid">
+<div><label for="income">Gross monthly income ($)</label><input id="income" type="number" value="6000" min="0" step="any"></div>
+<div><label for="housing">Housing payment ($)</label><input id="housing" type="number" value="1500" min="0" step="any"></div>
+<div><label for="auto">Auto loan payment ($)</label><input id="auto" type="number" value="300" min="0" step="any"></div>
+<div><label for="other">Other debts ($)</label><input id="other" type="number" value="200" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Other debts means credit cards, student loans, personal loans, and any other required monthly payments. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Debt-to-income ratio</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Total debts: <strong id="chipDebts">—</strong></span><span class="chip">Housing ratio: <strong id="chipHousing">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Breakdown</h2>
+<div class="tblwrap"><table><tr><th>Item</th><th class="num">Monthly</th><th class="num">Share of income</th></tr>
+<tr><td>Housing</td><td class="num" id="bHousing">—</td><td class="num" id="bHousingPct">—</td></tr>
+<tr><td>Auto loan</td><td class="num" id="bAuto">—</td><td class="num" id="bAutoPct">—</td></tr>
+<tr><td>Other debts</td><td class="num" id="bOther">—</td><td class="num" id="bOtherPct">—</td></tr>
+<tr><td><strong>Total debts</strong></td><td class="num" id="bTotal">—</td><td class="num" id="bTotalPct">—</td></tr></table></div></section>
+
+<section class="card"><h2>Formula</h2>
+<p>DTI = total monthly debt payments &divide; gross monthly income &times; 100. Housing ratio = housing payment &divide; gross monthly income &times; 100. Income here is gross (before tax), because that is the figure lenders use.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Income $6,000 a month, housing $1,500, auto $300, other debts $200: total debts are $2,000, so DTI = $2,000 &divide; $6,000 = 33.33%. The housing ratio alone is $1,500 &divide; $6,000 = 25.00%. Both sit in the range lenders commonly describe as manageable (at or under 36% for total DTI).</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>The bands below are common lender guidelines, not rules: individual lenders weigh credit history, savings, and loan type alongside DTI, and some loan programs allow higher ratios. Only required minimum payments count — paying extra voluntarily does not raise your DTI, and everyday spending (food, utilities, subscriptions) is not debt and is not included. Self-employed income is harder to document; lenders often use an average of recent tax years rather than one good month.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>What counts as a debt payment?</h3><p>Required minimum payments: mortgage or rent, auto loans, student loans, personal loans, and credit card minimums. Child support and alimony count where they apply. Groceries, utilities, and subscriptions do not.</p>
+<h3>What is the difference between front-end and back-end DTI?</h3><p>Front-end is housing only (25.00% in the example); back-end is all debts (33.33%). Lenders usually care most about back-end, but some also cap front-end, often around 28%.</p>
+<h3>Is 36% a hard limit?</h3><p>No. Many lenders prefer 36% or under, some accept up to 43%, and certain programs go higher with compensating factors. Treat the bands as guidance, not approval odds.</p>
+<h3>Should I use gross or take-home pay?</h3><p>Gross, before tax. Using take-home pay would overstate the ratio and mismatch how lenders compute it.</p>
+<h3>How do I lower my DTI?</h3><p>Pay down a small debt entirely (removing its payment helps more than trimming a large balance), avoid new monthly obligations before applying, and report all stable income — a side income with a paper trail counts.</p>
+<h3>Does paying extra on a loan help my DTI?</h3><p>Not until the loan is gone. DTI uses the required minimum payment, so extra payments only help once the debt is fully paid off and its payment disappears.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/loan-calculator">Loan Calculator</a> — the payment behind any single loan in your total</li>
+<li><a href="https://calcmintly.com/mortgage-calculator">Mortgage Calculator</a> — the housing payment that usually dominates DTI</li>
+<li><a href="https://calcmintly.com/rent-vs-buy-calculator">Rent vs Buy Calculator</a> — how the housing choice changes your monthly obligations</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function render(){
+  const v=get();
+  const valid = v.income>0 && v.housing>=0 && v.auto>=0 && v.other>=0;
+  if(!valid){
+    $("result").textContent="—"; $("chipDebts").textContent="—"; $("chipHousing").textContent="—";
+    ["bHousing","bHousingPct","bAuto","bAutoPct","bOther","bOtherPct","bTotal","bTotalPct"].forEach(id=>{$(id).textContent="—";});
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a monthly income above zero and debt payments at zero or above.";
+    return;
+  }
+  const total=v.housing+v.auto+v.other, dti=total/v.income*100, hr=v.housing/v.income*100;
+  $("result").textContent=num(dti)+"%";
+  $("chipDebts").textContent=money(total)+"/mo";
+  $("chipHousing").textContent=num(hr)+"%";
+  $("bHousing").textContent=money(v.housing); $("bHousingPct").textContent=num(hr)+"%";
+  $("bAuto").textContent=money(v.auto); $("bAutoPct").textContent=num(v.auto/v.income*100)+"%";
+  $("bOther").textContent=money(v.other); $("bOtherPct").textContent=num(v.other/v.income*100)+"%";
+  $("bTotal").textContent=money(total); $("bTotalPct").textContent=num(dti)+"%";
+  const vd=$("verdict");
+  if(dti<=36){vd.className="verdict";$("verdictText").textContent="At "+num(dti)+"%, your debts sit in the range lenders commonly describe as manageable (at or under 36%).";}
+  else if(dti<=43){vd.className="verdict warn";$("verdictText").textContent="At "+num(dti)+"%, your debts are in the tight range (36–43%): some lenders will still approve, but a new loan payment may be hard to fit.";}
+  else{vd.className="verdict bad";$("verdictText").textContent="At "+num(dti)+"%, your debts are above the range most lenders prefer (over 43%). Paying off a debt entirely is the fastest way to bring this down.";}
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

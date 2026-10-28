@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markup Calculator | CalcMintly</title><meta name="description" content="Selling price from cost and markup percent, with profit per unit and the equivalent margin — and the markup-versus-margin distinction explained.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Business</span></p>
+<h1>Markup Calculator</h1>
+<p class="sub">Selling price from cost and markup percent — plus profit per unit and the equivalent margin, so markup and margin are never confused again.</p>
+
+<div class="hero">
+<section class="card"><h2>Your product</h2><div class="grid">
+<div><label for="cost">Cost per unit ($)</label><input id="cost" type="number" value="40" min="0" step="any"></div>
+<div><label for="mark">Markup (%)</label><input id="mark" type="number" value="50" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Selling price</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Profit per unit: <strong id="chipProfit">—</strong></span><span class="chip">Equivalent margin: <strong id="chipMargin">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>Selling price = cost &times; (1 + markup &divide; 100). Profit per unit = selling price &minus; cost. Margin = profit &divide; selling price &times; 100 — note the denominator is the price, not the cost, which is why margin and markup are different numbers for the same product.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Cost $40 with a 50% markup: selling price = $40 &times; 1.50 = $60.00. Profit per unit = $60.00 &minus; $40 = $20.00. Equivalent margin = $20.00 &divide; $60.00 = 33.33%. The same product is "50% markup" and "33.33% margin" at once — both correct, measured against different bases.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>Cost here means unit cost (materials, production, or purchase price). It does not include overheads, shipping, payment fees, or tax unless you fold them into the cost input. The page prices one unit; multiply by quantity for a batch. A markup below 0% would mean selling under cost — the page requires zero or above, since pricing under cost is a deliberate loss-leader decision, not a markup calculation.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Markup or margin — which should I use?</h3><p>Markup for setting prices from cost (the usual shop-floor question); margin for reporting profitability (profit as a share of revenue). Convert with margin = markup &divide; (100 + markup) &times; 100.</p>
+<h3>Is 50% markup the same as 50% margin?</h3><p>No. 50% markup on $40 gives a $60 price and a 33.33% margin. A 50% margin on a $60 price would need a $30 cost. Confusing the two is the most expensive pricing mistake a small business makes.</p>
+<h3>What if I want a target margin instead?</h3><p>Work backwards: price = cost &divide; (1 &minus; margin &divide; 100). For a 40% margin on a $40 cost, price = $40 &divide; 0.60 = $66.67.</p>
+<h3>Should tax be in the cost or added later?</h3><p>Added later, on the selling price. Mixing sales tax into cost distorts both markup and margin; keep the price tax-exclusive here and apply tax at checkout.</p>
+<h3>Can markup exceed 100%?</h3><p>Yes — luxury and low-cost goods often do. A 200% markup triples the cost: $40 becomes $120, with a 66.67% margin.</p>
+<h3>Does this cover discounts?</h3><p>No. A discount comes off the selling price after markup. Price first with markup, then apply the markdown to see the final profit.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/profit-calculator">Profit Calculator</a> — total profit across units, revenue, and costs</li>
+<li><a href="https://calcmintly.com/gross-margin-calculator">Gross Margin Calculator</a> — margin across a whole product line</li>
+<li><a href="https://calcmintly.com/discount-calculator">Discount Calculator</a> — sale prices after a markdown</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function render(){
+  const v=get();
+  if(!(v.cost>=0 && v.mark>=0)){
+    $("result").textContent="—"; $("chipProfit").textContent="—"; $("chipMargin").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a cost and markup at zero or above.";
+    return;
+  }
+  const price=v.cost*(1+v.mark/100), profit=price-v.cost, margin=price>0?profit/price*100:0;
+  $("result").textContent=money(price);
+  $("chipProfit").textContent=money(profit);
+  $("chipMargin").textContent=num(margin)+"%";
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent="At a "+num(v.mark)+"% markup on $"+num(v.cost)+", you sell at "+money(price)+" and keep "+money(profit)+" per unit — a "+num(margin)+"% margin.";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

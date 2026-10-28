@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pH Calculator | CalcMintly</title><meta name="description" content="pH from hydrogen ion concentration, with pOH, hydroxide concentration, and the acid–base label for the result.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Chemistry</span></p>
+<h1>pH Calculator</h1>
+<p class="sub">pH from hydrogen ion concentration — plus pOH, hydroxide concentration, and whether the solution is acidic, neutral, or alkaline.</p>
+
+<div class="hero">
+<section class="card"><h2>Your solution</h2><div class="grid">
+<div><label for="h">Hydrogen ion concentration [H⁺] (mol/L)</label><input id="h" type="number" value="0.0001" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Enter a concentration above zero, in moles per litre — 0.0001 means 10<sup>−4</sup> mol/L. Results update as you type. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>pH</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">pOH: <strong id="chipPoh">—</strong></span><span class="chip">[OH⁻]: <strong id="chipOh">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>pH = &minus;log<sub>10</sub>[H⁺]. At 25 °C, pH + pOH = 14, and [H⁺] &times; [OH⁻] = 10<sup>−14</sup>, so pOH = 14 &minus; pH and [OH⁻] = 10<sup>−14</sup> &divide; [H⁺]. Below 7 is acidic, 7 is neutral, above 7 is alkaline.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>[H⁺] = 0.0001 mol/L = 10<sup>−4</sup> mol/L: pH = &minus;log<sub>10</sub>(10<sup>−4</sup>) = 4.00. pOH = 14 &minus; 4.00 = 10.00, and [OH⁻] = 10<sup>−14</sup> &divide; 10<sup>−4</sup> = 10<sup>−10</sup> mol/L. The solution is acidic — about the acidity of tomato juice.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This page takes the hydrogen ion concentration as given; it does not work out how much a weak acid dissociates, which needs the acid's equilibrium constant. The pH + pOH = 14 relation holds at 25 °C; at other temperatures the neutral point shifts (at 100 °C, neutral pH is about 6.14). Activity effects in concentrated solutions are ignored, so results are exact for dilute solutions and approximate for strong ones. This page is for calculation, not for handling chemicals — follow lab safety rules for real solutions.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Why is the scale logarithmic?</h3><p>Because concentrations span many orders of magnitude: stomach acid at pH 2 has 10,000 times the hydrogen ions of a pH 6 solution, not three times. Each whole pH step means a tenfold change.</p>
+<h3>Is pH 7 always neutral?</h3><p>Only at 25 °C. Neutral means [H⁺] = [OH⁻], and that balance point moves with temperature, so neutral water at 100 °C has pH 6.14.</p>
+<h3>Can pH be negative or above 14?</h3><p>Yes, for very concentrated acids or bases — a 10 mol/L strong acid has a nominal pH of &minus;1. The 0–14 range is a rule of thumb for dilute solutions, not a law.</p>
+<h3>What is the difference between pH and pOH?</h3><p>Two views of the same solution: pH tracks hydrogen ions, pOH tracks hydroxide ions. At 25 °C they always add to 14, so either one determines the other.</p>
+<h3>Why does my measured pH differ from the calculated one?</h3><p>Meters measure activity, not concentration; temperature, calibration, and dissolved salts all shift readings. For weak acids, incomplete dissociation is usually the bigger cause — the concentration you put in is not the free [H⁺].</p>
+<h3>What is a familiar reference point?</h3><p>Pure water pH 7, coffee about 5, vinegar about 2.4, baking soda solution about 8.3, household bleach about 12.5.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/temperature-converter">Temperature Converter</a> — pH's neutral point depends on temperature</li>
+<li><a href="https://calcmintly.com/unit-converter">Unit Converter</a> — litres, millilitres, and other lab units</li>
+<li><a href="https://calcmintly.com/volume-converter">Volume Converter</a> — solution volumes for dilution work</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function sci(x){
+  if(x===0) return "0";
+  const e=Math.floor(Math.log10(x)), m=x/Math.pow(10,e);
+  return num(m)+" × 10^"+e;
+}
+function render(){
+  const h=parseFloat($("h").value)||0;
+  if(!(h>0)){
+    $("result").textContent="—"; $("chipPoh").textContent="—"; $("chipOh").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a hydrogen ion concentration above zero.";
+    return;
+  }
+  const ph=-Math.log10(h), poh=14-ph, oh=1e-14/h;
+  $("result").textContent=num(ph);
+  $("chipPoh").textContent=num(poh);
+  $("chipOh").textContent=sci(oh)+" mol/L";
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent = ph<7 ? "Acidic: hydrogen ions dominate." : ph>7 ? "Alkaline: hydroxide ions dominate." : "Neutral at 25 °C: hydrogen and hydroxide ions are balanced.";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>

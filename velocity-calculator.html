@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Velocity Calculator | CalcMintly</title><meta name="description" content="Average speed from distance and time, in kilometres per hour and metres per second, with pace per kilometre.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict p{margin:0}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Physics</span></p>
+<h1>Velocity Calculator</h1>
+<p class="sub">Average speed from distance and time — kilometres per hour and metres per second, plus pace per kilometre for runners and walkers.</p>
+
+<div class="hero">
+<section class="card"><h2>Your trip</h2><div class="grid">
+<div><label for="dist">Distance (km)</label><input id="dist" type="number" value="100" min="0" step="any"></div>
+<div><label for="time">Time (hours)</label><input id="time" type="number" value="2" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button></p>
+<p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>Average speed</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Metres per second: <strong id="chipMs">—</strong></span><span class="chip">Pace: <strong id="chipPace">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Formula</h2>
+<p>Average speed = distance &divide; time. Metres per second = km/h &divide; 3.6. Pace per kilometre = 60 &divide; speed in km/h, in minutes per kilometre.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>100 km in 2 hours: average speed = 100 &divide; 2 = 50 km/h. In metres per second that is 50 &divide; 3.6 = 13.89 m/s. Pace = 60 &divide; 50 = 1.20 minutes per kilometre — that is 1 minute 12 seconds per kilometre.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>This is average speed over the whole trip: it says nothing about how fast you went at any one moment. Stops, traffic, and hills are all folded into the average. Direction is ignored — this is speed (a scalar), not velocity as a vector, even though the two share the name in everyday use. Time must be above zero; a zero time gives no meaningful speed.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Average speed or instantaneous speed?</h3><p>Average: total distance over total time. Your speedometer shows instantaneous speed, which can be higher or lower at any moment. A trip with stops can have a high speedometer reading and a low average.</p>
+<h3>Why divide by 3.6 for m/s?</h3><p>Because 1 km/h = 1,000 metres per 3,600 seconds, and 1,000 &divide; 3,600 = 1 &divide; 3.6. So 50 km/h &divide; 3.6 = 13.89 m/s.</p>
+<h3>What is pace, and why minutes per kilometre?</h3><p>Pace is the inverse of speed: time per unit distance. Runners and walkers use it because "6 minutes per kilometre" is easier to hold steady than "10 km/h".</p>
+<h3>Can I enter miles and minutes?</h3><p>Not directly here: convert first (1 mile = 1.60934 km, minutes &divide; 60 = hours). The speed converter on this site converts the result afterwards.</p>
+<h3>Does a round trip change anything?</h3><p>No, if you enter total distance and total time. Note the trap: going 60 km/h out and 40 km/h back does not average to 50 km/h — the slower leg takes longer, so the true average over equal distances is 48 km/h.</p>
+<h3>What if time is zero?</h3><p>Division by zero has no answer, so the page asks for a time above zero instead of showing infinity.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/speed-converter">Speed Converter</a> — km/h, mph, m/s, and knots side by side</li>
+<li><a href="https://calcmintly.com/pace-calculator">Pace Calculator</a> — running pace, finish time, and splits in depth</li>
+<li><a href="https://calcmintly.com/fuel-economy-calculator">Fuel Economy Calculator</a> — what the same trip costs in fuel</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function render(){
+  const v=get();
+  if(!(v.dist>=0 && v.time>0)){
+    $("result").textContent="—"; $("chipMs").textContent="—"; $("chipPace").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a distance at zero or above and a time above zero.";
+    return;
+  }
+  const kmh=v.dist/v.time, ms=kmh/3.6, pace=kmh>0?60/kmh:0;
+  $("result").textContent=num(kmh)+" km/h";
+  $("chipMs").textContent=num(ms)+" m/s";
+  $("chipPace").textContent=kmh>0?num(pace)+" min/km":"—";
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent=num(v.dist)+" km in "+num(v.time)+" hours averages "+num(kmh)+" km/h ("+num(ms)+" m/s).";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>
