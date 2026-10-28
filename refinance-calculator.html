@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Refinance Calculator | CalcMintly</title><meta name="description" content="Compare your current mortgage with a new loan side by side: monthly payment, total interest, break-even month, and whether the refinance pays off before you move.">
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
+h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
+button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
+.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
+.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
+table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
+.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}
+</style></head><body><div class="wrap">
+<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<p><span class="tag">Finance</span></p>
+<h1>Refinance Calculator</h1>
+<p class="sub">Compare your current mortgage with a new loan side by side — monthly payment, total interest, break-even month, and whether the refinance pays off before you plan to move.</p>
+
+<div class="hero">
+<section class="card"><h2>Your loans</h2><div class="grid">
+<div><label for="bal">Current loan balance ($)</label><input id="bal" type="number" value="300000" min="0" step="any"></div>
+<div><label for="crate">Current annual rate (%)</label><input id="crate" type="number" value="7" min="0" step="any"></div>
+<div><label for="crem">Remaining term (years)</label><input id="crem" type="number" value="20" min="0" step="any"></div>
+<div><label for="nrate">New annual rate (%)</label><input id="nrate" type="number" value="5" min="0" step="any"></div>
+<div><label for="nterm">New term (years)</label><input id="nterm" type="number" value="20" min="0" step="any"></div>
+<div><label for="close">Closing costs ($)</label><input id="close" type="number" value="4000" min="0" step="any"></div>
+<div><label for="stay">How long you plan to stay (years)</label><input id="stay" type="number" value="10" min="0" step="any"></div>
+</div>
+<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy full comparison</button></p>
+<p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
+
+<section class="card"><h2>New monthly payment</h2><p class="big" id="result">—</p>
+<div class="chips"><span class="chip">Monthly saving: <strong id="chipSave">—</strong></span><span class="chip">Break-even: <strong id="chipBe">—</strong></span><span class="chip">Total interest saved: <strong id="chipInt">—</strong></span></div>
+<div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
+</div>
+
+<section class="card"><h2>Side-by-side comparison</h2>
+<div class="tblwrap"><table><tr><th></th><th class="num">Current loan</th><th class="num">New loan</th><th class="num">Difference</th></tr>
+<tr><td>Monthly payment</td><td class="num" id="cOldPmt">—</td><td class="num" id="cNewPmt">—</td><td class="num" id="cDiffPmt">—</td></tr>
+<tr><td>Total interest</td><td class="num" id="cOldInt">—</td><td class="num" id="cNewInt">—</td><td class="num" id="cDiffInt">—</td></tr>
+<tr><td>Total paid</td><td class="num" id="cOldTot">—</td><td class="num" id="cNewTot">—</td><td class="num" id="cDiffTot">—</td></tr>
+<tr><td>Term</td><td class="num" id="cOldTerm">—</td><td class="num" id="cNewTerm">—</td><td class="num" id="cDiffTerm">—</td></tr></table></div>
+<p class="muted">Total interest for the current loan counts only the remaining term, not interest already paid.</p></section>
+
+<section class="card"><h2>Total interest, at a glance</h2>
+<div class="bar-row"><label><span>Current loan, remaining term</span><span id="barOldVal">—</span></label><div class="bar"><i id="barOld" style="width:100%"></i></div></div>
+<div class="bar-row"><label><span>New loan, full term</span><span id="barNewVal">—</span></label><div class="bar"><i id="barNew" class="new" style="width:50%"></i></div></div>
+<p class="muted">Bars are scaled to the larger of the two totals. A lower payment can still mean more total interest when the new term is longer — check the verdict above.</p></section>
+
+<section class="card"><h2>Cumulative saving over time</h2>
+<div class="tblwrap"><table><tr><th>After</th><th class="num">Saved vs staying put</th></tr><tbody id="cumRows"></tbody></table></div>
+<p class="muted">Cumulative saving counts only months where both loans are being repaid. After either loan ends, the comparison changes. Closing costs are recovered once cumulative saving passes them — that month is the break-even point.</p></section>
+
+<section class="card"><h2>Formula</h2>
+<p>Monthly payment = balance &times; monthly rate &times; (1 + monthly rate)<sup>payments</sup> &divide; [(1 + monthly rate)<sup>payments</sup> &minus; 1]. Break-even months = closing costs &divide; monthly saving. Total interest = monthly payment &times; payments &minus; balance.</p></section>
+
+<section class="card"><h2>Worked example</h2>
+<p>Balance $300,000, current 7% with 20 years left: payment $2,325.90. New 5% for 20 years: payment $1,979.87, saving $346.03/month. With $4,000 closing costs, break-even is $4,000 &divide; $346.03 = 11.56 months. Total interest falls from $258,215.23 to $175,168.13 — a $83,047.10 saving — and break-even arrives well inside a 10-year stay, so on these numbers the refinance pays off.</p></section>
+
+<section class="card"><h2>Scope and limitations</h2>
+<p>Both loans are fixed-rate with no fees beyond the closing-cost input, no cash-out, and no change in balance at refinancing. Taxes, insurance, HOA dues, and private mortgage insurance are not included. A longer new term can lower the payment while raising total interest — the comparison table shows that trade directly. Rate changes, points bought separately from closing costs, and tax effects are not modeled.</p></section>
+
+<section class="card"><h2>FAQ</h2>
+<h3>Is a lower payment always a win?</h3><p>No. Extending the term can cut the monthly payment but add years of interest. Compare total interest as well as the monthly figure — the table above does both.</p>
+<h3>What does break-even mean?</h3><p>The month when cumulative monthly savings first cover closing costs. If you move or refinance again before break-even, the refinance may not have paid off.</p>
+<h3>What if I move before break-even?</h3><p>Then the savings never repay the closing costs. Enter your planned stay above and the verdict checks this for you: a refinance that breaks even after your move is flagged, even if the monthly saving looks good.</p>
+<h3>Does refinancing reset my payoff date?</h3><p>Yes, unless the new term matches your remaining term. A new 20-year loan on a mortgage with 20 years left keeps the date; a new 30-year loan pushes it out 10 years, which is usually why total interest rises despite a lower payment.</p>
+<h3>Should I include points?</h3><p>Yes, in closing costs. Points buy a lower rate, so they belong in the break-even calculation, not as a separate saving.</p>
+<h3>Does this cover adjustable rates?</h3><p>No. It assumes the new rate stays fixed for the whole new term. If the new rate can adjust, the saving and break-even figures are only valid until the first adjustment.</p></section>
+
+<section class="card"><h2>Related tools</h2><ul>
+<li><a href="https://calcmintly.com/loan-calculator">Loan Calculator</a> — payment, interest split, and year-by-year schedule for a single loan</li>
+<li><a href="https://calcmintly.com/mortgage-calculator">Mortgage Calculator</a> — the standard purchase mortgage view</li>
+<li><a href="https://calcmintly.com/early-loan-payoff-calculator">Early Loan Payoff Calculator</a> — paying extra each month instead of refinancing</li>
+</ul></section>
+
+<p><em>Results are estimates only and do not constitute professional advice.</em></p>
+</div>
+<script>
+const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
+const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function render(){
+  const v=get();
+  const valid = v.bal>0 && v.crem>0 && v.nterm>0 && v.crate>=0 && v.nrate>=0 && v.close>=0 && v.stay>=0;
+  if(!valid){
+    $("result").textContent="—";
+    $("chipSave").textContent="—"; $("chipBe").textContent="—"; $("chipInt").textContent="—";
+    ["cOldPmt","cNewPmt","cDiffPmt","cOldInt","cNewInt","cDiffInt","cOldTot","cNewTot","cDiffTot","cOldTerm","cNewTerm","cDiffTerm"].forEach(id=>{$(id).textContent="—";});
+    $("barOld").style.width="0%"; $("barNew").style.width="0%"; $("barOldVal").textContent="—"; $("barNewVal").textContent="—";
+    $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a loan balance and loan terms above zero, with rates and costs at zero or above, to see the comparison.";
+    window.__summary="";
+    return;
+  }
+  const oldP=pmt(v.bal,v.crate/100/12,v.crem*12), newP=pmt(v.bal,v.nrate/100/12,v.nterm*12);
+  const save=oldP-newP, be=save>0?v.close/save:Infinity;
+  const oldInt=oldP*v.crem*12-v.bal, newInt=newP*v.nterm*12-v.bal;
+  const oldTot=oldP*v.crem*12, newTot=newP*v.nterm*12;
+  $("result").textContent=money(newP);
+  $("chipSave").textContent=money(save)+"/mo";
+  $("chipBe").textContent=isFinite(be)?num(be)+" months":"no saving";
+  $("chipInt").textContent=money(oldInt-newInt);
+  $("cOldPmt").textContent=money(oldP); $("cNewPmt").textContent=money(newP);
+  $("cDiffPmt").innerHTML=save>0?'<span class="pos">Save '+money(save)+'</span>':save<0?'<span class="neg">Pay '+money(-save)+' more</span>':'—';
+  $("cOldInt").textContent=money(oldInt); $("cNewInt").textContent=money(newInt);
+  $("cDiffInt").innerHTML=oldInt-newInt>0?'<span class="pos">Save '+money(oldInt-newInt)+'</span>':oldInt-newInt<0?'<span class="neg">'+money(newInt-oldInt)+' more</span>':'—';
+  $("cOldTot").textContent=money(oldTot); $("cNewTot").textContent=money(newTot);
+  $("cDiffTot").innerHTML=oldTot-newTot>0?'<span class="pos">Save '+money(oldTot-newTot)+'</span>':oldTot-newTot<0?'<span class="neg">'+money(newTot-oldTot)+' more</span>':'—';
+  $("cOldTerm").textContent=num(v.crem)+" yrs"; $("cNewTerm").textContent=num(v.nterm)+" yrs";
+  $("cDiffTerm").textContent=(v.nterm-v.crem>0?"+":"")+num(v.nterm-v.crem)+" yrs";
+  const maxInt=Math.max(oldInt,newInt,1);
+  $("barOld").style.width=(oldInt/maxInt*100)+"%"; $("barOldVal").textContent=money(oldInt);
+  $("barNew").style.width=(newInt/maxInt*100)+"%"; $("barNewVal").textContent=money(newInt);
+  $("barNew").className=newInt>oldInt?"newbad":"new";
+  const stayM=v.stay*12, capM=Math.min(stayM,v.crem*12,v.nterm*12);
+  const rows=[[12,"1 year"],[36,"3 years"],[60,"5 years"],[120,"10 years"]];
+  let rh="";
+  rows.forEach(r=>{const m=Math.min(r[0],v.crem*12,v.nterm*12);rh+="<tr><td>"+r[1]+"</td><td class='num'>"+money(save*m)+"</td></tr>";});
+  if(capM>0&&[12,36,60,120].indexOf(capM)===-1){rh+="<tr><td>Your planned stay ("+num(v.stay)+" yrs)</td><td class='num'>"+money(save*capM)+"</td></tr>";}
+  $("cumRows").innerHTML=rh;
+  const vd=$("verdict");
+  if(save<=0){vd.className="verdict bad";$("verdictText").textContent="No monthly saving at these rates — the new payment is "+money(-save)+" higher. On payment alone, this refinance does not pay off.";}
+  else if(isFinite(be)&&be>stayM){vd.className="verdict warn";$("verdictText").textContent="Break-even is "+num(be)+" months, but you plan to move in "+num(v.stay)+" years ("+num(stayM)+" months). You would move before the savings cover the $"+num(v.close)+" closing costs — on payment alone, this refinance may not pay off for you.";}
+  else if(newInt>oldInt){vd.className="verdict warn";$("verdictText").textContent="Lower payment, but "+money(newInt-oldInt)+" MORE total interest: the longer new term outweighs the lower rate. Monthly relief costs lifetime interest — weigh that trade before deciding.";}
+  else{vd.className="verdict";$("verdictText").textContent="Clear win on these numbers: you break even in "+num(be)+" months, well within your "+num(v.stay)+"-year stay, and save "+money(oldInt-newInt)+" in total interest over the full term.";}
+  window.__summary="Refinance comparison: new payment "+money(newP)+" (was "+money(oldP)+"), saving "+money(save)+"/mo, break-even "+(isFinite(be)?num(be)+" months":"n/a")+", total interest "+money(newInt)+" vs "+money(oldInt)+".";
+}
+function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
+function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+</script></body></html>
