@@ -1,11 +1,1 @@
-{
-  "name": "CalcMintly 在线计算器",
-  "short_name": "CalcMintly",
-  "description": "免费、透明、无需注册的全品类在线计算器。",
-  "lang": "zh-CN",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#f6f7f9",
-  "theme_color": "#3157d5",
-  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
-}
+{"name":"CalcMintly","short_name":"CalcMintly","start_url":"/","display":"standalone","background_color":"#f6f8f8","theme_color":"#0c665c","icons":[{"src":"/favicon.svg?v=20261029v3","sizes":"any","type":"image/svg+xml","purpose":"any"},{"src":"/apple-touch-icon.png?v=20261029v3","sizes":"180x180","type":"image/png","purpose":"any"}]}
