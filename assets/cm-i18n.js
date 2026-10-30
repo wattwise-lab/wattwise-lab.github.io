@@ -373,8 +373,10 @@ window.CMI18n = (() => {
       const value = Number(element.dataset.cmValue);
       if (Number.isFinite(value))
         element.textContent =
-          number(value, { maximumSignificantDigits: 12 }) +
-          (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
+          number(value, {
+            maximumSignificantDigits: 12,
+            ...(element.dataset.cmNotation === 'scientific' ? { notation: 'scientific' } : {}),
+          }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
   }
   function translateTree(root) {

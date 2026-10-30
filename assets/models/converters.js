@@ -32,10 +32,14 @@
         ),
         R('Value in base unit|基本单位数值', v.x * factor(v.a), units[0][0]),
       ],
-      'result=input×factor(from)/factor(to); base unit: ' + units[0][0],
+      'y = x × a ÷ b',
       [expected],
       note,
     );
+    CMModels.models.at(-1).referenceTable = {
+      baseUnit: units[0][0],
+      units,
+    };
   }
   C(
     'pressure',

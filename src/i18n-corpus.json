@@ -1509,7 +1509,7 @@
     "id": "00252",
     "source": "The true annual cost of a loan including fees — APR from the loan amount, nominal rate, term, and upfront fees.",
     "origin": "apr-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "00253",
@@ -1557,13 +1557,13 @@
     "id": "00260",
     "source": "APR (nominal)",
     "origin": "apr-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "00261",
     "source": "Effective APR:",
     "origin": "apr-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "00262",
@@ -6375,7 +6375,7 @@
     "id": "01063",
     "source": "No. Tax is normally charged on the discounted price, so add tax afterwards — or use the sales tax calculator on the final price shown here.",
     "origin": "discount-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01064",
@@ -7287,7 +7287,7 @@
     "id": "01215",
     "source": "The model uses 48 working weeks per year. Enter nonzero weekly hours and a nonzero billable share.",
     "origin": "freelance-real-rate.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01216",
@@ -7857,25 +7857,25 @@
     "id": "01310",
     "source": "Year-by-year values assume the same rate every year and annual compounding for the yearly rows, whatever the compounding frequency above.",
     "origin": "future-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01311",
     "source": "Future value = present value × (1 + annual rate ÷ compounding periods)",
     "origin": "future-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01312",
     "source": "compounding periods × years",
     "origin": "future-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01313",
     "source": ". Interest earned = future value − present value. Growth multiple = future value ÷ present value. The default compounding frequency is 1 (annual); use 12 for monthly compounding.",
     "origin": "future-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01314",
@@ -8547,7 +8547,7 @@
     "id": "01425",
     "source": "A height-based reference weight using the Devine formula — a dosing reference, not a personal target.",
     "origin": "ideal-weight-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01426",
@@ -8625,7 +8625,7 @@
     "id": "01438",
     "source": "Above 5 feet (60 inches), add 2.3 kg per inch to a base of 50 kg for men or 45.5 kg for women. At or below 5 feet the formula gives the base value. Height in inches = height (cm) ÷ 2.54.",
     "origin": "ideal-weight-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01439",
@@ -8643,7 +8643,7 @@
     "id": "01441",
     "source": "The Devine formula uses height alone: it ignores build, muscle mass, age, and every other personal factor, and it was developed as a dosing reference rather than a health target. Calling the result “ideal” is the formula’s historical label, not a claim that this weight is best for any individual. Heights at or below 5 feet return the base value, since the formula adds nothing below that height.",
     "origin": "ideal-weight-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01442",
@@ -8679,7 +8679,7 @@
     "id": "01447",
     "source": "The formula adds nothing below 5 feet, so it returns the base value (50 kg or 45.5 kg). That flat result is a limit of the formula, not a meaningful target.",
     "origin": "ideal-weight-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01448",
@@ -9027,7 +9027,7 @@
     "id": "01505",
     "source": "This page applies one constant average inflation rate across the whole period. Real inflation varies year by year, and no single rate captures that path — for official figures, use a published CPI series for the exact years and country. It also measures general price levels, not any single item: housing, education, and healthcare have risen faster than the average in many periods, while electronics have fallen. The result is a purchasing-power comparison, not a price quote for anything specific.",
     "origin": "inflation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01506",
@@ -9057,7 +9057,7 @@
     "id": "01510",
     "source": "Only if you enter the true average. Year-by-year CPI in most economies has ranged from near zero to double digits, so a flat 3% is a simplification. Use it for intuition and what-if comparisons; use a CPI table for historical claims.",
     "origin": "inflation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01511",
@@ -9339,7 +9339,7 @@
     "id": "01557",
     "source": "Solve ax + b = 0 for x, and read slope, intercepts, and the graph of a line in slope-intercept form.",
     "origin": "linear-equation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01558",
@@ -9825,7 +9825,7 @@
     "id": "01638",
     "source": "Added later, on the selling price. Mixing sales tax into cost distorts both markup and margin; keep the price tax-exclusive here and apply tax at checkout.",
     "origin": "markup-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01639",
@@ -9909,7 +9909,7 @@
     "id": "01652",
     "source": "Results update as you type. Non-numeric entries are ignored. All calculations run locally in your browser.",
     "origin": "mean-median-mode-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "01653",
@@ -12333,7 +12333,7 @@
     "id": "02056",
     "source": "Value in 5 years:",
     "origin": "present-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02057",
@@ -12345,19 +12345,19 @@
     "id": "02058",
     "source": "$10,000 due in 10 years at a 5% discount rate: PV = 10,000 ÷ 1.05",
     "origin": "present-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02059",
     "source": "= 10,000 ÷ 1.6289 = $6,139.13. The discount is 10,000 − 6,139.13 = $3,860.87. At 5 years instead, the same sum is worth 10,000 ÷ 1.05",
     "origin": "present-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02060",
     "source": "= $7,835.26 — waiting twice as long costs more than twice the discount, because compounding accelerates.",
     "origin": "present-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02061",
@@ -12453,7 +12453,7 @@
     "id": "02076",
     "source": "Only if the future amount is negative (a future payment you must make). A future receipt always discounts to a positive present value. If you are valuing a future liability, enter it as a positive amount and read the result as the amount to set aside today.",
     "origin": "present-value-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02077",
@@ -12615,7 +12615,7 @@
     "id": "02103",
     "source": "The percentage of sales volume you expect to lose after the increase, entered directly. The source scenario labels this field elasticity, but the formula uses the entered percentage itself as the decline — it does not multiply an elasticity coefficient by the price increase.",
     "origin": "pricing-power.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02104",
@@ -13011,7 +13011,7 @@
     "id": "02169",
     "source": "Only genuine quadratics are solved: a must not be zero. If a = 0 the equation is linear (bx + c = 0) and this page says so instead of dividing by zero. Coefficients may be decimals or negative. Very large coefficients can lose precision in floating-point arithmetic; results are rounded to two decimals for display, so a root like 0.001 may show as 0.",
     "origin": "quadratic-equation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02170",
@@ -13023,7 +13023,7 @@
     "id": "02171",
     "source": "Then it is not a quadratic at all — it is the linear equation bx + c = 0, with the single solution x = −c ÷ b (when b is not zero either). This page flags that case instead of producing nonsense.",
     "origin": "quadratic-equation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02172",
@@ -13059,7 +13059,7 @@
     "id": "02177",
     "source": "A degree-2 polynomial has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.",
     "origin": "quadratic-equation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02178",
@@ -13623,7 +13623,7 @@
     "id": "02271",
     "source": "Mortgage modelled as a 30-year fixed-rate loan; rent is held flat with no rent growth. See Scope and limitations below.",
     "origin": "rent-vs-buy-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02272",
@@ -14595,7 +14595,7 @@
     "id": "02433",
     "source": "Bars are scaled to the larger of the two amounts. A gain bar longer than the initial bar means a positive ROI.",
     "origin": "roi-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02434",
@@ -15471,7 +15471,7 @@
     "id": "02579",
     "source": "Simple interest never charges interest on interest, which is why it is lower than compound interest over the same period. Loans and deposits that compound, or that charge fees, need a different calculator. Partial years are allowed and scale the interest proportionally.",
     "origin": "simple-interest-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02580",
@@ -15483,7 +15483,7 @@
     "id": "02581",
     "source": "Simple interest is always calculated on the original principal. Compound interest is calculated on principal plus previously earned interest, so it grows faster over time.",
     "origin": "simple-interest-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02582",
@@ -15495,7 +15495,7 @@
     "id": "02583",
     "source": "For some short-term loans, car loans with simple-interest terms, and textbook interest problems. Most savings accounts and mortgages compound instead.",
     "origin": "simple-interest-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02584",
@@ -16347,7 +16347,7 @@
     "id": "02725",
     "source": "Non-numeric entries are ignored; if no numbers remain, no result is shown. Use population SD when the list is the complete population and sample SD when the observations are a sample used to estimate a population. Standard deviation is sensitive to outliers and describes spread only — it does not by itself show the shape of the distribution. Display is rounded to 4 decimal places.",
     "origin": "standard-deviation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02726",
@@ -16407,7 +16407,7 @@
     "id": "02735",
     "source": "No, they are skipped. If nothing numeric remains, the page shows — and asks for numbers.",
     "origin": "standard-deviation-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02736",
@@ -16431,7 +16431,7 @@
     "id": "02739",
     "source": "Uses per month",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02740",
@@ -16461,7 +16461,7 @@
     "id": "02744",
     "source": "Bars are scaled to the annual fee. Value received is what your uses would otherwise have cost; waste is the rest of the fee plus the idle-month penalty.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02745",
@@ -16473,73 +16473,73 @@
     "id": "02746",
     "source": "Same monthly fee, alternative price and idle months; only the use frequency changes. The idle-month penalty stays in every row.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02747",
     "source": "Estimate = max(monthly fee × 12 − uses per month × 12 × alternative price, 0) + idle months × monthly fee.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02748",
     "source": "Monthly fee 68, 2 uses per month, alternative price 12 per use, 4 idle months: annual fee = 68 × 12 = 816.00; value received = 2 × 12 × 12 = 288.00; base waste = max(816.00 − 288.00, 0) = 528.00; idle penalty = 4 × 68 = 272.00; estimated waste = 528.00 + 272.00 = 800.00. These are example inputs, not prices for any real service.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02749",
     "source": "The idle-month term is an additional scenario penalty and may overlap with the annual comparison: idle months are already partly reflected in a low uses-per-month average, so the total can overstate waste if you count the same idle period twice. Do not treat the result as an exact amount recoverable by cancelling — cancellation may lose bundled benefits, and some subscriptions cannot be paused month by month.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02750",
     "source": "What is the alternative price?",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02751",
     "source": "What one use would cost you without the subscription — for example, a single rental, ticket or pay-as-you-go session. It converts uses into a money value you can compare with the fee.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02752",
     "source": "Why is there a separate idle-month penalty?",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02753",
     "source": "To model stretches where you pay but do not use the service at all, such as holidays or off-seasons. It is a scenario input, not a measured fact.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02754",
     "source": "Can the total overstate waste?",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02755",
     "source": "Yes. The idle-month term may overlap with the annual comparison, since idle months already lower your average uses. Read the scope note above before acting on the figure.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02756",
     "source": "Does cancelling save the full waste amount?",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02757",
     "source": "Not necessarily. You may lose bundled benefits, face rejoining fees, or find the alternative price has changed. The figure is an estimate of waste, not a guaranteed saving.",
     "origin": "subscription-waste.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02758",
@@ -16605,7 +16605,7 @@
     "id": "02768",
     "source": "For a₁x + b₁y = c₁ and a₂x + b₂y = c₂, let D = a₁b₂ − a₂b₁. If D ≠ 0, there is exactly one solution: x = (c₁b₂ − c₂b₁) ÷ D and y = (a₁c₂ − a₂c₁) ÷ D. This is Cramer's rule for two equations. If D = 0, the lines are parallel or identical: parallel lines never meet (no solution), identical lines meet everywhere (infinitely many solutions).",
     "origin": "system-of-equations-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02769",
@@ -16617,7 +16617,7 @@
     "id": "02770",
     "source": "This page solves two linear equations in two unknowns. It does not handle three or more equations, nonlinear terms (x², xy), or inequalities. When D = 0 it distinguishes the two cases: if the equations are proportional (same line), it reports infinitely many solutions; otherwise it reports no solution. Results display to two decimals; repeating decimals such as 1/3 show as 0.33, so keep the fraction form for exact work.",
     "origin": "system-of-equations-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02771",
@@ -16629,7 +16629,7 @@
     "id": "02772",
     "source": "Each equation is a straight line, and the solution is their crossing point. One crossing means one solution; parallel lines never cross (no solution); the same line twice means every point on it works (infinitely many solutions).",
     "origin": "system-of-equations-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02773",
@@ -16641,7 +16641,7 @@
     "id": "02774",
     "source": "Then the two lines have the same slope. The page checks proportionality: if one equation is a multiple of the other, the lines coincide and every point on the line is a solution; otherwise they are distinct parallels with no solution at all.",
     "origin": "system-of-equations-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "02775",
@@ -19149,19 +19149,19 @@
     "id": "03192",
     "source": "Weekdays (Monday–Friday)",
     "origin": "workday-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03193",
     "source": "Weekend days (Saturday–Sunday)",
     "origin": "workday-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03194",
     "source": "Less: weekday holidays entered",
     "origin": "workday-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03195",
@@ -19173,7 +19173,7 @@
     "id": "03196",
     "source": "Iterate through the range, inclusive of both endpoints, and count dates that fall Monday through Friday. Net workdays = weekday count − weekday holidays you entered. Weekend days are the remaining dates in the range.",
     "origin": "workday-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03197",
@@ -19437,7 +19437,7 @@
     "id": "03240",
     "source": "use strict",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03241",
@@ -19664,7 +19664,7 @@
     "id": "03276",
     "source": "Calculator fields and full guides are currently in English, except the multilingual merchant tool.",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03277",
@@ -19814,7 +19814,7 @@
     "id": "03301",
     "source": "results",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03302",
@@ -19844,31 +19844,31 @@
     "id": "03306",
     "source": "click",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03307",
     "source": "desk",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03308",
     "source": "[data-w]",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03309",
     "source": "[data-close]",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03310",
     "source": "input,select,textarea",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03311",
@@ -19934,19 +19934,19 @@
     "id": "03321",
     "source": "earlier",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03322",
     "source": "later",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03323",
     "source": "loading",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03324",
@@ -19964,19 +19964,19 @@
     "id": "03326",
     "source": "referrerpolicy",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03327",
     "source": "load",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03328",
     "source": "input,select",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03329",
@@ -19988,7 +19988,7 @@
     "id": "03330",
     "source": "title",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03331",
@@ -20006,13 +20006,13 @@
     "id": "03333",
     "source": "send",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03334",
     "source": "full",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03335",
@@ -20042,7 +20042,7 @@
     "id": "03339",
     "source": ".ws-card-actions button",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03340",
@@ -20102,7 +20102,7 @@
     "id": "03349",
     "source": "removed",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03350",
@@ -20126,7 +20126,7 @@
     "id": "03353",
     "source": "picker",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03354",
@@ -20162,7 +20162,7 @@
     "id": "03359",
     "source": "transfer",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03360",
@@ -20198,7 +20198,7 @@
     "id": "03365",
     "source": "sent",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03366",
@@ -20216,7 +20216,7 @@
     "id": "03368",
     "source": "saved",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03369",
@@ -20228,13 +20228,13 @@
     "id": "03370",
     "source": "restored",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03371",
     "source": "[data-template]",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03372",
@@ -20246,13 +20246,13 @@
     "id": "03373",
     "source": ".ws-card-footer button",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03374",
     "source": ".ws-card-footer a",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03375",
@@ -20330,13 +20330,13 @@
     "id": "03387",
     "source": "[data-key]",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03388",
     "source": "keydown",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03389",
@@ -20354,19 +20354,19 @@
     "id": "03391",
     "source": "[name=kp-angle]",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03392",
     "source": "input,select,textarea,dialog",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03393",
     "source": "button,a",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03394",
@@ -20384,7 +20384,7 @@
     "id": "03396",
     "source": "copied",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03397",
@@ -20402,25 +20402,25 @@
     "id": "03399",
     "source": "nav",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03400",
     "source": ":scope>.card",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03401",
     "source": "role",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03402",
     "source": "status",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03403",
@@ -20432,13 +20432,13 @@
     "id": "03404",
     "source": "inputs",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03405",
     "source": "polite",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03406",
@@ -20450,7 +20450,7 @@
     "id": "03407",
     "source": "onclick",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03408",
@@ -20474,7 +20474,7 @@
     "id": "03411",
     "source": ".hero input,.hero select,.hero textarea",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03412",
@@ -20486,7 +20486,7 @@
     "id": "03413",
     "source": ".hero input,.hero select",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03414",
@@ -20576,7 +20576,7 @@
     "id": "03428",
     "source": "[data-t]",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03429",
@@ -20606,19 +20606,19 @@
     "id": "03433",
     "source": "empty",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03434",
     "source": "pager",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03435",
     "source": "clear",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03436",
@@ -20630,25 +20630,25 @@
     "id": "03437",
     "source": "popstate",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03438",
     "source": "resize",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03439",
     "source": "focusin",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03440",
     "source": "toggle",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03441",
@@ -20720,13 +20720,13 @@
     "id": "03452",
     "source": "ref",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03453",
     "source": "dob",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03454",
@@ -20774,7 +20774,7 @@
     "id": "03461",
     "source": "note",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03462",
@@ -21482,25 +21482,25 @@
     "id": "03579",
     "source": "[data-cell]",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03580",
     "source": "tbody[data-rows]",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03581",
     "source": ".bar i",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03582",
     "source": "[data-barval]",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03583",
@@ -21836,7 +21836,7 @@
     "id": "03638",
     "source": ".chip strong",
     "origin": "assets/legacy-models/bmi-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03639",
@@ -22010,13 +22010,13 @@
     "id": "03667",
     "source": "Enter a weight, height, and age above zero to see your BMR.",
     "origin": "assets/legacy-models/bmr-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03668",
     "source": "sex",
     "origin": "assets/legacy-models/bmr-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03669",
@@ -22124,7 +22124,7 @@
     "id": "03686",
     "source": "Enter a weight, height, and age above zero to see the estimate.",
     "origin": "assets/legacy-models/body-fat-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03687",
@@ -22172,25 +22172,25 @@
     "id": "03694",
     "source": "% (BMI",
     "origin": "assets/legacy-models/body-fat-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03695",
     "source": ", age",
     "origin": "assets/legacy-models/body-fat-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03696",
     "source": "), fat mass",
     "origin": "assets/legacy-models/body-fat-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03697",
     "source": "kg, lean mass",
     "origin": "assets/legacy-models/body-fat-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03698",
@@ -22328,43 +22328,43 @@
     "id": "03720",
     "source": "chip30",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03721",
     "source": "bar15",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03722",
     "source": "bar15Val",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03723",
     "source": "bar30",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03724",
     "source": "bar30Val",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03725",
     "source": "bar60",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03726",
     "source": "bar60Val",
     "origin": "assets/legacy-models/calories-burned-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03727",
@@ -22616,7 +22616,7 @@
     "id": "03768",
     "source": "from",
     "origin": "assets/legacy-models/countdown-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03769",
@@ -24092,7 +24092,7 @@
     "id": "04014",
     "source": "Enter a present value and rate at zero or above, years above zero, and at least 1 compounding period per year.",
     "origin": "assets/legacy-models/future-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04015",
@@ -24104,7 +24104,7 @@
     "id": "04016",
     "source": "Your $",
     "origin": "assets/legacy-models/future-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04017",
@@ -24116,13 +24116,13 @@
     "id": "04018",
     "source": "years at",
     "origin": "assets/legacy-models/future-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04019",
     "source": "%, earning",
     "origin": "assets/legacy-models/future-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04020",
@@ -24404,7 +24404,7 @@
     "id": "04066",
     "source": "Enter a height above zero to see the reference weight.",
     "origin": "assets/legacy-models/ideal-weight-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04067",
@@ -24428,7 +24428,7 @@
     "id": "04070",
     "source": "in above 5 ft)",
     "origin": "assets/legacy-models/ideal-weight-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04071",
@@ -24440,13 +24440,13 @@
     "id": "04072",
     "source": "The Devine formula was developed for medication dosing and is not a personalized health or appearance target. A single height-based number cannot capture build, muscle, age, or personal circumstances.",
     "origin": "assets/legacy-models/ideal-weight-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04073",
     "source": "(other sex",
     "origin": "assets/legacy-models/ideal-weight-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04074",
@@ -24470,25 +24470,25 @@
     "id": "04077",
     "source": "Enter an amount above zero and a current year later than the past year.",
     "origin": "assets/legacy-models/inflation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04078",
     "source": "Prices rose",
     "origin": "assets/legacy-models/inflation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04079",
     "source": "% over",
     "origin": "assets/legacy-models/inflation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04080",
     "source": "% a year.",
     "origin": "assets/legacy-models/inflation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04081",
@@ -24668,25 +24668,25 @@
     "id": "04110",
     "source": "Enter numbers in all four fields.",
     "origin": "assets/legacy-models/linear-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04111",
     "source": "every x",
     "origin": "assets/legacy-models/linear-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04112",
     "source": "no solution",
     "origin": "assets/legacy-models/linear-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04113",
     "source": "none (horizontal)",
     "origin": "assets/legacy-models/linear-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04114",
@@ -24698,7 +24698,7 @@
     "id": "04115",
     "source": "= 0 has no solution.",
     "origin": "assets/legacy-models/linear-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04116",
@@ -24812,7 +24812,7 @@
     "id": "04134",
     "source": "data",
     "origin": "assets/legacy-models/mean-median-mode-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04135",
@@ -24896,25 +24896,25 @@
     "id": "04148",
     "source": "people",
     "origin": "assets/legacy-models/meeting-cost-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04149",
     "source": "hourly",
     "origin": "assets/legacy-models/meeting-cost-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04150",
     "source": "mins",
     "origin": "assets/legacy-models/meeting-cost-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04151",
     "source": "weekly",
     "origin": "assets/legacy-models/meeting-cost-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04152",
@@ -25274,19 +25274,19 @@
     "id": "04211",
     "source": "mode",
     "origin": "assets/legacy-models/ohms-law-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04212",
     "source": "lab1",
     "origin": "assets/legacy-models/ohms-law-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04213",
     "source": "lab2",
     "origin": "assets/legacy-models/ohms-law-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04214",
@@ -25346,7 +25346,7 @@
     "id": "04223",
     "source": "chip5k",
     "origin": "assets/legacy-models/pace-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04224",
@@ -25568,7 +25568,7 @@
     "id": "04260",
     "source": "pct",
     "origin": "assets/legacy-models/percentage-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04261",
@@ -25844,25 +25844,25 @@
     "id": "04306",
     "source": "Enter a future value above zero and non-negative rate and years.",
     "origin": "assets/legacy-models/present-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04307",
     "source": "Waiting",
     "origin": "assets/legacy-models/present-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04308",
     "source": "% costs $",
     "origin": "assets/legacy-models/present-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04309",
     "source": "of today's value.",
     "origin": "assets/legacy-models/present-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04310",
@@ -26066,7 +26066,7 @@
     "id": "04343",
     "source": "Not a quadratic",
     "origin": "assets/legacy-models/quadratic-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04344",
@@ -26078,19 +26078,19 @@
     "id": "04345",
     "source": "With a = 0 this is the linear equation",
     "origin": "assets/legacy-models/quadratic-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04346",
     "source": "= 0, whose solution is x =",
     "origin": "assets/legacy-models/quadratic-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04347",
     "source": "With a = 0 and b = 0 there is no x to solve for: the equation is just",
     "origin": "assets/legacy-models/quadratic-equation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04348",
@@ -27428,25 +27428,25 @@
     "id": "04570",
     "source": "bar7",
     "origin": "assets/legacy-models/sleep-debt-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04571",
     "source": "bar7Val",
     "origin": "assets/legacy-models/sleep-debt-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04572",
     "source": "bar14",
     "origin": "assets/legacy-models/sleep-debt-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04573",
     "source": "bar14Val",
     "origin": "assets/legacy-models/sleep-debt-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04574",
@@ -27758,7 +27758,7 @@
     "id": "04625",
     "source": "nums",
     "origin": "assets/legacy-models/standard-deviation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04626",
@@ -27860,7 +27860,7 @@
     "id": "04642",
     "source": "Enter monthly fee, uses per month, alternative price and idle months at zero or above, to see the estimated waste.",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04643",
@@ -27872,91 +27872,91 @@
     "id": "04644",
     "source": "Value received",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04645",
     "source": "Idle penalty",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04646",
     "source": "Base waste",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04647",
     "source": "Idle-month penalty",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04648",
     "source": "Total waste",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04649",
     "source": "use",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04650",
     "source": "No waste on these inputs: the value of your uses covers the annual fee and there are no idle months.",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04651",
     "source": "Estimated annual waste is",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04652",
     "source": "on an annual fee of",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04653",
     "source": "base waste plus",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04654",
     "source": "idle-month penalty. Note the idle term may overlap with the annual comparison — see Scope and limitations.",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04655",
     "source": "Subscription waste: annual fee",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04656",
     "source": ", value received",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04657",
     "source": ", base waste",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04658",
     "source": ", idle penalty",
     "origin": "assets/legacy-models/subscription-waste-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04659",
@@ -27980,43 +27980,43 @@
     "id": "04662",
     "source": "Enter numbers in all six fields.",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04663",
     "source": "infinitely many",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04664",
     "source": "The two equations describe the same line, so every point on it is a solution.",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04665",
     "source": "The two lines are parallel and never meet, so there is no solution.",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04666",
     "source": "Both equations check out at (x, y) = (",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04667",
     "source": "Enter a weight, height, and age above zero to see your TDEE.",
     "origin": "assets/legacy-models/tdee-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04668",
     "source": "act",
     "origin": "assets/legacy-models/tdee-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04669",
@@ -28130,31 +28130,31 @@
     "id": "04687",
     "source": "Enter a temperature to convert.",
     "origin": "assets/legacy-models/temperature-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04688",
     "source": "Below absolute zero (0 K): no physical temperature is colder than -273.15 °C. Check the input scale.",
     "origin": "assets/legacy-models/temperature-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04689",
     "source": "Valid temperature:",
     "origin": "assets/legacy-models/temperature-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04690",
     "source": "K is at or above absolute zero.",
     "origin": "assets/legacy-models/temperature-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04691",
     "source": "Temperature:",
     "origin": "assets/legacy-models/temperature-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04692",
@@ -28328,7 +28328,7 @@
     "id": "04720",
     "source": "height",
     "origin": "assets/legacy-models/triangle-area-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04721",
@@ -28400,7 +28400,7 @@
     "id": "04732",
     "source": "input,textarea",
     "origin": "assets/legacy-models/variance-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04733",
@@ -28454,7 +28454,7 @@
     "id": "04741",
     "source": "Enter a weight above zero to see the estimate.",
     "origin": "assets/legacy-models/water-intake-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04742",
@@ -28592,7 +28592,7 @@
     "id": "04764",
     "source": "hol",
     "origin": "assets/legacy-models/workday-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04765",
@@ -28646,13 +28646,13 @@
     "id": "04773",
     "source": "weekdays,",
     "origin": "assets/legacy-models/workday-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04774",
     "source": "weekend days",
     "origin": "assets/legacy-models/workday-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04775",
@@ -28688,7 +28688,7 @@
     "id": "04780",
     "source": "weekend days,",
     "origin": "assets/legacy-models/workday-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04781",
@@ -29708,7 +29708,7 @@
         5
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04847",
@@ -31110,7 +31110,7 @@
         3
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04921",
@@ -31129,7 +31129,7 @@
         2
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04922",
@@ -31152,7 +31152,7 @@
         4
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04923",
@@ -31397,7 +31397,7 @@
         3
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04936",
@@ -31416,7 +31416,7 @@
         2
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04937",
@@ -31507,7 +31507,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04942",
@@ -31528,7 +31528,7 @@
         3
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04943",
@@ -32248,7 +32248,7 @@
         2
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04981",
@@ -32387,7 +32387,7 @@
         2
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04988",
@@ -32402,7 +32402,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04989",
@@ -33679,7 +33679,7 @@
         1
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05056",
@@ -33700,7 +33700,7 @@
         3
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05057",
@@ -33723,7 +33723,7 @@
         4
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05058",
@@ -33740,7 +33740,7 @@
         1
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05059",
@@ -33845,7 +33845,7 @@
         5
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05064",
@@ -34262,7 +34262,7 @@
         3
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05085",
@@ -34319,7 +34319,7 @@
         5
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05088",
@@ -58849,13 +58849,13 @@
     "origin": "assets/cm-home-app.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15304",
     "source": "calculate",
     "origin": "assets/cm-home-app.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15305",
     "source": "[data-cm-category]",
     "origin": "assets/cm-home-app.js"
@@ -58921,7 +58921,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15327",
     "source": "sup",
     "origin": "assets/cm-expanded.js"
@@ -59056,7 +59056,7 @@
     "origin": "assets/cm-ranking.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15359",
     "source": "[value=local]",
     "origin": "assets/cm-ranking.js"
@@ -59074,7 +59074,7 @@
     "origin": "assets/cm-ranking.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15364",
     "source": "cm:usage",
     "origin": "assets/cm-ranking.js"
@@ -59110,13 +59110,13 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15371",
     "source": "fieldset",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15372",
     "source": "legend",
     "origin": "assets/cm-scenario-editor.js"
@@ -59169,7 +59169,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15383",
     "source": "caption",
     "origin": "assets/cm-scenario-editor.js"
@@ -59181,7 +59181,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15387",
     "source": "region",
     "origin": "assets/cm-scenario-editor.js"
@@ -59478,19 +59478,19 @@
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15464",
     "source": "The input schema is unavailable. Use the calculator directly.",
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15465",
     "source": "Value is outside the calculator’s allowed range or step.",
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15466",
     "source": "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
     "origin": "assets/cm-workspace-intent.js"
@@ -59925,7 +59925,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "15562",
     "source": "result=input×factor(from)/factor(to); base unit: {0}",
     "origin": "assets/models/converters.js",
@@ -59940,7 +59940,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "15563",
     "source": "result=input×factor(from)/factor(to); base unit:",
     "origin": "assets/models/converters.js"
@@ -66234,13 +66234,13 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19572",
     "source": ".hero input[id],.hero select[id]",
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19573",
     "source": ".hero input[type=number][id]",
     "origin": "assets/cm-core-decisions.js"
@@ -66288,7 +66288,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19581",
     "source": "cm-decision-case-{0}",
     "origin": "assets/cm-core-decisions.js",
@@ -66303,7 +66303,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19582",
     "source": "cm-decision-output-{0}",
     "origin": "assets/cm-core-decisions.js",
@@ -66432,7 +66432,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19602",
     "source": ".hero input",
     "origin": "assets/cm-core-decisions.js"
@@ -66444,7 +66444,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19604",
     "source": "false",
     "origin": "assets/cm-core-decisions.js"
@@ -66813,7 +66813,7 @@
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19664",
     "source": ".hero input[type=number],.hero input[type=date],.hero input[type=time]",
     "origin": "assets/cm-tool-page.js"
@@ -66831,19 +66831,19 @@
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19667",
     "source": "[data-cm-action=copy]",
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19668",
     "source": "[data-cm-today]",
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19669",
     "source": "http://www.w3.org/2000/svg",
     "origin": "assets/cm-scenario-editor.js"
@@ -66873,7 +66873,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19674",
     "source": "width",
     "origin": "assets/cm-scenario-editor.js"
@@ -67177,7 +67177,7 @@
     "origin": "assets/legacy-models/rent-vs-buy-calculator-1.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19712",
     "source": "weekend",
     "origin": "assets/legacy-models/workday-calculator-1.js"
@@ -67417,7 +67417,7 @@
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19752",
     "source": "hashchange",
     "origin": "assets/cm-workspace.js"
@@ -67435,7 +67435,7 @@
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19755",
     "source": "[data-key=\".\"]",
     "origin": "assets/cm-keypad-app.js"
@@ -67471,7 +67471,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19761",
     "source": "[data-ws-link-paused]",
     "origin": "assets/cm-expanded.js"
@@ -68884,5 +68884,900 @@
     "id": "19990",
     "source": "% of gross income. This ratio does not predict loan approval or show your full living budget.",
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "19991",
+    "source": "Estimate an annualized borrowing rate from a fixed-payment loan, upfront fees and net proceeds. Includes the effective annual rate.",
+    "origin": "apr-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "19992",
+    "source": "Modeled annualized rate",
+    "origin": "apr-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "19993",
+    "source": "Effective annual rate:",
+    "origin": "apr-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "19994",
+    "source": "Every row uses the same entered compounding frequency and rate. The final row includes your exact planning horizon.",
+    "origin": "future-value-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "19995",
+    "source": "currency",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "19996",
+    "source": "Enter finite nonnegative principal, rate and years, and a positive whole number of compounding periods. Results must fit the supported numeric range.",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "19997",
+    "source": "The modeled future value is {0}, with {1} interest over {2}. Every table row uses the entered compounding frequency.",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "19998",
+    "source": "The modeled future value is",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "19999",
+    "source": "interest over",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20000",
+    "source": ". Every table row uses the entered compounding frequency.",
+    "origin": "assets/legacy-models/future-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20001",
+    "source": "Enter your working weeks per year, nonzero weekly hours and a nonzero billable share. All are editable planning assumptions.",
+    "origin": "freelance-real-rate.html"
+  },
+  {
+    "active": true,
+    "id": "20002",
+    "source": "Growth factor = (1 + annual rate ÷ compounding periods) raised to (compounding periods × years). Future value = present value × growth factor. Interest earned = future value − present value. The growth factor depends on rate, time and frequency; it remains defined even when present value is zero. A zero-year horizon has growth factor 1.",
+    "origin": "future-value-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20003",
+    "source": "New York State: coupons and taxable receipts",
+    "origin": "discount-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20004",
+    "source": "No. The taxable amount depends on local rules and the type of discount or coupon. It may differ from the discounted amount paid. Confirm the applicable tax base before using the sales tax calculator.",
+    "origin": "discount-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20005",
+    "source": "Explore the historical Devine reference formula for adults at least 152.4 cm tall. This is an educational comparison, not a weight goal or medication-dose calculator.",
+    "origin": "ideal-weight-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20006",
+    "source": "For height at least 5 feet (60 inches or 152.4 cm), reference weight in kg = base + 2.3 × (height in inches − 60). The base is 50 kg for men and 45.5 kg for women. Height in inches = height in cm ÷ 2.54. This page does not extrapolate below 152.4 cm.",
+    "origin": "ideal-weight-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20007",
+    "source": "Devine is a historical height-and-sex reference equation associated with drug-dosing literature. It does not account for body composition, age, pregnancy or individual health. This adult educational tool does not select a clinical dosing weight, calculate a dose or determine a healthy target. Below 152.4 cm it shows no estimate, rather than inventing a constant minimum weight.",
+    "origin": "ideal-weight-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20008",
+    "source": "FDA device documentation: Devine formula appendix",
+    "origin": "ideal-weight-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20009",
+    "source": "This page does not calculate below 5 feet (152.4 cm). Returning the same base weight for every shorter adult would conceal the formula limitation. Use an individual clinical assessment when a dosing or health decision is needed.",
+    "origin": "ideal-weight-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20010",
+    "source": "This page applies one constant assumed inflation rate, without fetching CPI data. A compound annual rate can reproduce the change between two index endpoints, but cannot describe the intervening yearly path. Use a consistent published CPI series, country and comparison period for historical work. The result compares general purchasing power, not the price of a particular item.",
+    "origin": "inflation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20011",
+    "source": "U.S. Bureau of Labor Statistics: CPI percent changes",
+    "origin": "inflation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20012",
+    "source": "No data is loaded here. To match two published CPI endpoints over t years, enter 100 × ((ending index ÷ starting index)^(1/t) − 1) as the annual rate. An arithmetic mean of yearly percentage changes generally does not give the same compounded result. Use matching months or consistent annual-average indexes; those comparisons can differ.",
+    "origin": "inflation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20013",
+    "source": "Solve ax + b = 0 and inspect a straight line from its slope and y-intercept, including horizontal lines and equations with no unique solution.",
+    "origin": "linear-equation-calculator.html"
+  },
+  {
+    "active": false,
+    "id": "20014",
+    "source": "standard",
+    "origin": "assets/cm-keypad-app.js"
+  },
+  {
+    "active": true,
+    "id": "20015",
+    "source": "Enter an adult height of at least 152.4 cm and select a formula sex. No estimate is provided below this height.",
+    "origin": "assets/legacy-models/ideal-weight-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20016",
+    "source": "These values exceed the supported numerical range. Enter a realistic adult height.",
+    "origin": "assets/legacy-models/ideal-weight-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20017",
+    "source": "Historical reference only: this formula does not establish a healthy target or select a medication dose. Body composition and individual clinical factors are not modeled.",
+    "origin": "assets/legacy-models/ideal-weight-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20018",
+    "source": "Devine reference: {0} kg at {1} cm; other formula sex: {2} kg.",
+    "origin": "assets/legacy-models/ideal-weight-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20019",
+    "source": "Enter a nonnegative amount, whole years from 1 to 9999 with the later year after the earlier year, and an annual rate above −100%.",
+    "origin": "assets/legacy-models/inflation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20020",
+    "source": "These assumptions exceed the supported numerical range. Reduce the amount, rate or time span.",
+    "origin": "assets/legacy-models/inflation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20021",
+    "source": "Modeled price-level change: {0}% over {1} years at an assumed {2}% per year. No historical CPI data is fetched.",
+    "origin": "assets/legacy-models/inflation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20022",
+    "source": "Enter finite numbers in all four fields, within the supported numerical range.",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20023",
+    "source": "Every x",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20024",
+    "source": "No solution",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20025",
+    "source": "Every x (the x-axis)",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20026",
+    "source": "None (horizontal line)",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20027",
+    "source": "With a zero coefficient and a nonzero constant, the equation has no solution.",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20028",
+    "source": "Solution x = {0}. The displayed root is rounded; use the original coefficients for further calculations.",
+    "origin": "assets/legacy-models/linear-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20029",
+    "source": "Results update as you type. Every entry must be a finite number; correct invalid entries to resume calculation. All calculations run locally in your browser.",
+    "origin": "mean-median-mode-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20030",
+    "source": "M is monthly mortgage payment, P is borrowed principal, r is monthly interest rate and n is the loan term in months. Monthly ownership spending adds tax, insurance and maintenance to the mortgage. The renter initially invests the down payment and purchase fees; each month, whichever side spends less invests the difference. Owner ending wealth is sale proceeds after selling fees and remaining debt, plus investments. Compare it with renter investments at the same horizon.",
+    "origin": "rent-vs-buy-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20031",
+    "source": "Every list entry must be a finite number. Use population SD when the list is the complete group of interest, and sample SD when observations estimate a larger population. Sample SD is undefined for a single value. Standard deviation is sensitive to outliers and describes spread, not distribution shape. Display is rounded to 4 decimal places.",
+    "origin": "standard-deviation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20032",
+    "source": "Yes. Invalid or non-finite entries pause calculation and show an error instead of being silently skipped. Correct the list before reading a result.",
+    "origin": "standard-deviation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20033",
+    "source": "Working days before holiday deductions",
+    "origin": "workday-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20034",
+    "source": "Weekly rest days in selected pattern",
+    "origin": "workday-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20035",
+    "source": "Entered holiday deduction",
+    "origin": "workday-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20036",
+    "source": "Count dates from start through end, including both endpoints. Exclude the weekly rest days in your selected pattern, then subtract the holiday deduction you enter. Deduct only holidays that would otherwise be working days.",
+    "origin": "workday-calculator.html"
+  },
+  {
+    "active": false,
+    "id": "20037",
+    "source": "cm-table-heading-{0}",
+    "origin": "assets/cm-shell.js",
+    "parts": {
+      "literals": [
+        "cm-table-heading-",
+        ""
+      ],
+      "indices": [
+        0
+      ]
+    }
+  },
+  {
+    "active": true,
+    "id": "20038",
+    "source": "{0} calendar days: {1} working days, {2} weekly rest days{3}",
+    "origin": "assets/legacy-models/workday-calculator-1.js",
+    "parts": {
+      "literals": [
+        "",
+        " calendar days: ",
+        " working days, ",
+        " weekly rest days",
+        ""
+      ],
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "active": true,
+    "id": "20039",
+    "source": "working days,",
+    "origin": "assets/legacy-models/workday-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20040",
+    "source": "weekly rest days",
+    "origin": "assets/legacy-models/workday-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20041",
+    "source": "Workdays: {0} net ({1} working days, {2} weekly rest days, {3} holidays) from {4} to {5}.",
+    "origin": "assets/legacy-models/workday-calculator-1.js",
+    "parts": {
+      "literals": [
+        "Workdays: ",
+        " net (",
+        " working days, ",
+        " weekly rest days, ",
+        " holidays) from ",
+        " to ",
+        "."
+      ],
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "active": true,
+    "id": "20042",
+    "source": "weekly rest days,",
+    "origin": "assets/legacy-models/workday-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20043",
+    "source": "Gym",
+    "origin": "future-commitment-lock-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20044",
+    "source": "Machine",
+    "origin": "future-commitment-lock-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20045",
+    "source": "Shipping",
+    "origin": "life-single-point-failure-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20046",
+    "source": "Use a consistent tax basis for cost and price. This example treats selling price as tax-exclusive; whether purchase tax belongs in your cost depends on its recoverability and local rules. Apply the relevant sales-tax base and rate separately.",
+    "origin": "markup-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20047",
+    "source": "Side project",
+    "origin": "plan-collision-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20048",
+    "source": "ACOG: Methods for Estimating the Due Date",
+    "origin": "pregnancy-due-date-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20049",
+    "source": "Present value if due in 5 years:",
+    "origin": "present-value-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20050",
+    "source": "$10,000 due in 10 years at a 5% annual discount rate has a present value of $6,139.13 and a discount of $3,860.87. If due in 5 years instead, its present value is $7,835.26 and its discount is $2,164.74. Doubling the waiting time does not double the discount: the formula compounds the discount factor.",
+    "origin": "present-value-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20051",
+    "source": "This page accepts non-negative amounts and shows their non-negative discounted value. For a future liability, enter its positive amount and interpret the result as the corresponding present cost. Signed cash flows require a different model.",
+    "origin": "present-value-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20052",
+    "source": "Enter the percentage of sales volume you expect to lose after the price increase. The formula applies this percentage directly to current sales. It does not estimate demand or multiply a price-elasticity coefficient by the price change.",
+    "origin": "pricing-power.html"
+  },
+  {
+    "active": true,
+    "id": "20053",
+    "source": "Uses per active month",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20054",
+    "source": "Bars split the annual fee into the part covered by use value and the remaining difference.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20055",
+    "source": "Same monthly fee, alternative price and idle months; only uses per active month vary.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20056",
+    "source": "Active months = 12 − idle months. Annual alternative cost = uses per active month × active months × alternative price. Difference = max(annual subscription fee − annual alternative cost, 0). Idle-month fees are part of the annual fee, not an extra penalty.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20057",
+    "source": "Monthly fee 68, 2 uses per active month, alternative price 12 per use and 4 idle months: annual fee = 68 × 12 = 816; active months = 12 − 4 = 8; alternative cost = 2 × 8 × 12 = 192; difference = 816 − 192 = 624. Idle fees of 4 × 68 = 272 are already inside the annual fee. These are fictional example prices.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20058",
+    "source": "This comparison assumes you pay for all 12 months and use the service at the entered frequency during active months only. Idle months reduce annual uses; their fees are already included and are not added again. Other subscription benefits, cancellation costs and changing prices are not modeled. The difference is a comparison with paying per use, not guaranteed cash recovered by cancelling.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20059",
+    "source": "Subtract the cost of the same annual usage at your alternative price from the annual subscription fee. The result is floored at zero.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20060",
+    "source": "What is an active month?",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20061",
+    "source": "A month in which you use the service. Enter the average uses for those months; idle months have zero uses.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20062",
+    "source": "Are idle-month fees counted twice?",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20063",
+    "source": "No. They are shown as an included part of the annual fee. They are not added to the difference.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20064",
+    "source": "Does cancelling save the whole difference?",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20065",
+    "source": "Not necessarily. Compare the benefits you actually need, alternative prices, any cancellation fee and the remaining contract term.",
+    "origin": "subscription-waste.html"
+  },
+  {
+    "active": true,
+    "id": "20066",
+    "source": "Enter a finite, non-negative future amount, discount rate and number of years.",
+    "origin": "assets/legacy-models/present-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20067",
+    "source": "The discounted result is outside the supported numeric range. Reduce the amount, rate or time span.",
+    "origin": "assets/legacy-models/present-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20068",
+    "source": "Discounting {0} years at {1}% gives a present value of ${2}; the discount is ${3}.",
+    "origin": "assets/legacy-models/present-value-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20069",
+    "source": "Present value: ${0}; future amount: ${1}; discount: ${2}.",
+    "origin": "assets/legacy-models/present-value-calculator-1.js"
+  },
+  {
+    "active": false,
+    "id": "20070",
+    "source": "uses",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": false,
+    "id": "20071",
+    "source": "alt",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": false,
+    "id": "20072",
+    "source": "idle",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20073",
+    "source": "Enter finite, non-negative fees, uses and alternative price, with idle months from 0 to 12.",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20074",
+    "source": "Pay-per-use comparison",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20075",
+    "source": "Idle-month fees (included)",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20076",
+    "source": "Fee above alternative cost",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20077",
+    "source": "Fee covered by use value",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20078",
+    "source": "Active months",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20079",
+    "source": "Annual uses",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20080",
+    "source": "Annual fee {0} versus {1} for the entered usage at the alternative price: the non-negative difference is {2}. Idle-month fees of {3} are already included in the annual fee.",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20081",
+    "source": "Subscription comparison: annual fee {0}, alternative usage cost {1}, difference {2}; idle-month fees {3} are included.",
+    "origin": "assets/legacy-models/subscription-waste-1.js"
+  },
+  {
+    "active": true,
+    "id": "20082",
+    "source": "Deurenberg et al. (1991): adult body-fat prediction equation",
+    "origin": "body-fat-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20083",
+    "source": "Bars compare the initial investment with final value plus cash income. A longer final-value-plus-income bar means positive ROI.",
+    "origin": "roi-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20084",
+    "source": "Enter a finite positive weight and height, and an adult age of at least 18 years. This equation is not a child body-fat model.",
+    "origin": "assets/legacy-models/body-fat-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20085",
+    "source": "This input gives an estimate outside the physical 0–100% range or supported numeric range. No body-composition estimate is shown.",
+    "origin": "assets/legacy-models/body-fat-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20086",
+    "source": "Estimated adult body fat {0}%; BMI {1}; estimated fat mass {2} kg and lean mass {3} kg.",
+    "origin": "assets/legacy-models/body-fat-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20087",
+    "source": "x is the input, y is the converted value, a is the source-unit factor and b is the target-unit factor. Use the factors in the table below.",
+    "origin": "absorbed-dose-converter.html"
+  },
+  {
+    "active": true,
+    "id": "20088",
+    "source": "Unit conversion factors",
+    "origin": "absorbed-dose-converter.html"
+  },
+  {
+    "active": true,
+    "id": "20089",
+    "source": "Base unit",
+    "origin": "absorbed-dose-converter.html"
+  },
+  {
+    "active": true,
+    "id": "20090",
+    "source": "Base units per listed unit",
+    "origin": "absorbed-dose-converter.html"
+  },
+  {
+    "active": true,
+    "id": "20091",
+    "source": "This page is for adult educational estimates. The original Mifflin–St Jeor study used healthy adults aged 19–78; extrapolation and individual medical circumstances require care. This is not a measured metabolic rate or an instruction for calorie intake.",
+    "origin": "bmr-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20092",
+    "source": "Mifflin et al. (1990): resting energy expenditure equation",
+    "origin": "bmr-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20093",
+    "source": "Enter finite positive weight and height and an adult age of at least 18 years. This resting-energy equation is not a child model.",
+    "origin": "assets/legacy-models/bmr-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20094",
+    "source": "These inputs produce no positive finite resting-energy estimate. Check the measurements and equation limits.",
+    "origin": "assets/legacy-models/bmr-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20095",
+    "source": "These inputs produce no positive finite energy estimate. Check the measurements and choose a listed activity factor.",
+    "origin": "assets/legacy-models/tdee-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20096",
+    "source": "Enter finite values: weight above zero, with exercise minutes and extra water at zero or above.",
+    "origin": "assets/legacy-models/water-intake-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20097",
+    "source": "These inputs exceed the supported numeric range. Reduce the values.",
+    "origin": "assets/legacy-models/water-intake-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20098",
+    "source": "Nonzero a defines a quadratic. If a is zero, the page reports the linear or constant-equation case. Results normally show 12 significant digits, increasing to 17 to distinguish close roots. Very small or large values use scientific notation. Decimal input precision still limits accuracy, especially near repeated roots. Unsupported numerical magnitudes show an error instead of infinity or a false zero.",
+    "origin": "quadratic-equation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20099",
+    "source": "Then solve bx + c = 0. If b is nonzero, x = −c ÷ b. If b and c are both zero, every real x works; if b is zero but c is not, there is no solution.",
+    "origin": "quadratic-equation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20100",
+    "source": "The original principal stays fixed for the whole entered period, and interest is not added to principal. Real loan payments can reduce the outstanding principal and use daily interest counts; this page does not build that repayment schedule or include fees. Partial years scale interest proportionally. Comparisons with compounding depend on matching rate and timing conventions.",
+    "origin": "simple-interest-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20101",
+    "source": "CFPB: simple interest and outstanding loan balances",
+    "origin": "simple-interest-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20102",
+    "source": "Here simple interest uses the fixed original principal. Compounding adds earned interest to the balance before later interest is calculated. With a positive rate across several compounding periods, this increases growth; compare the same timeline and rate basis.",
+    "origin": "simple-interest-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20103",
+    "source": "This fixed-principal formula is useful for basic interest examples and contracts with no interim principal changes. Some loans called simple interest calculate interest on the outstanding balance, which changes with payments. Use the actual contract and a payment schedule for those loans.",
+    "origin": "simple-interest-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20104",
+    "source": "For a₁x + b₁y = c₁ and a₂x + b₂y = c₂, D = a₁b₂ − a₂b₁. If D ≠ 0, x = (c₁b₂ − c₂b₁) ÷ D and y = (a₁c₂ − a₂c₁) ÷ D. If D = 0, consistent dependent constraints have infinitely many solutions; contradictory constraints have none. An equation with zero coefficients and a nonzero constant is a contradiction.",
+    "origin": "system-of-equations-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20105",
+    "source": "This page solves two linear equations in two unknowns, including identity and contradictory zero-coefficient rows. It does not solve nonlinear terms, inequalities or larger systems. Results display up to 12 significant digits. Nearly dependent equations can be very sensitive to input precision. Values outside the supported numeric range show an error.",
+    "origin": "system-of-equations-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20106",
+    "source": "A non-degenerate linear equation describes a line. Two intersecting lines give one solution; distinct parallel lines give none; coincident lines give infinitely many. A zero-coefficient equation instead describes either no restriction or a contradiction.",
+    "origin": "system-of-equations-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20107",
+    "source": "There is no unique pair. The page checks whether the constraints are consistent, including zero-coefficient rows. Consistent dependent equations give infinitely many solutions; a contradiction such as zero equaling a nonzero constant gives none.",
+    "origin": "system-of-equations-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20108",
+    "source": "Enter finite decimal coefficients, using at most 200 characters per value.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20109",
+    "source": "The result is outside the supported numeric range. Rescale the coefficients.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20110",
+    "source": "Linear: x = {0}",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20111",
+    "source": "Every real x",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20112",
+    "source": "With a = 0, this is a linear or constant equation, not a quadratic.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20113",
+    "source": "The discriminant or vertex is outside the supported numeric range. Rescale the coefficients.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20114",
+    "source": "A root is outside the supported numeric range. Rescale the coefficients.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20115",
+    "source": "The roots are too close to distinguish at the supported precision. Use a higher-precision method.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20116",
+    "source": "A complex component is outside the supported numeric range. Rescale the coefficients.",
+    "origin": "assets/legacy-models/quadratic-equation-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20117",
+    "source": "Infinitely many solutions",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20118",
+    "source": "Enter finite decimal coefficients in all six fields, using at most 200 characters per value.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20119",
+    "source": "An equation has zero coefficients but a nonzero constant, so the constraints contradict each other.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20120",
+    "source": "A zero equation adds no constraint. The remaining consistent constraints do not determine a unique pair.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20121",
+    "source": "The determinants exceed the supported numeric range. Rescale the equations.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20122",
+    "source": "The equations are dependent and consistent, so infinitely many pairs satisfy them.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20123",
+    "source": "The equations are inconsistent, so no pair satisfies both.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20124",
+    "source": "The solution exceeds the supported numeric range. Rescale the equations.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20125",
+    "source": "Computed pair: x = {0}, y = {1}. Check both equations; displayed values are rounded.",
+    "origin": "assets/legacy-models/system-of-equations-calculator-1.js"
+  },
+  {
+    "active": true,
+    "id": "20126",
+    "source": "Enter a finite temperature and select valid source and target scales.",
+    "origin": "assets/legacy-models/temperature-converter-1.js"
+  },
+  {
+    "active": true,
+    "id": "20127",
+    "source": "The entered temperature is below absolute zero in its source scale. No physical conversion is shown.",
+    "origin": "assets/legacy-models/temperature-converter-1.js"
+  },
+  {
+    "active": true,
+    "id": "20128",
+    "source": "A converted scale exceeds the supported numeric range. Reduce the magnitude.",
+    "origin": "assets/legacy-models/temperature-converter-1.js"
+  },
+  {
+    "active": true,
+    "id": "20129",
+    "source": "Temperature: {0} = {1}; {2} °C, {3} K.",
+    "origin": "assets/legacy-models/temperature-converter-1.js"
+  },
+  {
+    "active": true,
+    "id": "20130",
+    "source": "x = [−b ± √(b² − 4ac)] ÷ 2a. The discriminant D = b² − 4ac decides the root type: D > 0 gives two distinct real roots, D = 0 gives one repeated root, D < 0 gives two complex roots. The vertex (turning point) sits at x = −b ÷ 2a.",
+    "origin": "quadratic-equation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20131",
+    "source": "It is the parabola's turning point: the minimum when a > 0, the maximum when a < 0. It sits exactly halfway between the two real roots when they exist.",
+    "origin": "quadratic-equation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20132",
+    "source": "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.",
+    "origin": "quadratic-equation-calculator.html"
   }
 ]

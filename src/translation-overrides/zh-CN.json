@@ -145,5 +145,7 @@
   "{0} was {1} days ago.": "{0} 距今已有 {1} 天。",
   "From {0} to {1}: {2} days ({3}).": "从 {0} 至 {1}，相隔 {2} 天（{3}）。",
   "From date (leave blank for today)": "起始日期（留空使用今天）",
-  "Calendar days until or since a target date.": "计算目标日期之前或之后相隔的日历天数。"
+  "Calendar days until or since a target date.": "计算目标日期之前或之后相隔的日历天数。",
+  "Deurenberg et al. (1991): adult body-fat prediction equation": "Deurenberg 等（1991）：成人体脂预测方程",
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "2 次多项式在复数范围内按重数计算有两个根。两个根可以重合，也可以是一对非实复根；计入重数后总数始终是两个。"
 }

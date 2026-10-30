@@ -89,6 +89,23 @@
 .cm-expanded th {
   text-align: start;
 }
+.cm-expanded table.cm-expanded__factors {
+  min-width: 0;
+  table-layout: auto;
+}
+.cm-expanded__factors th,
+.cm-expanded__factors td {
+  overflow-wrap: anywhere;
+}
+.cm-expanded__factors td {
+  text-align: end;
+  white-space: nowrap;
+}
+.cm-expanded__factors tbody th {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 13px;
+}
 .cm-expanded td {
   vertical-align: top;
   overflow-wrap: anywhere;
@@ -420,4 +437,26 @@
 .cm-scenario-detail tbody th {
   text-transform: none;
   letter-spacing: normal;
+}
+
+.cm-expanded .cm-expanded__example-items {
+  grid-column: 1 / -1;
+}
+.cm-expanded .cm-expanded__example-items ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.cm-expanded .cm-expanded__example-items li {
+  padding: 14px;
+  border: 1px solid var(--cm-line);
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+.cm-expanded .cm-expanded__example-items li p {
+  margin: 6px 0 0;
+  font-size: 13px;
 }

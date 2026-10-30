@@ -6,12 +6,46 @@
   if (!I) return;
   document.body.classList.add('cm-unified');
   if (embedded) document.body.classList.add('cm-unified--embedded');
+  const tableScrollers = new Map();
+  function updateTableScrollers() {
+    for (const [scroll, heading] of tableScrollers) {
+      const overflowing = scroll.clientWidth > 0 && scroll.scrollWidth > scroll.clientWidth + 1;
+      if (overflowing) {
+        scroll.tabIndex = 0;
+        scroll.setAttribute('role', 'region');
+        if (heading) scroll.setAttribute('aria-labelledby', heading.id);
+      } else {
+        scroll.removeAttribute('tabindex');
+        scroll.removeAttribute('role');
+        scroll.removeAttribute('aria-labelledby');
+      }
+    }
+  }
+  const tableObserver =
+    typeof ResizeObserver === 'function' ? new ResizeObserver(updateTableScrollers) : null;
+  function discoverTableScrollers() {
+    document.querySelectorAll('main table').forEach((table) => {
+      const scroll = table.parentElement;
+      if (
+        !scroll.matches('.tblwrap,.cm-expanded__table,.cm-decisions__scroll') ||
+        tableScrollers.has(scroll)
+      )
+        return;
+      const heading = scroll.closest('section,.card')?.querySelector('h2');
+      if (heading && !heading.id) heading.id = 'cm-table-heading-' + tableScrollers.size;
+      tableScrollers.set(scroll, heading);
+      tableObserver?.observe(scroll);
+      tableObserver?.observe(table);
+    });
+    updateTableScrollers();
+  }
   function render() {
     I.apply();
     document.querySelectorAll('[data-cm-language]').forEach((s) => {
       s.value = I.language;
     });
     I.updateMetadata();
+    discoverTableScrollers();
     const current = location.pathname.replace(/\.html$/, '');
     document.querySelectorAll('.cm-site-header__nav a').forEach((a) => {
       if (new URL(a.href).pathname === current) a.setAttribute('aria-current', 'page');
@@ -58,6 +92,9 @@
     });
   document.addEventListener('cm:language', render);
   document.addEventListener('cm:translations', render);
+  document.addEventListener('DOMContentLoaded', discoverTableScrollers, { once: true });
+  document.addEventListener('cm:model-updated', discoverTableScrollers);
+  if (!tableObserver) window.addEventListener('resize', updateTableScrollers);
   render();
   // Static native links are the only navigation runtime. No client router, no hydration.
 })();

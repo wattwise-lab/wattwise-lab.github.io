@@ -7,5 +7,8 @@
   "Pounds per US gallon": "US galonu başına pound",
   "Average Speed Calculator": "Ortalama Sürat Hesaplayıcı",
   "BMI Prime:": "BMI Prime:",
-  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)"
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "The modeled annualized rate is {0}%. It discounts the scheduled payments to the loan proceeds after upfront fees. Statutory APR rules can differ.": "Modellenen yıllık faiz oranı %{0}'dur. Bu oran, peşin ödemelerden sonra kalan kredi tutarına göre planlanan ödemeleri iskonto eder. Yasal APR kuralları farklılık gösterebilir.",
+  "This page is for adult educational estimates. The original Mifflin–St Jeor study used healthy adults aged 19–78; extrapolation and individual medical circumstances require care. This is not a measured metabolic rate or an instruction for calorie intake.": "Bu sayfa yetişkinler için eğitim amaçlı tahminler sunar. Orijinal Mifflin–St Jeor çalışması 19–78 yaşlarındaki sağlıklı yetişkinleri kapsıyordu; sonuçları başka gruplara genellemek ve bireysel tıbbi durumlara uygulamak dikkat gerektirir. Bu, ölçülmüş bir metabolizma hızı veya kalori alımı talimatı değildir.",
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "Derecesi 2 olan bir polinomun, katlarıyla sayıldığında iki kökü vardır. Kökler çakışabilir veya karmaşık bir çift oluşturabilir; katlarıyla birlikte her zaman iki kök bulunur."
 }

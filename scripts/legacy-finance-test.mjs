@@ -142,6 +142,55 @@ for (const bad of dtiBad) {
   render();
   for (const id of dtiOut) assert.equal(n[id].textContent, '—', JSON.stringify(bad));
 }
+const fvOut = ['result', 'chipInt', 'chipMult', 'yearRows'];
+for (const [values, expected, interest, factor] of [
+  [{ pv: 10000, rate: 5, years: 10, n: 1 }, 16288.95, 6288.95, 1.628895],
+  [{ pv: 10000, rate: 5, years: 10, n: 12 }, 16470.09, 6470.09, 1.647009],
+  [{ pv: 10000, rate: 0, years: 10, n: 12 }, 10000, 0, 1],
+  [{ pv: 10000, rate: 5, years: 0, n: 12 }, 10000, 0, 1],
+  [{ pv: 0, rate: 5, years: 10, n: 12 }, 0, 0, 1.647009],
+  [{ pv: 100, rate: 100, years: 2, n: 1 }, 400, 300, 4],
+]) {
+  const { nodes: n } = await setup('future-value-calculator', values, fvOut);
+  assert.ok(Math.abs(read(n.result.textContent) - expected) < 0.006);
+  assert.ok(Math.abs(read(n.chipInt.textContent) - interest) < 0.006);
+  assert.ok(Math.abs(read(n.chipMult.textContent) - factor) < 0.000001);
+  assert.ok(
+    n.yearRows.innerHTML.includes(n.result.textContent),
+    'Final row agrees with the primary result for the same horizon',
+  );
+}
+const horizon = await setup(
+  'future-value-calculator',
+  { pv: 100, rate: 0, years: 7.5, n: 12 },
+  fvOut,
+);
+assert.match(horizon.nodes.yearRows.innerHTML, /7.5 years/);
+const fvBad = [
+  { pv: '' },
+  { pv: -1 },
+  { rate: '5bad' },
+  { rate: Infinity },
+  { years: -1 },
+  { n: 0 },
+  { n: 1.5 },
+  { n: '' },
+  { pv: 1e308, rate: 100, years: 1000 },
+];
+for (const bad of fvBad) {
+  const { nodes: n, render } = await setup(
+    'future-value-calculator',
+    { pv: 10000, rate: 5, years: 10, n: 12 },
+    fvOut,
+  );
+  Object.entries(bad).forEach(([id, value]) => (n[id].value = String(value)));
+  render();
+  for (const id of fvOut.filter((id) => id !== 'yearRows')) assert.equal(n[id].textContent, '—');
+  assert.equal(n.yearRows.innerHTML, '');
+}
+console.log(
+  'Future value: 6 independent annual/monthly/zero-principal/zero-horizon references, fractional final horizon and 9 invalid states PASS',
+);
 console.log(
   'Legacy finance: 6 independent APR references (zero rate and high-fee roots), 12 invalid/recovery cases, 5 DTI ratios without approval categories and 7 invalid states PASS',
 );

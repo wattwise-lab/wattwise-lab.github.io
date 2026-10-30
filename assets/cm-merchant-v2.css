@@ -600,17 +600,14 @@ dialog button {
 }
 @media (max-width: 540px) {
   .metrics {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .metric.main {
     grid-column: 1/-1;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3px 14px;
+    display: block;
   }
   .metric.main .metric-label {
-    margin: 0;
-    align-self: center;
+    margin-bottom: 8px;
   }
   .metric.main strong {
     margin: 0;
@@ -620,7 +617,7 @@ dialog button {
     grid-column: 1/-1;
   }
   .metric:not(.main) strong {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
   .metric:not(.main) .long {
     font-size: 0.9rem;

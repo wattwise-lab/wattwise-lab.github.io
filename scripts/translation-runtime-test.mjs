@@ -2,6 +2,20 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const source = await fs.readFile(new URL('../assets/cm-i18n.js', import.meta.url), 'utf8');
+const corpus = JSON.parse(
+  await fs.readFile(new URL('../src/i18n-corpus.json', import.meta.url), 'utf8'),
+);
+for (const fragment of ['The discriminant D = b²', "It is the parabola's turning point:"])
+  assert.ok(
+    corpus.some((row) => row.active && row.source.includes(fragment)),
+    'Explanations containing both inequality signs must remain translatable: ' + fragment,
+  );
+for (const source of ['use strict', '[data-w]', 'input,select,textarea'])
+  assert.ok(
+    !corpus.some((row) => row.active && row.source === source),
+    'Implementation syntax must not count as public translation copy: ' + source,
+  );
+assert.ok(corpus.some((row) => row.active && row.source === 'Remove calculator'));
 function runtime(locale) {
   const document = {
     documentElement: { lang: locale, hasAttribute: () => false },

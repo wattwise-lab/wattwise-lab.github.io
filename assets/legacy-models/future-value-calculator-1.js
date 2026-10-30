@@ -1,32 +1,79 @@
-(()=>{'use strict';
-
-const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
-const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function fv(pv,r,n,t){return pv*Math.pow(1+r/n,n*t);}
-function render(){
-  const v=get();
-  const valid = v.pv>=0 && v.rate>=0 && v.years>0 && v.n>=1;
-  if(!valid){
-    $("result").textContent="—"; $("chipInt").textContent="—"; $("chipMult").textContent="—";
-    $("yearRows").innerHTML="";
-    const vd=$("verdict"); vd.className="verdict warn";
-    $("verdictText").textContent="Enter a present value and rate at zero or above, years above zero, and at least 1 compounding period per year.";
-    return;
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const I = window.CMI18n;
+  const locale = I?.formatLocale || 'en-US';
+  const money = (n) =>
+    I
+      ? I.currency(n, 'USD', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+      : new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(n);
+  const num = (n) => new Intl.NumberFormat(locale, { maximumFractionDigits: 6 }).format(n);
+  const numeric = (id) => ($(id).value.trim() === '' ? NaN : Number($(id).value));
+  const duration = (years) =>
+    new Intl.NumberFormat(locale, {
+      style: 'unit',
+      unit: 'year',
+      unitDisplay: 'long',
+      maximumFractionDigits: 6,
+    }).format(years);
+  function invalid() {
+    for (const id of ['result', 'chipInt', 'chipMult']) $(id).textContent = '—';
+    $('yearRows').innerHTML = '';
+    $('verdict').className = 'verdict warn';
+    $('verdictText').textContent =
+      'Enter finite nonnegative principal, rate and years, and a positive whole number of compounding periods. Results must fit the supported numeric range.';
   }
-  const f=fv(v.pv,v.rate/100,v.n,v.years), earned=f-v.pv;
-  $("result").textContent=money(f);
-  $("chipInt").textContent=money(earned);
-  $("chipMult").textContent=num(f/v.pv)+"×";
-  let rh="";
-  [1,5,10,20,30].forEach(y=>{ if(y<=v.years){ const val=fv(v.pv,v.rate/100,1,y); rh+="<tr><td>"+y+" year"+(y>1?"s":"")+"</td><td class='num'>"+money(val)+"</td><td class='num'>"+money(val-v.pv)+"</td></tr>"; } });
-  if(rh===""){ const val=fv(v.pv,v.rate/100,1,v.years); rh="<tr><td>"+num(v.years)+" years</td><td class='num'>"+money(val)+"</td><td class='num'>"+money(val-v.pv)+"</td></tr>"; }
-  $("yearRows").innerHTML=rh;
-  const vd=$("verdict"); vd.className="verdict";
-  $("verdictText").textContent="Your $"+num(v.pv)+" grows to "+money(f)+" in "+num(v.years)+" years at "+num(v.rate)+"%, earning "+money(earned)+" in interest.";
-}
-
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-
+  function render() {
+    const [pv, rate, years, n] = ['pv', 'rate', 'years', 'n'].map(numeric);
+    if (
+      ![pv, rate, years, n].every(Number.isFinite) ||
+      Math.min(pv, rate, years) < 0 ||
+      !Number.isSafeInteger(n) ||
+      n < 1
+    )
+      return invalid();
+    const growth = (t) => n * t * Math.log1p(rate / 100 / n);
+    const exponent = growth(years),
+      factor = Math.exp(exponent),
+      future = pv * factor,
+      earned = pv * Math.expm1(exponent);
+    if (![exponent, factor, future, earned].every(Number.isFinite)) return invalid();
+    $('result').textContent = money(future);
+    $('chipInt').textContent = money(earned);
+    $('chipMult').textContent = num(factor) + '×';
+    const dates = [...new Set([1, 5, 10, 20, 30, years].filter((y) => y <= years))].sort(
+      (a, b) => a - b,
+    );
+    $('yearRows').innerHTML = dates
+      .map((y) => {
+        const e = growth(y),
+          value = pv * Math.exp(e),
+          interest = pv * Math.expm1(e);
+        return (
+          '<tr><td>' +
+          duration(y) +
+          '</td><td class="num">' +
+          money(value) +
+          '</td><td class="num">' +
+          money(interest) +
+          '</td></tr>'
+        );
+      })
+      .join('');
+    $('verdict').className = 'verdict';
+    $('verdictText').textContent =
+      I?.message(
+        'The modeled future value is {0}, with {1} interest over {2}. Every table row uses the entered compounding frequency.|模型未来值为 {0}，在 {2} 内的利息为 {1}。表格每一行均采用所填复利频率。',
+        [money(future), money(earned), duration(years)],
+      ) ||
+      'The modeled future value is ' +
+        money(future) +
+        ', with ' +
+        money(earned) +
+        ' interest over ' +
+        duration(years) +
+        '. Every table row uses the entered compounding frequency.';
+  }
+  document.querySelectorAll('input').forEach((e) => e.addEventListener('input', render));
+  render();
 })();

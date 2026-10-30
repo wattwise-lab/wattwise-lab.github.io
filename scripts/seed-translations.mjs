@@ -34,6 +34,9 @@ const files = [
   ...(await fs.readdir(new URL('assets/models/', root)))
     .filter((f) => f.endsWith('.js'))
     .map((f) => 'assets/models/' + f),
+  ...(await fs.readdir(new URL('assets/legacy-models/', root)))
+    .filter((f) => f.endsWith('.js'))
+    .map((f) => 'assets/legacy-models/' + f),
 ];
 function pair(value) {
   if (typeof value !== 'string' || !value.includes('|')) return;

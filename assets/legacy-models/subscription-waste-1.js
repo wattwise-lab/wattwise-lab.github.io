@@ -1,42 +1,104 @@
-(()=>{'use strict';
-
-const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
-const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
-function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
-
-const INVALID_MSG='Enter monthly fee, uses per month, alternative price and idle months at zero or above, to see the estimated waste.';
-function calc(v){
- if(!(v.fee>=0&&v.uses>=0&&v.alt>=0&&v.idle>=0)) return null;
- const annual=v.fee*12, val=v.uses*12*v.alt, base=Math.max(annual-val,0), idle=v.idle*v.fee, total=base+idle;
- return {big:money(total),
-  chips:[["Annual fee",money(annual)],["Value received",money(val)],["Idle penalty",money(idle)]],
-  rows:[["Annual fee",money(annual)],["Value received",money(val)],["Base waste",money(base)],["Idle-month penalty",money(idle)],["Estimated annual waste",money(total)]],
-  bars:[["Value received",val,money(val)],["Total waste",total,money(total)]],
-  cum:[0,1,2,4,8].map(function(u){return [num(u)+" use"+(u!==1?"s":"")+" / month",money(Math.max(annual-u*12*v.alt,0)+idle)];}),
-  vclass:total===0?"":(total>annual/2?"warn":""),
-  verdict:total===0?"No waste on these inputs: the value of your uses covers the annual fee and there are no idle months.":("Estimated annual waste is "+money(total)+" on an annual fee of "+money(annual)+": "+money(base)+" base waste plus "+money(idle)+" idle-month penalty. Note the idle term may overlap with the annual comparison — see Scope and limitations."),
-  summary:"Subscription waste: annual fee "+money(annual)+", value received "+money(val)+", base waste "+money(base)+", idle penalty "+money(idle)+", total "+money(total)+"."};}
-
-function render(){
-  const v=get(); const c=calc(v);
-  if(!c){
-    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
-    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id),
+    I = window.CMI18n,
+    say = (pair, values = []) =>
+      I?.message
+        ? I.message(pair, values)
+        : pair.split('|')[0].replace(/\{(\d+)\}/g, (_, k) => values[k]),
+    label = (pair) => say(pair),
+    num = (n) => n.toLocaleString(I?.formatLocale || 'en-US', { maximumFractionDigits: 2 }),
+    money = (n) =>
+      I?.currency
+        ? I.currency(n, 'USD', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+        : '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 }),
+    inputs = [$('fee'), $('uses'), $('alt'), $('idle')];
+  function render() {
+    const values = inputs.map((input) => (input.value.trim() === '' ? NaN : Number(input.value))),
+      [fee, uses, alt, idle] = values;
+    let annual, active, val, total, idleFee;
+    const valid =
+      values.every(Number.isFinite) &&
+      values.every((v) => v >= 0) &&
+      idle <= 12 &&
+      [
+        (annual = fee * 12),
+        (active = 12 - idle),
+        (val = uses * active * alt),
+        (total = Math.max(annual - val, 0)),
+        (idleFee = idle * fee),
+      ].every(Number.isFinite);
+    if (!valid) {
+      $('result').textContent = '—';
+      ['chips', 'compRows', 'bars', 'cumRows'].forEach((id) => {
+        $(id).innerHTML = '';
+      });
+      $('verdict').className = 'verdict warn';
+      $('verdictText').textContent = say(
+        'Enter finite, non-negative fees, uses and alternative price, with idle months from 0 to 12.|请输入有限且非负的费用、次数与单次替代价格，闲置月数须在 0 到 12 之间。',
+      );
+      window.__summary = '';
+      return;
+    }
+    const compared = label('Pay-per-use comparison|按次付费对比'),
+      idleLabel = label('Idle-month fees (included)|闲置月费用（已包含）'),
+      unused = label('Fee above alternative cost|超出替代成本的费用'),
+      covered = label('Fee covered by use value|使用价值覆盖的费用'),
+      annualLabel = label('Annual fee|年费'),
+      rows = [
+        [annualLabel, money(annual)],
+        [label('Active months|使用月数'), num(active)],
+        [label('Annual uses|全年使用次数'), num(uses * active)],
+        [compared, money(val)],
+        [idleLabel, money(idleFee)],
+        [unused, money(total)],
+      ];
+    $('result').textContent = money(total);
+    $('chips').innerHTML = [
+      [annualLabel, money(annual)],
+      [compared, money(val)],
+      [idleLabel, money(idleFee)],
+    ]
+      .map(([a, b]) => '<span class="chip">' + a + ': <strong>' + b + '</strong></span>')
+      .join('');
+    $('compRows').innerHTML = rows
+      .map(([a, b]) => '<tr><td>' + a + '</td><td class="num">' + b + '</td></tr>')
+      .join('');
+    $('bars').innerHTML = [
+      [covered, Math.min(val, annual)],
+      [unused, total],
+    ]
+      .map(
+        ([a, b]) =>
+          '<div class="bar-row"><label><span>' +
+          a +
+          '</span><span>' +
+          money(b) +
+          '</span></label><div class="bar"><i style="width:' +
+          (annual > 0 ? (b / annual) * 100 : 0) +
+          '%"></i></div></div>',
+      )
+      .join('');
+    $('cumRows').innerHTML = [0, 1, 2, 4, 8]
+      .map(
+        (u) =>
+          '<tr><td>' +
+          num(u) +
+          '</td><td class="num">' +
+          money(Math.max(annual - u * active * alt, 0)) +
+          '</td></tr>',
+      )
+      .join('');
+    $('verdict').className = 'verdict' + (total > annual / 2 ? ' warn' : '');
+    $('verdictText').textContent = say(
+      'Annual fee {0} versus {1} for the entered usage at the alternative price: the non-negative difference is {2}. Idle-month fees of {3} are already included in the annual fee.|年费 {0}，按输入的使用量与替代单价计算的成本为 {1}，非负差额为 {2}。闲置月费用 {3} 已包含在年费内。',
+      [money(annual), money(val), money(total), money(idleFee)],
+    );
+    window.__summary = say(
+      'Subscription comparison: annual fee {0}, alternative usage cost {1}, difference {2}; idle-month fees {3} are included.|订阅对比：年费 {0}，替代使用成本 {1}，差额 {2}；闲置月费用 {3} 已包含。',
+      [money(annual), money(val), money(total), money(idleFee)],
+    );
   }
-  $("result").textContent=c.big;
-  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
-  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
-  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
-  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
-  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
-  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
-  window.__summary=c.summary;
-}
-
-
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-
+  inputs.forEach((input) => input.addEventListener('input', render));
+  render();
 })();

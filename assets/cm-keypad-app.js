@@ -20,6 +20,7 @@
     return (
       (raw.startsWith('-') && Number(raw) === 0 ? '−' : '') +
       I.number(Number(raw), {
+        notation: 'standard',
         minimumFractionDigits: Math.min(15, digits),
         maximumFractionDigits: 15,
         useGrouping: true,

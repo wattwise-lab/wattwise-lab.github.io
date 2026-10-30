@@ -59,7 +59,7 @@
         ? system.split('-')[0]
         : 'en';
   const preferences = M.parsePreferences(location.search, Object.keys(COPY), fallback);
-  lang = preferences.language;
+  lang = window.CMI18n?.language || preferences.language;
   let state = demo();
   state.currency = preferences.currency;
   let autoNames = [0, 1, 2],
@@ -235,8 +235,10 @@
     $('currency').value = state.currency;
   }
   function staticText() {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = ['ar', 'ur'].includes(lang) ? 'rtl' : 'ltr';
+    if (!window.CMI18n) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = ['ar', 'ur'].includes(lang) ? 'rtl' : 'ltr';
+    }
     if (!document.body.hasAttribute('data-cm-page-name'))
       document.title = t('title') + ' | CalcMintly';
     document.querySelectorAll('[data-t]').forEach((el) => {
@@ -565,12 +567,19 @@
   });
   $('language').addEventListener('change', (e) => {
     lang = e.target.value;
-    try {
-      localStorage.setItem('calcmintly-language-v2', lang);
-      const u = new URL(location.href);
-      u.searchParams.set('lang', lang);
-      history.replaceState({}, '', u.href);
-    } catch {}
+    if (window.CMI18n) {
+      if (window.CMI18n.language !== lang) {
+        window.CMI18n.setLanguage(lang);
+        return;
+      }
+    } else {
+      try {
+        localStorage.setItem('calcmintly-language-v2', lang);
+        const u = new URL(location.href);
+        u.searchParams.set('lang', lang);
+        history.replaceState({}, '', u.href);
+      } catch {}
+    }
     state.scenarios.forEach((s, i) => {
       if (autoNames[i] !== null) s.name = COPY[lang].names[autoNames[i]];
       if (autoSources[i]) s.source = t('demoSource');

@@ -13,5 +13,13 @@
   "Pace per 100 m": "100 m 当たりのペース",
   "Average Speed Calculator": "平均の速さ計算機",
   "BMI Prime:": "BMI Prime:",
-  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)"
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "Feet must be a nonnegative whole number. Inches may include decimals and must be at least 0 and less than 12.": "フィートは負でない整数にしてください。インチは小数も使用でき、0 以上 12 未満である必要があります。",
+  "This is a mathematical fixed-payment loan cost model with equally spaced monthly payments and fees deducted at the start. It is not a jurisdiction-specific statutory APR disclosure. Local rules determine included charges, timing, rounding and disclosure conventions. Variable rates, irregular dates, optional services and later charges are not modeled. Compare lender disclosures using the rules and cash flows that apply to that loan.": "これは、毎月の支払額が均等で、手数料が最初に差し引かれる、固定支払ローンの数学的なコストモデルです。これは、管轄区域固有のAPR の法定開示ではありません。含まれる料金、タイミング、端数処理、および開示規則は、現地の規則によって決定されます。変動金利、不規則な日付、オプションサービス、および後日発生する料金はモデル化されていません。そのローンに適用される規則とキャッシュフローを使用して、貸し手の開示内容を比較してください。",
+  "Use gross income before taxes and deductions for this DTI calculation. A separate budget based on take-home pay is useful for everyday affordability, but it answers a different question.": "この DTI 計算には、税金や控除前の総収入を使用してください。手取り収入に基づいた別の予算は、日々の生活費のやりくりに役立ちますが、それは別の質問に答えるものです。",
+  "For height at least 5 feet (60 inches or 152.4 cm), reference weight in kg = base + 2.3 × (height in inches − 60). The base is 50 kg for men and 45.5 kg for women. Height in inches = height in cm ÷ 2.54. This page does not extrapolate below 152.4 cm.": "身長が5フィート（60インチ、152.4 cm）以上の場合、参考体重（kg）= 基準値 + 2.3 ×（身長のインチ数 − 60）。基準値は男性50 kg、女性45.5 kgです。身長のインチ数 = 身長のcm数 ÷ 2.54。本ページでは152.4 cm未満への外挿を行いません。",
+  "Every list entry must be a finite number. Use population SD when the list is the complete group of interest, and sample SD when observations estimate a larger population. Sample SD is undefined for a single value. Standard deviation is sensitive to outliers and describes spread, not distribution shape. Display is rounded to 4 decimal places.": "リスト内のすべての値は有限の数である必要があります。対象集団の全体を入力した場合は母標準偏差、より大きい母集団を推定する標本を入力した場合は標本標準偏差を使います。値がひとつだけの場合、標本標準偏差は定義されません。標準偏差は外れ値の影響を受けやすく、分布の形ではなく散らばりを表します。表示は小数点以下4桁に丸めます。",
+  "Workdays: {0} net ({1} working days, {2} weekly rest days, {3} holidays) from {4} to {5}.": "勤務日数：差し引き後{0}日（勤務日{1}日、週の休息日{2}日、祝日等の控除{3}日）、期間は{4}から{5}まで。",
+  "Estimated adult body fat {0}%; BMI {1}; estimated fat mass {2} kg and lean mass {3} kg.": "成人の推定体脂肪率 {0}%；BMI {1}；推定脂肪量 {2} kg、除脂肪量 {3} kg。",
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "次数が 2 の多項式には、重複度を含めて二つの根があります。同じ根が重なる場合も、複素数の対になる場合もありますが、重複度を含めた根の数は常に二つです。"
 }

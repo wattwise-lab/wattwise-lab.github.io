@@ -506,7 +506,7 @@
       "ja": "標準体重の目安"
     },
     "new": false,
-    "description": "A height-based reference weight using the Devine formula — a dosing reference, not a personal target.",
+    "description": "Explore the historical Devine reference formula for adults at least 152.4 cm tall. This is an educational comparison, not a weight goal or medication-dose calculator.",
     "descriptions": {
       "zh-CN": "按身高等条件计算常见公式下的体重参考值。"
     }
@@ -1007,7 +1007,7 @@
       "ja": "一次方程式"
     },
     "new": false,
-    "description": "Solve ax + b = 0 for x, and read slope, intercepts, and the graph of a line in slope-intercept form.",
+    "description": "Solve ax + b = 0 and inspect a straight line from its slope and y-intercept, including horizontal lines and equations with no unique solution.",
     "descriptions": {
       "zh-CN": "求解一元一次方程，并查看直线截距。"
     }

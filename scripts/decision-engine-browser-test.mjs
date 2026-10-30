@@ -86,6 +86,25 @@ try {
     await page.locator('#cm-site-language').selectOption('zh-CN');
     assert.ok(Number(await page.locator('#prin').inputValue()) > 0);
     near(Number((await page.locator('#main').innerText()).replace(/[^0-9.-]/g, '')), 1000, 0.05);
+    await page.goto(base + '/quadratic-equation-calculator?lang=en', { waitUntil: 'load' });
+    await page.locator('#b').fill('0');
+    await page.locator('#c').fill('-2');
+    assert.match(await page.locator('.big').innerText(), /1\.41421356237/);
+    await page.locator('#cm-site-language').selectOption('de');
+    assert.equal(await page.locator('#c').inputValue(), '-2');
+    assert.match(await page.locator('.big').innerText(), /1,41421356237/);
+    const germanGuide = await page.locator('.cm-guide').getAttribute('aria-label');
+    await page.locator('#cm-site-language').selectOption('en');
+    assert.match(await page.locator('.big').innerText(), /1\.41421356237/);
+    assert.notEqual(await page.locator('.cm-guide').getAttribute('aria-label'), germanGuide);
+    await page.locator('#b').fill('');
+    await page.locator('#cm-site-language').selectOption('de');
+    assert.equal(await page.locator('#b').inputValue(), '');
+    assert.equal(await page.locator('#c').inputValue(), '-2');
+    assert.equal(await page.locator('.big').isVisible(), false);
+    assert.equal(await page.locator('body.cm-invalid').count(), 1);
+    await page.locator('#b').fill('0');
+    assert.match(await page.locator('.big').innerText(), /1,41421356237/);
     for (const [slug, field] of [
       ['age-calculator', 'ref'],
       ['countdown-calculator', 'from'],

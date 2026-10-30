@@ -1,5 +1,9 @@
 {
   "Average Speed Calculator": "Calculadora de velocidade escalar média",
   "BMI Prime:": "BMI Prime:",
-  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)"
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "This worksheet totals the payments you enter. Different lenders and loan products use different DTI limits and may define eligible income and housing obligations differently. It does not assess credit history, assets, local lending rules or ability to afford all living costs. Confirm which payments and income your lender includes; avoid counting the same payment twice.": "Esta planilha totaliza os pagamentos que você inserir. Diferentes instituições financeiras e produtos de crédito utilizam limites de DTI diferentes e podem definir a renda elegível e as obrigações com a moradia de maneiras distintas. Ela não avalia o histórico de crédito, os bens, as regras de crédito locais ou a capacidade de arcar com todos os custos de vida. Confirme quais pagamentos e rendimentos sua instituição financeira inclui; evite contabilizar o mesmo pagamento duas vezes.",
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "Um polinômio de grau 2 tem duas raízes, contando a multiplicidade. Elas podem coincidir ou formar um par complexo; com multiplicidade, sempre são duas.",
+  "x = [−b ± √(b² − 4ac)] ÷ 2a. The discriminant D = b² − 4ac decides the root type: D > 0 gives two distinct real roots, D = 0 gives one repeated root, D < 0 gives two complex roots. The vertex (turning point) sits at x = −b ÷ 2a.": "x = [−b ± √(b² − 4ac)] ÷ 2a. O discriminante D = b² − 4ac determina o tipo de raízes: D > 0 dá duas raízes reais distintas, D = 0 dá uma raiz dupla e D < 0 dá duas raízes complexas. A coordenada horizontal do vértice é x = −b ÷ 2a.",
+  "It is the parabola's turning point: the minimum when a > 0, the maximum when a < 0. It sits exactly halfway between the two real roots when they exist.": "É o vértice da parábola: mínimo quando a > 0, máximo quando a < 0. A sua coordenada horizontal fica exatamente entre as duas raízes reais, quando existem."
 }

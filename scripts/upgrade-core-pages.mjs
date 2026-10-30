@@ -54,6 +54,398 @@ export function upgradeCorePage($, slug) {
     card.find('p').remove();
     card.append(para(en, zh));
   }
+  if (slug === 'quadratic-equation-calculator') {
+    paragraph(
+      'Scope and limitations',
+      'Nonzero a defines a quadratic. If a is zero, the page reports the linear or constant-equation case. Results normally show 12 significant digits, increasing to 17 to distinguish close roots. Very small or large values use scientific notation. Decimal input precision still limits accuracy, especially near repeated roots. Unsupported numerical magnitudes show an error instead of infinity or a false zero.',
+      'a 不为零时才是二次方程；a 为零时显示一次方程或常数等式情况。结果通常显示 12 位有效数字，区分接近的根时增至 17 位；极小值或极大值使用科学记数法。输入精度仍会限制准确度，接近重根时尤其明显。超出数值表示范围会报错，不显示无穷大或虚假的零。',
+    );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'What if a is zero?')
+      .next('p')
+      .replaceWith(
+        para(
+          'Then solve bx + c = 0. If b is nonzero, x = −c ÷ b. If b and c are both zero, every real x works; if b is zero but c is not, there is no solution.',
+          '此时求解 bx + c = 0。若 b 不为零，x = −c ÷ b；若 b、c 均为零，任意实数 x 都成立；若 b 为零而 c 不为零，则无解。',
+        ),
+      );
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-quadratic-source]').length)
+      scope.append(
+        '<p data-cm-quadratic-source><a data-cm-no-translate href="https://people.eecs.berkeley.edu/~wkahan/Qdrtcs.pdf" rel="noopener noreferrer">W. Kahan (2004), Qdrtcs</a></p>',
+      );
+  }
+  if (slug === 'system-of-equations-calculator') {
+    paragraph(
+      'Formula',
+      'For a₁x + b₁y = c₁ and a₂x + b₂y = c₂, D = a₁b₂ − a₂b₁. If D ≠ 0, x = (c₁b₂ − c₂b₁) ÷ D and y = (a₁c₂ − a₂c₁) ÷ D. If D = 0, consistent dependent constraints have infinitely many solutions; contradictory constraints have none. An equation with zero coefficients and a nonzero constant is a contradiction.',
+      '对于 a₁x + b₁y = c₁、a₂x + b₂y = c₂，D = a₁b₂ − a₂b₁。当 D ≠ 0 时，x = (c₁b₂ − c₂b₁) ÷ D，y = (a₁c₂ − a₂c₁) ÷ D。当 D = 0 时，相关且相容的约束有无穷多解，矛盾约束则无解。系数全为零而常数不为零的方程属于矛盾。',
+    );
+    paragraph(
+      'Scope and limitations',
+      'This page solves two linear equations in two unknowns, including identity and contradictory zero-coefficient rows. It does not solve nonlinear terms, inequalities or larger systems. Results display up to 12 significant digits. Nearly dependent equations can be very sensitive to input precision. Values outside the supported numeric range show an error.',
+      '本页求解二元一次方程组，包括恒等式及系数全为零的矛盾行。不求解非线性项、不等式或更大方程组。结果最多显示 12 位有效数字，接近相关的方程对输入精度可能十分敏感。超出数值表示范围时显示错误。',
+    );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'What does the solution mean geometrically?')
+      .next('p')
+      .replaceWith(
+        para(
+          'A non-degenerate linear equation describes a line. Two intersecting lines give one solution; distinct parallel lines give none; coincident lines give infinitely many. A zero-coefficient equation instead describes either no restriction or a contradiction.',
+          '非退化一次方程表示一条直线：相交直线有唯一解，不同平行线无解，重合直线有无穷多解。系数全为零的等式则表示没有额外限制，或构成矛盾。',
+        ),
+      );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'What if the determinant is zero?')
+      .next('p')
+      .replaceWith(
+        para(
+          'There is no unique pair. The page checks whether the constraints are consistent, including zero-coefficient rows. Consistent dependent equations give infinitely many solutions; a contradiction such as zero equaling a nonzero constant gives none.',
+          '此时没有唯一数对。本页检查约束是否相容，也检查全零系数行。相关且相容的方程有无穷多解；例如零等于非零常数这样的矛盾则无解。',
+        ),
+      );
+  }
+  if (slug === 'simple-interest-calculator') {
+    paragraph(
+      'Scope and limitations',
+      'The original principal stays fixed for the whole entered period, and interest is not added to principal. Real loan payments can reduce the outstanding principal and use daily interest counts; this page does not build that repayment schedule or include fees. Partial years scale interest proportionally. Comparisons with compounding depend on matching rate and timing conventions.',
+      '在整个输入期间，原始本金保持固定，利息不加入本金。实际贷款付款可能减少未偿本金，并按实际天数计息；本页不生成该还款计划，也不包含费用。非整年按比例计息。与复利比较时，需采用一致的利率和时间口径。',
+    );
+    $('h3')
+      .filter(
+        (_, e) => $(e).text().trim() === 'How is simple interest different from compound interest?',
+      )
+      .next('p')
+      .replaceWith(
+        para(
+          'Here simple interest uses the fixed original principal. Compounding adds earned interest to the balance before later interest is calculated. With a positive rate across several compounding periods, this increases growth; compare the same timeline and rate basis.',
+          '本页单利使用固定的原始本金；复利则先把已赚利息加入余额，再计算后续利息。在正利率、多个复利周期下，这会增加增长量；比较时应统一时间范围和利率口径。',
+        ),
+      );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'When is simple interest actually used?')
+      .next('p')
+      .replaceWith(
+        para(
+          'This fixed-principal formula is useful for basic interest examples and contracts with no interim principal changes. Some loans called simple interest calculate interest on the outstanding balance, which changes with payments. Use the actual contract and a payment schedule for those loans.',
+          '固定本金公式适用于基础利息示例及期间本金不变的合同。一些称作单利的贷款按未偿本金计息，而付款会改变该余额。此类贷款应按实际合同及付款计划计算。',
+        ),
+      );
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-simple-source]').length)
+      scope.append(
+        '<p data-cm-simple-source><a href="https://www.consumerfinance.gov/ask-cfpb/whats-the-difference-between-a-simple-interest-rate-and-precomputed-interest-on-an-auto-loan-en-841/" rel="noopener noreferrer">CFPB: simple interest and outstanding loan balances</a></p>',
+      );
+  }
+  if (['bmr-calculator', 'tdee-calculator'].includes(slug)) {
+    $('#age').attr('min', '18');
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-ree-source]').length)
+      scope.append(
+        para(
+          'This page is for adult educational estimates. The original Mifflin–St Jeor study used healthy adults aged 19–78; extrapolation and individual medical circumstances require care. This is not a measured metabolic rate or an instruction for calorie intake.',
+          '本页用于成人教育性估算。Mifflin–St Jeor 原始研究使用 19–78 岁健康成人样本，外推及个人医疗情况需谨慎。本结果不是实测代谢率，也不是热量摄入指令。',
+        ) +
+          '<p data-cm-ree-source><a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" rel="noopener noreferrer">Mifflin et al. (1990): resting energy expenditure equation</a></p>',
+      );
+  }
+  if (slug === 'body-fat-calculator') {
+    $('#age').attr('min', '18');
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-bodyfat-source]').length)
+      scope.append(
+        '<p data-cm-bodyfat-source><a href="https://pubmed.ncbi.nlm.nih.gov/2043597/" rel="noopener noreferrer">Deurenberg et al. (1991): adult body-fat prediction equation</a></p>',
+      );
+  }
+  if (slug === 'roi-calculator') {
+    $('.wrap>.card p')
+      .filter((_, e) => /gain bar longer than/i.test($(e).text()))
+      .replaceWith(
+        para(
+          'Bars compare the initial investment with final value plus cash income. A longer final-value-plus-income bar means positive ROI.',
+          '柱形图比较初始投资与期末价值加现金收入，后者更长表示投资回报率为正。',
+        ),
+      );
+  }
+  if (slug === 'subscription-waste') {
+    $('label[for="uses"]')
+      .attr('data-cm-pair', 'Uses per active month|每个使用月的次数')
+      .text('Uses per active month');
+    $('#idle').attr('max', '12');
+    paragraph(
+      'Formula',
+      'Active months = 12 − idle months. Annual alternative cost = uses per active month × active months × alternative price. Difference = max(annual subscription fee − annual alternative cost, 0). Idle-month fees are part of the annual fee, not an extra penalty.',
+      '使用月数 = 12 − 闲置月数。全年替代成本 = 每个使用月的次数 × 使用月数 × 替代单价。差额 = max(全年订阅费 − 全年替代成本, 0)。闲置月费用已计入年费，不再额外叠加。',
+    );
+    paragraph(
+      'Worked example',
+      'Monthly fee 68, 2 uses per active month, alternative price 12 per use and 4 idle months: annual fee = 68 × 12 = 816; active months = 12 − 4 = 8; alternative cost = 2 × 8 × 12 = 192; difference = 816 − 192 = 624. Idle fees of 4 × 68 = 272 are already inside the annual fee. These are fictional example prices.',
+      '月费 68，每个使用月 2 次，按次替代价格 12，闲置 4 个月：年费 = 68 × 12 = 816；使用月数 = 12 − 4 = 8；替代成本 = 2 × 8 × 12 = 192；差额 = 816 − 192 = 624。闲置费用 4 × 68 = 272 已包含在年费中。这些均为虚构示例价格。',
+    );
+    paragraph(
+      'Scope and limitations',
+      'This comparison assumes you pay for all 12 months and use the service at the entered frequency during active months only. Idle months reduce annual uses; their fees are already included and are not added again. Other subscription benefits, cancellation costs and changing prices are not modeled. The difference is a comparison with paying per use, not guaranteed cash recovered by cancelling.',
+      '此对比假设全年支付 12 个月费用，仅在使用月按输入频率使用服务。闲置月减少全年使用次数，其费用已包含在年费中，不会重复叠加。其他会员权益、取消费用及价格变化不在模型内。差额是与按次付费方案的比较，并非取消订阅必然收回的现金。',
+    );
+    const faq = $('.wrap>.card').filter((_, e) => $(e).find('h2').first().text().trim() === 'FAQ');
+    faq.html(
+      '<h2>FAQ</h2>' +
+        [
+          [
+            'How is this calculated?|如何计算？',
+            'Subtract the cost of the same annual usage at your alternative price from the annual subscription fee. The result is floored at zero.|用年费减去相同全年使用量按替代单价计算的费用，结果最低为零。',
+          ],
+          [
+            'What is an active month?|什么是使用月？',
+            'A month in which you use the service. Enter the average uses for those months; idle months have zero uses.|指实际使用服务的月份。请输入这些月份的平均次数，闲置月按零次计算。',
+          ],
+          [
+            'Are idle-month fees counted twice?|闲置月费用会重复计算吗？',
+            'No. They are shown as an included part of the annual fee. They are not added to the difference.|不会。它们仅作为年费中已包含的部分展示，不会另加到差额上。',
+          ],
+          [
+            'Does cancelling save the whole difference?|取消订阅能省下全部差额吗？',
+            'Not necessarily. Compare the benefits you actually need, alternative prices, any cancellation fee and the remaining contract term.|不一定。还需比较实际所需权益、替代价格、取消费用及剩余合同期限。',
+          ],
+        ]
+          .map(
+            ([q, a]) =>
+              '<h3 data-cm-pair="' +
+              esc(q) +
+              '">' +
+              esc(q.split('|')[0]) +
+              '</h3>' +
+              para(...a.split('|')),
+          )
+          .join(''),
+    );
+    $('.wrap>.card').each((_, e) => {
+      const card = $(e),
+        heading = card.find('h2').first().text().trim();
+      if (heading === 'Value received vs waste')
+        card
+          .find('p')
+          .text(
+            'Bars split the annual fee into the part covered by use value and the remaining difference.',
+          );
+      if (heading === 'Annual waste by uses per month') {
+        card
+          .find('th')
+          .first()
+          .attr('data-cm-pair', 'Uses per active month|每个使用月的次数')
+          .text('Uses per active month');
+        card
+          .find('p')
+          .replaceWith(
+            para(
+              'Same monthly fee, alternative price and idle months; only uses per active month vary.',
+              '月费、替代单价和闲置月数保持一致，仅改变每个使用月的使用次数。',
+            ),
+          );
+      }
+    });
+  }
+  if (slug === 'pricing-power') {
+    $('.hero p')
+      .filter((_, e) => $(e).text().includes('See the FAQ for how the source scenario'))
+      .replaceWith(
+        para(
+          'Enter the sales-volume decline you expect after the price change. This tool compares your assumptions; it does not predict demand from an elasticity coefficient.',
+          '请输入你预计调价后减少的销量比例。本工具比较你输入的假设，不根据弹性系数预测需求。',
+        ),
+      );
+    $('h3')
+      .filter((_, e) => $(e).text().includes('volume decline'))
+      .next('p')
+      .filter((_, e) => $(e).text().includes('source scenario'))
+      .replaceWith(
+        para(
+          'Enter the percentage of sales volume you expect to lose after the price increase. The formula applies this percentage directly to current sales. It does not estimate demand or multiply a price-elasticity coefficient by the price change.',
+          '请输入你预计涨价后减少的销量百分比。公式直接将该比例用于当前销量，不预测需求，也不将价格弹性系数乘以调价幅度。',
+        ),
+      );
+  }
+  if (slug === 'net-salary-calculator') {
+    $('h3')
+      .filter((_, e) => $(e).next('p').text().includes('No country or region rate pre-filled'))
+      .next('p')
+      .replaceWith(
+        para(
+          'Use actual tax divided by gross pay from a recent payslip, or an effective rate confirmed by your payroll provider. The default 15% is an editable example, not a statutory rate for any country or region.',
+          '可使用近期工资单的实际税额除以税前工资，或使用薪资服务方确认的有效税率。默认 15% 只是可修改的示例，不代表任何国家或地区的法定税率。',
+        ),
+      );
+  }
+  if (slug === 'markup-calculator') {
+    $('h3')
+      .filter((_, e) => $(e).next('p').text().startsWith('Added later, on the selling price.'))
+      .next('p')
+      .replaceWith(
+        para(
+          'Use a consistent tax basis for cost and price. This example treats selling price as tax-exclusive; whether purchase tax belongs in your cost depends on its recoverability and local rules. Apply the relevant sales-tax base and rate separately.',
+          '成本和售价应采用一致的税务口径。本示例售价不含销售税；采购税是否计入成本取决于能否抵扣及当地规定。适用的销售税税基与税率请另行计算。',
+        ),
+      );
+  }
+  if (slug === 'present-value-calculator') {
+    const chip = $('#chip5').parent();
+    chip
+      .contents()
+      .filter((_, node) => node.type === 'text')
+      .remove();
+    chip.children('[data-cm-pv-label]').remove();
+    chip.prepend(
+      '<span data-cm-pv-label data-cm-pair="Present value if due in 5 years:|若 5 年后到期的现值：">Present value if due in 5 years:</span> ',
+    );
+    paragraph(
+      'Worked example',
+      '$10,000 due in 10 years at a 5% annual discount rate has a present value of $6,139.13 and a discount of $3,860.87. If due in 5 years instead, its present value is $7,835.26 and its discount is $2,164.74. Doubling the waiting time does not double the discount: the formula compounds the discount factor.',
+      '10 年后收到的 $10,000，按年折现率 5% 计算，现值为 $6,139.13，折现金额为 $3,860.87。若改为 5 年后收到，现值为 $7,835.26，折现金额为 $2,164.74。等待时间翻倍不意味着折现金额翻倍，公式对折现因子进行复合计算。',
+    );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'Can present value be negative?')
+      .next('p')
+      .replaceWith(
+        para(
+          'This page accepts non-negative amounts and shows their non-negative discounted value. For a future liability, enter its positive amount and interpret the result as the corresponding present cost. Signed cash flows require a different model.',
+          '本页接受非负金额，并显示非负折现值。未来负债可输入其正数金额，把结果理解为对应的当前成本；带正负号的现金流需使用其他模型。',
+        ),
+      );
+  }
+  if (slug === 'pregnancy-due-date-calculator') {
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-pregnancy-source]').length)
+      scope.append(
+        '<p data-cm-pregnancy-source><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" rel="noopener noreferrer">ACOG: Methods for Estimating the Due Date</a></p>',
+      );
+  }
+  if (slug === 'discount-calculator') {
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'Does this include tax?')
+      .next('p')
+      .replaceWith(
+        para(
+          'No. The taxable amount depends on local rules and the type of discount or coupon. It may differ from the discounted amount paid. Confirm the applicable tax base before using the sales tax calculator.',
+          '不包含。应税金额取决于当地规则及折扣、优惠券类型，可能不同于实际折后付款金额。使用销售税计算器前，请先核实适用税基。',
+        ),
+      );
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-tax-source]').length)
+      scope.append(
+        '<p data-cm-tax-source><a href="https://www.tax.ny.gov/pubs_and_bulls/tg_bulletins/st/coupons_and_food_stamps.htm" rel="noopener noreferrer">New York State: coupons and taxable receipts</a></p>',
+      );
+  }
+  if (slug === 'inflation-calculator') {
+    $('#y1,#y2').attr({ min: '1', max: '9999', step: '1' });
+    $('#amt').attr('min', '0');
+    paragraph(
+      'Scope and limitations',
+      'This page applies one constant assumed inflation rate, without fetching CPI data. A compound annual rate can reproduce the change between two index endpoints, but cannot describe the intervening yearly path. Use a consistent published CPI series, country and comparison period for historical work. The result compares general purchasing power, not the price of a particular item.',
+      '本工具使用单一假设通胀率，不获取 CPI 数据。复合年均率可复现两个指数端点之间的变化，但不能描述中间各年的走势。历史比较应使用同一官方 CPI 序列、国家及一致的比较时段。结果比较总体购买力，不是某件商品的价格。',
+    );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'Is the average rate the same as actual CPI?')
+      .next('p')
+      .replaceWith(
+        para(
+          'No data is loaded here. To match two published CPI endpoints over t years, enter 100 × ((ending index ÷ starting index)^(1/t) − 1) as the annual rate. An arithmetic mean of yearly percentage changes generally does not give the same compounded result. Use matching months or consistent annual-average indexes; those comparisons can differ.',
+          '这里不载入实际指数。要匹配相隔 t 年的两个官方 CPI 端点，年率应填 100 × ((期末指数 ÷ 期初指数)^(1/t) − 1)。各年百分比变化的算术平均一般不能得到相同复利结果。请使用对应月份或一致的年度平均指数，两种比较的结果可能不同。',
+        ),
+      );
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-cpi-source]').length)
+      scope.append(
+        '<p data-cm-cpi-source><a href="https://www.bls.gov/cpi/factsheets/calculating-percent-changes.htm" rel="noopener noreferrer">U.S. Bureau of Labor Statistics: CPI percent changes</a></p>',
+      );
+  }
+  if (slug === 'ideal-weight-calculator') {
+    $('#cm').attr({ min: '152.4', step: 'any' });
+    $('.wrap>.sub').replaceWith(
+      para(
+        'Explore the historical Devine reference formula for adults at least 152.4 cm tall. This is an educational comparison, not a weight goal or medication-dose calculator.',
+        '查看身高至少 152.4 厘米成人的历史 Devine 参考公式。本工具用于学习比较，不设定体重目标，也不计算用药剂量。',
+      ),
+    );
+    $('.wrap>p[data-cm-pair]').first().addClass('sub');
+    paragraph(
+      'Formula',
+      'For height at least 5 feet (60 inches or 152.4 cm), reference weight in kg = base + 2.3 × (height in inches − 60). The base is 50 kg for men and 45.5 kg for women. Height in inches = height in cm ÷ 2.54. This page does not extrapolate below 152.4 cm.',
+      '身高至少 5 英尺（60 英寸或 152.4 厘米）时，参考体重（千克）= 基数 + 2.3 ×（身高英寸数 − 60）。男性基数为 50 千克，女性为 45.5 千克；英寸数 = 厘米数 ÷ 2.54。本页不向低于 152.4 厘米的身高外推。',
+    );
+    paragraph(
+      'Scope and limitations',
+      'Devine is a historical height-and-sex reference equation associated with drug-dosing literature. It does not account for body composition, age, pregnancy or individual health. This adult educational tool does not select a clinical dosing weight, calculate a dose or determine a healthy target. Below 152.4 cm it shows no estimate, rather than inventing a constant minimum weight.',
+      'Devine 是与药物剂量文献有关的历史身高及性别参考公式，不考虑身体成分、年龄、妊娠或个人健康。本成人学习工具不选择临床给药体重、不计算剂量，也不判断健康目标。低于 152.4 厘米时不显示估值，不编造固定最低体重。',
+    );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'What happens below 5 feet?')
+      .next('p')
+      .replaceWith(
+        para(
+          'This page does not calculate below 5 feet (152.4 cm). Returning the same base weight for every shorter adult would conceal the formula limitation. Use an individual clinical assessment when a dosing or health decision is needed.',
+          '低于 5 英尺（152.4 厘米）时本页不计算。为所有更矮的成人返回相同基数体重会掩盖公式局限。涉及给药或健康决策时，应接受个体化临床评估。',
+        ),
+      );
+    const scope = $('[data-cm-section="scope"]');
+    if (!scope.find('[data-cm-devine-source]').length)
+      scope.append(
+        '<p data-cm-devine-source><a href="https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160013c.pdf" rel="noopener noreferrer">FDA device documentation: Devine formula appendix</a></p>',
+      );
+  }
+  if (slug === 'linear-equation-calculator') {
+    $('.wrap>.sub').replaceWith(
+      para(
+        'Solve ax + b = 0 and inspect a straight line from its slope and y-intercept, including horizontal lines and equations with no unique solution.',
+        '求解 ax + b = 0，并根据斜率及 y 轴截距查看直线特征，包括水平直线与没有唯一解的方程。',
+      ),
+    );
+    $('.wrap>p[data-cm-pair]').first().addClass('sub');
+  }
+  if (['mean-median-mode-calculator', 'standard-deviation-calculator'].includes(slug)) {
+    $('.hero p')
+      .filter((_, e) => /Non-numeric entries are ignored/.test($(e).text()))
+      .replaceWith(
+        para(
+          'Results update as you type. Every entry must be a finite number; correct invalid entries to resume calculation. All calculations run locally in your browser.',
+          '结果随输入更新。每一项都必须是有限数值；请修正无效项后继续计算。所有计算均在浏览器本地运行。',
+        ),
+      );
+    $('h3')
+      .filter((_, e) => $(e).text().trim() === 'Are non-numeric entries an error?')
+      .next('p')
+      .replaceWith(
+        para(
+          'Yes. Invalid or non-finite entries pause calculation and show an error instead of being silently skipped. Correct the list before reading a result.',
+          '是。无效或非有限数值会暂停计算并显示错误，不会被悄悄跳过。读取结果前请先修正数列。',
+        ),
+      );
+    if (slug === 'standard-deviation-calculator')
+      paragraph(
+        'Scope and limitations',
+        'Every list entry must be a finite number. Use population SD when the list is the complete group of interest, and sample SD when observations estimate a larger population. Sample SD is undefined for a single value. Standard deviation is sensitive to outliers and describes spread, not distribution shape. Display is rounded to 4 decimal places.',
+        '数列中每项都必须是有限数值。数列是关注的完整群体时用总体标准差，以样本推断更大总体时用样本标准差。单个数值的样本标准差无定义。标准差对离群值敏感，描述离散程度而非分布形状。显示值保留 4 位小数。',
+      );
+  }
+  if (slug === 'future-value-calculator') {
+    paragraph(
+      'Formula',
+      'Growth factor = (1 + annual rate ÷ compounding periods) raised to (compounding periods × years). Future value = present value × growth factor. Interest earned = future value − present value. The growth factor depends on rate, time and frequency; it remains defined even when present value is zero. A zero-year horizon has growth factor 1.',
+      '增长倍数 =（1 + 年利率 ÷ 每年复利次数）的（每年复利次数 × 年数）次方。未来值 = 现值 × 增长倍数；利息 = 未来值 − 现值。增长倍数由利率、时间及复利频率决定，现值为零时仍有定义。零年期限的增长倍数为 1。',
+    );
+    $('#yearRows')
+      .closest('section')
+      .find('p')
+      .filter((_, e) => !$(e).find('table').length)
+      .each((_, e) => {
+        if (/Year-by-year values assume/.test($(e).text()))
+          $(e).replaceWith(
+            para(
+              'Every row uses the same entered compounding frequency and rate. The final row includes your exact planning horizon.',
+              '每行均使用所填复利频率与利率，最后一行包含你填写的确切规划期限。',
+            ),
+          );
+      });
+  }
   if (slug === 'apr-calculator') {
     $('#rate').attr('max', '1000');
     $('#months').attr({ min: '1', max: '1200', step: '1' });
@@ -288,6 +680,23 @@ export function upgradeCorePage($, slug) {
     );
   }
   if (slug === 'workday-calculator') {
+    $('#tWd')
+      .prev()
+      .attr('data-cm-pair', 'Working days before holiday deductions|扣除节假日前的工作日')
+      .text('Working days before holiday deductions');
+    $('#tWe')
+      .prev()
+      .attr('data-cm-pair', 'Weekly rest days in selected pattern|所选每周模式中的休息日')
+      .text('Weekly rest days in selected pattern');
+    $('#tHol')
+      .prev()
+      .attr('data-cm-pair', 'Entered holiday deduction|所填节假日扣除')
+      .text('Entered holiday deduction');
+    paragraph(
+      'Formula',
+      'Count dates from start through end, including both endpoints. Exclude the weekly rest days in your selected pattern, then subtract the holiday deduction you enter. Deduct only holidays that would otherwise be working days.',
+      '统计开始日至结束日，包含首尾两天。先排除所选每周模式中的休息日，再减去你填写的节假日扣除；仅扣除原本应工作的节假日。',
+    );
     section(
       'FAQ',
       para(
@@ -303,6 +712,16 @@ export function upgradeCorePage($, slug) {
   if (slug === 'pregnancy-due-date-calculator')
     $('#lmp').attr({ min: '0001-01-01', max: '9998-12-31' });
   if (slug === 'freelance-real-rate') {
+    $('.hero p')
+      .filter((_, e) => /model (?:uses|assumes) 48 working weeks/i.test($(e).text()))
+      .each((_, e) =>
+        $(e).replaceWith(
+          para(
+            'Enter your working weeks per year, nonzero weekly hours and a nonzero billable share. All are editable planning assumptions.',
+            '填写每年工作周数、非零周工时及非零可计费比例；这些均是可编辑的规划假设。',
+          ),
+        ),
+      );
     $('#tax').attr({ min: '0', max: '99.999' });
     $('#hours').attr({ min: '0.000001', max: '168' });
     $('#bill').attr({ min: '0.000001', max: '100' });
@@ -377,7 +796,7 @@ export function upgradeCorePage($, slug) {
     );
   }
   if (slug === 'rent-vs-buy-calculator') {
-    $('.hero .hint,.hero .note,.hero .small').each((_, element) => {
+    $('.hero p').each((_, element) => {
       if (/Mortgage modelled as a 30-year|rent is held flat/.test($(element).text()))
         $(element).remove();
     });
@@ -421,9 +840,11 @@ export function upgradeCorePage($, slug) {
     );
     section(
       'Formula',
-      code(
-        'Monthly mortgage = principal/annuityFactor(monthlyRate, loanMonths)\nMonthly owner cost = mortgage + currentHomeValue × annualOwnershipCost/12\nRenter starts with down payment + purchase fees invested\nEach month the lower-spending side invests the cash-flow difference\nOwner ending wealth = finalHomeValue × (1 − saleFee) − loanBalance + ownerPortfolio\nDifference = owner ending wealth − renter ending wealth',
-      ) +
+      code('M = P × r / (1 − (1 + r)^(−n))\nr = 0: M = P/n') +
+        para(
+          'M is monthly mortgage payment, P is borrowed principal, r is monthly interest rate and n is the loan term in months. Monthly ownership spending adds tax, insurance and maintenance to the mortgage. The renter initially invests the down payment and purchase fees; each month, whichever side spends less invests the difference. Owner ending wealth is sale proceeds after selling fees and remaining debt, plus investments. Compare it with renter investments at the same horizon.',
+          'M 为房贷月供，P 为贷款本金，r 为月利率，n 为贷款月数。每月持有支出在月供外加上税费、保险及维护。租房方初始投资首付及买入费用；之后每月支出较少的一方投资差额。买房期末净值为卖房所得扣除卖出费用及剩余贷款，再加投资；与同一期限的租房投资相比。',
+        ) +
         para(
           'Investment contributions occur at month end. Growth is smooth in this scenario; real markets do not follow a constant path.',
           '投资追加在月末发生；本情景按平滑增长模拟，实际市场不会沿固定轨迹变化。',

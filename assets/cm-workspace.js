@@ -20,8 +20,7 @@
       helpTitle: 'Three simple steps',
       step1: 'Add a calculator by name or purpose. Use Replace on a card to change it.',
       step2: 'Edit the example numbers. Every calculator updates independently.',
-      step3:
-        'Use “Send result” to copy a number into another card. Check the units first; values do not stay linked.',
+
       saveNote:
         'Saving remembers tool choices and order on this device. Inputs stay in the current tab and are not saved.',
       start: 'Quick start',
@@ -40,8 +39,7 @@
       previous: 'Previous',
       next: 'Next',
       send: 'Send result',
-      transferHelp:
-        'Choose the result, destination calculator and input. This copies a number once; it does not convert units or link the tools.',
+
       result: 'Result to send',
       destination: 'Destination calculator',
       field: 'Destination input',
@@ -85,8 +83,6 @@
         'This number does not match the input’s allowed range or step. Choose a compatible input.',
       openError: 'Could not load the calculator. Open the full tool to continue.',
       reload: 'Reload',
-      languageNote:
-        'Calculator fields and full guides are currently in English, except the multilingual merchant tool.',
     },
     'zh-CN': {
       skip: '跳至工作台',
@@ -104,7 +100,7 @@
       helpTitle: '三步开始使用',
       step1: '按名称或用途搜索并添加计算器。点击卡片上的「替换」可直接更换。',
       step2: '把示例数字换成自己的数值，各计算器会独立实时更新。',
-      step3: '点击「传递结果」，将一个数值填入另一块计算器。请核对单位；数值不会持续联动。',
+
       saveNote: '保存只记住本设备上的工具名称和顺序，不保存输入数值。当前输入会保留在此标签页。',
       start: '快速开始',
       startHint: '一键添加一组常用工具',
@@ -121,8 +117,7 @@
       previous: '上一页',
       next: '下一页',
       send: '传递结果',
-      transferHelp:
-        '选择结果、目标计算器及输入项。只复制一次数值，不自动换算单位，也不会持续联动。',
+
       result: '要传递的结果',
       destination: '目标计算器',
       field: '目标输入项',
@@ -159,7 +154,6 @@
       invalidField: '该数值不符合目标输入项的范围或步进要求，请选择兼容的输入项。',
       openError: '计算器未能加载，可打开完整工具继续使用。',
       reload: '重新加载',
-      languageNote: '除多语言商家工具外，计算器内部字段及完整指南目前为英文。',
     },
   };
   let lang = window.CMI18n.language;

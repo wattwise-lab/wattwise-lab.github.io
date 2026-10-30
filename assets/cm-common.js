@@ -3577,7 +3577,7 @@ window.CMUiCopy = {
 })();
 
 ;
-window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.397f58ab196b.js","hi":"/assets/dist/hi.2c09ef862118.js","es":"/assets/dist/es.5c30d9ae3770.js","ar":"/assets/dist/ar.3a036acf5ae9.js","fr":"/assets/dist/fr.279fa788c9f8.js","bn":"/assets/dist/bn.cb66e3bda891.js","pt":"/assets/dist/pt.111c487ee99a.js","id":"/assets/dist/id.3fe21a9ead87.js","ur":"/assets/dist/ur.de21627b370b.js","ru":"/assets/dist/ru.b1bd4f3091eb.js","de":"/assets/dist/de.9023e4a5686a.js","ja":"/assets/dist/ja.abaef47472b3.js","pcm":"/assets/dist/pcm.8451c78ab60d.js","mr":"/assets/dist/mr.741a72c1c901.js","vi":"/assets/dist/vi.b3c4f6cc728c.js","te":"/assets/dist/te.49f5ae04d585.js","sw":"/assets/dist/sw.350a8b56c9be.js","ha":"/assets/dist/ha.91ac8b6fc5a6.js","tr":"/assets/dist/tr.c6a3589e251a.js"};
+window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.4a60b27c5e27.js","hi":"/assets/dist/hi.9c15e400d7d3.js","es":"/assets/dist/es.4e70cd7a16b4.js","ar":"/assets/dist/ar.abc1aceb4350.js","fr":"/assets/dist/fr.eff0c08a2e0d.js","bn":"/assets/dist/bn.1b0fb99e1ffe.js","pt":"/assets/dist/pt.3b5df0cd9511.js","id":"/assets/dist/id.1ce7e4dddeb4.js","ur":"/assets/dist/ur.4eb701ccafec.js","ru":"/assets/dist/ru.425a0b5bd87f.js","de":"/assets/dist/de.5f66f0eff5f1.js","ja":"/assets/dist/ja.0f727ab09cf6.js","pcm":"/assets/dist/pcm.7429e22badd2.js","mr":"/assets/dist/mr.9746bac49ef2.js","vi":"/assets/dist/vi.757d5d78fc8b.js","te":"/assets/dist/te.7aabf0ecf824.js","sw":"/assets/dist/sw.0b8015ae3541.js","ha":"/assets/dist/ha.eb37228a6aad.js","tr":"/assets/dist/tr.1b5b1e554010.js"};
 
 ;
 window.CMI18n = (() => {
@@ -3955,8 +3955,10 @@ window.CMI18n = (() => {
       const value = Number(element.dataset.cmValue);
       if (Number.isFinite(value))
         element.textContent =
-          number(value, { maximumSignificantDigits: 12 }) +
-          (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
+          number(value, {
+            maximumSignificantDigits: 12,
+            ...(element.dataset.cmNotation === 'scientific' ? { notation: 'scientific' } : {}),
+          }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
   }
   function translateTree(root) {

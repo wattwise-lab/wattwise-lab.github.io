@@ -17,6 +17,7 @@
     h1 = wrap.querySelector('h1');
   const guide = document.createElement('nav');
   guide.className = 'cm-guide';
+  guide.dataset.cmLabel = 'help';
   guide.setAttribute('aria-label', I.t('help'));
   for (const [index, section] of [...wrap.querySelectorAll(':scope>.card')].entries()) {
     const heading = section.querySelector('h2');
@@ -157,9 +158,15 @@
       true,
     );
   }
-  const copy = [...wrap.querySelectorAll('button')].find(
+  let copy = [...wrap.querySelectorAll('button')].find(
     (b) => b.dataset.cmAction === 'copy' || /copy (summary|result)/i.test(b.textContent),
   );
+  if (!copy && reset) {
+    copy = document.createElement('button');
+    copy.type = 'button';
+    copy.textContent = I.t('copyResult');
+    reset.after(copy);
+  }
   if (copy) {
     copy.dataset.cmAction = 'copy';
     copy.removeAttribute('onclick');
@@ -202,7 +209,7 @@
   add.href = I.url(add.dataset.cmHref);
   add.textContent = I.t('addWorkspace');
   if (!embedded) wrap.querySelector('.sub')?.after(add);
-  function localize() {
+  function localize(event) {
     I.translateTree(wrap);
     if (h1 && tool) {
       h1.textContent = tool.names?.[I.language] || I.translate(tool.name);
@@ -226,6 +233,10 @@
             ? I.t(a.dataset.cmGuide)
             : I.pick(a.dataset.cmGuide === 'example' ? 'Worked example|计算示例' : 'FAQ|常见问题')),
       );
+    if (event?.type === 'cm:language' || event?.type === 'cm:translations') {
+      const input = wrap.querySelector('.hero input,.hero select,.hero textarea');
+      input?.dispatchEvent(new Event('input', { bubbles: true }));
+    }
     validate();
   }
   if (embedded) document.querySelectorAll('a').forEach((a) => (a.target = '_blank'));

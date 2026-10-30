@@ -403,15 +403,33 @@ p {
 .kp-angle {
   direction: ltr;
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
-  font-size: 12px;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
   margin: 0 0 10px;
 }
 .kp-angle label {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--cm-line, #c7dacc);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.kp-angle label:has(input:checked) {
+  border-color: var(--cm-mint, #126756);
+  background: var(--cm-soft, #e7f2ed);
+}
+.kp-angle label:focus-within {
+  outline: 2px solid var(--cm-mint, #126756);
+  outline-offset: 2px;
 }
 .kp-embedded {
   background: #fff;

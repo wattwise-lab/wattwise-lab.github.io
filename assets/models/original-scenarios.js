@@ -279,7 +279,11 @@
     'AI and Work-life',
     'Trace how a failed resource interrupts dependent activities and compare one backup at a time.|追踪故障资源如何中断依赖活动，并逐项比较备用方案。',
     [
-      text('failed', 'Initially failed resource name|初始故障资源名称', 'Internet'),
+      {
+        ...text('failed', 'Initially failed resource name|初始故障资源名称', 'Internet'),
+        type: 'text',
+        maxLength: 60,
+      },
       text(
         'resources',
         'Resources: name; direct restore hours; restart delay; loss/hour; backup restore hours (-1 = none); backup cost; dependencies separated by commas|资源：名称；直接修复小时；重启延迟；每小时损失；备用恢复小时（-1 为无）；备用成本；依赖名（逗号分隔）',
@@ -525,4 +529,27 @@
       },
     ];
   };
+
+  const relatedTools = {
+    'plan-collision-calculator': [
+      'future-commitment-lock-calculator',
+      'meeting-cost',
+      'habit-compound',
+      'emergency-runway',
+    ],
+    'life-single-point-failure-calculator': [
+      'plan-collision-calculator',
+      'future-commitment-lock-calculator',
+      'emergency-runway',
+      'electricity-cost-calculator',
+    ],
+    'future-commitment-lock-calculator': [
+      'plan-collision-calculator',
+      'life-single-point-failure-calculator',
+      'subscription-waste',
+      'emergency-runway',
+    ],
+  };
+  for (const entry of CMModels.models)
+    if (relatedTools[entry.slug]) entry.related = relatedTools[entry.slug];
 })();

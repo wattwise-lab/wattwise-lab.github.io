@@ -20,6 +20,50 @@ const existing = new Map(corpus.map((x) => [x.source, x]));
 for (const row of corpus) row.active = false;
 const seen = new Set(corpus.map((x) => x.source));
 const normalize = (s) => s.replace(/\s+/g, ' ').trim();
+function implementationLiteral(node, parent) {
+  if (parent?.type === 'ExpressionStatement' && parent.directive) return true;
+  if (parent?.type === 'Property' && parent.key === node && !parent.computed) return true;
+  if (parent?.type !== 'CallExpression') return false;
+  const method = parent.callee?.property?.name || parent.callee?.name;
+  const first = parent.arguments[0] === node;
+  if (
+    first &&
+    [
+      '$',
+      't',
+      'querySelector',
+      'querySelectorAll',
+      'getElementById',
+      'getElementsByClassName',
+      'getElementsByTagName',
+      'matches',
+      'closest',
+      'createElement',
+      'createElementNS',
+      'getAttribute',
+      'hasAttribute',
+      'removeAttribute',
+      'addEventListener',
+      'removeEventListener',
+      'getItem',
+      'setItem',
+      'removeItem',
+    ].includes(method)
+  )
+    return true;
+  if (method === 'setAttribute') {
+    if (first) return true;
+    const attribute = parent.arguments[0]?.value;
+    return (
+      typeof attribute === 'string' &&
+      !['title', 'aria-label', 'alt', 'placeholder', 'data-cm-pair'].includes(attribute)
+    );
+  }
+  return (
+    parent.callee?.object?.type === 'MemberExpression' &&
+    parent.callee.object.property?.name === 'classList'
+  );
+}
 function add(value, origin, parts) {
   let source = normalize(String(value));
   if (/\|[^|]*[\u3400-\u9fff]/.test(source)) source = source.split('|')[0].trim();
@@ -28,12 +72,13 @@ function add(value, origin, parts) {
     !source ||
     /[\u3400-\u9fff]/.test(source) ||
     /^[a-z]+[A-Z][A-Za-z]*$/.test(source) ||
+    /^cm-[a-z-]+\{\d+\}$/.test(source) ||
     source.length > 4500 ||
     source.startsWith('/') ||
     /^[.#][\w-]+(?:\[|\s*[>+,])/.test(source) ||
     source.includes('document.') ||
     source.includes('querySelector') ||
-    (source.includes('<') && source.includes('>')) ||
+    /<\/?[A-Za-z][^>]*>/.test(source) ||
     (/^[-.#\w]+$/.test(source) && (/[_.#]/.test(source) || source.includes('-')))
   )
     return;
@@ -66,7 +111,7 @@ function addParts(pieces, file) {
   let source = '',
     index = 0;
   for (const x of pieces) source += x === null ? '{' + index++ + '}' : x;
-  if (source.includes('<') && source.includes('>')) source = load(source).text();
+  if (/<\/?[A-Za-z][^>]*>/.test(source)) source = load(source).text();
   const matches = [...source.matchAll(/\{(\d+)\}/g)];
   if (!matches.length) return;
   const parts = source.split(/\{\d+\}/);
@@ -132,7 +177,17 @@ for (const file of files) {
           (parent.callee?.name === 'add' && parent.arguments[6] === node));
       const shellImplementation =
         file === 'assets/cm-shell.js' && !/\|[^|]*[\u3400-\u9fff]/.test(node.value);
-      if (!formula && !shellImplementation) add(node.value, file);
+      const notationOption =
+        parent?.type === 'Property' &&
+        parent.value === node &&
+        (parent.key.name || parent.key.value) === 'notation';
+      if (
+        !formula &&
+        !shellImplementation &&
+        !notationOption &&
+        !implementationLiteral(node, parent)
+      )
+        add(node.value, file);
     }
     if (node.type === 'TemplateLiteral') {
       const parts = node.quasis.map((q) => q.value.cooked || q.value.raw);
