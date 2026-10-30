@@ -137,8 +137,9 @@ try {
     const nativeNames = JSON.parse(
       await fs.readFile(new URL('../src/translations/fr.json', import.meta.url), 'utf8'),
     );
-    const annulus = nativeNames.Annulus;
-    assert.ok(annulus && annulus !== 'Annulus');
+    const annulusTool = catalog.find((tool) => tool.slug === 'annulus-calculator');
+    const annulus = nativeNames[annulusTool.name];
+    assert.ok(annulus && annulus !== annulusTool.name);
     for (const path of ['/fr/', '/fr/directory']) {
       await page.goto(base + path, { waitUntil: 'load' });
       const input = page.locator(path === '/fr/' ? '#cm-home-search' : '#search');
