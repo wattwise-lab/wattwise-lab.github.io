@@ -172,6 +172,7 @@ try {
     const helpLayout = encodeURIComponent(
       JSON.stringify({ v: 1, tools: ['loan-calculator', 'percentage-calculator'] }),
     );
+    await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto(base + '/workspace?lang=en#desk=' + helpLayout, { waitUntil: 'load' });
     await page.locator('#help-toggle').click();
     assert.match(await page.locator('[data-w="step3"]').innerText(), /Send result/);
@@ -181,6 +182,33 @@ try {
     });
     await page.locator('.ws-card-footer button').first().click();
     assert.match(await page.locator('[data-w="transferHelp"]').innerText(), /copies a number once/);
+    const transferControls = await page.locator('#transfer select').evaluateAll((elements) => {
+      const luminance = (color) =>
+        color
+          .match(/[\d.]+/g)
+          .slice(0, 3)
+          .map(Number)
+          .map((v) => v / 255)
+          .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+          .reduce((sum, v, index) => sum + v * [0.2126, 0.7152, 0.0722][index], 0);
+      return elements.map((element) => {
+        const style = globalThis.getComputedStyle(element),
+          foreground = luminance(style.color),
+          background = luminance(style.backgroundColor);
+        return {
+          contrast:
+            (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05),
+          fontSize: Number.parseFloat(style.fontSize),
+          height: element.getBoundingClientRect().height,
+        };
+      });
+    });
+    assert.equal(transferControls.length, 3);
+    for (const control of transferControls) {
+      assert.ok(control.contrast >= 4.5, 'Dark transfer select text contrast');
+      assert.ok(control.fontSize >= 16, 'Phone transfer fields must not trigger iOS text zoom');
+      assert.ok(control.height >= 44, 'Phone transfer field target size');
+    }
     assert.doesNotMatch(await page.locator('#transfer-preview').innerText(), /1896\.204070478/);
     assert.match(await page.locator('#transfer-preview').innerText(), /Scheduled monthly payment/);
     await page.locator('#transfer [data-close]').click();

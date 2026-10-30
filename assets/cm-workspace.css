@@ -475,13 +475,13 @@ dialog::backdrop {
 .picker-search input,
 .picker-search select,
 #transfer select {
-  border: 1px solid #bcd0c1;
-  background: #fff;
+  border: 1px solid var(--cm-control-line, #bcd0c1);
+  background: var(--cm-paper, #fff);
   border-radius: 8px;
   padding: 10px;
-  color: var(--ink);
+  color: var(--cm-ink, var(--ink));
   min-height: 45px;
-  font-size: 14px;
+  font-size: 16px;
 }
 .picker-count {
   font-size: 11px;
