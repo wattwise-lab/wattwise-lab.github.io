@@ -12,7 +12,7 @@ button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff
 .verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
 table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
 .bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style></head><body><div class="wrap">
+.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css"><script defer src="/assets/cm-catalog-v3.js"></script><script defer src="/assets/cm-tool-page.js"></script><link rel="canonical" href="https://calcmintly.com/fraction-calculator"></head><body><div class="wrap">
 <header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
 <p><span class="tag">Math</span></p>
 <h1>Fraction Calculator</h1>
@@ -31,28 +31,29 @@ table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overf
 <div class="chips"><span class="chip">Decimal: <strong id="chipDec">—</strong></span><span class="chip">Simplified: <strong id="chipSimp">—</strong></span></div>
 <p class="muted" id="note">Enter two fractions above.</p></section>
 </div>
-<section class="card"><h2>Breakdown</h2><div class="tblwrap"><table><tr><th>Step</th><th class="num">Value</th></tr><tr><td>Before simplifying</td><td class="num" id="tRaw">—</td></tr><tr><td>Greatest common divisor</td><td class="num" id="tGcd">—</td></tr><tr><td>Simplified result</td><td class="num" id="tSimp">—</td></tr><tr><td>Decimal value</td><td class="num" id="tDec">—</td></tr><tr><td>Mixed number</td><td class="num" id="tMix">—</td></tr></table></div><p class="muted">A mixed number is shown only when the result is improper (|numerator| &gt; denominator). A whole-number result is shown as, for example, 2.</p></section><section class="card"><h2>Formula</h2><p>Add: a/b + c/d = (ad + bc) / bd. Subtract: a/b − c/d = (ad − bc) / bd. Multiply: a/b × c/d = ac / bd. Divide: a/b ÷ c/d = ad / bc. In every case, divide the resulting numerator and denominator by their greatest common divisor (GCD) to simplify, keeping any minus sign in the numerator.</p></section><section class="card"><h2>Worked example</h2><p>1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6. The GCD of 5 and 6 is 1, so 5/6 is already simplest, and its decimal value is 0.833333… (shown as 0.8333). Use Reset example above to reproduce this result, then replace the values with your own.</p></section><section class="card"><h2>Scope and limitations</h2><p>Inputs may be whole numbers, negatives, or decimals; a decimal input is first converted to an exact fraction only when it has a short decimal expansion, otherwise the calculation uses the decimal value directly and the fraction shown is the result of the arithmetic rounded for display. Denominators must not be zero, and division also requires a nonzero second numerator. Results are rounded to 4 decimal places for display only; the underlying fraction is exact for integer inputs.</p></section><section class="card"><h2>FAQ</h2><h3>What happens if a denominator is zero?</h3><p>The result is not shown. A fraction with a zero denominator is undefined, so the page asks for a nonzero denominator instead of inventing a number.</p><h3>How is the result simplified?</h3><p>By the greatest common divisor: for example 4/6 divides by GCD 2 to give 2/3. The sign is kept in the numerator, so −1/2 and 1/−2 both display as −1/2.</p><h3>Why does the decimal sometimes repeat?</h3><p>Fractions such as 1/3 have no exact finite decimal. The decimal shown is rounded to 4 places (0.3333); the fraction itself, 1/3, is the exact answer.</p><h3>Can I use negative fractions?</h3><p>Yes. Enter a negative numerator (or denominator); the result is normalised so the denominator stays positive.</p><h3>What is a mixed number?</h3><p>A whole part plus a fraction, for example 7/3 = 2 1/3. It is shown for improper results; proper fractions and whole numbers are shown as they are.</p></section>
+<section class="card"><h2>Breakdown</h2><div class="tblwrap"><table><tr><th>Step</th><th class="num">Value</th></tr><tr><td>Before simplifying</td><td class="num" id="tRaw">—</td></tr><tr><td>Greatest common divisor</td><td class="num" id="tGcd">—</td></tr><tr><td>Simplified result</td><td class="num" id="tSimp">—</td></tr><tr><td>Decimal value</td><td class="num" id="tDec">—</td></tr><tr><td>Mixed number</td><td class="num" id="tMix">—</td></tr></table></div><p class="muted">A mixed number is shown only when the result is improper (|numerator| &gt; denominator). A whole-number result is shown as, for example, 2.</p></section><section class="card"><h2>Formula</h2><p>Add: a/b + c/d = (ad + bc) / bd. Subtract: a/b − c/d = (ad − bc) / bd. Multiply: a/b × c/d = ac / bd. Divide: a/b ÷ c/d = ad / bc. In every case, divide the resulting numerator and denominator by their greatest common divisor (GCD) to simplify, keeping any minus sign in the numerator.</p></section><section class="card"><h2>Worked example</h2><p>1/2 + 1/3 = (1×3 + 1×2) / (2×3) = 5/6. The GCD of 5 and 6 is 1, so 5/6 is already simplest, and its decimal value is 0.833333… (shown as 0.8333). Use Reset example above to reproduce this result, then replace the values with your own.</p></section><section class="card"><h2>Scope and limitations</h2><p>Inputs may be whole numbers, negatives, or finite decimals. Decimal values are converted to base-10 fractions before exact integer arithmetic and simplification. The browser reads inputs as JavaScript numbers, so digits beyond its numeric precision cannot be recovered. Denominators must not be zero, and division also requires a nonzero second numerator. Results are rounded to 4 decimal places for display only; the underlying fraction is exact for integer inputs.</p></section><section class="card"><h2>FAQ</h2><h3>What happens if a denominator is zero?</h3><p>The result is not shown. A fraction with a zero denominator is undefined, so the page asks for a nonzero denominator instead of inventing a number.</p><h3>How is the result simplified?</h3><p>By the greatest common divisor: for example 4/6 divides by GCD 2 to give 2/3. The sign is kept in the numerator, so −1/2 and 1/−2 both display as −1/2.</p><h3>Why does the decimal sometimes repeat?</h3><p>Fractions such as 1/3 have no exact finite decimal. The decimal shown is rounded to 4 places (0.3333); the fraction itself, 1/3, is the exact answer.</p><h3>Can I use negative fractions?</h3><p>Yes. Enter a negative numerator (or denominator); the result is normalised so the denominator stays positive.</p><h3>What is a mixed number?</h3><p>A whole part plus a fraction, for example 7/3 = 2 1/3. It is shown for improper results; proper fractions and whole numbers are shown as they are.</p></section>
 <section class="card"><h2>Related tools</h2><ul><li><a href="https://calcmintly.com/standard-deviation-calculator">Standard Deviation Calculator</a> — mean, population and sample standard deviation for a list of numbers</li><li><a href="https://calcmintly.com/percentage-calculator">Percentage Calculator</a> — a percentage of a value, and values after an increase or decrease</li><li><a href="https://calcmintly.com/unit-converter">Unit Converter</a> — convert between common units of length, weight, volume and more</li></ul></section>
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
 </div>
 <script>const $=id=>document.getElementById(id);
-function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){const t=a%b;a=b;b=t;}return a;}
+function gcd(a,b){a=a<0n?-a:a;b=b<0n?-b:b;while(b){const t=a%b;a=b;b=t;}return a;}
+function rational(value){const parts=String(value).toLowerCase().split('e'),exp=Number(parts[1]||0),decimal=parts[0],digits=decimal.replace('.',''),places=(decimal.split('.')[1]||'').length-exp;let n=BigInt(digits),d=1n;if(places>0)d=10n**BigInt(places);else n*=10n**BigInt(-places);const g=gcd(n,d)||1n;return{n:n/g,d:d/g};}
 function opCalc(n1,d1,op,n2,d2){
+ if(![n1,d1,n2,d2].every(Number.isFinite))return{error:"Enter four finite numbers."};
  if(d1===0||d2===0)return{error:"A denominator cannot be zero."};
  if(op==="div"&&n2===0)return{error:"Division requires a nonzero second numerator."};
- let n,d;
- if(op==="add"){n=n1*d2+n2*d1;d=d1*d2;}
- else if(op==="sub"){n=n1*d2-n2*d1;d=d1*d2;}
- else if(op==="mul"){n=n1*n2;d=d1*d2;}
- else{n=n1*d2;d=n2*d1;}
- if(d<0){n=-n;d=-d;}
- const g=gcd(n,d)||1;
- const sn=n/g, sd=d/g;
- let mixed;
- if(sd===1)mixed=String(sn);
- else if(Math.abs(sn)>sd){const w=Math.trunc(sn/sd);const r=Math.abs(sn%sd);mixed=w+" "+r+"/"+sd;}
- else mixed=sn+"/"+sd;
- return{raw:n+"/"+d,g:g,simp:sn+"/"+sd,dec:n/d,mixed:mixed};
+ const a=rational(n1),b=rational(d1),c=rational(n2),e=rational(d2);
+ const p=a.n*b.d,q=a.d*b.n,r=c.n*e.d,t=c.d*e.n;
+ let n,d,dec;
+ if(op==="add"){n=p*t+r*q;d=q*t;dec=n1/d1+n2/d2;}
+ else if(op==="sub"){n=p*t-r*q;d=q*t;dec=n1/d1-n2/d2;}
+ else if(op==="mul"){n=p*r;d=q*t;dec=(n1/d1)*(n2/d2);}
+ else{n=p*t;d=q*r;dec=(n1/d1)/(n2/d2);}
+ if(!Number.isFinite(dec))return{error:"The result is outside the supported decimal range."};
+ if(d<0n){n=-n;d=-d;}const g=gcd(n,d)||1n,sn=n/g,sd=d/g;
+ const abs=sn<0n?-sn:sn;let mixed=sn+"/"+sd;
+ if(sd===1n)mixed=String(sn);else if(abs>sd)mixed=(sn/sd)+" "+(abs%sd)+"/"+sd;
+ return{raw:n+"/"+d,g:String(g),simp:sn+"/"+sd,dec,mixed};
 }
 function fmtDec(x){return Number(x).toLocaleString("en-US",{maximumFractionDigits:4});}
 function render(){

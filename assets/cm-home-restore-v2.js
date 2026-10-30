@@ -30,79 +30,10 @@
   @media(max-width:700px){.cm-home-restored .category-tabs{flex-wrap:nowrap!important;overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:thin;gap:8px!important;margin:16px 0 18px!important;padding-bottom:8px!important}.cm-home-restored .category-tabs button{flex:0 0 auto!important;white-space:nowrap!important;min-height:38px!important}.cm-home-restored .directory-head h2{font-size:clamp(24px,6.5vw,29px)!important}.cm-home-restored .directory-head p{font-size:13px!important}.cm-home-restored .tool-card-grid{scroll-margin-top:75px}}
   `;
   function boot(){
-    const hero=document.querySelector('.hub-hero');
-    if(!hero||document.getElementById('cm-home-restoration-style'))return;
+    if(!document.querySelector('.hub-hero')||document.querySelector('.tool-card-grid')?.dataset.cmCatalog)return;
     document.documentElement.classList.add('cm-home-restored');
-    const style=document.createElement('style');style.id='cm-home-restoration-style';style.textContent=css;document.head.append(style);
-    const zh=/^zh/i.test(document.documentElement.lang||'');
-    let labels=zh?{all:'全部 92 个计算器',merchant:'商家利润与广告预算',previous:'上一页',next:'下一页',show:(a,b,n)=>`显示 ${a}–${b} 项，共 ${n} 项`}:{all:'Browse all 92 calculators',merchant:'Merchant profit & ad budget',previous:'Previous',next:'Next',show:(a,b,n)=>`Showing ${a}–${b} of ${n}`};
-    const menu=document.querySelector('.nav-categories');
-    if(menu){
-      const links=menu.querySelector('.category-menu');
-      if(links&&!links.querySelector('.cm-added-link')){
-        for(const [href,title] of [['/directory',labels.all],['/merchant-profit-planner',labels.merchant]]){
-          const a=document.createElement('a');a.className='cm-added-link';a.href=href;a.textContent=title;links.append(a);
-        }
-      }
-      const mobile=document.querySelector('.mobile-nav > div');
-      if(mobile&&!mobile.querySelector('.cm-added-link')){
-        for(const [href,title] of [['/directory',labels.all],['/merchant-profit-planner',labels.merchant]]){
-          const link=document.createElement('a');link.className='cm-added-link';link.href=href;link.textContent=title;mobile.append(link);
-        }
-      }
-      const desktop=()=>window.matchMedia('(min-width: 701px)').matches;
-      menu.addEventListener('mouseenter',()=>{if(desktop())menu.open=true;});
-      menu.addEventListener('mouseleave',()=>{if(desktop()&&!menu.contains(document.activeElement))menu.open=false;});
-      document.addEventListener('focusin',e=>{if(menu.open&&!menu.contains(e.target))menu.open=false;});
-      document.addEventListener('pointerdown',e=>{if(menu.open&&!menu.contains(e.target))menu.open=false;});
-      window.addEventListener('resize',()=>{if(!desktop())menu.open=false;});
-    }
-    const grid=document.querySelector('.tool-directory .tool-card-grid');
-    if(!grid)return;
-    const pager=document.createElement('nav');pager.className='cm-pagebar';pager.setAttribute('aria-label',zh?'计算器分页':'Calculator pages');
-    const prev=document.createElement('button'),next=document.createElement('button'),position=document.createElement('span'),all=document.createElement('a');
-    prev.type='button';next.type='button';prev.textContent=labels.previous;next.textContent=labels.next;
-    position.setAttribute('aria-live','polite');all.className='cm-alltools';all.href='/directory';all.textContent=labels.all;
-    pager.append(prev,position,next,all);grid.insertAdjacentElement('afterend',pager);
-    let page=1,scheduled=false;
-    const pageSize=()=>window.matchMedia('(max-width: 700px)').matches?6:12;
-    function render(){
-      scheduled=false;
-      if(!grid.isConnected)return;
-      const cards=Array.from(grid.children).filter(n=>n.matches('a.hub-tool-card'));
-      const size=pageSize();const pages=Math.max(1,Math.ceil(cards.length/size));page=Math.max(1,Math.min(page,pages));
-      const first=(page-1)*size;
-      cards.forEach((card,i)=>{card.hidden=i<first||i>=first+size;});
-      prev.disabled=page===1;next.disabled=page===pages;
-      position.textContent=labels.show(cards.length?first+1:0,Math.min(first+size,cards.length),cards.length)+` · ${page}/${pages}`;
-      pager.hidden=cards.length===0;
-    }
-    function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(render);}}
-    prev.addEventListener('click',()=>{if(page>1){page--;render();grid.scrollIntoView({block:'start'});}});
-    next.addEventListener('click',()=>{page++;render();grid.scrollIntoView({block:'start'});});
-    const tabs=document.querySelector('.category-tabs');if(tabs)tabs.addEventListener('click',e=>{if(e.target.closest('button')){page=1;setTimeout(schedule,0);}});
-    const search=document.querySelector('.hero-search input');if(search)search.addEventListener('input',()=>{page=1;setTimeout(schedule,0);});
-    const mo=new MutationObserver(ms=>{if(ms.some(m=>m.type==='childList'&&m.target===grid)){page=1;schedule();}});
-    mo.observe(grid,{childList:true});render();
-    let wasMobile=pageSize()===6;
-    window.addEventListener('resize',()=>{const isMobile=pageSize()===6;if(isMobile!==wasMobile){wasMobile=isMobile;page=1;render();}});
-    const applyLocale=()=>{
-      const selected=document.querySelector('.language-select')?.value||document.documentElement.lang||'en';
-      const translation=window.CMHomeCopy?.[selected]||window.CMHomeCopy?.[selected.split('-')[0]];
-      if(!translation)return;
-      const substitute=(template,vars)=>Object.entries(vars).reduce((value,[key,v])=>value.replaceAll('{'+key+'}',String(v)),template);
-      labels={all:translation.all+' · 92',merchant:translation.merchant,previous:translation.previous,next:translation.next,
-        show:(start,end,count)=>substitute(translation.count,{start,end,count})};
-      prev.textContent=labels.previous;next.textContent=labels.next;all.textContent=labels.all;
-      for(const nav of [document.querySelector('.category-menu'),document.querySelector('.mobile-nav > div')]){
-        if(!nav)continue;
-        const added=nav.querySelectorAll('.cm-added-link');
-        if(added.length===2){added[0].textContent=labels.all;added[1].textContent=labels.merchant;}
-      }
-      render();
-    };
-    const i18n=document.createElement('script');i18n.src='/assets/cm-home-copy-v3.js';i18n.onload=applyLocale;document.head.append(i18n);
-    document.querySelector('.language-select')?.addEventListener('change',()=>setTimeout(applyLocale,80));
+    if(!document.getElementById('cm-home-restoration-style')){const style=document.createElement('style');style.id='cm-home-restoration-style';style.textContent=css;document.head.append(style);}
+    const script=document.createElement('script');script.src='/assets/cm-home-directory.js';document.head.append(script);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
