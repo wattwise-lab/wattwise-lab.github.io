@@ -148,7 +148,7 @@
         R('Upper quartile Q3|上四分位数 Q3', quantile(a, 0.75)),
       ];
     },
-    'Sorted position h=(n−1)p, with linear interpolation (type 7).',
+    'Sorted position h=(n−1)p, with linear interpolation (type 7).|排序后的位置 h=(n−1)p，采用线性插值（第 7 类方法）。',
     [3, 5, 7],
     'Quartile conventions differ between software. This tool uses type-7 linear interpolation.|不同软件的四分位数约定不同，本工具采用第 7 型线性插值。',
   );
@@ -158,7 +158,7 @@
     'Find the value at an editable percentile of a data set.|求一组数据在指定百分位上的数值。',
     [list, n('p', 'Percentile (%)|百分位（%）', 75, 0, 100)],
     (v) => [R('Percentile value|百分位数', quantile(nums(v.values), v.p / 100))],
-    'h=(n−1)p; interpolate between neighbouring sorted observations.',
+    'h=(n−1)p; interpolate between neighbouring sorted observations.|h=(n−1)p；在相邻的已排序观测值之间进行插值。',
     [4],
     'Uses type-7 interpolation, including minimum at 0% and maximum at 100%.|采用第 7 型插值；0% 为最小值，100% 为最大值。',
   );
@@ -348,7 +348,7 @@
         needed = v.N > 0 ? n0 / (1 + (n0 - 1) / v.N) : n0;
       return [R('Required sample size|所需样本量', Math.max(1, Math.ceil(needed)))];
     },
-    'n₀=z²p(1−p)/E²; optionally apply finite-population correction.',
+    'n₀=z²p(1−p)/E²; optionally apply finite-population correction.|n₀=z²p(1−p)/E²；可选应用有限总体修正。',
     [385],
     'Normal approximation; 50% is conservative when the proportion is unknown. Cluster sampling needs a separate design adjustment.|采用正态近似；未知比例时 50% 较保守，整群抽样还需设计效应调整。',
   );
@@ -450,7 +450,7 @@
         R('Mean first-minus-second difference|第一次减第二次的平均差', mean(d)),
       ];
     },
-    'Apply a one-sample t test to the paired differences.',
+    'Apply a one-sample t test to the paired differences.|对每对数据的差值执行单样本 t 检验。',
     [6.324555320336758, 4],
     'Pair positions must correspond to the same unit or person; observations between pairs must be independent.|两列同一位置需对应同一对象；不同配对之间应独立。',
   );

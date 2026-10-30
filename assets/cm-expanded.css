@@ -65,6 +65,8 @@
   max-width: 65%;
 }
 .cm-expanded .cm-expanded__unit {
+  display: inline-block;
+  white-space: nowrap;
   font-size: 15px;
   font-weight: 450;
   letter-spacing: 0;
@@ -130,6 +132,11 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+.cm-expanded .cm-expanded__formula[data-cm-pair] {
+  font-family: inherit;
+  font-size: 14px;
+  direction: inherit;
+}
 .cm-expanded .cm-expanded__meta {
   font-size: 11px;
   color: var(--cm-muted);
@@ -156,6 +163,16 @@
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
   text-align: end;
+}
+.cm-expanded .cm-expanded__example dl > .cm-expanded__example-list {
+  flex-wrap: wrap;
+}
+.cm-expanded .cm-expanded__example-list dd {
+  flex-basis: 100%;
+  min-width: 0;
+  text-align: start;
+  overflow-wrap: normal;
+  white-space: pre-wrap;
 }
 .cm-expanded .cm-expanded__results > div:has(.cm-expanded__exact-integer),
 .cm-expanded .cm-expanded__example dl > div:has(.cm-expanded__exact-integer) {

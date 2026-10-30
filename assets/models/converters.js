@@ -443,7 +443,7 @@
       if (negative) value = -value;
       return [R('Converted integer|换算后的整数', value.toString(v.b).toUpperCase())];
     },
-    'Accumulate value=value×inputBase+digit using exact integers, then divide by outputBase',
+    'Accumulate value=value×inputBase+digit using exact integers, then divide by outputBase|用精确整数逐位累积 value=value×inputBase+digit，再反复除以 outputBase 生成目标进制数字。',
     ['255'],
     'Integer-only exact conversion. Letters A–Z represent digits 10–35; fractions and two’s-complement encodings are excluded.|仅精确换算整数，字母 A–Z 表示 10–35；不含小数与补码编码。',
   );
@@ -477,7 +477,7 @@
         }
       return [R('Roman numeral|罗马数字', out)];
     },
-    'Greedy subtractive symbols: M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I',
+    'Greedy subtractive symbols: M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I|按从大到小的贪心减法顺序使用符号：M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I。',
     ['MMXXVI'],
     'Modern conventional notation for 1–3,999 only; historical variants and overbar notation are excluded.|仅支持 1–3,999 的现代常见写法，不含历史变体与上划线记数。',
   );

@@ -84,7 +84,7 @@
         R('Cut length per strip|每条裁切长度', length, 'm'),
       ];
     },
-    'Cut length=round up(height+trim) to repeat; rolls=ceil(strips/floor(rollLength/cutLength))',
+    'Cut length=round up(height+trim) to repeat; rolls=ceil(strips/floor(rollLength/cutLength))|裁切长度为 height+trim 按花纹重复长度向上取整；卷数 rolls=ceil(strips/floor(rollLength/cutLength))。',
     [5, 20, 4, 2.5],
   );
   D(
@@ -128,7 +128,7 @@
         R('Purchased carpet area|购买地毯面积', Math.min(a, b) * v.r, 'm²'),
       ];
     },
-    'Compare ceil(roomWidth/rollWidth)×roomLength and rotated layout',
+    'Compare ceil(roomWidth/rollWidth)×roomLength and rotated layout|比较 ceil(roomWidth/rollWidth)×roomLength 与旋转铺设方向后的用量。',
     [5, 5, 8, 20],
     'Rectangular room, joined parallel strips and no pattern matching. Confirm seam placement and pile direction with the installer.|矩形房间、平行拼接条带且不匹配图案；请与安装者确认接缝位置及绒毛方向。',
   );
@@ -696,7 +696,7 @@
       for (let k = 0, left = cents - sum(q); k < left; k++) q[order[k]]++;
       return q.map((x, k) => R('Participant ' + (k + 1) + '|参与者 ' + (k + 1), x / scale));
     },
-    'Allocate integer minor units by largest remainder',
+    'Allocate integer minor units by largest remainder|以整数最小货币单位计算，按最大余数法分配。',
     [25, 25, 50],
   );
   D(

@@ -122,7 +122,7 @@
         ),
       ];
     },
-    'A=πab; perimeter uses Ramanujan’s second approximation.',
+    'A=πab; perimeter uses Ramanujan’s second approximation.|A=πab；周长采用拉马努金第二近似公式。',
     [18.84955592153876, 15.865439589251233],
     'Inputs are semiaxes, half the full axis lengths. Perimeter is approximate.|输入是完整轴长的一半；椭圆周长采用近似式。',
   );
@@ -585,7 +585,7 @@
         ),
       ];
     },
-    'sinθ, cosθ, tanθ=sinθ/cosθ; tangent undefined at odd multiples of 90°.',
+    'sinθ, cosθ, tanθ=sinθ/cosθ; tangent undefined at odd multiples of 90°.|sinθ, cosθ, tanθ=sinθ/cosθ；角度为 90° 的奇数倍时，正切没有定义。',
     [0.5, 0.8660254037844386, 0.5773502691896257],
   );
   D(
@@ -627,7 +627,7 @@
         R('Angle C|角 C', 180 - A - B, '°'),
       ];
     },
-    'A=acos((b²+c²−a²)/(2bc)); similarly for B and C.',
+    'A=acos((b²+c²−a²)/(2bc)); similarly for B and C.|A=acos((b²+c²−a²)/(2bc))；B 和 C 的计算方式类似。',
     [36.86989764584401, 53.13010235415598, 90],
   );
   D(
@@ -666,7 +666,7 @@
       const rank = Math.abs(det) > tol ? 2 : [v.a, v.b, v.c, v.d].some((x) => x !== 0) ? 1 : 0;
       return [R('Numerical rank|数值秩', rank), R('Determinant|行列式', det)];
     },
-    'Rank 2 if determinant is numerically nonzero, rank 1 for a nonzero singular matrix, otherwise 0.',
+    'Rank 2 if determinant is numerically nonzero, rank 1 for a nonzero singular matrix, otherwise 0.|行列式在数值判断中不为零时秩为 2；非零奇异矩阵的秩为 1；否则为 0。',
     [2, -2],
     'Near-singular floating-point matrices can be numerically ambiguous. Exact symbolic rank is outside this tool.|接近奇异的浮点矩阵可能存在数值歧义；本工具不计算符号精确秩。',
   );

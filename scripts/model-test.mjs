@@ -37,6 +37,14 @@ for (const model of models) {
     const input = Object.fromEntries(model.fields.map((f) => [f.id, f.value]));
     const rows = model.calculate(input);
     assert.ok(rows.length > 0, 'No result');
+    if (
+      [
+        'internal-rate-of-return-calculator',
+        'modified-internal-rate-calculator',
+        'bond-yield-calculator',
+      ].includes(model.slug)
+    )
+      assert.equal(rows[0].unit, '%', 'Percentage-valued yield requires a visible percent unit');
     rows.forEach((r) =>
       assert.ok(typeof r.value === 'string' || Number.isFinite(r.value), 'Nonfinite ' + r.label),
     );

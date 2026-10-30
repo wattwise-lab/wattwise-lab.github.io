@@ -110,7 +110,7 @@
         R('Denominator|分母', b.toString()),
       ];
     },
-    'Remove the decimal point, divide by 10ⁿ, then reduce by gcd.',
+    'Remove the decimal point, divide by 10ⁿ, then reduce by gcd.|移除小数点，以 10ⁿ 为分母，再用 gcd（最大公约数）约分。',
     ['1/8', '1', '8'],
     'The decimal is interpreted as the JavaScript numeric input, with up to about 15 significant digits.|按数值输入解析小数，精度约为 15 位有效数字。',
   );
@@ -185,7 +185,7 @@
       }
       return [R('Residue|模余数', Number(r))];
     },
-    '0 ≤ result < modulus; modular exponentiation uses repeated squaring.',
+    '0 ≤ result < modulus; modular exponentiation uses repeated squaring.|0 ≤ result < modulus；模幂采用重复平方法。',
     [1],
   );
   D(
@@ -201,7 +201,7 @@
       );
       return [R('Greatest common factor|最大公因数', a.reduce(gcd))];
     },
-    'Euclidean algorithm, applied across the list.',
+    'Euclidean algorithm, applied across the list.|对整个数列依次应用欧几里得算法。',
     [6],
   );
   D(
@@ -248,7 +248,7 @@
         R('Distinct prime factors|不同质因数数量', a.length),
       ];
     },
-    'Repeatedly divide by prime candidates up to √n.',
+    'Repeatedly divide by prime candidates up to √n.|用不超过 √n 的候选质因数反复试除。',
     ['2^3 × 3^2 × 5', 3],
   );
   D(
@@ -271,7 +271,7 @@
         R('Smallest nontrivial divisor, zero if none|最小非平凡因数（没有则为零）', divisor),
       ];
     },
-    'A prime integer n ≥ 2 has no divisor between 2 and √n.',
+    'A prime integer n ≥ 2 has no divisor between 2 and √n.|质数 n ≥ 2 在 2 到 √n 之间没有整数因数。',
     ['Prime number|质数', 0],
   );
   D(
@@ -376,7 +376,7 @@
     'Round a numeric value to the selected count of significant figures.|把数值舍入到指定的有效数字位数。',
     [u('a', 'Value|数值', 1.23456), i('b', 'Significant figures|有效数字位数', 3, 1, 15)],
     (v) => [R('Rounded value|舍入结果', Number(v.a.toPrecision(v.b)))],
-    'Keep the first n significant digits; trailing display zeros are not measurement precision.',
+    'Keep the first n significant digits; trailing display zeros are not measurement precision.|保留前 n 位有效数字；显示时补在末尾的零不代表测量精度。',
     [1.23],
   );
   D(
@@ -534,7 +534,7 @@
         R('Distinct real roots|不同实根数量', roots.length),
       ];
     },
-    'x=y−b/(3a); solve y³+py+q=0 with Cardano/trigonometric formulas.',
+    'x=y−b/(3a); solve y³+py+q=0 with Cardano/trigonometric formulas.|x=y−b/(3a)；用卡尔达诺公式或三角公式求解 y³+py+q=0。',
     ['1, 2, 3', 3],
     'Numerical real roots, rounded to 10 significant digits. Near repeated roots, rescaling coefficients improves reliability.|数值实根显示 10 位有效数字；接近重根时应缩放系数并复核。',
   );
@@ -567,7 +567,7 @@
       R('Nth term|第 n 项', v.a * v.r ** (v.n - 1)),
       R('Finite sum|前 n 项和', v.r === 1 ? v.a * v.n : (v.a * (1 - v.r ** v.n)) / (1 - v.r)),
     ],
-    'aₙ=a₁r^(n−1); Sₙ=a₁(1−rⁿ)/(1−r), with r=1 handled separately.',
+    'aₙ=a₁r^(n−1); Sₙ=a₁(1−rⁿ)/(1−r), with r=1 handled separately.|aₙ=a₁r^(n−1); Sₙ=a₁(1−rⁿ)/(1−r)，其中 r=1 的情况单独处理。',
     [162, 242],
   );
   D(
@@ -733,7 +733,7 @@
       }
       return [R('Result real part|结果实部', a), R('Result imaginary part|结果虚部', b)];
     },
-    '(a+bi)(c+di)=(ac−bd)+(ad+bc)i; division uses the conjugate.',
+    '(a+bi)(c+di)=(ac−bd)+(ad+bc)i; division uses the conjugate.|(a+bi)(c+di)=(ac−bd)+(ad+bc)i；除法使用共轭复数。',
     [6, -2],
   );
   D(

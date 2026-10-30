@@ -23,6 +23,28 @@ const normalize = (s) => s.replace(/\s+/g, ' ').trim();
 function implementationLiteral(node, parent) {
   if (parent?.type === 'ExpressionStatement' && parent.directive) return true;
   if (parent?.type === 'Property' && parent.key === node && !parent.computed) return true;
+  const implementationProperties = [
+    'type',
+    'className',
+    'id',
+    'dir',
+    'inputMode',
+    'htmlFor',
+    'role',
+  ];
+  if (
+    parent?.type === 'AssignmentExpression' &&
+    parent.right === node &&
+    parent.left.type === 'MemberExpression' &&
+    implementationProperties.includes(parent.left.property.name || parent.left.property.value)
+  )
+    return true;
+  if (
+    parent?.type === 'Property' &&
+    parent.value === node &&
+    implementationProperties.includes(parent.key.name || parent.key.value)
+  )
+    return true;
   if (parent?.type !== 'CallExpression') return false;
   const method = parent.callee?.property?.name || parent.callee?.name;
   const first = parent.arguments[0] === node;
@@ -48,6 +70,7 @@ function implementationLiteral(node, parent) {
       'getItem',
       'setItem',
       'removeItem',
+      'insertAdjacentHTML',
     ].includes(method)
   )
     return true;
@@ -78,6 +101,7 @@ function add(value, origin, parts) {
     /^[.#][\w-]+(?:\[|\s*[>+,])/.test(source) ||
     source.includes('document.') ||
     source.includes('querySelector') ||
+    /^['"]?\s*(?:style|class|id|data-[\w-]+)=/.test(source) ||
     /<\/?[A-Za-z][^>]*>/.test(source) ||
     (/^[-.#\w]+$/.test(source) && (/[_.#]/.test(source) || source.includes('-')))
   )
@@ -169,9 +193,18 @@ for (const file of files) {
   }
   const walk = (node, parent) => {
     if (!node || typeof node !== 'object') return;
+    if (implementationLiteral(node, parent)) return;
+    if (
+      file.startsWith('assets/models/') &&
+      parent?.type === 'CallExpression' &&
+      parent.arguments[0] === node &&
+      ['n', 'p', 'u', 'i', 'text', 'select', 'add', 'C', 'D'].includes(parent.callee?.name)
+    )
+      return;
     if (node.type === 'Literal' && typeof node.value === 'string') {
       const formula =
         file.startsWith('assets/models/') &&
+        !/\|[^|]*[\u3400-\u9fff]/.test(node.value) &&
         parent?.type === 'CallExpression' &&
         ((parent.callee?.name === 'D' && parent.arguments[5] === node) ||
           (parent.callee?.name === 'add' && parent.arguments[6] === node));

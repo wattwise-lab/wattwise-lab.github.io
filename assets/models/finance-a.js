@@ -179,7 +179,7 @@
           a.slice(1).some((x) => x > 0),
         'Use an initial outflow followed only by nonnegative inflows; this avoids multiple-IRR ambiguity.|使用初始支出及后续非负收入，以避免多解 IRR 歧义。',
       );
-      return [R('IRR per period|每期 IRR', 100 * bisect((r) => npv(a, r), -0.9999, 1000))];
+      return [R('IRR per period|每期 IRR', 100 * bisect((r) => npv(a, r), -0.9999, 1000), '%')];
     },
     'Solve ΣCₜ/(1+IRR)ᵗ=0',
     [9.7010257403],
@@ -202,7 +202,7 @@
       );
       const pv = -sum(a.map((x, k) => Math.min(x, 0) / (1 + v.f / 100) ** k)),
         fv = sum(a.map((x, k) => Math.max(x, 0) * (1 + v.r / 100) ** (t - k)));
-      return [R('MIRR per period|每期 MIRR', 100 * ((fv / pv) ** (1 / t) - 1))];
+      return [R('MIRR per period|每期 MIRR', 100 * ((fv / pv) ** (1 / t) - 1), '%')];
     },
     'MIRR=(FVpositive/|PVnegative|)¹ᐟⁿ−1',
     [9.098975834465172],
@@ -234,7 +234,7 @@
         R('Discounted net balance|折现净余额', total),
       ];
     },
-    'Accumulate discounted inflows; interpolate within the recovery period',
+    'Accumulate discounted inflows; interpolate within the recovery period|累加折现后的现金流入；在回收投资的期间内进行插值。',
     [2.5, 200],
   );
   D(
@@ -309,7 +309,11 @@
     'Solve a fixed-coupon bond yield from its coupon-date price.|根据付息日价格反求固定票息债券到期收益率。',
     [...bondFields.filter((f) => f.id !== 'y'), p('p', 'Market price|市场价格', 1000)],
     (v) => [
-      R('Nominal annual yield|名义年到期收益率', 100 * bisect((y) => bond(v, y) - v.p, -0.99, 100)),
+      R(
+        'Nominal annual yield|名义年到期收益率',
+        100 * bisect((y) => bond(v, y) - v.p, -0.99, 100),
+        '%',
+      ),
     ],
     'Solve P=ΣC/(1+y/m)ᵏ+F/(1+y/m)ᴺ',
     [5],

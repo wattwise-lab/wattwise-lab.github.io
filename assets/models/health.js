@@ -193,7 +193,7 @@
         R('Total weight|总重量', v.t, 'kg'),
       ];
     },
-    'Target each side=(total−bar)/2; integer dynamic programming minimizes plate count',
+    'Target each side=(total−bar)/2; integer dynamic programming minimizes plate count|每侧目标重量=(总重量−杠铃杆重量)/2；用整数动态规划求最少杠铃片数量。',
     ['2 × 20 kg', 2, 100],
     'Assumes enough matching pairs of each size. Collars are excluded; include their mass in bar weight if needed.|假设每种片重有足够成对片；不含卡扣，必要时将其质量计入空杆。',
   );

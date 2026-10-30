@@ -121,6 +121,64 @@ try {
       assert.ok(box.height <= box.lineHeight + 1, 'Exact IPv6 count must fit on one line');
       assert.ok(box.scrollWidth <= box.width + 1, 'Exact IPv6 count must remain fully visible');
     }
+    await page.goto(base + '/hash-collision-probability-calculator?lang=en', { waitUntil: 'load' });
+    assert.match(await page.locator('#result').innerText(), /2\.7105027E-6/);
+    const compactProbability = await page.locator('#result').evaluate((element) => ({
+      width: element.getBoundingClientRect().width,
+      availableWidth: element.parentElement.clientWidth,
+      height: element.getBoundingClientRect().height,
+      lineHeight: Number.parseFloat(globalThis.getComputedStyle(element).lineHeight),
+    }));
+    assert.ok(compactProbability.width <= compactProbability.availableWidth + 1);
+    assert.ok(compactProbability.height <= compactProbability.lineHeight + 1);
+    await page.locator('#n').fill('2');
+    await page.locator('#b').fill('1');
+    assert.equal((await page.locator('#result').innerText()).replace(/\s/g, ''), '50%');
+    await page.locator('#n').fill('3');
+    assert.equal((await page.locator('#result').innerText()).replace(/\s/g, ''), '100%');
+    await page.locator('#n').fill('1.5');
+    assert.equal(await page.locator('#cm-copy').isEnabled(), false);
+    assert.doesNotMatch(await page.locator('#result').innerText(), /100%/);
+    await page.locator('#n').fill('2');
+    await page.locator('#b').fill('1024');
+    assert.match(await page.locator('#result').innerText(), /5\.5626846E-307/);
+    await page.locator('#cm-site-language').selectOption('de');
+    assert.match(await page.locator('#result').innerText(), /5,5626846E-307/);
+    assert.equal(await page.locator('#n').inputValue(), '2');
+    assert.equal(await page.locator('#b').inputValue(), '1024');
+    for (const slug of [
+      'internal-rate-of-return-calculator',
+      'modified-internal-rate-calculator',
+      'bond-yield-calculator',
+    ]) {
+      await page.goto(base + '/' + slug + '?lang=en', { waitUntil: 'load' });
+      assert.match(await page.locator('#result').innerText(), /%/);
+      assert.match(await page.locator('.cm-expanded__example').innerText(), /%/);
+      if (slug !== 'bond-yield-calculator') {
+        const cashFlowExample = page.locator('.cm-expanded__example-list dd');
+        assert.equal(await cashFlowExample.innerText(), '-1000, 400, 400, 400');
+        const tokens = await cashFlowExample.evaluate((element) =>
+          [...element.firstChild.textContent.matchAll(/-?\d+/g)].map((match) => {
+            const range = document.createRange();
+            range.setStart(element.firstChild, match.index);
+            range.setEnd(element.firstChild, match.index + match[0].length);
+            return {
+              height: range.getBoundingClientRect().height,
+              lineHeight: Number.parseFloat(globalThis.getComputedStyle(element).lineHeight),
+            };
+          }),
+        );
+        for (const token of tokens) assert.ok(token.height <= token.lineHeight + 1);
+      }
+    }
+    await page.goto(base + '/random-search-time-calculator?lang=en', { waitUntil: 'load' });
+    assert.equal(await page.locator('.cm-expanded__unit').count(), 1);
+    for (const whitespace of await page
+      .locator('.cm-expanded__unit')
+      .evaluateAll((elements) =>
+        elements.map((element) => globalThis.getComputedStyle(element).whiteSpace),
+      ))
+      assert.equal(whitespace, 'nowrap');
     for (const [slug, field] of [
       ['age-calculator', 'ref'],
       ['countdown-calculator', 'from'],

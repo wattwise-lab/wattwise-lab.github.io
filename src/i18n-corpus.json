@@ -18375,7 +18375,7 @@
     "id": "03063",
     "source": "Because plain deviations sum to zero by definition of the mean — positives cancel negatives. Squaring makes every deviation positive before averaging, and it also penalises large deviations more than small ones.",
     "origin": "variance-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03064",
@@ -18411,7 +18411,7 @@
     "id": "03069",
     "source": "Indirectly: a large variance relative to the mean often signals outliers or a wide spread, but variance alone cannot identify them. Look at the sorted values and the range alongside.",
     "origin": "variance-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "03070",
@@ -19892,7 +19892,7 @@
     "id": "03314",
     "source": "label[for=\"",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03315",
@@ -20090,13 +20090,13 @@
     "id": "03347",
     "source": "replaced",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03348",
     "source": "added",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03349",
@@ -20180,7 +20180,7 @@
     "id": "03362",
     "source": "submit",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03363",
@@ -20270,7 +20270,7 @@
     "id": "03377",
     "source": "division",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03378",
@@ -20282,7 +20282,7 @@
     "id": "03379",
     "source": "overflow",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03380",
@@ -20294,7 +20294,7 @@
     "id": "03381",
     "source": "basic",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03382",
@@ -20558,13 +20558,13 @@
     "id": "03425",
     "source": "rtl",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03426",
     "source": "ltr",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03427",
@@ -20594,7 +20594,7 @@
     "id": "03431",
     "source": "tool",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03432",
@@ -20666,13 +20666,13 @@
     "id": "03443",
     "source": "verdict",
     "origin": "assets/legacy-models/acceleration-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03444",
     "source": "verdict warn",
     "origin": "assets/legacy-models/acceleration-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03445",
@@ -21038,7 +21038,7 @@
     "id": "03505",
     "source": "' style='width:",
     "origin": "assets/legacy-models/ai-carbon-estimate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03506",
@@ -21248,7 +21248,7 @@
     "id": "03540",
     "source": "verdict bad",
     "origin": "assets/legacy-models/ai-workflow-savings-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03541",
@@ -21512,7 +21512,7 @@
     "id": "03584",
     "source": "class='num'",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03585",
@@ -22622,7 +22622,7 @@
     "id": "03769",
     "source": "target",
     "origin": "assets/legacy-models/countdown-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03770",
@@ -28790,7 +28790,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04795",
@@ -28805,7 +28805,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04796",
@@ -28820,7 +28820,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04797",
@@ -28835,7 +28835,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04798",
@@ -29354,7 +29354,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04827",
@@ -36331,7 +36331,7 @@
     "origin": "barbell-plate-loading-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "05802",
     "source": "Target each side=(total−bar)/2; integer dynamic programming minimizes plate count",
     "origin": "barbell-plate-loading-calculator.html"
@@ -37747,7 +37747,7 @@
     "origin": "carpet-roll-length-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "06398",
     "source": "Compare ceil(roomWidth/rollWidth)×roomLength and rotated layout",
     "origin": "carpet-roll-length-calculator.html"
@@ -38845,7 +38845,7 @@
     "origin": "complex-number-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "06821",
     "source": "(a+bi)(c+di)=(ac−bd)+(ad+bc)i; division uses the conjugate.",
     "origin": "complex-number-calculator.html"
@@ -39745,7 +39745,7 @@
     "origin": "cubic-real-roots-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "07181",
     "source": "x=y−b/(3a); solve y³+py+q=0 with Cardano/trigonometric formulas.",
     "origin": "cubic-real-roots-calculator.html"
@@ -40501,7 +40501,7 @@
     "origin": "debt-snowball-avalanche-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "07489",
     "source": "Accrue monthly interest → pay minimums → allocate remaining budget by selected order",
     "origin": "debt-snowball-avalanche-calculator.html"
@@ -40585,7 +40585,7 @@
     "origin": "decimal-to-fraction-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "07519",
     "source": "Remove the decimal point, divide by 10ⁿ, then reduce by gcd.",
     "origin": "decimal-to-fraction-calculator.html"
@@ -40939,7 +40939,7 @@
     "origin": "discounted-payback-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "07661",
     "source": "Accumulate discounted inflows; interpolate within the recovery period",
     "origin": "discounted-payback-calculator.html"
@@ -41959,7 +41959,7 @@
     "origin": "ellipse-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "08115",
     "source": "A=πab; perimeter uses Ramanujan’s second approximation.",
     "origin": "ellipse-calculator.html"
@@ -43789,7 +43789,7 @@
     "origin": "geometric-sequence-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "08864",
     "source": "aₙ=a₁r^(n−1); Sₙ=a₁(1−rⁿ)/(1−r), with r=1 handled separately.",
     "origin": "geometric-sequence-calculator.html"
@@ -44017,7 +44017,7 @@
     "origin": "greatest-common-factor-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "08966",
     "source": "Euclidean algorithm, applied across the list.",
     "origin": "greatest-common-factor-calculator.html"
@@ -44215,7 +44215,7 @@
     "origin": "hash-collision-probability-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "09047",
     "source": "Birthday approximation for uniform independent hashes; not a cryptographic security proof or a model of adversarial collisions.",
     "origin": "hash-collision-probability-calculator.html"
@@ -45931,7 +45931,7 @@
     "origin": "ipv4-vlsm-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "09787",
     "source": "For each requirement choose 2^ceil(log₂(hosts+2)); allocate largest blocks first",
     "origin": "ipv4-vlsm-calculator.html"
@@ -47827,7 +47827,7 @@
     "origin": "matrix-rank-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "10584",
     "source": "Rank 2 if determinant is numerically nonzero, rank 1 for a nonzero singular matrix, otherwise 0.",
     "origin": "matrix-rank-calculator.html"
@@ -48505,7 +48505,7 @@
     "origin": "modular-arithmetic-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "10888",
     "source": "0 ≤ result < modulus; modular exponentiation uses repeated squaring.",
     "origin": "modular-arithmetic-calculator.html"
@@ -49039,7 +49039,7 @@
     "origin": "number-base-converter.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "11125",
     "source": "Accumulate value=value×inputBase+digit using exact integers, then divide by outputBase",
     "origin": "number-base-converter.html"
@@ -49369,7 +49369,7 @@
     "origin": "paired-t-test-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "11255",
     "source": "Apply a one-sample t test to the paired differences.",
     "origin": "paired-t-test-calculator.html"
@@ -49855,7 +49855,7 @@
     "origin": "percentile-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "11462",
     "source": "h=(n−1)p; interpolate between neighbouring sorted observations.",
     "origin": "percentile-calculator.html"
@@ -51355,7 +51355,7 @@
     "origin": "prime-factorization-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "12114",
     "source": "Repeatedly divide by prime candidates up to √n.",
     "origin": "prime-factorization-calculator.html"
@@ -51403,7 +51403,7 @@
     "origin": "prime-number-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "12134",
     "source": "A prime integer n ≥ 2 has no divisor between 2 and √n.",
     "origin": "prime-number-calculator.html"
@@ -51841,7 +51841,7 @@
     "origin": "quartiles-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "12326",
     "source": "Sorted position h=(n−1)p, with linear interpolation (type 7).",
     "origin": "quartiles-calculator.html"
@@ -53557,7 +53557,7 @@
     "origin": "roman-numeral-converter.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "13001",
     "source": "Greedy subtractive symbols: M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I",
     "origin": "roman-numeral-converter.html"
@@ -54349,7 +54349,7 @@
     "origin": "sample-size-proportion-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "13318",
     "source": "n₀=z²p(1−p)/E²; optionally apply finite-population correction.",
     "origin": "sample-size-proportion-calculator.html"
@@ -55087,7 +55087,7 @@
     "origin": "significant-figures-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "13646",
     "source": "Keep the first n significant digits; trailing display zeros are not measurement precision.",
     "origin": "significant-figures-calculator.html"
@@ -57163,7 +57163,7 @@
     "origin": "triangle-angles-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "14545",
     "source": "A=acos((b²+c²−a²)/(2bc)); similarly for B and C.",
     "origin": "triangle-angles-calculator.html"
@@ -57289,7 +57289,7 @@
     "origin": "trigonometry-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "14597",
     "source": "sinθ, cosθ, tanθ=sinθ/cosθ; tangent undefined at odd multiples of 90°.",
     "origin": "trigonometry-calculator.html"
@@ -58321,7 +58321,7 @@
     "origin": "wallpaper-rolls-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "15067",
     "source": "Cut length=round up(height+trim) to repeat; rolls=ceil(strips/floor(rollLength/cutLength))",
     "origin": "wallpaper-rolls-calculator.html"
@@ -58585,7 +58585,7 @@
     "origin": "weighted-bill-split-calculator.html"
   },
   {
-    "active": false,
+    "active": true,
     "id": "15191",
     "source": "Allocate integer minor units by largest remainder",
     "origin": "weighted-bill-split-calculator.html"
@@ -58969,7 +58969,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15339",
     "source": "text/csv;charset=utf-8",
     "origin": "assets/cm-expanded.js"
@@ -59122,7 +59122,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15374",
     "source": "cm-scenario-{0}-{1}",
     "origin": "assets/cm-scenario-editor.js",
@@ -59175,7 +59175,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15386",
     "source": "card",
     "origin": "assets/cm-scenario-editor.js"
@@ -59910,7 +59910,7 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15556",
     "source": "{0}-converter",
     "origin": "assets/models/converters.js",
@@ -59946,13 +59946,13 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15564",
     "source": "pressure",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15581",
     "source": "energy",
     "origin": "assets/models/converters.js"
@@ -59964,13 +59964,13 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15591",
     "source": "force",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15601",
     "source": "angle",
     "origin": "assets/models/converters.js"
@@ -60006,37 +60006,37 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15617",
     "source": "frequency",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15634",
     "source": "voltage",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15639",
     "source": "resistance",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15642",
     "source": "capacitance",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15645",
     "source": "inductance",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15648",
     "source": "density",
     "origin": "assets/models/converters.js"
@@ -60060,13 +60060,13 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15664",
     "source": "torque",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15674",
     "source": "acceleration",
     "origin": "assets/models/converters.js"
@@ -60084,13 +60084,13 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15698",
     "source": "illuminance",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15703",
     "source": "radioactivity",
     "origin": "assets/models/converters.js"
@@ -60264,7 +60264,7 @@
     "origin": "assets/models/digital.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16033",
     "source": "perpetuity",
     "origin": "assets/models/finance-a.js"
@@ -60360,7 +60360,7 @@
     "origin": "assets/models/finance-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16155",
     "source": "capm",
     "origin": "assets/models/finance-a.js"
@@ -60444,7 +60444,7 @@
     "origin": "assets/models/finance-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16331",
     "source": "budget",
     "origin": "assets/models/finance-b.js"
@@ -60618,7 +60618,7 @@
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16776",
     "source": "rho",
     "origin": "assets/models/home.js"
@@ -60630,7 +60630,7 @@
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16847",
     "source": "loop",
     "origin": "assets/models/home.js"
@@ -60660,7 +60660,7 @@
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16942",
     "source": "lux",
     "origin": "assets/models/home.js"
@@ -60774,13 +60774,13 @@
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17073",
     "source": "rectangle",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17077",
     "source": "parallelogram",
     "origin": "assets/models/math-geometry.js"
@@ -60792,13 +60792,13 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17085",
     "source": "trapezoid",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17092",
     "source": "rhombus",
     "origin": "assets/models/math-geometry.js"
@@ -60810,19 +60810,19 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17111",
     "source": "ellipse",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17119",
     "source": "sector",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17134",
     "source": "annulus",
     "origin": "assets/models/math-geometry.js"
@@ -60834,7 +60834,7 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17152",
     "source": "values",
     "origin": "assets/models/math-geometry.js"
@@ -60882,7 +60882,7 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17219",
     "source": "sagitta",
     "origin": "assets/models/math-geometry.js"
@@ -60894,31 +60894,31 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17226",
     "source": "cube",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17232",
     "source": "cuboid",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17239",
     "source": "sphere",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17245",
     "source": "cylinder",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17251",
     "source": "cone",
     "origin": "assets/models/math-geometry.js"
@@ -60930,13 +60930,13 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17269",
     "source": "prism",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17276",
     "source": "torus",
     "origin": "assets/models/math-geometry.js"
@@ -60948,19 +60948,19 @@
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17289",
     "source": "capsule",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17296",
     "source": "hemisphere",
     "origin": "assets/models/math-geometry.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17303",
     "source": "trigonometry",
     "origin": "assets/models/math-geometry.js"
@@ -61002,7 +61002,7 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17408",
     "source": "proportion",
     "origin": "assets/models/math.js"
@@ -61056,7 +61056,7 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17511",
     "source": "exponent",
     "origin": "assets/models/math.js"
@@ -61068,7 +61068,7 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17517",
     "source": "logarithm",
     "origin": "assets/models/math.js"
@@ -61080,13 +61080,13 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17528",
     "source": "rounding",
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17543",
     "source": "slope",
     "origin": "assets/models/math.js"
@@ -61104,13 +61104,13 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17555",
     "source": "midpoint",
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17571",
     "source": "discriminant",
     "origin": "assets/models/math.js"
@@ -61128,7 +61128,7 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17609",
     "source": "fibonacci",
     "origin": "assets/models/math.js"
@@ -61206,7 +61206,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17719",
     "source": "anchor",
     "origin": "assets/models/original-scenarios.js"
@@ -61218,19 +61218,19 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17724",
     "source": "fixed",
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17726",
     "source": "cash",
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17729",
     "source": "living",
     "origin": "assets/models/original-scenarios.js"
@@ -61242,7 +61242,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17734",
     "source": "shift",
     "origin": "assets/models/original-scenarios.js"
@@ -61440,7 +61440,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17779",
     "source": "failed",
     "origin": "assets/models/original-scenarios.js"
@@ -61596,13 +61596,13 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17830",
     "source": "essential",
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17835",
     "source": "cancel",
     "origin": "assets/models/original-scenarios.js"
@@ -61848,13 +61848,13 @@
     "origin": "assets/models/physics-fluid-thermal.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18269",
     "source": "momentum",
     "origin": "assets/models/physics-mechanics.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18273",
     "source": "impulse",
     "origin": "assets/models/physics-mechanics.js"
@@ -61878,7 +61878,7 @@
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18416",
     "source": "weights",
     "origin": "assets/models/statistics-a.js"
@@ -61902,19 +61902,19 @@
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18447",
     "source": "quartiles",
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18457",
     "source": "percentile",
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18469",
     "source": "method",
     "origin": "assets/models/statistics-a.js"
@@ -62058,7 +62058,7 @@
     "origin": "assets/models/statistics-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18759",
     "source": "permutations",
     "origin": "assets/models/statistics-b.js"
@@ -62070,13 +62070,13 @@
     "origin": "assets/models/statistics-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18767",
     "source": "combinations",
     "origin": "assets/models/statistics-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18774",
     "source": "factorial",
     "origin": "assets/models/statistics-b.js"
@@ -66462,7 +66462,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19607",
     "source": ".hero #{0}",
     "origin": "assets/cm-core-decisions.js",
@@ -66477,7 +66477,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19608",
     "source": ".hero #",
     "origin": "assets/cm-core-decisions.js"
@@ -66783,7 +66783,7 @@
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19659",
     "source": "conjunction",
     "origin": "assets/cm-calendar-core.js"
@@ -68847,7 +68847,7 @@
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19986",
     "source": "b{0}Pct",
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js",
@@ -68862,7 +68862,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19987",
     "source": "Pct",
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
@@ -69779,5 +69779,161 @@
     "id": "20132",
     "source": "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.",
     "origin": "quadratic-equation-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20133",
+    "source": "Because plain deviations sum to zero by definition of the mean: positive and negative deviations cancel. Squaring makes deviations non-negative before averaging and gives larger deviations more weight.",
+    "origin": "variance-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20134",
+    "source": "Variance summarizes overall squared spread and is sensitive to extreme values. It does not identify outliers by itself. Inspect sorted observations, the range and the interquartile range alongside.",
+    "origin": "variance-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20135",
+    "source": "Uniform independent hashes only. Up to 10,000 hashes use the no-collision product in log space; larger counts use the birthday approximation. More hashes than possible outputs guarantee a collision. This is not a cryptographic security proof or a model of adversarial collisions.",
+    "origin": "hash-collision-probability-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20136",
+    "source": "n is the hash count and b is the width in bits. For n ≤ 10,000, P = 1 − ∏(1 − k/2^b), k = 0…n−1. Larger counts use P ≈ 1 − exp[−n(n−1)/(2×2^b)]. If n > 2^b, P = 1.",
+    "origin": "hash-collision-probability-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20137",
+    "source": "Enter a whole-number hash count within the shown range and a whole-number width from 1 to 1024 bits.",
+    "origin": "assets/models/digital.js"
+  },
+  {
+    "active": true,
+    "id": "20138",
+    "source": "Use q ≤ min(R/60,c/s) and t ≈ N/q. R is requests allowed per minute, c is concurrent slots, s is average service seconds, N is batch requests, q is requests per second, and t is ideal batch seconds.",
+    "origin": "api-throughput-limit-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20139",
+    "source": "Reduce W:H by dividing both dimensions by gcd(W,H). For a new width w, the proportional height is h = wH/W. gcd is the greatest common divisor.",
+    "origin": "aspect-ratio-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20140",
+    "source": "Use S = bt/8000. b is the audio bitrate in kbps, t is duration in seconds, and S is decimal MB.",
+    "origin": "audio-file-size-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20141",
+    "source": "Use v = 8000Gc/(3600hη). G is source GB, c is the compressed-size fraction, h is available hours, η is efficiency, and v is required Mbps.",
+    "origin": "backup-window-bandwidth-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20142",
+    "source": "Use C = Gr+Nq/10^6+Ep. G is stored GB-months, r is storage price, N is requests, q is price per million requests, E is egress GB, and p is egress price per GB.",
+    "origin": "cloud-storage-cost-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20143",
+    "source": "For a series system use A = ∏Aᵢ. For ideal parallel redundancy use A = 1−∏(1−Aᵢ). Each Aᵢ is an independent component availability as a fraction.",
+    "origin": "component-availability-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20144",
+    "source": "Use A = W−S−H−O. W is context capacity, S is system and tool tokens, H is existing history, O is reserved output, and A is remaining input capacity. All terms are token counts.",
+    "origin": "context-token-budget-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20145",
+    "source": "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.",
+    "origin": "download-time-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20146",
+    "source": "Use m = 100(f₁−f₀)/(v₁−v₀) and b = f₀−mv₀/100. The fluid size is clamp(f₀, b + m×vw, f₁); f denotes font sizes and v denotes viewport widths.",
+    "origin": "fluid-typography-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20147",
+    "source": "Use B = 2^(32−p) and N = floor(A/B)×B. p is the prefix length, A is the integer address, B is the address block size, and N is the network address.",
+    "origin": "ipv4-subnet-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20148",
+    "source": "Use S = 2^(c−p) and A = 2^(128−c). p is the parent prefix, c is the child prefix, S is the number of child subnets, and A is addresses per child subnet.",
+    "origin": "ipv6-subnet-count-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20149",
+    "source": "Use T = Σtᵢ and R = B−T. Each tᵢ is a sequential stage duration, B is the target, T is total latency, and R is the remaining budget.",
+    "origin": "latency-budget-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20150",
+    "source": "For each dimension, use c = p×2.54/PPI. p is the pixel count, c is centimetres, and PPI is pixels per inch.",
+    "origin": "photo-print-size-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20151",
+    "source": "Use PPI = √(W²+H²)/d. W and H are pixel dimensions and d is the screen diagonal in inches.",
+    "origin": "pixel-density-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20152",
+    "source": "Use H = L×log₂(A). L is the independently sampled password length, A is the alphabet size, and H is entropy in bits.",
+    "origin": "random-password-entropy-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20153",
+    "source": "Use t ≈ 2^(b−1)/g. b is search-space entropy in bits, g is assumed guesses per second, and t is expected search time in seconds.",
+    "origin": "random-search-time-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20154",
+    "source": "Use C = Nhr+Gp+F. N is instance count, h is hours per instance, r is hourly price, G is billable traffic GB, p is price per GB, and F is fixed charges.",
+    "origin": "server-hosting-cost-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20155",
+    "source": "Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.",
+    "origin": "sla-downtime-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20156",
+    "source": "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.",
+    "origin": "storage-retention-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20157",
+    "source": "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.",
+    "origin": "uncompressed-image-size-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20158",
+    "source": "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.",
+    "origin": "video-file-size-calculator.html"
   }
 ]

@@ -21,5 +21,9 @@
   "Every list entry must be a finite number. Use population SD when the list is the complete group of interest, and sample SD when observations estimate a larger population. Sample SD is undefined for a single value. Standard deviation is sensitive to outliers and describes spread, not distribution shape. Display is rounded to 4 decimal places.": "リスト内のすべての値は有限の数である必要があります。対象集団の全体を入力した場合は母標準偏差、より大きい母集団を推定する標本を入力した場合は標本標準偏差を使います。値がひとつだけの場合、標本標準偏差は定義されません。標準偏差は外れ値の影響を受けやすく、分布の形ではなく散らばりを表します。表示は小数点以下4桁に丸めます。",
   "Workdays: {0} net ({1} working days, {2} weekly rest days, {3} holidays) from {4} to {5}.": "勤務日数：差し引き後{0}日（勤務日{1}日、週の休息日{2}日、祝日等の控除{3}日）、期間は{4}から{5}まで。",
   "Estimated adult body fat {0}%; BMI {1}; estimated fat mass {2} kg and lean mass {3} kg.": "成人の推定体脂肪率 {0}%；BMI {1}；推定脂肪量 {2} kg、除脂肪量 {3} kg。",
-  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "次数が 2 の多項式には、重複度を含めて二つの根があります。同じ根が重なる場合も、複素数の対になる場合もありますが、重複度を含めた根の数は常に二つです。"
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "次数が 2 の多項式には、重複度を含めて二つの根があります。同じ根が重なる場合も、複素数の対になる場合もありますが、重複度を含めた根の数は常に二つです。",
+  "Enter a whole-number hash count within the shown range and a whole-number width from 1 to 1024 bits.": "表示範囲内の整数のハッシュ件数と、1 から 1024 ビットまでの整数の幅を入力してください。",
+  "Reduce W:H by dividing both dimensions by gcd(W,H). For a new width w, the proportional height is h = wH/W. gcd is the greatest common divisor.": "W:H の両方の寸法を gcd(W,H) で割って比を約分します。新しい幅が w の場合、比例する高さは h = wH/W です。gcd は最大公約数です。",
+  "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.": "t = 8000G/(vη) を使用します。G は十進単位の GB で表したファイルサイズ、v は Mbps 単位の回線速度、η は効率の割合、t は秒単位の時間です。",
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 を使用します。v は Mbps 単位の映像ビットレート、a は kbps 単位の音声ビットレート、t は秒単位の長さ、h は追加オーバーヘッドの割合、S は十進単位の MB で表したサイズです。"
 }

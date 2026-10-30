@@ -403,7 +403,7 @@
         R('Interest saved by avalanche|雪崩法节省利息', a[1] - b2[1]),
       ];
     },
-    'Accrue monthly interest → pay minimums → allocate remaining budget by selected order',
+    'Accrue monthly interest → pay minimums → allocate remaining budget by selected order|计入当月利息 → 支付最低还款 → 按所选顺序分配剩余预算。',
     [6, 6, 0, 0, 0],
     'Fixed rates, fixed entered minimums and no new borrowing. Payments occur after monthly interest. Actual statement rules can differ.|利率及自填最低月供固定，无新增借款；先计月息再还款，实际账单规则可能不同。',
   );

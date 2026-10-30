@@ -25,7 +25,7 @@
       R('Estimated duration|估计用时', (v.s * 8000) / ((v.b * v.e) / 100), 'seconds'),
       R('Effective transfer speed|有效传输速度', (v.b * v.e) / 100 / 8, 'MB/s'),
     ],
-    'Seconds=GB×8000/(Mbps×efficiency)',
+    'Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.|使用 t = 8000G/(vη)。G 为十进制 GB 文件大小，v 为 Mbps 链路速率，η 为效率比例，t 为秒数。',
     [100, 10],
   );
   D(
@@ -45,7 +45,7 @@
         'MB',
       ),
     ],
-    'Size MB=(video Mbps+audio kbps/1000)×seconds/8×(1+overhead)',
+    'Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.|使用 S = (v+a/1000)t(1+h)/8。v 为视频 Mbps，a 为音频 kbps，t 为秒数，h 为额外开销比例，S 为十进制 MB。',
     [609.6],
   );
   D(
@@ -57,7 +57,7 @@
       n('t', 'Duration (minutes)|时长（分钟）', 5),
     ],
     (v) => [R('Encoded size|编码大小', (v.b * v.t * 60) / 8000, 'MB')],
-    'MB=kbps×seconds/8000',
+    'Use S = bt/8000. b is the audio bitrate in kbps, t is duration in seconds, and S is decimal MB.|使用 S = bt/8000。b 为音频码率 kbps，t 为秒数，S 为十进制 MB。',
     [12],
     'Bitrate is the whole encoded stream; do not multiply it by channel count. Tags and container overhead are excluded.|码率指完整编码流，不再乘声道数；不含标签及封装开销。',
   );
@@ -74,7 +74,7 @@
       R('Raw pixel bytes|原始像素字节', Math.ceil((v.w * v.h * v.b) / 8), 'bytes'),
       R('Megapixels|百万像素', (v.w * v.h) / 1e6, 'MP'),
     ],
-    'Bytes=ceil(width×height×bitsPerPixel/8)',
+    'Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.|使用 B = ceil(WHd/8)。W、H 为像素宽高，d 为每像素位数，B 为字节数；ceil 表示向上取整到完整字节。',
     [6220800, 2.0736],
   );
   D(
@@ -93,7 +93,7 @@
         R('Target height|目标高度', (v.n * v.h) / v.w),
       ];
     },
-    'Ratio=W/gcd(W,H):H/gcd(W,H); newH=newW×H/W',
+    'Reduce W:H by dividing both dimensions by gcd(W,H). For a new width w, the proportional height is h = wH/W. gcd is the greatest common divisor.|将 W:H 的两边同时除以 gcd(W,H) 约简比例。新宽度为 w 时，等比例高度为 h = wH/W；gcd 为最大公约数。',
     ['16:9', 720],
   );
   D(
@@ -109,7 +109,7 @@
       R('Pixel density|像素密度', Math.hypot(v.w, v.h) / v.d, 'PPI'),
       R('Pixel pitch|像素间距', (25.4 * v.d) / Math.hypot(v.w, v.h), 'mm'),
     ],
-    'PPI=√(W²+H²)/diagonalInches',
+    'Use PPI = √(W²+H²)/d. W and H are pixel dimensions and d is the screen diagonal in inches.|使用 PPI = √(W²+H²)/d。W、H 为像素宽高，d 为屏幕对角线长度（英寸）。',
     [91.7877987534291, 0.2767252330370444],
   );
   D(
@@ -125,7 +125,7 @@
       R('Print width|打印宽度', (v.w / v.p) * 2.54, 'cm'),
       R('Print height|打印高度', (v.h / v.p) * 2.54, 'cm'),
     ],
-    'Centimetres=pixels/PPI×2.54',
+    'For each dimension, use c = p×2.54/PPI. p is the pixel count, c is centimetres, and PPI is pixels per inch.|每个方向均使用 c = p×2.54/PPI。p 为像素数，c 为厘米数，PPI 为每英寸像素数。',
     [25.4, 20.32],
   );
   D(
@@ -154,7 +154,7 @@
         R('Pixel intercept|像素截距', intercept, 'px'),
       ];
     },
-    'slope=100(fontMax−fontMin)/(viewportMax−viewportMin)',
+    'Use m = 100(f₁−f₀)/(v₁−v₀) and b = f₀−mv₀/100. The fluid size is clamp(f₀, b + m×vw, f₁); f denotes font sizes and v denotes viewport widths.|使用 m = 100(f₁−f₀)/(v₁−v₀) 和 b = f₀−mv₀/100。流式字号为 clamp(f₀, b + m×vw, f₁)；f 表示字号，v 表示视口宽度。',
     ['clamp(16px, calc(12px + 1vw), 24px)', 1, 12],
     'Generated CSS is a starting value. Prefer relative text units where appropriate and test zoom, text scaling and overflow.|生成 CSS 仅供起步，适当时优先相对文字单位，并测试缩放、系统字号与溢出。',
   );
@@ -191,7 +191,7 @@
         R('Last host|最后主机', showIP(last - (v.p < 31 ? 1 : 0))),
       ];
     },
-    'Block size=2^(32−prefix); network=floor(address/blockSize)×blockSize',
+    'Use B = 2^(32−p) and N = floor(A/B)×B. p is the prefix length, A is the integer address, B is the address block size, and N is the network address.|使用 B = 2^(32−p) 和 N = floor(A/B)×B。p 为前缀长度，A 为地址的整数值，B 为地址块大小，N 为网络地址。',
     ['192.168.1.0/24', '255.255.255.0', '192.168.1.255', 256, 254],
     'For /31 point-to-point both addresses are shown as hosts; /32 has one address. Does not determine routability or provider-reserved addresses.|/31 点对点两地址均计为主机，/32 为单地址；不判断可路由性或服务商保留地址。',
   );
@@ -237,7 +237,7 @@
       }
       return [...rows, R('Unallocated addresses|未分配地址数', start + size - next)];
     },
-    'For each requirement choose 2^ceil(log₂(hosts+2)); allocate largest blocks first',
+    'For each requirement choose 2^ceil(log₂(hosts+2)); allocate largest blocks first|为每项主机需求选择大小为 2^ceil(log₂(hosts+2)) 的地址块，再从最大的块开始分配。',
     ['192.168.0.0/25', '192.168.0.128/26', 64],
     'Uses conventional network and broadcast reservations; /31 and /32 allocations are not used.|使用常规网络与广播地址保留规则，不采用 /31 或 /32 分配。',
   );
@@ -259,7 +259,7 @@
         R('Addresses per child subnet|每子网地址数', (2n ** BigInt(128 - v.b)).toString()),
       ];
     },
-    'Subnets=2^(childPrefix−parentPrefix); addresses=2^(128−childPrefix)',
+    'Use S = 2^(c−p) and A = 2^(128−c). p is the parent prefix, c is the child prefix, S is the number of child subnets, and A is addresses per child subnet.|使用 S = 2^(c−p) 和 A = 2^(128−c)。p 为父前缀长度，c 为子前缀长度，S 为子网数量，A 为每个子网的地址数量。',
     ['65536', '18446744073709551616'],
   );
   D(
@@ -318,7 +318,7 @@
     (v) => [
       R('Estimated retention|估计保留时长', (v.s * 1000 * (1 - v.e / 100)) / (v.d * v.r), 'days'),
     ],
-    'Days=TB×1000×(1−reserve)/(dailyGB×copies)',
+    'Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.|使用 D = 1000T(1−r)/(gc)。T 为十进制 TB 容量，r 为预留比例，g 为每日新增 GB，c 为副本数量，D 为保留天数。',
     [40],
   );
   D(
@@ -338,7 +338,7 @@
         'Mbps',
       ),
     ],
-    'Mbps=sourceGB×compressionFraction×8000/(hours×3600×efficiency)',
+    'Use v = 8000Gc/(3600hη). G is source GB, c is the compressed-size fraction, h is available hours, η is efficiency, and v is required Mbps.|使用 v = 8000Gc/(3600hη)。G 为源数据 GB，c 为压缩后大小比例，h 为可用小时数，η 为效率比例，v 为所需 Mbps。',
     [625 / 9],
   );
   D(
@@ -350,7 +350,7 @@
       i('a', 'Alphabet size|字符集大小', 64, 2, 1000000),
     ],
     (v) => [R('Generation entropy|生成过程熵', v.l * Math.log2(v.a), 'bits')],
-    'H=length×log₂(alphabet size)',
+    'Use H = L×log₂(A). L is the independently sampled password length, A is the alphabet size, and H is entropy in bits.|使用 H = L×log₂(A)。L 为独立随机采样的密码长度，A 为字符集大小，H 为以位表示的熵。',
     [72],
     'Applies only to independent uniform random generation, not human-chosen passwords. Do not enter an actual password; no password field exists.|仅适用于独立均匀随机生成，不适用于人为选取密码。无需输入真实密码，本页没有密码输入框。',
   );
@@ -366,7 +366,7 @@
       R('Expected time at entered rate|所填速率下平均用时', 2 ** (v.b - 1) / v.r, 'seconds'),
       R('Worst-case exhaustive time|最坏穷举用时', 2 ** v.b / v.r, 'seconds'),
     ],
-    'Expected seconds≈2^(bits−1)/guessesPerSecond',
+    'Use t ≈ 2^(b−1)/g. b is search-space entropy in bits, g is assumed guesses per second, and t is expected search time in seconds.|使用 t ≈ 2^(b−1)/g。b 为搜索空间熵（位），g 为假设的每秒猜测次数，t 为期望搜索秒数。',
     [549755.813888, 1099511.627776],
     'Uniform search-space model only. Real password guessing, online rate limits, hashing cost, parallelism and compromise risk can differ greatly.|仅均匀搜索空间模型；实际密码猜测、在线限速、哈希成本、并行与泄露风险可能大不相同。',
   );
@@ -375,22 +375,37 @@
     'Hash Collision Probability|哈希碰撞概率',
     'Estimate birthday collisions in a uniformly random hash space.|估计均匀随机哈希空间中的生日碰撞。',
     [
-      n('n', 'Generated independent hashes|独立生成哈希数', 1000000, 0, 1e15),
+      i('n', 'Generated independent hashes|独立生成哈希数', 1000000, 0, 1e15),
       i('b', 'Hash width (bits)|哈希位数', 64, 1, 1024),
     ],
     (v) => {
-      const t = (v.n * (v.n - 1)) / 2 / 2 ** v.b;
+      check(
+        Number.isSafeInteger(v.n) &&
+          v.n >= 0 &&
+          v.n <= 1e15 &&
+          Number.isInteger(v.b) &&
+          v.b >= 1 &&
+          v.b <= 1024,
+        'Enter a whole-number hash count within the shown range and a whole-number width from 1 to 1024 bits.|请输入所示范围内的整数哈希数及 1 到 1024 位的整数位宽。',
+      );
+      const inverseSpace = 2 ** -v.b;
+      let logNoCollision;
+      if (v.b <= 49 && v.n > 2 ** v.b) logNoCollision = -Infinity;
+      else if (v.n <= 10000) {
+        logNoCollision = 0;
+        for (let k = 1; k < v.n; k++) logNoCollision += Math.log1p(-k * inverseSpace);
+      } else logNoCollision = -((v.n * (v.n - 1)) / 2) * inverseSpace;
       return [
         R(
           'Approximate collision probability|近似碰撞概率',
-          -100 * Math.expm1(-Math.max(0, t)),
+          Math.max(0, -100 * Math.expm1(logNoCollision)),
           '%',
         ),
       ];
     },
-    'P(collision)≈1−exp[−n(n−1)/(2×2^bits)]',
+    'n is the hash count and b is the width in bits. For n ≤ 10,000, P = 1 − ∏(1 − k/2^b), k = 0…n−1. Larger counts use P ≈ 1 − exp[−n(n−1)/(2×2^b)]. If n > 2^b, P = 1.|n 是哈希数，b 是位宽。n ≤ 10,000 时，P = 1 − ∏(1 − k/2^b)，k = 0…n−1；更多时使用 P ≈ 1 − exp[−n(n−1)/(2×2^b)]。若 n > 2^b，则 P = 1。',
     [0.0000027105026839742054],
-    'Birthday approximation for uniform independent hashes; not a cryptographic security proof or a model of adversarial collisions.|均匀独立哈希的生日近似，不是密码学安全证明，也不模拟对抗性碰撞。',
+    'Uniform independent hashes only. Up to 10,000 hashes use the no-collision product in log space; larger counts use the birthday approximation. More hashes than possible outputs guarantee a collision. This is not a cryptographic security proof or a model of adversarial collisions.|仅适用于均匀独立哈希。最多 10,000 个哈希时在对数空间计算无碰撞概率的连乘积；更多时采用生日近似。哈希数超过可能输出数时必然碰撞；本工具不是密码学安全证明，也不模拟对抗性碰撞。',
   );
   D(
     'sla-downtime',
@@ -404,7 +419,7 @@
       R('Allowed downtime|允许停机时间', v.d * 24 * 60 * (1 - v.a / 100), 'minutes'),
       R('Allowed downtime in seconds|允许停机秒数', v.d * 86400 * (1 - v.a / 100), 'seconds'),
     ],
-    'Downtime=period×(1−availability)',
+    'Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.|使用 d = T(1−a)。T 为统计周期时长，a 为可用率比例，d 为相同时间单位下允许的停机时长。',
     [43.2, 2592],
     'Arithmetic budget only. Contract exclusions, maintenance windows and measurement methods are not applied.|仅计算时间预算，不应用合同排除项、维护窗口或测量方法。',
   );
@@ -436,7 +451,7 @@
         ),
       ];
     },
-    'Series=∏Aᵢ; parallel=1−∏(1−Aᵢ)',
+    'For a series system use A = ∏Aᵢ. For ideal parallel redundancy use A = 1−∏(1−Aᵢ). Each Aᵢ is an independent component availability as a fraction.|串联系统使用 A = ∏Aᵢ，理想并联冗余使用 A = 1−∏(1−Aᵢ)。每个 Aᵢ 为独立组件的可用率比例。',
     [98.01],
     'Assumes independence and ideal failover. Shared power, software, region and recovery dependencies can invalidate multiplication.|假设独立且切换理想；共享电源、软件、地域与恢复依赖可能使相乘模型失效。',
   );
@@ -461,7 +476,7 @@
         R('Largest stage|最大阶段', Math.max(...a), 'ms'),
       ];
     },
-    'Total=Σstage times; spare=target−total',
+    'Use T = Σtᵢ and R = B−T. Each tᵢ is a sequential stage duration, B is the target, T is total latency, and R is the remaining budget.|使用 T = Σtᵢ 和 R = B−T。每个 tᵢ 为顺序阶段耗时，B 为目标时限，T 为总延迟，R 为剩余预算。',
     [100, 100, 50],
     'For sequential work only. Concurrent branches require a dependency graph; percentile latencies cannot generally be added as if they were means.|仅适用于串行工作；并发分支需依赖图，分位数延迟通常不能像均值一样直接相加。',
   );
@@ -495,7 +510,7 @@
       R('Compute portion|计算实例费用', v.n * v.h * v.r),
       R('Traffic portion|流量费用', v.t * v.p),
     ],
-    'Cost=instances×hours×hourlyPrice+trafficGB×trafficPrice+fixed',
+    'Use C = Nhr+Gp+F. N is instance count, h is hours per instance, r is hourly price, G is billable traffic GB, p is price per GB, and F is fixed charges.|使用 C = Nhr+Gp+F。N 为实例数，h 为每个实例计费小时数，r 为小时单价，G 为计费流量 GB，p 为每 GB 单价，F 为固定费用。',
     [87, 72, 10],
     'All prices entered manually. Excludes taxes, tiered discounts, minimum billing and services not listed.|所有价格手动填写，不含税费、阶梯折扣、最低计费与未列服务。',
   );
@@ -517,7 +532,7 @@
       R('Requests portion|请求费用', (v.r / 1e6) * v.q),
       R('Egress portion|出站费用', v.e * v.f),
     ],
-    'Cost=GBmonths×storagePrice+requests/1e6×requestPrice+egressGB×egressPrice',
+    'Use C = Gr+Nq/10^6+Ep. G is stored GB-months, r is storage price, N is requests, q is price per million requests, E is egress GB, and p is egress price per GB.|使用 C = Gr+Nq/10^6+Ep。G 为存储 GB 月，r 为存储单价，N 为请求数，q 为每百万请求单价，E 为出站 GB，p 为每 GB 出站单价。',
     [30.4, 20, 0.4, 10],
   );
   D(
@@ -539,7 +554,7 @@
         R('Over budget|超出预算', Math.max(0, -available), 'tokens'),
       ];
     },
-    'Available=window−system−history−reservedOutput',
+    'Use A = W−S−H−O. W is context capacity, S is system and tool tokens, H is existing history, O is reserved output, and A is remaining input capacity. All terms are token counts.|使用 A = W−S−H−O。W 为上下文容量，S 为系统及工具词元数，H 为已有历史词元数，O 为预留输出词元数，A 为剩余输入容量。各项单位均为词元。',
     [16000, 8, 0],
     'Use the actual tokenizer and provider limits. Context windows, output caps, hidden overhead and prices are not fetched or verified here.|请使用实际分词器与提供商限制；此处不获取或核实上下文窗口、输出上限、隐藏开销或价格。',
   );
@@ -561,7 +576,7 @@
         R('Concurrency-limited throughput|并发限制吞吐', v.c / v.t, 'requests/s'),
       ];
     },
-    'Throughput≤min(RPM/60,concurrency/serviceTime); duration≈requests/throughput',
+    'Use q ≤ min(R/60,c/s) and t ≈ N/q. R is requests allowed per minute, c is concurrent slots, s is average service seconds, N is batch requests, q is requests per second, and t is ideal batch seconds.|使用 q ≤ min(R/60,c/s) 和 t ≈ N/q。R 为每分钟请求额度，c 为并发槽位，s 为平均服务秒数，N 为批次请求数，q 为每秒请求数，t 为理想批次秒数。',
     [5, 200, 5],
     'Steady-state upper bound, not a scheduler. Burst windows, retries, token quotas, queue delays and provider-specific enforcement are excluded.|稳态上界，不是调度器；不含突发窗口、重试、token 配额、排队及提供商执行规则。',
   );

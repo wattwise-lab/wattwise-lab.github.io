@@ -14,9 +14,13 @@
     valid = false,
     scheduled = null,
     scenarios = [];
-  const label = (value) => I.pick(value),
+  const numberOptions = (value) =>
+      value !== 0 && Math.abs(value) < 0.0001
+        ? { maximumSignificantDigits: 8, notation: 'scientific' }
+        : { maximumSignificantDigits: 12 },
+    label = (value) => I.pick(value),
     format = (value) =>
-      typeof value === 'number' ? I.number(value, { maximumSignificantDigits: 12 }) : label(value);
+      typeof value === 'number' ? I.number(value, numberOptions(value)) : label(value);
   const presentations = {
     'ratio-simplifier-calculator': 'ratio',
     'mean-confidence-interval-calculator': 'interval',
@@ -39,7 +43,7 @@
     result.classList.remove('cm-expanded__matrix');
     if (!type) return false;
     const values = out.map((r) => r.value),
-      f = (x) => I.number(x, { maximumSignificantDigits: 12, useGrouping: false });
+      f = (x) => I.number(x, { ...numberOptions(x), useGrouping: false });
     if (type === 'matrix') {
       result.replaceChildren();
       result.classList.add('cm-expanded__matrix');

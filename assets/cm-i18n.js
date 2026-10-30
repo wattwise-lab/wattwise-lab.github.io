@@ -370,11 +370,13 @@ window.CMI18n = (() => {
       });
     root.querySelectorAll?.('[data-cm-language]').forEach(options);
     root.querySelectorAll?.('[data-cm-value]').forEach((element) => {
-      const value = Number(element.dataset.cmValue);
+      const value = Number(element.dataset.cmValue),
+        digits = Number(element.dataset.cmSignificantDigits);
       if (Number.isFinite(value))
         element.textContent =
           number(value, {
-            maximumSignificantDigits: 12,
+            maximumSignificantDigits:
+              Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
             ...(element.dataset.cmNotation === 'scientific' ? { notation: 'scientific' } : {}),
           }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
