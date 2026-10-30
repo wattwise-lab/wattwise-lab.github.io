@@ -133,16 +133,29 @@ try {
     assert.ok(compactProbability.height <= compactProbability.lineHeight + 1);
     await page.locator('#n').fill('2');
     await page.locator('#b').fill('1');
+    await page.waitForFunction(
+      () => document.querySelector('#result').textContent.replace(/\s/g, '') === '50%',
+    );
     assert.equal((await page.locator('#result').innerText()).replace(/\s/g, ''), '50%');
     await page.locator('#n').fill('3');
+    await page.waitForFunction(
+      () => document.querySelector('#result').textContent.replace(/\s/g, '') === '100%',
+    );
     assert.equal((await page.locator('#result').innerText()).replace(/\s/g, ''), '100%');
     await page.locator('#n').fill('1.5');
+    await page.waitForFunction(() => document.querySelector('#cm-copy').disabled);
     assert.equal(await page.locator('#cm-copy').isEnabled(), false);
     assert.doesNotMatch(await page.locator('#result').innerText(), /100%/);
     await page.locator('#n').fill('2');
     await page.locator('#b').fill('1024');
+    await page.waitForFunction(() =>
+      document.querySelector('#result').textContent.includes('5.5626846E-307'),
+    );
     assert.match(await page.locator('#result').innerText(), /5\.5626846E-307/);
     await page.locator('#cm-site-language').selectOption('de');
+    await page.waitForFunction(() =>
+      document.querySelector('#result').textContent.includes('5,5626846E-307'),
+    );
     assert.match(await page.locator('#result').innerText(), /5,5626846E-307/);
     assert.equal(await page.locator('#n').inputValue(), '2');
     assert.equal(await page.locator('#b').inputValue(), '1024');
