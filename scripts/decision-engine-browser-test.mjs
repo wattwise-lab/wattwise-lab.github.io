@@ -105,6 +105,22 @@ try {
     assert.equal(await page.locator('body.cm-invalid').count(), 1);
     await page.locator('#b').fill('0');
     assert.match(await page.locator('.big').innerText(), /1,41421356237/);
+    await page.goto(base + '/ipv6-subnet-count-calculator?lang=en', { waitUntil: 'load' });
+    const integerBoxes = await page.locator('.cm-expanded__exact-integer').evaluateAll((elements) =>
+      elements.map((element) => ({
+        text: element.textContent,
+        height: element.getBoundingClientRect().height,
+        lineHeight: Number.parseFloat(globalThis.getComputedStyle(element).lineHeight),
+        width: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+      })),
+    );
+    assert.equal(integerBoxes.length, 2);
+    for (const box of integerBoxes) {
+      assert.equal(box.text, '18446744073709551616');
+      assert.ok(box.height <= box.lineHeight + 1, 'Exact IPv6 count must fit on one line');
+      assert.ok(box.scrollWidth <= box.width + 1, 'Exact IPv6 count must remain fully visible');
+    }
     for (const [slug, field] of [
       ['age-calculator', 'ref'],
       ['countdown-calculator', 'from'],
@@ -153,6 +169,26 @@ try {
       near(Number((await loan.locator('#main').innerText()).replace(/[^0-9.-]/g, '')), 2528.27);
       await page.reload({ waitUntil: 'load' });
     }
+    const helpLayout = encodeURIComponent(
+      JSON.stringify({ v: 1, tools: ['loan-calculator', 'percentage-calculator'] }),
+    );
+    await page.goto(base + '/workspace?lang=en#desk=' + helpLayout, { waitUntil: 'load' });
+    await page.locator('#help-toggle').click();
+    assert.match(await page.locator('[data-w="step3"]').innerText(), /Send result/);
+    await page.waitForFunction(() => {
+      const buttons = [...document.querySelectorAll('.ws-card-footer button')];
+      return buttons.length === 2 && buttons.every((button) => !button.disabled);
+    });
+    await page.locator('.ws-card-footer button').first().click();
+    assert.match(await page.locator('[data-w="transferHelp"]').innerText(), /copies a number once/);
+    assert.doesNotMatch(await page.locator('#transfer-preview').innerText(), /1896\.204070478/);
+    assert.match(await page.locator('#transfer-preview').innerText(), /Scheduled monthly payment/);
+    await page.locator('#transfer [data-close]').click();
+    await page.locator('#cm-site-language').selectOption('zh-CN');
+    assert.match(await page.locator('[data-w="step3"]').innerText(), /传递结果/);
+    await page.locator('.ws-card-footer button').first().click();
+    assert.match(await page.locator('[data-w="transferHelp"]').innerText(), /一次性/);
+    await page.locator('#transfer [data-close]').click();
     const nativeNames = JSON.parse(
       await fs.readFile(new URL('../src/translations/fr.json', import.meta.url), 'utf8'),
     );

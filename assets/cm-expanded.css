@@ -157,6 +157,16 @@
   overflow-wrap: anywhere;
   text-align: end;
 }
+.cm-expanded .cm-expanded__results > div:has(.cm-expanded__exact-integer),
+.cm-expanded .cm-expanded__example dl > div:has(.cm-expanded__exact-integer) {
+  flex-wrap: wrap;
+}
+.cm-expanded .cm-expanded__results dd.cm-expanded__exact-integer,
+.cm-expanded .cm-expanded__example dd.cm-expanded__exact-integer {
+  flex-shrink: 0;
+  max-width: 100%;
+  margin-inline-start: auto;
+}
 .cm-expanded .cm-expanded__guide {
   margin-top: 24px;
 }

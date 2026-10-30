@@ -200,6 +200,8 @@
             dd = document.createElement('dd');
           dt.textContent = label(r.label);
           dd.textContent = format(r.value) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
+          if (typeof r.value === 'string' && /^[+-]?\d{16,}$/.test(r.value))
+            dd.className = 'cm-expanded__exact-integer';
           box.append(dt, dd);
           return box;
         }),

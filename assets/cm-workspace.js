@@ -20,6 +20,8 @@
       helpTitle: 'Three simple steps',
       step1: 'Add a calculator by name or purpose. Use Replace on a card to change it.',
       step2: 'Edit the example numbers. Every calculator updates independently.',
+      step3:
+        'Use “Send result” to copy a number into another card. Check the units first; values do not stay linked.',
 
       saveNote:
         'Saving remembers tool choices and order on this device. Inputs stay in the current tab and are not saved.',
@@ -39,6 +41,8 @@
       previous: 'Previous',
       next: 'Next',
       send: 'Send result',
+      transferHelp:
+        'Choose the result, destination calculator and input. This copies a number once; it does not convert units or link the tools.',
 
       result: 'Result to send',
       destination: 'Destination calculator',
@@ -100,6 +104,7 @@
       helpTitle: '三步开始使用',
       step1: '按名称或用途搜索并添加计算器。点击卡片上的「替换」可直接更换。',
       step2: '把示例数字换成自己的数值，各计算器会独立实时更新。',
+      step3: '点击「传递结果」，将一个数值填入另一块计算器。请核对单位；数值不会持续联动。',
 
       saveNote: '保存只记住本设备上的工具名称和顺序，不保存输入数值。当前输入会保留在此标签页。',
       start: '快速开始',
@@ -117,6 +122,8 @@
       previous: '上一页',
       next: '下一页',
       send: '传递结果',
+      transferHelp:
+        '选择结果、目标计算器和输入项。这会一次性复制数值，不会换算单位或持续关联两个计算器。',
 
       result: '要传递的结果',
       destination: '目标计算器',
@@ -694,7 +701,7 @@
     preview();
   }
   function preview() {
-    const n = $('transfer-value').value,
+    const n = $('transfer-value').selectedOptions[0]?.textContent || '',
       d = $('transfer-destination').selectedOptions[0]?.textContent || '',
       f = $('transfer-field').selectedOptions[0]?.textContent || '';
     $('transfer-preview').textContent = t('preview')(n, d, f);
