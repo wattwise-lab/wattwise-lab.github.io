@@ -1,112 +1,52 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Savings Goal Calculator | CalcMintly</title><meta name="description" content="Estimate the monthly contribution needed to reach a future savings target.">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
-.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
-h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
-button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
-.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
-.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
-table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
-.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css?v=20261030r2"><script defer src="/assets/cm-catalog-v3.js?v=20261030r2"></script><script defer src="/assets/cm-tool-page.js?v=20261030r2"></script><link rel="canonical" href="https://calcmintly.com/savings-goal-calculator"></head><body><div class="wrap">
-<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<!DOCTYPE html><html lang="en" dir="ltr" data-cm-localized-routes=""><head><meta charset="utf-8"><meta data-cm-csp="" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-AT6XjeqQJ4voTOJPbOupT4EVXH34NithgNrH2f/HKwY=' 'sha256-+d1o6d0f7D23tomDgVt5vFdqvWyoCX9JnxKk3lCZYR8=' 'sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww=' 'sha256-qcsWf1U4RppQLeQR7ciUbu/kY6ArGRNA6Bd+bqGiVoo=' 'sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk=' 'sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw=' 'sha256-2P8S128ep0K1qIcH6l1HL8uaMifutiTY/cEUV9OiGxE=' 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Savings Goal Calculator: Formula &amp; Examples | CalcMintly</title>
+<script type="application/ld+json" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebApplication&quot;,&quot;name&quot;:&quot;Savings Goal Calculator&quot;,&quot;url&quot;:&quot;https://calcmintly.com/savings-goal-calculator&quot;,&quot;applicationCategory&quot;:&quot;UtilitiesApplication&quot;,&quot;operatingSystem&quot;:&quot;Any&quot;,&quot;isAccessibleForFree&quot;:true,&quot;browserRequirements&quot;:&quot;Requires JavaScript for interactive calculations.&quot;,&quot;inLanguage&quot;:&quot;en&quot;}">{"@context":"https://schema.org","@type":"WebApplication","name":"Savings Goal Calculator","url":"https://calcmintly.com/savings-goal-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript for interactive calculations.","inLanguage":"en"}</script><link rel="stylesheet" href="/assets/dist/cm-commercial.98b9fa3e84d9.css"><link rel="stylesheet" href="/assets/dist/savings-goal-calculator.00da85512516.css"><link rel="stylesheet" href="/assets/dist/cm-shell.d3e7f1af5d14.css"><script defer="" src="/assets/dist/savings-goal-calculator.f9dd68e9dd1f.js" integrity="sha256-+d1o6d0f7D23tomDgVt5vFdqvWyoCX9JnxKk3lCZYR8="></script><script defer="" src="/assets/dist/cm-common.265117df7439.js" integrity="sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww="></script><script defer="" src="/assets/dist/savings-goal-calculator-1.a9cb167f5538.js" integrity="sha256-qcsWf1U4RppQLeQR7ciUbu/kY6ArGRNA6Bd+bqGiVoo="></script><script defer="" src="/assets/dist/cm-tool-page.fe0ed29a5900.js" integrity="sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk="></script><script defer="" src="/assets/dist/cm-shell.9e69ef0db8e5.js" integrity="sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw="></script><meta name="description" content="Savings Goal Calculator. Estimate the monthly contribution needed to reach a future savings target. Review the formula and limits. Compare your assumptions."><meta name="twitter:title" content="Savings Goal Calculator: Formula &amp; Examples | CalcMintly"><meta name="twitter:description" content="Savings Goal Calculator. Estimate the monthly contribution needed to reach a future savings target. Review the formula and limits. Compare your assumptions."><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow"><meta property="og:title" content="Savings Goal Calculator: Formula &amp; Examples | CalcMintly"><meta property="og:description" content="Savings Goal Calculator. Estimate the monthly contribution needed to reach a future savings target. Review the formula and limits. Compare your assumptions."><meta property="og:url" content="https://calcmintly.com/savings-goal-calculator"><meta property="og:type" content="website"><link rel="canonical" href="https://calcmintly.com/savings-goal-calculator"><meta property="og:image" content="https://calcmintly.com/assets/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CalcMintly calculator library"><meta name="twitter:image" content="https://calcmintly.com/assets/share-card.png"><script type="application/ld+json" data-cm-breadcrumb="" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;CalcMintly&quot;,&quot;item&quot;:&quot;https://calcmintly.com/&quot;},{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;Savings Goal Calculator&quot;,&quot;item&quot;:&quot;https://calcmintly.com/savings-goal-calculator&quot;}]}">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcMintly","item":"https://calcmintly.com/"},{"@type":"ListItem","position":2,"name":"Savings Goal Calculator","item":"https://calcmintly.com/savings-goal-calculator"}]}</script><meta property="og:locale" content="en"><link rel="alternate" hreflang="en" href="https://calcmintly.com/savings-goal-calculator"><link rel="alternate" hreflang="zh-CN" href="https://calcmintly.com/zh-cn/savings-goal-calculator"><link rel="alternate" hreflang="hi" href="https://calcmintly.com/hi/savings-goal-calculator"><link rel="alternate" hreflang="es" href="https://calcmintly.com/es/savings-goal-calculator"><link rel="alternate" hreflang="ar" href="https://calcmintly.com/ar/savings-goal-calculator"><link rel="alternate" hreflang="fr" href="https://calcmintly.com/fr/savings-goal-calculator"><link rel="alternate" hreflang="bn" href="https://calcmintly.com/bn/savings-goal-calculator"><link rel="alternate" hreflang="pt" href="https://calcmintly.com/pt/savings-goal-calculator"><link rel="alternate" hreflang="id" href="https://calcmintly.com/id/savings-goal-calculator"><link rel="alternate" hreflang="ur" href="https://calcmintly.com/ur/savings-goal-calculator"><link rel="alternate" hreflang="ru" href="https://calcmintly.com/ru/savings-goal-calculator"><link rel="alternate" hreflang="de" href="https://calcmintly.com/de/savings-goal-calculator"><link rel="alternate" hreflang="ja" href="https://calcmintly.com/ja/savings-goal-calculator"><link rel="alternate" hreflang="pcm" href="https://calcmintly.com/pcm/savings-goal-calculator"><link rel="alternate" hreflang="mr" href="https://calcmintly.com/mr/savings-goal-calculator"><link rel="alternate" hreflang="vi" href="https://calcmintly.com/vi/savings-goal-calculator"><link rel="alternate" hreflang="te" href="https://calcmintly.com/te/savings-goal-calculator"><link rel="alternate" hreflang="sw" href="https://calcmintly.com/sw/savings-goal-calculator"><link rel="alternate" hreflang="ha" href="https://calcmintly.com/ha/savings-goal-calculator"><link rel="alternate" hreflang="tr" href="https://calcmintly.com/tr/savings-goal-calculator"><link rel="alternate" hreflang="x-default" href="https://calcmintly.com/savings-goal-calculator"></head><body class="cm-unified" data-cm-title-en="Savings Goal Calculator: Formula &amp; Examples | CalcMintly" data-cm-page-name="Savings Goal Calculator" data-cm-page-purpose="Estimate the monthly contribution needed to reach a future savings target." data-cm-description-en="Savings Goal Calculator. Estimate the monthly contribution needed to reach a future savings target. Review the formula and limits. Compare your assumptions." data-cm-page-kind="calculator"><noscript><p class="cm-no-script">Interactive features need JavaScript. Page content and links remain available.</p></noscript><a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">Skip to calculators</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="/" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a></nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">Language</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language=""><option value="en" selected="">English</option><option value="zh-CN">简体中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="fr">Français</option><option value="bn">বাংলা</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option><option value="ur">اردو</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="pcm">Nigerian Pidgin</option><option value="mr">मराठी</option><option value="vi">Tiếng Việt</option><option value="te">తెలుగు</option><option value="sw">Kiswahili</option><option value="ha">Hausa</option><option value="tr">Türkçe</option></select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></summary><nav aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a><a href="/basic-calculator" data-cm-href="/basic-calculator" data-cm-i18n="basic">Pocket calculator</a><a href="/scientific-calculator" data-cm-href="/scientific-calculator" data-cm-i18n="scientific">Scientific calculator</a><a href="/about" data-cm-href="/about" data-cm-i18n="about">About</a></nav></details></div></div></header><main class="wrap" id="main-content">
+
 <p><span class="tag">Finance</span></p>
 <h1>Savings Goal Calculator</h1>
-<p class="sub">Estimate the monthly contribution needed to reach a future savings target.</p>
+<p class="sub" data-cm-pair="Estimate the monthly contribution needed to reach a future savings target.|从目标金额倒推，估算每月需要存多少钱。">Estimate the monthly contribution needed to reach a future savings target.</p>
 <div class="hero">
-<section class="card"><h2>Your numbers</h2><div class="grid">
-<div><label for="target">Target amount ($)</label><input id="target" type="number" value="50000" min="0" step="any"></div>
-<div><label for="current">Current amount ($)</label><input id="current" type="number" value="5000" min="0" step="any"></div>
-<div><label for="rate">Annual rate (%)</label><input id="rate" type="number" value="3" min="0" step="any"></div>
-<div><label for="years">Years</label><input id="years" type="number" value="5" min="0" step="any"></div>
+<section class="card"><h2 data-cm-i18n="inputs">Your numbers</h2><div class="grid">
+<div><label for="target">Target amount ($)</label><input id="target" type="number" value="50000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="current">Current amount ($)</label><input id="current" type="number" value="5000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="rate">Annual rate (%)</label><input id="rate" type="number" value="3" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="years">Years</label><input id="years" type="number" value="5" min="0" step="any" max="1000" required=""></div>
 </div>
-<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy summary</button></p>
+<p><button class="primary" data-cm-action="reset">Reset example</button><button data-cm-action="copy">Copy summary</button></p>
 <p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
 <section class="card"><h2>Required monthly contribution</h2><p class="big" id="main">—</p>
 <div class="chips"><span class="chip">Current amount grown: <strong id="chip1">—</strong></span><span class="chip">Still to save: <strong id="chip2">—</strong></span><span class="chip">Total you will add: <strong id="chip3">—</strong></span></div>
 <div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
 </div>
-<section class="card"><h2>How the target is reached</h2><div class="tblwrap"><table><tr><th></th><th class="num">Amount</th></tr><tr><td>Current amount grown to the goal date</td><td class="num" data-cell id="cGrow">—</td></tr>
-<tr><td>Gap the contributions must cover</td><td class="num" data-cell id="cGap">—</td></tr>
-<tr><td>Total monthly contributions</td><td class="num" data-cell id="cAdd">—</td></tr>
-<tr><td>Interest on the plan</td><td class="num" data-cell id="cInt">—</td></tr>
-</table></div></section>
+<section class="card"><h2>How the target is reached</h2><div class="tblwrap"><table><tbody><tr><th></th><th class="num">Amount</th></tr><tr><td>Current amount grown to the goal date</td><td class="num" data-cell="" id="cGrow">—</td></tr>
+<tr><td>Gap the contributions must cover</td><td class="num" data-cell="" id="cGap">—</td></tr>
+<tr><td>Total monthly contributions</td><td class="num" data-cell="" id="cAdd">—</td></tr>
+<tr><td>Interest on the plan</td><td class="num" data-cell="" id="cInt">—</td></tr>
+</tbody></table></div></section>
 <section class="card"><h2>What makes up the target</h2>
 <div class="bar-row"><label><span>Current amount, grown</span><span id="barAVal">—</span></label><div class="bar"><i id="barA" style="width:50%"></i></div></div>
 <div class="bar-row"><label><span>Your contributions</span><span id="barBVal">—</span></label><div class="bar"><i id="barB" style="width:50%"></i></div></div>
 <div class="bar-row"><label><span>Interest on contributions</span><span id="barCVal">—</span></label><div class="bar"><i id="barC" style="width:50%"></i></div></div>
 <p class="muted">Bars are scaled to the target. Interest on the contributions is the part of the target neither your current savings nor your monthly payments cover directly.</p></section>
-<section class="card"><h2>Balance by year on this plan</h2><div class="tblwrap"><table><tr><th>Year</th><th class="num">Balance</th></tr><tbody id="pathRows"></tbody></table></div><p class="muted">Contributions are end-of-month and the rate is fixed. The final year lands on the target when the gap is positive.</p></section>
-<section class="card"><h2>Formula</h2>
-<p>Monthly rate = annual rate &divide; 12. Grown current amount = current amount &times; (1 + monthly rate)<sup>months</sup>. Required contribution = (target &minus; grown current amount) &divide; [((1 + monthly rate)<sup>months</sup> &minus; 1) &divide; monthly rate]. If the grown current amount already reaches the target, the required contribution is $0.</p></section>
-<section class="card"><h2>Worked example</h2>
-<p>Target $50,000 in 5 years, starting from $5,000 at 3%: the $5,000 grows to $5,808.08, leaving a gap of $44,191.92. Spread over 60 end-of-month contributions at 0.25% a month, the required contribution is $44,191.92 &divide; 64.65 = $683.59 a month.</p></section>
-<section class="card"><h2>Scope and limitations</h2>
+<section class="card"><h2>Balance by year on this plan</h2><div class="tblwrap"><table><tbody><tr><th>Year</th><th class="num">Balance</th></tr></tbody><tbody id="pathRows"></tbody></table></div><p class="muted">Contributions are end-of-month and the rate is fixed. The final year lands on the target when the gap is positive.</p></section>
+<section class="card" data-cm-section="formula"><h2>Formula</h2>
+<p>Monthly rate = annual rate ÷ 12. Grown current amount = current amount × (1 + monthly rate)<sup>months</sup>. Required contribution = (target − grown current amount) ÷ [((1 + monthly rate)<sup>months</sup> − 1) ÷ monthly rate]. If the grown current amount already reaches the target, the required contribution is $0.</p></section>
+<section class="card" data-cm-section="example"><h2>Worked example</h2>
+<p>Target $50,000 in 5 years, starting from $5,000 at 3%: the $5,000 grows to $5,808.08, leaving a gap of $44,191.92. Spread over 60 end-of-month contributions at 0.25% a month, the required contribution is $44,191.92 ÷ 64.65 = $683.59 a month.</p></section>
+<section class="card" data-cm-section="scope"><h2>Scope and limitations</h2>
 <p>The rate is assumed constant, contributions are never missed, and taxes, fees, and inflation are ignored, so the target is in nominal dollars. If the current amount already grows past the target, no contribution is required and the plan is already funded on these assumptions.</p></section>
-<section class="card"><h2>FAQ</h2>
+<section class="card" data-cm-section="faq"><h2>FAQ</h2>
 <h3>What if my current savings already grow past the target?</h3><p>Then the required contribution is $0. The calculator shows the grown current amount above the target, and you do not need to add anything on these assumptions.</p>
 <h3>Why does a higher rate lower the monthly amount?</h3><p>Because interest covers more of the gap. But a higher assumed rate is also a riskier assumption: if the real return is lower, the plan falls short.</p>
 <h3>Are contributions at the start or end of the month?</h3><p>End of the month, matching the source calculator. Starting a month earlier would lower the required amount slightly.</p>
 <h3>Should the target be adjusted for inflation?</h3><p>This calculator works in nominal dollars. If the target is a future price, enter the inflated future figure, not today's price.</p>
 <h3>What if I cannot afford the required amount?</h3><p>Extend the time horizon, raise the assumed rate only if you can justify it, or lower the target. The calculator shows the trade directly when you change years.</p>
 </section>
-<section class="card"><h2>Related tools</h2><ul>
-<li><a href="https://calcmintly.com/compound-interest-calculator">Compound Interest Calculator</a> — project growth forward instead of solving backwards</li>
-<li><a href="https://calcmintly.com/retirement-calculator">Retirement Calculator</a> — a long-horizon version of the same idea</li>
-<li><a href="https://calcmintly.com/emergency-runway">Emergency Runway Calculator</a> — how long savings cover spending</li>
+<section class="card" data-cm-section="related"><h2>Related tools</h2><ul>
+<li><a href="/compound-interest-calculator" data-cm-href="/compound-interest-calculator">Compound Interest Calculator</a> — project growth forward instead of solving backwards</li>
+<li><a href="/retirement-calculator" data-cm-href="/retirement-calculator">Retirement Calculator</a> — a long-horizon version of the same idea</li>
+<li><a href="/emergency-runway" data-cm-href="/emergency-runway">Emergency Fund Runway</a> — how long savings cover spending</li>
 </ul></section>
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
-</div>
-<script>
-const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
-const pct=n=>(Number(n)*100).toLocaleString("en-US",{maximumFractionDigits:2})+"%";
-const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
-function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
-function simPayoff(bal,rate,pay){let m=0, intr=0; while(bal>0.005 && m<1200){const i=bal*rate/12; intr+=i; const p=Math.min(pay,bal+i); bal=bal+i-p; m++;} return {months:m,interest:intr,paidOff:bal<=0.005};}
-function compute(v){
-  if(v.target<0 || v.current<0 || v.rate<0 || !(v.years>0)) return {invalid:true, message:"Enter target, current amount, and rate at zero or above, and years above zero."};
-  const r=v.rate/100/12, n=Math.round(v.years*12);
-  const grown=v.current*Math.pow(1+r,n);
-  const gap=Math.max(0,v.target-grown);
-  const fac=r===0?n:(Math.pow(1+r,n)-1)/r;
-  const req=gap/fac, added=req*n, intr=Math.max(0,v.target-grown-added);
-  const rows=[]; for(let y=1;y<=v.years;y++){const nn=y*12; const bal=v.current*Math.pow(1+r,nn)+(r===0?req*nn:req*(Math.pow(1+r,nn)-1)/r); rows.push(["Year "+y, money(bal)]);}
-  const mx=Math.max(v.target,1);
-  const verdict=gap===0?"Already funded on these assumptions: your current "+money(v.current)+" grows to "+money(grown)+", which reaches the "+money(v.target)+" target without new contributions.":"To reach "+money(v.target)+" in "+num(v.years)+" years, contribute "+money(req)+" a month. Your current "+money(v.current)+" grows to "+money(grown)+", and the "+money(added)+" you add covers the rest with "+money(intr)+" of interest.";
-  return {main:money(req)+"/mo", chips:[money(grown), money(gap), money(added)], verdict, vclass:gap===0?"":"", cells:{cGrow:money(grown), cGap:money(gap), cAdd:money(added), cInt:money(intr)}, bars:[{bar:"barA", val:"barAVal", pct:grown/mx*100, text:money(grown)},{bar:"barB", val:"barBVal", pct:added/mx*100, text:money(added)},{bar:"barC", val:"barCVal", pct:intr/mx*100, text:money(intr)}], rows:{pathRows:rows}, summary:"Savings goal "+money(v.target)+" in "+num(v.years)+" years: contribute "+money(req)+"/mo from "+money(v.current)+" at "+num(v.rate)+"%. "};
-}
-
-if(typeof document!=="undefined"){
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function render(){
-  const v=get(); const r=compute(v);
-  const set=(id,txt)=>{const el=$(id); if(el) el.textContent=txt;};
-  if(r.invalid){
-    ["main","chip1","chip2","chip3"].forEach(id=>set(id,"—"));
-    document.querySelectorAll("[data-cell]").forEach(el=>el.textContent="—");
-    document.querySelectorAll("tbody[data-rows]").forEach(tb=>tb.innerHTML="");
-    document.querySelectorAll(".bar i").forEach(b=>b.style.width="0%");
-    document.querySelectorAll("[data-barval]").forEach(el=>el.textContent="—");
-    const vd=$("verdict"); if(vd){vd.className="verdict warn"; $("verdictText").textContent=r.message;}
-    window.__summary="";
-    return;
-  }
-  set("main",r.main);
-  (r.chips||[]).forEach((c,i)=>set("chip"+(i+1),c));
-  const vd=$("verdict"); if(vd){vd.className="verdict"+(r.vclass?" "+r.vclass:""); $("verdictText").textContent=r.verdict;}
-  Object.entries(r.cells||{}).forEach(([id,txt])=>set(id,txt));
-  (r.bars||[]).forEach(b=>{const el=$(b.bar); if(el) el.style.width=b.pct+"%"; set(b.val,b.text);});
-  Object.entries(r.rows||{}).forEach(([tb,rows])=>{const el=$(tb); if(el) el.innerHTML=rows.map(row=>"<tr>"+row.map((c,i)=>"<td"+(i>0?" class='num'":"")+">"+c+"</td>").join("")+"</tr>").join("");});
-  window.__summary=r.summary||"";
-}
-function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
-function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-}
-
-</script></body></html>
+</main>
+<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">Local calculations. Results are estimates, not professional advice.</p></div><nav><a data-cm-href="/methodology" data-cm-i18n="methods" href="/methodology">Methodology</a><a data-cm-href="/about" data-cm-i18n="about" href="/about">About</a><a data-cm-href="/privacy" data-cm-i18n="privacy" href="/privacy">Privacy</a><a data-cm-href="/terms" data-cm-i18n="terms" href="/terms">Terms</a><a data-cm-href="/contact" data-cm-i18n="contact" href="/contact">Contact</a></nav></footer></body></html>

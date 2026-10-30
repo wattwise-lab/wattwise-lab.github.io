@@ -1,0 +1,42 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
+
+const INVALID_MSG='Enter distance, fuel economy and fuel price at zero or above, with tolls and parking at zero or above, to see the trip cost.';
+function calc(v){
+ if(!(v.dist>=0&&v.econ>=0&&v.price>=0&&v.tolls>=0)) return null;
+ const litres=v.dist/100*v.econ, fc=litres*v.price, total=fc+v.tolls, perKm=v.dist>0?total/v.dist:0;
+ return {big:money(total),
+  chips:[["Fuel used",num(litres)+" L"],["Fuel cost",money(fc)],["Cost per km",money(perKm)]],
+  rows:[["Fuel used",num(litres)+" L"],["Fuel cost",money(fc)],["Tolls and parking",money(v.tolls)],["Total trip cost",money(total)],["Cost per km",money(perKm)],["Cost per 100 km",money(perKm*100)]],
+  bars:[["Fuel cost",fc,money(fc)],["Tolls and parking",v.tolls,money(v.tolls)]],
+  cum:[100,250,500,1000].map(function(d){const f=d/100*v.econ*v.price;return [num(d)+" km",money(f+v.tolls)+" total ("+money(f)+" fuel)"];}),
+  vclass:"",
+  verdict:"Trip cost is "+money(total)+" — "+money(fc)+" fuel ("+num(litres)+" L) plus "+money(v.tolls)+" tolls and parking, or "+money(perKm)+" per km. Real consumption varies with traffic, load and driving style, so treat this as a planning estimate.",
+  summary:"Fuel: "+num(litres)+" L, fuel cost "+money(fc)+", tolls and parking "+money(v.tolls)+", total "+money(total)+"."};}
+
+function render(){
+  const v=get(); const c=calc(v);
+  if(!c){
+    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+  }
+  $("result").textContent=c.big;
+  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
+  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
+  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
+  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
+  window.__summary=c.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

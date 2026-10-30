@@ -1,0 +1,14 @@
+{
+  "Pace Calculator": "حاسبة وتيرة الجري",
+  "Velocity Calculator": "حاسبة السرعة المتوسطة",
+  "Energy Converter": "محوّل الطاقة",
+  "Power Converter": "محوّل القدرة",
+  ". That is 9,811 kcal per week and 42,045 kcal per 30 days. With the male constant (+5 instead of −161) the same inputs give 1,567.5 kcal/day. Use Reset example above to reproduce this result.": ". أي 9,811 kcal في الأسبوع و42,045 kcal لكل 30 يومًا. وباستخدام ثابت الذكور (+5 بدلًا من −161)، تعطي المدخلات نفسها 1,567.5 kcal/day. استخدم «استعادة المثال» أعلاه لإعادة إنتاج هذه النتيجة.",
+  "From 1 January 2026 to 31 December 2026: 364 days, exactly 52 weeks, and a calendar breakdown of 11 months and 30 days. The inclusive count, counting both 1 January and 31 December, is 365 days. Use Reset example above to reproduce this result.": "من 1 يناير 2026 إلى 31 ديسمبر 2026: المدة 364 يومًا، أي 52 أسبوعًا بالضبط، أو 11 شهرًا و30 يومًا وفق التقويم. وباحتساب يومَي 1 يناير و31 ديسمبر معًا يصبح العدد 365 يومًا. استخدم «استعادة المثال» أعلاه لإعادة إنتاج النتيجة.",
+  "Specific heat A (J/kg·K)": "الحرارة النوعية للمادة A ‏(J/kg·K)",
+  "Specific heat (J/kg·K)": "الحرارة النوعية (J/kg·K)",
+  "Average Speed Calculator": "حاسبة السرعة المتوسطة",
+  "BMI Prime:": "BMI Prime:",
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "At 175 cm and 72.6 kg: BMI = 72.6 ÷ 1.75² ≈ 23.7, BMI Prime ≈ 0.95, and Ponderal Index ≈ 13.5 kg/m³. The reference weight thresholds are 18.5 × 1.75² = 56.65625 kg and 25 × 1.75² = 76.5625 kg, with the upper threshold excluded. Rounded for display: 56.7–<76.6 kg. Select metric units and enter these values to reproduce the example.": "عند طول 175 cm ووزن 72.6 kg: BMI = 72.6 ÷ 1.75² ≈ 23.7، وBMI Prime ≈ 0.95، ومؤشر بوندرال ≈ 13.5 kg/m³. حدا الوزن المرجعي هما 18.5 × 1.75² = 56.65625 kg و25 × 1.75² = 76.5625 kg، مع استبعاد الحد الأعلى. بعد التقريب للعرض: 56.7–<76.6 kg. اختر الوحدات المترية وأدخل هذه القيم لإعادة حساب المثال."
+}

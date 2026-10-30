@@ -1,0 +1,17 @@
+{
+  "Current Ratio": "流動比率",
+  "Quick Ratio": "当座比率",
+  "Bars are scaled to the larger cost component and show whether input or output tokens dominate the bill.": "棒グラフは費用の大きい方を基準に表示し、入力トークンと出力トークンのどちらが請求額の大部分を占めるかを示します。",
+  ". That is 9,811 kcal per week and 42,045 kcal per 30 days. With the male constant (+5 instead of −161) the same inputs give 1,567.5 kcal/day. Use Reset example above to reproduce this result.": "。これは週に 9,811 kcal、30 日間で 42,045 kcal に相当します。男性用の定数（−161 ではなく +5）を使うと、同じ入力で 1,567.5 kcal/day になります。上の「例をリセット」で再現できます。",
+  "Estimate exercise energy expenditure from MET intensity, body weight, and duration.": "MET 強度、体重、運動時間から運動によるエネルギー消費量を推定します。",
+  "This is a calendar-day count, not a live hours-and-minutes countdown, and it depends on the device's local date when the from date is left blank. Leap years are handled by the calendar: the count between two dates automatically includes 29 February in leap years. Times of day and time zones are ignored; both dates are treated as whole local calendar days.": "これは暦日の日数計算で、時間・分が刻々と変わるカウントダウンではありません。開始日が空欄なら端末の現地日付を使います。うるう年は暦に従って処理し、期間中の 二月 29 日も自動で数えます。時刻とタイムゾーンは扱わず、両方の日付を現地の暦日として扱います。",
+  "Base SI units here: volts, amps, ohms, watts. For milliamps, divide by 1,000 first (500 mA = 0.5 A); for kilohms, multiply by 1,000 (4.7 kΩ = 4700 Ω).": "ここでは SI の基本的な単位として V、A、Ω、W を使います。ミリアンペアは先に 1,000 で割ります（500 mA = 0.5 A）。キロオームは 1,000 を掛けます（4.7 kΩ = 4700 Ω）。",
+  "Both loans are fixed-rate with no fees beyond the closing-cost input, no cash-out, and no change in balance at refinancing. Taxes, insurance, HOA dues, and private mortgage insurance are not included. A longer new term can lower the payment while raising total interest — the comparison table shows that trade directly. Rate changes, points bought separately from closing costs, and tax effects are not modeled.": "両方のローンは固定金利で、入力した借り換え諸費用以外の手数料、現金の追加借入れ、借り換え時の元本残高変更はないものとします。税金、保険、HOA 会費、民間住宅ローン保険は含みません。新しい返済期間を延ばすと月額は減っても総利息は増える場合があり、比較表でその関係を示します。金利変動、諸費用とは別に購入する金利引下げポイント、税効果は扱いません。",
+  "All four units describe the same volume; gallons here are US liquid gallons, not UK imperial gallons.": "これら四つの単位は同じ体積を表します。ここでのガロンは米国液量ガロンで、英国のインペリアルガロンではありません。",
+  "Specific heat B (J/kg·K)": "物質 B の比熱（J/kg·K）",
+  "Specific heat (J/kg·K)": "比熱（J/kg·K）",
+  "Pace per 100 m": "100 m 当たりのペース",
+  "Average Speed Calculator": "平均の速さ計算機",
+  "BMI Prime:": "BMI Prime:",
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)"
+}

@@ -1,29 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gross Margin Calculator | CalcMintly</title><meta name="description" content="Calculate gross profit, gross margin, and the cost-of-goods ratio.">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
-.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
-h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
-button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
-.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
-.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
-table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
-.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css?v=20261030r2"><script defer src="/assets/cm-catalog-v3.js?v=20261030r2"></script><script defer src="/assets/cm-tool-page.js?v=20261030r2"></script><link rel="canonical" href="https://calcmintly.com/gross-margin-calculator"></head><body><div class="wrap">
-<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<!DOCTYPE html><html lang="en" dir="ltr" data-cm-localized-routes=""><head><meta charset="utf-8"><meta data-cm-csp="" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-OckFq66EjG8dv1CsqypMhgS461yubYSQn/Zy1/iH+8A=' 'sha256-MTbrCGK8Nblwv3C/wxF8Yw94lb2IF3JE6iRCsXUiwHo=' 'sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww=' 'sha256-SxTJsuVPG7u1a0plYdgPcnLYBWbZ+I7p5hbXr62I/is=' 'sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk=' 'sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw=' 'sha256-99id4vGXutHj3Ux2PbuDAe3ymXejcivwWLST2cTS738=' 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gross Margin Calculator: Formula &amp; Examples | CalcMintly</title>
+<script type="application/ld+json" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebApplication&quot;,&quot;name&quot;:&quot;Gross Margin Calculator&quot;,&quot;url&quot;:&quot;https://calcmintly.com/gross-margin-calculator&quot;,&quot;applicationCategory&quot;:&quot;UtilitiesApplication&quot;,&quot;operatingSystem&quot;:&quot;Any&quot;,&quot;isAccessibleForFree&quot;:true,&quot;browserRequirements&quot;:&quot;Requires JavaScript for interactive calculations.&quot;,&quot;inLanguage&quot;:&quot;en&quot;}">{"@context":"https://schema.org","@type":"WebApplication","name":"Gross Margin Calculator","url":"https://calcmintly.com/gross-margin-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript for interactive calculations.","inLanguage":"en"}</script><link rel="stylesheet" href="/assets/dist/cm-commercial.98b9fa3e84d9.css"><link rel="stylesheet" href="/assets/dist/gross-margin-calculator.00da85512516.css"><link rel="stylesheet" href="/assets/dist/cm-shell.d3e7f1af5d14.css"><script defer="" src="/assets/dist/gross-margin-calculator.3136eb0862bc.js" integrity="sha256-MTbrCGK8Nblwv3C/wxF8Yw94lb2IF3JE6iRCsXUiwHo="></script><script defer="" src="/assets/dist/cm-common.265117df7439.js" integrity="sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww="></script><script defer="" src="/assets/dist/gross-margin-calculator-1.4b14c9b2e54f.js" integrity="sha256-SxTJsuVPG7u1a0plYdgPcnLYBWbZ+I7p5hbXr62I/is="></script><script defer="" src="/assets/dist/cm-tool-page.fe0ed29a5900.js" integrity="sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk="></script><script defer="" src="/assets/dist/cm-shell.9e69ef0db8e5.js" integrity="sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw="></script><meta name="description" content="Gross Margin Calculator. Calculate gross profit, gross margin, and the cost-of-goods ratio. Review the formula and limits. Calculates in your browser."><meta name="twitter:title" content="Gross Margin Calculator: Formula &amp; Examples | CalcMintly"><meta name="twitter:description" content="Gross Margin Calculator. Calculate gross profit, gross margin, and the cost-of-goods ratio. Review the formula and limits. Calculates in your browser."><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow"><meta property="og:title" content="Gross Margin Calculator: Formula &amp; Examples | CalcMintly"><meta property="og:description" content="Gross Margin Calculator. Calculate gross profit, gross margin, and the cost-of-goods ratio. Review the formula and limits. Calculates in your browser."><meta property="og:url" content="https://calcmintly.com/gross-margin-calculator"><meta property="og:type" content="website"><link rel="canonical" href="https://calcmintly.com/gross-margin-calculator"><meta property="og:image" content="https://calcmintly.com/assets/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CalcMintly calculator library"><meta name="twitter:image" content="https://calcmintly.com/assets/share-card.png"><script type="application/ld+json" data-cm-breadcrumb="" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;CalcMintly&quot;,&quot;item&quot;:&quot;https://calcmintly.com/&quot;},{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;Gross Margin Calculator&quot;,&quot;item&quot;:&quot;https://calcmintly.com/gross-margin-calculator&quot;}]}">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcMintly","item":"https://calcmintly.com/"},{"@type":"ListItem","position":2,"name":"Gross Margin Calculator","item":"https://calcmintly.com/gross-margin-calculator"}]}</script><meta property="og:locale" content="en"><link rel="alternate" hreflang="en" href="https://calcmintly.com/gross-margin-calculator"><link rel="alternate" hreflang="zh-CN" href="https://calcmintly.com/zh-cn/gross-margin-calculator"><link rel="alternate" hreflang="hi" href="https://calcmintly.com/hi/gross-margin-calculator"><link rel="alternate" hreflang="es" href="https://calcmintly.com/es/gross-margin-calculator"><link rel="alternate" hreflang="ar" href="https://calcmintly.com/ar/gross-margin-calculator"><link rel="alternate" hreflang="fr" href="https://calcmintly.com/fr/gross-margin-calculator"><link rel="alternate" hreflang="bn" href="https://calcmintly.com/bn/gross-margin-calculator"><link rel="alternate" hreflang="pt" href="https://calcmintly.com/pt/gross-margin-calculator"><link rel="alternate" hreflang="id" href="https://calcmintly.com/id/gross-margin-calculator"><link rel="alternate" hreflang="ur" href="https://calcmintly.com/ur/gross-margin-calculator"><link rel="alternate" hreflang="ru" href="https://calcmintly.com/ru/gross-margin-calculator"><link rel="alternate" hreflang="de" href="https://calcmintly.com/de/gross-margin-calculator"><link rel="alternate" hreflang="ja" href="https://calcmintly.com/ja/gross-margin-calculator"><link rel="alternate" hreflang="pcm" href="https://calcmintly.com/pcm/gross-margin-calculator"><link rel="alternate" hreflang="mr" href="https://calcmintly.com/mr/gross-margin-calculator"><link rel="alternate" hreflang="vi" href="https://calcmintly.com/vi/gross-margin-calculator"><link rel="alternate" hreflang="te" href="https://calcmintly.com/te/gross-margin-calculator"><link rel="alternate" hreflang="sw" href="https://calcmintly.com/sw/gross-margin-calculator"><link rel="alternate" hreflang="ha" href="https://calcmintly.com/ha/gross-margin-calculator"><link rel="alternate" hreflang="tr" href="https://calcmintly.com/tr/gross-margin-calculator"><link rel="alternate" hreflang="x-default" href="https://calcmintly.com/gross-margin-calculator"></head><body class="cm-unified" data-cm-title-en="Gross Margin Calculator: Formula &amp; Examples | CalcMintly" data-cm-page-name="Gross Margin Calculator" data-cm-page-purpose="Calculate gross profit, gross margin, and the cost-of-goods ratio." data-cm-description-en="Gross Margin Calculator. Calculate gross profit, gross margin, and the cost-of-goods ratio. Review the formula and limits. Calculates in your browser." data-cm-page-kind="calculator"><noscript><p class="cm-no-script">Interactive features need JavaScript. Page content and links remain available.</p></noscript><a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">Skip to calculators</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="/" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a></nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">Language</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language=""><option value="en" selected="">English</option><option value="zh-CN">简体中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="fr">Français</option><option value="bn">বাংলা</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option><option value="ur">اردو</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="pcm">Nigerian Pidgin</option><option value="mr">मराठी</option><option value="vi">Tiếng Việt</option><option value="te">తెలుగు</option><option value="sw">Kiswahili</option><option value="ha">Hausa</option><option value="tr">Türkçe</option></select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></summary><nav aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a><a href="/basic-calculator" data-cm-href="/basic-calculator" data-cm-i18n="basic">Pocket calculator</a><a href="/scientific-calculator" data-cm-href="/scientific-calculator" data-cm-i18n="scientific">Scientific calculator</a><a href="/about" data-cm-href="/about" data-cm-i18n="about">About</a></nav></details></div></div></header><main class="wrap" id="main-content">
+
 <p><span class="tag">Business</span></p>
 <h1>Gross Margin Calculator</h1>
-<p class="sub">Calculate gross profit, gross margin, and the cost-of-goods ratio from revenue and cost of goods sold.</p>
+<p class="sub" data-cm-pair="Calculate gross profit, gross margin, and the cost-of-goods ratio.|根据收入与销售成本，计算毛利润和毛利率。">Calculate gross profit, gross margin, and the cost-of-goods ratio.</p>
 
 <div class="hero">
-<section class="card"><h2>Your numbers</h2><div class="grid">
-<div><label for="revenue">Revenue ($)</label><input id="revenue" type="number" value="100000" min="0" step="any"></div>
-<div><label for="cogs">Cost of goods sold ($)</label><input id="cogs" type="number" value="60000" min="0" step="any"></div>
+<section class="card"><h2 data-cm-i18n="inputs">Your numbers</h2><div class="grid">
+<div><label for="revenue">Revenue ($)</label><input id="revenue" type="number" value="100000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="cogs">Cost of goods sold ($)</label><input id="cogs" type="number" value="60000" min="0" step="any" max="1000000000000000" required=""></div>
 </div>
-<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy result</button></p>
+<p><button class="primary" data-cm-action="reset">Reset example</button><button data-cm-action="copy">Copy result</button></p>
 <p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
 
 <section class="card"><h2>Gross margin</h2><p class="big" id="result">—</p>
@@ -32,7 +20,7 @@ table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overf
 </div>
 
 <section class="card"><h2>Breakdown</h2>
-<div class="tblwrap"><table><tr><th></th><th class="num">Amount</th></tr><tbody id="tblRows"></tbody></table></div>
+<div class="tblwrap"><table><tbody><tr><th></th><th class="num">Amount</th></tr></tbody><tbody id="tblRows"></tbody></table></div>
 <p class="muted">Gross profit is revenue minus cost of goods sold only — operating expenses are not deducted here.</p></section>
 
 <section class="card"><h2>At a glance</h2>
@@ -40,69 +28,26 @@ table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overf
 <p class="muted">The two bars together equal revenue. A longer gross-profit bar means a higher margin.</p></section>
 
 <section class="card"><h2>Margin at different revenue levels</h2>
-<div class="tblwrap"><table><tr><th>Revenue</th><th class="num">Gross margin</th></tr><tbody id="scenRows"></tbody></table></div>
+<div class="tblwrap"><table><tbody><tr><th>Revenue</th><th class="num">Gross margin</th></tr></tbody><tbody id="scenRows"></tbody></table></div>
 <p class="muted">Cost of goods sold is held at the value above; only revenue changes across rows.</p></section>
 
-<section class="card"><h2>Formula</h2>
-<p>Gross profit = revenue &minus; cost of goods sold. Gross margin = gross profit &divide; revenue &times; 100%. COGS ratio = cost of goods sold &divide; revenue &times; 100%.</p></section>
+<section class="card" data-cm-section="formula"><h2>Formula</h2>
+<p>Gross profit = revenue − cost of goods sold. Gross margin = gross profit ÷ revenue × 100%. COGS ratio = cost of goods sold ÷ revenue × 100%.</p></section>
 
-<section class="card"><h2>Worked example</h2>
-<p>Revenue $100,000, cost of goods sold $60,000: gross profit = $100,000 &minus; $60,000 = $40,000, gross margin = $40,000 &divide; $100,000 &times; 100% = 40.00%, and COGS ratio = 60.00%.</p></section>
+<section class="card" data-cm-section="example"><h2>Worked example</h2>
+<p>Revenue $100,000, cost of goods sold $60,000: gross profit = $100,000 − $60,000 = $40,000, gross margin = $40,000 ÷ $100,000 × 100% = 40.00%, and COGS ratio = 60.00%.</p></section>
 
-<section class="card"><h2>Scope and limitations</h2>
+<section class="card" data-cm-section="scope"><h2>Scope and limitations</h2>
 <p>Gross profit excludes operating expenses such as payroll, rent, marketing, interest, and tax. A healthy gross margin can still accompany an operating loss once those costs are counted — use the profit calculator for the fuller picture.</p></section>
 
-<section class="card"><h2>FAQ</h2>
-<h3>How does the gross margin calculator work?</h3><p>Gross profit = revenue &minus; cost of goods sold; gross margin = gross profit &divide; revenue &times; 100%. It measures what is left after the direct cost of what you sold.</p><h3>What is the difference from net margin?</h3><p>Net margin deducts everything, including operating expenses, interest, and tax. Gross margin stops at cost of goods sold, so it is higher and says nothing about overhead.</p><h3>Can gross margin be negative?</h3><p>Yes, if cost of goods sold exceeds revenue — each sale loses money before any operating cost is even counted. That needs a price or sourcing fix, not cost-cutting elsewhere.</p><h3>What counts as cost of goods sold?</h3><p>Direct costs of producing or buying what you sold: materials, direct labor, and wholesale purchase cost. Rent and marketing are operating expenses, not COGS.</p><h3>Why does the margin change with revenue alone?</h3><p>Because COGS is held fixed in the scenario table. In reality COGS usually rises with volume, so read that table as a what-if, not a forecast.</p><h3>Is a higher gross margin always better?</h3><p>Generally, but not at any price: raising prices to lift margin can cut volume enough to reduce total gross profit. Margin percent and total profit must be read together.</p></section>
+<section class="card" data-cm-section="faq"><h2>FAQ</h2>
+<h3>How does the gross margin calculator work?</h3><p>Gross profit = revenue − cost of goods sold; gross margin = gross profit ÷ revenue × 100%. It measures what is left after the direct cost of what you sold.</p><h3>What is the difference from net margin?</h3><p>Net margin deducts everything, including operating expenses, interest, and tax. Gross margin stops at cost of goods sold, so it is higher and says nothing about overhead.</p><h3>Can gross margin be negative?</h3><p>Yes, if cost of goods sold exceeds revenue — each sale loses money before any operating cost is even counted. That needs a price or sourcing fix, not cost-cutting elsewhere.</p><h3>What counts as cost of goods sold?</h3><p>Direct costs of producing or buying what you sold: materials, direct labor, and wholesale purchase cost. Rent and marketing are operating expenses, not COGS.</p><h3>Why does the margin change with revenue alone?</h3><p>Because COGS is held fixed in the scenario table. In reality COGS usually rises with volume, so read that table as a what-if, not a forecast.</p><h3>Is a higher gross margin always better?</h3><p>Generally, but not at any price: raising prices to lift margin can cut volume enough to reduce total gross profit. Margin percent and total profit must be read together.</p></section>
 
-<section class="card"><h2>Related tools</h2><ul>
-<li><a href="https://calcmintly.com/profit-calculator">Profit Calculator</a> — margin after all costs</li><li><a href="https://calcmintly.com/break-even-calculator">Break Even Calculator</a> — the volume that covers fixed costs</li><li><a href="https://calcmintly.com/discount-calculator">Discount Calculator</a> — how discounts compress margin</li>
+<section class="card" data-cm-section="related"><h2>Related tools</h2><ul>
+<li><a href="/profit-calculator" data-cm-href="/profit-calculator">Profit Calculator</a> — margin after all costs</li><li><a href="/break-even-calculator" data-cm-href="/break-even-calculator">Break Even Calculator</a> — the volume that covers fixed costs</li><li><a href="/discount-calculator" data-cm-href="/discount-calculator">Discount Calculator</a> — how discounts compress margin</li>
 </ul></section>
 
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
-</div>
-<script>
-const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
-const pct=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2})+"%";
-const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function calc(v){
-  if(!(v.revenue>0)||v.cogs<0) return {valid:false};
-  const gp=v.revenue-v.cogs, margin=gp/v.revenue*100, ratio=v.cogs/v.revenue*100;
-  const scen=[80000,100000,120000].map(r=>["$"+num(r), pct((r-v.cogs)/r*100)]);
-  return {valid:true, big:pct(margin), chips:{chipGp:money(gp), chipRatio:pct(ratio)},
-   rows:[["Revenue",money(v.revenue)],["Cost of goods sold",money(v.cogs)],["Gross profit",money(gp)],["Gross margin",pct(margin)],["COGS ratio",pct(ratio)]],
-   scen:scen, barA:v.cogs, barB:gp, barAText:money(v.cogs), barBText:money(gp), barBBad:gp<0,
-   vclass:gp<0?"bad":margin<20?"warn":"", vtext:gp<0?("Negative gross margin: cost of goods sold exceeds revenue by "+money(-gp)+"."):("Gross profit "+money(gp)+" on revenue of "+money(v.revenue)+"; each revenue dollar keeps "+pct(margin)+" before operating expenses."),
-   summary:"Gross margin "+pct(margin)+" (gross profit "+money(gp)+", revenue "+money(v.revenue)+", COGS "+money(v.cogs)+")."};
-}
-function render(){
-  const v=get(); const r=calc(v);
-  if(!r.valid){
-    $("result").textContent="—";
-    $("chipGp").textContent="—";
-    $("chipRatio").textContent="—";
-    $("tblRows").innerHTML=""; $("scenRows").innerHTML="";
-    $("barA").style.width="0%"; $("barB").style.width="0%"; $("barAVal").textContent="—"; $("barBVal").textContent="—";
-    const vd=$("verdict"); vd.className="verdict warn";
-    $("verdictText").textContent="Enter revenue above zero, with cost of goods sold at zero or above, to see gross margin.";
-    window.__summary="";
-    return;
-  }
-  $("result").textContent=r.big;
-  Object.keys(r.chips).forEach(k=>{$(k).textContent=r.chips[k];});
-  $("tblRows").innerHTML=r.rows.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  $("scenRows").innerHTML=r.scen.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  const mx=Math.max(Math.abs(r.barA),Math.abs(r.barB),1);
-  $("barA").style.width=(Math.abs(r.barA)/mx*100)+"%"; $("barAVal").textContent=r.barAText;
-  $("barB").style.width=(Math.abs(r.barB)/mx*100)+"%"; $("barBVal").textContent=r.barBText;
-  $("barB").className=r.barBBad?"newbad":"new";
-  const vd=$("verdict"); vd.className="verdict"+(r.vclass?" "+r.vclass:"");
-  $("verdictText").textContent=r.vtext;
-  window.__summary=r.summary;
-}
-function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
-function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-</script></body></html>
+</main>
+
+<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">Local calculations. Results are estimates, not professional advice.</p></div><nav><a data-cm-href="/methodology" data-cm-i18n="methods" href="/methodology">Methodology</a><a data-cm-href="/about" data-cm-i18n="about" href="/about">About</a><a data-cm-href="/privacy" data-cm-i18n="privacy" href="/privacy">Privacy</a><a data-cm-href="/terms" data-cm-i18n="terms" href="/terms">Terms</a><a data-cm-href="/contact" data-cm-i18n="contact" href="/contact">Contact</a></nav></footer></body></html>

@@ -1,0 +1,28 @@
+(()=>{'use strict';
+
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2,minimumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function sci(x){
+  if(x===0) return "0";
+  const e=Math.floor(Math.log10(x)), m=x/Math.pow(10,e);
+  return num(m)+" × 10^"+e;
+}
+function render(){
+  const h=Number($("h").value);
+  if(!(Number.isFinite(h) && h>0 && Number.isFinite(1e-14/h))){
+    $("result").textContent="—"; $("chipPoh").textContent="—"; $("chipOh").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter a finite hydrogen ion concentration above zero within the numeric range.";
+    return;
+  }
+  const ph=-Math.log10(h), poh=14-ph, oh=1e-14/h;
+  $("result").textContent=num(ph);
+  $("chipPoh").textContent=num(poh);
+  $("chipOh").textContent=sci(oh)+" mol/L";
+  const vd=$("verdict"); vd.className="verdict";
+  $("verdictText").textContent = ph<7 ? "Acidic: hydrogen ions dominate." : ph>7 ? "Alkaline: hydroxide ions dominate." : "Neutral at 25 °C: hydrogen and hydroxide ions are balanced.";
+}
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

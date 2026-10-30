@@ -1,0 +1,31 @@
+{
+  "name": "calcmintly",
+  "version": "2026.10.30",
+  "private": true,
+  "description": "Static, local-first calculators with one shared accessible interface.",
+  "scripts": {
+    "build": "node scripts/build-unified.mjs",
+    "test": "node scripts/keypad-test.mjs && node scripts/model-test.mjs && node scripts/scenario-test.mjs && node scripts/intent-test.mjs && node scripts/core-finance-test.mjs && node scripts/legacy-finance-test.mjs && node scripts/calendar-test.mjs && node scripts/probability-test.mjs && node scripts/unit-contracts-test.mjs && node scripts/data-parser-test.mjs && node scripts/legacy-physics-test.mjs && node scripts/ohms-law-test.mjs && node scripts/molar-mass-test.mjs && node scripts/blood-pressure-test.mjs && node scripts/ph-test.mjs && node scripts/bmi-test.mjs && node scripts/speed-test.mjs && node scripts/usage-test.mjs && node scripts/locale-routes-test.mjs && node scripts/translation-runtime-test.mjs && node scripts/i18n-smoke.mjs && node scripts/release-check.mjs && node scripts/native-release-check.mjs",
+    "lint": "eslint 'assets/**/*.js' 'scripts/*.mjs' eslint.config.mjs",
+    "format:check": "prettier --check 'assets/cm-*.js' 'assets/cm-*.css' 'assets/models/*.js' 'scripts/*.mjs' 'src/*.ts' eslint.config.mjs package.json tsconfig.json",
+    "check": "npm run lint && npm run typecheck && npm run format:check && npm test",
+    "typecheck": "tsc",
+    "format": "prettier --write 'assets/cm-*.js' 'assets/cm-*.css' 'assets/models/*.js' 'scripts/*.mjs' 'src/*.ts' eslint.config.mjs package.json tsconfig.json",
+    "verify:release": "npm run check && node scripts/release-check.mjs --strict-i18n",
+    "refresh:i18n": "npm run build && node scripts/extract-translations.mjs && node scripts/seed-translations.mjs && npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "cheerio": "^1.2.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.13.0",
+    "globals": "^16.5.0",
+    "playwright": "1.64.1",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3"
+  }
+}

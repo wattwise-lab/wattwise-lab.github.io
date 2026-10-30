@@ -1,0 +1,7 @@
+{
+  "Your estimated total daily expenditure is {0} kcal/day: a BMR of {1} kcal/day multiplied by {2}. Both parts are estimates — the BMR equation varies between individuals, and the activity factor is a coarse category, not a measurement of your days.": "तुमचा अंदाजित एकूण दैनंदिन ऊर्जा खर्च {0} kcal/day आहे: BMR {1} kcal/day ला {2} ने गुणले आहे. दोन्ही अंदाज आहेत — BMR समीकरण व्यक्तीनुसार बदलते आणि क्रियाशीलता गुणक हा एक ढोबळ गट आहे, तुमच्या प्रत्यक्ष दिवसांचे मोजमाप नाही.",
+  "Average Speed Calculator": "सरासरी चाल कॅल्क्युलेटर",
+  "BMI Prime:": "BMI Prime:",
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "The CDC categories used here apply to adults aged 20 and older. BMI is a screening measure, not a diagnosis or a direct body-fat measurement. It does not distinguish muscle from fat or account for pregnancy and individual health circumstances. Children and teenagers need age- and sex-specific assessment. Classification uses unrounded BMI, even when the displayed number rounds to a boundary.": "येथे वापरलेल्या CDC श्रेणी 20 वर्षे आणि त्याहून अधिक वयाच्या प्रौढांना लागू होतात. BMI हे प्राथमिक तपासणीचे माप आहे; ते निदान किंवा शरीरातील चरबीचे थेट मोजमाप नाही. ते स्नायू व चरबी वेगळे ओळखत नाही आणि गर्भधारणा किंवा वैयक्तिक आरोग्यस्थिती विचारात घेत नाही. मुले व किशोरवयीन व्यक्तींसाठी वय व लिंगानुसार मूल्यमापन आवश्यक आहे. दाखवलेला आकडा सीमेपर्यंत पूर्णांकित झाला तरी वर्गीकरण मूळ, पूर्णांकित न केलेल्या BMI वर आधारित असते."
+}

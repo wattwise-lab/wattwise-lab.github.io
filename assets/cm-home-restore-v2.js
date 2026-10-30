@@ -1,4 +1,4 @@
-(function homeAddon(){
+(function homeAddon() {
   'use strict';
   const css = `
   .cm-home-restored .site-header,.cm-home-restored .hub-hero,.cm-home-restored .tool-directory,.cm-home-restored .workspace-promo{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
@@ -29,11 +29,24 @@
   @media(max-width:700px){.cm-home-restored .hub-hero{padding:22px 16px 20px!important}.cm-home-restored .hub-hero h1{font-size:clamp(26px,7vw,34px)!important;margin:8px 0!important}.cm-home-restored .hub-hero>p{font-size:13px!important}.cm-home-restored .hero-badge{display:none!important}.cm-home-restored .workspace-promo{margin:0 16px 12px!important;padding:13px 15px!important}.cm-home-restored .tool-directory{padding:19px 16px 45px!important}.cm-home-restored .cm-pagebar{gap:7px}.cm-home-restored .cm-pagebar button{padding:8px 11px}}
   @media(max-width:700px){.cm-home-restored .category-tabs{flex-wrap:nowrap!important;overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:thin;gap:8px!important;margin:16px 0 18px!important;padding-bottom:8px!important}.cm-home-restored .category-tabs button{flex:0 0 auto!important;white-space:nowrap!important;min-height:38px!important}.cm-home-restored .directory-head h2{font-size:clamp(24px,6.5vw,29px)!important}.cm-home-restored .directory-head p{font-size:13px!important}.cm-home-restored .tool-card-grid{scroll-margin-top:75px}}
   `;
-  function boot(){
-    if(!document.querySelector('.hub-hero')||document.querySelector('.tool-card-grid')?.dataset.cmCatalog==='20261030r2')return;
+  function boot() {
+    if (
+      !document.querySelector('.hub-hero') ||
+      document.querySelector('.tool-card-grid')?.dataset.cmCatalog === '20261030r2'
+    )
+      return;
     document.documentElement.classList.add('cm-home-restored');
-    if(!document.getElementById('cm-home-restoration-style')){const style=document.createElement('style');style.id='cm-home-restoration-style';style.textContent=css;document.head.append(style);}
-    const script=document.createElement('script');script.src='/assets/cm-home-directory.js?v=20261030r2';document.head.append(script);
+    if (!document.getElementById('cm-home-restoration-style')) {
+      const style = document.createElement('style');
+      style.id = 'cm-home-restoration-style';
+      style.textContent = css;
+      document.head.append(style);
+    }
+    const script = document.createElement('script');
+    script.src = '/assets/cm-home-directory.js?v=20261030r2';
+    document.head.append(script);
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
 })();

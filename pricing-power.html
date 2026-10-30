@@ -1,32 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pricing Power Calculator | CalcMintly</title><meta name="description" content="Model how a price increase changes profit when some volume is lost.">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
-.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
-h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
-button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
-.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
-.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
-table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
-.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css?v=20261030r2"><script defer src="/assets/cm-catalog-v3.js?v=20261030r2"></script><script defer src="/assets/cm-tool-page.js?v=20261030r2"></script><link rel="canonical" href="https://calcmintly.com/pricing-power"></head><body><div class="wrap">
-<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<!DOCTYPE html><html lang="en" dir="ltr" data-cm-localized-routes=""><head><meta charset="utf-8"><meta data-cm-csp="" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-OCnm3y4QqOHoCYzG/PiCynLuNJDAdaH8qMkHSWO7hXI=' 'sha256-6rjc59ZixEpoKcJIe19oBVZWyqgdOjBMpRYWEPiyXQI=' 'sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww=' 'sha256-U8Yed5e9xIzyMc6LFSVDMEMPOE7+IuM04/hWpSQsygk=' 'sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk=' 'sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw=' 'sha256-RZ1lbZClAySUVfynKO/u/y773h82b1rWdXmQdNhqH80=' 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing Power: Results, Formula &amp; Examples | CalcMintly</title>
+<script type="application/ld+json" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebApplication&quot;,&quot;name&quot;:&quot;Pricing Power&quot;,&quot;url&quot;:&quot;https://calcmintly.com/pricing-power&quot;,&quot;applicationCategory&quot;:&quot;UtilitiesApplication&quot;,&quot;operatingSystem&quot;:&quot;Any&quot;,&quot;isAccessibleForFree&quot;:true,&quot;browserRequirements&quot;:&quot;Requires JavaScript for interactive calculations.&quot;,&quot;inLanguage&quot;:&quot;en&quot;}">{"@context":"https://schema.org","@type":"WebApplication","name":"Pricing Power","url":"https://calcmintly.com/pricing-power","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript for interactive calculations.","inLanguage":"en"}</script><link rel="stylesheet" href="/assets/dist/cm-commercial.98b9fa3e84d9.css"><link rel="stylesheet" href="/assets/dist/pricing-power.00da85512516.css"><link rel="stylesheet" href="/assets/dist/cm-shell.d3e7f1af5d14.css"><script defer="" src="/assets/dist/pricing-power.eab8dce7d662.js" integrity="sha256-6rjc59ZixEpoKcJIe19oBVZWyqgdOjBMpRYWEPiyXQI="></script><script defer="" src="/assets/dist/cm-common.265117df7439.js" integrity="sha256-JlEX33Q51f7Yg+U1WVBrgrvslHY/5QXKdZZdmzQR+Ww="></script><script defer="" src="/assets/dist/pricing-power-1.53c61e7797bd.js" integrity="sha256-U8Yed5e9xIzyMc6LFSVDMEMPOE7+IuM04/hWpSQsygk="></script><script defer="" src="/assets/dist/cm-tool-page.fe0ed29a5900.js" integrity="sha256-/g7SmlkA8GKOUG/7XKWbMleYNWhNJ+se8429jUgZbOk="></script><script defer="" src="/assets/dist/cm-shell.9e69ef0db8e5.js" integrity="sha256-nmnvDbjlu2bJLo8Wd/DVsGjmH1iC35diYlHJzI5oAzw="></script><meta name="description" content="Pricing Power. Model how a price increase changes profit when some volume is lost. No signup is needed. Review the formula and limits. Use editable inputs."><meta name="twitter:title" content="Pricing Power: Results, Formula &amp; Examples | CalcMintly"><meta name="twitter:description" content="Pricing Power. Model how a price increase changes profit when some volume is lost. No signup is needed. Review the formula and limits. Use editable inputs."><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow"><meta property="og:title" content="Pricing Power: Results, Formula &amp; Examples | CalcMintly"><meta property="og:description" content="Pricing Power. Model how a price increase changes profit when some volume is lost. No signup is needed. Review the formula and limits. Use editable inputs."><meta property="og:url" content="https://calcmintly.com/pricing-power"><meta property="og:type" content="website"><link rel="canonical" href="https://calcmintly.com/pricing-power"><meta property="og:image" content="https://calcmintly.com/assets/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CalcMintly calculator library"><meta name="twitter:image" content="https://calcmintly.com/assets/share-card.png"><script type="application/ld+json" data-cm-breadcrumb="" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;CalcMintly&quot;,&quot;item&quot;:&quot;https://calcmintly.com/&quot;},{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;Pricing Power&quot;,&quot;item&quot;:&quot;https://calcmintly.com/pricing-power&quot;}]}">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcMintly","item":"https://calcmintly.com/"},{"@type":"ListItem","position":2,"name":"Pricing Power","item":"https://calcmintly.com/pricing-power"}]}</script><meta property="og:locale" content="en"><link rel="alternate" hreflang="en" href="https://calcmintly.com/pricing-power"><link rel="alternate" hreflang="zh-CN" href="https://calcmintly.com/zh-cn/pricing-power"><link rel="alternate" hreflang="hi" href="https://calcmintly.com/hi/pricing-power"><link rel="alternate" hreflang="es" href="https://calcmintly.com/es/pricing-power"><link rel="alternate" hreflang="ar" href="https://calcmintly.com/ar/pricing-power"><link rel="alternate" hreflang="fr" href="https://calcmintly.com/fr/pricing-power"><link rel="alternate" hreflang="bn" href="https://calcmintly.com/bn/pricing-power"><link rel="alternate" hreflang="pt" href="https://calcmintly.com/pt/pricing-power"><link rel="alternate" hreflang="id" href="https://calcmintly.com/id/pricing-power"><link rel="alternate" hreflang="ur" href="https://calcmintly.com/ur/pricing-power"><link rel="alternate" hreflang="ru" href="https://calcmintly.com/ru/pricing-power"><link rel="alternate" hreflang="de" href="https://calcmintly.com/de/pricing-power"><link rel="alternate" hreflang="ja" href="https://calcmintly.com/ja/pricing-power"><link rel="alternate" hreflang="pcm" href="https://calcmintly.com/pcm/pricing-power"><link rel="alternate" hreflang="mr" href="https://calcmintly.com/mr/pricing-power"><link rel="alternate" hreflang="vi" href="https://calcmintly.com/vi/pricing-power"><link rel="alternate" hreflang="te" href="https://calcmintly.com/te/pricing-power"><link rel="alternate" hreflang="sw" href="https://calcmintly.com/sw/pricing-power"><link rel="alternate" hreflang="ha" href="https://calcmintly.com/ha/pricing-power"><link rel="alternate" hreflang="tr" href="https://calcmintly.com/tr/pricing-power"><link rel="alternate" hreflang="x-default" href="https://calcmintly.com/pricing-power"></head><body class="cm-unified" data-cm-title-en="Pricing Power: Results, Formula &amp; Examples | CalcMintly" data-cm-page-name="Pricing Power" data-cm-page-purpose="Model how a price increase changes profit when some volume is lost." data-cm-description-en="Pricing Power. Model how a price increase changes profit when some volume is lost. No signup is needed. Review the formula and limits. Use editable inputs." data-cm-page-kind="calculator"><noscript><p class="cm-no-script">Interactive features need JavaScript. Page content and links remain available.</p></noscript><a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">Skip to calculators</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="/" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a></nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">Language</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language=""><option value="en" selected="">English</option><option value="zh-CN">简体中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="fr">Français</option><option value="bn">বাংলা</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option><option value="ur">اردو</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="pcm">Nigerian Pidgin</option><option value="mr">मराठी</option><option value="vi">Tiếng Việt</option><option value="te">తెలుగు</option><option value="sw">Kiswahili</option><option value="ha">Hausa</option><option value="tr">Türkçe</option></select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></summary><nav aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a><a href="/basic-calculator" data-cm-href="/basic-calculator" data-cm-i18n="basic">Pocket calculator</a><a href="/scientific-calculator" data-cm-href="/scientific-calculator" data-cm-i18n="scientific">Scientific calculator</a><a href="/about" data-cm-href="/about" data-cm-i18n="about">About</a></nav></details></div></div></header><main class="wrap" id="main-content">
+
 <p><span class="tag">Business</span></p>
-<h1>Pricing Power Calculator</h1>
-<p class="sub">Model how a price increase changes profit when volume falls — enter the price, cost, sales, increase, and expected volume decline.</p>
+<h1>Pricing Power</h1>
+<p class="sub" data-cm-pair="Model how a price increase changes profit when some volume is lost.|按销量变化假设，比较提价前后的利润。">Model how a price increase changes profit when some volume is lost.</p>
 
 <div class="hero">
-<section class="card"><h2>Your numbers</h2><div class="grid">
-<div><label for="price">Current price ($)</label><input id="price" type="number" value="199" min="0" step="any"></div>
-<div><label for="cost">Unit cost ($)</label><input id="cost" type="number" value="110" min="0" step="any"></div>
-<div><label for="sales">Current sales (units)</label><input id="sales" type="number" value="1000" min="0" step="any"></div>
-<div><label for="increase">Price increase (%)</label><input id="increase" type="number" value="8" min="0" step="any"></div>
-<div><label for="decline">Volume decline (%)</label><input id="decline" type="number" value="5" min="0" step="any"></div>
+<section class="card"><h2 data-cm-i18n="inputs">Your numbers</h2><div class="grid">
+<div><label for="price">Current price ($)</label><input id="price" type="number" value="199" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="cost">Unit cost ($)</label><input id="cost" type="number" value="110" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="sales">Current sales (units)</label><input id="sales" type="number" value="1000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="increase">Price increase (%)</label><input id="increase" type="number" value="8" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="decline">Volume decline (%)</label><input id="decline" type="number" value="5" min="0" step="any" max="1000000000000000" required=""></div>
 </div>
-<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy result</button></p>
+<p><button class="primary" data-cm-action="reset">Reset example</button><button data-cm-action="copy">Copy result</button></p>
 <p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
 
 <section class="card"><h2>Change in profit</h2><p class="big" id="result">—</p>
@@ -35,7 +23,7 @@ table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overf
 </div>
 
 <section class="card"><h2>Breakdown</h2>
-<div class="tblwrap"><table><tr><th></th><th class="num">Amount</th></tr><tbody id="tblRows"></tbody></table></div>
+<div class="tblwrap"><table><tbody><tr><th></th><th class="num">Amount</th></tr></tbody><tbody id="tblRows"></tbody></table></div>
 <p class="muted">The volume decline is the decline you expect, entered directly — it is not predicted from an elasticity coefficient. See the FAQ for how the source scenario labels this input.</p></section>
 
 <section class="card"><h2>At a glance</h2>
@@ -43,69 +31,26 @@ table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overf
 <p class="muted">Bars are scaled to the larger profit. A shorter new-profit bar means the increase loses money despite the higher price.</p></section>
 
 <section class="card"><h2>Profit change at different volume declines</h2>
-<div class="tblwrap"><table><tr><th>Volume decline</th><th class="num">Change in profit</th></tr><tbody id="scenRows"></tbody></table></div>
+<div class="tblwrap"><table><tbody><tr><th>Volume decline</th><th class="num">Change in profit</th></tr></tbody><tbody id="scenRows"></tbody></table></div>
 <p class="muted">Price, cost, sales, and the price increase are held at the values above; only the volume decline changes across rows.</p></section>
 
-<section class="card"><h2>Formula</h2>
-<p>New price = price &times; (1 + increase%). New volume = sales &times; (1 &minus; volume decline%). New profit = (new price &minus; cost) &times; new volume. Current profit = (price &minus; cost) &times; sales. Profit change = new profit &minus; current profit.</p></section>
+<section class="card" data-cm-section="formula"><h2>Formula</h2>
+<p>New price = price × (1 + increase%). New volume = sales × (1 − volume decline%). New profit = (new price − cost) × new volume. Current profit = (price − cost) × sales. Profit change = new profit − current profit.</p></section>
 
-<section class="card"><h2>Worked example</h2>
-<p>Price $199, cost $110, sales 1,000 units, increase 8%, volume decline 5%: new price = $199 &times; 1.08 = $214.92, new volume = 1,000 &times; 0.95 = 950 units, new profit = ($214.92 &minus; $110) &times; 950 = $99,674, current profit = ($199 &minus; $110) &times; 1,000 = $89,000, so profit rises by $10,674.</p></section>
+<section class="card" data-cm-section="example"><h2>Worked example</h2>
+<p>Price $199, cost $110, sales 1,000 units, increase 8%, volume decline 5%: new price = $199 × 1.08 = $214.92, new volume = 1,000 × 0.95 = 950 units, new profit = ($214.92 − $110) × 950 = $99,674, current profit = ($199 − $110) × 1,000 = $89,000, so profit rises by $10,674.</p></section>
 
-<section class="card"><h2>Scope and limitations</h2>
+<section class="card" data-cm-section="scope"><h2>Scope and limitations</h2>
 <p>Unit cost stays constant and the volume decline is entered by you, not predicted. Fixed costs, competitor responses, customer switching over time, and demand shifts are not modeled — treat the result as a scenario comparison, not a forecast.</p></section>
 
-<section class="card"><h2>FAQ</h2>
-<h3>How is this calculated?</h3><p>Profit change = (price &times; (1 + increase%) &minus; cost) &times; sales &times; (1 &minus; volume decline%) &minus; (price &minus; cost) &times; sales. The new margin per unit times the new volume, minus today's profit.</p><h3>What does the volume decline input mean?</h3><p>The percentage of sales volume you expect to lose after the increase, entered directly. The source scenario labels this field elasticity, but the formula uses the entered percentage itself as the decline — it does not multiply an elasticity coefficient by the price increase.</p><h3>Can a price increase lose money?</h3><p>Yes. If the volume lost outweighs the extra margin per unit, new profit falls below current profit. That is exactly the trade this calculator exposes.</p><h3>Why is unit cost held constant?</h3><p>Volume changes can move unit cost in reality, but this model isolates the price-volume trade. If your unit cost changes with volume, adjust the cost input and compare scenarios.</p><h3>What about fixed costs?</h3><p>They cancel out of the change: both scenarios bear the same fixed costs, so the difference in profit is driven by unit margin and volume alone.</p><h3>Should I use this as a pricing decision on its own?</h3><p>No. Combine it with customer research, competitor pricing, and a margin check — the volume decline you enter is the most uncertain input, so test several values.</p></section>
+<section class="card" data-cm-section="faq"><h2>FAQ</h2>
+<h3>How is this calculated?</h3><p>Profit change = (price × (1 + increase%) − cost) × sales × (1 − volume decline%) − (price − cost) × sales. The new margin per unit times the new volume, minus today's profit.</p><h3>What does the volume decline input mean?</h3><p>The percentage of sales volume you expect to lose after the increase, entered directly. The source scenario labels this field elasticity, but the formula uses the entered percentage itself as the decline — it does not multiply an elasticity coefficient by the price increase.</p><h3>Can a price increase lose money?</h3><p>Yes. If the volume lost outweighs the extra margin per unit, new profit falls below current profit. That is exactly the trade this calculator exposes.</p><h3>Why is unit cost held constant?</h3><p>Volume changes can move unit cost in reality, but this model isolates the price-volume trade. If your unit cost changes with volume, adjust the cost input and compare scenarios.</p><h3>What about fixed costs?</h3><p>They cancel out of the change: both scenarios bear the same fixed costs, so the difference in profit is driven by unit margin and volume alone.</p><h3>Should I use this as a pricing decision on its own?</h3><p>No. Combine it with customer research, competitor pricing, and a margin check — the volume decline you enter is the most uncertain input, so test several values.</p></section>
 
-<section class="card"><h2>Related tools</h2><ul>
-<li><a href="https://calcmintly.com/break-even-calculator">Break Even Calculator</a> — the volume that covers fixed costs</li><li><a href="https://calcmintly.com/gross-margin-calculator">Gross Margin Calculator</a> — margin per dollar of revenue</li><li><a href="https://calcmintly.com/profit-calculator">Profit Calculator</a> — net profit after all costs</li>
+<section class="card" data-cm-section="related"><h2>Related tools</h2><ul>
+<li><a href="/break-even-calculator" data-cm-href="/break-even-calculator">Break Even Calculator</a> — the volume that covers fixed costs</li><li><a href="/gross-margin-calculator" data-cm-href="/gross-margin-calculator">Gross Margin Calculator</a> — margin per dollar of revenue</li><li><a href="/profit-calculator" data-cm-href="/profit-calculator">Profit Calculator</a> — net profit after all costs</li>
 </ul></section>
 
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
-</div>
-<script>
-const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
-const pct=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2})+"%";
-const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function calc(v){
-  if(!(v.price>v.cost)||v.cost<0||!(v.sales>0)||v.increase<0||v.decline<0||v.decline>100) return {valid:false};
-  const np=v.price*(1+v.increase/100), nv=v.sales*(1-v.decline/100), oldP=(v.price-v.cost)*v.sales, newP=(np-v.cost)*nv, ch=newP-oldP;
-  const scen=[0,5,15].map(d=>[num(d)+"%", money((np-v.cost)*v.sales*(1-d/100)-oldP)]);
-  return {valid:true, big:money(ch), chips:{chipNp:money(np), chipNprof:money(newP)},
-   rows:[["Current price",money(v.price)],["New price",money(np)],["Unit cost",money(v.cost)],["Current margin / unit",money(v.price-v.cost)],["New margin / unit",money(np-v.cost)],["Current volume",num(v.sales)+" units"],["New volume",num(nv)+" units"],["Current profit",money(oldP)],["New profit",money(newP)],["Change in profit",money(ch)]],
-   scen:scen, barA:oldP, barB:newP, barAText:money(oldP), barBText:money(newP), barBBad:newP<oldP,
-   vclass:ch<0?"bad":"", vtext:ch<0?("The increase loses "+money(-ch)+": volume falls to "+num(nv)+" units and the higher margin does not compensate."):("The increase adds "+money(ch)+" of profit: new profit "+money(newP)+" vs current "+money(oldP)+" at "+num(nv)+" units."),
-   summary:"Profit change "+money(ch)+" (new profit "+money(newP)+", current "+money(oldP)+", new price "+money(np)+", new volume "+num(nv)+")."};
-}
-function render(){
-  const v=get(); const r=calc(v);
-  if(!r.valid){
-    $("result").textContent="—";
-    $("chipNp").textContent="—";
-    $("chipNprof").textContent="—";
-    $("tblRows").innerHTML=""; $("scenRows").innerHTML="";
-    $("barA").style.width="0%"; $("barB").style.width="0%"; $("barAVal").textContent="—"; $("barBVal").textContent="—";
-    const vd=$("verdict"); vd.className="verdict warn";
-    $("verdictText").textContent="Enter price above cost, cost at zero or above, sales above zero, and increase and volume decline between 0% and 100%.";
-    window.__summary="";
-    return;
-  }
-  $("result").textContent=r.big;
-  Object.keys(r.chips).forEach(k=>{$(k).textContent=r.chips[k];});
-  $("tblRows").innerHTML=r.rows.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  $("scenRows").innerHTML=r.scen.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  const mx=Math.max(Math.abs(r.barA),Math.abs(r.barB),1);
-  $("barA").style.width=(Math.abs(r.barA)/mx*100)+"%"; $("barAVal").textContent=r.barAText;
-  $("barB").style.width=(Math.abs(r.barB)/mx*100)+"%"; $("barBVal").textContent=r.barBText;
-  $("barB").className=r.barBBad?"newbad":"new";
-  const vd=$("verdict"); vd.className="verdict"+(r.vclass?" "+r.vclass:"");
-  $("verdictText").textContent=r.vtext;
-  window.__summary=r.summary;
-}
-function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
-function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-</script></body></html>
+</main>
+
+<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">Local calculations. Results are estimates, not professional advice.</p></div><nav><a data-cm-href="/methodology" data-cm-i18n="methods" href="/methodology">Methodology</a><a data-cm-href="/about" data-cm-i18n="about" href="/about">About</a><a data-cm-href="/privacy" data-cm-i18n="privacy" href="/privacy">Privacy</a><a data-cm-href="/terms" data-cm-i18n="terms" href="/terms">Terms</a><a data-cm-href="/contact" data-cm-i18n="contact" href="/contact">Contact</a></nav></footer></body></html>

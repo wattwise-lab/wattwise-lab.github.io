@@ -1,0 +1,44 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
+
+const INVALID_MSG='Enter power, hours, days and quantity at zero or above, with a rate at zero or above, and at least one of power, hours or days above zero, to see the cost.';
+function calc(v){
+ if(!(v.power>=0&&v.hours>=0&&v.days>=0&&v.rate>=0&&v.qty>=0)) return null;
+ const dk=v.power/1000*v.hours*v.qty, kwh=dk*v.days, cost=kwh*v.rate, dc=dk*v.rate;
+ if(!(v.power>0&&v.hours>0&&v.days>0&&v.qty>0)) { if(cost!==0||kwh!==0) return null; }
+ const perDev=v.qty>0?cost/v.qty:0, yr=dk*365*v.rate;
+ return {big:money(cost),
+  chips:[["Energy",num(kwh)+" kWh"],["Daily cost",money(dc)],["Cost per device",money(perDev)]],
+  rows:[["Daily energy",num(dk)+" kWh"],["Period energy",num(kwh)+" kWh"],["Rate",money(v.rate)+" / kWh"],["Period cost",money(cost)],["Daily cost",money(dc)],["Cost per device",money(perDev)]],
+  bars:[["This period",cost,money(cost)],["Full year, same daily use",yr,money(yr)]],
+  cum:[[1,"1 day"],[7,"7 days"],[30,"30 days"],[90,"90 days"],[365,"365 days"]].map(function(r){return [r[1],num(dk*r[0])+" kWh — "+money(dk*r[0]*v.rate)];}),
+  vclass:"",
+  verdict:"Over "+num(v.days)+" days this uses "+num(kwh)+" kWh and costs "+money(cost)+" at "+money(v.rate)+" per kWh ("+money(dc)+" per day). If your tariff is tiered or time-of-use, treat this flat-rate figure as an approximation, not a bill prediction.",
+  summary:"Electricity: "+num(kwh)+" kWh over "+num(v.days)+" days at "+money(v.rate)+"/kWh = "+money(cost)+"."};}
+
+function render(){
+  const v=get(); const c=calc(v);
+  if(!c){
+    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+  }
+  $("result").textContent=c.big;
+  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
+  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
+  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
+  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
+  window.__summary=c.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

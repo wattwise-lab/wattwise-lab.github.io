@@ -1,0 +1,11 @@
+{
+  "Current Ratio": "Liquidität 3. Grades",
+  "Quick Ratio": "Liquidität 2. Grades",
+  "Mean Absolute Deviation": "Mittlere absolute Abweichung",
+  "Median Absolute Deviation": "Mediane absolute Abweichung",
+  ") = $304.22, and $304.22 × 36 = $10,951.90 is repaid in total. The borrower actually receives 10,000 − 300 = $9,700, and the monthly rate that discounts 36 payments of $304.22 back to $9,700 is 0.6714%, so the nominal APR is 12 × 0.6714% = 8.06% (8.36% effective). The $300 fee lifts the true cost from 6% to 8.06% — that gap is exactly what APR exists to reveal.": ") = $304.22, und insgesamt werden $304.22 × 36 = $10,951.90 zurückgezahlt. Tatsächlich erhält der Kreditnehmer 10,000 − 300 = $9,700. Der monatliche Zinssatz, der 36 Zahlungen von $304.22 auf $9,700 abzinst, beträgt 0.6714%. Der nominale APR ist daher 12 × 0.6714% = 8.06% (effektiv 8.36%). Die Gebühr von $300 erhöht die tatsächlichen Kosten von 6% auf 8.06% — genau diesen Unterschied soll APR sichtbar machen.",
+  "This is a calendar-day count, not a live hours-and-minutes countdown, and it depends on the device's local date when the from date is left blank. Leap years are handled by the calendar: the count between two dates automatically includes 29 February in leap years. Times of day and time zones are ignored; both dates are treated as whole local calendar days.": "Dies zählt Kalendertage und ist kein laufender Countdown in Stunden und Minuten. Bleibt das Startdatum leer, gilt das lokale Datum des Geräts. Der Kalender berücksichtigt Schaltjahre: Liegt der 29. Februar dazwischen, wird er automatisch mitgezählt. Uhrzeiten und Zeitzonen bleiben unberücksichtigt; beide Daten werden als ganze lokale Kalendertage behandelt.",
+  "Average Speed Calculator": "Durchschnittsgeschwindigkeitsrechner",
+  "BMI Prime:": "BMI Prime:",
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)"
+}

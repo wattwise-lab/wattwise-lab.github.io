@@ -1,0 +1,23 @@
+{
+  "Mortgage Calculator": "Kalkuleta na Bashin Sayen Gida",
+  "Loan Calculator": "Kalkuleta na Bashi",
+  "Acceleration Calculator": "Kalkuleta na Sauyin Gudu",
+  "Velocity Calculator": "Kalkuleta na Matsakaicin Gudu",
+  "Pace Calculator": "Kalkuleta na Lokacin Gudu ga Kowane Kilomita",
+  "Voltage Converter": "Mai sauya ma’aunin ƙarfin lantarki (Voltage)",
+  "Electric Current Converter": "Mai sauya ma’aunin kwararar lantarki (Current)",
+  "Waist-Hip Ratio Calculator": "Kalkuletar rabon kugu da kwankwaso",
+  "Waist-Height Ratio Calculator": "Kalkuletar rabon kugu da tsayin jiki",
+  "Sector Calculator": "Kalkuletar sashen da’ira tsakanin radiyoshi",
+  "Capacitance Converter": "Mai sauya ma’aunin capacitance",
+  "Waist to Height Ratio": "Rabon kugu da tsayin jiki",
+  "Waist to Hip Ratio": "Rabon kugu da kwankwaso",
+  "Circular Sector": "Sashen da’ira tsakanin radiyoshi",
+  "Circular Segment": "Yanki tsakanin baka da igiyar da’ira",
+  "Capacitive Reactance": "Tsayayyar capacitor ga wutar AC",
+  "Average Speed Calculator": "Kalkuletar matsakaicin sauri",
+  "BMI Prime:": "BMI Prime:",
+  "BMI Prime (BMI ÷ 25)": "BMI Prime (BMI ÷ 25)",
+  "At 175 cm and 72.6 kg: BMI = 72.6 ÷ 1.75² ≈ 23.7, BMI Prime ≈ 0.95, and Ponderal Index ≈ 13.5 kg/m³. The reference weight thresholds are 18.5 × 1.75² = 56.65625 kg and 25 × 1.75² = 76.5625 kg, with the upper threshold excluded. Rounded for display: 56.7–<76.6 kg. Select metric units and enter these values to reproduce the example.": "A tsayin 175 cm da nauyin 72.6 kg: BMI = 72.6 ÷ 1.75² ≈ 23.7, BMI Prime ≈ 0.95, kuma Ponderal Index ≈ 13.5 kg/m³. Iyakokin nauyin kwatance su ne 18.5 × 1.75² = 56.65625 kg da 25 × 1.75² = 76.5625 kg; ba a haɗa iyakar sama ba. Bayan zagaye domin nunawa: 56.7–<76.6 kg. Zaɓi ma'aunin metriki ka shigar da waɗannan ƙimomin don sake lissafa misalin.",
+  "Weight thresholds are rounded. The lower bound is included; the upper bound is excluded.": "An zagaye iyakokin nauyi. An haɗa iyakar ƙasa; ba a haɗa iyakar sama ba."
+}
