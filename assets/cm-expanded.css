@@ -72,6 +72,14 @@
   letter-spacing: 0;
   margin-inline-start: 6px;
 }
+.cm-expanded .big.cm-expanded__literal {
+  font:
+    600 clamp(16px, 4vw, 22px) / 1.5 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  white-space: pre-wrap;
+}
 .cm-expanded .cm-expanded__note {
   font-size: 12px;
   line-height: 1.75;
@@ -242,6 +250,9 @@
   }
 }
 @media (max-width: 639px) {
+  .cm-expanded .big {
+    font-size: clamp(22px, 8.2vw, 34px);
+  }
   .cm-expanded .grid {
     grid-template-columns: 1fr;
   }

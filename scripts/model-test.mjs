@@ -37,6 +37,10 @@ for (const model of models) {
     const input = Object.fromEntries(model.fields.map((f) => [f.id, f.value]));
     const rows = model.calculate(input);
     assert.ok(rows.length > 0, 'No result');
+    if (model.slug === 'fluid-typography-calculator') {
+      assert.equal(rows[0].literal, true, 'CSS result is code, not translated interface copy');
+      assert.equal(rows[0].value, 'clamp(16px, calc(12px + 1vw), 24px)');
+    }
     if (
       [
         'internal-rate-of-return-calculator',

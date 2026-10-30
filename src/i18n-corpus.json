@@ -43141,7 +43141,7 @@
     "origin": "fluid-typography-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "08590",
     "source": "clamp(16px, calc(12px + 1vw), 24px)",
     "origin": "fluid-typography-calculator.html"
@@ -60132,7 +60132,7 @@
     "origin": "assets/models/digital.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15810",
     "source": "clamp({0}px, calc({1}px + {2}vw), {3}px)",
     "origin": "assets/models/digital.js",

@@ -22,7 +22,7 @@ var CMModels = (() => {
   const i = (id, label, value, min = 0, max = 10000) => n(id, label, value, min, max, 1);
   const text = (id, label, value) => ({ id, label, value, type: 'textarea' });
   const select = (id, label, value, options) => ({ id, label, value, options, type: 'select' });
-  const row = (label, value, unit = '') => ({ label, value, unit });
+  const row = (label, value, unit = '', options = {}) => ({ ...options, label, value, unit });
   const add = (
     slug,
     name,

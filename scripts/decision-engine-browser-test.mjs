@@ -192,6 +192,42 @@ try {
         elements.map((element) => globalThis.getComputedStyle(element).whiteSpace),
       ))
       assert.equal(whitespace, 'nowrap');
+    await page.goto(base + '/fluid-typography-calculator?lang=en', { waitUntil: 'load' });
+    const fluidLocales = await page
+      .locator('#cm-site-language option')
+      .evaluateAll((options) => options.map((option) => option.value));
+    assert.equal(fluidLocales.length, 20);
+    for (const locale of fluidLocales) {
+      await page.locator('#cm-site-language').selectOption(locale);
+      await page.waitForFunction((lang) => document.documentElement.lang === lang, locale);
+      const cssValue = await page.locator('#result').innerText();
+      assert.equal(cssValue, 'clamp(16px, calc(12px + 1vw), 24px)', locale);
+      assert.equal(
+        await page.locator('.cm-expanded__example dd[data-cm-no-translate]').innerText(),
+        cssValue,
+        'Literal worked example in ' + locale,
+      );
+      assert.ok(await page.evaluate((css) => globalThis.CSS.supports('font-size', css), cssValue));
+    }
+    await page.setViewportSize({ width: 320, height: 812 });
+    await page.goto(base + '/continuous-compounding-calculator?lang=en', { waitUntil: 'load' });
+    await page.locator('#a').fill('1000000000000000');
+    await page.locator('#r').fill('0');
+    await page.waitForFunction(() => document.querySelector('#result').textContent === '1E15');
+    assert.equal(await page.locator('#a').inputValue(), '1000000000000000');
+    await page.locator('#a').fill('123456789012');
+    await page.waitForFunction(
+      () => document.querySelector('#result').textContent === '123,456,789,012',
+    );
+    const largeNumberBox = await page.locator('#result').evaluate((element) => ({
+      height: element.getBoundingClientRect().height,
+      lineHeight: Number.parseFloat(globalThis.getComputedStyle(element).lineHeight),
+      pageWidth: document.documentElement.scrollWidth,
+      viewportWidth: document.documentElement.clientWidth,
+    }));
+    assert.ok(largeNumberBox.height <= largeNumberBox.lineHeight + 1);
+    assert.ok(largeNumberBox.pageWidth <= largeNumberBox.viewportWidth + 1);
+    await page.setViewportSize({ width: 390, height: 844 });
     for (const [slug, field] of [
       ['age-calculator', 'ref'],
       ['countdown-calculator', 'from'],

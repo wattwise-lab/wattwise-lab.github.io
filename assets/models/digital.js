@@ -149,6 +149,8 @@
         R(
           'CSS clamp expression|CSS clamp 表达式',
           `clamp(${v.a}px, calc(${intercept.toFixed(6).replace(/\.?0+$/, '')}px + ${slope.toFixed(6).replace(/\.?0+$/, '')}vw), ${v.b}px)`,
+          '',
+          { literal: true },
         ),
         R('Viewport coefficient|视口系数', slope, 'vw'),
         R('Pixel intercept|像素截距', intercept, 'px'),

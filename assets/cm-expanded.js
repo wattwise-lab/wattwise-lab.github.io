@@ -15,12 +15,16 @@
     scheduled = null,
     scenarios = [];
   const numberOptions = (value) =>
-      value !== 0 && Math.abs(value) < 0.0001
+      value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12)
         ? { maximumSignificantDigits: 8, notation: 'scientific' }
         : { maximumSignificantDigits: 12 },
     label = (value) => I.pick(value),
-    format = (value) =>
-      typeof value === 'number' ? I.number(value, numberOptions(value)) : label(value);
+    format = (value, literal = false) =>
+      typeof value === 'number'
+        ? I.number(value, numberOptions(value))
+        : literal
+          ? String(value)
+          : label(value);
   const presentations = {
     'ratio-simplifier-calculator': 'ratio',
     'mean-confidence-interval-calculator': 'interval',
@@ -188,7 +192,9 @@
       for (const id of ['cm-share', 'cm-csv', 'cm-print', 'cm-compare-add'])
         if ($(id)) $(id).disabled = id === 'cm-compare-add' && scenarios.length >= 3;
       $('cm-result-label').textContent = label(out[0].label);
-      $('result').textContent = format(out[0].value);
+      $('result').toggleAttribute('data-cm-no-translate', Boolean(out[0].literal));
+      $('result').classList.toggle('cm-expanded__literal', Boolean(out[0].literal));
+      $('result').textContent = format(out[0].value, out[0].literal);
       const aggregate = present(out);
       if (!aggregate) {
         const unit = document.createElement('span');
@@ -203,7 +209,9 @@
             dt = document.createElement('dt'),
             dd = document.createElement('dd');
           dt.textContent = label(r.label);
-          dd.textContent = format(r.value) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
+          if (r.literal) dd.setAttribute('data-cm-no-translate', '');
+          dd.textContent =
+            format(r.value, r.literal) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
           if (typeof r.value === 'string' && /^[+-]?\d{16,}$/.test(r.value))
             dd.className = 'cm-expanded__exact-integer';
           box.append(dt, dd);
@@ -235,7 +243,10 @@
       ...model.fields.map((f) => label(f.label) + ': ' + values[f.id]),
       ...results.map(
         (r) =>
-          label(r.label) + ': ' + format(r.value) + (r.unit ? ' ' + I.unit(r.unit, r.value) : ''),
+          label(r.label) +
+          ': ' +
+          format(r.value, r.literal) +
+          (r.unit ? ' ' + I.unit(r.unit, r.value) : ''),
       ),
     ].join('\n');
   async function copy(text) {
@@ -247,7 +258,7 @@
     }
   }
   $('cm-copy').addEventListener('click', () => {
-    if (valid) copy(summary());
+    if (valid) copy(results[0].literal ? String(results[0].value) : summary());
   });
   $('cm-share')?.addEventListener('click', () => {
     if (!valid) return;
@@ -354,7 +365,10 @@
       for (const scenario of scenarios) {
         const r = scenario.results[index],
           td = document.createElement('td');
-        td.textContent = r ? format(r.value) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '') : '—';
+        if (r?.literal) td.setAttribute('data-cm-no-translate', '');
+        td.textContent = r
+          ? format(r.value, r.literal) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '')
+          : '—';
         tr.append(td);
       }
       body.append(tr);

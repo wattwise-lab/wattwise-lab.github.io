@@ -194,6 +194,23 @@ for (const file of files) {
   const walk = (node, parent) => {
     if (!node || typeof node !== 'object') return;
     if (implementationLiteral(node, parent)) return;
+    if (file.startsWith('assets/models/') && parent?.type === 'CallExpression') {
+      const callee = parent.callee?.name;
+      // Expected vectors and explicitly literal result values are data, not UI copy.
+      if (
+        (node.type === 'ArrayExpression' &&
+          ((callee === 'D' && parent.arguments[6] === node) ||
+            (callee === 'add' && parent.arguments[7] === node))) ||
+        (['R', 'row'].includes(callee) &&
+          parent.arguments[1] === node &&
+          parent.arguments[3]?.properties?.some(
+            (property) =>
+              (property.key.name || property.key.value) === 'literal' &&
+              property.value.value === true,
+          ))
+      )
+        return;
+    }
     if (
       file.startsWith('assets/models/') &&
       parent?.type === 'CallExpression' &&
