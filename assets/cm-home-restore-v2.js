@@ -30,10 +30,10 @@
   @media(max-width:700px){.cm-home-restored .category-tabs{flex-wrap:nowrap!important;overflow-x:auto!important;overscroll-behavior-x:contain;scrollbar-width:thin;gap:8px!important;margin:16px 0 18px!important;padding-bottom:8px!important}.cm-home-restored .category-tabs button{flex:0 0 auto!important;white-space:nowrap!important;min-height:38px!important}.cm-home-restored .directory-head h2{font-size:clamp(24px,6.5vw,29px)!important}.cm-home-restored .directory-head p{font-size:13px!important}.cm-home-restored .tool-card-grid{scroll-margin-top:75px}}
   `;
   function boot(){
-    if(!document.querySelector('.hub-hero')||document.querySelector('.tool-card-grid')?.dataset.cmCatalog)return;
+    if(!document.querySelector('.hub-hero')||document.querySelector('.tool-card-grid')?.dataset.cmCatalog==='20261030r2')return;
     document.documentElement.classList.add('cm-home-restored');
     if(!document.getElementById('cm-home-restoration-style')){const style=document.createElement('style');style.id='cm-home-restoration-style';style.textContent=css;document.head.append(style);}
-    const script=document.createElement('script');script.src='/assets/cm-home-directory.js';document.head.append(script);
+    const script=document.createElement('script');script.src='/assets/cm-home-directory.js?v=20261030r2';document.head.append(script);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
