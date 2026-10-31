@@ -263,6 +263,36 @@ try {
       engine,
       passed: true,
     });
+    for (const width of [320, 375, 1365]) {
+      await page.setViewportSize({ width, height: 812 });
+      await page.goto(base + '/proportion-confidence-interval-calculator?lang=en', {
+        waitUntil: 'load',
+      });
+      const bounds = await page.locator('.cm-expanded__interval-bound').evaluateAll((elements) =>
+        elements.map((element) => {
+          const style = globalThis.getComputedStyle(element),
+            rect = element.getBoundingClientRect();
+          return {
+            text: element.textContent,
+            height: rect.height,
+            lineHeight: Number.parseFloat(style.lineHeight),
+            width: rect.width,
+            available: element.closest('.card').clientWidth - 64,
+          };
+        }),
+      );
+      assert.equal(bounds.length, 2);
+      for (const bound of bounds) {
+        assert.match(bound.text, /%$/);
+        assert.ok(bound.height <= bound.lineHeight + 1 && bound.width <= bound.available + 1);
+      }
+    }
+    await page.setViewportSize({ width: 390, height: 844 });
+    results.push({
+      test: 'Confidence interval bounds keep the number and percent unit together',
+      engine,
+      passed: true,
+    });
     await page.goto(base + '/de-broglie-wavelength-calculator', { waitUntil: 'load' });
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
     assert.equal(await page.locator('#cm-site-language').inputValue(), 'en');

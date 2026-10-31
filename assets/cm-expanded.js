@@ -68,12 +68,15 @@
             ? { notation: 'scientific' }
             : {}),
         });
-      result.textContent =
-        f(values[0]) +
-        (out[0].unit ? ' ' + I.unit(out[0].unit, values[0]) : '') +
-        ' – ' +
-        f(values[1]) +
-        (out[1].unit ? ' ' + I.unit(out[1].unit, values[1]) : '');
+      result.classList.add('cm-expanded__interval');
+      const bounds = out.slice(0, 2).map((bound) => {
+        const span = document.createElement('span');
+        span.className = 'cm-expanded__interval-bound';
+        span.textContent =
+          f(bound.value) + (bound.unit ? ' ' + I.unit(bound.unit, bound.value) : '');
+        return span;
+      });
+      result.replaceChildren(bounds[0], document.createTextNode(' – '), bounds[1]);
       $('cm-result-label').textContent = I.message('Confidence interval ({0}%)|置信区间（{0}%）', [
         I.number(Number($('c').value)),
       ]);
