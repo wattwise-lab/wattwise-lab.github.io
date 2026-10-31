@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"chebyshev-bound-calculator","name":"Chebyshev Probability Bound","names":{"zh-CN":"切比雪夫概率界"},"domain":"Math and Time","keywords":"Chebyshev Probability Bound 切比雪夫概率界 chebyshev-bound-calculator","new":true,"description":"Bound the share of a distribution within k standard deviations.","descriptions":{"zh-CN":"给出分布落在 k 个标准差内的比例下界。"},"priority":500}];

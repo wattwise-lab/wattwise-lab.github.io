@@ -1,112 +1,53 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Retirement Calculator | CalcMintly</title><meta name="description" content="Project the value of current retirement assets and monthly contributions at retirement.">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
-.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
-h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
-button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
-.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
-.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
-table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
-.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css?v=20261030r2"><script defer src="/assets/cm-catalog-v3.js?v=20261030r2"></script><script defer src="/assets/cm-tool-page.js?v=20261030r2"></script><link rel="canonical" href="https://calcmintly.com/retirement-calculator"></head><body><div class="wrap">
-<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<!DOCTYPE html><html lang="en" dir="ltr" data-cm-localized-routes=""><head><meta charset="utf-8"><meta data-cm-csp="" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-OmziG+NlShP9idNxUAKCNuDlg+PfRMhOxkTU/9dhPPA=' 'sha256-ybBya7RR+T/8Rqi7DFpMN+h3X9PK/AcE7zOephSZRtA=' 'sha256-1fBs2BBEczrQoPeyr+1CNeiZFQGneh8sMyCs0Ad9A1Y=' 'sha256-1Kc9wZvF0NuR0zILFS/83z+huQwDYWtgZqY9cWpno44=' 'sha256-QvKtO8AvXiXcMtOdD+FWwxI/POJC7s8/QcWpa56NMuA=' 'sha256-Lz/rOgTh/GEJJaWx25aQUhQKlYf2LppWRX3QnHsK+Zo=' 'sha256-TYsIyvO1JuLc3uSUJjN5jVoBUZ0uGfn5f6pacXiPXA4=' 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retirement Calculator: Formula &amp; Examples | CalcMintly</title>
+<script type="application/ld+json" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebApplication&quot;,&quot;name&quot;:&quot;Retirement Calculator&quot;,&quot;url&quot;:&quot;https://calcmintly.com/retirement-calculator&quot;,&quot;applicationCategory&quot;:&quot;UtilitiesApplication&quot;,&quot;operatingSystem&quot;:&quot;Any&quot;,&quot;isAccessibleForFree&quot;:true,&quot;browserRequirements&quot;:&quot;Requires JavaScript for interactive calculations.&quot;,&quot;inLanguage&quot;:&quot;en&quot;}">{"@context":"https://schema.org","@type":"WebApplication","name":"Retirement Calculator","url":"https://calcmintly.com/retirement-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript for interactive calculations.","inLanguage":"en"}</script><link rel="stylesheet" href="/assets/dist/cm-commercial.9f3229f14c2e.css"><link rel="stylesheet" href="/assets/dist/retirement-calculator.00da85512516.css"><link rel="stylesheet" href="/assets/dist/cm-shell.5afcad7499b3.css"><script defer="" src="/assets/dist/retirement-calculator.c9b0726bb451.js" integrity="sha256-ybBya7RR+T/8Rqi7DFpMN+h3X9PK/AcE7zOephSZRtA="></script><script defer="" src="/assets/dist/cm-common.d5f06cd81044.js" integrity="sha256-1fBs2BBEczrQoPeyr+1CNeiZFQGneh8sMyCs0Ad9A1Y="></script><script defer="" src="/assets/dist/retirement-calculator-1.d4a73dc19bc5.js" integrity="sha256-1Kc9wZvF0NuR0zILFS/83z+huQwDYWtgZqY9cWpno44="></script><script defer="" src="/assets/dist/cm-tool-page.42f2ad3bc02f.js" integrity="sha256-QvKtO8AvXiXcMtOdD+FWwxI/POJC7s8/QcWpa56NMuA="></script><script defer="" src="/assets/dist/cm-shell.2f3feb3a04e1.js" integrity="sha256-Lz/rOgTh/GEJJaWx25aQUhQKlYf2LppWRX3QnHsK+Zo="></script><meta name="description" content="Retirement Calculator. Project the value of current retirement assets and monthly contributions at retirement. Check input units. Compare your assumptions."><meta name="twitter:title" content="Retirement Calculator: Formula &amp; Examples | CalcMintly"><meta name="twitter:description" content="Retirement Calculator. Project the value of current retirement assets and monthly contributions at retirement. Check input units. Compare your assumptions."><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow"><meta property="og:title" content="Retirement Calculator: Formula &amp; Examples | CalcMintly"><meta property="og:description" content="Retirement Calculator. Project the value of current retirement assets and monthly contributions at retirement. Check input units. Compare your assumptions."><meta property="og:url" content="https://calcmintly.com/retirement-calculator"><meta property="og:type" content="website"><link rel="canonical" href="https://calcmintly.com/retirement-calculator"><meta property="og:image" content="https://calcmintly.com/assets/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CalcMintly calculator library"><meta name="twitter:image" content="https://calcmintly.com/assets/share-card.png"><script type="application/ld+json" data-cm-breadcrumb="" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;CalcMintly&quot;,&quot;item&quot;:&quot;https://calcmintly.com/&quot;},{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;Retirement Calculator&quot;,&quot;item&quot;:&quot;https://calcmintly.com/retirement-calculator&quot;}]}">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcMintly","item":"https://calcmintly.com/"},{"@type":"ListItem","position":2,"name":"Retirement Calculator","item":"https://calcmintly.com/retirement-calculator"}]}</script><meta property="og:locale" content="en"><link rel="alternate" hreflang="en" href="https://calcmintly.com/retirement-calculator"><link rel="alternate" hreflang="zh-CN" href="https://calcmintly.com/zh-cn/retirement-calculator"><link rel="alternate" hreflang="hi" href="https://calcmintly.com/hi/retirement-calculator"><link rel="alternate" hreflang="es" href="https://calcmintly.com/es/retirement-calculator"><link rel="alternate" hreflang="ar" href="https://calcmintly.com/ar/retirement-calculator"><link rel="alternate" hreflang="fr" href="https://calcmintly.com/fr/retirement-calculator"><link rel="alternate" hreflang="bn" href="https://calcmintly.com/bn/retirement-calculator"><link rel="alternate" hreflang="pt" href="https://calcmintly.com/pt/retirement-calculator"><link rel="alternate" hreflang="id" href="https://calcmintly.com/id/retirement-calculator"><link rel="alternate" hreflang="ur" href="https://calcmintly.com/ur/retirement-calculator"><link rel="alternate" hreflang="ru" href="https://calcmintly.com/ru/retirement-calculator"><link rel="alternate" hreflang="de" href="https://calcmintly.com/de/retirement-calculator"><link rel="alternate" hreflang="ja" href="https://calcmintly.com/ja/retirement-calculator"><link rel="alternate" hreflang="pcm" href="https://calcmintly.com/pcm/retirement-calculator"><link rel="alternate" hreflang="mr" href="https://calcmintly.com/mr/retirement-calculator"><link rel="alternate" hreflang="vi" href="https://calcmintly.com/vi/retirement-calculator"><link rel="alternate" hreflang="te" href="https://calcmintly.com/te/retirement-calculator"><link rel="alternate" hreflang="sw" href="https://calcmintly.com/sw/retirement-calculator"><link rel="alternate" hreflang="ha" href="https://calcmintly.com/ha/retirement-calculator"><link rel="alternate" hreflang="tr" href="https://calcmintly.com/tr/retirement-calculator"><link rel="alternate" hreflang="x-default" href="https://calcmintly.com/retirement-calculator"></head><body class="cm-unified cm-tool" data-cm-title-en="Retirement Calculator: Formula &amp; Examples | CalcMintly" data-cm-page-name="Retirement Calculator" data-cm-page-purpose="Project the value of current retirement assets and monthly contributions at retirement." data-cm-description-en="Retirement Calculator. Project the value of current retirement assets and monthly contributions at retirement. Check input units. Compare your assumptions." data-cm-page-kind="calculator"><noscript><p class="cm-no-script">Interactive features need JavaScript. Page content and links remain available.</p></noscript><a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">Skip to calculators</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="/" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a></nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">Language</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language=""><option value="en" selected="">English</option><option value="zh-CN">简体中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="fr">Français</option><option value="bn">বাংলা</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option><option value="ur">اردو</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="pcm">Nigerian Pidgin</option><option value="mr">मराठी</option><option value="vi">Tiếng Việt</option><option value="te">తెలుగు</option><option value="sw">Kiswahili</option><option value="ha">Hausa</option><option value="tr">Türkçe</option></select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></summary><nav aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a><a href="/basic-calculator" data-cm-href="/basic-calculator" data-cm-i18n="basic">Pocket calculator</a><a href="/scientific-calculator" data-cm-href="/scientific-calculator" data-cm-i18n="scientific">Scientific calculator</a><a href="/about" data-cm-href="/about" data-cm-i18n="about">About</a></nav></details></div></div></header><main class="wrap" id="main-content">
+
 <p><span class="tag">Finance</span></p>
 <h1>Retirement Calculator</h1>
-<p class="sub">Project the value of current retirement assets and monthly contributions at retirement.</p>
+<p class="sub" data-cm-pair="Project the value of current retirement assets and monthly contributions at retirement.|按退休时间、当前储蓄和每月投入，估算退休资金。">Project the value of current retirement assets and monthly contributions at retirement.</p><a class="cm-workspace-entry" data-cm-href="/workspace?add=retirement-calculator" href="/workspace?add=retirement-calculator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg><span data-cm-i18n="addWorkspace">Add to workspace</span></a>
 <div class="hero">
-<section class="card"><h2>Your numbers</h2><div class="grid">
-<div><label for="age">Current age</label><input id="age" type="number" value="35" min="0" step="any"></div>
-<div><label for="retage">Retirement age</label><input id="retage" type="number" value="60" min="0" step="any"></div>
-<div><label for="current">Current amount ($)</label><input id="current" type="number" value="100000" min="0" step="any"></div>
-<div><label for="contrib">Monthly contribution ($)</label><input id="contrib" type="number" value="1000" min="0" step="any"></div>
-<div><label for="rate">Annual rate (%)</label><input id="rate" type="number" value="5" min="0" step="any"></div>
+<section class="card"><h2 data-cm-i18n="inputs">Your numbers</h2><div class="grid">
+<div><label for="age">Current age</label><input id="age" type="number" value="35" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="retage">Retirement age</label><input id="retage" type="number" value="60" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="current">Current amount ($)</label><input id="current" type="number" value="100000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="contrib">Monthly contribution ($)</label><input id="contrib" type="number" value="1000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="rate">Annual rate (%)</label><input id="rate" type="number" value="5" min="0" step="any" max="1000000000000000" required=""></div>
 </div>
-<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy summary</button></p>
+<p><button class="primary" data-cm-action="reset">Reset example</button><button data-cm-action="copy">Copy summary</button><span class="cm-copy-status" role="status"></span></p>
 <p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
 <section class="card"><h2>Projected balance at retirement</h2><p class="big" id="main">—</p>
 <div class="chips"><span class="chip">Years to retirement: <strong id="chip1">—</strong></span><span class="chip">You will contribute: <strong id="chip2">—</strong></span><span class="chip">Growth from returns: <strong id="chip3">—</strong></span></div>
 <div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
-</div>
-<section class="card"><h2>What the projection is made of</h2><div class="tblwrap"><table><tr><th></th><th class="num">Amount</th></tr><tr><td>Current amount grown</td><td class="num" data-cell id="cCur">—</td></tr>
-<tr><td>Contributions grown</td><td class="num" data-cell id="cCont">—</td></tr>
-<tr><td>Total contributions paid</td><td class="num" data-cell id="cPaid">—</td></tr>
-<tr><td>Projected balance</td><td class="num" data-cell id="cTot">—</td></tr>
-</table></div></section>
-<section class="card"><h2>What makes up the projection</h2>
+</div><nav class="cm-guide" data-cm-label="help" aria-label="How it works"><a href="#guide-3" data-cm-guide="formula" data-cm-i18n="formula">Formula</a><a href="#guide-4" data-cm-guide="example" data-cm-pair="Worked example|计算示例">Worked example</a><a href="#guide-5" data-cm-guide="scope" data-cm-i18n="scope">Scope and limitations</a><a href="#guide-6" data-cm-guide="faq" data-cm-pair="FAQ|常见问题">FAQ</a></nav>
+<section class="card cm-data-section" id="guide-0"><h2>What the projection is made of</h2><div class="tblwrap"><table><tbody><tr><th></th><th class="num">Amount</th></tr><tr><td>Current amount grown</td><td class="num" data-cell="" id="cCur">—</td></tr>
+<tr><td>Contributions grown</td><td class="num" data-cell="" id="cCont">—</td></tr>
+<tr><td>Total contributions paid</td><td class="num" data-cell="" id="cPaid">—</td></tr>
+<tr><td>Projected balance</td><td class="num" data-cell="" id="cTot">—</td></tr>
+</tbody></table></div></section>
+<section class="card cm-data-section" id="guide-1"><h2>What makes up the projection</h2>
 <div class="bar-row"><label><span>Current amount, grown</span><span id="barAVal">—</span></label><div class="bar"><i id="barA" style="width:50%"></i></div></div>
 <div class="bar-row"><label><span>Contributions, grown</span><span id="barBVal">—</span></label><div class="bar"><i id="barB" style="width:50%"></i></div></div>
 <div class="bar-row"><label><span>Contributions paid</span><span id="barCVal">—</span></label><div class="bar"><i id="barC" style="width:50%"></i></div></div>
 <p class="muted">Bars are scaled to the projected balance. The grown-contributions bar includes its own growth; the paid bar shows the cash actually contributed, for comparison.</p></section>
-<section class="card"><h2>Balance every five years</h2><div class="tblwrap"><table><tr><th>Age</th><th class="num">Projected balance</th></tr><tbody id="pathRows"></tbody></table></div><p class="muted">Contributions are end-of-month and the rate is fixed. The table steps every five years from the current age to retirement.</p></section>
-<section class="card"><h2>Formula</h2>
-<p>Months = (retirement age &minus; current age) &times; 12. Projected balance = current amount &times; (1 + monthly rate)<sup>months</sup> + contribution &times; [(1 + monthly rate)<sup>months</sup> &minus; 1] &divide; monthly rate. Monthly rate = annual rate &divide; 12.</p></section>
-<section class="card"><h2>Worked example</h2>
+<section class="card cm-data-section" id="guide-2"><h2>Balance every five years</h2><div class="tblwrap"><table><tbody><tr><th>Age</th><th class="num">Projected balance</th></tr></tbody><tbody id="pathRows"></tbody></table></div><p class="muted">Contributions are end-of-month and the rate is fixed. The table steps every five years from the current age to retirement.</p></section>
+<section class="card" data-cm-section="formula" id="guide-3"><h2>Formula</h2>
+<p>Months = (retirement age − current age) × 12. Projected balance = current amount × (1 + monthly rate)<sup>months</sup> + contribution × [(1 + monthly rate)<sup>months</sup> − 1] ÷ monthly rate. Monthly rate = annual rate ÷ 12.</p></section>
+<section class="card" data-cm-section="example" id="guide-4"><h2>Worked example</h2>
 <p>Age 35 to retirement at 60 is 25 years (300 months). Current $100,000 at 5% grows to $348,129.05; $1,000 a month grows to $595,509.71 on $300,000 paid in. Projected balance at retirement: $943,638.75.</p></section>
-<section class="card"><h2>Scope and limitations</h2>
+<section class="card" data-cm-section="scope" id="guide-5"><h2>Scope and limitations</h2>
 <p>Constant rate, no withdrawals, no employer match, no fees, no taxes, and no inflation adjustment, so the figure is in nominal future dollars. Real market returns vary, contribution levels usually change over a career, and retirement spending, taxes, and longevity are not modeled here.</p></section>
-<section class="card"><h2>FAQ</h2>
+<section class="card" data-cm-section="faq" id="guide-6"><h2>FAQ</h2>
 <h3>Is this the amount I can spend in retirement?</h3><p>No. It is the balance at retirement, before tax and before any withdrawals. How long it lasts depends on spending, returns after retirement, and lifespan.</p>
 <h3>Does it include an employer match?</h3><p>Only if you include the match in the monthly contribution. Enter the combined figure to model it.</p>
 <h3>Why is the figure in future dollars?</h3><p>Because no inflation adjustment is applied. In today's purchasing power the same balance buys less after 25 years of inflation.</p>
 <h3>What if I retire earlier or later?</h3><p>Change the retirement age. Each extra year adds twelve contributions plus a year of growth on the whole balance, which is why the last years are powerful.</p>
 <h3>What rate should I assume?</h3><p>Use a conservative long-run assumption and test lower rates too. A single fixed rate hides the year-to-year variation of real markets.</p>
 </section>
-<section class="card"><h2>Related tools</h2><ul>
-<li><a href="https://calcmintly.com/compound-interest-calculator">Compound Interest Calculator</a> — the same growth math without ages</li>
-<li><a href="https://calcmintly.com/savings-goal-calculator">Savings Goal Calculator</a> — solve for the monthly amount a target needs</li>
-<li><a href="https://calcmintly.com/annualized-return-calculator">Annualized Return Calculator</a> — turn growth into a yearly rate</li>
+<section class="card" data-cm-section="related" id="guide-7"><h2>Related tools</h2><ul>
+<li><a href="/compound-interest-calculator" data-cm-href="/compound-interest-calculator">Compound Interest Calculator</a> — the same growth math without ages</li>
+<li><a href="/savings-goal-calculator" data-cm-href="/savings-goal-calculator">Savings Goal Calculator</a> — solve for the monthly amount a target needs</li>
+<li><a href="/annualized-return-calculator" data-cm-href="/annualized-return-calculator">Annualized Return Calculator</a> — turn growth into a yearly rate</li>
 </ul></section>
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
-</div>
-<script>
-const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
-const pct=n=>(Number(n)*100).toLocaleString("en-US",{maximumFractionDigits:2})+"%";
-const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
-function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
-function simPayoff(bal,rate,pay){let m=0, intr=0; while(bal>0.005 && m<1200){const i=bal*rate/12; intr+=i; const p=Math.min(pay,bal+i); bal=bal+i-p; m++;} return {months:m,interest:intr,paidOff:bal<=0.005};}
-function compute(v){
-  if(!(v.retage>v.age) || v.age<0 || v.current<0 || v.contrib<0 || v.rate<0) return {invalid:true, message:"Enter a retirement age above the current age, with current amount, contribution, and rate at zero or above."};
-  const r=v.rate/100/12, n=Math.round((v.retage-v.age)*12);
-  const fC=v.current*Math.pow(1+r,n);
-  const fContrib=r===0?v.contrib*n:v.contrib*(Math.pow(1+r,n)-1)/r;
-  const tot=fC+fContrib, paid=v.contrib*n, growth=tot-v.current-paid;
-  const rows=[]; for(let a=v.age+5;a<=v.retage;a+=5){const nn=(a-v.age)*12; const bal=v.current*Math.pow(1+r,nn)+(r===0?v.contrib*nn:v.contrib*(Math.pow(1+r,nn)-1)/r); rows.push(["Age "+a, money(bal)]);}
-  if((v.retage-v.age)%5!==0) rows.push(["Age "+v.retage, money(tot)]);
-  const mx=Math.max(tot,1);
-  return {main:money(tot), chips:[(v.retage-v.age)+" years", money(paid), money(growth)], verdict:"Over "+(v.retage-v.age)+" years, "+money(v.current)+" grows to "+money(fC)+" and "+money(v.contrib)+" a month grows to "+money(fContrib)+", for "+money(tot)+" at retirement.", cells:{cCur:money(fC), cCont:money(fContrib), cPaid:money(paid), cTot:money(tot)}, bars:[{bar:"barA", val:"barAVal", pct:fC/mx*100, text:money(fC)},{bar:"barB", val:"barBVal", pct:fContrib/mx*100, text:money(fContrib)},{bar:"barC", val:"barCVal", pct:paid/mx*100, text:money(paid)}], rows:{pathRows:rows}, summary:"Retirement projection: age "+v.age+" to "+v.retage+", "+money(v.current)+" plus "+money(v.contrib)+"/mo at "+num(v.rate)+"%: "+money(tot)+" at retirement."};
-}
-
-if(typeof document!=="undefined"){
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function render(){
-  const v=get(); const r=compute(v);
-  const set=(id,txt)=>{const el=$(id); if(el) el.textContent=txt;};
-  if(r.invalid){
-    ["main","chip1","chip2","chip3"].forEach(id=>set(id,"—"));
-    document.querySelectorAll("[data-cell]").forEach(el=>el.textContent="—");
-    document.querySelectorAll("tbody[data-rows]").forEach(tb=>tb.innerHTML="");
-    document.querySelectorAll(".bar i").forEach(b=>b.style.width="0%");
-    document.querySelectorAll("[data-barval]").forEach(el=>el.textContent="—");
-    const vd=$("verdict"); if(vd){vd.className="verdict warn"; $("verdictText").textContent=r.message;}
-    window.__summary="";
-    return;
-  }
-  set("main",r.main);
-  (r.chips||[]).forEach((c,i)=>set("chip"+(i+1),c));
-  const vd=$("verdict"); if(vd){vd.className="verdict"+(r.vclass?" "+r.vclass:""); $("verdictText").textContent=r.verdict;}
-  Object.entries(r.cells||{}).forEach(([id,txt])=>set(id,txt));
-  (r.bars||[]).forEach(b=>{const el=$(b.bar); if(el) el.style.width=b.pct+"%"; set(b.val,b.text);});
-  Object.entries(r.rows||{}).forEach(([tb,rows])=>{const el=$(tb); if(el) el.innerHTML=rows.map(row=>"<tr>"+row.map((c,i)=>"<td"+(i>0?" class='num'":"")+">"+c+"</td>").join("")+"</tr>").join("");});
-  window.__summary=r.summary||"";
-}
-function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
-function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-}
-
-</script></body></html>
+</main>
+<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">Local calculations. Results are estimates, not professional advice.</p></div><nav><a data-cm-href="/methodology" data-cm-i18n="methods" href="/methodology">Methodology</a><a data-cm-href="/about" data-cm-i18n="about" href="/about">About</a><a data-cm-href="/privacy" data-cm-i18n="privacy" href="/privacy">Privacy</a><a data-cm-href="/terms" data-cm-i18n="terms" href="/terms">Terms</a><a data-cm-href="/contact" data-cm-i18n="contact" href="/contact">Contact</a></nav></footer></body></html>

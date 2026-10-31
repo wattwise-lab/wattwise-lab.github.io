@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"weighted-variance-calculator","name":"Weighted Population Variance","names":{"zh-CN":"加权总体方差"},"domain":"Math and Time","keywords":"Weighted Population Variance 加权总体方差 weighted-variance-calculator","new":true,"description":"Measure population spread with nonnegative observation weights.","descriptions":{"zh-CN":"用非负观测权重衡量总体离散程度。"},"priority":486}];

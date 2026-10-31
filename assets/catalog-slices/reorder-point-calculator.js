@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"reorder-point-calculator","name":"Inventory Reorder Point","names":{"zh-CN":"库存再订货点"},"domain":"Business","keywords":"Inventory Reorder Point 库存再订货点 reorder-point-calculator","new":true,"description":"Combine lead-time demand with a safety buffer.","descriptions":{"zh-CN":"合并交货期需求与安全库存。"},"priority":204}];

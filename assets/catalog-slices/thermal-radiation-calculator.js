@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"thermal-radiation-calculator","name":"Thermal Radiation","names":{"zh-CN":"热辐射净功率"},"domain":"Science","keywords":"Thermal Radiation 热辐射净功率 thermal-radiation-calculator","new":true,"description":"Estimate radiation exchange with large surrounding surfaces.","descriptions":{"zh-CN":"估计与大环境表面间的辐射换热。"},"priority":409}];

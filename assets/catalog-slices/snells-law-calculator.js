@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"snells-law-calculator","name":"Snell Refraction Angle","names":{"zh-CN":"斯涅尔折射角"},"domain":"Science","keywords":"Snell Refraction Angle 斯涅尔折射角 snells-law-calculator","new":true,"description":"Apply refraction at a flat interface between two media.","descriptions":{"zh-CN":"计算两介质平面界面的折射角。"},"priority":386}];

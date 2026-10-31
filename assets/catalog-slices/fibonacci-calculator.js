@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"fibonacci-calculator","name":"Fibonacci Number","names":{"zh-CN":"斐波那契数"},"domain":"Math and Time","keywords":"Fibonacci Number 斐波那契数 fibonacci-calculator","new":true,"description":"Calculate an exact Fibonacci number with F₀=0 and F₁=1.","descriptions":{"zh-CN":"以 F₀=0、F₁=1 为约定，计算精确斐波那契数。"},"priority":346}];

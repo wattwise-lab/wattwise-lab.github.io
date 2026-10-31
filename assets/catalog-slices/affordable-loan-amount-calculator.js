@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"affordable-loan-amount-calculator","name":"Loan Amount from Payment","names":{"zh-CN":"月供反推可借本金"},"domain":"Finance","keywords":"Loan Amount from Payment 月供反推可借本金 affordable-loan-amount-calculator","new":true,"description":"Reverse a payment budget into a principal amount.","descriptions":{"zh-CN":"由月供预算反推等额还款本金。"},"priority":191}];

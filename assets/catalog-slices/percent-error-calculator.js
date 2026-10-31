@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"percent-error-calculator","name":"Percent Error","names":{"zh-CN":"百分误差"},"domain":"Math and Time","keywords":"Percent Error 百分误差 percent-error-calculator","new":true,"description":"Compare a measurement with a nonzero reference value.","descriptions":{"zh-CN":"比较测量值与非零参考值的误差。"},"priority":316}];

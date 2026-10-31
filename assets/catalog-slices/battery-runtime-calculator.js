@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"battery-runtime-calculator","name":"Battery Runtime Estimate","names":{"zh-CN":"电池续航估算"},"domain":"Science","keywords":"Battery Runtime Estimate 电池续航估算 battery-runtime-calculator","new":true,"description":"Estimate usable energy and constant-load runtime.","descriptions":{"zh-CN":"估计可用电量与恒定负载续航。"},"priority":380}];

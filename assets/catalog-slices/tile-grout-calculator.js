@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"tile-grout-calculator","name":"Tile Grout Quantity","names":{"zh-CN":"瓷砖填缝剂"},"domain":"Home and Everyday","keywords":"Tile Grout Quantity 瓷砖填缝剂 tile-grout-calculator","new":true,"description":"Estimate joint volume and grout mass from a repeating tile grid.","descriptions":{"zh-CN":"由重复瓷砖网格估计灰缝体积与填缝剂质量。"},"priority":243}];

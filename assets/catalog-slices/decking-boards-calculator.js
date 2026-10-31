@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"decking-boards-calculator","name":"Decking Board Layout","names":{"zh-CN":"露台板布置"},"domain":"Home and Everyday","keywords":"Decking Board Layout 露台板布置 decking-boards-calculator","new":true,"description":"Estimate board rows with a specified gap and stock length.","descriptions":{"zh-CN":"按留缝与库存板长估计板排和用量。"},"priority":252}];

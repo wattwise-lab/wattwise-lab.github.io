@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"hyperbolic-functions-calculator","name":"Hyperbolic Functions","names":{"zh-CN":"双曲函数值"},"domain":"Math and Time","keywords":"Hyperbolic Functions 双曲函数值 hyperbolic-functions-calculator","new":true,"description":"Calculate hyperbolic sine, cosine and tangent for a real argument.","descriptions":{"zh-CN":"计算实数对应的双曲正弦、余弦和正切。"},"priority":306}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"prime-factorization-calculator","name":"Prime Factorization","names":{"zh-CN":"质因数分解"},"domain":"Math and Time","keywords":"Prime Factorization 质因数分解 prime-factorization-calculator","new":true,"description":"Write a positive integer as a product of prime powers.","descriptions":{"zh-CN":"把正整数写成质数幂的乘积。"},"priority":324}];

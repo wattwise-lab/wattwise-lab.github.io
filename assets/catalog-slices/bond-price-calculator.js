@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bond-price-calculator","name":"Fixed Coupon Bond Price","names":{"zh-CN":"固定票息债券价格"},"domain":"Finance","keywords":"Fixed Coupon Bond Price 固定票息债券价格 bond-price-calculator","new":true,"description":"Discount fixed coupons and principal on coupon dates.","descriptions":{"zh-CN":"在付息日折现固定票息与本金。"},"priority":162}];

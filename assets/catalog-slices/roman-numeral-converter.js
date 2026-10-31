@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"roman-numeral-converter","name":"Roman Numeral Converter","names":{"zh-CN":"罗马数字换算"},"domain":"Converters","keywords":"Roman Numeral Converter 罗马数字换算 roman-numeral-converter","new":true,"description":"Convert integers into conventional subtractive Roman numerals.","descriptions":{"zh-CN":"将整数转换为常见减法式罗马数字。"},"priority":122}];

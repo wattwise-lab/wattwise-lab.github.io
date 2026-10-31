@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"momentum-calculator","name":"Linear Momentum","names":{"zh-CN":"线动量"},"domain":"Science","keywords":"Linear Momentum 线动量 momentum-calculator","new":true,"description":"Calculate signed momentum along a single axis.","descriptions":{"zh-CN":"计算单一轴向带符号动量。"},"priority":418}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ideal-transformer-calculator","name":"Ideal Transformer Ratio","names":{"zh-CN":"理想变压器变比"},"domain":"Science","keywords":"Ideal Transformer Ratio 理想变压器变比 ideal-transformer-calculator","new":true,"description":"Convert AC voltage by primary and secondary winding counts.","descriptions":{"zh-CN":"按初次级匝数换算交流电压。"},"priority":379}];

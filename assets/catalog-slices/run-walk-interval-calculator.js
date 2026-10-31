@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"run-walk-interval-calculator","name":"Run Walk Intervals","names":{"zh-CN":"跑走间歇"},"domain":"Health","keywords":"Run Walk Intervals 跑走间歇 run-walk-interval-calculator","new":true,"description":"Combine running and walking intervals into a session plan.","descriptions":{"zh-CN":"将跑步与步行间歇组合成训练时长与距离。"},"priority":226}];

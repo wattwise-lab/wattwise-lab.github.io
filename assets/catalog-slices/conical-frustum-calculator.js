@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"conical-frustum-calculator","name":"Conical Frustum","names":{"zh-CN":"圆台体积与表面积"},"domain":"Math and Time","keywords":"Conical Frustum 圆台体积与表面积 conical-frustum-calculator","new":true,"description":"Calculate a conical frustum from two circular radii and vertical height.","descriptions":{"zh-CN":"由两个底面半径和垂直高求圆台体积与表面积。"},"priority":298}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"portfolio-expected-return-calculator","name":"Portfolio Expected Return","names":{"zh-CN":"投资组合预期回报"},"domain":"Finance","keywords":"Portfolio Expected Return 投资组合预期回报 portfolio-expected-return-calculator","new":true,"description":"Weight asset-return assumptions by portfolio shares.","descriptions":{"zh-CN":"按组合占比加权各资产回报假设。"},"priority":174}];

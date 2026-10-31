@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pool-volume-calculator","name":"Swimming Pool Volume","names":{"zh-CN":"泳池容积"},"domain":"Home and Everyday","keywords":"Swimming Pool Volume 泳池容积 pool-volume-calculator","new":true,"description":"Estimate rectangular pool volume with a uniformly sloping floor.","descriptions":{"zh-CN":"估算底面均匀倾斜矩形泳池容积。"},"priority":256}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"running-splits-calculator","name":"Even Pace Running Splits","names":{"zh-CN":"匀速跑步分段"},"domain":"Health","keywords":"Even Pace Running Splits 匀速跑步分段 running-splits-calculator","new":true,"description":"Calculate split duration and the final partial split.","descriptions":{"zh-CN":"计算匀速分段用时及最后不足一段的时间。"},"priority":225}];

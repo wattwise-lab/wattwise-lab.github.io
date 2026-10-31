@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pricing-power","name":"Pricing Power","domain":"Business","keywords":"pricing power price increase elasticity pricing","names":{"zh-CN":"定价空间分析","ja":"価格設定の余地"},"new":false,"description":"Model how a price increase changes profit when some volume is lost.","descriptions":{"zh-CN":"按销量变化假设，比较提价前后的利润。"},"priority":60}];

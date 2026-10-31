@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cohens-d-calculator","name":"Cohen’s d and Hedges’ g","names":{"zh-CN":"Cohen d 与 Hedges g"},"domain":"Math and Time","keywords":"Cohen’s d and Hedges’ g Cohen d 与 Hedges g cohens-d-calculator","new":true,"description":"Compare two means on a pooled standard-deviation scale.","descriptions":{"zh-CN":"用合并标准差比较两组均值差异。"},"priority":489}];

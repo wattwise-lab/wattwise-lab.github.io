@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"electric-current-converter","name":"Electric Current Converter","names":{"zh-CN":"电流单位换算"},"domain":"Converters","keywords":"Electric Current Converter 电流单位换算 electric-current-converter","new":true,"description":"Convert electric-current scales with SI prefixes.","descriptions":{"zh-CN":"用 SI 前缀换算电流量级。"},"priority":106}];

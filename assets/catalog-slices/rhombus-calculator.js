@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rhombus-calculator","name":"Rhombus from Diagonals","names":{"zh-CN":"菱形对角线计算"},"domain":"Math and Time","keywords":"Rhombus from Diagonals 菱形对角线计算 rhombus-calculator","new":true,"description":"Find area, side length and perimeter from perpendicular diagonals.","descriptions":{"zh-CN":"由两条对角线求菱形面积、边长和周长。"},"priority":276}];

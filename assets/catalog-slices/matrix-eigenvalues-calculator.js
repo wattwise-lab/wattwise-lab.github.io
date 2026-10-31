@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"matrix-eigenvalues-calculator","name":"2 × 2 Matrix Eigenvalues","names":{"zh-CN":"二阶矩阵特征值"},"domain":"Math and Time","keywords":"2 × 2 Matrix Eigenvalues 二阶矩阵特征值 matrix-eigenvalues-calculator","new":true,"description":"Find real or conjugate-complex eigenvalues of a two-by-two matrix.","descriptions":{"zh-CN":"求二阶矩阵的实特征值或共轭复特征值。"},"priority":308}];

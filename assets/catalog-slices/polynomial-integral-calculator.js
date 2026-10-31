@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"polynomial-integral-calculator","name":"Definite Polynomial Integral","names":{"zh-CN":"多项式定积分"},"domain":"Math and Time","keywords":"Definite Polynomial Integral 多项式定积分 polynomial-integral-calculator","new":true,"description":"Integrate a coefficient-form polynomial between two limits.","descriptions":{"zh-CN":"计算按系数输入的多项式在两界限间的定积分。"},"priority":313}];

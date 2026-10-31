@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"return-on-ad-spend-calculator","name":"Return on Ad Spend","names":{"zh-CN":"广告支出回报 ROAS"},"domain":"Business","keywords":"Return on Ad Spend 广告支出回报 ROAS return-on-ad-spend-calculator","new":true,"description":"Compare attributed revenue with advertising spend and margin.","descriptions":{"zh-CN":"比较归因收入与广告投入，并计入贡献利润率。"},"priority":210}];

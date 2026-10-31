@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"loan-term-calculator","name":"Loan Term from Payment","names":{"zh-CN":"月供反推还清期限"},"domain":"Finance","keywords":"Loan Term from Payment 月供反推还清期限 loan-term-calculator","new":true,"description":"Solve repayment duration from balance, rate and payment.","descriptions":{"zh-CN":"由本金、利率与月供反推还清期限。"},"priority":192}];

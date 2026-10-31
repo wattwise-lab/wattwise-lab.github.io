@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"heart-rate-reserve-calculator","name":"Heart Rate Reserve Target","names":{"zh-CN":"心率储备目标"},"domain":"Health","keywords":"Heart Rate Reserve Target 心率储备目标 heart-rate-reserve-calculator","new":true,"description":"Apply an entered intensity to measured heart-rate reserve.","descriptions":{"zh-CN":"将自填强度应用于实测心率储备。"},"priority":218}];

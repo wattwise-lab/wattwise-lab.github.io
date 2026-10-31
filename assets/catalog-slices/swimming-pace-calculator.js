@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"swimming-pace-calculator","name":"Swimming Pace","names":{"zh-CN":"游泳配速"},"domain":"Health","keywords":"Swimming Pace 游泳配速 swimming-pace-calculator","new":true,"description":"Calculate pace per 100 metres and lengths in a pool.","descriptions":{"zh-CN":"计算每百米配速与泳池趟数。"},"priority":227}];

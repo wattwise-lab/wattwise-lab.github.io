@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ipv4-vlsm-calculator","name":"IPv4 VLSM Allocation","names":{"zh-CN":"IPv4 VLSM 分配"},"domain":"Digital and Technology","keywords":"IPv4 VLSM Allocation IPv4 VLSM 分配 ipv4-vlsm-calculator","new":true,"description":"Allocate conventional host subnets largest-first inside one parent.","descriptions":{"zh-CN":"在一个父网内优先为最大需求分配常规主机子网。"},"priority":132}];

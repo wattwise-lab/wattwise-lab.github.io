@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"median-absolute-deviation-calculator","name":"Median Absolute Deviation","names":{"zh-CN":"中位数绝对偏差"},"domain":"Math and Time","keywords":"Median Absolute Deviation 中位数绝对偏差 median-absolute-deviation-calculator","new":true,"description":"Estimate robust spread around the sample median.","descriptions":{"zh-CN":"估计围绕样本中位数的稳健离散程度。"},"priority":499}];

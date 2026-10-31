@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"raid-capacity-calculator","name":"RAID Capacity","names":{"zh-CN":"RAID 可用容量"},"domain":"Digital and Technology","keywords":"RAID Capacity RAID 可用容量 raid-capacity-calculator","new":true,"description":"Estimate conventional RAID usable capacity with equal-size disks.","descriptions":{"zh-CN":"估算等容量磁盘的常规 RAID 可用容量。"},"priority":134}];

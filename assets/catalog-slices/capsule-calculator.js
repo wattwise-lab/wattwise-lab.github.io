@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"capsule-calculator","name":"Capsule Volume and Surface","names":{"zh-CN":"胶囊体计算器"},"domain":"Math and Time","keywords":"Capsule Volume and Surface 胶囊体计算器 capsule-calculator","new":true,"description":"Find a cylinder-plus-two-hemispheres capsule’s volume and surface.","descriptions":{"zh-CN":"求圆柱加两端半球组成的胶囊体体积和表面积。"},"priority":303}];

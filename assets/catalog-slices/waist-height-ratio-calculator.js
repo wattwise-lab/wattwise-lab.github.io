@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"waist-height-ratio-calculator","name":"Waist to Height Ratio","names":{"zh-CN":"腰围身高比"},"domain":"Health","keywords":"Waist to Height Ratio 腰围身高比 waist-height-ratio-calculator","new":true,"description":"Compare waist circumference with measured height.","descriptions":{"zh-CN":"比较实测腰围与身高。"},"priority":213}];

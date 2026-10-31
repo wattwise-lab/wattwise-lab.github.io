@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mean-absolute-deviation-calculator","name":"Mean Absolute Deviation","names":{"zh-CN":"平均绝对偏差"},"domain":"Math and Time","keywords":"Mean Absolute Deviation 平均绝对偏差 mean-absolute-deviation-calculator","new":true,"description":"Measure average absolute distance from the arithmetic mean.","descriptions":{"zh-CN":"计算各数值与算术均值的平均绝对距离。"},"priority":498}];

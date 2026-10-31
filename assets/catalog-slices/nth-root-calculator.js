@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"nth-root-calculator","name":"Nth Root","names":{"zh-CN":"n 次方根"},"domain":"Math and Time","keywords":"Nth Root n 次方根 nth-root-calculator","new":true,"description":"Find a real nth root with explicit handling of negative inputs.","descriptions":{"zh-CN":"求 n 次实数根，并检查负数的根次数。"},"priority":328}];

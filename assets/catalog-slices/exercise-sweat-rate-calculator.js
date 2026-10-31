@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"exercise-sweat-rate-calculator","name":"Exercise Sweat Rate Estimate","names":{"zh-CN":"运动出汗率估计"},"domain":"Health","keywords":"Exercise Sweat Rate Estimate 运动出汗率估计 exercise-sweat-rate-calculator","new":true,"description":"Estimate fluid loss from mass change, drinking and urine.","descriptions":{"zh-CN":"由体重变化、饮水与排尿估算体液损失。"},"priority":233}];

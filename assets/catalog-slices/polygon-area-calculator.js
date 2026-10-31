@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"polygon-area-calculator","name":"Polygon Area from Coordinates","names":{"zh-CN":"坐标多边形面积"},"domain":"Math and Time","keywords":"Polygon Area from Coordinates 坐标多边形面积 polygon-area-calculator","new":true,"description":"Use ordered vertices to find a simple polygon’s area and perimeter.","descriptions":{"zh-CN":"按顺序输入顶点，求简单多边形面积和周长。"},"priority":283}];

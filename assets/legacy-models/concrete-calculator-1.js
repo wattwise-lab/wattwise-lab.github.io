@@ -1,0 +1,43 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
+
+const INVALID_MSG='Enter length, width and depth above zero, with a waste allowance at zero or above, to see the order volume.';
+function calc(v){
+ if(!(v.len>0&&v.wid>0&&v.dep>0&&v.waste>=0)) return null;
+ const net=v.len*v.wid*v.dep, wv=net*v.waste/100, order=net+wv;
+ const cum=[[0,5,8,10,15].map(function(w){return [w, net*(1+w/100)];})][0];
+ return {big:num(order)+" m\u00b3",
+  chips:[["Net volume",num(net)+" m\u00b3"],["Waste volume",num(wv)+" m\u00b3"],["Order in ft\u00b3",num(order*35.3147)+" ft\u00b3"]],
+  rows:[["Net volume (length \u00d7 width \u00d7 depth)",num(net)+" m\u00b3"],["Waste volume",num(wv)+" m\u00b3"],["Order volume",num(order)+" m\u00b3"],["Order volume",num(order*35.3147)+" ft\u00b3"],["Order volume",num(order*1000)+" litres"]],
+  bars:[["Net volume",net,num(net)+" m\u00b3"],["Waste volume",wv,num(wv)+" m\u00b3"]],
+  cum:cum.map(function(r){return ["At "+r[0]+"% waste",num(r[1])+" m\u00b3"];}),
+  vclass:v.waste===0?"warn":"",
+  verdict:v.waste===0?"Order volume is "+num(order)+" m\u00b3 with no waste allowance. A pour with zero allowance leaves nothing for spillage or uneven subgrade — consider adding one unless your measurements are exact and your supplier confirms it.":"Order "+num(order)+" m\u00b3: "+num(net)+" m\u00b3 net plus "+num(wv)+" m\u00b3 waste at "+num(v.waste)+"%. Confirm the supplier's minimum load and ordering unit before placing the order.",
+  summary:"Concrete: net "+num(net)+" m3, waste "+num(wv)+" m3 at "+num(v.waste)+"%, order "+num(order)+" m3."};}
+
+function render(){
+  const v=get(); const c=calc(v);
+  if(!c){
+    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+  }
+  $("result").textContent=c.big;
+  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
+  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
+  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
+  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
+  window.__summary=c.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

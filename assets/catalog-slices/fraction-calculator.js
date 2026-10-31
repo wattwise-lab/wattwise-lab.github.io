@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"fraction-calculator","name":"Fraction Calculator","domain":"Math and Time","keywords":"fraction fractions fraction calculator simplify fraction","names":{"zh-CN":"分数计算器","ja":"分数計算"},"new":false,"description":"Add, subtract, multiply or divide two fractions and reduce the result.","descriptions":{"zh-CN":"对两个分数进行加减乘除，并约分结果。"},"priority":32}];

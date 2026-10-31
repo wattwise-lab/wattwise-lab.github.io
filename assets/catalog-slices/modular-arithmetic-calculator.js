@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"modular-arithmetic-calculator","name":"Modular Arithmetic","names":{"zh-CN":"模运算"},"domain":"Math and Time","keywords":"Modular Arithmetic 模运算 modular-arithmetic-calculator","new":true,"description":"Add, multiply or exponentiate integers under a positive modulus.","descriptions":{"zh-CN":"在正模数下进行整数加法、乘法或乘方。"},"priority":321}];

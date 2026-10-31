@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"aspect-ratio-calculator","name":"Aspect Ratio","names":{"zh-CN":"宽高比"},"domain":"Digital and Technology","keywords":"Aspect Ratio 宽高比 aspect-ratio-calculator","new":true,"description":"Simplify integer dimensions and scale to a new width.","descriptions":{"zh-CN":"化简整数尺寸比例并缩放至新宽度。"},"priority":127}];

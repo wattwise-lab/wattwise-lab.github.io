@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"line-equation-calculator","name":"Line through Two Points","names":{"zh-CN":"两点确定直线"},"domain":"Math and Time","keywords":"Line through Two Points 两点确定直线 line-equation-calculator","new":true,"description":"Calculate the coefficients of Ax + By + C = 0, including vertical lines.","descriptions":{"zh-CN":"根据两点求直线一般式，支持垂直直线。"},"priority":336}];

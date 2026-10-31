@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"combinations-calculator","name":"Combinations","names":{"zh-CN":"组合数"},"domain":"Math and Time","keywords":"Combinations 组合数 combinations-calculator","new":true,"description":"Count unordered selections without repetition.","descriptions":{"zh-CN":"计算不重复、无顺序的选取方式数。"},"priority":483}];

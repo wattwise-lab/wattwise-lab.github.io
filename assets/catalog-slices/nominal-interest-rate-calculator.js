@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"nominal-interest-rate-calculator","name":"Nominal Interest Rate","names":{"zh-CN":"名义年利率换算"},"domain":"Finance","keywords":"Nominal Interest Rate 名义年利率换算 nominal-interest-rate-calculator","new":true,"description":"Recover a nominal rate from an effective annual rate.","descriptions":{"zh-CN":"由有效年利率反推名义年利率。"},"priority":149}];

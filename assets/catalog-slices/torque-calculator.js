@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"torque-calculator","name":"Torque","names":{"zh-CN":"力矩"},"domain":"Science","keywords":"Torque 力矩 torque-calculator","new":true,"description":"Find torque magnitude from force, lever arm and included angle.","descriptions":{"zh-CN":"由力、力臂长度与夹角计算力矩大小。"},"priority":424}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"circle-equation-calculator","name":"Circle Equation","names":{"zh-CN":"圆的方程"},"domain":"Math and Time","keywords":"Circle Equation 圆的方程 circle-equation-calculator","new":true,"description":"Write a circle equation from its centre and radius.","descriptions":{"zh-CN":"根据圆心和半径写出圆的标准方程。"},"priority":288}];

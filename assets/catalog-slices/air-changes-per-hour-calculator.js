@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"air-changes-per-hour-calculator","name":"Air Changes per Hour","names":{"zh-CN":"每小时换气次数"},"domain":"Home and Everyday","keywords":"Air Changes per Hour 每小时换气次数 air-changes-per-hour-calculator","new":true,"description":"Compare ventilation flow with room volume.","descriptions":{"zh-CN":"比较通风量与房间体积。"},"priority":262}];

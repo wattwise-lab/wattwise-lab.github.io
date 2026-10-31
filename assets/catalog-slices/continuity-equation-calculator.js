@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"continuity-equation-calculator","name":"Flow Continuity","names":{"zh-CN":"流动连续性"},"domain":"Science","keywords":"Flow Continuity 流动连续性 continuity-equation-calculator","new":true,"description":"Find downstream velocity for incompressible steady flow.","descriptions":{"zh-CN":"求不可压缩稳态流的下游流速。"},"priority":397}];

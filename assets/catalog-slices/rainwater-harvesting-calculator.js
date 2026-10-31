@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rainwater-harvesting-calculator","name":"Rainwater Harvesting","names":{"zh-CN":"雨水收集量"},"domain":"Home and Everyday","keywords":"Rainwater Harvesting 雨水收集量 rainwater-harvesting-calculator","new":true,"description":"Estimate roof runoff captured from a rainfall event.","descriptions":{"zh-CN":"估计一次降雨可收集的屋面径流。"},"priority":257}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"wallpaper-rolls-calculator","name":"Wallpaper Rolls","names":{"zh-CN":"壁纸卷数"},"domain":"Home and Everyday","keywords":"Wallpaper Rolls 壁纸卷数 wallpaper-rolls-calculator","new":true,"description":"Calculate full-height strips with repeat-pattern matching.","descriptions":{"zh-CN":"按完整高度条带和图案重复匹配计算卷数。"},"priority":240}];

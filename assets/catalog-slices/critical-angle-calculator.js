@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"critical-angle-calculator","name":"Critical Angle","names":{"zh-CN":"全反射临界角"},"domain":"Science","keywords":"Critical Angle 全反射临界角 critical-angle-calculator","new":true,"description":"Find the critical angle from a denser optical medium.","descriptions":{"zh-CN":"求由高折射率介质射出的全反射临界角。"},"priority":387}];

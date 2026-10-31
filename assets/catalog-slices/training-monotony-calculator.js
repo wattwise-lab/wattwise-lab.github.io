@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"training-monotony-calculator","name":"Weekly Training Monotony","names":{"zh-CN":"周训练单调度"},"domain":"Health","keywords":"Weekly Training Monotony 周训练单调度 training-monotony-calculator","new":true,"description":"Summarize seven daily load values, including rest days.","descriptions":{"zh-CN":"汇总含休息日在内的七天负荷。"},"priority":232}];

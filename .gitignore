@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+._*
+coverage/
+playwright-report/
+test-results/
+*.log
+.cache/
+
+# CI browser diagnostics
+browser-evidence/

@@ -1,0 +1,16 @@
+# CalcMintly delivery standards
+
+User requirements recorded on 2026-10-30. Existing user authorization covers implementation, repository publication and deployment of this site. Continue until the authorized scope is fulfilled; report external verification gaps precisely.
+
+1. Fix routing, legacy runtime/style conflicts and locale inconsistencies before expanding. Use one shared semantic page shell, navigation, footer, visual tokens and locale policy. Preserve working calculator formulas and user inputs during interactions.
+2. Provide real pocket and scientific keypad calculators. Pin exactly eight common tools above the directory: pocket, scientific, percentage, loan, mortgage, BMI, age, and length/unit conversion.
+3. Deliver exactly 500 usable calculators, including plan collision, life dependency failure and future commitment tools. Each must have meaningful inputs, units, reproducible calculations, worked examples, limitations and appropriate checks. Never fabricate global popularity, usage counts or search volumes.
+4. Keep 20 supported locales consistent: en, zh-CN, hi, es, ar, fr, bn, pt, id, ur, ru, de, ja, pcm, mr, vi, te, sw, ha, tr. Test translated content, lang, RTL and locale-preserving navigation. Do not claim full localization when only a selector was added.
+5. Apply the eight website quality dimensions: semantic UTF-8 HTML; scoped CSS with border-box and Grid/Flex; strict modern JS with type checks where applicable; fast stable loading; responsive layouts and keyboard/touch access; truthful unique SEO metadata and structured data; HTTPS and appropriate security headers; privacy-preserving data handling; reproducible CI, cache policy and recovery.
+6. Performance targets: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 and TTFB < 800 ms. Distinguish local samples from real-user field percentiles. Do not claim a passing field score without data.
+7. Test small phones, tablets, desktop and 4K; target 44 px touch areas, 16 px form text, WCAG 2.2 AA contrast/focus/labels and reduced motion/dark preferences. Record unavailable browser engines instead of claiming a full browser matrix.
+8. Use correct canonical/hreflang, robots/sitemap, one H1, appropriate JSON-LD and true HTTP statuses. Use CSP, HSTS, nosniff and referrer/frame policies compatible with the same-origin workspace. Validate and escape inputs; avoid eval and unnecessary remote scripts.
+9. Authentication, server-side CSRF/SQL defenses, consent/analytics and database backups apply when those features or data exist. Do not add fake login/consent/monitoring or claim legal compliance, TLS configuration, external backups or 24/7 observation without verifying actual service state.
+10. Before delivery personally view every affected final output at the scope claimed; fix and recheck defects. Run meaningful numerical, functional and technical checks as well. Keep evidence and distinguish verified, pending, incomplete and externally constrained items. Clean verified disposable artifacts without deleting user assets or necessary rollback material.
+
+Use existing repository/tool access. If a tool is blocked or exhausted, use the browser for actions it supports. Do not introduce new confirmation gates for already authorized work. No subagent delegation has been requested by the user.

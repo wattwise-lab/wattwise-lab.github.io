@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"earnings-per-share-calculator","name":"Earnings per Share","names":{"zh-CN":"每股收益 EPS"},"domain":"Finance","keywords":"Earnings per Share 每股收益 EPS earnings-per-share-calculator","new":true,"description":"Allocate earnings available to common shareholders.","descriptions":{"zh-CN":"将归属于普通股股东的收益分摊至股份。"},"priority":169}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bayes-theorem-calculator","name":"Bayes’ Theorem","names":{"zh-CN":"贝叶斯定理"},"domain":"Math and Time","keywords":"Bayes’ Theorem 贝叶斯定理 bayes-theorem-calculator","new":true,"description":"Update a prior probability from true-signal and false-signal rates.","descriptions":{"zh-CN":"根据真实信号率和误报率更新先验概率。"},"priority":466}];

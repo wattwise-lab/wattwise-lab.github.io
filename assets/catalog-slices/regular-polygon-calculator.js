@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"regular-polygon-calculator","name":"Regular Polygon","names":{"zh-CN":"正多边形"},"domain":"Math and Time","keywords":"Regular Polygon 正多边形 regular-polygon-calculator","new":true,"description":"Find area, perimeter, apothem and circumradius for a regular polygon.","descriptions":{"zh-CN":"由边数和边长求正多边形面积、周长、边心距和外接圆半径。"},"priority":282}];

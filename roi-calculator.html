@@ -1,109 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ROI Calculator | CalcMintly</title><meta name="description" content="Measure investment gain or loss relative to the initial amount invested.">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:#1a1a1a;line-height:1.55;background:#fafafa}a{color:#14456b}.wrap{max-width:1080px;margin:0 auto;padding:16px}
-.sitehead{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px;border-bottom:1px solid #e3e3e3}.brand{font-size:1.25rem;font-weight:700;text-decoration:none;color:#1a1a1a}.brand b{font-weight:800}.tag{display:inline-block;background:#123;color:#fff;border-radius:999px;padding:2px 12px;font-size:.85rem;font-weight:600}
-h1{font-size:2rem;margin:12px 0 4px}.sub{color:#444;margin:0 0 20px}.back{font-size:.95rem}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin:0 0 16px}.card h2{margin:0 0 12px;font-size:1.25rem}.card h3{margin:16px 0 6px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin-bottom:4px}input{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:1rem}
-button{padding:10px 16px;border-radius:8px;border:1px solid #888;background:#fff;cursor:pointer;margin:8px 8px 0 0;font-size:1rem}button.primary{background:#123;color:#fff;border-color:#123}
-.big{font-size:2.4rem;font-weight:800;line-height:1.1}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid #ccc;border-radius:999px;padding:4px 12px;font-size:.95rem}.chip strong{font-size:1.05rem}
-.verdict{border-left:6px solid #2a7;padding:12px 16px;background:#f2faf5;border-radius:0 10px 10px 0}.verdict.warn{border-color:#c80;background:#fdf8ec}.verdict.bad{border-color:#c33;background:#fdf0f0}.verdict p{margin:0}
-table{width:100%;border-collapse:collapse}.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}@media(max-width:600px){th,td{padding:8px 6px;font-size:.95rem}}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #eee}th{color:#555;font-size:.9rem}td.num,th.num{text-align:right}.pos{color:#1a7a3d;font-weight:700}.neg{color:#b3261e;font-weight:700}
-.bar-row{margin:10px 0}.bar-row label{display:flex;justify-content:space-between;font-weight:600}.bar{height:22px;background:#e8e8e8;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#5b7fa6}.bar i.new{background:#2a7a4b}.bar i.newbad{background:#c08000}
-.muted{color:#555;font-size:.9rem}code{background:#f2f2f2;padding:1px 5px;border-radius:4px}ul{padding-left:20px}li{margin:4px 0}</style><link rel="stylesheet" href="/assets/cm-commercial.css?v=20261030r2"><script defer src="/assets/cm-catalog-v3.js?v=20261030r2"></script><script defer src="/assets/cm-tool-page.js?v=20261030r2"></script><link rel="canonical" href="https://calcmintly.com/roi-calculator"></head><body><div class="wrap">
-<header class="sitehead"><a class="brand" href="https://calcmintly.com/">calc<b>mintly</b></a><a href="https://calcmintly.com/">&larr; Back to all tools</a></header>
+<!DOCTYPE html><html lang="en" dir="ltr" data-cm-localized-routes=""><head><meta charset="utf-8"><meta data-cm-csp="" http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-izNIBMQqyGzhVD0txKbKeJgyVNdZrwvTbaCEasG/a+I=' 'sha256-GIhgvGFjdTRmY2JtdYT/m/V/r7e5o8bynQZqXOdUdzs=' 'sha256-1fBs2BBEczrQoPeyr+1CNeiZFQGneh8sMyCs0Ad9A1Y=' 'sha256-6KVPV3SrJcItHHaaxRYbl0OggTy7Vdr/YNgqko+IyqA=' 'sha256-QvKtO8AvXiXcMtOdD+FWwxI/POJC7s8/QcWpa56NMuA=' 'sha256-Lz/rOgTh/GEJJaWx25aQUhQKlYf2LppWRX3QnHsK+Zo=' 'sha256-uQhQjx/ru9w4vPR+NPXT4kxOOtwC1vATBRTM0VOWNho=' 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free ROI Calculator: Clear Results &amp; Guide | CalcMintly</title>
+<script type="application/ld+json" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;WebApplication&quot;,&quot;name&quot;:&quot;ROI Calculator&quot;,&quot;url&quot;:&quot;https://calcmintly.com/roi-calculator&quot;,&quot;applicationCategory&quot;:&quot;UtilitiesApplication&quot;,&quot;operatingSystem&quot;:&quot;Any&quot;,&quot;isAccessibleForFree&quot;:true,&quot;browserRequirements&quot;:&quot;Requires JavaScript for interactive calculations.&quot;,&quot;inLanguage&quot;:&quot;en&quot;}">{"@context":"https://schema.org","@type":"WebApplication","name":"ROI Calculator","url":"https://calcmintly.com/roi-calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript for interactive calculations.","inLanguage":"en"}</script><link rel="stylesheet" href="/assets/dist/cm-commercial.9f3229f14c2e.css"><link rel="stylesheet" href="/assets/dist/roi-calculator.00da85512516.css"><link rel="stylesheet" href="/assets/dist/cm-shell.5afcad7499b3.css"><script defer="" src="/assets/dist/roi-calculator.188860bc6163.js" integrity="sha256-GIhgvGFjdTRmY2JtdYT/m/V/r7e5o8bynQZqXOdUdzs="></script><script defer="" src="/assets/dist/cm-common.d5f06cd81044.js" integrity="sha256-1fBs2BBEczrQoPeyr+1CNeiZFQGneh8sMyCs0Ad9A1Y="></script><script defer="" src="/assets/dist/roi-calculator-1.e8a54f5774ab.js" integrity="sha256-6KVPV3SrJcItHHaaxRYbl0OggTy7Vdr/YNgqko+IyqA="></script><script defer="" src="/assets/dist/cm-tool-page.42f2ad3bc02f.js" integrity="sha256-QvKtO8AvXiXcMtOdD+FWwxI/POJC7s8/QcWpa56NMuA="></script><script defer="" src="/assets/dist/cm-shell.2f3feb3a04e1.js" integrity="sha256-Lz/rOgTh/GEJJaWx25aQUhQKlYf2LppWRX3QnHsK+Zo="></script><meta name="description" content="ROI Calculator. Measure investment gain or loss relative to the initial amount invested. No login. Review the formula and limits. Compare your assumptions."><meta name="twitter:title" content="Free ROI Calculator: Clear Results &amp; Guide | CalcMintly"><meta name="twitter:description" content="ROI Calculator. Measure investment gain or loss relative to the initial amount invested. No login. Review the formula and limits. Compare your assumptions."><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index,follow"><meta property="og:title" content="Free ROI Calculator: Clear Results &amp; Guide | CalcMintly"><meta property="og:description" content="ROI Calculator. Measure investment gain or loss relative to the initial amount invested. No login. Review the formula and limits. Compare your assumptions."><meta property="og:url" content="https://calcmintly.com/roi-calculator"><meta property="og:type" content="website"><link rel="canonical" href="https://calcmintly.com/roi-calculator"><meta property="og:image" content="https://calcmintly.com/assets/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="CalcMintly calculator library"><meta name="twitter:image" content="https://calcmintly.com/assets/share-card.png"><script type="application/ld+json" data-cm-breadcrumb="" data-cm-schema-source="{&quot;@context&quot;:&quot;https://schema.org&quot;,&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;CalcMintly&quot;,&quot;item&quot;:&quot;https://calcmintly.com/&quot;},{&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;ROI Calculator&quot;,&quot;item&quot;:&quot;https://calcmintly.com/roi-calculator&quot;}]}">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcMintly","item":"https://calcmintly.com/"},{"@type":"ListItem","position":2,"name":"ROI Calculator","item":"https://calcmintly.com/roi-calculator"}]}</script><meta property="og:locale" content="en"><link rel="alternate" hreflang="en" href="https://calcmintly.com/roi-calculator"><link rel="alternate" hreflang="zh-CN" href="https://calcmintly.com/zh-cn/roi-calculator"><link rel="alternate" hreflang="hi" href="https://calcmintly.com/hi/roi-calculator"><link rel="alternate" hreflang="es" href="https://calcmintly.com/es/roi-calculator"><link rel="alternate" hreflang="ar" href="https://calcmintly.com/ar/roi-calculator"><link rel="alternate" hreflang="fr" href="https://calcmintly.com/fr/roi-calculator"><link rel="alternate" hreflang="bn" href="https://calcmintly.com/bn/roi-calculator"><link rel="alternate" hreflang="pt" href="https://calcmintly.com/pt/roi-calculator"><link rel="alternate" hreflang="id" href="https://calcmintly.com/id/roi-calculator"><link rel="alternate" hreflang="ur" href="https://calcmintly.com/ur/roi-calculator"><link rel="alternate" hreflang="ru" href="https://calcmintly.com/ru/roi-calculator"><link rel="alternate" hreflang="de" href="https://calcmintly.com/de/roi-calculator"><link rel="alternate" hreflang="ja" href="https://calcmintly.com/ja/roi-calculator"><link rel="alternate" hreflang="pcm" href="https://calcmintly.com/pcm/roi-calculator"><link rel="alternate" hreflang="mr" href="https://calcmintly.com/mr/roi-calculator"><link rel="alternate" hreflang="vi" href="https://calcmintly.com/vi/roi-calculator"><link rel="alternate" hreflang="te" href="https://calcmintly.com/te/roi-calculator"><link rel="alternate" hreflang="sw" href="https://calcmintly.com/sw/roi-calculator"><link rel="alternate" hreflang="ha" href="https://calcmintly.com/ha/roi-calculator"><link rel="alternate" hreflang="tr" href="https://calcmintly.com/tr/roi-calculator"><link rel="alternate" hreflang="x-default" href="https://calcmintly.com/roi-calculator"></head><body class="cm-unified cm-tool" data-cm-title-en="Free ROI Calculator: Clear Results &amp; Guide | CalcMintly" data-cm-page-name="ROI Calculator" data-cm-page-purpose="Measure investment gain or loss relative to the initial amount invested." data-cm-description-en="ROI Calculator. Measure investment gain or loss relative to the initial amount invested. No login. Review the formula and limits. Compare your assumptions." data-cm-page-kind="calculator"><noscript><p class="cm-no-script">Interactive features need JavaScript. Page content and links remain available.</p></noscript><a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">Skip to calculators</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="/" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a></nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">Language</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language=""><option value="en" selected="">English</option><option value="zh-CN">简体中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="fr">Français</option><option value="bn">বাংলা</option><option value="pt">Português</option><option value="id">Bahasa Indonesia</option><option value="ur">اردو</option><option value="ru">Русский</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="pcm">Nigerian Pidgin</option><option value="mr">मराठी</option><option value="vi">Tiếng Việt</option><option value="te">తెలుగు</option><option value="sw">Kiswahili</option><option value="ha">Hausa</option><option value="tr">Türkçe</option></select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="Menu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></summary><nav aria-label="Menu"><a href="/directory" data-cm-href="/directory" data-cm-i18n="all">All calculators</a><a href="/ranking" data-cm-href="/ranking" data-cm-i18n="ranking">Ranking</a><a href="/workspace" data-cm-href="/workspace" data-cm-i18n="workspace">Workspace</a><a href="/methodology" data-cm-href="/methodology" data-cm-i18n="methods">Methodology</a><a href="/basic-calculator" data-cm-href="/basic-calculator" data-cm-i18n="basic">Pocket calculator</a><a href="/scientific-calculator" data-cm-href="/scientific-calculator" data-cm-i18n="scientific">Scientific calculator</a><a href="/about" data-cm-href="/about" data-cm-i18n="about">About</a></nav></details></div></div></header><main class="wrap" id="main-content">
+
 <p><span class="tag">Finance</span></p>
 <h1>ROI Calculator</h1>
-<p class="sub">Measure investment gain or loss relative to the initial amount invested — ending value plus cash income, compared with what you put in.</p>
+<p class="sub" data-cm-pair="Measure investment gain or loss relative to the initial amount invested.|比较投入成本和最终回报，计算投资回报率 ROI。">Measure investment gain or loss relative to the initial amount invested.</p><a class="cm-workspace-entry" data-cm-href="/workspace?add=roi-calculator" href="/workspace?add=roi-calculator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg><span data-cm-i18n="addWorkspace">Add to workspace</span></a>
 
 <div class="hero">
-<section class="card"><h2>Your numbers</h2><div class="grid">
-<div><label for="initial">Initial value ($)</label><input id="initial" type="number" value="10000" min="0" step="any"></div>
-<div><label for="final">Final value ($)</label><input id="final" type="number" value="12500" min="0" step="any"></div>
-<div><label for="income">Cash income ($)</label><input id="income" type="number" value="500" min="0" step="any"></div>
+<section class="card"><h2 data-cm-i18n="inputs">Your numbers</h2><div class="grid">
+<div><label for="initial">Initial value ($)</label><input id="initial" type="number" value="10000" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="final">Final value ($)</label><input id="final" type="number" value="12500" min="0" step="any" max="1000000000000000" required=""></div>
+<div><label for="income">Cash income ($)</label><input id="income" type="number" value="500" min="0" step="any" max="1000000000000000" required=""></div>
 </div>
-<p><button class="primary" onclick="resetExample()">Reset example</button><button onclick="copySummary()">Copy result</button></p>
+<p><button class="primary" data-cm-action="reset">Reset example</button><button data-cm-action="copy">Copy result</button><span class="cm-copy-status" role="status"></span></p>
 <p class="muted">Results update as you type. No calculate button. All calculations run locally in your browser.</p></section>
 
 <section class="card"><h2>Return on investment</h2><p class="big" id="result">—</p>
 <div class="chips"><span class="chip">Gain:  <strong id="chipGain">—</strong></span><span class="chip">ROI:  <strong id="chipRoi">—</strong></span></div>
 <div class="verdict" id="verdict"><p id="verdictText">—</p></div></section>
-</div>
+</div><nav class="cm-guide" data-cm-label="help" aria-label="How it works"><a href="#guide-3" data-cm-guide="formula" data-cm-i18n="formula">Formula</a><a href="#guide-4" data-cm-guide="example" data-cm-pair="Worked example|计算示例">Worked example</a><a href="#guide-5" data-cm-guide="scope" data-cm-i18n="scope">Scope and limitations</a><a href="#guide-6" data-cm-guide="faq" data-cm-pair="FAQ|常见问题">FAQ</a></nav>
 
-<section class="card"><h2>Breakdown</h2>
-<div class="tblwrap"><table><tr><th></th><th class="num">Amount</th></tr><tbody id="tblRows"></tbody></table></div>
+<section class="card cm-data-section" id="guide-0"><h2>Breakdown</h2>
+<div class="tblwrap"><table><tbody><tr><th></th><th class="num">Amount</th></tr></tbody><tbody id="tblRows"></tbody></table></div>
 <p class="muted">Gain is what you end up with, minus what you put in. Cash income counts only if you actually received it.</p></section>
 
-<section class="card"><h2>At a glance</h2>
+<section class="card cm-data-section" id="guide-1"><h2>At a glance</h2>
 <div class="bar-row"><label><span>Initial value</span><span id="barAVal">—</span></label><div class="bar"><i id="barA" style="width:100%"></i></div></div><div class="bar-row"><label><span>Final value + income</span><span id="barBVal">—</span></label><div class="bar"><i id="barB" class="new" style="width:50%"></i></div></div>
-<p class="muted">Bars are scaled to the larger of the two amounts. A gain bar longer than the initial bar means a positive ROI.</p></section>
+<p data-cm-pair="Bars compare the initial investment with final value plus cash income. A longer final-value-plus-income bar means positive ROI.|柱形图比较初始投资与期末价值加现金收入，后者更长表示投资回报率为正。">Bars compare the initial investment with final value plus cash income. A longer final-value-plus-income bar means positive ROI.</p></section>
 
-<section class="card"><h2>ROI at different ending values</h2>
-<div class="tblwrap"><table><tr><th>If the final value were</th><th class="num">ROI</th></tr><tbody id="scenRows"></tbody></table></div>
+<section class="card cm-data-section" id="guide-2"><h2>ROI at different ending values</h2>
+<div class="tblwrap"><table><tbody><tr><th>If the final value were</th><th class="num">ROI</th></tr></tbody><tbody id="scenRows"></tbody></table></div>
 <p class="muted">Cash income is held at the value above; only the final value changes across rows.</p></section>
 
-<section class="card"><h2>Formula</h2>
-<p>ROI = (ending value + cash income &minus; initial investment) &divide; initial investment &times; 100%. Gain = ending value + cash income &minus; initial investment.</p></section>
+<section class="card" data-cm-section="formula" id="guide-3"><h2>Formula</h2>
+<p>ROI = (ending value + cash income − initial investment) ÷ initial investment × 100%. Gain = ending value + cash income − initial investment.</p></section>
 
-<section class="card"><h2>Worked example</h2>
-<p>Initial value $10,000, final value $12,500, cash income $500: gain = $12,500 + $500 &minus; $10,000 = $3,000, and ROI = $3,000 &divide; $10,000 &times; 100% = 30.00%.</p></section>
+<section class="card" data-cm-section="example" id="guide-4"><h2>Worked example</h2>
+<p>Initial value $10,000, final value $12,500, cash income $500: gain = $12,500 + $500 − $10,000 = $3,000, and ROI = $3,000 ÷ $10,000 × 100% = 30.00%.</p></section>
 
-<section class="card"><h2>Scope and limitations</h2>
+<section class="card" data-cm-section="scope" id="guide-5"><h2>Scope and limitations</h2>
 <p>ROI does not account for how long capital was invested, so it cannot fairly compare investments held for different periods — use an annualized return for that. Taxes, fees, and inflation are not included unless they are already reflected in the values you enter.</p></section>
 
-<section class="card"><h2>FAQ</h2>
-<h3>How does the ROI calculator work?</h3><p>ROI = (ending value + cash income &minus; initial investment) &divide; initial investment &times; 100%. It answers one question: for each dollar invested, how much came back above the original stake?</p><h3>Why is my ROI negative?</h3><p>A negative ROI means ending value plus cash income is less than the initial investment — you got back less than you put in. The size of the loss is the gain figure shown as a negative amount.</p><h3>Can I compare two investments with ROI alone?</h3><p>Only if they were held for the same length of time. A 30% return over one year beats 30% over five years. For different holding periods, compare annualized returns instead.</p><h3>Should income be included?</h3><p>Yes, if you received it — dividends, interest, or rent paid out during the holding period are part of the return. Do not double-count income that is already reflected in the final value.</p><h3>Does ROI include taxes or fees?</h3><p>No, unless the values you enter already reflect them. Brokerage fees, taxes on gains, and inflation all reduce the real return.</p><h3>Is a high ROI always better?</h3><p>Not necessarily. ROI says nothing about risk, volatility, or how long the money was tied up. A high ROI on a risky, illiquid investment is not directly comparable to a lower ROI on a safe one.</p></section>
+<section class="card" data-cm-section="faq" id="guide-6"><h2>FAQ</h2>
+<h3>How does the ROI calculator work?</h3><p>ROI = (ending value + cash income − initial investment) ÷ initial investment × 100%. It answers one question: for each dollar invested, how much came back above the original stake?</p><h3>Why is my ROI negative?</h3><p>A negative ROI means ending value plus cash income is less than the initial investment — you got back less than you put in. The size of the loss is the gain figure shown as a negative amount.</p><h3>Can I compare two investments with ROI alone?</h3><p>Only if they were held for the same length of time. A 30% return over one year beats 30% over five years. For different holding periods, compare annualized returns instead.</p><h3>Should income be included?</h3><p>Yes, if you received it — dividends, interest, or rent paid out during the holding period are part of the return. Do not double-count income that is already reflected in the final value.</p><h3>Does ROI include taxes or fees?</h3><p>No, unless the values you enter already reflect them. Brokerage fees, taxes on gains, and inflation all reduce the real return.</p><h3>Is a high ROI always better?</h3><p>Not necessarily. ROI says nothing about risk, volatility, or how long the money was tied up. A high ROI on a risky, illiquid investment is not directly comparable to a lower ROI on a safe one.</p></section>
 
-<section class="card"><h2>Related tools</h2><ul>
-<li><a href="https://calcmintly.com/compound-interest-calculator">Compound Interest Calculator</a> — growth over time with reinvested returns</li><li><a href="https://calcmintly.com/annualized-return-calculator">Annualized Return Calculator</a> — the yearly rate behind a total return</li><li><a href="https://calcmintly.com/simple-interest-calculator">Simple Interest Calculator</a> — interest without compounding</li>
+<section class="card" data-cm-section="related" id="guide-7"><h2>Related tools</h2><ul>
+<li><a href="/compound-interest-calculator" data-cm-href="/compound-interest-calculator">Compound Interest Calculator</a> — growth over time with reinvested returns</li><li><a href="/annualized-return-calculator" data-cm-href="/annualized-return-calculator">Annualized Return Calculator</a> — the yearly rate behind a total return</li><li><a href="/simple-interest-calculator" data-cm-href="/simple-interest-calculator">Simple Interest Calculator</a> — interest without compounding</li>
 </ul></section>
 
 <p><em>Results are estimates only and do not constitute professional advice.</em></p>
-</div>
-<script>
-const money=n=>"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2});
-const pct=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2})+"%";
-const num=n=>Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
-const $=id=>document.getElementById(id);
-function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
-function calc(v){
-  if(!(v.initial>0)||v.final<0||v.income<0) return {valid:false};
-  const gain=v.final+v.income-v.initial, roi=gain/v.initial*100;
-  const scen=[10000,12500,15000].map(f=>["$"+num(f), pct((f+v.income-v.initial)/v.initial*100)]);
-  return {valid:true, big:pct(roi), chips:{chipGain:money(gain), chipRoi:pct(roi)},
-   rows:[["Initial value",money(v.initial)],["Final value",money(v.final)],["Cash income",money(v.income)],["Gain / loss",money(gain)],["ROI",pct(roi)]],
-   scen:scen, barA:v.initial, barB:v.final+v.income, barAText:money(v.initial), barBText:money(v.final+v.income), barBBad:(v.final+v.income)<v.initial,
-   vclass:roi<0?"bad":roi===0?"warn":"", vtext:roi<0?("Loss of "+money(-gain)+" ("+pct(roi)+"): you got back less than the $"+num(v.initial)+" invested."):(roi===0?"Break-even: you got back exactly what you put in, before taxes and fees.":("Gain of "+money(gain)+" ("+pct(roi)+") on a $"+num(v.initial)+" investment, before taxes and fees.")),
-   summary:"ROI: "+pct(roi)+" (gain "+money(gain)+" on initial "+money(v.initial)+", final "+money(v.final)+", income "+money(v.income)+")."};
-}
-function render(){
-  const v=get(); const r=calc(v);
-  if(!r.valid){
-    $("result").textContent="—";
-    $("chipGain").textContent="—";
-    $("chipRoi").textContent="—";
-    $("tblRows").innerHTML=""; $("scenRows").innerHTML="";
-    $("barA").style.width="0%"; $("barB").style.width="0%"; $("barAVal").textContent="—"; $("barBVal").textContent="—";
-    const vd=$("verdict"); vd.className="verdict warn";
-    $("verdictText").textContent="Enter an initial value above zero, with final value and income at zero or above, to see the ROI.";
-    window.__summary="";
-    return;
-  }
-  $("result").textContent=r.big;
-  Object.keys(r.chips).forEach(k=>{$(k).textContent=r.chips[k];});
-  $("tblRows").innerHTML=r.rows.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  $("scenRows").innerHTML=r.scen.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
-  const mx=Math.max(Math.abs(r.barA),Math.abs(r.barB),1);
-  $("barA").style.width=(Math.abs(r.barA)/mx*100)+"%"; $("barAVal").textContent=r.barAText;
-  $("barB").style.width=(Math.abs(r.barB)/mx*100)+"%"; $("barBVal").textContent=r.barBText;
-  $("barB").className=r.barBBad?"newbad":"new";
-  const vd=$("verdict"); vd.className="verdict"+(r.vclass?" "+r.vclass:"");
-  $("verdictText").textContent=r.vtext;
-  window.__summary=r.summary;
-}
-function resetExample(){document.querySelectorAll("input").forEach(e=>{e.value=e.defaultValue});render();}
-function copySummary(){const t=window.__summary||"";if(navigator.clipboard){navigator.clipboard.writeText(t);}else{const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}}
-document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
-</script></body></html>
+</main>
+
+<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">Local calculations. Results are estimates, not professional advice.</p></div><nav><a data-cm-href="/methodology" data-cm-i18n="methods" href="/methodology">Methodology</a><a data-cm-href="/about" data-cm-i18n="about" href="/about">About</a><a data-cm-href="/privacy" data-cm-i18n="privacy" href="/privacy">Privacy</a><a data-cm-href="/terms" data-cm-i18n="terms" href="/terms">Terms</a><a data-cm-href="/contact" data-cm-i18n="contact" href="/contact">Contact</a></nav></footer></body></html>

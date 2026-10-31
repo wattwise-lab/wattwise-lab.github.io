@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"working-capital-calculator","name":"Working Capital","names":{"zh-CN":"营运资本"},"domain":"Business","keywords":"Working Capital 营运资本 working-capital-calculator","new":true,"description":"Calculate net short-term operating funding.","descriptions":{"zh-CN":"计算净短期资金与营运资本占收入比例。"},"priority":201}];

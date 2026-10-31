@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"quick-ratio-calculator","name":"Quick Ratio","names":{"zh-CN":"速动比率"},"domain":"Business","keywords":"Quick Ratio 速动比率 quick-ratio-calculator","new":true,"description":"Exclude inventory and prepayments from short-term coverage.","descriptions":{"zh-CN":"从短期偿债资产中扣除存货及预付项。"},"priority":197}];

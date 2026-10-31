@@ -1,0 +1,47 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const pct=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2})+"%";
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function calc(v){
+  if(!(v.initial>0)||v.final<0||v.income<0) return {valid:false};
+  const gain=v.final+v.income-v.initial, roi=gain/v.initial*100;
+  const scen=[10000,12500,15000].map(f=>["$"+num(f), pct((f+v.income-v.initial)/v.initial*100)]);
+  return {valid:true, big:pct(roi), chips:{chipGain:money(gain), chipRoi:pct(roi)},
+   rows:[["Initial value",money(v.initial)],["Final value",money(v.final)],["Cash income",money(v.income)],["Gain / loss",money(gain)],["ROI",pct(roi)]],
+   scen:scen, barA:v.initial, barB:v.final+v.income, barAText:money(v.initial), barBText:money(v.final+v.income), barBBad:(v.final+v.income)<v.initial,
+   vclass:roi<0?"bad":roi===0?"warn":"", vtext:roi<0?("Loss of "+money(-gain)+" ("+pct(roi)+"): you got back less than the $"+num(v.initial)+" invested."):(roi===0?"Break-even: you got back exactly what you put in, before taxes and fees.":("Gain of "+money(gain)+" ("+pct(roi)+") on a $"+num(v.initial)+" investment, before taxes and fees.")),
+   summary:"ROI: "+pct(roi)+" (gain "+money(gain)+" on initial "+money(v.initial)+", final "+money(v.final)+", income "+money(v.income)+")."};
+}
+function render(){
+  const v=get(); const r=calc(v);
+  if(!r.valid){
+    $("result").textContent="—";
+    $("chipGain").textContent="—";
+    $("chipRoi").textContent="—";
+    $("tblRows").innerHTML=""; $("scenRows").innerHTML="";
+    $("barA").style.width="0%"; $("barB").style.width="0%"; $("barAVal").textContent="—"; $("barBVal").textContent="—";
+    const vd=$("verdict"); vd.className="verdict warn";
+    $("verdictText").textContent="Enter an initial value above zero, with final value and income at zero or above, to see the ROI.";
+    window.__summary="";
+    return;
+  }
+  $("result").textContent=r.big;
+  Object.keys(r.chips).forEach(k=>{$(k).textContent=r.chips[k];});
+  $("tblRows").innerHTML=r.rows.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
+  $("scenRows").innerHTML=r.scen.map(x=>"<tr><td>"+x[0]+"</td><td class='num'>"+x[1]+"</td></tr>").join("");
+  const mx=Math.max(Math.abs(r.barA),Math.abs(r.barB),1);
+  $("barA").style.width=(Math.abs(r.barA)/mx*100)+"%"; $("barAVal").textContent=r.barAText;
+  $("barB").style.width=(Math.abs(r.barB)/mx*100)+"%"; $("barBVal").textContent=r.barBText;
+  $("barB").className=r.barBBad?"newbad":"new";
+  const vd=$("verdict"); vd.className="verdict"+(r.vclass?" "+r.vclass:"");
+  $("verdictText").textContent=r.vtext;
+  window.__summary=r.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

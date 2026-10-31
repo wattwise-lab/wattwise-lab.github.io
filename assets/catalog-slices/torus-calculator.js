@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"torus-calculator","name":"Torus Volume and Surface","names":{"zh-CN":"圆环体体积与表面积"},"domain":"Math and Time","keywords":"Torus Volume and Surface 圆环体体积与表面积 torus-calculator","new":true,"description":"Find a ring torus’s volume and surface from major and tube radii.","descriptions":{"zh-CN":"由中心圆半径和管截面半径求圆环体体积与表面积。"},"priority":301}];

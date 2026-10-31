@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"trigonometry-calculator","name":"Trigonometric Functions","names":{"zh-CN":"三角函数值"},"domain":"Math and Time","keywords":"Trigonometric Functions 三角函数值 trigonometry-calculator","new":true,"description":"Calculate sine, cosine and tangent for an angle in degrees.","descriptions":{"zh-CN":"计算角度对应的正弦、余弦和正切值。"},"priority":305}];

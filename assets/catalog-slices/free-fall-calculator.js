@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"free-fall-calculator","name":"Free Fall from Rest","names":{"zh-CN":"静止自由落体"},"domain":"Science","keywords":"Free Fall from Rest 静止自由落体 free-fall-calculator","new":true,"description":"Estimate fall time and impact speed from a release height.","descriptions":{"zh-CN":"由释放高度估计自由落体时间与触地速率。"},"priority":435}];

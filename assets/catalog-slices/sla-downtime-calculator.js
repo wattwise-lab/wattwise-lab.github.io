@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sla-downtime-calculator","name":"SLA Downtime Budget","names":{"zh-CN":"SLA 停机预算"},"domain":"Digital and Technology","keywords":"SLA Downtime Budget SLA 停机预算 sla-downtime-calculator","new":true,"description":"Translate availability percentage into allowed downtime.","descriptions":{"zh-CN":"将可用性比例换算为停机时间预算。"},"priority":140}];

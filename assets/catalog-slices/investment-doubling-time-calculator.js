@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"investment-doubling-time-calculator","name":"Investment Target Time","names":{"zh-CN":"投资增长倍数时间"},"domain":"Finance","keywords":"Investment Target Time 投资增长倍数时间 investment-doubling-time-calculator","new":true,"description":"Solve the time to grow by a chosen multiple at a constant rate.","descriptions":{"zh-CN":"求固定增长率下达到目标倍数的时间。"},"priority":185}];

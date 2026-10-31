@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sales-tax-calculator","name":"Sales Tax Calculator","domain":"Business","keywords":"sales tax tax vat price with tax","names":{"zh-CN":"销售税计算器","ja":"売上税計算"},"new":false,"description":"Estimate sales tax and the tax-inclusive total from a subtotal and tax rate.","descriptions":{"zh-CN":"根据未税金额和税率，计算税额与含税总价。"},"priority":23}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"profitability-index-calculator","name":"Profitability Index","names":{"zh-CN":"获利指数"},"domain":"Finance","keywords":"Profitability Index 获利指数 profitability-index-calculator","new":true,"description":"Compare discounted future inflows against an initial cost.","descriptions":{"zh-CN":"比较未来收入现值与初始成本。"},"priority":160}];

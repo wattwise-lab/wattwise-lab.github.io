@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"fence-posts-calculator","name":"Fence Post Count","names":{"zh-CN":"围栏立柱数量"},"domain":"Home and Everyday","keywords":"Fence Post Count 围栏立柱数量 fence-posts-calculator","new":true,"description":"Count posts for a straight run or a closed loop.","descriptions":{"zh-CN":"计算直线或闭合围栏所需立柱。"},"priority":251}];

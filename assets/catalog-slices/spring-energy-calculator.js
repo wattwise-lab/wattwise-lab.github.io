@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"spring-energy-calculator","name":"Elastic Spring Energy","names":{"zh-CN":"弹簧弹性势能"},"domain":"Science","keywords":"Elastic Spring Energy 弹簧弹性势能 spring-energy-calculator","new":true,"description":"Find stored energy in an ideal linear spring.","descriptions":{"zh-CN":"计算理想线性弹簧的储能。"},"priority":427}];

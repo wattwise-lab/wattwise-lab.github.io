@@ -1,0 +1,42 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
+
+const INVALID_MSG='Enter length and width above zero, with a waste allowance at zero or above, to see the area.';
+function calc(v){
+ if(!(v.len>0&&v.wid>0&&v.waste>=0)) return null;
+ const area=v.len*v.wid, per=2*(v.len+v.wid), wv=area*v.waste/100, pur=area+wv;
+ return {big:num(pur)+" m\u00b2",
+  chips:[["Exact area",num(area)+" m\u00b2"],["Perimeter",num(per)+" m"],["Waste area",num(wv)+" m\u00b2"]],
+  rows:[["Exact area (length \u00d7 width)",num(area)+" m\u00b2"],["Perimeter",num(per)+" m"],["Waste area",num(wv)+" m\u00b2"],["Purchase area",num(pur)+" m\u00b2"],["Purchase area",num(pur*10.7639)+" ft\u00b2"]],
+  bars:[["Exact area",area,num(area)+" m\u00b2"],["Waste area",wv,num(wv)+" m\u00b2"]],
+  cum:[0,5,8,10,15].map(function(w){return ["At "+w+"% waste",num(area*(1+w/100))+" m\u00b2"];}),
+  vclass:v.waste===0?"warn":"",
+  verdict:v.waste===0?"Purchase area is "+num(pur)+" m\u00b2 with no waste allowance. Cut-pattern waste usually means the exact area is not enough — consider adding an allowance for your material.":"Purchase "+num(pur)+" m\u00b2: "+num(area)+" m\u00b2 exact plus "+num(wv)+" m\u00b2 waste at "+num(v.waste)+"%. Perimeter is "+num(per)+" m if you also need edging or trim.",
+  summary:"Area: exact "+num(area)+" m2, perimeter "+num(per)+" m, waste "+num(wv)+" m2, purchase "+num(pur)+" m2."};}
+
+function render(){
+  const v=get(); const c=calc(v);
+  if(!c){
+    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+  }
+  $("result").textContent=c.big;
+  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
+  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
+  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
+  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
+  window.__summary=c.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

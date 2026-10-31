@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"expected-value-calculator","name":"Expected Value and Risk","names":{"zh-CN":"期望值与波动"},"domain":"Math and Time","keywords":"Expected Value and Risk 期望值与波动 expected-value-calculator","new":true,"description":"Combine discrete outcomes with their probabilities.","descriptions":{"zh-CN":"按概率汇总离散结果的期望值和波动。"},"priority":485}];

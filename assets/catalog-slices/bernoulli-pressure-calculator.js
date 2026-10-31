@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bernoulli-pressure-calculator","name":"Bernoulli Pressure Change","names":{"zh-CN":"伯努利压强变化"},"domain":"Science","keywords":"Bernoulli Pressure Change 伯努利压强变化 bernoulli-pressure-calculator","new":true,"description":"Estimate downstream pressure from speed and elevation changes.","descriptions":{"zh-CN":"由流速与高度变化估算下游压强。"},"priority":398}];

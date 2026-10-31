@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"frequency-converter","name":"Frequency Converter","names":{"zh-CN":"频率单位换算"},"domain":"Converters","keywords":"Frequency Converter 频率单位换算 frequency-converter","new":true,"description":"Convert cycles per second and revolutions per minute.","descriptions":{"zh-CN":"换算每秒周期与每分钟转数。"},"priority":103}];

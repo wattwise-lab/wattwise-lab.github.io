@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"projectile-range-calculator","name":"Projectile Range","names":{"zh-CN":"抛体射程"},"domain":"Science","keywords":"Projectile Range 抛体射程 projectile-range-calculator","new":true,"description":"Model ideal flight landing at the launch height.","descriptions":{"zh-CN":"计算落点与起点等高的理想抛体运动。"},"priority":434}];

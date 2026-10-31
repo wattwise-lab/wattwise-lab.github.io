@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"torque-converter","name":"Torque Converter","names":{"zh-CN":"力矩单位换算"},"domain":"Converters","keywords":"Torque Converter 力矩单位换算 torque-converter","new":true,"description":"Convert turning moments without treating them as energy.","descriptions":{"zh-CN":"换算转动力矩，保持其与能量的物理区别。"},"priority":112}];

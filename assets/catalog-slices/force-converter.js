@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"force-converter","name":"Force Converter","names":{"zh-CN":"力单位换算"},"domain":"Converters","keywords":"Force Converter 力单位换算 force-converter","new":true,"description":"Convert force independently of mass.","descriptions":{"zh-CN":"换算力单位，区别于质量。"},"priority":101}];

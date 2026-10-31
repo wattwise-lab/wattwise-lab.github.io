@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"distance-between-points-calculator","name":"Distance between Points","names":{"zh-CN":"两点距离"},"domain":"Math and Time","keywords":"Distance between Points 两点距离 distance-between-points-calculator","new":true,"description":"Find straight-line Euclidean distance in two dimensions.","descriptions":{"zh-CN":"计算二维坐标中两点的直线距离。"},"priority":338}];

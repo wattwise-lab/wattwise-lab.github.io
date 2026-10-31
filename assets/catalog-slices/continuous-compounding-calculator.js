@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"continuous-compounding-calculator","name":"Continuous Compounding","names":{"zh-CN":"连续复利"},"domain":"Finance","keywords":"Continuous Compounding 连续复利 continuous-compounding-calculator","new":true,"description":"Project a lump sum with continuous compounding.","descriptions":{"zh-CN":"用连续复利计算一笔本金的终值。"},"priority":150}];

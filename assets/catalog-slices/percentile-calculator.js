@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"percentile-calculator","name":"Percentile Value","names":{"zh-CN":"百分位数"},"domain":"Math and Time","keywords":"Percentile Value 百分位数 percentile-calculator","new":true,"description":"Find the value at an editable percentile of a data set.","descriptions":{"zh-CN":"求一组数据在指定百分位上的数值。"},"priority":447}];

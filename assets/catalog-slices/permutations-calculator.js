@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"permutations-calculator","name":"Permutations","names":{"zh-CN":"排列数"},"domain":"Math and Time","keywords":"Permutations 排列数 permutations-calculator","new":true,"description":"Count ordered selections without repetition.","descriptions":{"zh-CN":"计算不重复、有顺序的选取方式数。"},"priority":482}];

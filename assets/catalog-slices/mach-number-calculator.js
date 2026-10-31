@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mach-number-calculator","name":"Mach Number","names":{"zh-CN":"马赫数"},"domain":"Science","keywords":"Mach Number 马赫数 mach-number-calculator","new":true,"description":"Compare flow speed with local sound speed.","descriptions":{"zh-CN":"比较流速与当地声速。"},"priority":402}];

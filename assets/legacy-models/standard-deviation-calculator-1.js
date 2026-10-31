@@ -1,0 +1,23 @@
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:4});
+let dataError='';function parseNums(s){try{dataError='';return CMData.list(s);}catch(error){dataError=window.CMI18n.pick(error.message);return[];}}
+function sdCalc(xs){
+ const n=xs.length, mean=xs.reduce((a,b)=>a+b,0)/n;
+ const ss=xs.reduce((a,x)=>a+(x-mean)*(x-mean),0);
+ return{n:n,mean:mean,ss:ss,pvar:ss/n,pop:Math.sqrt(ss/n),svar:n>1?ss/(n-1):null,samp:n>1?Math.sqrt(ss/(n-1)):null,min:Math.min.apply(null,xs),max:Math.max.apply(null,xs)};
+}
+function render(){
+ const xs=parseNums($("nums").value);
+ if(xs.length===0){["result","chipMean","chipSamp","tN","tMean","tSS","tPVar","tPop","tSVar","tSamp","tMinMax"].forEach(id=>{$(id).textContent="—";});$("note").textContent =dataError||"Enter at least one number.";window.__summary="";return;}
+ const r=sdCalc(xs);
+ $("result").textContent=fmt(r.pop);$("chipMean").textContent=fmt(r.mean);$("chipSamp").textContent=r.samp===null?"—":fmt(r.samp);
+ $("tN").textContent=String(r.n);$("tMean").textContent=fmt(r.mean);$("tSS").textContent=fmt(r.ss);$("tPVar").textContent=fmt(r.pvar);$("tPop").textContent=fmt(r.pop);
+ $("tSVar").textContent=r.svar===null?"—":fmt(r.svar);$("tSamp").textContent=r.samp===null?"—":fmt(r.samp);$("tMinMax").textContent=fmt(r.min)+" / "+fmt(r.max);
+ $("note").textContent="Population SD "+fmt(r.pop)+(r.samp===null?" (sample SD undefined for n = 1).":"; sample SD "+fmt(r.samp)+".");
+ window.__summary="Standard deviation: n="+r.n+", mean "+fmt(r.mean)+", population SD "+fmt(r.pop)+(r.samp===null?"":", sample SD "+fmt(r.samp))+".";
+}
+
+
+document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",render));render();
+})();

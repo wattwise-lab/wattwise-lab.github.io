@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rounding-calculator","name":"Rounding Calculator","names":{"zh-CN":"四舍五入"},"domain":"Math and Time","keywords":"Rounding Calculator 四舍五入 rounding-calculator","new":true,"description":"Round a value to decimal places using ties away from zero.","descriptions":{"zh-CN":"按指定位数取整，恰好一半时向远离零的方向舍入。"},"priority":332}];

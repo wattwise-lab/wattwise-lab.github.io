@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"mach-number-calculator",name:"Mach Number",names:{"zh-CN":"\u9A6C\u8D6B\u6570"},domain:"Science",keywords:"Mach Number \u9A6C\u8D6B\u6570 mach-number-calculator",new:!0,description:"Compare flow speed with local sound speed.",descriptions:{"zh-CN":"\u6BD4\u8F83\u6D41\u901F\u4E0E\u5F53\u5730\u58F0\u901F\u3002"},priority:402}];

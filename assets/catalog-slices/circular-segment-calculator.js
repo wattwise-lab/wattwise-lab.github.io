@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"circular-segment-calculator","name":"Circular Segment","names":{"zh-CN":"圆弓形面积"},"domain":"Math and Time","keywords":"Circular Segment 圆弓形面积 circular-segment-calculator","new":true,"description":"Find the area enclosed by a chord and its selected circular arc.","descriptions":{"zh-CN":"求弦与所选圆弧围成的弓形面积。"},"priority":280}];

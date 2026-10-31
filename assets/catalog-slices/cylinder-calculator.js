@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cylinder-calculator","name":"Cylinder Volume and Surface","names":{"zh-CN":"圆柱体计算器"},"domain":"Math and Time","keywords":"Cylinder Volume and Surface 圆柱体计算器 cylinder-calculator","new":true,"description":"Find right-cylinder volume and total surface including both ends.","descriptions":{"zh-CN":"求直圆柱体积及包含两底面的总表面积。"},"priority":296}];

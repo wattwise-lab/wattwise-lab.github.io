@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"wave-speed-calculator","name":"Wave Speed","names":{"zh-CN":"波速"},"domain":"Science","keywords":"Wave Speed 波速 wave-speed-calculator","new":true,"description":"Combine frequency and wavelength.","descriptions":{"zh-CN":"结合频率与波长求波速。"},"priority":381}];

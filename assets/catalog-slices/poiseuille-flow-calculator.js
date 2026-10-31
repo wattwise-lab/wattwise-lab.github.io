@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"poiseuille-flow-calculator","name":"Laminar Pipe Flow","names":{"zh-CN":"层流圆管流量"},"domain":"Science","keywords":"Laminar Pipe Flow 层流圆管流量 poiseuille-flow-calculator","new":true,"description":"Estimate viscous flow through a fully developed circular pipe.","descriptions":{"zh-CN":"估算充分发展圆管层流的黏性流量。"},"priority":400}];

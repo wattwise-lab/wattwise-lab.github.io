@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"point-to-line-distance-calculator","name":"Point to Line Distance","names":{"zh-CN":"点到直线距离"},"domain":"Math and Time","keywords":"Point to Line Distance 点到直线距离 point-to-line-distance-calculator","new":true,"description":"Find perpendicular distance and the projection onto Ax+By+C=0.","descriptions":{"zh-CN":"求点到一般式直线的垂直距离及垂足。"},"priority":277}];

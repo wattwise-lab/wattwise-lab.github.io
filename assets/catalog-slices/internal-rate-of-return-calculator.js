@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"internal-rate-of-return-calculator","name":"Internal Rate of Return","names":{"zh-CN":"内部收益率 IRR"},"domain":"Finance","keywords":"Internal Rate of Return 内部收益率 IRR internal-rate-of-return-calculator","new":true,"description":"Solve the return of a conventional investment cash-flow sequence.","descriptions":{"zh-CN":"求常规投资现金流的内部收益率。"},"priority":157}];

@@ -1,32 +1,41 @@
-name: Decision Engine Browser Tests
-
+name: Calculator browser regression
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
-  browser-compatibility:
+  browser-regression:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        shard: [0, 1, 2, 3, 4]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-
-      - name: Install Playwright browsers
-        run: |
-          npm install --no-save playwright@latest
-          npx playwright install --with-deps chrome msedge webkit
-
-      - name: Start static server
-        run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/calcmintly-http.log 2>&1 &
-          echo $! > /tmp/calcmintly-http.pid
-
-      - name: Test Chrome, Edge and Safari WebKit
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run build
+      - name: Start local preview
+        run: python3 scripts/preview-server.py > /tmp/calcmintly-http.log 2>&1 &
+      - name: Check every calculator at desktop and phone widths
         run: node scripts/decision-engine-browser-test.mjs
+        env:
+          BROWSER: ${{ matrix.browser }}
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-${{ matrix.browser }}-${{ matrix.shard }}
+          path: browser-evidence/
+          retention-days: 14

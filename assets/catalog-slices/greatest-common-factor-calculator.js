@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"greatest-common-factor-calculator","name":"Greatest Common Factor","names":{"zh-CN":"最大公因数"},"domain":"Math and Time","keywords":"Greatest Common Factor 最大公因数 greatest-common-factor-calculator","new":true,"description":"Find the largest factor shared by a list of integers.","descriptions":{"zh-CN":"求一组整数共有的最大因数。"},"priority":322}];

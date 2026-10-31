@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"convective-heat-transfer-calculator","name":"Convective Heat Transfer","names":{"zh-CN":"对流换热"},"domain":"Science","keywords":"Convective Heat Transfer 对流换热 convective-heat-transfer-calculator","new":true,"description":"Estimate heat flow between a surface and a fluid.","descriptions":{"zh-CN":"估计表面与流体间的换热。"},"priority":408}];
