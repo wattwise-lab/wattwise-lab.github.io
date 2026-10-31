@@ -20,5 +20,13 @@
   "Preferment hydration (%)": "Rasio air terhadap tepung dalam adonan fermentasi awal (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Rilis ini mencakup keypad saku, keypad ilmiah, kalkulator praktis di sembilan kategori, dan tiga skenario perencanaan asli. Halaman bahasa dan tampilan tersemat tidak dihitung sebagai alat terpisah.",
   "Physical volume": "Volume fisik",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Masukkan tekanan sistolik dan diastolik dalam mmHg. Hasil diperbarui saat Anda mengetik. Semua perhitungan berjalan secara lokal di peramban Anda."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Masukkan tekanan sistolik dan diastolik dalam mmHg. Hasil diperbarui saat Anda mengetik. Semua perhitungan berjalan secara lokal di peramban Anda.",
+  "Measure the finished slab thickness at several points and use a representative value. If depth varies a lot, split the pour into zones with different depths instead of averaging blindly.": "Ukur ketebalan pelat jadi di beberapa titik lalu gunakan nilai yang mewakili. Jika kedalamannya sangat bervariasi, bagilah area pengecoran menjadi beberapa zona berdasarkan kedalaman, bukan sekadar mengambil rata-rata.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Satukan kalkulator Anda dalam satu ruang kerja",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Bandingkan hingga empat kalkulator, pertahankan masukan setiap alat, dan kirim hasil ke kalkulator lain saat diperlukan.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Kalkulator saat ini memproses masukan di peramban Anda. Kami tidak menerima nilai yang Anda masukkan untuk perhitungan.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Pratinjau masukan tidak tersedia. Buka kalkulator untuk memasukkan nilai.",
+  "Value is outside the calculator’s allowed range or step.": "Nilai berada di luar rentang yang diizinkan atau tidak sesuai dengan selang nilai yang didukung kalkulator.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Periksa nilai-nilai ini. Kolom lain tetap memakai nilai bawaan contoh. Mata uang tidak ditentukan secara otomatis atau dikonversi; periksa pajak, asuransi, dan asumsi setempat pada kartu."
 }

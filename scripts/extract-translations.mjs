@@ -102,11 +102,16 @@ function implementationLiteral(node, parent) {
   const first = parent.arguments[0] === node;
   if (
     first &&
+    method === 't' &&
+    !(node.type === 'Literal' && /\|[^|]*[\u3400-\u9fff]/.test(node.value))
+  )
+    return true;
+  if (
+    first &&
     [
       '$',
       'el',
       'shape',
-      't',
       'matchMedia',
       'normalize',
       'startsWith',

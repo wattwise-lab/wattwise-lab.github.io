@@ -22,5 +22,12 @@
   "Preferment hydration (%)": "আগে থেকে গাঁজানো খামিরে পানি ও ময়দার অনুপাত (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "এই রিলিজে একটি পকেট কীপ্যাড, একটি বৈজ্ঞানিক কীপ্যাড, নয়টি বিভাগ জুড়ে ব্যবহারিক ক্যালকুলেটর এবং তিনটি মৌলিক পরিকল্পনা পরিস্থিতি অন্তর্ভুক্ত রয়েছে। ভাষার পৃষ্ঠা এবং এমবেডেড ভিউগুলিকে পৃথক সরঞ্জাম হিসাবে গণনা করা হয় না।",
   "Physical volume": "ভৌত আয়তন",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "সিস্টোলিক ও ডায়াস্টোলিক রিডিং mmHg এককে লিখুন। টাইপ করার সঙ্গে সঙ্গে ফলাফল বদলে যায়। সব গণনা আপনার ব্রাউজারেই স্থানীয়ভাবে হয়।"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "সিস্টোলিক ও ডায়াস্টোলিক রিডিং mmHg এককে লিখুন। টাইপ করার সঙ্গে সঙ্গে ফলাফল বদলে যায়। সব গণনা আপনার ব্রাউজারেই স্থানীয়ভাবে হয়।",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "আপনার ক্যালকুলেটরগুলো এক কর্মক্ষেত্রে আনুন",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "সর্বোচ্চ চারটি ক্যালকুলেটর তুলনা করুন, প্রতিটির ইনপুট বজায় রাখুন এবং প্রয়োজনে ফলাফল অন্য ক্যালকুলেটরে পাঠান।",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "বর্তমান ক্যালকুলেটরগুলো আপনার ব্রাউজারেই ইনপুট প্রক্রিয়া করে। গণনার জন্য আপনি যে মান দেন, তা আমরা পাই না।",
+  "Input preview is unavailable. Open the calculator to enter values.": "ইনপুটের পূর্বরূপ পাওয়া যাচ্ছে না। মান লিখতে ক্যালকুলেটরটি খুলুন।",
+  "Value is outside the calculator’s allowed range or step.": "মানটি অনুমোদিত সীমার মধ্যে নেই অথবা অনুমোদিত সংখ্যাগত ব্যবধানের সঙ্গে মেলে না।",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "এই মানগুলি যাচাই করুন। অন্য ক্ষেত্রগুলি উদাহরণের ডিফল্ট মান বজায় রাখবে। মুদ্রা অনুমান বা রূপান্তর করা হয় না; কার্ডে কর, বীমা এবং স্থানীয় অনুমানগুলি পরীক্ষা করুন।"
 }

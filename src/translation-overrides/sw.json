@@ -35,5 +35,12 @@
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Toleo hili linajumuisha kibodi cha mfukoni, kibodi cha kisayansi, vikokotoo vya vitendo katika kategoria tisa na hali tatu za awali za upangaji. Kurasa za lugha na mitazamo iliyopachikwa hazihesabiwi kama zana tofauti.",
   "Include preferment flour and water in total dough hydration.": "Jumuisha unga na maji yaliyomo kwenye unga uliochachushwa awali katika uwiano wa maji kwa unga wa donge lote.",
   "Physical volume": "Ujazo wa kitu",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Weka vipimo vya shinikizo la damu la juu (systolic) na la chini (diastolic) kwa mmHg. Matokeo husasishwa unapoandika. Mahesabu yote hufanyika ndani ya kivinjari chako."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Weka vipimo vya shinikizo la damu la juu (systolic) na la chini (diastolic) kwa mmHg. Matokeo husasishwa unapoandika. Mahesabu yote hufanyika ndani ya kivinjari chako.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Leta vikokotoo vyako katika eneo moja la kazi",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Linganisha hadi vikokotoo vinne, bakiza ingizo la kila zana, na tuma matokeo kwa kikokotoo kingine inapohitajika.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Vikokotoo vya sasa huchakata ingizo ndani ya kivinjari chako. Hatupokei thamani unazoingiza kwa mahesabu.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Onyesho la awali la ingizo halipatikani. Fungua kikokotoo ili kuingiza thamani.",
+  "Value is outside the calculator’s allowed range or step.": "Thamani iko nje ya masafa yanayoruhusiwa au hailingani na ongezeko la thamani linalokubaliwa na kikokotoo.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Kagua thamani hizi. Sehemu nyingine zinabaki na thamani za awali za mfano. Sarafu haiamuliwi kiotomatiki wala kubadilishwa; angalia kodi, bima na dhana za eneo husika kwenye kadi."
 }

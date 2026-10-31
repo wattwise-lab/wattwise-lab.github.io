@@ -7476,8 +7476,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "住宅ローン · ローン · 複合ローン · 賃貸 vs 購入 · フリーランス · AI コスト",
   "Apply reviewed values": "確認済みの値を適用",
   "The input schema is unavailable. Use the calculator directly.": "入力スキーマが利用できません。計算機を直接使用してください。",
-  "Value is outside the calculator’s allowed range or step.": "値が計算機の許容範囲またはステップを超えています。",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "これらの値を確認してください。その他の項目は、デフォルト値がそのまま使用されます。通貨は自動的に計算または換算されません。カード内の税金、保険、および現地の想定値を確認してください。",
+  "Value is outside the calculator’s allowed range or step.": "値が計算機の許容範囲外か、指定された刻み幅に合っていません。",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "これらの値を確認してください。他の項目は例の初期値を保持します。通貨は自動判定も換算もしません。カード内の税金、保険、地域に関する仮定を確認してください。",
   "mortgage": "住宅ローン",
   "price": "価格",
   "home price": "住宅価格",
@@ -8919,5 +8919,10 @@
   "Budget buffer (%)": "予算の予備費 (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "今回のリリースには、ポケットサイズのキーパッド、関数キーパッド、9つのカテゴリにわたる実用的な計算機、そして3つのオリジナル計画シナリオが含まれています。言語ページと埋め込みビューは、個別のツールとしてはカウントされません。",
   "Physical volume": "体積",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "収縮期血圧と拡張期血圧を mmHg で入力してください。入力に応じて結果が更新されます。すべての計算はブラウザ内で行われます。"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "収縮期血圧と拡張期血圧を mmHg で入力してください。入力に応じて結果が更新されます。すべての計算はブラウザ内で行われます。",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "計算機を一つのワークスペースにまとめる",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "最大四つの計算機を比較し、それぞれの入力を保持しながら、必要に応じて結果を別の計算機に渡せます。",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "現在の計算機はブラウザ内で入力を処理します。計算用に入力した値が当サイトに送信されることはありません。",
+  "Input preview is unavailable. Open the calculator to enter values.": "入力のプレビューを利用できません。計算機を開いて値を入力してください。"
 }

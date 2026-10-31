@@ -35,5 +35,12 @@
   "Preferment hydration (%)": "Wasser-Mehl-Verhältnis des Vorteigs (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Diese Version enthält eine Taschentastatur, eine wissenschaftliche Tastatur, praktische Rechner in neun Kategorien und drei neue Planungsszenarien. Sprachseiten und eingebettete Ansichten werden nicht als separate Tools gezählt.",
   "Physical volume": "Physikalisches Volumen",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Geben Sie den systolischen und diastolischen Wert in mmHg ein. Die Ergebnisse aktualisieren sich während der Eingabe. Alle Berechnungen erfolgen lokal in Ihrem Browser."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Geben Sie den systolischen und diastolischen Wert in mmHg ein. Die Ergebnisse aktualisieren sich während der Eingabe. Alle Berechnungen erfolgen lokal in Ihrem Browser.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Bringen Sie Ihre Rechner in einem Arbeitsbereich zusammen",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Vergleichen Sie bis zu vier Rechner, behalten Sie die Eingaben jedes Werkzeugs bei und übertragen Sie bei Bedarf ein Ergebnis in einen anderen Rechner.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Die aktuellen Rechner verarbeiten Eingaben in Ihrem Browser. Wir erhalten die von Ihnen eingegebenen Berechnungswerte nicht.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Die Eingabevorschau ist nicht verfügbar. Öffnen Sie den Rechner, um Werte einzugeben.",
+  "Value is outside the calculator’s allowed range or step.": "Der Wert liegt außerhalb des zulässigen Bereichs oder entspricht nicht der erlaubten Schrittweite des Rechners.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Prüfen Sie diese Werte. Die übrigen Felder behalten die Vorgabewerte des Beispiels. Die Währung wird weder automatisch ermittelt noch umgerechnet; prüfen Sie Steuern, Versicherungen und lokale Annahmen in der Karte."
 }

@@ -7594,8 +7594,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "తనఖా · రుణం · చక్రవడ్డీ · అద్దె vs కొనుగోలు · ఫ్రీలాన్స్ · AI ఖర్చు",
   "Apply reviewed values": "సమీక్షించిన విలువలను వర్తింపజేయండి",
   "The input schema is unavailable. Use the calculator directly.": "ఇన్‌పుట్ స్కీమా అందుబాటులో లేదు. కాలిక్యులేటర్‌ను నేరుగా ఉపయోగించండి.",
-  "Value is outside the calculator’s allowed range or step.": "విలువ కాలిక్యులేటర్ యొక్క అనుమతించబడిన పరిధి లేదా స్టెప్ వెలుపల ఉంది.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ఈ విలువలను సమీక్షించండి. ఇతర ఫీల్డ్‌లు వాటి ఉదాహరణ డిఫాల్ట్‌లను కలిగి ఉంటాయి. కరెన్సీ ఊహించబడలేదు లేదా మార్చబడలేదు; కార్డులో పన్ను, బీమా మరియు స్థానిక అంచనాలను తనిఖీ చేయండి.",
+  "Value is outside the calculator’s allowed range or step.": "విలువ అనుమతించిన పరిధిలో లేదు లేదా కాలిక్యులేటర్ ఆమోదించే సంఖ్యా అంతరానికి సరిపోలడం లేదు.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ఈ విలువలను తనిఖీ చేయండి. మిగతా క్షేత్రాలు ఉదాహరణలోని ప్రారంభ విలువలను ఉంచుతాయి. కరెన్సీని స్వయంచాలకంగా నిర్ణయించడం లేదా మార్చడం జరగదు; కార్డులో పన్ను, బీమా మరియు స్థానిక అంచనాలను తనిఖీ చేయండి.",
   "mortgage": "తనఖా",
   "price": "ధర",
   "home price": "ఇంటి ధర",
@@ -8921,5 +8921,10 @@
   "Budget buffer (%)": "బడ్జెట్‌లో అదనపు నిల్వ (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "ఈ విడుదలలో ఒక పాకెట్ కీప్యాడ్, ఒక సైంటిఫిక్ కీప్యాడ్, తొమ్మిది వర్గాలలో ప్రాక్టికల్ కాలిక్యులేటర్లు మరియు మూడు అసలైన ప్రణాళికా దృశ్యాలు ఉన్నాయి. భాషా పేజీలు మరియు పొందుపరిచిన వీక్షణలు ప్రత్యేక సాధనాలుగా పరిగణించబడవు.",
   "Physical volume": "భౌతిక ఘనపరిమాణం",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "సిస్టోలిక్ మరియు డయాస్టోలిక్ కొలతలను mmHgలో నమోదు చేయండి. మీరు టైప్ చేస్తుండగానే ఫలితాలు మారుతాయి. అన్ని లెక్కలు మీ బ్రౌజర్‌లో స్థానికంగా జరుగుతాయి."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "సిస్టోలిక్ మరియు డయాస్టోలిక్ కొలతలను mmHgలో నమోదు చేయండి. మీరు టైప్ చేస్తుండగానే ఫలితాలు మారుతాయి. అన్ని లెక్కలు మీ బ్రౌజర్‌లో స్థానికంగా జరుగుతాయి.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "మీ కాలిక్యులేటర్లను ఒకే కార్యస్థలంలోకి తీసుకురండి",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "గరిష్ఠంగా నాలుగు కాలిక్యులేటర్లను పోల్చండి, ప్రతి సాధనంలోని ఇన్‌పుట్‌లను ఉంచండి, అవసరమైనప్పుడు ఫలితాన్ని మరో కాలిక్యులేటర్‌కు పంపండి.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "ప్రస్తుత కాలిక్యులేటర్లు మీ బ్రౌజర్‌లోనే ఇన్‌పుట్‌లను ప్రాసెస్ చేస్తాయి. లెక్కల కోసం మీరు నమోదు చేసిన విలువలు మాకు అందవు.",
+  "Input preview is unavailable. Open the calculator to enter values.": "ఇన్‌పుట్ ముందస్తు వీక్షణ అందుబాటులో లేదు. విలువలను నమోదు చేయడానికి కాలిక్యులేటర్‌ను తెరవండి."
 }

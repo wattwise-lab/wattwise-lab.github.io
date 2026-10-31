@@ -7592,8 +7592,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "hipoteca · empréstimo · juros compostos · alugar vs comprar · freelancer · custo AI",
   "Apply reviewed values": "Aplicar valores revisados",
   "The input schema is unavailable. Use the calculator directly.": "O esquema de entrada não está disponível. Use a calculadora diretamente.",
-  "Value is outside the calculator’s allowed range or step.": "O valor está fora do intervalo ou incremento permitido pela calculadora.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Revise esses valores. Os demais campos mantêm seus valores padrão de exemplo. A moeda não é inferida nem convertida; verifique os impostos, seguros e condições locais no cartão.",
+  "Value is outside the calculator’s allowed range or step.": "O valor está fora do intervalo permitido ou não corresponde ao incremento de entrada admitido pela calculadora.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Verifique estes valores. Os restantes campos mantêm os valores predefinidos do exemplo. A moeda não é inferida nem convertida; confirme os impostos, o seguro e os pressupostos locais no cartão.",
   "mortgage": "hipoteca",
   "price": "preço",
   "home price": "preço da casa",
@@ -8921,5 +8921,10 @@
   "Budget buffer (%)": "Reserva do orçamento (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Este lançamento inclui um teclado numérico de bolso, um teclado numérico científico, calculadoras práticas em nove categorias e três cenários de planejamento originais. Páginas de idioma e visualizações incorporadas não são consideradas ferramentas separadas.",
   "Physical volume": "Volume físico",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Introduza as leituras sistólica e diastólica em mmHg. Os resultados são atualizados enquanto escreve. Todos os cálculos são realizados localmente no seu navegador."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Introduza as leituras sistólica e diastólica em mmHg. Os resultados são atualizados enquanto escreve. Todos os cálculos são realizados localmente no seu navegador.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Reúna as suas calculadoras num só espaço de trabalho",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Compare até quatro calculadoras, mantenha os dados introduzidos em cada ferramenta e envie um resultado para outra calculadora quando precisar.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "As calculadoras atuais processam os dados no seu navegador. Não recebemos os valores que introduz para os cálculos.",
+  "Input preview is unavailable. Open the calculator to enter values.": "A pré-visualização dos dados não está disponível. Abra a calculadora para introduzir os valores."
 }

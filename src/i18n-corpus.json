@@ -59484,13 +59484,13 @@
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": false,
+    "active": true,
     "id": "15465",
     "source": "Value is outside the calculator’s allowed range or step.",
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": false,
+    "active": true,
     "id": "15466",
     "source": "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
     "origin": "assets/cm-workspace-intent.js"
@@ -71351,5 +71351,35 @@
     "id": "20394",
     "source": "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
     "origin": "blood-pressure-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20395",
+    "source": "Bring your calculators into one workspace",
+    "origin": "index.html"
+  },
+  {
+    "active": true,
+    "id": "20396",
+    "source": "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.",
+    "origin": "index.html"
+  },
+  {
+    "active": true,
+    "id": "20397",
+    "source": "Current calculators process inputs in your browser. We do not receive the calculation values you enter.",
+    "origin": "index.html"
+  },
+  {
+    "active": false,
+    "id": "20398",
+    "source": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+    "origin": "assets/cm-workspace-intent.js"
+  },
+  {
+    "active": true,
+    "id": "20399",
+    "source": "Input preview is unavailable. Open the calculator to enter values.",
+    "origin": "assets/cm-workspace-intent.js"
   }
 ]

@@ -7599,8 +7599,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "ipotek · kredi · bileşik faiz · kira mı satın alma mı · serbest meslek sahibi · AI maliyet",
   "Apply reviewed values": "İncelenen değerleri uygulayın",
   "The input schema is unavailable. Use the calculator directly.": "Giriş şeması kullanılamıyor. Hesap makinesini doğrudan kullanın.",
-  "Value is outside the calculator’s allowed range or step.": "Değer, hesap makinesinin izin verilen aralığının veya adımının dışında.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Bu değerleri gözden geçirin. Diğer alanlar örnek varsayılan değerlerini korur. Para birimi çıkarılmaz veya dönüştürülmez; karttaki vergi, sigorta ve yerel varsayımları kontrol edin.",
+  "Value is outside the calculator’s allowed range or step.": "Değer izin verilen aralığın dışındadır veya hesap makinesinin kabul ettiği giriş artışına uymamaktadır.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Bu değerleri kontrol edin. Diğer alanlar örneğin varsayılan değerlerini korur. Para birimi otomatik olarak belirlenmez veya dönüştürülmez; karttaki vergi, sigorta ve yerel varsayımları kontrol edin.",
   "mortgage": "ipotek",
   "price": "fiyat",
   "home price": "ev fiyatı",
@@ -8921,5 +8921,10 @@
   "Budget buffer (%)": "Bütçe yedek payı (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Bu sürüm, bir cep tuş takımı, bir bilimsel tuş takımı, dokuz kategoride pratik hesap makineleri ve üç orijinal planlama senaryosu içerir. Dil sayfaları ve gömülü görünümler ayrı araçlar olarak sayılmaz.",
   "Physical volume": "Fiziksel hacim",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Sistolik ve diyastolik ölçümleri mmHg olarak girin. Yazarken sonuçlar güncellenir. Tüm hesaplamalar tarayıcınızda yerel olarak yapılır."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Sistolik ve diyastolik ölçümleri mmHg olarak girin. Yazarken sonuçlar güncellenir. Tüm hesaplamalar tarayıcınızda yerel olarak yapılır.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Hesap makinelerinizi tek bir çalışma alanında birleştirin",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "En fazla dört hesap makinesini karşılaştırın, her aracın girdilerini koruyun ve gerektiğinde sonucu başka bir hesap makinesine aktarın.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Mevcut hesap makineleri girdileri tarayıcınızda işler. Hesaplama için girdiğiniz değerleri almayız.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Girdi önizlemesi kullanılamıyor. Değerleri girmek için hesap makinesini açın."
 }

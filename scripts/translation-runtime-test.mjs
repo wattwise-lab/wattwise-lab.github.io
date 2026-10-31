@@ -59,6 +59,9 @@ for (const source of [
   'Beta-distribution parameters are outside the supported numeric range.',
   'This browser could not save the preference.',
   'mortgage · loan · compound · rent vs buy · freelance · AI cost',
+  'Value is outside the calculator’s allowed range or step.',
+  'Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.',
+  'Input preview is unavailable. Open the calculator to enter values.',
 ])
   assert.ok(
     corpus.some((row) => row.active && row.source === source),

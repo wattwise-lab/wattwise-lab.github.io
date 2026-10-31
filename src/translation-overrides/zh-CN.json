@@ -163,5 +163,12 @@
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "本版包括普通按键电卓、科学电卓、九类实用计算器与三个原创规划情景；语言页面和嵌入视图不重复计入工具数量。",
   "Include preferment flour and water in total dough hydration.": "将酵种中的面粉与水计入面团总水粉比。",
   "Physical volume": "体积",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "以 mmHg 为单位输入收缩压和舒张压。输入时自动更新结果，所有计算均在浏览器本地完成。"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "以 mmHg 为单位输入收缩压和舒张压。输入时自动更新结果，所有计算均在浏览器本地完成。",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "房贷 房价300000 首付90000 利率3.5% 期限30年",
+  "Bring your calculators into one workspace": "把常用计算器放在同一个工作台",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "最多组合四个计算器，保留各自输入，并按需把结果传给其他计算器。",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "当前计算器在浏览器中处理输入，不会将您填写的计算数值发送给我们。",
+  "Input preview is unavailable. Open the calculator to enter values.": "暂时无法预览输入，请打开计算器直接填写。",
+  "Value is outside the calculator’s allowed range or step.": "数值不在允许范围内，或不符合规定的取值间隔。",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "请核对这些数值，其余字段保留示例默认值。不推断或转换货币，请在卡片内检查税费、保险与当地假设。"
 }

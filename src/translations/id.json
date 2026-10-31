@@ -7557,8 +7557,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "hipotek · pinjaman · majemuk · sewa vs beli · pekerja lepas · biaya AI",
   "Apply reviewed values": "Terapkan nilai yang ditinjau",
   "The input schema is unavailable. Use the calculator directly.": "Skema input tidak tersedia. Gunakan kalkulator secara langsung.",
-  "Value is outside the calculator’s allowed range or step.": "Nilai berada di luar rentang atau langkah yang diizinkan oleh kalkulator.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Tinjau nilai-nilai ini. Bidang lain mempertahankan nilai default contohnya. Mata uang tidak disimpulkan atau dikonversi; periksa pajak, asuransi, dan asumsi lokal di kartu.",
+  "Value is outside the calculator’s allowed range or step.": "Nilai berada di luar rentang yang diizinkan atau tidak sesuai dengan selang nilai yang didukung kalkulator.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Periksa nilai-nilai ini. Kolom lain tetap memakai nilai bawaan contoh. Mata uang tidak ditentukan secara otomatis atau dikonversi; periksa pajak, asuransi, dan asumsi setempat pada kartu.",
   "mortgage": "hipotek",
   "price": "harga",
   "home price": "harga rumah",
@@ -8361,7 +8361,7 @@
   "What if my shape is not a rectangle?": "Bagaimana jika bentuk saya bukan persegi panjang?",
   "Split it into measured rectangles, calculate each one, and add the net volumes before applying waste. Do not force an irregular shape into one rectangle and hope the waste allowance absorbs the difference.": "Bagilah menjadi persegi panjang terukur, hitung masing-masing, dan tambahkan volume bersih sebelum menerapkan limbah. Jangan memaksakan bentuk tidak beraturan ke dalam satu persegi panjang dan berharap tunjangan limbah dapat menyerap perbedaannya.",
   "How do I measure depth?": "Bagaimana cara mengukur kedalaman?",
-  "Measure the finished slab thickness at several points and use a representative value. If depth varies a lot, split the pour into zones with different depths instead of averaging blindly.": "Ukur ketebalan pelat jadi di beberapa titik dan gunakan nilai representatif. Jika kedalaman sangat bervariasi, bagilah pengecoran menjadi zona dengan kedalaman berbeda daripada merata-ratakan secara memb盲盲.",
+  "Measure the finished slab thickness at several points and use a representative value. If depth varies a lot, split the pour into zones with different depths instead of averaging blindly.": "Ukur ketebalan pelat jadi di beberapa titik lalu gunakan nilai yang mewakili. Jika kedalamannya sangat bervariasi, bagilah area pengecoran menjadi beberapa zona berdasarkan kedalaman, bukan sekadar mengambil rata-rata.",
   "Does this include the supplier's minimum load?": "Apakah ini termasuk beban minimum pemasok?",
   "No. If your order is below a supplier minimum, the supplier may still charge for the minimum. Check that before ordering, especially for small pours.": "Tidak. Jika pesanan Anda di bawah minimum pemasok, pemasok mungkin masih mengenakan biaya minimum. Periksa hal itu sebelum memesan, terutama untuk pengecoran kecil.",
   "Can I convert the result to cubic feet or litres?": "Dapatkah saya mengkonversi hasilnya ke kaki kubik atau liter?",
@@ -8921,5 +8921,10 @@
   "Budget buffer (%)": "Cadangan anggaran (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Rilis ini mencakup keypad saku, keypad ilmiah, kalkulator praktis di sembilan kategori, dan tiga skenario perencanaan asli. Halaman bahasa dan tampilan tersemat tidak dihitung sebagai alat terpisah.",
   "Physical volume": "Volume fisik",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Masukkan tekanan sistolik dan diastolik dalam mmHg. Hasil diperbarui saat Anda mengetik. Semua perhitungan berjalan secara lokal di peramban Anda."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Masukkan tekanan sistolik dan diastolik dalam mmHg. Hasil diperbarui saat Anda mengetik. Semua perhitungan berjalan secara lokal di peramban Anda.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Satukan kalkulator Anda dalam satu ruang kerja",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Bandingkan hingga empat kalkulator, pertahankan masukan setiap alat, dan kirim hasil ke kalkulator lain saat diperlukan.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Kalkulator saat ini memproses masukan di peramban Anda. Kami tidak menerima nilai yang Anda masukkan untuk perhitungan.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Pratinjau masukan tidak tersedia. Buka kalkulator untuk memasukkan nilai."
 }

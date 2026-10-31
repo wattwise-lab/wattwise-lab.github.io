@@ -44,6 +44,31 @@ body.cm-unified :focus-visible {
 body.cm-unified [hidden] {
   display: none !important;
 }
+.cm-unified .cm-workspace-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 9px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--cm-control-line);
+  border-radius: 9px;
+  background: var(--cm-soft);
+  color: var(--cm-mint);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.cm-unified .cm-workspace-entry svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.cm-embedded .cm-workspace-entry {
+  display: none !important;
+}
 .cm-site-skip {
   position: fixed;
   z-index: 200;

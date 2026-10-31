@@ -14,6 +14,12 @@ const known = new Set(routes.map((r) => r.path)),
   descriptions = new Map();
 const byPath = new Map(routes.map((r) => [r.path, r]));
 const priorities = JSON.parse(await read('src/selection-priority.json'));
+const toolSlugs = new Set(priorities),
+  legacySlugs = new Set(
+    JSON.parse(await read('src/catalog-base.json'))
+      .map((tool) => tool.slug)
+      .filter((slug) => slug !== 'merchant-profit-planner'),
+  );
 let pages = 0,
   integrity = 0;
 async function checkAssets($) {
@@ -39,6 +45,29 @@ for (const r of routes) {
     assert.equal($('h1').length, 1);
     assert.equal($('main#main-content').length, 1);
     assert.ok($('h1').text().trim());
+    if (!['zh-CN', 'ja'].includes(r.locale)) {
+      const copy = $('main').clone();
+      // Inputs are data; code and explicitly untranslatable notation are separate.
+      copy.find('input,textarea,select,script,style,svg,code,[data-cm-no-translate]').remove();
+      assert.ok(!/[\u3400-\u9fff]/.test(copy.text()), 'untranslated Chinese page copy');
+    }
+    const slug = r.path.split('/').at(-1);
+    if (toolSlugs.has(slug)) {
+      const entry = $('main a.cm-workspace-entry');
+      assert.equal(entry.length, 1, 'one workspace entry before JavaScript');
+      assert.equal(
+        new URL(entry.attr('href'), 'https://calcmintly.com').searchParams.get('add'),
+        slug,
+        'workspace entry selects the current calculator',
+      );
+      assert.equal(entry.find('svg[aria-hidden=true]').length, 1);
+      assert.ok(entry.find('[data-cm-i18n=addWorkspace]').text().trim());
+      if (legacySlugs.has(slug)) {
+        assert.ok($('body').hasClass('cm-tool'), 'legacy styling before JavaScript');
+        assert.equal($('.cm-guide').length, 1, 'chapter navigation before JavaScript');
+        assert.equal($('.cm-copy-status').get(0)?.tagName, 'span', 'valid inline copy status');
+      }
+    }
     for (const element of $('a[href]').toArray()) {
       const href = $(element).attr('href');
       if (!href || href.startsWith('#') || /^(?:mailto:|tel:|data:)/.test(href)) continue;

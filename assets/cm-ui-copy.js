@@ -1332,3 +1332,13 @@ window.CMUiCopy = {
       'Etkileşimli özellikler JavaScript gerektirir. Sayfa içeriği ve bağlantılar kullanılabilir.',
   },
 };
+
+// These working examples intentionally use a supported parser language.
+(() => {
+  'use strict';
+  for (const [locale, copy] of Object.entries(window.CMUiCopy))
+    copy.intentExample =
+      locale === 'zh-CN'
+        ? '房贷 房价300000 首付90000 利率3.5% 期限30年'
+        : 'mortgage home price 300000 down payment 90000 rate 3.5% term 30';
+})();

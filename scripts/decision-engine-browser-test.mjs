@@ -73,6 +73,42 @@ try {
     await context.close();
   }
   if (shard === 0) {
+    const legacyPositions = [];
+    for (const javaScriptEnabled of [false, true]) {
+      const context = await browser.newContext({
+        viewport: { width: 375, height: 812 },
+        javaScriptEnabled,
+      });
+      try {
+        const page = await context.newPage();
+        await page.goto(base + '/blood-pressure-calculator', { waitUntil: 'load' });
+        assert.match(await page.locator('body').getAttribute('class'), /cm-tool/);
+        assert.equal(await page.locator('main .cm-workspace-entry').count(), 1);
+        assert.equal(
+          await page.locator('main .cm-workspace-entry svg[aria-hidden=true]').count(),
+          1,
+        );
+        assert.equal(await page.locator('.cm-guide').count(), 1);
+        assert.equal(await page.locator('[data-cm-action=copy]').count(), 1);
+        for (const link of await page.locator('.cm-workspace-entry,.cm-guide a').all()) {
+          const box = await link.boundingBox();
+          assert.ok(box?.height >= 44, 'Usable legacy navigation before and after scripts');
+        }
+        const entry = await page.locator('.cm-workspace-entry').boundingBox(),
+          hero = await page.locator('.hero').boundingBox(),
+          form = await page.locator('.hero .card').first().boundingBox();
+        legacyPositions.push({ gap: hero.y - entry.y - entry.height, formHeight: form.height });
+      } finally {
+        await context.close();
+      }
+    }
+    near(legacyPositions[0].gap, legacyPositions[1].gap, 1);
+    near(legacyPositions[0].formHeight, legacyPositions[1].formHeight, 1);
+    results.push({
+      test: 'Legacy layout and workspace entry are ready before scripts',
+      engine,
+      passed: true,
+    });
     const entryContext = await browser.newContext({ viewport: { width: 375, height: 812 } });
     const entryPage = await entryContext.newPage();
     await entryPage.goto(base + '/fr/gravel-base-calculator', { waitUntil: 'load' });
@@ -101,6 +137,29 @@ try {
     assert.match(taxVerdict, /total TTC de 280,00/);
     results.push({
       test: 'French calculator entry reveals its new card and tax explanation assigns each amount correctly',
+      engine,
+      passed: true,
+    });
+    await entryPage.goto(base + '/fr/workspace', { waitUntil: 'load' });
+    await entryPage.locator('.ws-intent summary').click();
+    const intentRequest = 'loan principal 100000 rate 5 term 20';
+    await entryPage.locator('#ws-intent-input').fill(intentRequest);
+    await entryPage.locator('#cm-site-language').selectOption('zh-CN');
+    await entryPage.waitForURL(/\/zh-cn\/workspace$/);
+    assert.match(await entryPage.locator('#ws-intent-input').getAttribute('placeholder'), /房贷/);
+    await entryPage.locator('#cm-site-language').selectOption('fr');
+    await entryPage.waitForURL(/\/fr\/workspace$/);
+    assert.match(
+      await entryPage.locator('#ws-intent-input').getAttribute('placeholder'),
+      /^mortgage /,
+    );
+    assert.equal(await entryPage.locator('#ws-intent-input').inputValue(), intentRequest);
+    await entryPage.getByRole('button', { name: 'Prévisualiser les valeurs', exact: true }).click();
+    const intentPreview = await entryPage.locator('dialog[open]').innerText();
+    assert.match(intentPreview, /Vérifiez ces valeurs/);
+    assert.doesNotMatch(intentPreview, /Review these values|请核对/);
+    results.push({
+      test: 'Intent preview keeps inputs and follows the selected language',
       engine,
       passed: true,
     });

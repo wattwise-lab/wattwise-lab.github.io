@@ -39,26 +39,6 @@
 .cm-expanded .cm-expanded__actions button {
   min-height: 44px;
 }
-.cm-expanded p.cm-expanded__standalone > a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  max-width: 100%;
-  padding: 9px 14px;
-  border: 1px solid var(--cm-control-line);
-  border-radius: 9px;
-  background: var(--cm-soft);
-  color: var(--cm-mint);
-  font-weight: 650;
-  text-decoration: none;
-  line-height: 1.5;
-}
-.cm-expanded p.cm-expanded__standalone > a svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
 .cm-expanded .cm-expanded__guide .card p > a {
   display: inline-flex;
   align-items: center;

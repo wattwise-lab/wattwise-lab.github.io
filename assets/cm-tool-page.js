@@ -15,7 +15,8 @@
     catalog = window.CMCatalog || [],
     tool = catalog.find((x) => x.slug === slug),
     h1 = wrap.querySelector('h1');
-  const guide = document.createElement('nav');
+  const guide = wrap.querySelector('.cm-guide') || document.createElement('nav');
+  guide.replaceChildren();
   guide.className = 'cm-guide';
   guide.dataset.cmLabel = 'help';
   guide.setAttribute('aria-label', I.t('help'));
@@ -128,7 +129,7 @@
       input.dispatchEvent(new Event('change', { bubbles: true }));
     }),
   );
-  const copyStatus = document.createElement('p');
+  const copyStatus = wrap.querySelector('.cm-copy-status') || document.createElement('span');
   copyStatus.className = 'cm-copy-status';
   copyStatus.setAttribute('role', 'status');
   const reset = [...wrap.querySelectorAll('button')].find(
@@ -202,12 +203,16 @@
       true,
     );
   }
-  const add = document.createElement('a');
-  add.className = 'cm-add';
-  add.dataset.cmI18n = 'addWorkspace';
+  const add = wrap.querySelector('.cm-workspace-entry') || document.createElement('a');
+  add.className = 'cm-add cm-workspace-entry';
   add.dataset.cmHref = '/workspace?add=' + slug;
   add.href = I.url(add.dataset.cmHref);
-  add.textContent = I.t('addWorkspace');
+  if (!add.querySelector('[data-cm-i18n]')) {
+    add.removeAttribute('data-cm-i18n');
+    add.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-cm-i18n="addWorkspace"></span>';
+    add.querySelector('span').textContent = I.t('addWorkspace');
+  }
   if (!embedded) wrap.querySelector('.sub')?.after(add);
   function localize(event) {
     I.translateTree(wrap);

@@ -7456,8 +7456,8 @@
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "رهن عقاري · قرض · مركب · إيجار مقابل شراء · عمل حر · تكلفة AI",
   "Apply reviewed values": "تطبيق القيم المُراجعة",
   "The input schema is unavailable. Use the calculator directly.": "مخطط الإدخال غير متوفر. استخدم الآلة الحاسبة مباشرةً.",
-  "Value is outside the calculator’s allowed range or step.": "القيمة خارج النطاق أو الخطوة المسموح بها للآلة الحاسبة.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "راجع هذه القيم. تحتفظ الحقول الأخرى بقيمها الافتراضية. لا يتم استنتاج العملة أو تحويلها؛ تحقق من الضرائب والتأمين والافتراضات المحلية في البطاقة. ...",
+  "Value is outside the calculator’s allowed range or step.": "القيمة خارج النطاق المسموح أو لا تتوافق مع فاصل القيم الذي تقبله الآلة الحاسبة.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "راجع هذه القيم. تحتفظ الحقول الأخرى بالقيم الافتراضية للمثال. لا تُستنتج العملة ولا تُحوّل؛ تحقّق من الضرائب والتأمين والافتراضات المحلية في البطاقة.",
   "mortgage": "الرهن العقاري",
   "price": "السعر",
   "home price": "سعر المنزل",
@@ -8920,5 +8920,10 @@
   "Budget buffer (%)": "احتياطي الميزانية (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "يتضمن هذا الإصدار لوحة مفاتيح جيبية، ولوحة مفاتيح علمية، وآلات حاسبة عملية ضمن تسع فئات، وثلاثة سيناريوهات تخطيط أصلية. لا تُحتسب صفحات اللغات والعروض المضمنة كأدوات منفصلة.",
   "Physical volume": "الحجم الفيزيائي",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "أدخل قراءتي الضغط الانقباضي والانبساطي بوحدة mmHg. تتحدث النتائج أثناء الكتابة. تُجرى جميع الحسابات محليًا في متصفحك."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "أدخل قراءتي الضغط الانقباضي والانبساطي بوحدة mmHg. تتحدث النتائج أثناء الكتابة. تُجرى جميع الحسابات محليًا في متصفحك.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "اجمع آلاتك الحاسبة في مساحة عمل واحدة",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "قارن بين ما يصل إلى أربع آلات حاسبة، واحتفظ بمدخلات كل أداة، وأرسل نتيجة إلى آلة أخرى عند الحاجة.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "تعالج الآلات الحاسبة الحالية المدخلات داخل متصفحك. لا نتلقى القيم التي تدخلها لإجراء الحسابات.",
+  "Input preview is unavailable. Open the calculator to enter values.": "معاينة المدخلات غير متاحة. افتح الآلة الحاسبة لإدخال القيم."
 }

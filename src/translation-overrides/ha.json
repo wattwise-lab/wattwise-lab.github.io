@@ -62,5 +62,12 @@
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Wannan sakin ya haɗa da maɓalli na aljihu, maɓalli na kimiyya, kalkuleta masu amfani a cikin rukuni tara da yanayin tsare-tsare na asali guda uku. Ba a ƙididdige shafukan harshe da ra'ayoyin da aka haɗa a matsayin kayan aiki daban-daban ba.",
   "Include preferment flour and water in total dough hydration.": "A haɗa garin da ruwan da ke cikin kullun da aka riga aka bari ya yi ferment a lissafin jimlar rabon ruwa ga gari na kullun gaba ɗaya.",
   "Physical volume": "Girman sararin da abu ya mamaye",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Shigar da karatun hawan jini na sama (systolic) da na ƙasa (diastolic) a mmHg. Sakamako yana sabuntawa yayin rubutu. Ana yin duk lissafi a cikin burauzarka."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Shigar da karatun hawan jini na sama (systolic) da na ƙasa (diastolic) a mmHg. Sakamako yana sabuntawa yayin rubutu. Ana yin duk lissafi a cikin burauzarka.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Haɗa kalkuletocinka a wurin aiki guda",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Kwatanta har zuwa kalkuleta huɗu, riƙe bayanan da aka shigar a kowanne, sannan aika sakamako zuwa wata kalkuleta idan an buƙata.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Kalkuletocin yanzu suna sarrafa bayanan da ka shigar a cikin burauzarka. Ba ma karɓar ƙimomin da ka shigar don lissafi.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Ba a samun samfotin bayanan shigarwa. Buɗe kalkuleta don shigar da ƙimomi.",
+  "Value is outside the calculator’s allowed range or step.": "Ƙimar ba ta cikin iyakar da aka yarda, ko ba ta dace da tazarar lambobin da kalkuleta ke karɓa ba.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Duba waɗannan ƙimomi. Sauran filaye suna riƙe ƙimomin misali na asali. Ba a tantance nau’in kuɗi ta atomatik ko musanya shi ba; duba haraji, inshora da zato na yankinka a cikin katin."
 }

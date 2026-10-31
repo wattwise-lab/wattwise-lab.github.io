@@ -24,7 +24,9 @@
   input.id = 'ws-intent-input';
   input.rows = 3;
   input.maxLength = 2000;
-  input.placeholder = '房贷 房价300万 首付90万 利率3.5% 期限30年';
+  input.dataset.cmPlaceholder = 'intentExample';
+  input.placeholder = I.t('intentExample');
+  input.dir = 'auto';
   label.htmlFor = input.id;
   hint.dataset.cmPair =
     'Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.|本地规则支持下列六种工具。其他语言可用翻译后的字段名，并保留英文或中文工具名称。仅识别带字段名的数字，应用前逐项预览，不上传内容。';
@@ -76,7 +78,7 @@
       const rule = window.CMIntentSchema?.[parsed.slug]?.[row.id];
       if (!rule) {
         status.textContent = t(
-          'The input schema is unavailable. Use the calculator directly.|输入规则不可用，请直接使用计算器。',
+          'Input preview is unavailable. Open the calculator to enter values.|暂时无法预览输入，请打开计算器直接填写。',
         );
         return;
       }
@@ -92,7 +94,7 @@
           t(row.label) +
           ': ' +
           t(
-            'Value is outside the calculator’s allowed range or step.|数值超出该计算器允许的范围或步进。',
+            'Value is outside the calculator’s allowed range or step.|数值不在允许范围内，或不符合规定的取值间隔。',
           );
         return;
       }

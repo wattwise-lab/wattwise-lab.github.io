@@ -1325,7 +1325,7 @@
   "Personal planning": "ذاتی منصوبہ بندی",
   "This goal pack replaces the current layout with example inputs. Current input values are not saved.": "یہ گول پیک موجودہ لے آؤٹ کو مثال کے ان پٹ سے بدل دیتا ہے۔ موجودہ ان پٹ ویلیوز محفوظ نہیں ہیں۔",
   "Tool name and labelled numbers": "ٹول کا نام اور لیبل والے نمبر",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ان اقدار کا جائزہ لیں۔ دوسرے فیلڈز اپنی مثال کو ڈیفالٹ رکھتے ہیں۔ کرنسی کا اندازہ یا تبدیل نہیں کیا جاتا ہے۔ کارڈ میں ٹیکس، انشورنس اور مقامی مفروضے چیک کریں۔",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ان اقدار کی پڑتال کریں۔ باقی فیلڈز مثال کی پہلے سے طے شدہ اقدار برقرار رکھتی ہیں۔ کرنسی کا خودکار اندازہ یا تبادلہ نہیں کیا جاتا؛ کارڈ میں ٹیکس، انشورنس اور مقامی مفروضے دیکھیں۔",
   "loan": "قرض",
   "Loan principal": "قرض کا پرنسپل",
   "extra monthly payment": "اضافی ماہانہ ادائیگی",
@@ -8225,7 +8225,7 @@
   "Savings plan": "بچت کا منصوبہ",
   "summary": "خلاصہ",
   "Current results": "موجودہ نتائج",
-  "Value is outside the calculator’s allowed range or step.": "قدر کیلکولیٹر کی اجازت شدہ حد یا قدم سے باہر ہے۔",
+  "Value is outside the calculator’s allowed range or step.": "قدر اجازت شدہ حد میں نہیں ہے یا کیلکولیٹر کے قبول کردہ عددی وقفے سے مطابقت نہیں رکھتی۔",
   "mortgage": "رہن",
   "annual rate": "سالانہ شرح",
   "term": "مدت",
@@ -8921,5 +8921,10 @@
   "Budget buffer (%)": "بجٹ میں اضافی گنجائش (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "اس ریلیز میں ایک پاکٹ کیپیڈ، ایک سائنسی کیپیڈ، نو زمروں میں عملی کیلکولیٹر اور تین اصل منصوبہ بندی کے منظرنامے شامل ہیں۔ زبان کے صفحات اور ایمبیڈڈ ویوز کو علیحدہ ٹولز کے طور پر شمار نہیں کیا جاتا ہے۔",
   "Physical volume": "طبعی حجم",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "سسٹولک اور ڈایاسٹولک ریڈنگ mmHg میں درج کریں۔ ٹائپ کرتے ہی نتائج تبدیل ہوتے ہیں۔ تمام حسابات مقامی طور پر آپ کے براؤزر میں ہوتے ہیں۔"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "سسٹولک اور ڈایاسٹولک ریڈنگ mmHg میں درج کریں۔ ٹائپ کرتے ہی نتائج تبدیل ہوتے ہیں۔ تمام حسابات مقامی طور پر آپ کے براؤزر میں ہوتے ہیں۔",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "اپنے کیلکولیٹر ایک ہی ورک اسپیس میں لائیں",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "چار تک کیلکولیٹروں کا موازنہ کریں، ہر آلے کے اندراجات برقرار رکھیں اور ضرورت کے وقت نتیجہ دوسرے کیلکولیٹر میں بھیجیں۔",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "موجودہ کیلکولیٹر آپ کے براؤزر میں اندراجات پر کارروائی کرتے ہیں۔ حساب کے لیے درج کی گئی اقدار ہمیں موصول نہیں ہوتیں۔",
+  "Input preview is unavailable. Open the calculator to enter values.": "اندراجات کا پیش منظر دستیاب نہیں ہے۔ اقدار درج کرنے کے لیے کیلکولیٹر کھولیں۔"
 }

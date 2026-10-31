@@ -44,5 +44,12 @@
   "Preferment hydration (%)": "पहले से किण्वित आटे में पानी और आटे का अनुपात (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "इस रिलीज़ में एक पॉकेट कीपैड, एक वैज्ञानिक कीपैड, नौ श्रेणियों में व्यावहारिक कैलकुलेटर और तीन मूल नियोजन परिदृश्य शामिल हैं। भाषा पृष्ठों और अंतर्निहित दृश्यों को अलग उपकरण नहीं माना जाता है।",
   "Physical volume": "भौतिक आयतन",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "सिस्टोलिक और डायस्टोलिक रीडिंग mmHg में दर्ज करें। टाइप करते ही परिणाम बदलते हैं। सभी गणनाएँ आपके ब्राउज़र में स्थानीय रूप से होती हैं।"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "सिस्टोलिक और डायस्टोलिक रीडिंग mmHg में दर्ज करें। टाइप करते ही परिणाम बदलते हैं। सभी गणनाएँ आपके ब्राउज़र में स्थानीय रूप से होती हैं।",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "अपने कैलकुलेटर एक कार्यक्षेत्र में लाएँ",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "अधिकतम चार कैलकुलेटर की तुलना करें, हर उपकरण के इनपुट बनाए रखें और ज़रूरत होने पर परिणाम दूसरे कैलकुलेटर में भेजें।",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "मौजूदा कैलकुलेटर आपके ब्राउज़र में इनपुट संसाधित करते हैं। गणना के लिए दर्ज किए गए मान हमें प्राप्त नहीं होते।",
+  "Input preview is unavailable. Open the calculator to enter values.": "इनपुट का पूर्वावलोकन उपलब्ध नहीं है। मान दर्ज करने के लिए कैलकुलेटर खोलें।",
+  "Value is outside the calculator’s allowed range or step.": "मान अनुमत सीमा में नहीं है या स्वीकार्य संख्यात्मक अंतर से मेल नहीं खाता।",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "इन मानों की जाँच करें। अन्य फ़ील्ड उदाहरण के डिफ़ॉल्ट मान बनाए रखेंगे। मुद्रा का अनुमान या रूपांतरण नहीं किया जाता; कार्ड में कर, बीमा और स्थानीय मान्यताएँ जाँचें।"
 }

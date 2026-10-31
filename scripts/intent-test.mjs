@@ -26,6 +26,14 @@ test('Chinese mortgage units', () => {
 });
 test('English loan labels', () =>
   assert.equal(P.parse('loan principal 100000 rate 5 term 20').values.prin, 100000));
+test('Displayed English workspace example', () => {
+  const result = P.parse('mortgage home price 300000 down payment 90000 rate 3.5% term 30');
+  assert.equal(result.slug, 'mortgage-calculator');
+  assert.equal(result.values.price, 300000);
+  assert.equal(result.values.down, 90000);
+  assert.equal(result.values.rate, 3.5);
+  assert.equal(result.values.term, 30);
+});
 test('Latin k suffix', () => assert.equal(P.parse('loan principal 100k').values.prin, 100000));
 test('Latin m suffix', () => assert.equal(P.parse('loan principal 1.2m').values.prin, 1200000));
 test('Chinese ten-million suffix', () =>

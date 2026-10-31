@@ -48,5 +48,12 @@
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "اس ریلیز میں ایک پاکٹ کیپیڈ، ایک سائنسی کیپیڈ، نو زمروں میں عملی کیلکولیٹر اور تین اصل منصوبہ بندی کے منظرنامے شامل ہیں۔ زبان کے صفحات اور ایمبیڈڈ ویوز کو علیحدہ ٹولز کے طور پر شمار نہیں کیا جاتا ہے۔",
   "Include preferment flour and water in total dough hydration.": "مجموعی آٹے میں پانی اور میدے کے تناسب کا حساب کرتے وقت پہلے سے خمیر شدہ آمیزے میں موجود میدہ اور پانی بھی شامل کریں۔",
   "Physical volume": "طبعی حجم",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "سسٹولک اور ڈایاسٹولک ریڈنگ mmHg میں درج کریں۔ ٹائپ کرتے ہی نتائج تبدیل ہوتے ہیں۔ تمام حسابات مقامی طور پر آپ کے براؤزر میں ہوتے ہیں۔"
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "سسٹولک اور ڈایاسٹولک ریڈنگ mmHg میں درج کریں۔ ٹائپ کرتے ہی نتائج تبدیل ہوتے ہیں۔ تمام حسابات مقامی طور پر آپ کے براؤزر میں ہوتے ہیں۔",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "اپنے کیلکولیٹر ایک ہی ورک اسپیس میں لائیں",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "چار تک کیلکولیٹروں کا موازنہ کریں، ہر آلے کے اندراجات برقرار رکھیں اور ضرورت کے وقت نتیجہ دوسرے کیلکولیٹر میں بھیجیں۔",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "موجودہ کیلکولیٹر آپ کے براؤزر میں اندراجات پر کارروائی کرتے ہیں۔ حساب کے لیے درج کی گئی اقدار ہمیں موصول نہیں ہوتیں۔",
+  "Input preview is unavailable. Open the calculator to enter values.": "اندراجات کا پیش منظر دستیاب نہیں ہے۔ اقدار درج کرنے کے لیے کیلکولیٹر کھولیں۔",
+  "Value is outside the calculator’s allowed range or step.": "قدر اجازت شدہ حد میں نہیں ہے یا کیلکولیٹر کے قبول کردہ عددی وقفے سے مطابقت نہیں رکھتی۔",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ان اقدار کی پڑتال کریں۔ باقی فیلڈز مثال کی پہلے سے طے شدہ اقدار برقرار رکھتی ہیں۔ کرنسی کا خودکار اندازہ یا تبادلہ نہیں کیا جاتا؛ کارڈ میں ٹیکس، انشورنس اور مقامی مفروضے دیکھیں۔"
 }

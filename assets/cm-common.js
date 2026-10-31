@@ -2090,6 +2090,155 @@ window.CMLegacyCopy = {
   },
 };
 
+// Home workspace and privacy copy, kept complete across every supported locale.
+(() => {
+  'use strict';
+  const copy = {
+    en: {
+      把多个计算器放在同一工作台: 'Bring your calculators into one workspace',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Current calculators process inputs in your browser. We do not receive the calculation values you enter.',
+    },
+    'zh-CN': {
+      把多个计算器放在同一工作台: '把常用计算器放在同一个工作台',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        '最多组合四个计算器，保留各自输入，并按需把结果传给其他计算器。',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        '当前计算器在浏览器中处理输入，不会将您填写的计算数值发送给我们。',
+    },
+    hi: {
+      把多个计算器放在同一工作台: 'अपने कैलकुलेटर एक कार्यक्षेत्र में लाएँ',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'अधिकतम चार कैलकुलेटर की तुलना करें, हर उपकरण के इनपुट बनाए रखें और ज़रूरत होने पर परिणाम दूसरे कैलकुलेटर में भेजें।',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'मौजूदा कैलकुलेटर आपके ब्राउज़र में इनपुट संसाधित करते हैं। गणना के लिए दर्ज किए गए मान हमें प्राप्त नहीं होते।',
+    },
+    es: {
+      把多个计算器放在同一工作台: 'Reúne tus calculadoras en un solo espacio de trabajo',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Compara hasta cuatro calculadoras, conserva los datos introducidos en cada una y envía un resultado a otra cuando lo necesites.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Las calculadoras actuales procesan los datos en tu navegador. No recibimos los valores que introduces para calcular.',
+    },
+    ar: {
+      把多个计算器放在同一工作台: 'اجمع آلاتك الحاسبة في مساحة عمل واحدة',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'قارن بين ما يصل إلى أربع آلات حاسبة، واحتفظ بمدخلات كل أداة، وأرسل نتيجة إلى آلة أخرى عند الحاجة.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'تعالج الآلات الحاسبة الحالية المدخلات داخل متصفحك. لا نتلقى القيم التي تدخلها لإجراء الحسابات.',
+    },
+    fr: {
+      把多个计算器放在同一工作台: 'Réunissez vos calculatrices dans un même espace de travail',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Comparez jusqu’à quatre calculatrices, conservez les saisies de chaque outil et transférez un résultat vers une autre calculatrice selon vos besoins.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Les calculatrices actuelles traitent les saisies dans votre navigateur. Nous ne recevons pas les valeurs que vous entrez pour les calculs.',
+    },
+    bn: {
+      把多个计算器放在同一工作台: 'আপনার ক্যালকুলেটরগুলো এক কর্মক্ষেত্রে আনুন',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'সর্বোচ্চ চারটি ক্যালকুলেটর তুলনা করুন, প্রতিটির ইনপুট বজায় রাখুন এবং প্রয়োজনে ফলাফল অন্য ক্যালকুলেটরে পাঠান।',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'বর্তমান ক্যালকুলেটরগুলো আপনার ব্রাউজারেই ইনপুট প্রক্রিয়া করে। গণনার জন্য আপনি যে মান দেন, তা আমরা পাই না।',
+    },
+    pt: {
+      把多个计算器放在同一工作台: 'Reúna as suas calculadoras num só espaço de trabalho',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Compare até quatro calculadoras, mantenha os dados introduzidos em cada ferramenta e envie um resultado para outra calculadora quando precisar.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'As calculadoras atuais processam os dados no seu navegador. Não recebemos os valores que introduz para os cálculos.',
+    },
+    id: {
+      把多个计算器放在同一工作台: 'Satukan kalkulator Anda dalam satu ruang kerja',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Bandingkan hingga empat kalkulator, pertahankan masukan setiap alat, dan kirim hasil ke kalkulator lain saat diperlukan.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Kalkulator saat ini memproses masukan di peramban Anda. Kami tidak menerima nilai yang Anda masukkan untuk perhitungan.',
+    },
+    ur: {
+      把多个计算器放在同一工作台: 'اپنے کیلکولیٹر ایک ہی ورک اسپیس میں لائیں',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'چار تک کیلکولیٹروں کا موازنہ کریں، ہر آلے کے اندراجات برقرار رکھیں اور ضرورت کے وقت نتیجہ دوسرے کیلکولیٹر میں بھیجیں۔',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'موجودہ کیلکولیٹر آپ کے براؤزر میں اندراجات پر کارروائی کرتے ہیں۔ حساب کے لیے درج کی گئی اقدار ہمیں موصول نہیں ہوتیں۔',
+    },
+    ru: {
+      把多个计算器放在同一工作台: 'Объедините калькуляторы в одном рабочем пространстве',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Сравнивайте до четырёх калькуляторов, не теряя введённые в них данные, и при необходимости передавайте результат в другой калькулятор.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Текущие калькуляторы обрабатывают данные в вашем браузере. Мы не получаем значения, которые вы вводите для расчётов.',
+    },
+    de: {
+      把多个计算器放在同一工作台: 'Bringen Sie Ihre Rechner in einem Arbeitsbereich zusammen',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Vergleichen Sie bis zu vier Rechner, behalten Sie die Eingaben jedes Werkzeugs bei und übertragen Sie bei Bedarf ein Ergebnis in einen anderen Rechner.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Die aktuellen Rechner verarbeiten Eingaben in Ihrem Browser. Wir erhalten die von Ihnen eingegebenen Berechnungswerte nicht.',
+    },
+    ja: {
+      把多个计算器放在同一工作台: '計算機を一つのワークスペースにまとめる',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        '最大四つの計算機を比較し、それぞれの入力を保持しながら、必要に応じて結果を別の計算機に渡せます。',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        '現在の計算機はブラウザ内で入力を処理します。計算用に入力した値が当サイトに送信されることはありません。',
+    },
+    pcm: {
+      把多个计算器放在同一工作台: 'Bring your calculators together for one workspace',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Compare up to four calculators, keep di inputs for each tool, and send result to another calculator when you need am.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Di current calculators process inputs inside your browser. We no dey receive di calculation values wey you enter.',
+    },
+    mr: {
+      把多个计算器放在同一工作台: 'तुमचे कॅल्क्युलेटर एकाच कार्यक्षेत्रात आणा',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'जास्तीत जास्त चार कॅल्क्युलेटरची तुलना करा, प्रत्येक साधनातील इनपुट कायम ठेवा आणि गरजेनुसार निकाल दुसऱ्या कॅल्क्युलेटरकडे पाठवा.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'सध्याचे कॅल्क्युलेटर तुमच्या ब्राउझरमध्ये इनपुटवर प्रक्रिया करतात. गणनेसाठी तुम्ही भरलेली मूल्ये आम्हाला मिळत नाहीत.',
+    },
+    vi: {
+      把多个计算器放在同一工作台: 'Tập hợp các máy tính trong một không gian làm việc',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'So sánh tối đa bốn máy tính, giữ dữ liệu đầu vào của từng công cụ và chuyển kết quả sang máy tính khác khi cần.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Các máy tính hiện tại xử lý dữ liệu đầu vào ngay trong trình duyệt. Chúng tôi không nhận các giá trị bạn nhập để tính toán.',
+    },
+    te: {
+      把多个计算器放在同一工作台: 'మీ కాలిక్యులేటర్లను ఒకే కార్యస్థలంలోకి తీసుకురండి',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'గరిష్ఠంగా నాలుగు కాలిక్యులేటర్లను పోల్చండి, ప్రతి సాధనంలోని ఇన్‌పుట్‌లను ఉంచండి, అవసరమైనప్పుడు ఫలితాన్ని మరో కాలిక్యులేటర్‌కు పంపండి.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'ప్రస్తుత కాలిక్యులేటర్లు మీ బ్రౌజర్‌లోనే ఇన్‌పుట్‌లను ప్రాసెస్ చేస్తాయి. లెక్కల కోసం మీరు నమోదు చేసిన విలువలు మాకు అందవు.',
+    },
+    sw: {
+      把多个计算器放在同一工作台: 'Leta vikokotoo vyako katika eneo moja la kazi',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Linganisha hadi vikokotoo vinne, bakiza ingizo la kila zana, na tuma matokeo kwa kikokotoo kingine inapohitajika.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Vikokotoo vya sasa huchakata ingizo ndani ya kivinjari chako. Hatupokei thamani unazoingiza kwa mahesabu.',
+    },
+    ha: {
+      把多个计算器放在同一工作台: 'Haɗa kalkuletocinka a wurin aiki guda',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'Kwatanta har zuwa kalkuleta huɗu, riƙe bayanan da aka shigar a kowanne, sannan aika sakamako zuwa wata kalkuleta idan an buƙata.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Kalkuletocin yanzu suna sarrafa bayanan da ka shigar a cikin burauzarka. Ba ma karɓar ƙimomin da ka shigar don lissafi.',
+    },
+    tr: {
+      把多个计算器放在同一工作台: 'Hesap makinelerinizi tek bir çalışma alanında birleştirin',
+      '最多组合四个计算器，保留各自输入，按需把结果带入下一项计算。':
+        'En fazla dört hesap makinesini karşılaştırın, her aracın girdilerini koruyun ve gerektiğinde sonucu başka bir hesap makinesine aktarın.',
+      '当前工具主要在浏览器端计算，我们不会接收你输入的数值。':
+        'Mevcut hesap makineleri girdileri tarayıcınızda işler. Hesaplama için girdiğiniz değerleri almayız.',
+    },
+  };
+  for (const [locale, messages] of Object.entries(copy))
+    Object.assign(window.CMLegacyCopy[locale], messages);
+})();
+
 ;
 window.CMUiCopy = {
   en: {
@@ -3426,6 +3575,16 @@ window.CMUiCopy = {
   },
 };
 
+// These working examples intentionally use a supported parser language.
+(() => {
+  'use strict';
+  for (const [locale, copy] of Object.entries(window.CMUiCopy))
+    copy.intentExample =
+      locale === 'zh-CN'
+        ? '房贷 房价300000 首付90000 利率3.5% 期限30年'
+        : 'mortgage home price 300000 down payment 90000 rate 3.5% term 30';
+})();
+
 ;
 (() => {
   'use strict';
@@ -3648,7 +3807,7 @@ window.CMUiCopy = {
 })();
 
 ;
-window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.edc5f7629458.js","hi":"/assets/dist/hi.f481ffe2438b.js","es":"/assets/dist/es.413432ad0f9f.js","ar":"/assets/dist/ar.928e1cee9c33.js","fr":"/assets/dist/fr.220b65699f1b.js","bn":"/assets/dist/bn.cc8959e8367d.js","pt":"/assets/dist/pt.2de4e24197ad.js","id":"/assets/dist/id.12faa9ed46b0.js","ur":"/assets/dist/ur.f45d9416b656.js","ru":"/assets/dist/ru.b6dd896ffa14.js","de":"/assets/dist/de.d323f9bf0972.js","ja":"/assets/dist/ja.87de10d6ecf9.js","pcm":"/assets/dist/pcm.aefb70e59c26.js","mr":"/assets/dist/mr.3ebc044389f4.js","vi":"/assets/dist/vi.92fdd3a3513c.js","te":"/assets/dist/te.864fb62275fc.js","sw":"/assets/dist/sw.5df12a2e4e86.js","ha":"/assets/dist/ha.83dfdebd074a.js","tr":"/assets/dist/tr.10a7cf9c7e79.js"};
+window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.92be5c5bce8e.js","hi":"/assets/dist/hi.b6d5a982737e.js","es":"/assets/dist/es.95b03b774a08.js","ar":"/assets/dist/ar.295a42beba6a.js","fr":"/assets/dist/fr.61ccccccc6ca.js","bn":"/assets/dist/bn.563adea5b10c.js","pt":"/assets/dist/pt.3237359cd8ca.js","id":"/assets/dist/id.6126e2357dbe.js","ur":"/assets/dist/ur.e2655efdff00.js","ru":"/assets/dist/ru.ae4ce6022786.js","de":"/assets/dist/de.a871d690c722.js","ja":"/assets/dist/ja.954e62ae7e4d.js","pcm":"/assets/dist/pcm.12c7baedf480.js","mr":"/assets/dist/mr.c74f55a38111.js","vi":"/assets/dist/vi.4b95ec20e138.js","te":"/assets/dist/te.de2031ca4526.js","sw":"/assets/dist/sw.ce19170c1639.js","ha":"/assets/dist/ha.02ffaad86408.js","tr":"/assets/dist/tr.bda76a41c50b.js"};
 
 ;
 window.CMI18n = (() => {

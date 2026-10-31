@@ -99,7 +99,7 @@ button:disabled {
 .kp-intro {
   margin: 32px 0 24px;
 }
-.kp-intro span {
+.kp-intro > span {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;

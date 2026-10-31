@@ -368,7 +368,7 @@
         R(
           'Margin of error|误差界限',
           100 * z * Math.sqrt((p * (1 - p)) / v.n),
-          'percentage points|百分点',
+          'percentage points',
         ),
       ];
     },

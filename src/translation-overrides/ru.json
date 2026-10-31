@@ -31,5 +31,12 @@
   "Preferment hydration (%)": "Отношение воды к муке в предварительно заквашенном тесте (%)",
   "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "В этот релиз входят карманная клавиатура, научная клавиатура, практичные калькуляторы в девяти категориях и три оригинальных сценария планирования. Языковые страницы и встроенные представления не считаются отдельными инструментами.",
   "Physical volume": "Физический объём",
-  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Введите систолическое и диастолическое давление в mmHg. Результаты обновляются при вводе. Все расчёты выполняются локально в вашем браузере."
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Введите систолическое и диастолическое давление в mmHg. Результаты обновляются при вводе. Все расчёты выполняются локально в вашем браузере.",
+  "mortgage home price 300000 down payment 90000 rate 3.5% term 30": "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
+  "Bring your calculators into one workspace": "Объедините калькуляторы в одном рабочем пространстве",
+  "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Сравнивайте до четырёх калькуляторов, не теряя введённые в них данные, и при необходимости передавайте результат в другой калькулятор.",
+  "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Текущие калькуляторы обрабатывают данные в вашем браузере. Мы не получаем значения, которые вы вводите для расчётов.",
+  "Input preview is unavailable. Open the calculator to enter values.": "Предварительный просмотр данных недоступен. Откройте калькулятор, чтобы ввести значения.",
+  "Value is outside the calculator’s allowed range or step.": "Значение выходит за допустимый диапазон или не соответствует разрешённому шагу ввода.",
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "Проверьте эти значения. Остальные поля сохраняют значения из примера. Валюта не определяется автоматически и не конвертируется; проверьте налоги, страхование и местные допущения в карточке."
 }

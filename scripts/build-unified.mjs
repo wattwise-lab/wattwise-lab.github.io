@@ -86,6 +86,8 @@ const esc = (s) =>
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
+const workspaceEntry = (slug) =>
+  `<a class="cm-workspace-entry" data-cm-href="/workspace?add=${slug}" href="/workspace?add=${slug}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-cm-i18n="addWorkspace">${esc(U.en.addWorkspace)}</span></a>`;
 const t = (lang, key) => U[lang]?.[key] || C[lang]?.[key] || U.en[key] || C.en[key] || key;
 const tr = (lang, zh) => (lang === 'zh-CN' ? zh : L[lang]?.[zh] || L.en[zh] || zh);
 const href = (p, lang) =>
@@ -529,7 +531,7 @@ for (const [slug, key] of pinned.slice(0, 2)) {
     ['%', '%'],
     ['Ans', 'Ans'],
   ];
-  const main = `<main class="kp-wrap" id="main-content"><div class="kp-intro"><span>CALCMINTLY</span><h1 data-cm-i18n="${key}">${U.en[key]}</h1><p data-cm-i18n="${science ? 'scientificDescription' : 'basicDescription'}">${esc(U.en[science ? 'scientificDescription' : 'basicDescription'])}</p><a data-cm-href="/workspace?add=${slug}" href="/workspace?add=${slug}" data-cm-i18n="addWorkspace">${U.en.addWorkspace}</a></div><div class="kp-layout"><section class="kp-machine${science ? ' kp-scientific' : ''}" data-cm-label="${key}" aria-label="${U.en[key]}"><div class="kp-top"><strong>CALCMINTLY</strong><span class="kp-mode" data-cm-i18n="${key}">${U.en[key]}</span></div><div class="kp-screen" dir="ltr"><span class="kp-memory" id="kp-memory" hidden>M</span>${science ? '<label for="kp-input" class="cm-sr-only" data-cm-i18n="expression">Expression</label><input class="kp-input" id="kp-input" type="text" inputmode="text" dir="ltr" autocomplete="off" spellcheck="false" maxlength="500" aria-describedby="kp-error" placeholder="(2 + 3) × 4">' : '<div class="kp-expression" id="kp-expression"></div>'}<output class="kp-value big" id="kp-result" role="status" aria-live="polite" aria-atomic="true">0</output></div><div class="kp-memory-keys">${[
+  const main = `<main class="kp-wrap" id="main-content"><div class="kp-intro"><span>CALCMINTLY</span><h1 data-cm-i18n="${key}">${U.en[key]}</h1><p data-cm-i18n="${science ? 'scientificDescription' : 'basicDescription'}">${esc(U.en[science ? 'scientificDescription' : 'basicDescription'])}</p>${workspaceEntry(slug)}</div><div class="kp-layout"><section class="kp-machine${science ? ' kp-scientific' : ''}" data-cm-label="${key}" aria-label="${U.en[key]}"><div class="kp-top"><strong>CALCMINTLY</strong><span class="kp-mode" data-cm-i18n="${key}">${U.en[key]}</span></div><div class="kp-screen" dir="ltr"><span class="kp-memory" id="kp-memory" hidden>M</span>${science ? '<label for="kp-input" class="cm-sr-only" data-cm-i18n="expression">Expression</label><input class="kp-input" id="kp-input" type="text" inputmode="text" dir="ltr" autocomplete="off" spellcheck="false" maxlength="500" aria-describedby="kp-error" placeholder="(2 + 3) × 4">' : '<div class="kp-expression" id="kp-expression"></div>'}<output class="kp-value big" id="kp-result" role="status" aria-live="polite" aria-atomic="true">0</output></div><div class="kp-memory-keys">${[
     ['MC', 'MC', 'memoryClear'],
     ['MR', 'MR', 'memoryRecall'],
     ['M+', 'M+', 'memoryAdd'],
@@ -624,6 +626,58 @@ for (const tool of base) {
     else input.attr('required', '');
   });
   const merchant = slug === 'merchant-profit-planner';
+  // Render shared controls before scripts run so the page starts in its final layout.
+  $('.wrap .cm-workspace-entry,.wrap .cm-add,.wrap .cm-guide,.wrap .cm-copy-status').remove();
+  const intro = merchant ? $('.wrap .hero').first().find('p').last() : $('.wrap>.sub').first();
+  if (!intro.length) throw Error('Missing calculator introduction: ' + slug);
+  intro.after(workspaceEntry(slug));
+  if (!merchant) {
+    $('body').addClass('cm-tool');
+    const guide = $('<nav class="cm-guide" data-cm-label="help"></nav>').attr(
+      'aria-label',
+      U.en.help,
+    );
+    let beforeFormula = true;
+    $('.wrap>.card').each((index, element) => {
+      const section = $(element),
+        key = section.attr('data-cm-section');
+      if (section.find('h2').length) section.attr('id', 'guide-' + index);
+      if (['formula', 'example', 'scope', 'faq', 'related'].includes(key)) beforeFormula = false;
+      if (beforeFormula) section.addClass('cm-data-section');
+      if (['formula', 'example', 'scope', 'faq'].includes(key)) {
+        const label = key === 'example' ? 'Worked example' : key === 'faq' ? 'FAQ' : U.en[key];
+        const link = $('<a></a>')
+          .attr({ href: '#guide-' + index, 'data-cm-guide': key })
+          .text(label);
+        if (['formula', 'scope'].includes(key)) link.attr('data-cm-i18n', key);
+        else
+          link.attr('data-cm-pair', key === 'example' ? 'Worked example|计算示例' : 'FAQ|常见问题');
+        guide.append(link);
+      }
+    });
+    $('.wrap>.hero').first().after(guide);
+    const reset = $('.hero button')
+      .filter(
+        (_, element) =>
+          $(element).attr('data-cm-action') === 'reset' || /reset example/i.test($(element).text()),
+      )
+      .first();
+    let copy = $('.hero button')
+      .filter(
+        (_, element) =>
+          $(element).attr('data-cm-action') === 'copy' ||
+          /copy (summary|result)/i.test($(element).text()),
+      )
+      .first();
+    if (!copy.length && reset.length) {
+      copy = $(
+        '<button type="button" data-cm-action="copy" data-cm-i18n="copyResult"></button>',
+      ).text(U.en.copyResult);
+      reset.after(copy);
+    }
+    copy.after('<span class="cm-copy-status" role="status"></span>');
+  }
+
   if (merchant) {
     $('body').addClass('cm-merchant');
     $('noscript')
