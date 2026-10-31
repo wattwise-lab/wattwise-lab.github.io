@@ -231,6 +231,33 @@ try {
       engine,
       passed: true,
     });
+    for (const [slug, inputs, expected] of [
+      ['sagitta', { r: '100000000', c: '1' }, 1.25e-9],
+      ['law-of-cosines', { b: '1', c: '1', A: '0.000001' }, 1.7453292519943295e-8],
+      ['herons-formula', { a: '1e-12', b: '1e15', c: '1e15' }, 500],
+      ['triangle-angles', { a: '1e-8', b: '1', c: '1' }, 5.729577951308232e-7],
+      ['matrix-eigenvalues', { a: '1e8', b: '0', c: '0', d: '1e-8' }, 1e8],
+    ]) {
+      await page.goto(base + '/' + slug + '-calculator?lang=en', { waitUntil: 'load' });
+      for (const [id, value] of Object.entries(inputs)) await page.locator('#' + id).fill(value);
+      await page.waitForFunction(() => !document.body.classList.contains('cm-invalid'));
+      const raw = Number(await page.locator('#result').getAttribute('data-cm-value'));
+      assert.ok(Math.abs(raw / expected - 1) < 2e-14, slug + ': precision');
+      assert.doesNotMatch(await page.locator('#result').innerText(), /^0(?:\.0+)?$/);
+      if (slug === 'matrix-eigenvalues') {
+        const values = await page
+          .locator('[data-cm-value]')
+          .evaluateAll((elements) =>
+            elements.map((element) => Number(element.getAttribute('data-cm-value'))),
+          );
+        assert.ok(values.includes(1e-8), 'Small eigenvalue remains nonzero');
+      }
+    }
+    results.push({
+      test: 'Stable small geometry results and separated eigenvalues',
+      engine,
+      passed: true,
+    });
     await page.goto(base + '/loan-calculator?lang=en', { waitUntil: 'load' });
     near(Number((await page.locator('#main').innerText()).replace(/[^0-9.-]/g, '')), 1896.2);
     await page.locator('#cm-decision-goal').fill('1000');

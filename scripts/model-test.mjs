@@ -64,6 +64,53 @@ for (const [input, coefficient, exponent] of [
   );
   assert.equal(Number(result[0].value + 'e' + result[1].value), input || 0);
 }
+// Independent golden values: 90-digit Decimal Heron/radius calculations and
+// analytic isosceles/diagonal cases, including the actual field limits.
+const preciseModels = [
+  ['sagitta', { r: 1e8, c: 1 }, [1.25e-9]],
+  ['sagitta', { r: 1e4, c: 0.001 }, [1.25e-11]],
+  ['sagitta', { r: 1e15, c: 1e-12 }, [1.25e-40]],
+  ['sagitta', { r: 5, c: 0 }, [0]],
+  ['sagitta', { r: 5, c: 10 }, [5]],
+  ['law-of-cosines', { b: 1, c: 1, A: 0.000001 }, [1.7453292519943295e-8, 8.726646259971647e-9]],
+  ['law-of-cosines', { b: 3, c: 4, A: 90 }, [5, 6]],
+  ['herons-formula', { a: 1e-8, b: 1, c: 1 }, [5e-9, 4.999999975e-9, 0.5]],
+  ['herons-formula', { a: 1e-12, b: 1e15, c: 1e15 }, [500, 5e-13, 5e14]],
+  ['herons-formula', { a: 3, b: 4, c: 5 }, [6, 1, 2.5]],
+  [
+    'triangle-angles',
+    { a: 1e-8, b: 1, c: 1 },
+    [5.729577951308232e-7, 89.9999997135211, 89.9999997135211],
+  ],
+  ['triangle-angles', { a: 1e-12, b: 1e15, c: 1e15 }, [5.729577951308232e-26, 90, 90]],
+  ['triangle-angles', { a: 3, b: 4, c: 5 }, [36.86989764584402, 53.13010235415598, 90]],
+  ['matrix-eigenvalues', { a: 1e8, b: 0, c: 0, d: 1e-8 }, [1e8, 0, 1e-8, 0]],
+  ['matrix-eigenvalues', { a: -1e8, b: 0, c: 0, d: -1e-8 }, [-1e-8, 0, -1e8, 0]],
+  ['matrix-eigenvalues', { a: 1e8, b: 1, c: 1, d: 1e8 }, [100000001, 0, 99999999, 0]],
+  ['matrix-eigenvalues', { a: 0, b: 0, c: 0, d: 0 }, [0, 0, 0, 0]],
+  ['matrix-eigenvalues', { a: 0, b: -1, c: 1, d: 0 }, [0, 1, 0, -1]],
+];
+for (const [name, input, expected] of preciseModels) {
+  const model = models.find((m) => m.slug === name + '-calculator');
+  for (const field of model.fields)
+    assert.ok(
+      input[field.id] >= field.min && input[field.id] <= field.max,
+      name + ': bounded fixture',
+    );
+  const rows = model.calculate(input);
+  expected.forEach((value, index) =>
+    assert.ok(
+      value === 0 ? rows[index].value === 0 : Math.abs(rows[index].value / value - 1) <= 2e-14,
+      name + ': ' + rows[index].value + ' != ' + value,
+    ),
+  );
+}
+for (const name of ['herons-formula', 'triangle-angles']) {
+  const model = models.find((m) => m.slug === name + '-calculator');
+  assert.throws(() => model.calculate({ a: 1, b: 2, c: 3 }));
+  assert.throws(() => model.calculate({ a: 1, b: 2, c: 4 }));
+}
+assert.throws(() => models.find((m) => m.slug === 'sagitta-calculator').calculate({ r: 1, c: 3 }));
 let cases = 0;
 const failures = [];
 for (const model of models) {

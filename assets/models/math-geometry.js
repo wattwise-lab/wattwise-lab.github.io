@@ -11,6 +11,13 @@
     u('c', 'Row 2, column 1|第 2 行第 1 列', 3),
     u('d', 'Row 2, column 2|第 2 行第 2 列', 4),
   ];
+  // Sorted, parenthesized Heron formula preserves needle-shaped triangles.
+  // W. Kahan: https://people.eecs.berkeley.edu/~wkahan/Triangle.pdf
+  const triangleArea = (a, b, c) => {
+    const [x, y, z] = [a, b, c].sort((left, right) => right - left);
+    check(z > x - y, 'The sides must form a nondegenerate triangle.|三边需构成非退化三角形。');
+    return Math.sqrt((x + (y + z)) * (z - (x - y)) * (z + (x - y)) * (x + (y - z))) / 4;
+  };
   // 48–79: distinct plane and solid geometry tasks.
   D(
     'rectangle',
@@ -222,11 +229,7 @@
     ],
     (v) => {
       const s = (v.a + v.b + v.c) / 2;
-      check(
-        v.a + v.b > v.c && v.a + v.c > v.b && v.b + v.c > v.a,
-        'The sides must form a nondegenerate triangle.|三边需构成非退化三角形。',
-      );
-      const area = Math.sqrt(s * (s - v.a) * (s - v.b) * (s - v.c));
+      const area = triangleArea(v.a, v.b, v.c);
       return [
         R('Area|面积', area, 'm²'),
         R('Inradius|内接圆半径', area / s, 'm'),
@@ -272,7 +275,7 @@
     (v) => [
       R(
         'Opposite side|夹角对边',
-        Math.sqrt(v.b * v.b + v.c * v.c - 2 * v.b * v.c * Math.cos(rad(v.A))),
+        Math.hypot(v.b - v.c, 2 * Math.sqrt(v.b * v.c) * Math.sin(rad(v.A) / 2)),
         'm',
       ),
       R('Area|面积', (v.b * v.c * Math.sin(rad(v.A))) / 2, 'm²'),
@@ -376,7 +379,10 @@
     [p('r', 'Radius (m)|半径（m）', 5), n('c', 'Chord length (m)|弦长（m）', 8)],
     (v) => {
       check(v.c <= 2 * v.r, 'Chord cannot exceed the diameter.|弦长不能大于直径。');
-      return [R('Sagitta|弓高', v.r - Math.sqrt(v.r * v.r - (v.c * v.c) / 4), 'm')];
+      const half = v.c / 2;
+      return [
+        R('Sagitta|弓高', (half * half) / (v.r + Math.sqrt((v.r - half) * (v.r + half))), 'm'),
+      ];
     },
     'h=r−√(r²−c²/4)',
     [2],
@@ -607,24 +613,15 @@
     'Find all three angles opposite the supplied side lengths.|根据三边计算其各自对角。',
     [p('a', 'Side a|边 a', 3), p('b', 'Side b|边 b', 4), p('c', 'Side c|边 c', 5)],
     (v) => {
-      check(
-        v.a + v.b > v.c && v.a + v.c > v.b && v.b + v.c > v.a,
-        'The sides must form a nondegenerate triangle.|三边需构成非退化三角形。',
-      );
-      const A = deg(
-          Math.acos(
-            Math.max(-1, Math.min(1, (v.b * v.b + v.c * v.c - v.a * v.a) / (2 * v.b * v.c))),
-          ),
-        ),
-        B = deg(
-          Math.acos(
-            Math.max(-1, Math.min(1, (v.a * v.a + v.c * v.c - v.b * v.b) / (2 * v.a * v.c))),
-          ),
-        );
+      const area = triangleArea(v.a, v.b, v.c);
+      const angle = (a, b, c) => {
+        const cosineNumerator = b >= c ? (b - a) * (b + a) + c * c : (c - a) * (c + a) + b * b;
+        return deg(Math.atan2(4 * area, cosineNumerator));
+      };
       return [
-        R('Angle A|角 A', A, '°'),
-        R('Angle B|角 B', B, '°'),
-        R('Angle C|角 C', 180 - A - B, '°'),
+        R('Angle A|角 A', angle(v.a, v.b, v.c), '°'),
+        R('Angle B|角 B', angle(v.b, v.a, v.c), '°'),
+        R('Angle C|角 C', angle(v.c, v.a, v.b), '°'),
       ];
     },
     'A=acos((b²+c²−a²)/(2bc)); similarly for B and C.|A=acos((b²+c²−a²)/(2bc))；B 和 C 的计算方式类似。',
@@ -638,13 +635,17 @@
     (v) => {
       const tr = v.a + v.d,
         disc = (v.a - v.d) ** 2 + 4 * v.b * v.c;
-      if (disc >= 0)
+      if (disc >= 0) {
+        // Recover the smaller root from the product instead of subtracting near-equals.
+        const q = (tr + (tr < 0 ? -1 : 1) * Math.sqrt(disc)) / 2;
+        const other = q === 0 ? 0 : (v.a * v.d - v.b * v.c) / q;
         return [
-          R('First real part|第一特征值实部', (tr + Math.sqrt(disc)) / 2),
+          R('First real part|第一特征值实部', Math.max(q, other)),
           R('First imaginary part|第一特征值虚部', 0),
-          R('Second real part|第二特征值实部', (tr - Math.sqrt(disc)) / 2),
+          R('Second real part|第二特征值实部', Math.min(q, other)),
           R('Second imaginary part|第二特征值虚部', 0),
         ];
+      }
       return [
         R('First real part|第一特征值实部', tr / 2),
         R('First imaginary part|第一特征值虚部', Math.sqrt(-disc) / 2),

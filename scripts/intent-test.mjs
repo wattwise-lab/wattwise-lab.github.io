@@ -103,4 +103,14 @@ test('translated field labels', () =>
   ));
 test('template does not execute content', () =>
   assert.ok(P.parse('loan <script>alert(1)</script>').error));
+
+test('Bengali digits match the shared numeric parser', () =>
+  assert.equal(P.parse('loan principal ২০ rate ৫').values.prin, 20));
+test('Telugu digits match the shared numeric parser', () =>
+  assert.equal(P.parse('loan principal ౨౦ rate ౫').values.rate, 5));
+test('Arabic percent principal is rejected as a mismatched unit', () =>
+  assert.ok(P.parse('loan principal ٢٠٪').error));
+test('Arabic percent down payment is converted with the home price', () =>
+  assert.equal(P.parse('mortgage home price 300000 down payment ٣٠٪').values.down, 90000));
+
 console.log('Local intent rules:', count, 'cases PASS');

@@ -100,41 +100,16 @@ var CMIntent = (() => {
   ];
   const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   function normalize(source) {
-    const digits = {
-      '٠': '0',
-      '١': '1',
-      '٢': '2',
-      '٣': '3',
-      '٤': '4',
-      '٥': '5',
-      '٦': '6',
-      '٧': '7',
-      '٨': '8',
-      '٩': '9',
-      '۰': '0',
-      '۱': '1',
-      '۲': '2',
-      '۳': '3',
-      '۴': '4',
-      '۵': '5',
-      '۶': '6',
-      '۷': '7',
-      '۸': '8',
-      '۹': '9',
-      '०': '0',
-      '१': '1',
-      '२': '2',
-      '३': '3',
-      '४': '4',
-      '५': '5',
-      '६': '6',
-      '७': '7',
-      '८': '8',
-      '९': '9',
-    };
     return String(source)
       .normalize('NFKC')
-      .replace(/[٠-٩۰-۹०-९]/g, (x) => digits[x])
+      .replace(/[٠-٩۰-۹०-९০-৯౦-౯]/g, (char) => {
+        const code = char.codePointAt(0);
+        const zero = [0x0660, 0x06f0, 0x0966, 0x09e6, 0x0c66].find(
+          (first) => code >= first && code <= first + 9,
+        );
+        return String(code - zero);
+      })
+      .replace(/٪/g, '%')
       .toLowerCase();
   }
   function parse(source, { translate = (x) => x } = {}) {
