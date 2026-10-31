@@ -8,6 +8,35 @@ const para = (en, zh) => `<p data-cm-pair="${esc(en + '|' + zh)}">${esc(en)}</p>
 const code = (s) =>
   `<p class="cm-expanded__formula" data-cm-no-translate><code>${esc(s)}</code></p>`;
 export function upgradeCorePage($, slug) {
+  const source = {
+    'apr-calculator': [
+      'cm-apr-source',
+      'https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-interest-rate-and-an-apr-en-135/',
+    ],
+    'debt-to-income-calculator': [
+      'cm-dti-source',
+      'https://www.consumerfinance.gov/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/',
+    ],
+    'velocity-calculator': [
+      'cm-speed-source',
+      'https://openstax.org/books/college-physics-2e/pages/2-3-time-velocity-and-speed',
+    ],
+    'bmi-calculator': [
+      'cm-bmi-source',
+      'https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html',
+    ],
+  }[slug];
+  if (source) {
+    const cards = $('.wrap>.card').filter((_, element) =>
+      $(element)
+        .find('a[href]')
+        .toArray()
+        .some((anchor) => $(anchor).attr('href') === source[1]),
+    );
+    // Older guide generation replaced these stable IDs, so repeated upgrades appended copies.
+    cards.slice(1).remove();
+    cards.first().attr('id', source[0]);
+  }
   if (slug === 'blood-pressure-calculator') {
     const en =
         'Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.',

@@ -2,7 +2,6 @@ name: Prepare verified generated release
 on:
   pull_request:
     branches: [main]
-    paths: [src/release-prepare.json]
 permissions:
   contents: read
 jobs:

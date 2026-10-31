@@ -14,11 +14,12 @@
     valid = false,
     scheduled = null,
     scenarios = [];
-  const numberOptions = (value) => CMData.resultNumberOptions(value, model.domain),
+  const numberOptions = (value, fractionDigits) =>
+      CMData.resultNumberOptions(value, model.domain, fractionDigits),
     label = (value) => I.pick(value),
-    format = (value, literal = false) =>
+    format = (value, literal = false, fractionDigits) =>
       typeof value === 'number'
-        ? I.number(value, numberOptions(value))
+        ? I.number(value, numberOptions(value, fractionDigits))
         : literal
           ? String(value)
           : label(value);
@@ -191,7 +192,7 @@
       $('cm-result-label').textContent = label(out[0].label);
       $('result').toggleAttribute('data-cm-no-translate', Boolean(out[0].literal));
       $('result').classList.toggle('cm-expanded__literal', Boolean(out[0].literal));
-      $('result').textContent = format(out[0].value, out[0].literal);
+      $('result').textContent = format(out[0].value, out[0].literal, out[0].fractionDigits);
       const aggregate = present(out);
       if (!aggregate) {
         const unit = document.createElement('span');
@@ -208,7 +209,8 @@
           dt.textContent = label(r.label);
           if (r.literal) dd.setAttribute('data-cm-no-translate', '');
           dd.textContent =
-            format(r.value, r.literal) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
+            format(r.value, r.literal, r.fractionDigits) +
+            (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
           if (typeof r.value === 'string' && /^[+-]?\d{16,}$/.test(r.value))
             dd.className = 'cm-expanded__exact-integer';
           box.append(dt, dd);
@@ -242,7 +244,7 @@
         (r) =>
           label(r.label) +
           ': ' +
-          format(r.value, r.literal) +
+          format(r.value, r.literal, r.fractionDigits) +
           (r.unit ? ' ' + I.unit(r.unit, r.value) : ''),
       ),
     ].join('\n');
@@ -364,7 +366,8 @@
           td = document.createElement('td');
         if (r?.literal) td.setAttribute('data-cm-no-translate', '');
         td.textContent = r
-          ? format(r.value, r.literal) + (r.unit ? ' ' + I.unit(r.unit, r.value) : '')
+          ? format(r.value, r.literal, r.fractionDigits) +
+            (r.unit ? ' ' + I.unit(r.unit, r.value) : '')
           : '—';
         tr.append(td);
       }

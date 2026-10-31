@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "So sánh tối đa bốn máy tính, giữ dữ liệu đầu vào của từng công cụ và chuyển kết quả sang máy tính khác khi cần.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Các máy tính hiện tại xử lý dữ liệu đầu vào ngay trong trình duyệt. Chúng tôi không nhận các giá trị bạn nhập để tính toán.",
   "Input preview is unavailable. Open the calculator to enter values.": "Không thể xem trước dữ liệu đầu vào. Hãy mở máy tính để nhập các giá trị.",
-  "Use complete numbers within the supported numeric range.": "Nhập đầy đủ các số trong phạm vi số được hỗ trợ."
+  "Use complete numbers within the supported numeric range.": "Nhập đầy đủ các số trong phạm vi số được hỗ trợ.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Nhập một trọng số không âm cho mỗi người theo thứ tự kết quả. Tổng tiền được làm tròn theo số chữ số thập phân của tiền tệ đã chọn; trường hợp đúng nửa được làm tròn lên. Các đơn vị tiền nhỏ nhất còn dư được phân cho phần dư lớn nhất; nếu bằng nhau thì ưu tiên người đứng trước. Chỉ tính phần chia, không chuyển tiền."
 }

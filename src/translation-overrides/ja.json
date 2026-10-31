@@ -88,5 +88,7 @@
   "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "これらの値を確認してください。他の項目は例の初期値を保持します。通貨は自動判定も換算もしません。カード内の税金、保険、地域に関する仮定を確認してください。",
   "Use complete numbers within the supported numeric range.": "対応している数値範囲内で、数値を最後まで正しく入力してください。",
   "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "ブラウザー内のルールは、以下の六つのツール名に対応しています。他の言語では、翻訳された項目名と英語または中国語のツール名を組み合わせてください。項目名付きの数値のみ認識します。適用前に各値を確認でき、入力内容はアップロードされません。",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "結果の順序に従って、各参加者にゼロ以上の重みを入力してください。総額は選択した通貨の小数桁数で四捨五入します。残った最小通貨単位は余りの大きい順に配分し、同じ余りの場合は先に入力した参加者を優先します。配分額の計算のみで、送金は行いません。",
+  "Weighted Bill Split": "重み付き割り勘"
 }

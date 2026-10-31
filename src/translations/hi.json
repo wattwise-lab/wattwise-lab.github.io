@@ -7449,7 +7449,7 @@
   "Debt market value": "ऋण बाजार मूल्य",
   "Equity cost (%)": "इक्विटी लागत (%)",
   "Debt cost (%)": "ऋण लागत (%)",
-  "Weighted Bill Split": "भारित बिल विभाजन",
+  "Weighted Bill Split": "हिस्सों के अनुपात में बिल बाँटें",
   "Split a total by chosen shares and reconcile currency rounding.": "चयनित शेयरों द्वारा कुल को विभाजित करें और मुद्रा राउंडिंग का मिलान करें।",
   "Nonnegative participant weights": "गैर-ऋणात्मक प्रतिभागी भार",
   "Currency decimal places": "मुद्रा दशमलव स्थान",
@@ -8926,5 +8926,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "अधिकतम चार कैलकुलेटर की तुलना करें, हर उपकरण के इनपुट बनाए रखें और ज़रूरत होने पर परिणाम दूसरे कैलकुलेटर में भेजें।",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "मौजूदा कैलकुलेटर आपके ब्राउज़र में इनपुट संसाधित करते हैं। गणना के लिए दर्ज किए गए मान हमें प्राप्त नहीं होते।",
   "Input preview is unavailable. Open the calculator to enter values.": "इनपुट का पूर्वावलोकन उपलब्ध नहीं है। मान दर्ज करने के लिए कैलकुलेटर खोलें।",
-  "Use complete numbers within the supported numeric range.": "समर्थित संख्यात्मक सीमा के भीतर पूर्ण संख्यात्मक मान लिखें।"
+  "Use complete numbers within the supported numeric range.": "समर्थित संख्यात्मक सीमा के भीतर पूर्ण संख्यात्मक मान लिखें।",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "परिणामों के क्रम में हर व्यक्ति के लिए एक गैर-ऋणात्मक भार लिखें। कुल राशि चुने हुए मुद्रा दशमलव स्थानों तक पूर्णांकित होती है; ठीक आधे पर ऊपर की ओर पूर्णांकन होता है। शेष छोटी मुद्रा इकाइयाँ सबसे बड़े शेषफल वालों को मिलती हैं; बराबरी में पहले व्यक्ति को प्राथमिकता मिलती है। केवल हिस्से निकाले जाते हैं, पैसा भेजा नहीं जाता।"
 }

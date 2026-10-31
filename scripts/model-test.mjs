@@ -14,6 +14,24 @@ for (const file of ['core.js', ...files])
 const models = ctx.CMModels.models;
 const scientificNotation = models.find((m) => m.slug === 'scientific-notation-calculator');
 const carpet = models.find((m) => m.slug === 'carpet-roll-length-calculator');
+const billSplit = models.find((m) => m.slug === 'weighted-bill-split-calculator');
+for (const [input, expected] of [
+  [{ a: 1.005, w: '1', d: 2 }, [1.01]],
+  [{ a: 1.0049, w: '1', d: 2 }, [1]],
+  [{ a: 100, w: '1e308,1e308', d: 2 }, [50, 50]],
+  [{ a: 100, w: '1e308,1e-308', d: 2 }, [100, 0]],
+  [{ a: 0.05, w: '1,1,1', d: 2 }, [0.02, 0.02, 0.01]],
+  [{ a: 0.01, w: '0,1,1', d: 2 }, [0, 0.01, 0]],
+  [{ a: 0, w: '1,2', d: 4 }, [0, 0]],
+  [{ a: 10, w: '0.1,0.2,0.7', d: 2 }, [1, 2, 7]],
+  [{ a: 9007199254740991, w: '1', d: 0 }, [9007199254740991]],
+]) {
+  const result = billSplit.calculate(input).map((x) => x.value);
+  assert.deepEqual(Array.from(result), expected, 'Exact bill splitting: ' + JSON.stringify(input));
+}
+assert.throws(() => billSplit.calculate({ a: 100, w: '0,0', d: 2 }));
+assert.throws(() => billSplit.calculate({ a: 100, w: '-1,2', d: 2 }));
+assert.throws(() => billSplit.calculate({ a: 1e15, w: '1,1', d: 4 }));
 for (const [input, expected] of [
   [{ l: 5, w: 4, r: 4, a: 1 }, [6, 6, 10, 24]],
   [{ l: 3, w: 5, r: 4, a: 0.2 }, [5.2, 6.4, 5.2, 20.8]],

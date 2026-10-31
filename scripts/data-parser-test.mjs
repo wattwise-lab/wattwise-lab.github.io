@@ -26,6 +26,18 @@ for (const bad of [
 ])
   assert.throws(() => D.list(bad), undefined, bad);
 assert.equal(D.list(Array(1000).fill('1').join(',')).length, 1000);
+for (const [value, places, expected] of [
+  [100000.01, 2, '100,000.01'],
+  [50, 2, '50.00'],
+  [1.005, 4, '1.0050'],
+  [50, 0, '50'],
+])
+  assert.equal(
+    new Intl.NumberFormat('en', D.resultNumberOptions(value, 'Home and Everyday', places)).format(
+      value,
+    ),
+    expected,
+  );
 console.log(
   'Data parser: complete decimal tokens, 5 native digit sets, finite limits and 10 invalid-list cases PASS',
 );

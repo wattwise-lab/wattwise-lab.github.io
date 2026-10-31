@@ -314,13 +314,20 @@ window.CMI18n = (() => {
     root.querySelectorAll?.('[data-cm-language]').forEach(options);
     root.querySelectorAll?.('[data-cm-value]').forEach((element) => {
       const value = Number(element.dataset.cmValue),
-        digits = Number(element.dataset.cmSignificantDigits);
+        digits = Number(element.dataset.cmSignificantDigits),
+        fractionDigits = Number(element.dataset.cmFractionDigits);
       if (Number.isFinite(value))
         element.textContent =
           number(value, {
-            maximumSignificantDigits:
-              Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
-            ...(element.dataset.cmNotation === 'scientific' ? { notation: 'scientific' } : {}),
+            ...(Number.isInteger(fractionDigits) && fractionDigits >= 0 && fractionDigits <= 4
+              ? { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits }
+              : {
+                  maximumSignificantDigits:
+                    Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
+                  ...(element.dataset.cmNotation === 'scientific'
+                    ? { notation: 'scientific' }
+                    : {}),
+                }),
           }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
   }

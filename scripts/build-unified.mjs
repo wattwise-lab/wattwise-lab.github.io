@@ -641,13 +641,15 @@ for (const tool of base) {
     $('.wrap>.card').each((index, element) => {
       const section = $(element),
         key = section.attr('data-cm-section');
-      if (section.find('h2').length) section.attr('id', 'guide-' + index);
+      const oldId = section.attr('id'),
+        sectionId = oldId && !/^guide-\d+$/.test(oldId) ? oldId : 'guide-' + index;
+      if (section.find('h2').length) section.attr('id', sectionId);
       if (['formula', 'example', 'scope', 'faq', 'related'].includes(key)) beforeFormula = false;
       if (beforeFormula) section.addClass('cm-data-section');
       if (['formula', 'example', 'scope', 'faq'].includes(key)) {
         const label = key === 'example' ? 'Worked example' : key === 'faq' ? 'FAQ' : U.en[key];
         const link = $('<a></a>')
-          .attr({ href: '#guide-' + index, 'data-cm-guide': key })
+          .attr({ href: '#' + sectionId, 'data-cm-guide': key })
           .text(label);
         if (['formula', 'scope'].includes(key)) link.attr('data-cm-i18n', key);
         else

@@ -7460,7 +7460,7 @@
   "Debt market value": "Valor de mercado da dívida",
   "Equity cost (%)": "Custo do patrimônio líquido (%)",
   "Debt cost (%)": "Custo da dívida (%)",
-  "Weighted Bill Split": "Divisão ponderada da letra de câmbio",
+  "Weighted Bill Split": "Divisão de conta por pesos",
   "Split a total by chosen shares and reconcile currency rounding.": "Divide o total pelas ações escolhidas e reconcilia o arredondamento da moeda.",
   "Nonnegative participant weights": "Pesos não negativos dos participantes",
   "Currency decimal places": "Casas decimais da moeda",
@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Compare até quatro calculadoras, mantenha os dados introduzidos em cada ferramenta e envie um resultado para outra calculadora quando precisar.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "As calculadoras atuais processam os dados no seu navegador. Não recebemos os valores que introduz para os cálculos.",
   "Input preview is unavailable. Open the calculator to enter values.": "A pré-visualização dos dados não está disponível. Abra a calculadora para introduzir os valores.",
-  "Use complete numbers within the supported numeric range.": "Introduza os números completos dentro do intervalo numérico suportado."
+  "Use complete numbers within the supported numeric range.": "Introduza os números completos dentro do intervalo numérico suportado.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Introduza um peso não negativo por participante, pela ordem dos resultados. O total é arredondado à precisão monetária escolhida; os valores exatamente a meio são arredondados para cima. As unidades monetárias mínimas restantes são atribuídas aos maiores restos; em caso de empate, os primeiros participantes têm prioridade. Apenas se calculam as partes; não se transfere dinheiro."
 }

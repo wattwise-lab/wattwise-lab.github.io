@@ -7480,7 +7480,7 @@
   "Equity cost (%)": "Стоимость акций (%)",
   "Debt cost (%)": "Стоимость долга (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Взвешенное распределение векселей",
+  "Weighted Bill Split": "Разделение счёта по долям",
   "Split a total by chosen shares and reconcile currency rounding.": "Разделить общую сумму на выбранные доли и скорректировать округление валюты.",
   "Nonnegative participant weights": "Неотрицательные веса участников",
   "Currency decimal places": "Десятичные знаки валюты",
@@ -8926,5 +8926,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Сравнивайте до четырёх калькуляторов, не теряя введённые в них данные, и при необходимости передавайте результат в другой калькулятор.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Текущие калькуляторы обрабатывают данные в вашем браузере. Мы не получаем значения, которые вы вводите для расчётов.",
   "Input preview is unavailable. Open the calculator to enter values.": "Предварительный просмотр данных недоступен. Откройте калькулятор, чтобы ввести значения.",
-  "Use complete numbers within the supported numeric range.": "Введите числа полностью и в пределах поддерживаемого числового диапазона."
+  "Use complete numbers within the supported numeric range.": "Введите числа полностью и в пределах поддерживаемого числового диапазона.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Введите по одному неотрицательному весу для каждого участника в порядке результатов. Общая сумма округляется до выбранной точности валюты; значения ровно посередине округляются вверх. Оставшиеся минимальные денежные единицы распределяются по наибольшим остаткам; при равенстве преимущество у участников, указанных раньше. Рассчитываются только доли, деньги не переводятся."
 }

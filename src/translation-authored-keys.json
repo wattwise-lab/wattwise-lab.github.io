@@ -2144,6 +2144,7 @@
     "Use up to 100 nonnegative weights with a positive sum.",
     "Total is too large for exact currency splitting.",
     "Allocate integer minor units by largest remainder",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
     "Recipe Scaling",
     "Scale ingredient amounts from original servings to target servings.",
     "Original servings",
@@ -4599,10 +4600,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "es": [
     "Home",
@@ -4991,10 +4994,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "ar": [
     "Home",
@@ -5398,10 +5403,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "fr": [
     "Home",
@@ -5805,10 +5812,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "bn": [
     "Home",
@@ -6196,10 +6205,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "pt": [
     "Home",
@@ -6588,10 +6599,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "id": [
     "Home",
@@ -6978,10 +6991,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "ur": [
     "Home",
@@ -7395,10 +7410,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "ru": [
     "Home",
@@ -7795,10 +7812,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "de": [
     "Home",
@@ -8199,10 +8218,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "ja": [
     "Home",
@@ -8646,10 +8667,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "pcm": [
     "Home",
@@ -16576,8 +16599,9 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "Use complete numbers within the supported numeric range.",
     "CalcMintly",
-    "Use complete numbers within the supported numeric range."
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred."
   ],
   "mr": [
     "Home",
@@ -16977,10 +17001,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "vi": [
     "Home",
@@ -17403,10 +17429,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "te": [
     "Home",
@@ -17800,10 +17828,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "sw": [
     "Home",
@@ -18204,10 +18234,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "ha": [
     "Home",
@@ -18635,10 +18667,12 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ],
   "tr": [
     "Home",
@@ -19035,9 +19069,11 @@
     "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
-    "CalcMintly",
     "Use complete numbers within the supported numeric range.",
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "CalcMintly",
+    "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "Weighted Bill Split"
   ]
 }

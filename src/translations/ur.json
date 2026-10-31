@@ -4515,7 +4515,7 @@
   "Weighted average": "وزنی اوسط",
   "Debt cost (%)": "قرض کی قیمت (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "وزنی بل تقسیم",
+  "Weighted Bill Split": "حصوں کے تناسب سے بل کی تقسیم",
   "Nonnegative weights": "غیر منفی وزن",
   "Sample A": "نمونہ اے",
   "Sample B": "نمونہ بی",
@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "چار تک کیلکولیٹروں کا موازنہ کریں، ہر آلے کے اندراجات برقرار رکھیں اور ضرورت کے وقت نتیجہ دوسرے کیلکولیٹر میں بھیجیں۔",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "موجودہ کیلکولیٹر آپ کے براؤزر میں اندراجات پر کارروائی کرتے ہیں۔ حساب کے لیے درج کی گئی اقدار ہمیں موصول نہیں ہوتیں۔",
   "Input preview is unavailable. Open the calculator to enter values.": "اندراجات کا پیش منظر دستیاب نہیں ہے۔ اقدار درج کرنے کے لیے کیلکولیٹر کھولیں۔",
-  "Use complete numbers within the supported numeric range.": "معاونت یافتہ عددی حد کے اندر مکمل عددی اقدار درج کریں۔"
+  "Use complete numbers within the supported numeric range.": "معاونت یافتہ عددی حد کے اندر مکمل عددی اقدار درج کریں۔",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "نتائج کی ترتیب کے مطابق ہر شریک کا ایک غیر منفی وزن درج کریں۔ کل رقم منتخب کرنسی کے اعشاری ہندسوں تک گول کی جاتی ہے؛ عین درمیانی قدر اوپر کی طرف گول ہوتی ہے۔ بچی ہوئی کم ترین مالی اکائیاں بڑے بقایوں والوں کو ملتی ہیں؛ برابر ہونے پر پہلے شریک کو ترجیح ملتی ہے۔ صرف حصے حساب کیے جاتے ہیں، رقم منتقل نہیں ہوتی۔"
 }

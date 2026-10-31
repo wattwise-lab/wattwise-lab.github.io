@@ -7430,7 +7430,7 @@
   "Debt market value": "Marktwert der Anleihen",
   "Equity cost (%)": "Eigenkapitalkosten (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Gewichtete Aufteilung der Anleihen",
+  "Weighted Bill Split": "Rechnung nach Anteilen aufteilen",
   "Split a total by chosen shares and reconcile currency rounding.": "Aufteilung eines Gesamtbetrags nach ausgewählten Aktien und Ausgleich von Währungsrundung.",
   "Nonnegative participant weights": "Nichtnegative Teilnehmergewichte",
   "Currency decimal places": "Dezimalstellen der Währung",
@@ -8928,5 +8928,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Vergleichen Sie bis zu vier Rechner, behalten Sie die Eingaben jedes Werkzeugs bei und übertragen Sie bei Bedarf ein Ergebnis in einen anderen Rechner.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Die aktuellen Rechner verarbeiten Eingaben in Ihrem Browser. Wir erhalten die von Ihnen eingegebenen Berechnungswerte nicht.",
   "Input preview is unavailable. Open the calculator to enter values.": "Die Eingabevorschau ist nicht verfügbar. Öffnen Sie den Rechner, um Werte einzugeben.",
-  "Use complete numbers within the supported numeric range.": "Geben Sie vollständige Zahlen innerhalb des unterstützten Zahlenbereichs ein."
+  "Use complete numbers within the supported numeric range.": "Geben Sie vollständige Zahlen innerhalb des unterstützten Zahlenbereichs ein.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Geben Sie für jede Person ein nicht negatives Gewicht in der Reihenfolge der Ergebnisse ein. Die Gesamtsumme wird auf die gewählten Währungsnachkommastellen gerundet; genau in der Mitte liegende Beträge werden aufgerundet. Verbleibende kleinste Währungseinheiten gehen an die größten Reste; bei Gleichstand haben früher aufgeführte Personen Vorrang. Es werden nur Anteile berechnet und keine Gelder überwiesen."
 }

@@ -7471,7 +7471,7 @@
   "Equity cost (%)": "Hisse senedi maliyeti (%)",
   "Debt cost (%)": "Borç maliyeti (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Ağırlıklı Tahvil Dağılımı",
+  "Weighted Bill Split": "Paylara Göre Hesap Bölüşümü",
   "Split a total by chosen shares and reconcile currency rounding.": "Toplamı seçilen paylara bölün ve para birimi yuvarlamasını düzeltin.",
   "Nonnegative participant weights": "Negatif olmayan katılımcı ağırlıkları",
   "Currency decimal places": "Para birimi ondalık basamak sayısı",
@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "En fazla dört hesap makinesini karşılaştırın, her aracın girdilerini koruyun ve gerektiğinde sonucu başka bir hesap makinesine aktarın.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Mevcut hesap makineleri girdileri tarayıcınızda işler. Hesaplama için girdiğiniz değerleri almayız.",
   "Input preview is unavailable. Open the calculator to enter values.": "Girdi önizlemesi kullanılamıyor. Değerleri girmek için hesap makinesini açın.",
-  "Use complete numbers within the supported numeric range.": "Desteklenen sayısal aralık içinde sayıları eksiksiz girin."
+  "Use complete numbers within the supported numeric range.": "Desteklenen sayısal aralık içinde sayıları eksiksiz girin.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Sonuç sırasına göre her katılımcı için negatif olmayan bir ağırlık girin. Toplam, seçilen para birimi hassasiyetine yuvarlanır; tam ortadaki tutarlar yukarı yuvarlanır. Kalan en küçük para birimleri en büyük kalanlara dağıtılır; eşitlikte önceki katılımcılara öncelik verilir. Yalnızca paylar hesaplanır; para aktarılmaz."
 }

@@ -193,6 +193,44 @@ try {
     await entryContext.close();
     const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const page = await context.newPage();
+    for (const [slug, id] of [
+      ['apr-calculator', 'cm-apr-source'],
+      ['debt-to-income-calculator', 'cm-dti-source'],
+      ['velocity-calculator', 'cm-speed-source'],
+      ['bmi-calculator', 'cm-bmi-source'],
+    ]) {
+      await page.goto(base + '/' + slug + '?lang=en', { waitUntil: 'load' });
+      assert.equal(await page.locator('#' + id).count(), 1);
+      assert.equal(
+        await page.getByRole('heading', { name: 'Primary references', exact: true }).count(),
+        1,
+      );
+    }
+    await page.goto(base + '/weighted-bill-split-calculator?lang=en', { waitUntil: 'load' });
+    await page.locator('#a').fill('1.005');
+    await page.locator('#w').fill('1');
+    await page.waitForFunction(() => document.querySelector('#result').textContent === '1.01');
+    await page.locator('#a').fill('100');
+    await page.locator('#w').fill('1e308,1e308');
+    await page.waitForFunction(() => document.querySelector('#result').textContent === '50.00');
+    await page.locator('#a').fill('100000.01');
+    await page.locator('#w').fill('1');
+    await page.waitForFunction(
+      () => document.querySelector('#result').textContent === '100,000.01',
+    );
+    await page.locator('#cm-site-language').selectOption('fr');
+    await page.waitForFunction(() =>
+      /100[\s\u00a0\u202f]000,01/.test(document.querySelector('#result').textContent),
+    );
+    assert.equal(await page.locator('#a').inputValue(), '100000.01');
+    assert.ok((await page.locator('.cm-expanded__example dd').allTextContents()).includes('25,00'));
+    await page.locator('#cm-site-language').selectOption('en');
+    assert.match(await page.locator('#cm-model-note').innerText(), /halfway amounts rounded up/);
+    results.push({
+      test: 'Bill splitting rounds decimal halves and preserves large-weight ratios',
+      engine,
+      passed: true,
+    });
     await page.goto(base + '/loan-calculator?lang=en', { waitUntil: 'load' });
     near(Number((await page.locator('#main').innerText()).replace(/[^0-9.-]/g, '')), 1896.2);
     await page.locator('#cm-decision-goal').fill('1000');

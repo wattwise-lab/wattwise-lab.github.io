@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Bandingkan hingga empat kalkulator, pertahankan masukan setiap alat, dan kirim hasil ke kalkulator lain saat diperlukan.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Kalkulator saat ini memproses masukan di peramban Anda. Kami tidak menerima nilai yang Anda masukkan untuk perhitungan.",
   "Input preview is unavailable. Open the calculator to enter values.": "Pratinjau masukan tidak tersedia. Buka kalkulator untuk memasukkan nilai.",
-  "Use complete numbers within the supported numeric range.": "Masukkan angka secara lengkap dalam rentang numerik yang didukung."
+  "Use complete numbers within the supported numeric range.": "Masukkan angka secara lengkap dalam rentang numerik yang didukung.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Masukkan satu bobot nonnegatif untuk setiap peserta sesuai urutan hasil. Total dibulatkan ke ketelitian mata uang yang dipilih; nilai tepat di tengah dibulatkan ke atas. Satuan uang terkecil yang tersisa diberikan berdasarkan sisa terbesar; jika sama, peserta yang lebih awal didahulukan. Ini hanya menghitung bagian; tidak ada uang yang ditransfer."
 }

@@ -7487,7 +7487,7 @@
   "Equity market value": "Thamani ya soko la hisa",
   "Debt cost (%)": "Gharama ya deni (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Mgawanyiko wa Bili Iliyopimwa",
+  "Weighted Bill Split": "Mgawanyo wa bili kwa uwiano",
   "Split a total by chosen shares and reconcile currency rounding.": "Gawanya jumla kwa hisa zilizochaguliwa na upatanishe ulinganisho wa sarafu.",
   "Nonnegative participant weights": "Uzito wa mshiriki asiye hasi",
   "Currency decimal places": "Sehemu za desimali za sarafu",
@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Linganisha hadi vikokotoo vinne, bakiza ingizo la kila zana, na tuma matokeo kwa kikokotoo kingine inapohitajika.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Vikokotoo vya sasa huchakata ingizo ndani ya kivinjari chako. Hatupokei thamani unazoingiza kwa mahesabu.",
   "Input preview is unavailable. Open the calculator to enter values.": "Onyesho la awali la ingizo halipatikani. Fungua kikokotoo ili kuingiza thamani.",
-  "Use complete numbers within the supported numeric range.": "Andika namba kikamilifu ndani ya masafa ya namba yanayotumika."
+  "Use complete numbers within the supported numeric range.": "Andika namba kikamilifu ndani ya masafa ya namba yanayotumika.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Weka uzito usio hasi kwa kila mshiriki, kwa mpangilio wa matokeo. Jumla huzungushwa hadi nafasi za desimali za sarafu ulizochagua; thamani iliyo katikati kabisa huzungushwa juu. Vipande vidogo zaidi vya sarafu vinavyobaki hupewa wenye mabaki makubwa zaidi; wakifungana, walio mbele hupewa kipaumbele. Huhesabu sehemu tu; hakuna fedha zinazohamishwa."
 }

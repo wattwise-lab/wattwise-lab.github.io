@@ -52,6 +52,23 @@ for (const r of routes) {
       assert.ok(!/[\u3400-\u9fff]/.test(copy.text()), 'untranslated Chinese page copy');
     }
     const slug = r.path.split('/').at(-1);
+    const referenceId = {
+      'apr-calculator': 'cm-apr-source',
+      'debt-to-income-calculator': 'cm-dti-source',
+      'velocity-calculator': 'cm-speed-source',
+      'bmi-calculator': 'cm-bmi-source',
+    }[slug];
+    if (referenceId) {
+      assert.equal($('#' + referenceId).length, 1, 'one stable primary-reference card');
+      const href = $('#' + referenceId + ' a[href]')
+        .first()
+        .attr('href');
+      assert.equal(
+        $('main a[href]').filter((_, e) => $(e).attr('href') === href).length,
+        1,
+        'no repeated primary-reference card',
+      );
+    }
     if (toolSlugs.has(slug)) {
       const entry = $('main a.cm-workspace-entry');
       assert.equal(entry.length, 1, 'one workspace entry before JavaScript');

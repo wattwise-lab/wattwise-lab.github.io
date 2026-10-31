@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const { add, n, p, i, text, select, row: R, check, nums, sum, PI, deg } = CMModels;
+  const { add, n, p, i, text, select, row: R, check, nums, PI, deg } = CMModels;
   const D = (
     s,
     name,
@@ -689,26 +689,54 @@
       i('d', 'Currency decimal places|货币小数位', 2, 0, 4),
     ],
     (v) => {
-      const a = nums(v.w),
-        total = sum(a);
+      const a = nums(v.w);
       check(
-        a.length <= 100 && a.every((x) => x >= 0) && total > 0,
+        a.length <= 100 && a.every((x) => x >= 0) && a.some((x) => x > 0),
         'Use up to 100 nonnegative weights with a positive sum.|最多 100 个非负权重，合计应大于零。',
       );
+      // Canonical decimal coefficients avoid floating-point ties and overflowing weight products.
+      const parts = (value) => {
+        const [mantissa, exponent = '0'] = String(value).toLowerCase().split('e'),
+          [whole, fraction = ''] = mantissa.split('.');
+        return {
+          coefficient: BigInt(whole + fraction),
+          exponent: Number(exponent) - fraction.length,
+        };
+      };
       const scale = 10 ** v.d,
-        cents = Math.round(v.a * scale);
+        bill = parts(v.a),
+        billExponent = bill.exponent + v.d,
+        divisor = billExponent < 0 ? 10n ** BigInt(-billExponent) : 1n,
+        cents =
+          billExponent < 0
+            ? (bill.coefficient + divisor / 2n) / divisor
+            : bill.coefficient * 10n ** BigInt(billExponent);
       check(
-        Number.isSafeInteger(cents),
+        cents >= 0n && cents <= BigInt(Number.MAX_SAFE_INTEGER),
         'Total is too large for exact currency splitting.|总额过大，无法进行精确货币分账。',
       );
-      const raw = a.map((x) => (cents * x) / total),
-        q = raw.map(Math.floor),
-        order = raw.map((x, k) => k).sort((a, b) => raw[b] - q[b] - (raw[a] - q[a]) || a - b);
-      for (let k = 0, left = cents - sum(q); k < left; k++) q[order[k]]++;
-      return q.map((x, k) => R('Participant ' + (k + 1) + '|参与者 ' + (k + 1), x / scale));
+      const weights = a.map(parts),
+        exponent = Math.min(...weights.map((x) => x.exponent)),
+        integers = weights.map((x) => x.coefficient * 10n ** BigInt(x.exponent - exponent)),
+        total = integers.reduce((a, b) => a + b, 0n),
+        numerators = integers.map((x) => cents * x),
+        q = numerators.map((x) => x / total),
+        remainders = numerators.map((x) => x % total),
+        order = a
+          .map((_, k) => k)
+          .sort((a, b) =>
+            remainders[a] > remainders[b] ? -1 : remainders[a] < remainders[b] ? 1 : a - b,
+          ),
+        left = Number(cents - q.reduce((a, b) => a + b, 0n));
+      for (let k = 0; k < left; k++) q[order[k]]++;
+      return q.map((x, k) => ({
+        ...R('Participant ' + (k + 1) + '|参与者 ' + (k + 1), Number(x) / scale),
+        fractionDigits: v.d,
+      }));
     },
     'Allocate integer minor units by largest remainder|以整数最小货币单位计算，按最大余数法分配。',
     [25, 25, 50],
+    'Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.|按结果顺序为每位参与者填写一个非负权重。总额先按所选货币小数位四舍五入，再按最大余数分配剩余最小货币单位；余数相同时优先分给靠前的参与者。仅计算分账份额，不转移资金。',
   );
   D(
     'recipe-scaling',

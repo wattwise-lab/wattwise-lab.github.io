@@ -7435,7 +7435,7 @@
   "Equity cost (%)": "Coste de las acciones (%)",
   "Debt cost (%)": "Coste de la deuda (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "División ponderada de letras",
+  "Weighted Bill Split": "Reparto de cuenta por pesos",
   "Split a total by chosen shares and reconcile currency rounding.": "Divide un total por las acciones seleccionadas y ajusta el redondeo de la moneda.",
   "Nonnegative participant weights": "Ponderaciones no negativas de los participantes",
   "Currency decimal places": "Decimales de la moneda",
@@ -8940,5 +8940,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Compara hasta cuatro calculadoras, conserva los datos introducidos en cada una y envía un resultado a otra cuando lo necesites.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Las calculadoras actuales procesan los datos en tu navegador. No recibimos los valores que introduces para calcular.",
   "Input preview is unavailable. Open the calculator to enter values.": "La vista previa de los datos no está disponible. Abre la calculadora para introducir los valores.",
-  "Use complete numbers within the supported numeric range.": "Introduce los números completos dentro del intervalo numérico admitido."
+  "Use complete numbers within the supported numeric range.": "Introduce los números completos dentro del intervalo numérico admitido.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Introduce un peso no negativo por participante, en el orden de los resultados. El total se redondea a los decimales elegidos para la moneda; los casos exactamente a la mitad se redondean hacia arriba. Las unidades monetarias mínimas sobrantes se asignan a los mayores restos; en caso de empate se prioriza a quienes aparecen antes. Solo se calculan las partes; no se transfiere dinero."
 }

@@ -10163,5 +10163,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "最多组合四个计算器，保留各自输入，并按需把结果传给其他计算器。",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "当前计算器在浏览器中处理输入，不会将您填写的计算数值发送给我们。",
   "Input preview is unavailable. Open the calculator to enter values.": "暂时无法预览输入，请打开计算器直接填写。",
-  "Use complete numbers within the supported numeric range.": "请填写完整且处于可支持数值范围内的数字。"
+  "Use complete numbers within the supported numeric range.": "请填写完整且处于可支持数值范围内的数字。",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "按结果顺序为每位参与者填写一个非负权重。总额先按所选货币小数位四舍五入，再按最大余数分配剩余最小货币单位；余数相同时优先分给靠前的参与者。仅计算分账份额，不转移资金。"
 }

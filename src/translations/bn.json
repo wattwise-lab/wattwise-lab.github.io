@@ -7477,7 +7477,7 @@
   "Equity cost (%)": "ইক্যুইটি খরচ (%)",
   "Debt cost (%)": "ডেট খরচ (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "ওয়েটেড বিল স্প্লিট",
+  "Weighted Bill Split": "অনুপাত অনুযায়ী বিল ভাগ",
   "Split a total by chosen shares and reconcile currency rounding.": "নির্বাচিত শেয়ার দ্বারা মোট ভাগ করুন এবং মুদ্রার রাউন্ডিং সমন্বয় করুন।",
   "Nonnegative participant weights": "অঋণাত্মক অংশগ্রহণকারী ওয়েট",
   "Currency decimal places": "মুদ্রার দশমিক স্থান",
@@ -8926,5 +8926,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "সর্বোচ্চ চারটি ক্যালকুলেটর তুলনা করুন, প্রতিটির ইনপুট বজায় রাখুন এবং প্রয়োজনে ফলাফল অন্য ক্যালকুলেটরে পাঠান।",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "বর্তমান ক্যালকুলেটরগুলো আপনার ব্রাউজারেই ইনপুট প্রক্রিয়া করে। গণনার জন্য আপনি যে মান দেন, তা আমরা পাই না।",
   "Input preview is unavailable. Open the calculator to enter values.": "ইনপুটের পূর্বরূপ পাওয়া যাচ্ছে না। মান লিখতে ক্যালকুলেটরটি খুলুন।",
-  "Use complete numbers within the supported numeric range.": "সমর্থিত সংখ্যার সীমার মধ্যে সম্পূর্ণ সংখ্যামান লিখুন।"
+  "Use complete numbers within the supported numeric range.": "সমর্থিত সংখ্যার সীমার মধ্যে সম্পূর্ণ সংখ্যামান লিখুন।",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "ফলাফলের ক্রম অনুযায়ী প্রত্যেক অংশগ্রহণকারীর জন্য একটি অঋণাত্মক ওজন লিখুন। মোট অর্থ নির্বাচিত মুদ্রার দশমিক ঘর অনুযায়ী পূর্ণায়িত হয়; ঠিক মাঝামাঝি মান ওপরের দিকে পূর্ণায়িত হয়। বাকি ক্ষুদ্রতম মুদ্রা এককগুলো বৃহত্তম ভাগশেষ অনুযায়ী দেওয়া হয়; ভাগশেষ সমান হলে তালিকার আগের ব্যক্তি অগ্রাধিকার পান। শুধু ভাগ হিসাব হয়, অর্থ পাঠানো হয় না।"
 }

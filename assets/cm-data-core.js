@@ -54,7 +54,9 @@ var CMData = (() => {
     if (decimal && decimal !== '.') text = text.replaceAll(decimal, '.');
     return text;
   }
-  function resultNumberOptions(value, domain) {
+  function resultNumberOptions(value, domain, fractionDigits) {
+    if (Number.isInteger(fractionDigits) && fractionDigits >= 0 && fractionDigits <= 4)
+      return { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits };
     if (value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12))
       return { maximumSignificantDigits: 8, notation: 'scientific' };
     const measured = domain === 'Health' || domain === 'Home and Everyday';

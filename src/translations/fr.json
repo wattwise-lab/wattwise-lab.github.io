@@ -7395,7 +7395,7 @@
   "Equity cost (%)": "Coût des actions (%)",
   "Debt cost (%)": "Coût des obligations (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Répartition pondérée des effets",
+  "Weighted Bill Split": "Partage de facture pondéré",
   "Split a total by chosen shares and reconcile currency rounding.": "Répartition d'un total selon les parts choisies et correction des arrondis de devises.",
   "Currency decimal places": "Nombre de décimales",
   "Participant 1": "Participant 1",
@@ -8926,5 +8926,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Comparez jusqu’à quatre calculatrices, conservez les saisies de chaque outil et transférez un résultat vers une autre calculatrice selon vos besoins.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Les calculatrices actuelles traitent les saisies dans votre navigateur. Nous ne recevons pas les valeurs que vous entrez pour les calculs.",
   "Input preview is unavailable. Open the calculator to enter values.": "L’aperçu des saisies est indisponible. Ouvrez la calculatrice pour entrer les valeurs.",
-  "Use complete numbers within the supported numeric range.": "Saisissez des nombres complets dans la plage numérique prise en charge."
+  "Use complete numbers within the supported numeric range.": "Saisissez des nombres complets dans la plage numérique prise en charge.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Saisissez un poids positif ou nul par participant, dans l’ordre des résultats. Le total est arrondi à la précision monétaire choisie ; les valeurs exactement à mi-chemin sont arrondies vers le haut. Les unités monétaires minimales restantes vont aux plus grands restes ; en cas d’égalité, les premiers participants sont prioritaires. Seules les parts sont calculées ; aucun argent n’est transféré."
 }

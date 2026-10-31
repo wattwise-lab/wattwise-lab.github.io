@@ -16,23 +16,27 @@ export async function renderExpanded(
   const exampleNumberAttrs = (row) => {
     if (row.literal) return ' data-cm-no-translate';
     if (typeof row.value !== 'number') return '';
-    const options = resultNumberOptions(row.value, model.domain);
+    const options = resultNumberOptions(row.value, model.domain, row.fractionDigits);
     return (
       ' data-cm-value="' +
       row.value +
       '" data-cm-unit="' +
       esc(row.unit || '') +
       '" data-cm-significant-digits="' +
-      options.maximumSignificantDigits +
+      (options.maximumSignificantDigits || 12) +
       '"' +
+      (row.fractionDigits !== undefined
+        ? ' data-cm-fraction-digits="' + row.fractionDigits + '"'
+        : '') +
       (options.notation === 'scientific' ? ' data-cm-notation="scientific"' : '')
     );
   };
   const exampleValue = (row) =>
     typeof row.value === 'number'
-      ? new Intl.NumberFormat('en', resultNumberOptions(row.value, model.domain)).format(
-          Object.is(row.value, -0) ? 0 : row.value,
-        )
+      ? new Intl.NumberFormat(
+          'en',
+          resultNumberOptions(row.value, model.domain, row.fractionDigits),
+        ).format(Object.is(row.value, -0) ? 0 : row.value)
       : en(row.value);
   const fields = model.fields
     .map((f) => {

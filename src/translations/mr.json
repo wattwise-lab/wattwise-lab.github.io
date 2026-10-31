@@ -7401,7 +7401,7 @@
   "Equity cost (%)": "इक्विटीची किंमत (%)",
   "Debt cost (%)": "कर्जाची किंमत (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "भारित बिल विभाजन",
+  "Weighted Bill Split": "हिश्श्यांनुसार बिल वाटप",
   "Split a total by chosen shares and reconcile currency rounding.": "निवडलेल्या शेअर्सनुसार एकूण रकमेचे विभाजन करा आणि चलनाचे पूर्णांकीकरण जुळवा.",
   "Nonnegative participant weights": "अऋणात्मक सहभागी भार",
   "Currency decimal places": "चलनातील दशांश स्थळे",
@@ -8925,5 +8925,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "जास्तीत जास्त चार कॅल्क्युलेटरची तुलना करा, प्रत्येक साधनातील इनपुट कायम ठेवा आणि गरजेनुसार निकाल दुसऱ्या कॅल्क्युलेटरकडे पाठवा.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "सध्याचे कॅल्क्युलेटर तुमच्या ब्राउझरमध्ये इनपुटवर प्रक्रिया करतात. गणनेसाठी तुम्ही भरलेली मूल्ये आम्हाला मिळत नाहीत.",
   "Input preview is unavailable. Open the calculator to enter values.": "इनपुटचे पूर्वावलोकन उपलब्ध नाही. मूल्ये भरण्यासाठी कॅल्क्युलेटर उघडा.",
-  "Use complete numbers within the supported numeric range.": "समर्थित संख्यात्मक मर्यादेत पूर्ण संख्यात्मक मूल्ये लिहा."
+  "Use complete numbers within the supported numeric range.": "समर्थित संख्यात्मक मर्यादेत पूर्ण संख्यात्मक मूल्ये लिहा.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "निकालांच्या क्रमाने प्रत्येक व्यक्तीसाठी एक ऋणेतर भार लिहा. एकूण रक्कम निवडलेल्या चलनाच्या दशांश स्थानांपर्यंत पूर्णांकित होते; नेमके मध्यावर असलेली रक्कम वरच्या बाजूला पूर्णांकित होते. उरलेली सर्वात लहान चलन एकके मोठ्या बाकीच्या क्रमाने दिली जातात; बाकी समान असल्यास आधीच्या व्यक्तीला प्राधान्य मिळते. फक्त हिस्से मोजले जातात, पैसे पाठवले जात नाहीत."
 }

@@ -23,7 +23,7 @@
   for (const [index, section] of [...wrap.querySelectorAll(':scope>.card')].entries()) {
     const heading = section.querySelector('h2');
     if (!heading) continue;
-    section.id = 'guide-' + index;
+    if (!section.id) section.id = 'guide-' + index;
     const key = section.dataset.cmSection;
     if (['formula', 'example', 'scope', 'faq'].includes(key)) {
       const a = document.createElement('a');

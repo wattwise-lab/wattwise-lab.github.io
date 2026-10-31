@@ -54,7 +54,9 @@ var CMData = (() => {
     if (decimal && decimal !== '.') text = text.replaceAll(decimal, '.');
     return text;
   }
-  function resultNumberOptions(value, domain) {
+  function resultNumberOptions(value, domain, fractionDigits) {
+    if (Number.isInteger(fractionDigits) && fractionDigits >= 0 && fractionDigits <= 4)
+      return { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits };
     if (value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12))
       return { maximumSignificantDigits: 8, notation: 'scientific' };
     const measured = domain === 'Health' || domain === 'Home and Everyday';
@@ -3807,7 +3809,7 @@ window.CMUiCopy = {
 })();
 
 ;
-window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.552a965f6a2e.js","hi":"/assets/dist/hi.7e2091fed632.js","es":"/assets/dist/es.c079fbb539cf.js","ar":"/assets/dist/ar.f98fbe3eb8e2.js","fr":"/assets/dist/fr.0664e5a1df22.js","bn":"/assets/dist/bn.bc894c707e14.js","pt":"/assets/dist/pt.bd0d410ee4bf.js","id":"/assets/dist/id.2495cebcb661.js","ur":"/assets/dist/ur.315bbf3ce886.js","ru":"/assets/dist/ru.7e6069a542b4.js","de":"/assets/dist/de.7914a31f2f59.js","ja":"/assets/dist/ja.19ee58e71033.js","pcm":"/assets/dist/pcm.a75de2830f99.js","mr":"/assets/dist/mr.18bddc7387f3.js","vi":"/assets/dist/vi.b84527923094.js","te":"/assets/dist/te.232515065790.js","sw":"/assets/dist/sw.f55de6c42cb2.js","ha":"/assets/dist/ha.b4f321fc49f3.js","tr":"/assets/dist/tr.99b7f52ec81f.js"};
+window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.ef834e1dca5c.js","hi":"/assets/dist/hi.fdecb80f13dd.js","es":"/assets/dist/es.e990cd8973bf.js","ar":"/assets/dist/ar.d5e9b2816621.js","fr":"/assets/dist/fr.04fc7e896e7f.js","bn":"/assets/dist/bn.229ec47e6454.js","pt":"/assets/dist/pt.5c575913f5f6.js","id":"/assets/dist/id.79cd94dc6521.js","ur":"/assets/dist/ur.74ab965e4895.js","ru":"/assets/dist/ru.6932f0f9956c.js","de":"/assets/dist/de.e031c9dba5f0.js","ja":"/assets/dist/ja.3c7b11dd9e70.js","pcm":"/assets/dist/pcm.01847ab4039d.js","mr":"/assets/dist/mr.95a94a99a4ff.js","vi":"/assets/dist/vi.c39455818221.js","te":"/assets/dist/te.86e517286a17.js","sw":"/assets/dist/sw.4cbc8f37266b.js","ha":"/assets/dist/ha.5621765bb80f.js","tr":"/assets/dist/tr.5750c5b51d25.js"};
 
 ;
 window.CMI18n = (() => {
@@ -4126,13 +4128,20 @@ window.CMI18n = (() => {
     root.querySelectorAll?.('[data-cm-language]').forEach(options);
     root.querySelectorAll?.('[data-cm-value]').forEach((element) => {
       const value = Number(element.dataset.cmValue),
-        digits = Number(element.dataset.cmSignificantDigits);
+        digits = Number(element.dataset.cmSignificantDigits),
+        fractionDigits = Number(element.dataset.cmFractionDigits);
       if (Number.isFinite(value))
         element.textContent =
           number(value, {
-            maximumSignificantDigits:
-              Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
-            ...(element.dataset.cmNotation === 'scientific' ? { notation: 'scientific' } : {}),
+            ...(Number.isInteger(fractionDigits) && fractionDigits >= 0 && fractionDigits <= 4
+              ? { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits }
+              : {
+                  maximumSignificantDigits:
+                    Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
+                  ...(element.dataset.cmNotation === 'scientific'
+                    ? { notation: 'scientific' }
+                    : {}),
+                }),
           }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
   }

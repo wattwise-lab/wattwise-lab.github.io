@@ -71387,5 +71387,11 @@
     "id": "20400",
     "source": "Use complete numbers within the supported numeric range.",
     "origin": "assets/cm-intent-core.js"
+  },
+  {
+    "active": true,
+    "id": "20401",
+    "source": "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
+    "origin": "assets/models/home.js"
   }
 ]

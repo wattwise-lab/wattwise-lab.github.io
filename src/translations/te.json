@@ -7461,7 +7461,7 @@
   "Equity cost (%)": "ఈక్విటీ వ్యయం (%)",
   "Debt cost (%)": "రుణ వ్యయం (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "వెయిటెడ్ బిల్ స్ప్లిట్",
+  "Weighted Bill Split": "వాటాల నిష్పత్తిలో బిల్లు విభజన",
   "Split a total by chosen shares and reconcile currency rounding.": "ఎంచుకున్న షేర్ల ద్వారా మొత్తాన్ని విభజించి, కరెన్సీ రౌండింగ్‌ను సరిచేయండి.",
   "Nonnegative participant weights": "రుణేతర పార్టిసిపెంట్ వెయిట్స్",
   "Currency decimal places": "కరెన్సీ దశాంశ స్థానాలు",
@@ -8927,5 +8927,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "గరిష్ఠంగా నాలుగు కాలిక్యులేటర్లను పోల్చండి, ప్రతి సాధనంలోని ఇన్‌పుట్‌లను ఉంచండి, అవసరమైనప్పుడు ఫలితాన్ని మరో కాలిక్యులేటర్‌కు పంపండి.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "ప్రస్తుత కాలిక్యులేటర్లు మీ బ్రౌజర్‌లోనే ఇన్‌పుట్‌లను ప్రాసెస్ చేస్తాయి. లెక్కల కోసం మీరు నమోదు చేసిన విలువలు మాకు అందవు.",
   "Input preview is unavailable. Open the calculator to enter values.": "ఇన్‌పుట్ ముందస్తు వీక్షణ అందుబాటులో లేదు. విలువలను నమోదు చేయడానికి కాలిక్యులేటర్‌ను తెరవండి.",
-  "Use complete numbers within the supported numeric range.": "మద్దతు ఉన్న సంఖ్యా పరిధిలో సంఖ్యలను పూర్తిగా నమోదు చేయండి."
+  "Use complete numbers within the supported numeric range.": "మద్దతు ఉన్న సంఖ్యా పరిధిలో సంఖ్యలను పూర్తిగా నమోదు చేయండి.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "ఫలితాల క్రమంలో ప్రతి వ్యక్తికి ఒక ఋణేతర బరువును నమోదు చేయండి. మొత్తం ఎంచుకున్న కరెన్సీ దశాంశ స్థానాలకు రౌండ్ అవుతుంది; సరిగ్గా సగంలో ఉన్న మొత్తాలు పైకి రౌండ్ అవుతాయి. మిగిలిన అతి చిన్న కరెన్సీ యూనిట్లు పెద్ద శేషాల క్రమంలో పంచబడతాయి; శేషాలు సమానమైతే ముందు ఉన్న వ్యక్తికి ప్రాధాన్యం ఉంటుంది. వాటాలను మాత్రమే లెక్కిస్తుంది; డబ్బు బదిలీ చేయదు."
 }

@@ -7350,7 +7350,7 @@
   "Equity cost (%)": "株式コスト（％）",
   "Debt cost (%)": "債券コスト（％）",
   "WACC": "WACC",
-  "Weighted Bill Split": "加重分割",
+  "Weighted Bill Split": "重み付き割り勘",
   "Split a total by chosen shares and reconcile currency rounding.": "合計金額を選択した株式数で分割し、通貨の丸め処理を調整します。",
   "Nonnegative participant weights": "非負の参加者ウェイト",
   "Currency decimal places": "通貨の小数点以下の桁数",
@@ -8925,5 +8925,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "最大四つの計算機を比較し、それぞれの入力を保持しながら、必要に応じて結果を別の計算機に渡せます。",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "現在の計算機はブラウザ内で入力を処理します。計算用に入力した値が当サイトに送信されることはありません。",
   "Input preview is unavailable. Open the calculator to enter values.": "入力のプレビューを利用できません。計算機を開いて値を入力してください。",
-  "Use complete numbers within the supported numeric range.": "対応している数値範囲内で、数値を最後まで正しく入力してください。"
+  "Use complete numbers within the supported numeric range.": "対応している数値範囲内で、数値を最後まで正しく入力してください。",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "結果の順序に従って、各参加者にゼロ以上の重みを入力してください。総額は選択した通貨の小数桁数で四捨五入します。残った最小通貨単位は余りの大きい順に配分し、同じ余りの場合は先に入力した参加者を優先します。配分額の計算のみで、送金は行いません。"
 }

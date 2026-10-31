@@ -147,12 +147,17 @@ export async function localizeSite(root, catalog, pages, selected) {
       $('[data-cm-value]').each((_, element) => {
         const e = $(element),
           value = Number(e.attr('data-cm-value')),
-          digits = Number(e.attr('data-cm-significant-digits'));
+          digits = Number(e.attr('data-cm-significant-digits')),
+          fractionDigits = Number(e.attr('data-cm-fraction-digits'));
         if (!Number.isFinite(value)) return;
         const options = {
-          maximumSignificantDigits:
-            Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
-          ...(e.attr('data-cm-notation') === 'scientific' ? { notation: 'scientific' } : {}),
+          ...(Number.isInteger(fractionDigits) && fractionDigits >= 0 && fractionDigits <= 4
+            ? { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits }
+            : {
+                maximumSignificantDigits:
+                  Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
+                ...(e.attr('data-cm-notation') === 'scientific' ? { notation: 'scientific' } : {}),
+              }),
         };
         const number = new Intl.NumberFormat(locale === 'pcm' ? 'en-NG' : locale, options).format(
             Object.is(value, -0) ? 0 : value,

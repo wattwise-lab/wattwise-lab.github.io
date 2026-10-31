@@ -1343,7 +1343,7 @@
   "Cross product x": "حاصل الضرب الاتجاهي x",
   "Vector Dot Product": "حاصل ضرب النقاط المتجهة",
   "Layout count only. Doors, corners, double studs, loads, bracing and code compliance require a construction plan.": "عدد المخططات فقط. الأبواب، والزوايا، والدعامات المزدوجة، والأحمال، والتدعيم، والامتثال للمعايير تتطلب خطة بناء.",
-  "Weighted Bill Split": "تقسيم الفاتورة المرجحة",
+  "Weighted Bill Split": "تقسيم الفاتورة حسب الأوزان",
   "Welch degrees of freedom": "درجات حرية ويلش",
   "?embed=1": "?embed=1",
   "cm:workspace-change": "cm:workspace-change",
@@ -8926,5 +8926,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "قارن بين ما يصل إلى أربع آلات حاسبة، واحتفظ بمدخلات كل أداة، وأرسل نتيجة إلى آلة أخرى عند الحاجة.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "تعالج الآلات الحاسبة الحالية المدخلات داخل متصفحك. لا نتلقى القيم التي تدخلها لإجراء الحسابات.",
   "Input preview is unavailable. Open the calculator to enter values.": "معاينة المدخلات غير متاحة. افتح الآلة الحاسبة لإدخال القيم.",
-  "Use complete numbers within the supported numeric range.": "أدخل الأعداد كاملة ضمن النطاق العددي المدعوم."
+  "Use complete numbers within the supported numeric range.": "أدخل الأعداد كاملة ضمن النطاق العددي المدعوم.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "أدخل وزناً غير سالب لكل مشارك، بترتيب النتائج. يُقرَّب المجموع إلى المنازل العشرية المختارة للعملة، وتُقرَّب حالات المنتصف إلى الأعلى. تُوزَّع الوحدات النقدية الصغرى المتبقية على أصحاب أكبر البواقي؛ وعند التعادل تُعطى الأولوية للمشاركين الأسبق. تُحسب الحصص فقط ولا تُحوَّل أي أموال."
 }

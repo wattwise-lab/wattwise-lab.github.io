@@ -7421,7 +7421,7 @@
   "Equity cost (%)": "Kudin hannun jari (%)",
   "Debt cost (%)": "Kudin bashi (%)",
   "WACC": "WACC",
-  "Weighted Bill Split": "Raba Kudi Mai Nauyi",
+  "Weighted Bill Split": "Raba kuɗin biya bisa kaso",
   "Split a total by chosen shares and reconcile currency rounding.": "Raba jimilla ta hannun hannun jari da aka zaɓa kuma daidaita zagayen kuɗi.",
   "Nonnegative participant weights": "Nauyin mahalarta marasa nauyi",
   "Currency decimal places": "Wurare na adadi na kuɗi",
@@ -8929,5 +8929,6 @@
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Kwatanta har zuwa kalkuleta huɗu, riƙe bayanan da aka shigar a kowanne, sannan aika sakamako zuwa wata kalkuleta idan an buƙata.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Kalkuletocin yanzu suna sarrafa bayanan da ka shigar a cikin burauzarka. Ba ma karɓar ƙimomin da ka shigar don lissafi.",
   "Input preview is unavailable. Open the calculator to enter values.": "Ba a samun samfotin bayanan shigarwa. Buɗe kalkuleta don shigar da ƙimomi.",
-  "Use complete numbers within the supported numeric range.": "Shigar da lambobi cikakku cikin iyakar lambobin da ake tallafawa."
+  "Use complete numbers within the supported numeric range.": "Shigar da lambobi cikakku cikin iyakar lambobin da ake tallafawa.",
+  "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Shigar da nauyi marar korau ga kowane mahalarta bisa tsarin sakamakon. Ana zagaye jimillar zuwa adadin guraben goma na kuɗin da aka zaɓa; idan tana daidai a tsakiya, ana zagaye ta sama. Ana ba masu manyan ragowar rabon ƙananan raka’o’in kuɗin da suka rage; idan sun yi daidai, na farko suna da fifiko. Rabon kuɗi kawai ake lissafawa; ba a tura kuɗi."
 }
