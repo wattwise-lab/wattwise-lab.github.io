@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"gravel-base-calculator","name":"Compacted Gravel Base","names":{"zh-CN":"压实碎石基层"},"domain":"Home and Everyday","keywords":"Compacted Gravel Base 压实碎石基层 gravel-base-calculator","new":true,"description":"Allow for compaction and convert loose volume into delivery mass.","descriptions":{"zh-CN":"考虑压实并将松散体积换算为配送质量。"},"priority":244}];

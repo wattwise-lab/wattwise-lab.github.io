@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"herons-formula-calculator","name":"Heron’s Triangle Formula","names":{"zh-CN":"海伦公式"},"domain":"Math and Time","keywords":"Heron’s Triangle Formula 海伦公式 herons-formula-calculator","new":true,"description":"Find triangle area and inscribed and circumscribed radii from three sides.","descriptions":{"zh-CN":"由三边求三角形面积及内、外接圆半径。"},"priority":284}];

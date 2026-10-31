@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"proportion-calculator","name":"Proportion Calculator","names":{"zh-CN":"比例方程"},"domain":"Math and Time","keywords":"Proportion Calculator 比例方程 proportion-calculator","new":true,"description":"Solve the missing fourth term when a/b = c/x.","descriptions":{"zh-CN":"已知 a/b = c/x，求第四项 x。"},"priority":315}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"paired-t-test-calculator","name":"Paired t Test","names":{"zh-CN":"配对 t 检验"},"domain":"Math and Time","keywords":"Paired t Test 配对 t 检验 paired-t-test-calculator","new":true,"description":"Test whether the mean within-pair difference is zero.","descriptions":{"zh-CN":"检验同一配对内差值的均值是否为零。"},"priority":460}];

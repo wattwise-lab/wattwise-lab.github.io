@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"growing-perpetuity-calculator","name":"Growing Perpetuity","names":{"zh-CN":"增长永续年金"},"domain":"Finance","keywords":"Growing Perpetuity 增长永续年金 growing-perpetuity-calculator","new":true,"description":"Value perpetual payments growing below the discount rate.","descriptions":{"zh-CN":"计算增长率低于折现率的永续付款现值。"},"priority":155}];

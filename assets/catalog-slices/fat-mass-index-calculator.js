@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"fat-mass-index-calculator","name":"Fat Mass Index","names":{"zh-CN":"脂肪质量指数 FMI"},"domain":"Health","keywords":"Fat Mass Index 脂肪质量指数 FMI fat-mass-index-calculator","new":true,"description":"Scale measured fat mass by height squared.","descriptions":{"zh-CN":"将测量推算的脂肪质量按身高平方标准化。"},"priority":217}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rule-of-72-calculator","name":"Rule of 72","names":{"zh-CN":"72 法则"},"domain":"Finance","keywords":"Rule of 72 72 法则 rule-of-72-calculator","new":true,"description":"Compare the quick doubling-time rule with exact compound growth.","descriptions":{"zh-CN":"比较快速翻倍估算与精确复利翻倍时间。"},"priority":184}];

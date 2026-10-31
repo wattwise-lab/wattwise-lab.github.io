@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"travel-time-calculator","name":"Travel Time with Stops","names":{"zh-CN":"含停留出行时间"},"domain":"Home and Everyday","keywords":"Travel Time with Stops 含停留出行时间 travel-time-calculator","new":true,"description":"Combine distance, moving speed and stop duration.","descriptions":{"zh-CN":"结合距离、行驶速度与停留时长。"},"priority":267}];

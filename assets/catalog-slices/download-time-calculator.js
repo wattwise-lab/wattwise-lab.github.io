@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"download-time-calculator","name":"Download Time","names":{"zh-CN":"下载时间"},"domain":"Digital and Technology","keywords":"Download Time 下载时间 download-time-calculator","new":true,"description":"Estimate transfer time with decimal bytes and network bit rates.","descriptions":{"zh-CN":"用十进制字节与网络比特率估计传输时间。"},"priority":123}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"matrix-rank-calculator","name":"2 × 2 Matrix Rank","names":{"zh-CN":"二阶矩阵的秩"},"domain":"Math and Time","keywords":"2 × 2 Matrix Rank 二阶矩阵的秩 matrix-rank-calculator","new":true,"description":"Determine rank with a floating-point tolerance tied to determinant products.","descriptions":{"zh-CN":"以和行列式乘积尺度相关的容差判断二阶矩阵的秩。"},"priority":309}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"current-bond-yield-calculator","name":"Bond Current Yield","names":{"zh-CN":"债券当期收益率"},"domain":"Finance","keywords":"Bond Current Yield 债券当期收益率 current-bond-yield-calculator","new":true,"description":"Compare annual coupon income with the bond purchase price.","descriptions":{"zh-CN":"比较债券每年票息收入与买入价。"},"priority":164}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"one-rep-max-calculator","name":"One Rep Max Estimate","names":{"zh-CN":"一次最大重量估算"},"domain":"Health","keywords":"One Rep Max Estimate 一次最大重量估算 one-rep-max-calculator","new":true,"description":"Compare Epley and Brzycki estimates from a submaximal set.","descriptions":{"zh-CN":"由次最大组比较 Epley 与 Brzycki 重量估算。"},"priority":220}];

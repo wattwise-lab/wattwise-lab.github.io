@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"brick-quantity-calculator","name":"Brick Quantity","names":{"zh-CN":"砖块用量"},"domain":"Home and Everyday","keywords":"Brick Quantity 砖块用量 brick-quantity-calculator","new":true,"description":"Estimate one-layer wall bricks allowing for mortar joints and openings.","descriptions":{"zh-CN":"考虑灰缝及洞口估计单层墙砖数。"},"priority":239}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pipe-flow-speed-calculator","name":"Pipe Flow Speed","names":{"zh-CN":"管内流速"},"domain":"Science","keywords":"Pipe Flow Speed 管内流速 pipe-flow-speed-calculator","new":true,"description":"Convert pipe flow rate and bore into average speed.","descriptions":{"zh-CN":"由管流量与内径求平均流速。"},"priority":396}];

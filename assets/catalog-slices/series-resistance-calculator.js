@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"series-resistance-calculator","name":"Series Resistance","names":{"zh-CN":"串联电阻"},"domain":"Science","keywords":"Series Resistance 串联电阻 series-resistance-calculator","new":true,"description":"Add ideal resistors carrying the same current.","descriptions":{"zh-CN":"合并承载相同电流的理想串联电阻。"},"priority":362}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"vector-cross-product-calculator","name":"Vector Cross Product","names":{"zh-CN":"向量叉积"},"domain":"Math and Time","keywords":"Vector Cross Product 向量叉积 vector-cross-product-calculator","new":true,"description":"Find the three coordinates of the cross product in right-hand order.","descriptions":{"zh-CN":"按右手系求两个三维向量的叉积坐标。"},"priority":358}];

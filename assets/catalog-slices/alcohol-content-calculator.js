@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"alcohol-content-calculator","name":"Alcohol Content in Grams","names":{"zh-CN":"饮品纯酒精含量"},"domain":"Health","keywords":"Alcohol Content in Grams 饮品纯酒精含量 alcohol-content-calculator","new":true,"description":"Convert drink volume and ABV to an estimated ethanol mass.","descriptions":{"zh-CN":"由饮品体积与酒精体积比估计纯酒精质量。"},"priority":236}];

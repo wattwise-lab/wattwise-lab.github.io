@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"dividend-discount-calculator","name":"Dividend Discount Value","names":{"zh-CN":"股利折现估值"},"domain":"Finance","keywords":"Dividend Discount Value 股利折现估值 dividend-discount-calculator","new":true,"description":"Model constant-growth dividends below a required return.","descriptions":{"zh-CN":"在必要回报率高于增长率时估算股利折现价值。"},"priority":167}];

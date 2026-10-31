@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"photon-energy-calculator","name":"Photon Energy","names":{"zh-CN":"光子能量"},"domain":"Science","keywords":"Photon Energy 光子能量 photon-energy-calculator","new":true,"description":"Convert vacuum wavelength into single-photon energy.","descriptions":{"zh-CN":"将真空波长换算为单光子能量。"},"priority":388}];

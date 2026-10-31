@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"treynor-ratio-calculator","name":"Treynor Ratio","names":{"zh-CN":"特雷诺比率"},"domain":"Finance","keywords":"Treynor Ratio 特雷诺比率 treynor-ratio-calculator","new":true,"description":"Compare excess return per unit of market beta.","descriptions":{"zh-CN":"比较每单位市场贝塔的超额回报。"},"priority":178}];

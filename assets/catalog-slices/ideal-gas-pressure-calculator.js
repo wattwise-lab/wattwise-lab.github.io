@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ideal-gas-pressure-calculator","name":"Ideal Gas Pressure","names":{"zh-CN":"理想气体压强"},"domain":"Science","keywords":"Ideal Gas Pressure 理想气体压强 ideal-gas-pressure-calculator","new":true,"description":"Apply the ideal gas equation in absolute temperature.","descriptions":{"zh-CN":"以绝对温度应用理想气体状态方程。"},"priority":405}];

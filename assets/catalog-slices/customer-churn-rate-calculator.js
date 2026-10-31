@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"customer-churn-rate-calculator","name":"Customer Churn Rate","names":{"zh-CN":"客户流失率"},"domain":"Business","keywords":"Customer Churn Rate 客户流失率 customer-churn-rate-calculator","new":true,"description":"Measure customers lost from the starting customer cohort.","descriptions":{"zh-CN":"衡量期初客户群在本期的流失比例。"},"priority":208}];

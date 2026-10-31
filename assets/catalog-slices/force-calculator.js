@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"force-calculator","name":"Force from Mass and Acceleration","names":{"zh-CN":"质量加速度求力"},"domain":"Science","keywords":"Force from Mass and Acceleration 质量加速度求力 force-calculator","new":true,"description":"Apply Newton’s second law on one axis.","descriptions":{"zh-CN":"在单一轴向应用牛顿第二定律。"},"priority":416}];

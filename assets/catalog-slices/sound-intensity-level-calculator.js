@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sound-intensity-level-calculator","name":"Sound Intensity Level","names":{"zh-CN":"声强级"},"domain":"Science","keywords":"Sound Intensity Level 声强级 sound-intensity-level-calculator","new":true,"description":"Convert sound intensity to a reference-relative decibel level.","descriptions":{"zh-CN":"将声强换算为相对参考值的分贝级。"},"priority":383}];

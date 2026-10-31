@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"real-investment-return-calculator","name":"Real Investment Return","names":{"zh-CN":"实际投资回报率"},"domain":"Finance","keywords":"Real Investment Return 实际投资回报率 real-investment-return-calculator","new":true,"description":"Remove inflation from a nominal investment return.","descriptions":{"zh-CN":"从名义投资回报中剔除通胀影响。"},"priority":183}];

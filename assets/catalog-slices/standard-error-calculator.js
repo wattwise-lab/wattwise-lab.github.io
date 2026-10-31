@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"standard-error-calculator","name":"Standard Error of the Mean","names":{"zh-CN":"均值标准误"},"domain":"Math and Time","keywords":"Standard Error of the Mean 均值标准误 standard-error-calculator","new":true,"description":"Estimate the standard error from independent sample observations.","descriptions":{"zh-CN":"根据独立样本观测值估算均值标准误。"},"priority":452}];

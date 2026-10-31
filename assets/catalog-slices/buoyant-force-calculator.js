@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"buoyant-force-calculator","name":"Buoyant Force","names":{"zh-CN":"浮力"},"domain":"Science","keywords":"Buoyant Force 浮力 buoyant-force-calculator","new":true,"description":"Apply displaced-fluid volume to Archimedes’ principle.","descriptions":{"zh-CN":"用排开流体体积应用阿基米德原理。"},"priority":394}];

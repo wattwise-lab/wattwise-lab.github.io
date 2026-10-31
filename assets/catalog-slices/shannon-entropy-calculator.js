@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"shannon-entropy-calculator","name":"Shannon Entropy","names":{"zh-CN":"香农信息熵"},"domain":"Math and Time","keywords":"Shannon Entropy 香农信息熵 shannon-entropy-calculator","new":true,"description":"Measure uncertainty in a discrete probability distribution.","descriptions":{"zh-CN":"衡量离散概率分布的不确定性。"},"priority":495}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"linear-cut-yield-calculator","name":"Linear Cut Yield","names":{"zh-CN":"直料裁切利用率"},"domain":"Home and Everyday","keywords":"Linear Cut Yield 直料裁切利用率 linear-cut-yield-calculator","new":true,"description":"Account for blade kerf when cutting repeated equal pieces.","descriptions":{"zh-CN":"裁切等长材料时计入锯缝。"},"priority":254}];

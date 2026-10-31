@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"strength-bodyweight-ratio-calculator","name":"Strength to Bodyweight Ratio","names":{"zh-CN":"力量体重比"},"domain":"Health","keywords":"Strength to Bodyweight Ratio 力量体重比 strength-bodyweight-ratio-calculator","new":true,"description":"Express a lifted load as a multiple of body mass.","descriptions":{"zh-CN":"将举起重量表示为体重倍数。"},"priority":223}];

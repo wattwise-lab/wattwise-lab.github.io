@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"impulse-calculator","name":"Impulse","names":{"zh-CN":"冲量"},"domain":"Science","keywords":"Impulse 冲量 impulse-calculator","new":true,"description":"Calculate momentum change from a constant or average force.","descriptions":{"zh-CN":"由恒力或平均力计算动量变化。"},"priority":419}];

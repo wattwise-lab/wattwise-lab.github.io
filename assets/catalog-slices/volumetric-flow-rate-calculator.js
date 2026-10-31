@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"volumetric-flow-rate-calculator","name":"Volumetric Flow Rate","names":{"zh-CN":"体积流量"},"domain":"Science","keywords":"Volumetric Flow Rate 体积流量 volumetric-flow-rate-calculator","new":true,"description":"Combine section area and mean flow speed.","descriptions":{"zh-CN":"结合截面积与平均流速。"},"priority":395}];

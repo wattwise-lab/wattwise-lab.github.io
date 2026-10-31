@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"dynamic-viscosity-converter","name":"Dynamic Viscosity Converter","names":{"zh-CN":"动力黏度单位换算"},"domain":"Converters","keywords":"Dynamic Viscosity Converter 动力黏度单位换算 dynamic-viscosity-converter","new":true,"description":"Convert dynamic viscosity, including poise and centipoise.","descriptions":{"zh-CN":"换算动力黏度，包括泊与厘泊。"},"priority":114}];

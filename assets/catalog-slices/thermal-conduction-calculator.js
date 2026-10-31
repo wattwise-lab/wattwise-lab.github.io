@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"thermal-conduction-calculator","name":"Steady Thermal Conduction","names":{"zh-CN":"稳态导热"},"domain":"Science","keywords":"Steady Thermal Conduction 稳态导热 thermal-conduction-calculator","new":true,"description":"Estimate one-dimensional heat flow across a flat material layer.","descriptions":{"zh-CN":"估计平板材料层的一维热传导。"},"priority":407}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"root-mean-square-calculator","name":"Root Mean Square","names":{"zh-CN":"均方根"},"domain":"Math and Time","keywords":"Root Mean Square 均方根 root-mean-square-calculator","new":true,"description":"Find the quadratic mean of signed observations.","descriptions":{"zh-CN":"计算可含正负数的观测值的均方根。"},"priority":444}];

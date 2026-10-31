@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"gpa-calculator","name":"GPA Calculator","domain":"Math and Time","keywords":"gpa grade point average grades college gpa","names":{"zh-CN":"平均绩点 GPA","ja":"GPA 計算"},"new":false,"description":"Credit-weighted GPA on a 4.0 scale for up to four courses.","descriptions":{"zh-CN":"按各门课程的绩点和学分，计算加权平均绩点。"},"priority":38}];

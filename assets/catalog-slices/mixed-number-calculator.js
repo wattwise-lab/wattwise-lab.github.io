@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mixed-number-calculator","name":"Mixed Number to Improper Fraction","names":{"zh-CN":"带分数转假分数"},"domain":"Math and Time","keywords":"Mixed Number to Improper Fraction 带分数转假分数 mixed-number-calculator","new":true,"description":"Convert a signed whole part and fractional part into one fraction.","descriptions":{"zh-CN":"将带符号的带分数转为假分数。"},"priority":319}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"voltage-converter","name":"Voltage Converter","names":{"zh-CN":"电压单位换算"},"domain":"Converters","keywords":"Voltage Converter 电压单位换算 voltage-converter","new":true,"description":"Convert electric potential differences with SI prefixes.","descriptions":{"zh-CN":"用 SI 前缀换算电势差。"},"priority":105}];

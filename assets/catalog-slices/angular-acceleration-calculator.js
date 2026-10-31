@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"angular-acceleration-calculator","name":"Angular Acceleration","names":{"zh-CN":"角加速度"},"domain":"Science","keywords":"Angular Acceleration 角加速度 angular-acceleration-calculator","new":true,"description":"Find average angular acceleration between two velocities.","descriptions":{"zh-CN":"由两个角速度求平均角加速度。"},"priority":431}];

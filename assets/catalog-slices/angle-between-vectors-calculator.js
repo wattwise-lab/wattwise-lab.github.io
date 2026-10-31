@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"angle-between-vectors-calculator","name":"Angle between Vectors","names":{"zh-CN":"向量夹角"},"domain":"Math and Time","keywords":"Angle between Vectors 向量夹角 angle-between-vectors-calculator","new":true,"description":"Find the smaller angle between two nonzero vectors.","descriptions":{"zh-CN":"求两个非零三维向量之间的较小夹角。"},"priority":360}];

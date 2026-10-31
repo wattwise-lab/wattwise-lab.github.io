@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sum-of-integers-calculator","name":"Sum of Consecutive Integers","names":{"zh-CN":"连续整数求和"},"domain":"Math and Time","keywords":"Sum of Consecutive Integers 连续整数求和 sum-of-integers-calculator","new":true,"description":"Sum all positive integers from one through n.","descriptions":{"zh-CN":"计算从 1 到 n 的正整数之和。"},"priority":347}];

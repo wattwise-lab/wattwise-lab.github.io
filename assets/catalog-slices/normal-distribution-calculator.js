@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"normal-distribution-calculator","name":"Normal Cumulative Probability","names":{"zh-CN":"正态分布累积概率"},"domain":"Math and Time","keywords":"Normal Cumulative Probability 正态分布累积概率 normal-distribution-calculator","new":true,"description":"Convert a normal-distribution threshold into a percentile.","descriptions":{"zh-CN":"将正态分布阈值转换为累积百分位。"},"priority":474}];

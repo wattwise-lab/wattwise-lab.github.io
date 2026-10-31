@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ab-proportion-test-calculator","name":"A/B Proportion Test","names":{"zh-CN":"A/B 比例检验"},"domain":"Math and Time","keywords":"A/B Proportion Test A/B 比例检验 ab-proportion-test-calculator","new":true,"description":"Compare two independent conversion rates using a two-sided pooled z test.","descriptions":{"zh-CN":"用双侧合并 z 检验比较两个独立转化率。"},"priority":492}];

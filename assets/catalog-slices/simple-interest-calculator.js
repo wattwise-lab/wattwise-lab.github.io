@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"simple-interest-calculator","name":"Simple Interest Calculator","domain":"Finance","keywords":"simple interest interest loan interest","names":{"zh-CN":"单利计算器","ja":"単利計算"},"new":false,"description":"Calculate interest earned or charged only on the original principal.","descriptions":{"zh-CN":"按本金、年利率和时间，计算不计复利的利息。"},"priority":57}];

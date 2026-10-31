@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"body-surface-area-calculator","name":"Body Surface Area","names":{"zh-CN":"体表面积"},"domain":"Health","keywords":"Body Surface Area 体表面积 body-surface-area-calculator","new":true,"description":"Estimate body surface area with the Mosteller formula.","descriptions":{"zh-CN":"用 Mosteller 公式估算体表面积。"},"priority":215}];

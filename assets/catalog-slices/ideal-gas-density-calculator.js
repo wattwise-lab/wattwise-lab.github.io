@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ideal-gas-density-calculator","name":"Ideal Gas Density","names":{"zh-CN":"理想气体密度"},"domain":"Science","keywords":"Ideal Gas Density 理想气体密度 ideal-gas-density-calculator","new":true,"description":"Find ideal gas density from molar mass, pressure and temperature.","descriptions":{"zh-CN":"由摩尔质量、压强与温度求理想气体密度。"},"priority":413}];

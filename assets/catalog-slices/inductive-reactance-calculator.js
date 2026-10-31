@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"inductive-reactance-calculator","name":"Inductive Reactance","names":{"zh-CN":"感抗"},"domain":"Science","keywords":"Inductive Reactance 感抗 inductive-reactance-calculator","new":true,"description":"Calculate frequency-dependent ideal inductor reactance.","descriptions":{"zh-CN":"计算理想电感随频率变化的感抗。"},"priority":372}];

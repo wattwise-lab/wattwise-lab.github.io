@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"photo-print-size-calculator","name":"Photo Print Size","names":{"zh-CN":"照片打印尺寸"},"domain":"Digital and Technology","keywords":"Photo Print Size 照片打印尺寸 photo-print-size-calculator","new":true,"description":"Convert pixel dimensions and a chosen print density into physical size.","descriptions":{"zh-CN":"由像素尺寸与自选打印密度换算实际尺寸。"},"priority":129}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"coulomb-force-calculator","name":"Coulomb Force","names":{"zh-CN":"库仑力"},"domain":"Science","keywords":"Coulomb Force 库仑力 coulomb-force-calculator","new":true,"description":"Find electrostatic force magnitude between point charges in vacuum.","descriptions":{"zh-CN":"求真空中点电荷间的静电力大小。"},"priority":376}];

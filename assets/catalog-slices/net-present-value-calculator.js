@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"net-present-value-calculator","name":"Net Present Value","names":{"zh-CN":"净现值 NPV"},"domain":"Finance","keywords":"Net Present Value 净现值 NPV net-present-value-calculator","new":true,"description":"Discount a complete dated-by-period cash-flow series.","descriptions":{"zh-CN":"折现包含初始投入的等间隔现金流。"},"priority":156}];

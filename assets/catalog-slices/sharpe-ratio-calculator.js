@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sharpe-ratio-calculator","name":"Sharpe Ratio","names":{"zh-CN":"夏普比率"},"domain":"Finance","keywords":"Sharpe Ratio 夏普比率 sharpe-ratio-calculator","new":true,"description":"Compare excess return with total return volatility.","descriptions":{"zh-CN":"比较超额回报与总回报波动。"},"priority":176}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"electric-power-calculator","name":"DC Electric Power","names":{"zh-CN":"直流电功率"},"domain":"Science","keywords":"DC Electric Power 直流电功率 electric-power-calculator","new":true,"description":"Calculate electrical power and energy from voltage and current.","descriptions":{"zh-CN":"由电压与电流计算电功率和耗能。"},"priority":361}];

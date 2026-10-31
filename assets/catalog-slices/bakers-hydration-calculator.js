@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bakers-hydration-calculator","name":"Baker’s Hydration","names":{"zh-CN":"烘焙含水率"},"domain":"Home and Everyday","keywords":"Baker’s Hydration 烘焙含水率 bakers-hydration-calculator","new":true,"description":"Include preferment flour and water in total dough hydration.","descriptions":{"zh-CN":"将酵种中的面粉与水计入面团总水粉比。"},"priority":272}];

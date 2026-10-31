@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"coefficient-of-variation-calculator","name":"Coefficient of Variation","names":{"zh-CN":"变异系数"},"domain":"Math and Time","keywords":"Coefficient of Variation 变异系数 coefficient-of-variation-calculator","new":true,"description":"Compare sample standard deviation with a positive mean.","descriptions":{"zh-CN":"比较样本标准差与正均值的相对大小。"},"priority":451}];

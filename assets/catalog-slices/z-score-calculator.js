@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"z-score-calculator","name":"Z-Score","names":{"zh-CN":"标准分数 Z"},"domain":"Math and Time","keywords":"Z-Score 标准分数 Z z-score-calculator","new":true,"description":"Express a value’s distance from a reference mean in standard deviations.","descriptions":{"zh-CN":"用标准差表示数值偏离参考均值的程度。"},"priority":450}];

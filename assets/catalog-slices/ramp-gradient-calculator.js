@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ramp-gradient-calculator","name":"Ramp Gradient","names":{"zh-CN":"坡道坡度"},"domain":"Home and Everyday","keywords":"Ramp Gradient 坡道坡度 ramp-gradient-calculator","new":true,"description":"Compare rise and horizontal run with actual ramp length.","descriptions":{"zh-CN":"比较升高、水平距离与实际坡长。"},"priority":250}];

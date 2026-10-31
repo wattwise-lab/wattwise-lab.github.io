@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"carpet-roll-length-calculator","name":"Carpet Roll Length","names":{"zh-CN":"地毯卷长"},"domain":"Home and Everyday","keywords":"Carpet Roll Length 地毯卷长 carpet-roll-length-calculator","new":true,"description":"Compare two rectangular orientations using fixed-width carpet.","descriptions":{"zh-CN":"比较固定卷宽地毯的两种铺设方向。"},"priority":242}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sum-of-cubes-calculator","name":"Sum of Cubes","names":{"zh-CN":"立方和"},"domain":"Math and Time","keywords":"Sum of Cubes 立方和 sum-of-cubes-calculator","new":true,"description":"Sum the cubes of positive integers from one through n.","descriptions":{"zh-CN":"计算 1 到 n 各整数的立方之和。"},"priority":349}];

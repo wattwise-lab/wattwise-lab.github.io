@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"magnetic-charge-force-calculator","name":"Magnetic Force on a Charge","names":{"zh-CN":"运动电荷磁力"},"domain":"Science","keywords":"Magnetic Force on a Charge 运动电荷磁力 magnetic-charge-force-calculator","new":true,"description":"Find magnetic force magnitude from velocity and field angle.","descriptions":{"zh-CN":"由速度与磁场夹角求磁力大小。"},"priority":378}];

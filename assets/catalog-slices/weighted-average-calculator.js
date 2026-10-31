@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"weighted-average-calculator","name":"Weighted Average","names":{"zh-CN":"加权平均数"},"domain":"Math and Time","keywords":"Weighted Average 加权平均数 weighted-average-calculator","new":true,"description":"Combine values with explicit nonnegative weights.","descriptions":{"zh-CN":"按非负权重计算一组数的加权平均。"},"priority":441}];

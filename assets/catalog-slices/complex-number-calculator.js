@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"complex-number-calculator","name":"Complex Arithmetic","names":{"zh-CN":"复数运算"},"domain":"Math and Time","keywords":"Complex Arithmetic 复数运算 complex-number-calculator","new":true,"description":"Add, subtract, multiply or divide two complex numbers.","descriptions":{"zh-CN":"对两个复数进行加减乘除。"},"priority":355}];

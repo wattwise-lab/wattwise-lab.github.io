@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"jump-height-flight-time-calculator","name":"Jump Height from Flight Time","names":{"zh-CN":"腾空时间估计跳高"},"domain":"Health","keywords":"Jump Height from Flight Time 腾空时间估计跳高 jump-height-flight-time-calculator","new":true,"description":"Estimate vertical rise from a measured flight interval.","descriptions":{"zh-CN":"由测量腾空时间估计竖直上升高度。"},"priority":231}];

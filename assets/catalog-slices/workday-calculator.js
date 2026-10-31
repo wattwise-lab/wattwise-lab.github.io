@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"workday-calculator","name":"Workday Calculator","domain":"Math and Time","keywords":"workday working days business days work days","names":{"zh-CN":"工作日计算器","ja":"営業日計算"},"new":false,"description":"Weekdays in a date range, excluding weekends, with an optional holiday deduction.","descriptions":{"zh-CN":"计算两个日期间的工作日，支持排除你填写的节假日。"},"priority":39}];

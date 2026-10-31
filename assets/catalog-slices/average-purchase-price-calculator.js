@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"average-purchase-price-calculator","name":"Average Purchase Price","names":{"zh-CN":"分批买入均价"},"domain":"Finance","keywords":"Average Purchase Price 分批买入均价 average-purchase-price-calculator","new":true,"description":"Combine purchases by cash spent and unit price, with fees.","descriptions":{"zh-CN":"合并分批买入金额、单价与费用，计算持仓均价。"},"priority":181}];

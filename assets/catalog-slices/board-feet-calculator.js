@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"board-feet-calculator","name":"Lumber Board Feet","names":{"zh-CN":"木材板英尺"},"domain":"Home and Everyday","keywords":"Lumber Board Feet 木材板英尺 board-feet-calculator","new":true,"description":"Measure lumber volume using nominal inch dimensions.","descriptions":{"zh-CN":"用英寸标称尺寸计算板英尺。"},"priority":253}];

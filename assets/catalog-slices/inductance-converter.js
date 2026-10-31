@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"inductance-converter","name":"Inductance Converter","names":{"zh-CN":"电感单位换算"},"domain":"Converters","keywords":"Inductance Converter 电感单位换算 inductance-converter","new":true,"description":"Convert henrys and their decimal submultiples.","descriptions":{"zh-CN":"换算亨利及其十进制分数单位。"},"priority":109}];

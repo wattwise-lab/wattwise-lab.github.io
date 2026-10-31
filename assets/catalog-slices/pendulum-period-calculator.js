@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pendulum-period-calculator","name":"Simple Pendulum Period","names":{"zh-CN":"单摆周期"},"domain":"Science","keywords":"Simple Pendulum Period 单摆周期 pendulum-period-calculator","new":true,"description":"Estimate the small-angle period of an ideal pendulum.","descriptions":{"zh-CN":"估计理想单摆的小角度周期。"},"priority":438}];

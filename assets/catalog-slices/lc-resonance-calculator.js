@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"lc-resonance-calculator","name":"LC Resonant Frequency","names":{"zh-CN":"LC 谐振频率"},"domain":"Science","keywords":"LC Resonant Frequency LC 谐振频率 lc-resonance-calculator","new":true,"description":"Find natural resonance of ideal inductance and capacitance.","descriptions":{"zh-CN":"求理想电感电容的固有谐振频率。"},"priority":371}];

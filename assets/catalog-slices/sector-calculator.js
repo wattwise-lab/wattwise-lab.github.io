@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sector-calculator","name":"Circular Sector","names":{"zh-CN":"扇形面积"},"domain":"Math and Time","keywords":"Circular Sector 扇形面积 sector-calculator","new":true,"description":"Find the area, arc and boundary length of a circular sector.","descriptions":{"zh-CN":"由半径和圆心角求扇形面积、弧长及边界长度。"},"priority":279}];

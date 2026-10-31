@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"radioactivity-converter","name":"Radioactivity Converter","names":{"zh-CN":"放射性活度单位换算"},"domain":"Converters","keywords":"Radioactivity Converter 放射性活度单位换算 radioactivity-converter","new":true,"description":"Convert decay activity units independently of absorbed dose.","descriptions":{"zh-CN":"换算衰变活度，保持其与吸收剂量的区别。"},"priority":119}];

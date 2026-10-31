@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"completing-square-calculator","name":"Completing the Square","names":{"zh-CN":"配方法"},"domain":"Math and Time","keywords":"Completing the Square 配方法 completing-square-calculator","new":true,"description":"Rewrite ax² + bx + c as a(x + h)² + k.","descriptions":{"zh-CN":"把二次式写成 a(x+h)²+k 的形式。"},"priority":342}];

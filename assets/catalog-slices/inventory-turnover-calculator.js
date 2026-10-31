@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"inventory-turnover-calculator","name":"Inventory Turnover","names":{"zh-CN":"存货周转率"},"domain":"Business","keywords":"Inventory Turnover 存货周转率 inventory-turnover-calculator","new":true,"description":"Compare cost of goods sold with average inventory.","descriptions":{"zh-CN":"比较销售成本与平均存货。"},"priority":198}];

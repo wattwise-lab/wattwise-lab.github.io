@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"capacitive-reactance-calculator","name":"Capacitive Reactance","names":{"zh-CN":"容抗"},"domain":"Science","keywords":"Capacitive Reactance 容抗 capacitive-reactance-calculator","new":true,"description":"Calculate ideal capacitor reactance at a positive frequency.","descriptions":{"zh-CN":"计算正频率下理想电容的容抗。"},"priority":373}];

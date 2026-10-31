@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mechanical-work-calculator","name":"Work by a Constant Force","names":{"zh-CN":"恒力做功"},"domain":"Science","keywords":"Work by a Constant Force 恒力做功 mechanical-work-calculator","new":true,"description":"Find the component of constant force along displacement.","descriptions":{"zh-CN":"计算恒力沿位移方向所做的功。"},"priority":422}];

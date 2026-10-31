@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"angular-velocity-calculator","name":"Angular Velocity","names":{"zh-CN":"角速度"},"domain":"Science","keywords":"Angular Velocity 角速度 angular-velocity-calculator","new":true,"description":"Convert rotation frequency into angular and rim speed.","descriptions":{"zh-CN":"由转动频率求角速度与边缘线速度。"},"priority":430}];

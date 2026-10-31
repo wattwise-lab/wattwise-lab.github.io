@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /embed/
 
 Sitemap: https://calcmintly.com/sitemap.xml
-Host: https://calcmintly.com

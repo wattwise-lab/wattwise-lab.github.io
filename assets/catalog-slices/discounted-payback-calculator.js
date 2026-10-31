@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"discounted-payback-calculator","name":"Discounted Payback Period","names":{"zh-CN":"折现回收期"},"domain":"Finance","keywords":"Discounted Payback Period 折现回收期 discounted-payback-calculator","new":true,"description":"Find when discounted inflows recover an initial investment.","descriptions":{"zh-CN":"计算折现后收入何时收回初始投入。"},"priority":159}];

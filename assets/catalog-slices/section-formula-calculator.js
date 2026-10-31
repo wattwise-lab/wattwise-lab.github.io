@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"section-formula-calculator","name":"Internal Division Point","names":{"zh-CN":"内分点计算器"},"domain":"Math and Time","keywords":"Internal Division Point 内分点计算器 section-formula-calculator","new":true,"description":"Locate a point dividing a line segment in a positive ratio.","descriptions":{"zh-CN":"按正比例求线段的内分点。"},"priority":339}];

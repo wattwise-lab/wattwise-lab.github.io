@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"law-of-cosines-calculator","name":"Law of Cosines","names":{"zh-CN":"余弦定理"},"domain":"Math and Time","keywords":"Law of Cosines 余弦定理 law-of-cosines-calculator","new":true,"description":"Find the missing side and area from two sides and their included angle.","descriptions":{"zh-CN":"由两边及夹角求第三边和三角形面积。"},"priority":286}];

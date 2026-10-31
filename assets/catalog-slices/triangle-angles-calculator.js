@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"triangle-angles-calculator","name":"Triangle Angles from Sides","names":{"zh-CN":"三边求三角形内角"},"domain":"Math and Time","keywords":"Triangle Angles from Sides 三边求三角形内角 triangle-angles-calculator","new":true,"description":"Find all three angles opposite the supplied side lengths.","descriptions":{"zh-CN":"根据三边计算其各自对角。"},"priority":307}];

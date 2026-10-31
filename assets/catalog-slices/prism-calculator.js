@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"prism-calculator","name":"Right Prism","names":{"zh-CN":"直棱柱计算器"},"domain":"Math and Time","keywords":"Right Prism 直棱柱计算器 prism-calculator","new":true,"description":"Find volume and surface from base area, base perimeter and length.","descriptions":{"zh-CN":"由底面积、底面周长及柱高求直棱柱体积和表面积。"},"priority":300}];

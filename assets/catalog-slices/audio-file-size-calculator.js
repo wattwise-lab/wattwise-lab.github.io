@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"audio-file-size-calculator","name":"Audio File Size","names":{"zh-CN":"音频文件大小"},"domain":"Digital and Technology","keywords":"Audio File Size 音频文件大小 audio-file-size-calculator","new":true,"description":"Estimate encoded audio size from total stream bitrate.","descriptions":{"zh-CN":"由编码后总音频码率估计大小。"},"priority":125}];

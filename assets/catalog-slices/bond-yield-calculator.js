@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bond-yield-calculator","name":"Bond Yield to Maturity","names":{"zh-CN":"债券到期收益率"},"domain":"Finance","keywords":"Bond Yield to Maturity 债券到期收益率 bond-yield-calculator","new":true,"description":"Solve a fixed-coupon bond yield from its coupon-date price.","descriptions":{"zh-CN":"根据付息日价格反求固定票息债券到期收益率。"},"priority":163}];

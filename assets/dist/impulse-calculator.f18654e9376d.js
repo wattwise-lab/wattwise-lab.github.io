@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"impulse-calculator",name:"Impulse",names:{"zh-CN":"\u51B2\u91CF"},domain:"Science",keywords:"Impulse \u51B2\u91CF impulse-calculator",new:!0,description:"Calculate momentum change from a constant or average force.",descriptions:{"zh-CN":"\u7531\u6052\u529B\u6216\u5E73\u5747\u529B\u8BA1\u7B97\u52A8\u91CF\u53D8\u5316\u3002"},priority:419}];

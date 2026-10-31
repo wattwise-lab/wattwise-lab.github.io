@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"combined-decibel-level-calculator","name":"Combined Decibel Level","names":{"zh-CN":"分贝声级叠加"},"domain":"Science","keywords":"Combined Decibel Level 分贝声级叠加 combined-decibel-level-calculator","new":true,"description":"Add independent incoherent levels measured on the same basis.","descriptions":{"zh-CN":"叠加使用相同口径测量的独立非相干声级。"},"priority":384}];

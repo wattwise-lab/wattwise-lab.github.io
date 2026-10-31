@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"matrix-multiplication-calculator","name":"2 × 2 Matrix Multiplication","names":{"zh-CN":"二阶矩阵乘法"},"domain":"Math and Time","keywords":"2 × 2 Matrix Multiplication 二阶矩阵乘法 matrix-multiplication-calculator","new":true,"description":"Multiply two two-by-two matrices in the stated order.","descriptions":{"zh-CN":"按指定顺序计算两个二阶矩阵的乘积。"},"priority":354}];

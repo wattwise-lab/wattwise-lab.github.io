@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"annuity-present-value-calculator","name":"Annuity Present Value","names":{"zh-CN":"年金现值"},"domain":"Finance","keywords":"Annuity Present Value 年金现值 annuity-present-value-calculator","new":true,"description":"Discount equal end-of-period payments to today.","descriptions":{"zh-CN":"将等额期末付款折现至现在。"},"priority":151}];

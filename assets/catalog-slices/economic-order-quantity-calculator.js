@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"economic-order-quantity-calculator","name":"Economic Order Quantity","names":{"zh-CN":"经济订货批量 EOQ"},"domain":"Business","keywords":"Economic Order Quantity 经济订货批量 EOQ economic-order-quantity-calculator","new":true,"description":"Balance ordering and inventory holding costs.","descriptions":{"zh-CN":"权衡订货与存货持有成本。"},"priority":203}];

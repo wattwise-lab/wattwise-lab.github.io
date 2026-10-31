@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"power-converter","name":"Power Converter","names":{"zh-CN":"功率单位换算"},"domain":"Converters","keywords":"Power Converter 功率单位换算 power-converter","new":true,"description":"Convert power, including explicitly defined horsepower.","descriptions":{"zh-CN":"换算功率，并明确马力定义。"},"priority":100}];

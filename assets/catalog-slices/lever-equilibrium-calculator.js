@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"lever-equilibrium-calculator","name":"Lever Equilibrium","names":{"zh-CN":"杠杆平衡"},"domain":"Science","keywords":"Lever Equilibrium 杠杆平衡 lever-equilibrium-calculator","new":true,"description":"Solve a perpendicular balancing force around a pivot.","descriptions":{"zh-CN":"求支点两侧垂直施力的平衡力。"},"priority":425}];

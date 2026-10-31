@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"least-common-multiple-calculator","name":"Least Common Multiple","names":{"zh-CN":"最小公倍数"},"domain":"Math and Time","keywords":"Least Common Multiple 最小公倍数 least-common-multiple-calculator","new":true,"description":"Find the smallest positive common multiple of nonzero integers.","descriptions":{"zh-CN":"求非零整数的最小正公倍数。"},"priority":323}];

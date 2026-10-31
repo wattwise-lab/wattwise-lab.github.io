@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"savings-withdrawal-calculator","name":"Savings Withdrawal Duration","names":{"zh-CN":"储蓄定额提取期限"},"domain":"Finance","keywords":"Savings Withdrawal Duration 储蓄定额提取期限 savings-withdrawal-calculator","new":true,"description":"Estimate how long a balance lasts with fixed monthly withdrawals.","descriptions":{"zh-CN":"估算储蓄按固定金额逐月提取可维持多久。"},"priority":186}];

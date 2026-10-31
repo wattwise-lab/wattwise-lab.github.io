@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"maximum-drawdown-calculator","name":"Maximum Drawdown","names":{"zh-CN":"最大回撤"},"domain":"Finance","keywords":"Maximum Drawdown 最大回撤 maximum-drawdown-calculator","new":true,"description":"Measure the largest peak-to-trough loss in a value series.","descriptions":{"zh-CN":"计算价值序列中从峰值到后续谷值的最大跌幅。"},"priority":180}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"shannon-diversity-calculator","name":"Shannon Diversity Index","names":{"zh-CN":"香农多样性指数"},"domain":"Math and Time","keywords":"Shannon Diversity Index 香农多样性指数 shannon-diversity-calculator","new":true,"description":"Compare abundance diversity and evenness from category counts.","descriptions":{"zh-CN":"根据类别计数比较多样性与均匀度。"},"priority":496}];

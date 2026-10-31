@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"price-book-ratio-calculator","name":"Price to Book Ratio","names":{"zh-CN":"市净率"},"domain":"Finance","keywords":"Price to Book Ratio 市净率 price-book-ratio-calculator","new":true,"description":"Compare share price with positive book value per share.","descriptions":{"zh-CN":"比较股价与正的每股账面价值。"},"priority":171}];

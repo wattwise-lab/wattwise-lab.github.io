@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"session-training-load-calculator","name":"Session Training Load","names":{"zh-CN":"单次训练负荷"},"domain":"Health","keywords":"Session Training Load 单次训练负荷 session-training-load-calculator","new":true,"description":"Multiply session duration by a perceived-exertion rating.","descriptions":{"zh-CN":"将训练时长乘以主观用力评分。"},"priority":221}];

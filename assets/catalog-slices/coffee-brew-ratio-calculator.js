@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"coffee-brew-ratio-calculator","name":"Coffee Brew Ratio","names":{"zh-CN":"咖啡冲煮比例"},"domain":"Home and Everyday","keywords":"Coffee Brew Ratio 咖啡冲煮比例 coffee-brew-ratio-calculator","new":true,"description":"Calculate brew water from coffee dose and a chosen water ratio.","descriptions":{"zh-CN":"由咖啡粉量和自选水粉比求用水量。"},"priority":271}];

@@ -1,1 +1,8 @@
-{"release":"calcmintly-20261030-commercial-workspace","catalogTools":92,"workspaceTools":92,"workspace":"searchable-four-tool-desk","desktopChecks":92,"mobileChecks":92,"resetChecks":91,"productionAcceptance":"recorded-in-release-report"}
+{
+  "release": "calcmintly-unified-500",
+  "catalogTools": 500,
+  "workspaceTools": 500,
+  "locales": 20,
+  "sharedShell": true,
+  "legacyRouter": false
+}

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"geometric-mean-calculator","name":"Geometric Mean","names":{"zh-CN":"几何平均数"},"domain":"Math and Time","keywords":"Geometric Mean 几何平均数 geometric-mean-calculator","new":true,"description":"Average positive multiplicative values using logarithms.","descriptions":{"zh-CN":"用对数计算正数数据的几何平均。"},"priority":442}];
