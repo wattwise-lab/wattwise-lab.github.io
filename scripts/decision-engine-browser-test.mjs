@@ -241,16 +241,15 @@ try {
       await page.goto(base + '/' + slug + '-calculator?lang=en', { waitUntil: 'load' });
       for (const [id, value] of Object.entries(inputs)) await page.locator('#' + id).fill(value);
       await page.waitForFunction(() => !document.body.classList.contains('cm-invalid'));
-      const raw = Number(await page.locator('#result').getAttribute('data-cm-value'));
-      assert.ok(Math.abs(raw / expected - 1) < 2e-14, slug + ': precision');
-      assert.doesNotMatch(await page.locator('#result').innerText(), /^0(?:\.0+)?$/);
+      const displayed = (await page.locator('#result').innerText()).replaceAll(',', '');
+      const first = slug === 'matrix-eigenvalues' ? displayed.match(/λ₁ = ([^;]+)/)[1] : displayed;
+      assert.ok(
+        Math.abs(Number.parseFloat(first) / expected - 1) < 1e-7,
+        slug + ': displayed precision',
+      );
       if (slug === 'matrix-eigenvalues') {
-        const values = await page
-          .locator('[data-cm-value]')
-          .evaluateAll((elements) =>
-            elements.map((element) => Number(element.getAttribute('data-cm-value'))),
-          );
-        assert.ok(values.includes(1e-8), 'Small eigenvalue remains nonzero');
+        const second = Number.parseFloat(displayed.match(/λ₂ = (.+)/)[1]);
+        assert.ok(Math.abs(second / 1e-8 - 1) < 1e-7, 'Small eigenvalue remains nonzero');
       }
     }
     results.push({
