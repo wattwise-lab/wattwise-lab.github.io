@@ -28,5 +28,15 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "استخدم L = B⁻¹(α/2;k,n−k+1) وU = B⁻¹(1−α/2;k+1,n−k). k عدد النجاحات وn عدد المحاولات. عند التعبير عن مستوى الثقة بالكسر العشري c، استخدم α = 1−c؛ وB⁻¹ دالة الكميات لتوزيع بيتا. عالج الحدود وفق k = 0 → L = 0 وk = n → U = 1.",
   "YOUR CALCULATOR DESK": "مساحة حاسباتك",
   "CHOOSE A TOOL": "اختر أداة",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "للمجموع الفرعي ${2}، تبلغ الضريبة {0} بمعدل {1}، ويصبح الإجمالي شاملًا الضريبة {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "للمجموع الفرعي ${2}، تبلغ الضريبة {0} بمعدل {1}، ويصبح الإجمالي شاملًا الضريبة {3}.",
+  "Assumes constant annual consumption and electricity price. Payback includes energy savings only; maintenance, financing, resale and appliance lifetime are excluded.": "يفترض هذا الحساب ثبات الاستهلاك السنوي وسعر الكهرباء. تُحسب فترة استرداد التكلفة من وفورات فاتورة الطاقة فقط؛ ولا تُؤخذ الصيانة والتمويل وإعادة البيع والعمر التشغيلي للجهاز في الحسبان.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "يقدّر كمية المياه التي يمكن جمعها من هطول واحد، باستخدام كفاءة الجمع والحيز المتبقي في الخزان اللذين تدخلهما. لا يتنبأ بالأمطار ولا يقيّم جودة المياه أو سلامتها للشرب.",
+  "Charging electricity from supply (kWh/100 km)": "كهرباء الشحن المسحوبة من المصدر (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "أدخل الكهرباء المسحوبة من مصدر التغذية، بما فيها فواقد الشحن. لا تُحتسب الصيانة والتأمين والضرائب والإهلاك والحوافز.",
+  "Budget buffer (%)": "احتياطي الميزانية (%)",
+  "Preferment total mass (g)": "الكتلة الكلية للعجين المخمر الأولي (g)",
+  "Preferment hydration (%)": "نسبة الماء إلى الدقيق في العجين المخمر الأولي (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "يتضمن هذا الإصدار لوحة مفاتيح جيبية، ولوحة مفاتيح علمية، وآلات حاسبة عملية ضمن تسع فئات، وثلاثة سيناريوهات تخطيط أصلية. لا تُحتسب صفحات اللغات والعروض المضمنة كأدوات منفصلة.",
+  "Physical volume": "الحجم الفيزيائي",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "أدخل قراءتي الضغط الانقباضي والانبساطي بوحدة mmHg. تتحدث النتائج أثناء الكتابة. تُجرى جميع الحسابات محليًا في متصفحك."
 }

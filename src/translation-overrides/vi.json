@@ -40,5 +40,22 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "Dùng L = B⁻¹(α/2;k,n−k+1) và U = B⁻¹(1−α/2;k+1,n−k). k là số lần thành công, n là số lần thử. Với mức tin cậy biểu diễn dưới dạng tỷ lệ c, đặt α = 1−c; B⁻¹ là phân vị beta. Xử lý các biên k = 0 → L = 0 và k = n → U = 1.",
   "YOUR CALCULATOR DESK": "KHÔNG GIAN MÁY TÍNH CỦA BẠN",
   "CHOOSE A TOOL": "CHỌN CÔNG CỤ",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Với tổng tiền trước thuế ${2}, tiền thuế theo mức {1} là {0}; tổng tiền sau thuế là {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Với tổng tiền trước thuế ${2}, tiền thuế theo mức {1} là {0}; tổng tiền sau thuế là {3}.",
+  "Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.": "Trong phép tính này, phần bột đã ủ lên men trước được xem là chỉ gồm bột và nước. Không tính nước từ trứng, sữa và nguyên liệu khác. Tỷ lệ nước được tính bằng cách so sánh tổng khối lượng nước với tổng khối lượng bột.",
+  "Uses the product seed rate and pack mass you enter, with an optional waste allowance. Does not choose a seed variety, sowing season or agronomic application rate.": "Sử dụng lượng hạt gieo và khối lượng mỗi gói do bạn nhập, có thể cộng thêm phần hao hụt. Công cụ không chọn giống, mùa gieo hay lượng hạt gieo phù hợp về mặt nông học.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Ước tính lượng nước thu được từ một đợt mưa theo hiệu suất thu gom và dung tích trống còn lại trong bể do bạn nhập. Không dự báo mưa hoặc đánh giá chất lượng nước và độ an toàn khi uống.",
+  "Charging electricity from supply (kWh/100 km)": "Điện năng lấy từ nguồn để sạc (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Nhập điện năng lấy từ nguồn, bao gồm tổn thất khi sạc. Không tính bảo trì, bảo hiểm, thuế, khấu hao và ưu đãi.",
+  "Budget buffer (%)": "Khoản dự phòng ngân sách (%)",
+  "Preferment total mass (g)": "Tổng khối lượng phần bột đã ủ lên men trước (g)",
+  "Preferment hydration (%)": "Tỷ lệ nước so với bột trong phần bột đã ủ lên men trước (%)",
+  "Use Fₚ = S/(1+h), Wₚ = S−Fₚ and H = (W+Wₚ)/(F+Fₚ). S is preferment mass, h is its hydration fraction, and F and W are main-dough flour and water, all masses in g. Total hydration H is displayed as a percentage.": "Dùng Fₚ = S/(1+h), Wₚ = S−Fₚ và H = (W+Wₚ)/(F+Fₚ). S là khối lượng phần bột đã ủ lên men trước, h là tỷ lệ nước so với bột của phần đó ở dạng thập phân, còn F và W là khối lượng bột và nước của phần bột nhào chính, tất cả tính bằng g. Tỷ lệ nước tổng H được hiển thị dưới dạng phần trăm.",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Bản phát hành này bao gồm bàn phím bỏ túi, bàn phím khoa học, máy tính thực tế thuộc chín danh mục và ba kịch bản lập kế hoạch ban đầu. Các trang ngôn ngữ và chế độ xem nhúng không được tính là các công cụ riêng biệt.",
+  "Include preferment flour and water in total dough hydration.": "Tính cả bột và nước có trong phần bột ủ trước vào tỷ lệ nước/bột của toàn bộ khối bột.",
+  "Physical volume": "Thể tích",
+  "Right Rectangular Pyramid": "Hình chóp đứng đáy hình chữ nhật",
+  "Ellipsoid Volume": "Thể tích khối ellipsoid",
+  "Find ellipsoid volume from its three perpendicular semiaxes.": "Tính thể tích khối ellipsoid từ ba bán trục vuông góc với nhau.",
+  "Use V = 4πabc/3. a, b and c are the ellipsoid semiaxes in the same unit, not full diameters. Volume V uses the cubed length unit.": "Dùng V = 4πabc/3. a, b và c là độ dài ba bán trục của khối ellipsoid trong cùng một đơn vị, không phải toàn bộ đường kính. Thể tích V có đơn vị là lập phương của đơn vị chiều dài.",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Nhập huyết áp tâm thu và tâm trương theo đơn vị mmHg. Kết quả cập nhật khi bạn nhập. Mọi phép tính được thực hiện cục bộ trong trình duyệt của bạn."
 }

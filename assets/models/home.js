@@ -338,7 +338,7 @@
     ],
     (v) => [
       R('Total board feet|总板英尺', (v.t * v.w * v.l * v.q) / 12, 'board ft'),
-      R('Volume|体积', ((v.t * v.w * v.l * v.q) / 12) * 0.002359737216, 'm³'),
+      R('Physical volume|体积', ((v.t * v.w * v.l * v.q) / 12) * 0.002359737216, 'm³'),
     ],
     'Use B = twLq/12. t and w are thickness and width in in, L is length in ft, and q is piece count. B is total board feet.|使用 B = twLq/12。t 与 w 为厚度及宽度（in），L 为长度（ft），q 为件数；B 为总板英尺。',
     [80, 0.18877897728],
@@ -408,6 +408,7 @@
     ],
     'Use V = lw(a+b)/2. l and w are rectangular pool length and width; a and b are shallow and deep depths, all in m. V is in m³, assuming a uniformly sloping floor.|使用 V = lw(a+b)/2。l 与 w 为矩形泳池长宽，a 与 b 为浅深两端深度，均使用 m；假设池底均匀倾斜，V 的单位为 m³。',
     [60, 60000],
+    'Uses internal rectangular dimensions and a uniformly sloping floor. Steps, benches, curved walls and changes in water level are not modeled.|使用池内矩形尺寸，假设池底均匀倾斜；不建模台阶、座台、曲面池壁及水位变化。',
   );
   D(
     'rainwater-harvesting',
@@ -429,6 +430,7 @@
     },
     'Use V = Are. A is roof catchment area in m², r is rainfall in mm, and e is collection efficiency as a fraction. V is potential collected litres; actual storage is capped by entered spare tank capacity.|使用 V = Are。A 为集雨屋面面积（m²），r 为降雨量（mm），e 为收集效率的小数比例；V 为潜在集水升数，实际存水受自填水箱剩余容量限制。',
     [1600, 1000, 600],
+    'Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.|按自填收集效率和水箱剩余容量估算单次降雨可收集的水量，不预测降雨，也不评估水质或饮用安全。',
   );
   D(
     'irrigation-runtime',
@@ -449,6 +451,7 @@
     },
     'Use V = Ad/e and t = V/q. A is area in m², d is chosen water depth in mm, e is application efficiency as a fraction, and q is total emitter flow in L/min. V is litres and t is minutes.|使用 V = Ad/e 及 t = V/q。A 为面积（m²），d 为自选灌水深度（mm），e 为施用效率的小数比例，q 为滴头总流量（L/min）；V 为升数，t 为分钟数。',
     [12.5, 250],
+    'Assumes constant total emitter flow and the entered application efficiency. The water-depth target is chosen by you; crop needs, soil behavior and weather are not assessed.|假设滴头总流量和自填施用效率保持不变；灌水深度由你选定，不评估作物需求、土壤特性或天气。',
   );
   D(
     'grass-seed-quantity',
@@ -469,6 +472,7 @@
     },
     'Use M = Ar(1+w). A is area in m², r is labelled sowing rate in g/m², and w is the waste fraction. M is grams before conversion to kilograms; packs are rounded up using entered pack mass.|使用 M = Ar(1+w)。A 为面积（m²），r 为标签播种率（g/m²），w 为损耗比例；M 为克数，随后换算为千克，并按自填每包质量向上取整为包数。',
     [0.66, 1],
+    'Uses the product seed rate and pack mass you enter, with an optional waste allowance. Does not choose a seed variety, sowing season or agronomic application rate.|按自填产品播种率、包装质量和可选损耗余量换算，不代选草籽品种、播种季节或农艺施用率。',
   );
   D(
     'fertilizer-nitrogen-amount',
@@ -595,6 +599,7 @@
     },
     'Use S = (Eₒ−Eₙ)p. Eₒ and Eₙ are old and new annual energy use in kWh, and p is price per kWh. S is annual bill saving; simple payback divides net replacement cost by a positive saving.|使用 S = (Eₒ−Eₙ)p。Eₒ 与 Eₙ 为旧、新电器年耗电（kWh），p 为每 kWh 电价；S 为年电费节省，简单回收期为净更换成本除以正向节省。',
     [50, 8],
+    'Assumes constant annual consumption and electricity price. Payback includes energy savings only; maintenance, financing, resale and appliance lifetime are excluded.|假设年耗电和电价保持不变；回收期只计能源费节省，不含维护、融资、转售及电器使用寿命。',
   );
   D(
     'ev-fuel-cost-comparison',
@@ -603,7 +608,11 @@
     [
       n('f', 'Fuel consumption (L/100 km)|油耗（L/100 km）', 7),
       n('p', 'Fuel price per litre|每升燃油价格', 1.5),
-      n('e', 'EV wall energy (kWh/100 km)|电车墙端能耗（kWh/100 km）', 18),
+      n(
+        'e',
+        'Charging electricity from supply (kWh/100 km)|充电侧取电量（含损耗，kWh/100 km）',
+        18,
+      ),
       n('q', 'Electricity price per kWh|每 kWh 电价', 0.25),
       n('d', 'Annual distance (km)|年里程（km）', 10000),
       n('c', 'Extra EV purchase cost|电车额外购置成本', 6000),
@@ -625,7 +634,7 @@
     },
     'Use S = (fp−eq)D/100. f is fuel litres and e is EV wall energy in kWh per 100 km; p is fuel price per litre, q is electricity price per kWh, and D is annual distance in km. S is annual energy-cost saving.|使用 S = (fp−eq)D/100。f 为每 100 km 油耗升数，e 为同里程充电时从电网取用的电量（kWh，包含充电损耗），p 为每升油价，q 为每 kWh 电价，D 为年里程（km）；S 为年能源费节省。',
     [10.5, 4.5, 600, 10],
-    'Use electricity measured at the wall to include charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.|使用墙端电量以包含充电损失；不含维护、保险、税费、折旧与补贴。',
+    'Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.|填写充电时从电网取用的电量（包含充电损耗）；不含维护、保险、税费、折旧与补贴。',
   );
   D(
     'travel-time',
@@ -642,6 +651,7 @@
     ],
     'Use T = D/v+s/60. D is distance in km, v is average moving speed in km/h, and s is total stop time in minutes. Total travel time T is in hours.|使用 T = D/v+s/60。D 为距离（km），v 为平均行驶速度（km/h），s 为总停留分钟数；总出行时间 T 的单位为小时。',
     [3.5, 3],
+    'Assumes the entered average moving speed and total stop time. Does not include live traffic, weather delays or route planning.|按自填平均行驶速度和总停留时间估算；不包含实时路况、天气延误或路线规划。',
   );
   D(
     'trip-budget',
@@ -654,7 +664,7 @@
       n('t', 'Total group transport|全组交通总费', 300),
       n('h', 'Total accommodation per night|全组每晚住宿费', 100),
       n('f', 'Daily spending per person|每人每日支出', 40),
-      waste,
+      n('w', 'Budget buffer (%)|预算余量（%）', 10, 0, 100),
     ],
     (v) => {
       const b = v.t + v.h * v.n + v.f * v.p * v.d,
@@ -667,6 +677,7 @@
     },
     'Use B = (T+nH+pdF)(1+w). T is group transport cost, n is nights, H is group lodging cost per night, p is people, d is days, F is daily spending per person, and w is the buffer fraction. Costs use the same currency.|使用 B = (T+nH+pdF)(1+w)。T 为全组交通费，n 为晚数，H 为全组每晚住宿费，p 为人数，d 为天数，F 为每人每日支出，w 为预算余量比例；所有费用使用同一货币。',
     [1210, 605, 1100],
+    'Transport and accommodation are group costs; daily spending is per person. Use one currency throughout. No exchange rates or live travel prices are supplied.|交通和住宿按全组费用计，每日支出按每人计；全部金额使用同一货币，不提供汇率或实时旅行报价。',
   );
   D(
     'weighted-bill-split',
@@ -742,12 +753,12 @@
   D(
     'bakers-hydration',
     'Baker’s Hydration|烘焙含水率',
-    'Include preferment flour and water in total dough hydration.|将酵种中的面粉与水计入面团总含水率。',
+    'Include preferment flour and water in total dough hydration.|将酵种中的面粉与水计入面团总水粉比。',
     [
       n('f', 'Main dough flour (g)|主面团面粉（g）', 450),
       n('w', 'Main dough water (g)|主面团水（g）', 300),
       n('s', 'Preferment total mass (g)|酵种总质量（g）', 100),
-      n('h', 'Preferment hydration (%)|酵种含水率（%）', 100, 0, 1000),
+      n('h', 'Preferment hydration (%)|酵种水粉比（%）', 100, 0, 1000),
     ],
     (v) => {
       const sf = v.s / (1 + v.h / 100),
@@ -762,5 +773,6 @@
     },
     'Use Fₚ = S/(1+h), Wₚ = S−Fₚ and H = (W+Wₚ)/(F+Fₚ). S is preferment mass, h is its hydration fraction, and F and W are main-dough flour and water, all masses in g. Total hydration H is displayed as a percentage.|使用 Fₚ = S/(1+h)、Wₚ = S−Fₚ 及 H = (W+Wₚ)/(F+Fₚ)。S 为酵种质量，h 为酵种含水率的小数比例，F 与 W 为主面团面粉及水，所有质量均使用 g；总含水率 H 以百分比显示。',
     [70, 500, 350],
+    'Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.|酵种按仅含面粉和水处理，不计鸡蛋、牛奶等其他原料带入的水；含水率比较总水质量与总面粉质量。',
   );
 })();

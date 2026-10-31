@@ -13,5 +13,15 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "Use L = B⁻¹(α/2;k,n−k+1) e U = B⁻¹(1−α/2;k+1,n−k). k é o número de sucessos e n o de ensaios. Para o nível de confiança expresso como fração c, use α = 1−c; B⁻¹ é o quantil beta. Aplique os casos-limite k = 0 → L = 0 e k = n → U = 1.",
   "YOUR CALCULATOR DESK": "SEU ESPAÇO DE CALCULADORAS",
   "CHOOSE A TOOL": "ESCOLHA UMA FERRAMENTA",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Para um subtotal de ${2}, o imposto à taxa de {1} é {0}, resultando num total de {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Para um subtotal de ${2}, o imposto à taxa de {1} é {0}, resultando num total de {3}.",
+  "Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.": "Neste cálculo, a massa pré-fermentada é tratada apenas como farinha e água. A água de ovos, leite e outros ingredientes não é incluída. A hidratação compara a massa total de água com a massa total de farinha.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Estima a água que pode ser coletada de um episódio de chuva usando a eficiência de coleta e o espaço restante no reservatório que você informar. Não prevê chuva nem avalia a qualidade da água ou a segurança para consumo.",
+  "Charging electricity from supply (kWh/100 km)": "Eletricidade retirada da rede para carregar (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Insira a eletricidade retirada da rede, incluindo perdas de carregamento. Manutenção, seguro, impostos, depreciação e incentivos não estão incluídos.",
+  "Budget buffer (%)": "Reserva do orçamento (%)",
+  "Preferment total mass (g)": "Massa total do pré-fermento (g)",
+  "Preferment hydration (%)": "Relação água-farinha do pré-fermento (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Este lançamento inclui um teclado numérico de bolso, um teclado numérico científico, calculadoras práticas em nove categorias e três cenários de planejamento originais. Páginas de idioma e visualizações incorporadas não são consideradas ferramentas separadas.",
+  "Physical volume": "Volume físico",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Introduza as leituras sistólica e diastólica em mmHg. Os resultados são atualizados enquanto escreve. Todos os cálculos são realizados localmente no seu navegador."
 }

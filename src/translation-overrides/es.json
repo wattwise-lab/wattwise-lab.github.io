@@ -14,5 +14,14 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "Use L = B⁻¹(α/2;k,n−k+1) y U = B⁻¹(1−α/2;k+1,n−k). k es el número de éxitos y n el de ensayos. Para el nivel de confianza expresado como fracción c, use α = 1−c; B⁻¹ es el cuantil beta. Aplique los casos límite k = 0 → L = 0 y k = n → U = 1.",
   "YOUR CALCULATOR DESK": "TU ESPACIO DE CALCULADORAS",
   "CHOOSE A TOOL": "ELIGE UNA HERRAMIENTA",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Para un subtotal de ${2}, el impuesto al {1} es {0} y el total es {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Para un subtotal de ${2}, el impuesto al {1} es {0} y el total es {3}.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Estima el agua que se puede recoger de un episodio de lluvia usando la eficiencia de recolección y el espacio restante del depósito que usted indique. No pronostica lluvia ni evalúa la calidad del agua o su potabilidad.",
+  "Charging electricity from supply (kWh/100 km)": "Electricidad tomada de la red para cargar (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Introduzca la electricidad tomada de la red, incluidas las pérdidas de carga. Se excluyen mantenimiento, seguro, impuestos, depreciación e incentivos.",
+  "Budget buffer (%)": "Reserva del presupuesto (%)",
+  "Preferment total mass (g)": "Masa total del prefermento (g)",
+  "Preferment hydration (%)": "Relación agua-harina del prefermento (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Esta versión incluye un teclado de bolsillo, un teclado científico, calculadoras prácticas en nueve categorías y tres escenarios de planificación originales. Las páginas de idiomas y las vistas integradas no se consideran herramientas independientes.",
+  "Physical volume": "Volumen físico",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Introduce las lecturas sistólica y diastólica en mmHg. Los resultados se actualizan al escribir. Todos los cálculos se realizan localmente en tu navegador."
 }

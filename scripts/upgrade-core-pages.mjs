@@ -8,6 +8,15 @@ const para = (en, zh) => `<p data-cm-pair="${esc(en + '|' + zh)}">${esc(en)}</p>
 const code = (s) =>
   `<p class="cm-expanded__formula" data-cm-no-translate><code>${esc(s)}</code></p>`;
 export function upgradeCorePage($, slug) {
+  if (slug === 'blood-pressure-calculator') {
+    const en =
+        'Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.',
+      zh = '以 mmHg 为单位输入收缩压和舒张压。输入时自动更新结果，所有计算均在浏览器本地完成。';
+    $('.hero .muted')
+      .filter((_, element) => /readings? in mmHg/.test($(element).text()))
+      .attr('data-cm-pair', en + '|' + zh)
+      .text(en);
+  }
   if (slug === 'ohms-law-calculator') {
     $('option,label,th,td,h2').each((_, element) => {
       const e = $(element),

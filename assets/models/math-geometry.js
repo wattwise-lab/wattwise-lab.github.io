@@ -387,7 +387,7 @@
     'Find cube volume, surface area and space diagonal.|求正方体体积、表面积和体对角线。',
     [p('a', 'Edge length (m)|棱长（m）', 3)],
     (v) => [
-      R('Volume|体积', v.a ** 3, 'm³'),
+      R('Physical volume|体积', v.a ** 3, 'm³'),
       R('Surface area|表面积', 6 * v.a * v.a, 'm²'),
       R('Space diagonal|体对角线', v.a * Math.sqrt(3), 'm'),
     ],
@@ -404,7 +404,7 @@
       p('c', 'Height (m)|高（m）', 5),
     ],
     (v) => [
-      R('Volume|体积', v.a * v.b * v.c, 'm³'),
+      R('Physical volume|体积', v.a * v.b * v.c, 'm³'),
       R('Surface area|表面积', 2 * (v.a * v.b + v.b * v.c + v.a * v.c), 'm²'),
       R('Space diagonal|体对角线', Math.hypot(v.a, v.b, v.c), 'm'),
     ],
@@ -417,7 +417,7 @@
     'Find volume, surface area and diameter from a sphere’s radius.|由半径求球体积、表面积和直径。',
     [p('r', 'Radius (m)|半径（m）', 2)],
     (v) => [
-      R('Volume|体积', (4 * PI * v.r ** 3) / 3, 'm³'),
+      R('Physical volume|体积', (4 * PI * v.r ** 3) / 3, 'm³'),
       R('Surface area|表面积', 4 * PI * v.r * v.r, 'm²'),
       R('Diameter|直径', 2 * v.r, 'm'),
     ],
@@ -430,7 +430,7 @@
     'Find right-cylinder volume and total surface including both ends.|求直圆柱体积及包含两底面的总表面积。',
     [radius, p('h', 'Height (m)|高（m）', 5)],
     (v) => [
-      R('Volume|体积', PI * v.r * v.r * v.h, 'm³'),
+      R('Physical volume|体积', PI * v.r * v.r * v.h, 'm³'),
       R('Total surface|总表面积', 2 * PI * v.r * (v.r + v.h), 'm²'),
       R('Lateral surface|侧面积', 2 * PI * v.r * v.h, 'm²'),
     ],
@@ -445,7 +445,7 @@
     (v) => {
       const l = Math.hypot(v.r, v.h);
       return [
-        R('Volume|体积', (PI * v.r * v.r * v.h) / 3, 'm³'),
+        R('Physical volume|体积', (PI * v.r * v.r * v.h) / 3, 'm³'),
         R('Total surface|总表面积', PI * v.r * (v.r + l), 'm²'),
         R('Slant height|母线长', l, 'm'),
       ];
@@ -466,7 +466,7 @@
       check(v.a >= v.b, 'Larger radius must not be smaller.|大底半径不得小于小底半径。');
       const l = Math.hypot(v.a - v.b, v.h);
       return [
-        R('Volume|体积', (PI * v.h * (v.a * v.a + v.a * v.b + v.b * v.b)) / 3, 'm³'),
+        R('Physical volume|体积', (PI * v.h * (v.a * v.a + v.a * v.b + v.b * v.b)) / 3, 'm³'),
         R('Slant height|母线长', l, 'm'),
         R('Total surface|总表面积', PI * (v.a * v.a + v.b * v.b + (v.a + v.b) * l), 'm²'),
       ];
@@ -480,7 +480,7 @@
     'Find volume and surface of a pyramid centred over a rectangular base.|求顶点位于矩形底面中心正上方的四棱锥体积与表面积。',
     [p('a', 'Base length (m)|底面长（m）', 6), p('b', 'Base width (m)|底面宽（m）', 6), height],
     (v) => [
-      R('Volume|体积', (v.a * v.b * v.h) / 3, 'm³'),
+      R('Physical volume|体积', (v.a * v.b * v.h) / 3, 'm³'),
       R(
         'Surface area|表面积',
         v.a * v.b + v.a * Math.hypot(v.h, v.b / 2) + v.b * Math.hypot(v.h, v.a / 2),
@@ -500,7 +500,7 @@
       p('h', 'Prism height (m)|柱高（m）', 5),
     ],
     (v) => [
-      R('Volume|体积', v.a * v.h, 'm³'),
+      R('Physical volume|体积', v.a * v.h, 'm³'),
       R('Total surface|总表面积', 2 * v.a + v.p * v.h, 'm²'),
     ],
     'V=Ah; S=2A+Ph',
@@ -517,7 +517,7 @@
         'A ring torus requires major radius greater than tube radius.|圆环体中心圆半径需大于管半径。',
       );
       return [
-        R('Volume|体积', 2 * PI * PI * v.a * v.b * v.b, 'm³'),
+        R('Physical volume|体积', 2 * PI * PI * v.a * v.b * v.b, 'm³'),
         R('Surface area|表面积', 4 * PI * PI * v.a * v.b, 'm²'),
       ];
     },
@@ -533,7 +533,7 @@
       p('b', 'Semiaxis b (m)|半轴 b（m）', 2),
       p('c', 'Semiaxis c (m)|半轴 c（m）', 1),
     ],
-    (v) => [R('Volume|体积', (4 * PI * v.a * v.b * v.c) / 3, 'm³')],
+    (v) => [R('Physical volume|体积', (4 * PI * v.a * v.b * v.c) / 3, 'm³')],
     'Use V = 4πabc/3. a, b and c are the ellipsoid semiaxes in the same unit, not full diameters. Volume V uses the cubed length unit.|使用 V = 4πabc/3。a、b、c 为同单位椭球半轴，并非完整直径；体积 V 使用该长度单位的立方。',
     [25.132741228718345],
   );
@@ -546,7 +546,7 @@
       n('h', 'Straight cylinder length (m)|直圆柱段长度（m）', 5),
     ],
     (v) => [
-      R('Volume|体积', PI * v.r * v.r * v.h + (4 * PI * v.r ** 3) / 3, 'm³'),
+      R('Physical volume|体积', PI * v.r * v.r * v.h + (4 * PI * v.r ** 3) / 3, 'm³'),
       R('Surface area|表面积', 2 * PI * v.r * v.h + 4 * PI * v.r * v.r, 'm²'),
       R('Total end-to-end length|整体长度', v.h + 2 * v.r, 'm'),
     ],
@@ -559,7 +559,7 @@
     'Find a hemisphere’s volume, curved area and total area including its base.|求半球体积、曲面面积及包含底面的总面积。',
     [p('r', 'Radius (m)|半径（m）', 2)],
     (v) => [
-      R('Volume|体积', (2 * PI * v.r ** 3) / 3, 'm³'),
+      R('Physical volume|体积', (2 * PI * v.r ** 3) / 3, 'm³'),
       R('Curved area|曲面面积', 2 * PI * v.r * v.r, 'm²'),
       R('Total area with base|含底面总面积', 3 * PI * v.r * v.r, 'm²'),
     ],

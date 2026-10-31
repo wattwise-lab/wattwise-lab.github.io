@@ -21,8 +21,26 @@ for (const row of corpus) row.active = false;
 const seen = new Set(corpus.map((x) => x.source));
 const normalize = (s) => s.replace(/\s+/g, ' ').trim();
 function implementationLiteral(node, parent) {
+  if (parent?.type === 'MemberExpression' && parent.computed && parent.property === node)
+    return true;
+  if (node.type === 'Literal' && typeof node.value === 'string' && /^cm:[a-z-]+$/.test(node.value))
+    return true;
   if (parent?.type === 'ExpressionStatement' && parent.directive) return true;
   if (parent?.type === 'Property' && parent.key === node && !parent.computed) return true;
+  // Comparison operands, event names and DOM configuration are program data.
+  // A matching string used as visible copy elsewhere is still extracted there.
+  if (
+    parent?.type === 'BinaryExpression' &&
+    ['===', '!==', '==', '!=', '<', '>', '<=', '>='].includes(parent.operator)
+  )
+    return true;
+  if (
+    parent?.type === 'NewExpression' &&
+    (parent.callee?.name === 'RegExp' ||
+      (['Event', 'CustomEvent'].includes(parent.callee?.name || parent.callee?.property?.name) &&
+        parent.arguments[0] === node))
+  )
+    return true;
   const implementationProperties = [
     'type',
     'className',
@@ -31,6 +49,40 @@ function implementationLiteral(node, parent) {
     'inputMode',
     'htmlFor',
     'role',
+    'scope',
+    'autocomplete',
+    'step',
+    'hash',
+    'download',
+    'rel',
+    'target',
+    'transform',
+    'calendar',
+    'timeZone',
+    'dateStyle',
+    'timeStyle',
+    'weekday',
+    'year',
+    'month',
+    'day',
+    'hour',
+    'minute',
+    'second',
+    'sensitivity',
+    'block',
+    'inline',
+    'behavior',
+    'vclass',
+    'style',
+    'unitDisplay',
+    'numeric',
+    'kind',
+    'reason',
+    'field',
+    'src',
+    'href',
+    'class',
+    'cmAction',
   ];
   if (
     parent?.type === 'AssignmentExpression' &&
@@ -52,7 +104,17 @@ function implementationLiteral(node, parent) {
     first &&
     [
       '$',
+      'el',
+      'shape',
       't',
+      'matchMedia',
+      'normalize',
+      'startsWith',
+      'endsWith',
+      'get',
+      'set',
+      'delete',
+      'has',
       'querySelector',
       'querySelectorAll',
       'getElementById',
@@ -72,6 +134,17 @@ function implementationLiteral(node, parent) {
       'removeItem',
       'insertAdjacentHTML',
     ].includes(method)
+  )
+    return true;
+  if (
+    parent?.type === 'NewExpression' &&
+    parent.callee?.name === 'Option' &&
+    parent.arguments[1] === node
+  )
+    return true;
+  if (
+    (method === 'createElementNS' && parent.arguments[1] === node) ||
+    (method === 'getOwnPropertyDescriptor' && parent.arguments[1] === node)
   )
     return true;
   if (method === 'setAttribute') {
@@ -98,6 +171,8 @@ function add(value, origin, parts) {
     /^cm-[a-z-]+\{\d+\}$/.test(source) ||
     source.length > 4500 ||
     source.startsWith('/') ||
+    /^https?:\/\/\S+$/.test(source) ||
+    /^[?&][\w-]+=[^\s]*$/.test(source) ||
     /^[.#][\w-]+(?:\[|\s*[>+,])/.test(source) ||
     source.includes('document.') ||
     source.includes('querySelector') ||
@@ -202,8 +277,154 @@ for (const file of files) {
     )
       return;
     if (implementationLiteral(node, parent)) return;
+    if (
+      parent?.type === 'CallExpression' &&
+      ((parent.callee?.name === 'pair' &&
+        ['assets/cm-core-decisions.js', 'assets/cm-workspace-links.js'].includes(file) &&
+        parent.arguments[0] === node) ||
+        (parent.callee?.name === 'el' &&
+          [
+            'assets/cm-workspace.js',
+            'assets/cm-workspace-links.js',
+            'assets/cm-core-decisions.js',
+            'assets/cm-workspace-tools.js',
+          ].includes(file) &&
+          parent.arguments[1] === node))
+    )
+      return;
+    if (
+      (node.type === 'ArrayExpression' &&
+        parent?.type === 'ForOfStatement' &&
+        ['attribute', 'type'].includes(parent.left?.declarations?.[0]?.id?.name)) ||
+      (node.type === 'Literal' &&
+        ((['assets/cm-home-v3.js', 'assets/cm-home-app.js', 'assets/cm-workspace.js'].includes(
+          file,
+        ) &&
+          node.value === 'all') ||
+          (file === 'assets/cm-home-v3.js' &&
+            ['recommended', 'name', 'domain', 'page', 'sort', 'category'].includes(node.value)) ||
+          (file === 'assets/cm-keypad-app.js' && ['back', 'sqrt('].includes(node.value)))) ||
+      (parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'Error' &&
+        parent.arguments[0] === node &&
+        node.value === 'state') ||
+      (file === 'assets/cm-finance-core.js' &&
+        node.type === 'VariableDeclarator' &&
+        node.id?.name === 'taxbase') ||
+      (file === 'assets/models/core.js' &&
+        ((node.type === 'VariableDeclarator' && node.id?.name === 'canonical') ||
+          (parent?.type === 'CallExpression' &&
+            parent.callee?.name === 'check' &&
+            parent.arguments[1] === node &&
+            node.type === 'BinaryExpression' &&
+            node.left?.value?.startsWith('Duplicate model:'))))
+    )
+      return;
+    if (
+      (node.type === 'AssignmentPattern' && ['type', 'step'].includes(node.left?.name)) ||
+      (file.startsWith('assets/legacy-models/') &&
+        ((node.type === 'ArrayExpression' &&
+          node.elements.length &&
+          node.elements.every(
+            (item) => item?.type === 'Literal' && /^[a-z][\w-]*$/.test(item.value),
+          ) &&
+          ((parent?.type === 'MemberExpression' &&
+            ['forEach', 'map'].includes(parent.property?.name)) ||
+            parent?.type === 'ForOfStatement' ||
+            (parent?.type === 'VariableDeclarator' &&
+              ['out', 'UNITS'].includes(parent.id?.name)))) ||
+          (parent?.type === 'CallExpression' &&
+            ((parent.callee?.name === 'barRow' && parent.arguments[4] === node) ||
+              (parent.callee?.name === 'setVerdict' && parent.arguments[0] === node))))) ||
+      (file === 'assets/cm-calendar-core.js' &&
+        node.type === 'FunctionDeclaration' &&
+        ['duration', 'relativeDays'].includes(node.id?.name)) ||
+      (file === 'assets/models/core.js' && node.type === 'ThrowStatement') ||
+      (file === 'assets/cm-workspace.js' &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'button' &&
+        parent.arguments[0] === node) ||
+      (file.startsWith('assets/models/') &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'pct' &&
+        parent.arguments[0] === node)
+    )
+      return;
+    if (
+      (file === 'assets/cm-workspace.js' &&
+        node.type === 'VariableDeclarator' &&
+        node.id?.name === 'commonKeys') ||
+      (file === 'assets/legacy-models/molar-mass-calculator-1.js' &&
+        node.type === 'ThrowStatement') ||
+      (file === 'assets/models/original-scenarios.js' &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'col' &&
+        parent.arguments[2] === node) ||
+      (file === 'assets/legacy-models/ai-workflow-savings-1.js' &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'barRow' &&
+        parent.arguments[4] === node)
+    )
+      return;
+    if (
+      (file === 'assets/cm-finance-core.js' &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'numeric' &&
+        parent.arguments[1] === node) ||
+      (file === 'assets/cm-core-decisions.js' &&
+        ((node.type === 'Property' && (node.key.name || node.key.value) === 'axis') ||
+          (node.type === 'AssignmentExpression' && node.left?.name === 'id'))) ||
+      (file === 'assets/cm-ranking.js' &&
+        node.type === 'AssignmentExpression' &&
+        node.left?.property?.name === 'value') ||
+      (file === 'assets/models/finance-b.js' &&
+        parent?.type === 'CallExpression' &&
+        parent.callee?.name === 'run' &&
+        parent.arguments[0] === node)
+    )
+      return;
+    if (
+      (file === 'assets/cm-expanded.js' &&
+        node.type === 'VariableDeclarator' &&
+        node.id?.name === 'presentations') ||
+      (file === 'assets/cm-intent-core.js' &&
+        node.type === 'Property' &&
+        (node.key.name || node.key.value) === 'words') ||
+      (node.type === 'ArrayExpression' &&
+        parent?.type === 'MemberExpression' &&
+        parent.object === node &&
+        parent.property?.name === 'includes')
+    )
+      return;
+    // Intent aliases and select/converter values are stable program identifiers;
+    // retain the separate human-readable label in each definition.
+    if (
+      node.type === 'ArrayExpression' &&
+      node.elements[0]?.type === 'Literal' &&
+      typeof node.elements[0]?.value === 'string' &&
+      node.elements[1]?.type === 'Literal' &&
+      typeof node.elements[1]?.value === 'string' &&
+      ((file === 'assets/cm-intent-core.js' &&
+        node.elements.length === 3 &&
+        node.elements[2]?.type === 'ArrayExpression') ||
+        (file.startsWith('assets/models/') &&
+          ((node.elements.length === 2 && /\|[^|]*[\u3400-\u9fff]/.test(node.elements[1].value)) ||
+            file === 'assets/models/converters.js')))
+    ) {
+      walk(node.elements[1], node);
+      for (const child of node.elements.slice(2))
+        if (file !== 'assets/cm-intent-core.js') walk(child, node);
+      return;
+    }
     if (file.startsWith('assets/models/') && parent?.type === 'CallExpression') {
       const callee = parent.callee?.name;
+      if (
+        (callee === 'select' && parent.arguments[2] === node) ||
+        (file === 'assets/models/converters.js' &&
+          callee === 'C' &&
+          [parent.arguments[4], parent.arguments[5]].includes(node))
+      )
+        return;
       // Expected vectors and explicitly literal result values are data, not UI copy.
       if (
         (node.type === 'ArrayExpression' &&
@@ -223,7 +444,7 @@ for (const file of files) {
       file.startsWith('assets/models/') &&
       parent?.type === 'CallExpression' &&
       parent.arguments[0] === node &&
-      ['n', 'p', 'u', 'i', 'text', 'select', 'add', 'C', 'D'].includes(parent.callee?.name)
+      ['n', 'p', 'u', 'i', 'text', 'select', 'add', 'C', 'D', 'col'].includes(parent.callee?.name)
     )
       return;
     if (node.type === 'Literal' && typeof node.value === 'string') {

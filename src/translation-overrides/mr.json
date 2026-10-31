@@ -23,5 +23,16 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "L = B⁻¹(α/2;k,n−k+1) आणि U = B⁻¹(1−α/2;k+1,n−k) वापरा. k म्हणजे यशस्वी प्रयत्नांची संख्या आणि n म्हणजे एकूण प्रयत्न. विश्वास पातळीचा दशांश भाग c असल्यास α = 1−c घ्या; B⁻¹ हे बीटा वितरणाचे क्वांटाइल आहे. सीमांत स्थितींसाठी k = 0 → L = 0 आणि k = n → U = 1 वापरा.",
   "YOUR CALCULATOR DESK": "तुमचे कॅल्क्युलेटर कार्यक्षेत्र",
   "CHOOSE A TOOL": "एक साधन निवडा",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} उपएकूण रकमेवर {1} दराने कर {0} आहे; करासह एकूण रक्कम {3} आहे."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} उपएकूण रकमेवर {1} दराने कर {0} आहे; करासह एकूण रक्कम {3} आहे.",
+  "Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.": "या गणनेत आधी आंबवलेले पीठ फक्त पीठ आणि पाणी यांचे मिश्रण मानले जाते. अंडी, दूध आणि इतर घटकांतील पाणी धरले जात नाही. एकूण पाण्याच्या वस्तुमानाची एकूण पिठाच्या वस्तुमानाशी तुलना करून हायड्रेशन ठरवले जाते.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "तुम्ही दिलेली संकलन कार्यक्षमता आणि टाकीतील उरलेली मोकळी जागा वापरून एका पावसातून गोळा होणाऱ्या पाण्याचा अंदाज लावते. पावसाचा पूर्वानुमान किंवा पाण्याची गुणवत्ता व पिण्याची सुरक्षितता तपासली जात नाही.",
+  "Charging electricity from supply (kWh/100 km)": "चार्जिंगसाठी वीजपुरवठ्यातून घेतलेली ऊर्जा (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "चार्जिंगमधील हानीसह वीजपुरवठ्यातून घेतलेली ऊर्जा भरा. देखभाल, विमा, कर, घसारा आणि प्रोत्साहने समाविष्ट नाहीत.",
+  "Budget buffer (%)": "बजेटमधील अतिरिक्त तरतूद (%)",
+  "Preferment total mass (g)": "आधी आंबवलेल्या पिठाचे एकूण वस्तुमान (g)",
+  "Preferment hydration (%)": "आधी आंबवलेल्या पिठातील पाणी व पीठ यांचे गुणोत्तर (%)",
+  "Use Fₚ = S/(1+h), Wₚ = S−Fₚ and H = (W+Wₚ)/(F+Fₚ). S is preferment mass, h is its hydration fraction, and F and W are main-dough flour and water, all masses in g. Total hydration H is displayed as a percentage.": "Fₚ = S/(1+h), Wₚ = S−Fₚ आणि H = (W+Wₚ)/(F+Fₚ) वापरा. S हे आधी आंबवलेल्या पिठाचे वस्तुमान, h हे त्यातील पाणी व पीठ यांचे दशांश रूपातील गुणोत्तर, तर F आणि W हे मुख्य कणकेतील पीठ व पाणी यांची वस्तुमाने आहेत; सर्व वस्तुमाने g मध्ये आहेत. एकूण हायड्रेशन H टक्केवारीत दाखवले जाते.",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "या प्रकाशनामध्ये एक पॉकेट कीपॅड, एक वैज्ञानिक कीपॅड, नऊ श्रेणींमध्ये व्यावहारिक कॅल्क्युलेटर आणि तीन मूळ नियोजन परिस्थितींचा समावेश आहे. भाषा पृष्ठे आणि एम्बेडेड व्ह्यूज स्वतंत्र साधने म्हणून गणले जात नाहीत.",
+  "Physical volume": "भौतिक घनफळ",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "सिस्टोलिक आणि डायस्टोलिक मोजमापे mmHg मध्ये भरा. टाइप करताच निकाल बदलतात. सर्व गणना तुमच्या ब्राउझरमध्ये स्थानिक पातळीवर होतात."
 }

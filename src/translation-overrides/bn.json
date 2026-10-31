@@ -12,5 +12,15 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "L = B⁻¹(α/2;k,n−k+1) এবং U = B⁻¹(1−α/2;k+1,n−k) ব্যবহার করুন। k হলো সাফল্যের সংখ্যা এবং n হলো পরীক্ষার সংখ্যা। আস্থা স্তরের দশমিক অনুপাত c হলে α = 1−c নিন; B⁻¹ হলো বিটা বণ্টনের কোয়ান্টাইল। সীমান্ত শর্ত k = 0 → L = 0 এবং k = n → U = 1 প্রয়োগ করুন।",
   "YOUR CALCULATOR DESK": "আপনার ক্যালকুলেটর কর্মক্ষেত্র",
   "CHOOSE A TOOL": "একটি টুল বেছে নিন",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} উপমোটের ওপর {1} হারে কর {0}; করসহ মোট {3}।"
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} উপমোটের ওপর {1} হারে কর {0}; করসহ মোট {3}।",
+  "Assumes constant annual consumption and electricity price. Payback includes energy savings only; maintenance, financing, resale and appliance lifetime are excluded.": "বার্ষিক বিদ্যুৎ ব্যবহার ও বিদ্যুতের দাম অপরিবর্তিত ধরা হয়েছে। খরচ উঠে আসার সময়ে শুধু বিদ্যুৎ বিলের সাশ্রয় ধরা হয়; রক্ষণাবেক্ষণ, অর্থায়ন, পুনর্বিক্রয় ও যন্ত্রের আয়ুষ্কাল ধরা হয় না।",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "আপনার দেওয়া সংগ্রহ দক্ষতা ও ট্যাঙ্কের অবশিষ্ট খালি জায়গা ব্যবহার করে একবারের বৃষ্টি থেকে সংগ্রহযোগ্য পানির পরিমাণ হিসাব করে। এটি বৃষ্টির পূর্বাভাস বা পানির গুণমান ও পানযোগ্যতার নিরাপত্তা মূল্যায়ন করে না।",
+  "Charging electricity from supply (kWh/100 km)": "চার্জের জন্য বিদ্যুৎ উৎস থেকে নেওয়া শক্তি (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "চার্জের ক্ষয়সহ বিদ্যুৎ উৎস থেকে নেওয়া শক্তি লিখুন। রক্ষণাবেক্ষণ, বিমা, কর, অবচয় ও প্রণোদনা ধরা হয় না।",
+  "Budget buffer (%)": "বাজেটের অতিরিক্ত সংরক্ষণ (%)",
+  "Preferment total mass (g)": "আগে থেকে গাঁজানো খামিরের মোট ভর (g)",
+  "Preferment hydration (%)": "আগে থেকে গাঁজানো খামিরে পানি ও ময়দার অনুপাত (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "এই রিলিজে একটি পকেট কীপ্যাড, একটি বৈজ্ঞানিক কীপ্যাড, নয়টি বিভাগ জুড়ে ব্যবহারিক ক্যালকুলেটর এবং তিনটি মৌলিক পরিকল্পনা পরিস্থিতি অন্তর্ভুক্ত রয়েছে। ভাষার পৃষ্ঠা এবং এমবেডেড ভিউগুলিকে পৃথক সরঞ্জাম হিসাবে গণনা করা হয় না।",
+  "Physical volume": "ভৌত আয়তন",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "সিস্টোলিক ও ডায়াস্টোলিক রিডিং mmHg এককে লিখুন। টাইপ করার সঙ্গে সঙ্গে ফলাফল বদলে যায়। সব গণনা আপনার ব্রাউজারেই স্থানীয়ভাবে হয়।"
 }

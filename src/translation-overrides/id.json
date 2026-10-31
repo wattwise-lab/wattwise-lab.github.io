@@ -11,5 +11,14 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "Gunakan L = B⁻¹(α/2;k,n−k+1) dan U = B⁻¹(1−α/2;k+1,n−k). k adalah jumlah keberhasilan dan n jumlah percobaan. Untuk tingkat kepercayaan sebagai pecahan c, gunakan α = 1−c; B⁻¹ adalah kuantil beta. Terapkan kondisi batas k = 0 → L = 0 dan k = n → U = 1.",
   "YOUR CALCULATOR DESK": "RUANG KALKULATOR ANDA",
   "CHOOSE A TOOL": "PILIH ALAT",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Untuk subtotal ${2}, pajak dengan tarif {1} adalah {0}, sehingga total termasuk pajak menjadi {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Untuk subtotal ${2}, pajak dengan tarif {1} adalah {0}, sehingga total termasuk pajak menjadi {3}.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Memperkirakan air yang dapat dikumpulkan dari satu kejadian hujan berdasarkan efisiensi pengumpulan dan ruang tersisa dalam tangki yang Anda masukkan. Tidak meramalkan hujan atau menilai kualitas air dan keamanan untuk diminum.",
+  "Charging electricity from supply (kWh/100 km)": "Listrik dari sumber daya untuk pengisian (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Masukkan listrik yang diambil dari sumber daya, termasuk rugi pengisian. Perawatan, asuransi, pajak, penyusutan, dan insentif tidak termasuk.",
+  "Budget buffer (%)": "Cadangan anggaran (%)",
+  "Preferment total mass (g)": "Massa total adonan fermentasi awal (g)",
+  "Preferment hydration (%)": "Rasio air terhadap tepung dalam adonan fermentasi awal (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Rilis ini mencakup keypad saku, keypad ilmiah, kalkulator praktis di sembilan kategori, dan tiga skenario perencanaan asli. Halaman bahasa dan tampilan tersemat tidak dihitung sebagai alat terpisah.",
+  "Physical volume": "Volume fisik",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Masukkan tekanan sistolik dan diastolik dalam mmHg. Hasil diperbarui saat Anda mengetik. Semua perhitungan berjalan secara lokal di peramban Anda."
 }

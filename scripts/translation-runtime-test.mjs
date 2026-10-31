@@ -24,12 +24,46 @@ for (const source of [
   'second',
   'bit',
   'byte',
+  'complete',
+  '?embed=1',
+  'cm:workspace-results',
+  'cm:workspace-change',
+  'cm:translations',
+  'thead',
+  'tbody',
+  'decimal',
+  'mortgage',
+  'home price',
+  'NFKC',
+  'giu',
+  'deg',
+  'series',
+  'parallel',
 ])
   assert.ok(
     !corpus.some((row) => row.active && row.source === source),
     'Implementation syntax must not count as public translation copy: ' + source,
   );
 assert.ok(corpus.some((row) => row.active && row.source === 'Remove calculator'));
+for (const source of [
+  'Input or result',
+  'Coordinates',
+  'Home price',
+  'Loan principal',
+  'Degrees',
+  'All must work',
+  'At least one must work',
+  'At least two observations are required.',
+  'Probability must be strictly between 0 and 1.',
+  'The probability calculation did not converge within the supported numeric range.',
+  'Beta-distribution parameters are outside the supported numeric range.',
+  'This browser could not save the preference.',
+  'mortgage · loan · compound · rent vs buy · freelance · AI cost',
+])
+  assert.ok(
+    corpus.some((row) => row.active && row.source === source),
+    'Human-readable labels must remain translatable: ' + source,
+  );
 function runtime(locale, { assets = {}, scripts = [] } = {}) {
   const document = {
     documentElement: { lang: locale, hasAttribute: () => false },

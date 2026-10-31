@@ -25,5 +25,15 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "Verwenden Sie L = B⁻¹(α/2;k,n−k+1) und U = B⁻¹(1−α/2;k+1,n−k). k ist die Anzahl der Erfolge und n die Anzahl der Versuche. Für das als Bruchteil c angegebene Konfidenzniveau gilt α = 1−c; B⁻¹ ist das Beta-Quantil. Beachten Sie die Randfälle k = 0 → L = 0 und k = n → U = 1.",
   "YOUR CALCULATOR DESK": "DEIN RECHNER-ARBEITSPLATZ",
   "CHOOSE A TOOL": "WERKZEUG AUSWÄHLEN",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Bei einer Zwischensumme von {2} $ beträgt die Steuer zum Satz von {1} genau {0}; der Gesamtbetrag einschließlich Steuer ist {3}."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "Bei einer Zwischensumme von {2} $ beträgt die Steuer zum Satz von {1} genau {0}; der Gesamtbetrag einschließlich Steuer ist {3}.",
+  "Transport and accommodation are group costs; daily spending is per person. Use one currency throughout. No exchange rates or live travel prices are supplied.": "Transport und Unterkunft sind Kosten für die gesamte Gruppe; die täglichen Ausgaben gelten pro Person. Verwenden Sie für alle Beträge dieselbe Währung. Wechselkurse und aktuelle Reisepreise werden nicht bereitgestellt.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Schätzt die aus einem einzelnen Regenereignis auffangbare Wassermenge anhand Ihrer Sammeleffizienz und des verbleibenden Tankvolumens. Es werden weder Niederschlag vorhergesagt noch Wasserqualität oder Trinkwassersicherheit bewertet.",
+  "Charging electricity from supply (kWh/100 km)": "Zum Laden aus dem Netz bezogener Strom (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Geben Sie den aus dem Netz bezogenen Strom einschließlich Ladeverlusten ein. Wartung, Versicherung, Steuern, Wertverlust und Förderungen werden nicht berücksichtigt.",
+  "Budget buffer (%)": "Budgetreserve (%)",
+  "Preferment total mass (g)": "Gesamtmasse des Vorteigs (g)",
+  "Preferment hydration (%)": "Wasser-Mehl-Verhältnis des Vorteigs (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Diese Version enthält eine Taschentastatur, eine wissenschaftliche Tastatur, praktische Rechner in neun Kategorien und drei neue Planungsszenarien. Sprachseiten und eingebettete Ansichten werden nicht als separate Tools gezählt.",
+  "Physical volume": "Physikalisches Volumen",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Geben Sie den systolischen und diastolischen Wert in mmHg ein. Die Ergebnisse aktualisieren sich während der Eingabe. Alle Berechnungen erfolgen lokal in Ihrem Browser."
 }

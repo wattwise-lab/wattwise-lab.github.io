@@ -20,5 +20,16 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "L = B⁻¹(α/2;k,n−k+1) ve U = B⁻¹(1−α/2;k+1,n−k) kullanın. k başarı sayısı, n deneme sayısıdır. Kesir olarak yazılan güven düzeyi c için α = 1−c alın; B⁻¹ beta dağılımının kantilidir. Sınır durumlarını k = 0 → L = 0 ve k = n → U = 1 olarak ele alın.",
   "YOUR CALCULATOR DESK": "HESAPLAYICI ÇALIŞMA ALANIN",
   "CHOOSE A TOOL": "BİR ARAÇ SEÇ",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "{2} $ ara toplam için {1} oranındaki vergi {0}, vergi dahil toplam ise {3} olur."
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "{2} $ ara toplam için {1} oranındaki vergi {0}, vergi dahil toplam ise {3} olur.",
+  "Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.": "Bu hesapta ön maya yalnızca un ve sudan oluşan bir karışım olarak kabul edilir. Yumurta, süt ve diğer malzemelerdeki su dahil edilmez. Hidrasyon, toplam su kütlesini toplam un kütlesiyle karşılaştırır.",
+  "Uses internal rectangular dimensions and a uniformly sloping floor. Steps, benches, curved walls and changes in water level are not modeled.": "Havuzun dikdörtgen iç ölçüleri ve düzgün eğimli tabanı kullanılır. Basamaklar, oturma çıkıntıları, kavisli duvarlar ve su seviyesindeki değişiklikler hesaba katılmaz.",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "Girdiğiniz toplama verimliliği ve depoda kalan boş hacim üzerinden tek bir yağışta toplanabilecek suyu hesaplar. Yağış tahmini yapmaz; su kalitesini veya içme güvenliğini değerlendirmez.",
+  "Charging electricity from supply (kWh/100 km)": "Şarj için kaynaktan çekilen elektrik (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "Şarj kayıpları dahil, kaynaktan çekilen elektriği girin. Bakım, sigorta, vergiler, amortisman ve teşvikler dahil değildir.",
+  "Budget buffer (%)": "Bütçe yedek payı (%)",
+  "Preferment total mass (g)": "Ön mayanın toplam kütlesi (g)",
+  "Preferment hydration (%)": "Ön mayanın su-un oranı (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "Bu sürüm, bir cep tuş takımı, bir bilimsel tuş takımı, dokuz kategoride pratik hesap makineleri ve üç orijinal planlama senaryosu içerir. Dil sayfaları ve gömülü görünümler ayrı araçlar olarak sayılmaz.",
+  "Physical volume": "Fiziksel hacim",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "Sistolik ve diyastolik ölçümleri mmHg olarak girin. Yazarken sonuçlar güncellenir. Tüm hesaplamalar tarayıcınızda yerel olarak yapılır."
 }

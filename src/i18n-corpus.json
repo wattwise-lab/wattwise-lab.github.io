@@ -2421,7 +2421,7 @@
     "id": "00404",
     "source": "Backspace",
     "origin": "basic-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "00405",
@@ -2475,7 +2475,7 @@
     "id": "00413",
     "source": "Enter one reading in mmHg. Results update as you type. All calculations run locally in your browser.",
     "origin": "blood-pressure-calculator.html",
-    "active": true
+    "active": false
   },
   {
     "id": "00414",
@@ -19676,7 +19676,7 @@
     "id": "03278",
     "source": "skip",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03279",
@@ -19688,13 +19688,13 @@
     "id": "03280",
     "source": "workspace",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03281",
     "source": "methods",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03282",
@@ -19736,7 +19736,7 @@
     "id": "03288",
     "source": "remove",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03289",
@@ -19754,43 +19754,43 @@
     "id": "03291",
     "source": "close",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03292",
     "source": "previous",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03293",
     "source": "next",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03294",
     "source": "privacy",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03295",
     "source": "terms",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03296",
     "source": "contact",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03297",
     "source": "undo",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03298",
@@ -19802,13 +19802,13 @@
     "id": "03299",
     "source": "search",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03300",
     "source": "count",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03301",
@@ -19820,25 +19820,25 @@
     "id": "03302",
     "source": "matches",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03303",
     "source": "page",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03304",
     "source": "preview",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03305",
     "source": "button",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03306",
@@ -19874,19 +19874,19 @@
     "id": "03311",
     "source": "file",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03312",
     "source": "hidden",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03313",
     "source": "language",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03314",
@@ -19916,19 +19916,19 @@
     "id": "03318",
     "source": "article",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03319",
     "source": "div",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03320",
     "source": "span",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03321",
@@ -19952,7 +19952,7 @@
     "id": "03324",
     "source": "iframe",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03325",
@@ -19994,13 +19994,13 @@
     "id": "03331",
     "source": "input",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03332",
     "source": "change",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03333",
@@ -20024,13 +20024,13 @@
     "id": "03336",
     "source": "noopener",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03337",
     "source": "function",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03338",
@@ -20048,7 +20048,7 @@
     "id": "03340",
     "source": "ws-card empty-slot",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03341",
@@ -20072,13 +20072,13 @@
     "id": "03344",
     "source": "add",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03345",
     "source": "start",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03346",
@@ -20132,13 +20132,13 @@
     "id": "03354",
     "source": "NFKD",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03355",
     "source": "small",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03356",
@@ -20168,7 +20168,7 @@
     "id": "03360",
     "source": "number",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03361",
@@ -20192,7 +20192,7 @@
     "id": "03364",
     "source": "value",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03365",
@@ -20204,13 +20204,13 @@
     "id": "03366",
     "source": "nearest",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03367",
     "source": "true",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03368",
@@ -20258,13 +20258,13 @@
     "id": "03375",
     "source": "cm:language",
     "origin": "assets/cm-workspace.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03376",
     "source": "scientific",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03377",
@@ -20276,7 +20276,7 @@
     "id": "03378",
     "source": "domain",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03379",
@@ -20300,31 +20300,31 @@
     "id": "03382",
     "source": "back",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03383",
     "source": "sign",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03384",
     "source": "sqrt",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03385",
     "source": "sqrt(",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03386",
     "source": "reciprocal",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03387",
@@ -20342,13 +20342,13 @@
     "id": "03389",
     "source": "Enter",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03390",
     "source": "Escape",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03391",
@@ -20372,13 +20372,13 @@
     "id": "03394",
     "source": "Delete",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03395",
     "source": "BUTTON",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03396",
@@ -20396,7 +20396,7 @@
     "id": "03398",
     "source": "embed",
     "origin": "assets/cm-keypad-app.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03399",
@@ -20444,7 +20444,7 @@
     "id": "03406",
     "source": "reset",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03407",
@@ -20456,19 +20456,19 @@
     "id": "03408",
     "source": "SELECT",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03409",
     "source": "checkbox",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03410",
     "source": "radio",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03411",
@@ -20480,7 +20480,7 @@
     "id": "03412",
     "source": "copy",
     "origin": "assets/cm-tool-page.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03413",
@@ -20510,37 +20510,37 @@
     "id": "03417",
     "source": "(max-width:700px)",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03418",
     "source": "recommended",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03419",
     "source": "lang",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03420",
     "source": "category",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03421",
     "source": "sort",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03422",
     "source": "name",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03423",
@@ -20588,7 +20588,7 @@
     "id": "03430",
     "source": "base",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03431",
@@ -20600,7 +20600,7 @@
     "id": "03432",
     "source": "new",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03433",
@@ -20624,7 +20624,7 @@
     "id": "03436",
     "source": "auto",
     "origin": "assets/cm-home-v3.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03437",
@@ -20708,13 +20708,13 @@
     "id": "03450",
     "source": "numeric",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03451",
     "source": "long",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03452",
@@ -20840,7 +20840,7 @@
     "id": "03472",
     "source": "textarea",
     "origin": "assets/legacy-models/age-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03473",
@@ -20870,7 +20870,7 @@
     "id": "03477",
     "source": "bars",
     "origin": "assets/legacy-models/ai-carbon-estimate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03478",
@@ -21218,7 +21218,7 @@
     "id": "03535",
     "source": "newbad",
     "origin": "assets/legacy-models/ai-workflow-savings-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03536",
@@ -21410,13 +21410,13 @@
     "id": "03567",
     "source": "bad",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03568",
     "source": "warn",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03569",
@@ -21452,31 +21452,31 @@
     "id": "03574",
     "source": "undefined",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03575",
     "source": "main",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03576",
     "source": "chip1",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03577",
     "source": "chip2",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03578",
     "source": "chip3",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03579",
@@ -21506,7 +21506,7 @@
     "id": "03583",
     "source": "chip",
     "origin": "assets/legacy-models/annualized-return-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03584",
@@ -21518,19 +21518,19 @@
     "id": "03585",
     "source": "amt",
     "origin": "assets/legacy-models/apr-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03586",
     "source": "rate",
     "origin": "assets/legacy-models/apr-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03587",
     "source": "fees",
     "origin": "assets/legacy-models/apr-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03588",
@@ -21590,19 +21590,19 @@
     "id": "03597",
     "source": "sqm",
     "origin": "assets/legacy-models/area-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03598",
     "source": "sqft",
     "origin": "assets/legacy-models/area-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03599",
     "source": "acre",
     "origin": "assets/legacy-models/area-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03600",
@@ -21830,7 +21830,7 @@
     "id": "03637",
     "source": "date",
     "origin": "assets/legacy-models/bmi-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03638",
@@ -21866,13 +21866,13 @@
     "id": "03643",
     "source": "unit",
     "origin": "assets/legacy-models/bmi-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03644",
     "source": "metric",
     "origin": "assets/legacy-models/bmi-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03645",
@@ -22604,7 +22604,7 @@
     "id": "03766",
     "source": "chips",
     "origin": "assets/legacy-models/concrete-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03767",
@@ -23036,7 +23036,7 @@
     "id": "03838",
     "source": "end",
     "origin": "assets/legacy-models/date-difference-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03839",
@@ -23720,13 +23720,13 @@
     "id": "03952",
     "source": "sub",
     "origin": "assets/legacy-models/fraction-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03953",
     "source": "mul",
     "origin": "assets/legacy-models/fraction-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03954",
@@ -23798,25 +23798,25 @@
     "id": "03965",
     "source": "income",
     "origin": "assets/legacy-models/freelance-real-rate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03966",
     "source": "tax",
     "origin": "assets/legacy-models/freelance-real-rate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03967",
     "source": "exp",
     "origin": "assets/legacy-models/freelance-real-rate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03968",
     "source": "bill",
     "origin": "assets/legacy-models/freelance-real-rate-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03969",
@@ -23996,37 +23996,37 @@
     "id": "03998",
     "source": "bar100",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "03999",
     "source": "bar300",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04000",
     "source": "bar600",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04001",
     "source": "bar100Val",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04002",
     "source": "bar300Val",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04003",
     "source": "bar600Val",
     "origin": "assets/legacy-models/fuel-economy-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04004",
@@ -24452,7 +24452,7 @@
     "id": "04074",
     "source": "inf",
     "origin": "assets/legacy-models/inflation-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04075",
@@ -25010,25 +25010,25 @@
     "id": "04167",
     "source": "unbalanced",
     "origin": "assets/legacy-models/molar-mass-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04168",
     "source": "unknown:",
     "origin": "assets/legacy-models/molar-mass-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04169",
     "source": "bad:",
     "origin": "assets/legacy-models/molar-mass-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04170",
     "source": "formula",
     "origin": "assets/legacy-models/molar-mass-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04171",
@@ -25838,7 +25838,7 @@
     "id": "04305",
     "source": "chip5",
     "origin": "assets/legacy-models/present-value-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04306",
@@ -27968,13 +27968,13 @@
     "id": "04660",
     "source": "chipC1",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04661",
     "source": "chipC2",
     "origin": "assets/legacy-models/system-of-equations-calculator-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04662",
@@ -28436,7 +28436,7 @@
     "id": "04738",
     "source": "gal",
     "origin": "assets/legacy-models/volume-converter-1.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04739",
@@ -28700,13 +28700,13 @@
     "id": "04782",
     "source": "any",
     "origin": "assets/models/core.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04783",
     "source": "select",
     "origin": "assets/models/core.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04784",
@@ -28718,7 +28718,7 @@
     "id": "04785",
     "source": "Duplicate model:",
     "origin": "assets/models/core.js",
-    "active": true
+    "active": false
   },
   {
     "id": "04786",
@@ -29339,7 +29339,7 @@
         1
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04826",
@@ -31720,7 +31720,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04953",
@@ -31735,7 +31735,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "04954",
@@ -34334,7 +34334,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05089",
@@ -34349,7 +34349,7 @@
         0
       ]
     },
-    "active": true
+    "active": false
   },
   {
     "id": "05090",
@@ -42229,7 +42229,7 @@
     "origin": "ev-fuel-cost-comparison-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "08230",
     "source": "EV wall energy (kWh/100 km)",
     "origin": "ev-fuel-cost-comparison-calculator.html"
@@ -42253,7 +42253,7 @@
     "origin": "ev-fuel-cost-comparison-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "08235",
     "source": "Use electricity measured at the wall to include charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.",
     "origin": "ev-fuel-cost-comparison-calculator.html"
@@ -58813,37 +58813,37 @@
     "origin": "z-score-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15295",
     "source": "?embed=1",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15296",
     "source": "cm:workspace-results",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15297",
     "source": "cm:workspace-change",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15298",
     "source": "cm:translations",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15299",
     "source": "#desk=",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15303",
     "source": "(max-width:639px)",
     "origin": "assets/cm-home-app.js"
@@ -58861,43 +58861,43 @@
     "origin": "assets/cm-home-app.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15308",
     "source": "ratio",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15309",
     "source": "notation",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15310",
     "source": "point",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15314",
     "source": "matrix",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15316",
     "source": "complex",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15317",
     "source": "eigenvalues",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15318",
     "source": "line",
     "origin": "assets/cm-expanded.js"
@@ -58951,7 +58951,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15335",
     "source": "cm:model-updated",
     "origin": "assets/cm-expanded.js"
@@ -58975,7 +58975,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15340",
     "source": "{0}.csv",
     "origin": "assets/cm-expanded.js",
@@ -58990,13 +58990,13 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "15341",
     "source": "thead",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15342",
     "source": "col",
     "origin": "assets/cm-expanded.js"
@@ -59014,25 +59014,25 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15346",
     "source": "tbody",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15347",
     "source": "row",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15349",
     "source": "object",
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15350",
     "source": "string",
     "origin": "assets/cm-expanded.js"
@@ -59044,7 +59044,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15353",
     "source": "local",
     "origin": "assets/cm-ranking.js"
@@ -59062,7 +59062,7 @@
     "origin": "assets/cm-ranking.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15361",
     "source": "editorial",
     "origin": "assets/cm-ranking.js"
@@ -59080,7 +59080,7 @@
     "origin": "assets/cm-ranking.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15365",
     "source": "section",
     "origin": "assets/cm-scenario-editor.js"
@@ -59098,13 +59098,13 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15369",
     "source": "off",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15370",
     "source": "label",
     "origin": "assets/cm-scenario-editor.js"
@@ -59139,31 +59139,31 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "15375",
     "source": "needs",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15377",
     "source": "earliest",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15378",
     "source": "notice",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15379",
     "source": "decimal",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15382",
     "source": "table",
     "origin": "assets/cm-scenario-editor.js"
@@ -59199,13 +59199,13 @@
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15397",
     "source": "dialog",
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15398",
     "source": "form",
     "origin": "assets/cm-workspace-tools.js"
@@ -59247,7 +59247,7 @@
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15407",
     "source": "strong",
     "origin": "assets/cm-workspace-tools.js"
@@ -59349,7 +59349,7 @@
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15425",
     "source": "summary",
     "origin": "assets/cm-workspace-tools.js"
@@ -59379,7 +59379,7 @@
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15432",
     "source": "desk={0}",
     "origin": "assets/cm-workspace-tools.js",
@@ -59394,7 +59394,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "15433",
     "source": "desk=",
     "origin": "assets/cm-workspace-tools.js"
@@ -59436,7 +59436,7 @@
     "origin": "assets/cm-workspace-tools.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15449",
     "source": "details",
     "origin": "assets/cm-workspace-intent.js"
@@ -59496,55 +59496,55 @@
     "origin": "assets/cm-workspace-intent.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15469",
     "source": "mortgage",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15470",
     "source": "price",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15471",
     "source": "home price",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15472",
     "source": "property price",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15474",
     "source": "down",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15475",
     "source": "down payment",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15476",
     "source": "interest rate",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15477",
     "source": "annual rate",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15478",
     "source": "term",
     "origin": "assets/cm-intent-core.js"
@@ -59562,19 +59562,19 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15482",
     "source": "extra monthly principal",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15483",
     "source": "loan",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15484",
     "source": "prin",
     "origin": "assets/cm-intent-core.js"
@@ -59586,19 +59586,19 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15486",
     "source": "principal",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15487",
     "source": "loan amount",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15488",
     "source": "amount",
     "origin": "assets/cm-intent-core.js"
@@ -59610,25 +59610,25 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15495",
     "source": "extra monthly payment",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15496",
     "source": "compound",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15499",
     "source": "initial balance",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15500",
     "source": "contrib",
     "origin": "assets/cm-intent-core.js"
@@ -59640,43 +59640,43 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15502",
     "source": "monthly contribution",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15503",
     "source": "monthly deposit",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15505",
     "source": "rent vs buy",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15506",
     "source": "rent or buy",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15510",
     "source": "downp",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15511",
     "source": "down payment percent",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15512",
     "source": "mrate",
     "origin": "assets/cm-intent-core.js"
@@ -59688,19 +59688,19 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15514",
     "source": "mortgage rate",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15515",
     "source": "rent",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15516",
     "source": "monthly rent",
     "origin": "assets/cm-intent-core.js"
@@ -59712,13 +59712,13 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15518",
     "source": "freelance",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15519",
     "source": "hourly pay",
     "origin": "assets/cm-intent-core.js"
@@ -59730,13 +59730,13 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15521",
     "source": "annual income",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15522",
     "source": "tax rate",
     "origin": "assets/cm-intent-core.js"
@@ -59748,7 +59748,7 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15524",
     "source": "annual expenses",
     "origin": "assets/cm-intent-core.js"
@@ -59760,67 +59760,67 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15526",
     "source": "hours per week",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15527",
     "source": "billable share",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15528",
     "source": "ai cost",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15529",
     "source": "inference cost",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15530",
     "source": "itok",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15531",
     "source": "input tokens",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15532",
     "source": "otok",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15533",
     "source": "output tokens",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15534",
     "source": "calls2",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15535",
     "source": "calls per month",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15536",
     "source": "iprice",
     "origin": "assets/cm-intent-core.js"
@@ -59832,13 +59832,13 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15538",
     "source": "input price",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15539",
     "source": "oprice",
     "origin": "assets/cm-intent-core.js"
@@ -59850,13 +59850,13 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15541",
     "source": "output price",
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15542",
     "source": "NFKC",
     "origin": "assets/cm-intent-core.js"
@@ -59880,7 +59880,7 @@
     "origin": "assets/cm-intent-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15546",
     "source": "giu",
     "origin": "assets/cm-intent-core.js"
@@ -59958,7 +59958,7 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15586",
     "source": "power",
     "origin": "assets/models/converters.js"
@@ -59976,31 +59976,31 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15606",
     "source": "deg",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15607",
     "source": "turn",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15609",
     "source": "grad",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15611",
     "source": "arcmin",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15613",
     "source": "arcsec",
     "origin": "assets/models/converters.js"
@@ -60042,19 +60042,19 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15651",
     "source": "lb/US-gal",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15657",
     "source": "US-gal/min",
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15659",
     "source": "imp-gal/min",
     "origin": "assets/models/converters.js"
@@ -60078,7 +60078,7 @@
     "origin": "assets/models/converters.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15694",
     "source": "cal-th/(s·cm·K)",
     "origin": "assets/models/converters.js"
@@ -60228,13 +60228,13 @@
     "origin": "assets/models/digital.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15920",
     "source": "series",
     "origin": "assets/models/digital.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "15923",
     "source": "parallel",
     "origin": "assets/models/digital.js"
@@ -60456,7 +60456,7 @@
     "origin": "assets/models/finance-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16334",
     "source": "snow",
     "origin": "assets/models/finance-b.js"
@@ -60468,7 +60468,7 @@
     "origin": "assets/models/finance-b.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16337",
     "source": "avalanche",
     "origin": "assets/models/finance-b.js"
@@ -60636,13 +60636,13 @@
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16849",
     "source": "open",
     "origin": "assets/models/home.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "16852",
     "source": "closed",
     "origin": "assets/models/home.js"
@@ -61026,7 +61026,7 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17457",
     "source": "multiply",
     "origin": "assets/models/math.js"
@@ -61146,13 +61146,13 @@
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17671",
     "source": "subtract",
     "origin": "assets/models/math.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17675",
     "source": "divide",
     "origin": "assets/models/math.js"
@@ -61212,7 +61212,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17721",
     "source": "horizon",
     "origin": "assets/models/original-scenarios.js"
@@ -61236,7 +61236,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17731",
     "source": "plans",
     "origin": "assets/models/original-scenarios.js"
@@ -61266,7 +61266,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17747",
     "source": "text",
     "origin": "assets/models/original-scenarios.js"
@@ -61278,7 +61278,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17749",
     "source": "cost",
     "origin": "assets/models/original-scenarios.js"
@@ -61290,7 +61290,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17751",
     "source": "upfront",
     "origin": "assets/models/original-scenarios.js"
@@ -61446,7 +61446,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17782",
     "source": "resources",
     "origin": "assets/models/original-scenarios.js"
@@ -61464,7 +61464,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17796",
     "source": "restore",
     "origin": "assets/models/original-scenarios.js"
@@ -61476,7 +61476,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17798",
     "source": "restart",
     "origin": "assets/models/original-scenarios.js"
@@ -61488,7 +61488,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17800",
     "source": "loss",
     "origin": "assets/models/original-scenarios.js"
@@ -61500,7 +61500,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17802",
     "source": "backup",
     "origin": "assets/models/original-scenarios.js"
@@ -61590,7 +61590,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17826",
     "source": "month",
     "origin": "assets/models/original-scenarios.js"
@@ -61608,7 +61608,7 @@
     "origin": "assets/models/original-scenarios.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "17837",
     "source": "commitments",
     "origin": "assets/models/original-scenarios.js"
@@ -61920,19 +61920,19 @@
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18471",
     "source": "mid",
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18474",
     "source": "below",
     "origin": "assets/models/statistics-a.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "18476",
     "source": "inclusive",
     "origin": "assets/models/statistics-a.js"
@@ -65829,7 +65829,7 @@
     "origin": "updates.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19506",
     "source": "This release includes a pocket keypad, a scientific keypad, practical calculators across eight categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "origin": "updates.html"
@@ -65961,13 +65961,13 @@
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19528",
     "source": "max",
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19529",
     "source": "step",
     "origin": "assets/cm-workspace-links.js"
@@ -65979,13 +65979,13 @@
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19531",
     "source": "compatible",
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19532",
     "source": "unknown",
     "origin": "assets/cm-workspace-links.js"
@@ -66081,13 +66081,13 @@
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19548",
     "source": "medium",
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19549",
     "source": "short",
     "origin": "assets/cm-workspace-links.js"
@@ -66111,7 +66111,7 @@
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19553",
     "source": "https://calcmintly.com/{0}",
     "origin": "assets/cm-workspace-links.js",
@@ -66126,7 +66126,7 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19554",
     "source": "https://calcmintly.com/",
     "origin": "assets/cm-workspace-links.js"
@@ -66150,7 +66150,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19558",
     "source": "appr",
     "origin": "assets/cm-core-decisions.js"
@@ -66246,7 +66246,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19574",
     "source": "card cm-decisions",
     "origin": "assets/cm-core-decisions.js"
@@ -66282,7 +66282,7 @@
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19580",
     "source": "output",
     "origin": "assets/cm-core-decisions.js"
@@ -66495,25 +66495,25 @@
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19611",
     "source": "interest",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19612",
     "source": "ins",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19613",
     "source": "pmirate",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19614",
     "source": "hoa",
     "origin": "assets/cm-finance-core.js"
@@ -66567,13 +66567,13 @@
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19623",
     "source": "bal",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19624",
     "source": "pay",
     "origin": "assets/cm-finance-core.js"
@@ -66609,13 +66609,13 @@
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19630",
     "source": "gross",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19631",
     "source": "profit",
     "origin": "assets/cm-finance-core.js"
@@ -66675,31 +66675,31 @@
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19641",
     "source": "buyfee",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19642",
     "source": "sellfee",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19643",
     "source": "ownrate",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19644",
     "source": "rentgrowth",
     "origin": "assets/cm-finance-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19645",
     "source": "invest",
     "origin": "assets/cm-finance-core.js"
@@ -66759,25 +66759,25 @@
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19655",
     "source": "pcm",
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19656",
     "source": "gregory",
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19657",
     "source": "week",
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19658",
     "source": "day",
     "origin": "assets/cm-calendar-core.js"
@@ -66789,25 +66789,25 @@
     "origin": "assets/cm-calendar-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19660",
     "source": "example",
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19661",
     "source": "scope",
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19662",
     "source": "faq",
     "origin": "assets/cm-tool-page.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19663",
     "source": "related",
     "origin": "assets/cm-tool-page.js"
@@ -66849,7 +66849,7 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19670",
     "source": "svg",
     "origin": "assets/cm-scenario-editor.js"
@@ -66885,13 +66885,13 @@
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19676",
     "source": "path",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19677",
     "source": "translate({0} {1})",
     "origin": "assets/cm-scenario-editor.js",
@@ -66908,19 +66908,19 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19678",
     "source": "translate(",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19679",
     "source": "cm-dependency-map__node is-failed",
     "origin": "assets/cm-scenario-editor.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19680",
     "source": "rect",
     "origin": "assets/cm-scenario-editor.js"
@@ -67369,7 +67369,7 @@
     "origin": "assets/cm-data-core.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19744",
     "source": "group",
     "origin": "assets/cm-data-core.js"
@@ -67381,25 +67381,25 @@
     "origin": "assets/cm-workspace-links.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19746",
     "source": "finance",
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19747",
     "source": "state",
     "origin": "assets/cm-core-decisions.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19748",
     "source": "bridge",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19749",
     "source": "fields",
     "origin": "assets/cm-workspace.js"
@@ -67441,13 +67441,13 @@
     "origin": "assets/cm-keypad-app.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19756",
     "source": "keypad",
     "origin": "assets/cm-keypad-app.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19757",
     "source": "interval",
     "origin": "assets/cm-expanded.js"
@@ -67465,7 +67465,7 @@
     "origin": "assets/cm-expanded.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19760",
     "source": "expanded",
     "origin": "assets/cm-expanded.js"
@@ -68455,7 +68455,7 @@
     "origin": "ph-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19925",
     "source": "{0}?embed=1",
     "origin": "assets/cm-workspace.js",
@@ -68470,19 +68470,19 @@
     }
   },
   {
-    "active": true,
+    "active": false,
     "id": "19926",
     "source": "Reload calculator",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19927",
     "source": "about:blank",
     "origin": "assets/cm-workspace.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19928",
     "source": "calculator",
     "origin": "assets/cm-workspace.js"
@@ -68823,13 +68823,13 @@
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19982",
     "source": "housing",
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19983",
     "source": "other",
     "origin": "assets/legacy-models/debt-to-income-calculator-1.js"
@@ -68910,7 +68910,7 @@
     "origin": "future-value-calculator.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "19995",
     "source": "currency",
     "origin": "assets/legacy-models/future-value-calculator-1.js"
@@ -71255,5 +71255,101 @@
     "id": "20378",
     "source": "byte",
     "origin": "assets/cm-data-core.js"
+  },
+  {
+    "active": false,
+    "id": "20379",
+    "source": "complete",
+    "origin": "assets/cm-workspace.js"
+  },
+  {
+    "active": true,
+    "id": "20380",
+    "source": "Uses internal rectangular dimensions and a uniformly sloping floor. Steps, benches, curved walls and changes in water level are not modeled.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": false,
+    "id": "20381",
+    "source": "Estimates one rainfall event using entered collection efficiency and free tank capacity. Does not forecast rainfall or assess water quality and drinking safety.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20382",
+    "source": "Assumes constant total emitter flow and the entered application efficiency. The water-depth target is chosen by you; crop needs, soil behavior and weather are not assessed.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20383",
+    "source": "Uses the product seed rate and pack mass you enter, with an optional waste allowance. Does not choose a seed variety, sowing season or agronomic application rate.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20384",
+    "source": "Assumes constant annual consumption and electricity price. Payback includes energy savings only; maintenance, financing, resale and appliance lifetime are excluded.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20385",
+    "source": "Assumes the entered average moving speed and total stop time. Does not include live traffic, weather delays or route planning.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20386",
+    "source": "Transport and accommodation are group costs; daily spending is per person. Use one currency throughout. No exchange rates or live travel prices are supplied.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20387",
+    "source": "Preferment is treated as flour and water only. Water from eggs, milk and other ingredients is not included. Hydration compares total water mass with total flour mass.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20388",
+    "source": "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20389",
+    "source": "Charging electricity from supply (kWh/100 km)",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20390",
+    "source": "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20391",
+    "source": "Budget buffer (%)",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20392",
+    "source": "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
+    "origin": "updates.html"
+  },
+  {
+    "active": true,
+    "id": "20393",
+    "source": "Physical volume",
+    "origin": "assets/models/home.js"
+  },
+  {
+    "active": true,
+    "id": "20394",
+    "source": "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
+    "origin": "blood-pressure-calculator.html"
   }
 ]

@@ -34,5 +34,15 @@
   "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "L = B⁻¹(α/2;k,n−k+1) और U = B⁻¹(1−α/2;k+1,n−k) का प्रयोग करें। k सफलताओं की संख्या और n परीक्षणों की संख्या है। विश्वास स्तर के दशमलव अनुपात c के लिए α = 1−c रखें; B⁻¹ बीटा वितरण का क्वांटाइल है। सीमांत स्थितियाँ k = 0 → L = 0 और k = n → U = 1 हैं।",
   "YOUR CALCULATOR DESK": "आपका कैलकुलेटर कार्यक्षेत्र",
   "CHOOSE A TOOL": "एक उपकरण चुनें",
-  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} के उप-योग पर {1} की दर से कर {0} है; कर सहित कुल {3} है।"
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "${2} के उप-योग पर {1} की दर से कर {0} है; कर सहित कुल {3} है।",
+  "Transport and accommodation are group costs; daily spending is per person. Use one currency throughout. No exchange rates or live travel prices are supplied.": "परिवहन और आवास की रकम पूरे समूह के लिए है; दैनिक खर्च प्रति व्यक्ति है। सभी रकम एक ही मुद्रा में दर्ज करें। विनिमय दरें या यात्रा के ताज़ा भाव उपलब्ध नहीं कराए जाते।",
+  "Estimates collected water from one rainfall event using your collection efficiency and remaining tank space. Does not forecast rainfall or assess water quality and drinking safety.": "आपकी दर्ज संग्रहण दक्षता और टैंक में बची खाली जगह के आधार पर एक बार की बारिश से इकट्ठा होने वाले पानी का अनुमान लगाता है। यह बारिश का पूर्वानुमान या पानी की गुणवत्ता और पीने की सुरक्षा का आकलन नहीं करता।",
+  "Charging electricity from supply (kWh/100 km)": "चार्जिंग के लिए स्रोत से ली गई बिजली (kWh/100 km)",
+  "Enter electricity drawn from the supply, including charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.": "चार्जिंग में होने वाली हानि सहित बिजली स्रोत से ली गई ऊर्जा दर्ज करें। रखरखाव, बीमा, कर, मूल्यह्रास और प्रोत्साहन शामिल नहीं हैं।",
+  "Budget buffer (%)": "बजट में अतिरिक्त गुंजाइश (%)",
+  "Preferment total mass (g)": "पहले से किण्वित आटे का कुल द्रव्यमान (g)",
+  "Preferment hydration (%)": "पहले से किण्वित आटे में पानी और आटे का अनुपात (%)",
+  "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.": "इस रिलीज़ में एक पॉकेट कीपैड, एक वैज्ञानिक कीपैड, नौ श्रेणियों में व्यावहारिक कैलकुलेटर और तीन मूल नियोजन परिदृश्य शामिल हैं। भाषा पृष्ठों और अंतर्निहित दृश्यों को अलग उपकरण नहीं माना जाता है।",
+  "Physical volume": "भौतिक आयतन",
+  "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.": "सिस्टोलिक और डायस्टोलिक रीडिंग mmHg में दर्ज करें। टाइप करते ही परिणाम बदलते हैं। सभी गणनाएँ आपके ब्राउज़र में स्थानीय रूप से होती हैं।"
 }
