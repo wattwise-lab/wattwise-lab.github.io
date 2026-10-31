@@ -40,6 +40,16 @@ async function validPage(page, tool) {
     )),
     tool.slug + ': page overflow',
   );
+  const undersized = await page.locator('main button,main a').evaluateAll((elements) =>
+    elements
+      .filter((element) => element.getClientRects().length)
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.width < 43.8 || rect.height < 43.8;
+      })
+      .map((element) => element.textContent.trim()),
+  );
+  assert.deepEqual(undersized, [], tool.slug + ': interactive targets smaller than 44px');
 }
 try {
   for (const size of [

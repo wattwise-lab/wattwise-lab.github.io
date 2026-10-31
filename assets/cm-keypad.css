@@ -337,6 +337,12 @@ p {
   padding: 20px 0;
   max-width: 850px;
 }
+.kp-guide a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
 .kp-guide code {
   display: inline-block;
   direction: ltr;
