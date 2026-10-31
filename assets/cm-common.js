@@ -3853,7 +3853,7 @@ window.CMI18n = (() => {
     pathLocale = location.pathname.split('/')[1];
   let lang =
     normalize(params.get('lang')) ||
-    normalize(pathLocale) ||
+    window.CMLocaleRoutes?.normalize(pathLocale) ||
     (document.documentElement.hasAttribute('data-cm-localized-routes') &&
       normalize(document.documentElement.lang)) ||
     normalize(stored) ||
