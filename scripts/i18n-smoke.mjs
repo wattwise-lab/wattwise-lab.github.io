@@ -51,6 +51,24 @@ for (const lang of locales) {
   assert.equal($('.cm-originals__tool').length, 3);
   assert.equal($('[data-cm-language] option').length, 20);
   assert.equal($('[hreflang]').length, 21);
+  const digitalCategory = c.window.CMHomeCopy[lang].domains['Digital and Technology'];
+  assert.ok(digitalCategory, lang + ' technology category label');
+  assert.equal($('[data-cm-category="Digital and Technology"]').text(), digitalCategory);
+  const directory = load(
+    await fs.readFile(
+      new URL((lang === 'en' ? '' : lang.toLowerCase() + '/') + 'directory.html', root),
+      'utf8',
+    ),
+  );
+  assert.equal(
+    directory('#category-mobile option[value="Digital and Technology"]').text(),
+    digitalCategory + ' · ' + new Intl.NumberFormat(lang).format(25),
+    lang + ' native category and current count',
+  );
+  assert.equal(
+    directory('.category[data-domain="Digital and Technology"] span').text(),
+    digitalCategory,
+  );
 }
 console.log(
   'I18n shell PASS: 20 homepages, equal shared UI keys, lang/RTL, eight shortcuts and three original entries. Full content coverage is a separate strict release check.',

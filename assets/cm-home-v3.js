@@ -19,6 +19,7 @@
     'Home and Everyday': '⌂',
     'Math and Time': '÷',
     'AI and Work-life': 'AI',
+    'Digital and Technology': '01',
     Science: 'Ω',
   };
   const clean = (s) =>
@@ -40,7 +41,7 @@
     数学: 'Math and Time',
     日期: 'Math and Time',
     教育: 'Math and Time',
-    科技: 'AI and Work-life',
+    科技: 'Digital and Technology',
   };
   const matchLocale = (v) =>
     allowed.includes(v)
@@ -59,7 +60,8 @@
   lang = window.CMI18n.language;
   const t = (k, v = {}) =>
     Object.entries(v).reduce(
-      (s, [a, b]) => s.replaceAll('{' + a + '}', String(b)),
+      (s, [a, b]) =>
+        s.replaceAll('{' + a + '}', typeof b === 'number' ? window.CMI18n.number(b) : String(b)),
       C[lang][k === 'count' && Number(v.count) === 1 ? 'countOne' : k] ?? C.en[k] ?? k,
     );
   const cat = (d) => C[lang].domains[d] || d;
@@ -103,13 +105,16 @@
     document.querySelectorAll('.category').forEach((b) => {
       const d = b.dataset.domain;
       b.querySelector('span').textContent = d === 'all' ? t('all') : cat(d);
+      b.querySelector('small').textContent = window.CMI18n.number(
+        d === 'all' ? data.length : counts[d],
+      );
     });
     [...$('category-mobile').options].forEach(
       (o) =>
         (o.textContent =
           (o.value === 'all' ? t('all') : cat(o.value)) +
           ' · ' +
-          (o.value === 'all' ? data.length : counts[o.value])),
+          window.CMI18n.number(o.value === 'all' ? data.length : counts[o.value])),
     );
   }
   function filtered() {

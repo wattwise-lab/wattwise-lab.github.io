@@ -8692,5 +8692,6 @@
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "B = ceil(WHd/8) を使用してください。W と H はピクセルサイズ、d はピクセルあたりのビット数、B はバイト数、ceil は整数バイトに切り上げられます。",
   "Reduce W:H by dividing both dimensions by gcd(W,H). For a new width w, the proportional height is h = wH/W. gcd is the greatest common divisor.": "W:H の両方の寸法を gcd(W,H) で割って比を約分します。新しい幅が w の場合、比例する高さは h = wH/W です。gcd は最大公約数です。",
   "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.": "t = 8000G/(vη) を使用します。G は十進単位の GB で表したファイルサイズ、v は Mbps 単位の回線速度、η は効率の割合、t は秒単位の時間です。",
-  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 を使用します。v は Mbps 単位の映像ビットレート、a は kbps 単位の音声ビットレート、t は秒単位の長さ、h は追加オーバーヘッドの割合、S は十進単位の MB で表したサイズです。"
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 を使用します。v は Mbps 単位の映像ビットレート、a は kbps 単位の音声ビットレート、t は秒単位の長さ、h は追加オーバーヘッドの割合、S は十進単位の MB で表したサイズです。",
+  "Digital and Technology": "デジタル・技術"
 }

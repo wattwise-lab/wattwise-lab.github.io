@@ -49,6 +49,37 @@ for (const file of files) {
     assert.equal($('link[rel=canonical]').attr('href'), 'https://calcmintly.com/' + slug);
     assert.equal($('.cm-site-header').length, 1, 'one header');
     assert.equal($('.cm-site-footer').length, 1, 'one footer');
+    const relatedLinks = $('.cm-expanded__related a')
+      .map((_, element) => $(element).attr('href'))
+      .get();
+    assert.equal(new Set(relatedLinks).size, relatedLinks.length, 'unique related tools');
+    for (const href of relatedLinks) {
+      assert.notEqual(href, '/' + slug, 'related tools exclude the current calculator');
+      assert.ok(
+        catalog.some((tool) => href === '/' + tool.slug),
+        'related calculator exists',
+      );
+    }
+    if (slug === 'bond-yield-calculator')
+      assert.ok(relatedLinks.includes('/bond-duration-calculator'), 'related bond analysis');
+    if (slug === 'hash-collision-probability-calculator') {
+      assert.ok(
+        relatedLinks.includes('/random-password-entropy-calculator'),
+        'related hash entropy',
+      );
+      assert.ok(
+        relatedLinks.includes('/random-search-time-calculator'),
+        'related search-space model',
+      );
+      assert.equal(catalog.find((tool) => tool.slug === slug).domain, 'Digital and Technology');
+    }
+    if (slug === 'directory') {
+      assert.equal($('.category[data-domain="Digital and Technology"] small').text(), '25');
+      assert.equal(
+        $('#category-mobile option[value="Digital and Technology"]').text(),
+        'Digital and Technology · 25',
+      );
+    }
     assert.equal($('[data-cm-language] option').length, 20);
     assert.equal(
       $('[onclick],[oninput],[onchange],a[href^="javascript:"]').length,

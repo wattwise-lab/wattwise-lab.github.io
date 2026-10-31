@@ -23,6 +23,7 @@
     'Math and Time': '÷',
     'Home and Everyday': '⌂',
     'AI and Work-life': 'AI',
+    'Digital and Technology': '01',
     Science: 'Ω',
   };
   const clean = (s) =>
@@ -96,15 +97,15 @@
     }
     $('cm-home-grid').replaceChildren(frag);
     $('cm-home-position').textContent =
-      I.t('count', {
-        start: rows.length ? start + 1 : 0,
-        end: Math.min(start + n, rows.length),
-        count: rows.length,
+      I.t(rows.length === 1 ? 'countOne' : 'count', {
+        start: I.number(rows.length ? start + 1 : 0),
+        end: I.number(Math.min(start + n, rows.length)),
+        count: I.number(rows.length),
       }) +
       ' · ' +
-      page +
+      I.number(page) +
       '/' +
-      pages;
+      I.number(pages);
     $('cm-home-prev').disabled = page === 1;
     $('cm-home-next').disabled = page === pages;
     document
@@ -160,7 +161,7 @@
       日期: 'Dates',
       换算: 'Converters',
       商业: 'Business',
-      科技: 'AI and Work-life',
+      科技: 'Digital and Technology',
       生活: 'Home and Everyday',
       家居: 'Home',
       出行: 'Home and Everyday',

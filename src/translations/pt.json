@@ -8694,5 +8694,6 @@
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "Use B = ceil(WHd/8). W e H são dimensões em pixels, d são bits por pixel, B são bytes e ceil arredonda para um byte inteiro.",
   "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "Use S = (v+a/1000)t(1+h)/8. v é o vídeo Mbps, a é o áudio kbps, t é a duração em segundos, h é a fração de sobrecarga e S é o decimal MB.",
   "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.": "Use t = 8000G/(vη). G é o tamanho do arquivo em GB decimais, v é a velocidade da conexão em Mbps, η é a fração de eficiência e t é o tempo em segundos.",
-  "Use C = Nhr+Gp+F. N is instance count, h is hours per instance, r is hourly price, G is billable traffic GB, p is price per GB, and F is fixed charges.": "Use C = Nhr+Gp+F. N é o número de instâncias, h são as horas por instância, r é o preço por hora, G é o tráfego faturável em GB, p é o preço por GB e F são os encargos fixos."
+  "Use C = Nhr+Gp+F. N is instance count, h is hours per instance, r is hourly price, G is billable traffic GB, p is price per GB, and F is fixed charges.": "Use C = Nhr+Gp+F. N é o número de instâncias, h são as horas por instância, r é o preço por hora, G é o tráfego faturável em GB, p é o preço por GB e F são os encargos fixos.",
+  "Digital and Technology": "Tecnologia digital"
 }

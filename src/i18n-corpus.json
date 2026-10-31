@@ -40849,49 +40849,49 @@
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07640",
     "source": "Finance · 63",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07641",
     "source": "Business · 30",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07642",
     "source": "Health · 36",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07643",
     "source": "Converters · 35",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07644",
     "source": "Home and Everyday · 45",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07645",
     "source": "Math and Time · 168",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07646",
     "source": "AI and Work-life · 38",
     "origin": "directory.html"
   },
   {
-    "active": true,
+    "active": false,
     "id": "07647",
     "source": "Science · 85",
     "origin": "directory.html"
@@ -69935,5 +69935,17 @@
     "id": "20158",
     "source": "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.",
     "origin": "video-file-size-calculator.html"
+  },
+  {
+    "active": true,
+    "id": "20159",
+    "source": "Digital and Technology",
+    "origin": "api-throughput-limit-calculator.html"
+  },
+  {
+    "active": false,
+    "id": "20160",
+    "source": "AI and Work-life · 13",
+    "origin": "directory.html"
   }
 ]

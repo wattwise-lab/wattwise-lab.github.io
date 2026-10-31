@@ -9930,5 +9930,6 @@
   "Use C = Nhr+Gp+F. N is instance count, h is hours per instance, r is hourly price, G is billable traffic GB, p is price per GB, and F is fixed charges.": "使用 C = Nhr+Gp+F。N 为实例数，h 为每个实例计费小时数，r 为小时单价，G 为计费流量 GB，p 为每 GB 单价，F 为固定费用。",
   "Use C = Gr+Nq/10^6+Ep. G is stored GB-months, r is storage price, N is requests, q is price per million requests, E is egress GB, and p is egress price per GB.": "使用 C = Gr+Nq/10^6+Ep。G 为存储 GB 月，r 为存储单价，N 为请求数，q 为每百万请求单价，E 为出站 GB，p 为每 GB 出站单价。",
   "Use A = W−S−H−O. W is context capacity, S is system and tool tokens, H is existing history, O is reserved output, and A is remaining input capacity. All terms are token counts.": "使用 A = W−S−H−O。W 为上下文容量，S 为系统及工具词元数，H 为已有历史词元数，O 为预留输出词元数，A 为剩余输入容量。各项单位均为词元。",
-  "Use q ≤ min(R/60,c/s) and t ≈ N/q. R is requests allowed per minute, c is concurrent slots, s is average service seconds, N is batch requests, q is requests per second, and t is ideal batch seconds.": "使用 q ≤ min(R/60,c/s) 和 t ≈ N/q。R 为每分钟请求额度，c 为并发槽位，s 为平均服务秒数，N 为批次请求数，q 为每秒请求数，t 为理想批次秒数。"
+  "Use q ≤ min(R/60,c/s) and t ≈ N/q. R is requests allowed per minute, c is concurrent slots, s is average service seconds, N is batch requests, q is requests per second, and t is ideal batch seconds.": "使用 q ≤ min(R/60,c/s) 和 t ≈ N/q。R 为每分钟请求额度，c 为并发槽位，s 为平均服务秒数，N 为批次请求数，q 为每秒请求数，t 为理想批次秒数。",
+  "Digital and Technology": "数字与技术"
 }

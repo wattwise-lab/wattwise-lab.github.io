@@ -8694,5 +8694,6 @@
   "Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.": "d = T(1−a) استعمال کریں۔ T رپورٹنگ کا دورانیہ ہے، a a فریکشن کے طور پر دستیاب ہے، اور d کو اسی ٹائم یونٹ میں ڈاؤن ٹائم کی اجازت ہے۔",
   "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.": "D = 1000T(1−r)/(gc) استعمال کریں۔ T اعشاریہ TB میں گنجائش ہے، r ریزرو فریکشن ہے، g نیا GB فی دن ہے، c کاپی گنتی ہے، اور D برقرار رکھنے کے دن ہیں۔",
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "B = ceil(WHd/8) استعمال کریں۔ W اور H پکسل کے طول و عرض ہیں، d بٹس فی پکسل ہیں، B بائٹس ہیں، اور ceil پورے بائٹ تک ہیں۔",
-  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 استعمال کریں۔ v ویڈیو Mbps ہے، a آڈیو kbps ہے، t سیکنڈ میں دورانیہ ہے، h اوور ہیڈ فریکشن ہے، اور S اعشاریہ MB ہے۔"
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 استعمال کریں۔ v ویڈیو Mbps ہے، a آڈیو kbps ہے، t سیکنڈ میں دورانیہ ہے، h اوور ہیڈ فریکشن ہے، اور S اعشاریہ MB ہے۔",
+  "Digital and Technology": "ڈیجیٹل ٹیکنالوجی"
 }

@@ -56,6 +56,23 @@ export async function localizeSite(root, catalog, pages, selected) {
     for (const locale of locales.filter((x) => !selected || selected.includes(x))) {
       const $ = load(source),
         canonical = origin + routes.path(page.path, locale);
+      if (page.path === '/directory') {
+        const copy = context.window.CMHomeCopy[locale],
+          categoryName = (domain) => (domain === 'all' ? copy.all : copy.domains[domain]),
+          categoryCount = (domain) =>
+            domain === 'all'
+              ? catalog.length
+              : catalog.filter((tool) => tool.domain === domain).length;
+        $('.category[data-domain]').each((_, element) => {
+          const domain = $(element).attr('data-domain');
+          $(element).find('span').text(categoryName(domain));
+          $(element).find('small').text(categoryCount(domain));
+        });
+        $('#category-mobile option').each((_, element) => {
+          const domain = $(element).attr('value');
+          $(element).text(categoryName(domain) + ' · ' + categoryCount(domain));
+        });
+      }
       $('script[data-cm-locale-dictionary]').remove();
       $('script[data-cm-merchant-dictionary]').remove();
       if (page.path === '/merchant-profit-planner') {

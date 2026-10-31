@@ -8694,5 +8694,6 @@
   "Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.": "Tumia d = T(1−a). T ni kipindi cha kipindi cha kuripoti, a ni upatikanaji kama sehemu ya a, na d inaruhusiwa muda wa kutofanya kazi katika kitengo cha muda sawa.",
   "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.": "Tumia D = 1000T(1−r)/(gc). T ni ujazo katika desimali TB, r ni sehemu ya akiba, g ni GB mpya kwa siku, c ni hesabu ya nakala, na D ni siku za kuhifadhi.",
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "Tumia B = ceil(WHd/8). W na H ni vipimo vya pikseli, d ni biti kwa kila pikseli, B ni baiti, na ceil huzungusha hadi baiti nzima.",
-  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "Tumia S = (v+a/1000)t(1+h)/8. v ni video Mbps, a ni sauti kbps, t ni muda katika sekunde, h ni sehemu ya juu, na S ni desimali MB."
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "Tumia S = (v+a/1000)t(1+h)/8. v ni video Mbps, a ni sauti kbps, t ni muda katika sekunde, h ni sehemu ya juu, na S ni desimali MB.",
+  "Digital and Technology": "Teknolojia ya kidijitali"
 }

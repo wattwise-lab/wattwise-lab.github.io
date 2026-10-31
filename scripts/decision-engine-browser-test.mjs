@@ -227,6 +227,45 @@ try {
     }));
     assert.ok(largeNumberBox.height <= largeNumberBox.lineHeight + 1);
     assert.ok(largeNumberBox.pageWidth <= largeNumberBox.viewportWidth + 1);
+    for (const slug of ['loan-term-calculator', 'flat-versus-reducing-loan-calculator']) {
+      await page.goto(base + '/' + slug + '?lang=en', { waitUntil: 'load' });
+      await page.locator('#cm-result-rows dd').first().waitFor({ state: 'visible' });
+      const values = await page
+        .locator('#cm-result-rows dd,.cm-expanded__example dd')
+        .evaluateAll((elements) =>
+          elements.map((element) => ({
+            text: element.textContent,
+            height: element.getBoundingClientRect().height,
+            lineHeight: Number.parseFloat(globalThis.getComputedStyle(element).lineHeight),
+          })),
+        );
+      assert.ok(values.length > 0);
+      for (const value of values)
+        assert.ok(value.height <= value.lineHeight + 1, slug + ': split value ' + value.text);
+      assert.ok(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1,
+        ),
+      );
+    }
+    await page.goto(base + '/directory?lang=en', { waitUntil: 'load' });
+    await page.locator('#category-mobile').selectOption('Digital and Technology');
+    for (const locale of ['en', 'zh-CN', 'fr', 'ar']) {
+      await page.locator('#cm-site-language').selectOption(locale);
+      await page.waitForFunction((lang) => document.documentElement.lang === lang, locale);
+      assert.equal(await page.locator('#category-mobile').inputValue(), 'Digital and Technology');
+      assert.equal(await page.locator('#tool-grid .tool').count(), 6);
+      assert.match(
+        await page.locator('#tool-grid .tool').first().getAttribute('href'),
+        /download-time/,
+      );
+      const count = await page.locator('#result-count').innerText();
+      const expectedCount = await page.evaluate(
+        (lang) => new Intl.NumberFormat(lang).format(25),
+        locale,
+      );
+      assert.ok(count.includes(expectedCount), count);
+    }
     await page.setViewportSize({ width: 390, height: 844 });
     for (const [slug, field] of [
       ['age-calculator', 'ref'],

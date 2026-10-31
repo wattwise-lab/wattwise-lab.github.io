@@ -8695,5 +8695,6 @@
   "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.": "Verwenden Sie D = 1000T(1−r)/(gc). T ist die Kapazität in Dezimaldarstellung TB, r ist der Reserveanteil, g ist die Anzahl neuer Kopien pro Tag GB, c ist die Anzahl der Kopien und D ist die Aufbewahrungsdauer.",
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "Verwenden Sie B = ceil(WHd/8). W und H sind Pixelabmessungen, d sind Bits pro Pixel, B sind Bytes und ceil rundet auf ein ganzes Byte auf.",
   "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "Verwenden Sie S = (v+a/1000)t(1+h)/8. v ist Video Mbps, a ist Audio kbps, t ist die Dauer in Sekunden, h ist der Overhead-Anteil und S ist Dezimal MB.",
-  "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.": "Verwenden Sie t = 8000G/(vη). G ist die Dateigröße in dezimalen GB, v die Verbindungsgeschwindigkeit in Mbps, η der Wirkungsgrad und t die Zeit in Sekunden."
+  "Use t = 8000G/(vη). G is the file size in decimal GB, v is the link speed in Mbps, η is the efficiency fraction, and t is seconds.": "Verwenden Sie t = 8000G/(vη). G ist die Dateigröße in dezimalen GB, v die Verbindungsgeschwindigkeit in Mbps, η der Wirkungsgrad und t die Zeit in Sekunden.",
+  "Digital and Technology": "Digitaltechnik"
 }

@@ -367,6 +367,7 @@ const icons = {
   'Math and Time': '÷',
   'Home and Everyday': '⌂',
   'AI and Work-life': 'AI',
+  'Digital and Technology': '01',
   Science: 'Ω',
 };
 const originalSlugs = [
@@ -892,6 +893,30 @@ for (const page of ['directory', 'workspace']) {
   $('main').first().attr('id', 'main-content');
   if (page === 'directory') {
     $('[data-t=intro]').text(C.en.intro);
+    const directoryDomains = [
+      'all',
+      ...Object.keys(C.en.domains).filter((domain) =>
+        catalog.some((tool) => tool.domain === domain),
+      ),
+    ];
+    $('nav.categories').html(
+      directoryDomains
+        .map(
+          (domain) =>
+            `<button type="button" class="category" data-domain="${esc(domain)}" aria-pressed="${domain === 'all'}"><span data-cm-no-translate>${esc(domain === 'all' ? C.en.all : C.en.domains[domain])}</span><small data-cm-no-translate>${domain === 'all' ? catalog.length : catalog.filter((tool) => tool.domain === domain).length}</small></button>`,
+        )
+        .join(''),
+    );
+    $('#category-mobile')
+      .attr('data-cm-no-translate', '')
+      .html(
+        directoryDomains
+          .map(
+            (domain) =>
+              `<option value="${esc(domain)}">${esc(domain === 'all' ? C.en.all : C.en.domains[domain])} · ${domain === 'all' ? catalog.length : catalog.filter((tool) => tool.domain === domain).length}</option>`,
+          )
+          .join(''),
+      );
     const ordered = [...catalog].sort((a, b) => a.priority - b.priority);
     const formatCopy = (key, values) =>
       Object.entries(values).reduce(

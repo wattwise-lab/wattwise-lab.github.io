@@ -8693,5 +8693,6 @@
   "Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.": "d = T(1−a) ব্যবহার করুন। T হলো রিপোর্টিং-পিরিয়ডের সময়কাল, a হলো a ভগ্নাংশ হিসেবে প্রাপ্যতা, এবং d হলো একই সময় এককে অনুমোদিত ডাউনটাইম।",
   "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.": "D = 1000T(1−r)/(gc) ব্যবহার করুন। T হলো দশমিক TB এককে ধারণক্ষমতা, r হলো সংরক্ষিত ভগ্নাংশ, g হলো প্রতিদিনের নতুন GB, c হলো অনুলিপি সংখ্যা, এবং D হলো ধারণের দিন সংখ্যা।",
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "B = ceil(WHd/8) ব্যবহার করুন। W এবং H হলো পিক্সেল ডাইমেনশন, d হলো প্রতি পিক্সেলে বিটের সংখ্যা, B হলো বাইট, এবং ceil একটি পূর্ণ বাইটে রাউন্ড আপ করে।",
-  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 ব্যবহার করুন। v হলো ভিডিও Mbps, a হলো অডিও kbps, t হলো সেকেন্ডে সময়কাল, h হলো ওভারহেড ভগ্নাংশ, এবং S হলো দশমিক MB।"
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 ব্যবহার করুন। v হলো ভিডিও Mbps, a হলো অডিও kbps, t হলো সেকেন্ডে সময়কাল, h হলো ওভারহেড ভগ্নাংশ, এবং S হলো দশমিক MB।",
+  "Digital and Technology": "ডিজিটাল প্রযুক্তি"
 }

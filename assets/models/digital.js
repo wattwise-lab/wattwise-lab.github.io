@@ -10,7 +10,7 @@
     formula,
     e,
     note = 'Planning estimate using your entered parameters. No external service, device, live tariff or network is contacted.|根据自填参数进行规划估算，不访问外部服务、设备、实时价目或网络。',
-  ) => add(s, name, 'AI and Work-life', purpose, f, calc, formula, e, note);
+  ) => add(s, name, 'Digital and Technology', purpose, f, calc, formula, e, note);
   const eff = n('e', 'Transfer efficiency (%)|传输效率（%）', 80, 0.0001, 100);
   D(
     'download-time',

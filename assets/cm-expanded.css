@@ -44,9 +44,10 @@
 }
 .cm-expanded .cm-expanded__results > div {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 18px;
+  gap: 6px 18px;
   padding: 11px 0;
   border-top: 1px solid var(--cm-line);
 }
@@ -56,13 +57,15 @@
   line-height: 1.6;
 }
 .cm-expanded .cm-expanded__results dd {
+  flex-shrink: 0;
   font-size: 16px;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
   text-align: end;
   margin: 0;
+  margin-inline-start: auto;
   overflow-wrap: anywhere;
-  max-width: 65%;
+  max-width: 100%;
 }
 .cm-expanded .cm-expanded__unit {
   display: inline-block;
@@ -150,6 +153,12 @@
   color: var(--cm-muted);
   line-height: 1.7;
 }
+.cm-expanded .cm-expanded__meta time {
+  display: inline-block;
+  direction: ltr;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+}
 .cm-expanded .cm-expanded__example {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -160,14 +169,18 @@
 }
 .cm-expanded .cm-expanded__example dl > div {
   display: flex;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 4px 14px;
   justify-content: space-between;
   padding: 7px 0;
   border-bottom: 1px solid var(--cm-line);
   font-size: 12px;
 }
 .cm-expanded .cm-expanded__example dd {
+  flex-shrink: 0;
+  max-width: 100%;
   margin: 0;
+  margin-inline-start: auto;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
   text-align: end;

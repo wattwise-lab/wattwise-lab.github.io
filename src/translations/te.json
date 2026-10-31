@@ -8694,5 +8694,6 @@
   "Use d = T(1−a). T is the reporting-period duration, a is availability as a fraction, and d is allowed downtime in the same time unit.": "d = T(1−a) ను ఉపయోగించండి. T అనేది రిపోర్టింగ్-పీరియడ్ వ్యవధి, a అనేది a ఫ్రాక్షన్‌గా లభ్యత, మరియు d అనేది అదే టైమ్ యూనిట్‌లో అనుమతించబడిన డౌన్‌టైమ్.",
   "Use D = 1000T(1−r)/(gc). T is capacity in decimal TB, r is the reserve fraction, g is new GB per day, c is the copy count, and D is retention days.": "D = 1000T(1−r)/(gc) ను ఉపయోగించండి. T అనేది దశాంశ TB లో సామర్థ్యం, ​​r అనేది రిజర్వ్ భిన్నం, g అనేది రోజుకు కొత్త GB, c అనేది కాపీల సంఖ్య, మరియు D అనేది నిలుపుదల రోజులు.",
   "Use B = ceil(WHd/8). W and H are pixel dimensions, d is bits per pixel, B is bytes, and ceil rounds up to a whole byte.": "B = ceil(WHd/8) ను ఉపయోగించండి. W మరియు H అనేవి పిక్సెల్ కొలతలు, d అనేది ప్రతి పిక్సెల్‌కు బిట్‌లు, B అనేది బైట్‌లు, మరియు ceil ఒక పూర్తి బైట్‌కు రౌండ్ అప్ చేస్తుంది.",
-  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 ను ఉపయోగించండి. v అనేది వీడియో Mbps, a అనేది ఆడియో kbps, t అనేది సెకన్లలో వ్యవధి, h అనేది ఓవర్‌హెడ్ ఫ్రాక్షన్, మరియు S అనేది దశాంశ MB."
+  "Use S = (v+a/1000)t(1+h)/8. v is video Mbps, a is audio kbps, t is duration in seconds, h is the overhead fraction, and S is decimal MB.": "S = (v+a/1000)t(1+h)/8 ను ఉపయోగించండి. v అనేది వీడియో Mbps, a అనేది ఆడియో kbps, t అనేది సెకన్లలో వ్యవధి, h అనేది ఓవర్‌హెడ్ ఫ్రాక్షన్, మరియు S అనేది దశాంశ MB.",
+  "Digital and Technology": "డిజిటల్ సాంకేతికత"
 }

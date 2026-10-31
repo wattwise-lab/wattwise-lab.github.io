@@ -31,9 +31,29 @@ export async function renderExpanded(model, { head, header, footer, schemas, cat
       .update((model.sourceHash || '') + model.calculate.toString() + model.formula)
       .digest('hex')
       .slice(0, 12),
+    modelIndex = catalog.findIndex((tool) => tool.slug === model.slug),
+    relatedTerms = (slug) =>
+      new Set(
+        slug
+          .replace(/-(?:calculator|converter)$/, '')
+          .split('-')
+          .filter(
+            (term) =>
+              term.length > 2 && !['and', 'the', 'for', 'per', 'from', 'with'].includes(term),
+          ),
+      ),
+    ownTerms = relatedTerms(model.slug),
+    relatedScore = (tool) =>
+      [...relatedTerms(tool.slug)].filter((term) => ownTerms.has(term)).length,
+    relatedDistance = (tool) => Math.abs(catalog.indexOf(tool) - modelIndex),
     related = model.related
       ? model.related.map((slug) => catalog.find((t) => t.slug === slug)).filter(Boolean)
-      : catalog.filter((t) => t.domain === model.domain && t.slug !== model.slug).slice(0, 6);
+      : catalog
+          .filter((t) => t.domain === model.domain && t.slug !== model.slug)
+          .sort(
+            (a, b) => relatedScore(b) - relatedScore(a) || relatedDistance(a) - relatedDistance(b),
+          )
+          .slice(0, 6);
   const editorExample = model.editor
     ? `<div class="cm-expanded__example-items"><h3 data-cm-pair="${esc(model.editor.title)}">${esc(en(model.editor.title))}</h3><ul>${String(
         defaults[model.editor.field],
