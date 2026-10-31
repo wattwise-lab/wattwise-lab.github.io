@@ -267,6 +267,50 @@ try {
       assert.ok(count.includes(expectedCount), count);
     }
     await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(base + '/workspace?lang=en', { waitUntil: 'load' });
+    await page.locator('#ws-direct-search').fill('download');
+    await page.locator('#ws-direct-results button').first().click();
+    await page.frameLocator('#desk-1 iframe').locator('#result').waitFor({ state: 'visible' });
+    await page.waitForFunction(() => {
+      const card = document.querySelector('#desk-1');
+      const top = card.getBoundingClientRect().top;
+      return document.activeElement === card && top >= 0 && top < 150;
+    });
+    assert.equal(await page.locator('#ws-direct-status').isVisible(), false);
+    assert.equal(await page.locator('#ws-direct-results').isVisible(), false);
+    await page.frameLocator('#desk-1 iframe').locator('#s').fill('001.5000');
+    for (let index = 0; index < 3; index++) {
+      await page.locator('#ws-direct-search').fill('download');
+      await page.locator('#ws-direct-results button').first().click();
+    }
+    assert.equal(await page.locator('#ws-direct-results button').count(), 8);
+    assert.ok(await page.locator('#ws-direct-status').isVisible());
+    await page.locator('#ws-direct-search').fill('fluid');
+    await page.locator('#ws-direct-results button').first().click();
+    await page.locator('#ws-replace-target').selectOption('4');
+    await page.getByRole('button', { name: 'Replace selected card', exact: true }).click();
+    await page.waitForFunction(
+      () => document.querySelector('#desk-5 iframe')?.contentDocument?.readyState === 'complete',
+    );
+    await page.evaluate(
+      () =>
+        new Promise((resolve) =>
+          globalThis.requestAnimationFrame(() =>
+            globalThis.requestAnimationFrame(() => globalThis.requestAnimationFrame(resolve)),
+          ),
+        ),
+    );
+    const replacedPosition = await page.locator('#desk-5').boundingBox();
+    assert.ok(replacedPosition.y >= 0 && replacedPosition.y < 150);
+    assert.equal(
+      await page.locator('#desk-5').evaluate((card) => document.activeElement === card),
+      true,
+    );
+    assert.equal(await page.frameLocator('#desk-1 iframe').locator('#s').inputValue(), '001.5000');
+    assert.equal(
+      await page.frameLocator('#desk-5 iframe').locator('#result').innerText(),
+      'clamp(16px, calc(12px + 1vw), 24px)',
+    );
     for (const [slug, field] of [
       ['age-calculator', 'ref'],
       ['countdown-calculator', 'from'],

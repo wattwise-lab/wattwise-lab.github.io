@@ -59,6 +59,7 @@
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     commit();
+    returnFocus = null;
     chooser.close();
   });
   chooser.addEventListener('close', () => returnFocus?.isConnected && returnFocus.focus());
@@ -125,7 +126,8 @@
       : text(
           'Eight everyday shortcuts. Search all 500 by name or purpose.|八个常用入口；按名称或用途搜索全部 500 个工具。',
         );
-    results.hidden = A.cards().length > 0 && !query;
+    results.hidden = A.cards().length > 0 && A.cards().length < 4 && !query;
+    hint.hidden = results.hidden;
     more.hidden = matches.length <= 8 || results.hidden;
     more.disabled = A.cards().length >= 4;
     if (A.cards().length >= 4) {

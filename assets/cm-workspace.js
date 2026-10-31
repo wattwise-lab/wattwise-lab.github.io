@@ -520,6 +520,11 @@
     refresh();
     const card = replace !== null ? cards.find((c) => !c.ready) : cards[cards.length - 1];
     card?.node.focus({ preventScroll: true });
+    requestAnimationFrame(() => {
+      if (!card?.node?.isConnected) return;
+      card.node.scrollIntoView({ block: 'start', behavior: 'auto' });
+      card.node.focus({ preventScroll: true });
+    });
     announce(
       t(replace !== null ? 'replaced' : 'added') + (cards.length === 4 ? ' ' + t('fullHint') : ''),
     );
