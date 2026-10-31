@@ -799,16 +799,18 @@
     'Find the smaller angle between two nonzero vectors.|求两个非零三维向量之间的较小夹角。',
     [...vectors.map((f) => ({ ...f, value: ['a', 'e'].includes(f.id) ? 1 : 0 }))],
     (v) => {
-      const a = Math.hypot(v.a, v.b, v.c),
-        b = Math.hypot(v.d, v.e, v.f);
-      check(a * b > 0, 'Both vectors must be nonzero.|两个向量都应非零。');
-      return [
-        R(
-          'Angle|夹角',
-          deg(Math.acos(Math.max(-1, Math.min(1, (v.a * v.d + v.b * v.e + v.c * v.f) / (a * b))))),
-          '°',
-        ),
-      ];
+      const unit = (components) => {
+        const scale = Math.max(...components.map(Math.abs));
+        check(scale > 0, 'Both vectors must be nonzero.|两个向量都应非零。');
+        const scaled = components.map((component) => component / scale);
+        const length = Math.hypot(...scaled);
+        return scaled.map((component) => component / length);
+      };
+      const a = unit([v.a, v.b, v.c]),
+        b = unit([v.d, v.e, v.f]);
+      const difference = Math.hypot(...a.map((component, index) => component - b[index]));
+      const combined = Math.hypot(...a.map((component, index) => component + b[index]));
+      return [R('Angle|夹角', deg(2 * Math.atan2(difference, combined)), '°')];
     },
     'Use θ = acos[(A·B)/(norm(A)norm(B))]. A and B are nonzero vectors, the dot denotes their dot product, and norm means Euclidean magnitude. The angle is displayed in degrees.|使用 θ = acos[(A·B)/(norm(A)norm(B))]。A 与 B 为非零向量，点号表示点积，norm 表示欧几里得模；夹角以度显示。',
     [90],

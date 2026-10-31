@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const source =
+  (await fs.readFile(new URL('../assets/cm-locale-core.js', import.meta.url), 'utf8')) +
+  '\n' +
   (await fs.readFile(new URL('../assets/cm-data-core.js', import.meta.url), 'utf8')) +
   '\n' +
   (await fs.readFile(new URL('../assets/cm-i18n.js', import.meta.url), 'utf8'));
@@ -67,9 +69,18 @@ for (const source of [
     corpus.some((row) => row.active && row.source === source),
     'Human-readable labels must remain translatable: ' + source,
   );
-function runtime(locale, { assets = {}, scripts = [] } = {}) {
+function runtime(
+  locale,
+  {
+    assets = {},
+    scripts = [],
+    search = '?lang=' + locale,
+    pathname = '/countdown-calculator',
+    localized = false,
+  } = {},
+) {
   const document = {
-    documentElement: { lang: locale, hasAttribute: () => false },
+    documentElement: { lang: locale, hasAttribute: () => localized },
     body: {},
     readyState: 'loading',
     querySelectorAll: () => [],
@@ -110,8 +121,8 @@ function runtime(locale, { assets = {}, scripts = [] } = {}) {
     document,
     localStorage: { getItem: () => null },
     location: {
-      search: '?lang=' + locale,
-      pathname: '/countdown-calculator',
+      search,
+      pathname,
       origin: 'https://example.test',
     },
     navigator: { language: locale },
@@ -156,6 +167,27 @@ const secondLoad = retry.ensureTranslations('de');
 assert.equal(languageScripts.length, 2, 'Failed language loads must be retryable');
 languageScripts[1].onload();
 await secondLoad;
+
+for (const pathname of ['/de-broglie-wavelength-calculator', '/fr-test', '/id-example'])
+  assert.equal(
+    runtime('en', { search: '', pathname, localized: true }).language,
+    'en',
+    'A tool slug is not a language route',
+  );
+assert.equal(
+  runtime('en', { search: '', pathname: '/de/de-broglie-wavelength-calculator', localized: true })
+    .language,
+  'de',
+);
+assert.equal(
+  runtime('en', {
+    search: '',
+    pathname: '/zh-cn/de-broglie-wavelength-calculator',
+    localized: true,
+  }).language,
+  'zh-CN',
+);
+
 console.log(
   'Translation runtime: mixed localized dates, authored Chinese preservation, literal email, rate-unit denominators and negative zero PASS',
 );

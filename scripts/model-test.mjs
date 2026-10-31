@@ -67,6 +67,11 @@ for (const [input, coefficient, exponent] of [
 // Independent golden values: 90-digit Decimal Heron/radius calculations and
 // analytic isosceles/diagonal cases, including the actual field limits.
 const preciseModels = [
+  ['angle-between-vectors', { a: 1, b: 0, c: 0, d: 1, e: 1e-8, f: 0 }, [5.729577951308232e-7]],
+  ['angle-between-vectors', { a: 1, b: 0, c: 0, d: -1, e: 0, f: 0 }, [180]],
+  ['angle-between-vectors', { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }, [0]],
+  ['angle-between-vectors', { a: 5e-324, b: 0, c: 0, d: 0, e: 5e-324, f: 0 }, [90]],
+  ['angle-between-vectors', { a: 1e15, b: 1e15, c: 0, d: 1e-15, e: 0, f: 0 }, [45]],
   ['sagitta', { r: 1e8, c: 1 }, [1.25e-9]],
   ['sagitta', { r: 1e4, c: 0.001 }, [1.25e-11]],
   ['sagitta', { r: 1e15, c: 1e-12 }, [1.25e-40]],
@@ -167,3 +172,9 @@ for (const model of models) {
 }
 console.log(JSON.stringify({ models: models.length, defaultAssertions: cases, failures }, null, 2));
 if (failures.length) process.exitCode = 1;
+
+assert.throws(() =>
+  models
+    .find((m) => m.slug === 'angle-between-vectors-calculator')
+    .calculate({ a: 0, b: 0, c: 0, d: 1, e: 0, f: 0 }),
+);

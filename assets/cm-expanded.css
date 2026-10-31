@@ -517,3 +517,12 @@
   margin: 6px 0 0;
   font-size: 13px;
 }
+
+/* Keep a long scalar together; the unit can move to the next line. */
+.cm-expanded .big .cm-expanded__number {
+  display: inline-block;
+  white-space: nowrap;
+}
+.cm-expanded .big .cm-expanded__number--long {
+  font-size: clamp(18px, 5vw, 24px);
+}

@@ -231,8 +231,57 @@ try {
       engine,
       passed: true,
     });
+    for (const width of [320, 375]) {
+      await page.setViewportSize({ width, height: 812 });
+      await page.goto(base + '/poiseuille-flow-calculator?lang=en', { waitUntil: 'load' });
+      const number = await page.locator('#result .cm-expanded__number').evaluate((element) => {
+        const rect = element.getBoundingClientRect(),
+          style = globalThis.getComputedStyle(element);
+        return {
+          width: rect.width,
+          height: rect.height,
+          lineHeight: Number.parseFloat(style.lineHeight),
+          available:
+            element.closest('.card').clientWidth -
+            Number.parseFloat(globalThis.getComputedStyle(element.closest('.card')).paddingLeft) -
+            Number.parseFloat(globalThis.getComputedStyle(element.closest('.card')).paddingRight),
+          fontSize: Number.parseFloat(style.fontSize),
+          text: element.textContent,
+        };
+      });
+      assert.equal(number.text, '0.000392699081699');
+      assert.ok(
+        number.width <= number.available + 1 &&
+          number.height <= number.lineHeight + 1 &&
+          number.fontSize >= 18,
+        'Long scalar stays intact and readable',
+      );
+    }
+    await page.setViewportSize({ width: 390, height: 844 });
+    results.push({
+      test: 'Long scalar results remain intact at 320 and 375 pixels',
+      engine,
+      passed: true,
+    });
+    await page.goto(base + '/de-broglie-wavelength-calculator', { waitUntil: 'load' });
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    assert.equal(await page.locator('#cm-site-language').inputValue(), 'en');
+    await page.locator('#cm-site-language').selectOption('de');
+    assert.equal(await page.locator('html').getAttribute('lang'), 'de');
+    await page.locator('#cm-site-language').selectOption('en');
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    results.push({
+      test: 'A calculator slug starting de- does not switch the language',
+      engine,
+      passed: true,
+    });
     for (const [slug, inputs, expected] of [
       ['sagitta', { r: '100000000', c: '1' }, 1.25e-9],
+      [
+        'angle-between-vectors',
+        { a: '1', b: '0', c: '0', d: '1', e: '1e-8', f: '0' },
+        5.729577951308232e-7,
+      ],
       ['law-of-cosines', { b: '1', c: '1', A: '0.000001' }, 1.7453292519943295e-8],
       ['herons-formula', { a: '1e-12', b: '1e15', c: '1e15' }, 500],
       ['triangle-angles', { a: '1e-8', b: '1', c: '1' }, 5.729577951308232e-7],
@@ -240,7 +289,17 @@ try {
     ]) {
       await page.goto(base + '/' + slug + '-calculator?lang=en', { waitUntil: 'load' });
       for (const [id, value] of Object.entries(inputs)) await page.locator('#' + id).fill(value);
-      await page.waitForFunction(() => !document.body.classList.contains('cm-invalid'));
+      // Inputs are rendered on the next animation frame; wait for the new result.
+      await page.waitForFunction(
+        ({ slug, expected }) => {
+          if (document.body.classList.contains('cm-invalid')) return false;
+          const displayed = document.querySelector('#result').innerText.replaceAll(',', '');
+          const first =
+            slug === 'matrix-eigenvalues' ? displayed.match(/λ₁ = ([^;]+)/)?.[1] : displayed;
+          return Math.abs(Number.parseFloat(first) / expected - 1) < 1e-7;
+        },
+        { slug, expected },
+      );
       const displayed = (await page.locator('#result').innerText()).replaceAll(',', '');
       const first = slug === 'matrix-eigenvalues' ? displayed.match(/λ₁ = ([^;]+)/)[1] : displayed;
       assert.ok(

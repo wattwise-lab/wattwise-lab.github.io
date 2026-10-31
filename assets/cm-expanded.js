@@ -192,8 +192,16 @@
       $('cm-result-label').textContent = label(out[0].label);
       $('result').toggleAttribute('data-cm-no-translate', Boolean(out[0].literal));
       $('result').classList.toggle('cm-expanded__literal', Boolean(out[0].literal));
-      $('result').textContent = format(out[0].value, out[0].literal, out[0].fractionDigits);
+      const formattedMain = format(out[0].value, out[0].literal, out[0].fractionDigits);
+      $('result').textContent = formattedMain;
       const aggregate = present(out);
+      if (!aggregate && !out[0].literal && typeof out[0].value === 'number') {
+        const number = document.createElement('span');
+        number.className =
+          'cm-expanded__number' + (formattedMain.length > 14 ? ' cm-expanded__number--long' : '');
+        number.textContent = formattedMain;
+        $('result').replaceChildren(number);
+      }
       if (!aggregate) {
         const unit = document.createElement('span');
         unit.className = 'cm-expanded__unit';
