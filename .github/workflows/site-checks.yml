@@ -21,4 +21,4 @@ jobs:
       - run: npm run build
       - run: npm run verify:release
       - name: Check reproducible generated files
-        run: git diff --exit-code -- '*.html' assets/dist assets/cm-catalog-v3.js assets/cm-home-copy-v3.js assets/cm-intent-schema.js assets/cm-translation-index.js src/asset-manifest.json release-version.json
+        run: node scripts/generated-files.mjs --check

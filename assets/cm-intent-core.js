@@ -135,7 +135,7 @@ var CMIntent = (() => {
     return String(source)
       .normalize('NFKC')
       .replace(/[٠-٩۰-۹०-९]/g, (x) => digits[x])
-      .toLocaleLowerCase();
+      .toLowerCase();
   }
   function parse(source, { translate = (x) => x } = {}) {
     const s = normalize(source);
@@ -161,24 +161,44 @@ var CMIntent = (() => {
     const values = {},
       matched = [],
       ambiguous = [],
+      invalidNumbers = [],
       unitErrors = [];
     let downPercent = false;
     for (const [id, label, raw] of selected.fields) {
-      const aliases = [...raw, translate(label.split('|')[0])]
-        .filter(Boolean)
-        .map(normalize)
-        .sort((a, b) => b.length - a.length);
-      let found = null;
+      const aliases = [
+        ...new Set(
+          [...raw, translate(label.split('|')[0])]
+            .filter(Boolean)
+            .map(normalize)
+            .sort((a, b) => b.length - a.length),
+        ),
+      ];
+      const parsed = [],
+        meanings = new Set();
       for (const alias of aliases) {
         const regex = new RegExp(
-          '(?:^|[\\s，,;；])?' +
+          (/^\p{Script=Han}/u.test(alias) ? '' : '(?<![\\p{L}\\p{N}_])') +
             escape(alias) +
-            '\\s*(?:=|:|：|为|是)?\\s*([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+))\\s*(千万|百万|亿|万|千|[kmb](?![a-z]))?',
+            '\\s*(?:=|:|：|为|是)?\\s*([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:e[+-]?\\d+)?|infinity|nan))\\s*(千万|百万|亿|万|千|[kmb](?![a-z]))?',
           'giu',
         );
         const matches = [...s.matchAll(regex)];
         if (matches.length) {
           for (const m of matches) {
+            const numberEnd = m.index + m[0].lastIndexOf(m[1]) + m[1].length;
+            const remainder = s.slice(numberEnd);
+            const number =
+              Number(m[1]) *
+              ({ 万: 1e4, 千: 1e3, 百万: 1e6, 千万: 1e7, 亿: 1e8, k: 1e3, m: 1e6, b: 1e9 }[m[2]] ||
+                1);
+            if (
+              !Number.isFinite(number) ||
+              (number === 0 && /[1-9]/.test(m[1].split('e')[0])) ||
+              /^[e./]|^[+-](?=\d)/.test(remainder)
+            ) {
+              invalidNumbers.push(label);
+              continue;
+            }
             const tail = s.slice(m.index + m[0].length).trimStart();
             if (/^(months?\b|个月|月)/.test(tail)) unitErrors.push(label);
             if (tail.startsWith('%')) {
@@ -186,24 +206,27 @@ var CMIntent = (() => {
               else if (!['rate', 'mrate', 'downp', 'tax', 'bill'].includes(id))
                 unitErrors.push(label);
             }
+            parsed.push(number);
+            meanings.add(
+              String(number) +
+                (selected.slug === 'mortgage-calculator' && id === 'down' && tail.startsWith('%')
+                  ? '%'
+                  : ''),
+            );
           }
-          const parsed = matches.map(
-            (m) =>
-              Number(m[1]) *
-              ({ 万: 1e4, 千: 1e3, 百万: 1e6, 千万: 1e7, 亿: 1e8, k: 1e3, m: 1e6, b: 1e9 }[m[2]] ||
-                1),
-          );
-          if (parsed.some((x) => !Number.isFinite(x)) || new Set(parsed).size > 1)
-            ambiguous.push(label);
-          else found = parsed[0];
-          break;
         }
       }
-      if (found !== null) {
-        values[id] = found;
-        matched.push({ id, label, value: found });
+      if (meanings.size > 1) ambiguous.push(label);
+      if (parsed.length) {
+        values[id] = parsed[0];
+        matched.push({ id, label, value: parsed[0] });
       }
     }
+    if (invalidNumbers.length)
+      return {
+        error:
+          'Use complete numbers within the supported numeric range.|请填写完整且处于可支持数值范围内的数字。',
+      };
     if (unitErrors.length)
       return {
         error:

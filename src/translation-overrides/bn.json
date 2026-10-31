@@ -29,5 +29,8 @@
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "বর্তমান ক্যালকুলেটরগুলো আপনার ব্রাউজারেই ইনপুট প্রক্রিয়া করে। গণনার জন্য আপনি যে মান দেন, তা আমরা পাই না।",
   "Input preview is unavailable. Open the calculator to enter values.": "ইনপুটের পূর্বরূপ পাওয়া যাচ্ছে না। মান লিখতে ক্যালকুলেটরটি খুলুন।",
   "Value is outside the calculator’s allowed range or step.": "মানটি অনুমোদিত সীমার মধ্যে নেই অথবা অনুমোদিত সংখ্যাগত ব্যবধানের সঙ্গে মেলে না।",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "এই মানগুলি যাচাই করুন। অন্য ক্ষেত্রগুলি উদাহরণের ডিফল্ট মান বজায় রাখবে। মুদ্রা অনুমান বা রূপান্তর করা হয় না; কার্ডে কর, বীমা এবং স্থানীয় অনুমানগুলি পরীক্ষা করুন।"
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "এই মানগুলি যাচাই করুন। অন্য ক্ষেত্রগুলি উদাহরণের ডিফল্ট মান বজায় রাখবে। মুদ্রা অনুমান বা রূপান্তর করা হয় না; কার্ডে কর, বীমা এবং স্থানীয় অনুমানগুলি পরীক্ষা করুন।",
+  "Use complete numbers within the supported numeric range.": "সমর্থিত সংখ্যার সীমার মধ্যে সম্পূর্ণ সংখ্যামান লিখুন।",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "ব্রাউজারের স্থানীয় নিয়ম নিচের ছয়টি টুলের নাম শনাক্ত করে। অন্য ভাষায় অনূদিত ঘরের নামের সঙ্গে ইংরেজি বা চীনা টুলের নাম ব্যবহার করুন। কেবল ঘরের নামসহ লেখা সংখ্যাগুলো শনাক্ত হয়। প্রয়োগের আগে প্রতিটি মান যাচাই করুন; কোনো তথ্য আপলোড হয় না।",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost"
 }

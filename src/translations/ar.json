@@ -7451,9 +7451,9 @@
   "details": "التفاصيل",
   "Fill from a short description": "املأ من وصف مختصر",
   "Tool name and labelled numbers": "اسم الأداة والأرقام المُعَلَّمة",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "تدعم القواعد المحلية أسماء الأدوات الستة الموضحة أدناه. يمكن للغات الأخرى استخدام تسميات الحقول المترجمة، مع اسم الأداة باللغة الإنجليزية أو الصينية. يتم التعرف على الأرقام المُعَلَّمة فقط. راجع كل قيمة قبل تطبيقها؛ لا يتم تحميل أي شيء.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "تتعرف القواعد المحلية في المتصفح على أسماء الأدوات الستة أدناه. في اللغات الأخرى، استخدم أسماء الحقول المترجمة مع اسم الأداة بالإنجليزية أو الصينية. لا تُقبل إلا الأعداد المرفقة بأسماء الحقول. راجع كل قيمة قبل تطبيقها؛ لا تُرفع أي بيانات.",
   "Preview values": "معاينة القيم",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "رهن عقاري · قرض · مركب · إيجار مقابل شراء · عمل حر · تكلفة AI",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Apply reviewed values": "تطبيق القيم المُراجعة",
   "The input schema is unavailable. Use the calculator directly.": "مخطط الإدخال غير متوفر. استخدم الآلة الحاسبة مباشرةً.",
   "Value is outside the calculator’s allowed range or step.": "القيمة خارج النطاق المسموح أو لا تتوافق مع فاصل القيم الذي تقبله الآلة الحاسبة.",
@@ -8925,5 +8925,6 @@
   "Bring your calculators into one workspace": "اجمع آلاتك الحاسبة في مساحة عمل واحدة",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "قارن بين ما يصل إلى أربع آلات حاسبة، واحتفظ بمدخلات كل أداة، وأرسل نتيجة إلى آلة أخرى عند الحاجة.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "تعالج الآلات الحاسبة الحالية المدخلات داخل متصفحك. لا نتلقى القيم التي تدخلها لإجراء الحسابات.",
-  "Input preview is unavailable. Open the calculator to enter values.": "معاينة المدخلات غير متاحة. افتح الآلة الحاسبة لإدخال القيم."
+  "Input preview is unavailable. Open the calculator to enter values.": "معاينة المدخلات غير متاحة. افتح الآلة الحاسبة لإدخال القيم.",
+  "Use complete numbers within the supported numeric range.": "أدخل الأعداد كاملة ضمن النطاق العددي المدعوم."
 }

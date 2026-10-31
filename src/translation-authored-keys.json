@@ -64,6 +64,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -774,7 +775,7 @@
     "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
     "Preview values",
     "Apply reviewed values",
-    "The input schema is unavailable. Use the calculator directly.",
+    "Input preview is unavailable. Open the calculator to enter values.",
     "Value is outside the calculator’s allowed range or step.",
     "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
     "Home price",
@@ -801,6 +802,7 @@
     "Keep the request under 2,000 characters.",
     "Use ungrouped numbers and a decimal point, for example 100000 or 3.5. This avoids ambiguous regional separators.",
     "Use a tool name from the supported examples, or search the full catalog above.",
+    "Use complete numbers within the supported numeric range.",
     "A unit does not match the field. Time fields here use years; percentages are accepted only for percentage fields or a mortgage down payment with a home price.",
     "A percentage down payment needs a positive home price and a percentage from 0 to 100.",
     "A field has conflicting values. Use each label once and preview again.",
@@ -4187,7 +4189,7 @@
     "YOUR CALCULATOR DESK",
     "CHOOSE A TOOL",
     "Tax of {0} at {1} brings a ${2} subtotal to {3}.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "hi": [
     "Home",
@@ -4254,6 +4256,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -4593,8 +4596,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "es": [
     "Home",
@@ -4661,6 +4669,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -4979,8 +4988,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "ar": [
     "Home",
@@ -5047,6 +5061,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -5380,8 +5395,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "fr": [
     "Home",
@@ -5448,6 +5468,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -5781,8 +5802,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "bn": [
     "Home",
@@ -5849,6 +5875,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -6166,8 +6193,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "pt": [
     "Home",
@@ -6234,6 +6266,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -6552,8 +6585,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "id": [
     "Home",
@@ -6620,6 +6658,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -6936,8 +6975,13 @@
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
     "Measure the finished slab thickness at several points and use a representative value. If depth varies a lot, split the pour into zones with different depths instead of averaging blindly.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "ur": [
     "Home",
@@ -7004,6 +7048,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -7347,8 +7392,13 @@
     "Include preferment flour and water in total dough hydration.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "ru": [
     "Home",
@@ -7415,6 +7465,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -7741,8 +7792,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "de": [
     "Home",
@@ -7809,6 +7865,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -8139,8 +8196,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "ja": [
     "Home",
@@ -8207,6 +8269,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -8580,8 +8643,13 @@
     "Physical volume",
     "Right Rectangular Pyramid",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "pcm": [
     "Home",
@@ -8648,6 +8716,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -16504,8 +16573,11 @@
     "With income unchanged, reducing a required monthly payment lowers the ratio. Paying extra principal only changes this calculation when it changes the recurring payment you enter. Ask your lender how revised payments and documented income are assessed.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range."
   ],
   "mr": [
     "Home",
@@ -16572,6 +16644,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -16901,8 +16974,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "vi": [
     "Home",
@@ -16969,6 +17047,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -17321,8 +17400,13 @@
     "Find ellipsoid volume from its three perpendicular semiaxes.",
     "Use V = 4πabc/3. a, b and c are the ellipsoid semiaxes in the same unit, not full diameters. Volume V uses the cubed length unit.",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "te": [
     "Home",
@@ -17389,6 +17473,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -17712,8 +17797,13 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "sw": [
     "Home",
@@ -17780,6 +17870,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -18110,8 +18201,13 @@
     "Include preferment flour and water in total dough hydration.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "ha": [
     "Home",
@@ -18178,6 +18274,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -18535,8 +18632,13 @@
     "Include preferment flour and water in total dough hydration.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ],
   "tr": [
     "Home",
@@ -18603,6 +18705,7 @@
     "order",
     "orders",
     "Interactive features need JavaScript. Page content and links remain available.",
+    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
     "A familiar keypad for everyday arithmetic, percentages, memory and calculation history.",
     "Calculate expressions with parentheses, powers, roots, logarithms and trigonometric functions.",
     "Up to 15 significant digits. Operations follow key order. Memory and history stay in this tab.",
@@ -18929,7 +19032,12 @@
     "This release includes a pocket keypad, a scientific keypad, practical calculators across nine categories and three original planning scenarios. Language pages and embedded views are not counted as separate tools.",
     "Physical volume",
     "Enter systolic and diastolic readings in mmHg. Results update as you type. All calculations run locally in your browser.",
-    "mortgage home price 300000 down payment 90000 rate 3.5% term 30",
-    "CalcMintly"
+    "Input preview is unavailable. Open the calculator to enter values.",
+    "Value is outside the calculator’s allowed range or step.",
+    "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.",
+    "CalcMintly",
+    "Use complete numbers within the supported numeric range.",
+    "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.",
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
   ]
 }

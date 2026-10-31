@@ -71381,5 +71381,11 @@
     "id": "20399",
     "source": "Input preview is unavailable. Open the calculator to enter values.",
     "origin": "assets/cm-workspace-intent.js"
+  },
+  {
+    "active": true,
+    "id": "20400",
+    "source": "Use complete numbers within the supported numeric range.",
+    "origin": "assets/cm-intent-core.js"
   }
 ]

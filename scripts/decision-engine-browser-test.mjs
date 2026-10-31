@@ -154,10 +154,37 @@ try {
       /^mortgage /,
     );
     assert.equal(await entryPage.locator('#ws-intent-input').inputValue(), intentRequest);
+    assert.equal(
+      await entryPage.locator('.ws-intent__supported').innerText(),
+      'mortgage · loan · compound · rent vs buy · freelance · AI cost',
+    );
     await entryPage.getByRole('button', { name: 'Prévisualiser les valeurs', exact: true }).click();
     const intentPreview = await entryPage.locator('dialog[open]').innerText();
+    assert.equal(
+      await entryPage.getByRole('dialog', { name: 'Calculateur de prêt', exact: true }).count(),
+      1,
+    );
     assert.match(intentPreview, /Vérifiez ces valeurs/);
     assert.doesNotMatch(intentPreview, /Review these values|请核对/);
+    await entryPage.keyboard.press('Escape');
+    assert.equal(
+      await entryPage.locator('#ws-intent-input').evaluate((e) => e === document.activeElement),
+      true,
+    );
+    await entryPage.locator('#ws-intent-input').fill('loan principal 1e5 rate 5 term 20');
+    await entryPage.getByRole('button', { name: 'Prévisualiser les valeurs', exact: true }).click();
+    assert.match(
+      await entryPage.locator('#ws-intent-preview dl').innerText(),
+      /100[\s\u00a0\u202f]?000/,
+    );
+    await entryPage.keyboard.press('Escape');
+    await entryPage.locator('#ws-intent-input').fill('loan principal 1e rate 5 term 20');
+    await entryPage.getByRole('button', { name: 'Prévisualiser les valeurs', exact: true }).click();
+    assert.equal(await entryPage.locator('dialog[open]').count(), 0);
+    assert.match(
+      await entryPage.locator('.ws-intent [role=status]').innerText(),
+      /nombres complets/,
+    );
     results.push({
       test: 'Intent preview keeps inputs and follows the selected language',
       engine,

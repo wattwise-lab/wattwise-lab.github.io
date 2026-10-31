@@ -4581,9 +4581,9 @@
   "Calculator": "کیلکولیٹر",
   "Loading…": "لوڈ ہو رہا ہے… تفصیلات",
   "Fill from a short description": "مختصر تفصیل سے پر کریں۔",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "مقامی قوانین ذیل میں دکھائے گئے چھ ٹول کے ناموں کی حمایت کرتے ہیں۔ دوسری زبانیں انگریزی یا چینی ٹول کے نام کے ساتھ ترجمہ شدہ فیلڈ لیبل استعمال کر سکتی ہیں۔ صرف لیبل والے نمبروں کو پہچانا جاتا ہے۔ ہر قیمت کو لاگو کرنے سے پہلے آپ اس کا جائزہ لیں؛ کچھ بھی اپ لوڈ نہیں ہے.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "براؤزر کے مقامی قواعد نیچے دیے گئے چھ آلات کے نام پہچانتے ہیں۔ دوسری زبانوں میں ترجمہ شدہ خانوں کے نام کے ساتھ آلے کا انگریزی یا چینی نام استعمال کریں۔ صرف خانوں کے نام کے ساتھ لکھی ہوئی عددی اقدار پہچانی جاتی ہیں۔ لاگو کرنے سے پہلے ہر قدر جانچیں؛ کوئی ڈیٹا اپ لوڈ نہیں ہوتا۔",
   "Preview values": "پیش نظارہ اقدار",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "رہن · قرض · کمپاؤنڈ · کرایہ بمقابلہ خرید · فری لانس · AI لاگت",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Apply reviewed values": "نظرثانی شدہ اقدار کا اطلاق کریں۔",
   "home price": "گھر کی قیمت",
   "property price": "جائیداد کی قیمت",
@@ -8926,5 +8926,6 @@
   "Bring your calculators into one workspace": "اپنے کیلکولیٹر ایک ہی ورک اسپیس میں لائیں",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "چار تک کیلکولیٹروں کا موازنہ کریں، ہر آلے کے اندراجات برقرار رکھیں اور ضرورت کے وقت نتیجہ دوسرے کیلکولیٹر میں بھیجیں۔",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "موجودہ کیلکولیٹر آپ کے براؤزر میں اندراجات پر کارروائی کرتے ہیں۔ حساب کے لیے درج کی گئی اقدار ہمیں موصول نہیں ہوتیں۔",
-  "Input preview is unavailable. Open the calculator to enter values.": "اندراجات کا پیش منظر دستیاب نہیں ہے۔ اقدار درج کرنے کے لیے کیلکولیٹر کھولیں۔"
+  "Input preview is unavailable. Open the calculator to enter values.": "اندراجات کا پیش منظر دستیاب نہیں ہے۔ اقدار درج کرنے کے لیے کیلکولیٹر کھولیں۔",
+  "Use complete numbers within the supported numeric range.": "معاونت یافتہ عددی حد کے اندر مکمل عددی اقدار درج کریں۔"
 }

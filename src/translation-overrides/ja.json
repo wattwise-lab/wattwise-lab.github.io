@@ -85,5 +85,8 @@
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "現在の計算機はブラウザ内で入力を処理します。計算用に入力した値が当サイトに送信されることはありません。",
   "Input preview is unavailable. Open the calculator to enter values.": "入力のプレビューを利用できません。計算機を開いて値を入力してください。",
   "Value is outside the calculator’s allowed range or step.": "値が計算機の許容範囲外か、指定された刻み幅に合っていません。",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "これらの値を確認してください。他の項目は例の初期値を保持します。通貨は自動判定も換算もしません。カード内の税金、保険、地域に関する仮定を確認してください。"
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "これらの値を確認してください。他の項目は例の初期値を保持します。通貨は自動判定も換算もしません。カード内の税金、保険、地域に関する仮定を確認してください。",
+  "Use complete numbers within the supported numeric range.": "対応している数値範囲内で、数値を最後まで正しく入力してください。",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "ブラウザー内のルールは、以下の六つのツール名に対応しています。他の言語では、翻訳された項目名と英語または中国語のツール名を組み合わせてください。項目名付きの数値のみ認識します。適用前に各値を確認でき、入力内容はアップロードされません。",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost"
 }

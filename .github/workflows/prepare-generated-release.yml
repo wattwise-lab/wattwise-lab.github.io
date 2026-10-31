@@ -1,0 +1,43 @@
+name: Prepare verified generated release
+on:
+  pull_request:
+    branches: [main]
+    paths: [src/release-prepare.json]
+permissions:
+  contents: read
+jobs:
+  prepare:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'codex/unified-500-review'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run verify:release
+      - name: Verify repeated build bytes
+        run: |
+          node scripts/generated-files.mjs --snapshot /tmp/calcmintly-generated.json
+          npm run build
+          node scripts/generated-files.mjs --compare /tmp/calcmintly-generated.json
+      - name: Commit the verified artifact to the review branch
+        env:
+          REVIEW_BRANCH: ${{ github.event.pull_request.head.ref }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          test "$(git ls-remote origin "refs/heads/$REVIEW_BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          node --input-type=module -e 'import {generatedPaths} from "./scripts/generated-files.mjs"; import {execFileSync} from "node:child_process"; execFileSync("git", ["add", "--all", "--", ...generatedPaths], {stdio:"inherit"});'
+          if ! git diff --cached --quiet; then
+            git -c user.name='CalcMintly release checks' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'build: synchronize verified 500-calculator release'
+            git push origin "HEAD:refs/heads/$REVIEW_BRANCH"
+          fi
+          node scripts/generated-files.mjs --check
+          git rev-parse HEAD

@@ -49,6 +49,45 @@ test('grouped number rejected', () => assert.ok(P.parse('loan principal 100,000'
 test('decimal comma rejected', () => assert.ok(P.parse('loan rate 3,5').error));
 test('malformed decimal rejected', () => assert.ok(P.parse('loan rate 3.5.6').error));
 test('conflicting field rejected', () => assert.ok(P.parse('loan rate 3 rate 5').error));
+test('conflicting aliases are not silently ignored', () =>
+  assert.ok(P.parse('loan rate 5 annual rate 6').error));
+test('matching aliases keep one reviewed value', () => {
+  const result = P.parse('loan rate 5 annual rate 5 principal 100');
+  assert.equal(result.values.rate, 5);
+  assert.equal(result.matched.filter((x) => x.id === 'rate').length, 1);
+});
+test('labels are not matched inside English words', () => {
+  const result = P.parse('loan corporate5 principal 10');
+  assert.equal(result.values.prin, 10);
+  assert.equal(result.values.rate, undefined);
+});
+test('scientific notation is parsed completely', () => {
+  const result = P.parse('LOAN PRINCIPAL 1e5 RATE 5e-1 TERM 2e1');
+  assert.equal(result.values.prin, 100000);
+  assert.equal(result.values.rate, 0.5);
+  assert.equal(result.values.term, 20);
+});
+for (const value of [
+  '1e',
+  '1e+',
+  '1e-3.5',
+  '1e309',
+  '1e-999',
+  'NaN',
+  'Infinity',
+  '-Infinity',
+  '1/2',
+  '1+2',
+])
+  test('invalid number stops the entire preview: ' + value, () =>
+    assert.ok(P.parse('loan principal ' + value + ' rate 5 term 20').error),
+  );
+test('zero with a large exponent remains zero', () =>
+  assert.equal(P.parse('loan rate 0e-999').values.rate, 0));
+test('minimum representable nonzero number is preserved', () =>
+  assert.equal(P.parse('loan principal 5e-324').values.prin, 5e-324));
+test('mixed absolute and percent down payments are rejected', () =>
+  assert.ok(P.parse('mortgage home price 300000 down payment 30% 首付30').error));
 test('unlabelled amounts rejected', () => assert.ok(P.parse('loan 100000 5 20').error));
 test('unknown intent rejected', () => assert.ok(P.parse('give me anything').error));
 test('long request rejected', () => assert.ok(P.parse('loan ' + 'a'.repeat(2001)).error));

@@ -41,5 +41,8 @@
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "सध्याचे कॅल्क्युलेटर तुमच्या ब्राउझरमध्ये इनपुटवर प्रक्रिया करतात. गणनेसाठी तुम्ही भरलेली मूल्ये आम्हाला मिळत नाहीत.",
   "Input preview is unavailable. Open the calculator to enter values.": "इनपुटचे पूर्वावलोकन उपलब्ध नाही. मूल्ये भरण्यासाठी कॅल्क्युलेटर उघडा.",
   "Value is outside the calculator’s allowed range or step.": "मूल्य अनुमत मर्यादेत नाही किंवा परवानगी असलेल्या संख्यात्मक अंतराशी जुळत नाही.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ही मूल्ये तपासा. इतर फील्ड उदाहरणातील पूर्वनिर्धारित मूल्ये कायम ठेवतात. चलन आपोआप ठरवले किंवा रूपांतरित केले जात नाही; कार्डमधील कर, विमा आणि स्थानिक गृहितके तपासा."
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "ही मूल्ये तपासा. इतर फील्ड उदाहरणातील पूर्वनिर्धारित मूल्ये कायम ठेवतात. चलन आपोआप ठरवले किंवा रूपांतरित केले जात नाही; कार्डमधील कर, विमा आणि स्थानिक गृहितके तपासा.",
+  "Use complete numbers within the supported numeric range.": "समर्थित संख्यात्मक मर्यादेत पूर्ण संख्यात्मक मूल्ये लिहा.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "ब्राउझरमधील स्थानिक नियम खालील सहा साधनांची नावे ओळखतात. इतर भाषांमध्ये भाषांतरित क्षेत्रनावांसोबत साधनाचे इंग्रजी किंवा चिनी नाव वापरा. केवळ क्षेत्रनावांसह दिलेली संख्यात्मक मूल्ये ओळखली जातात. लागू करण्यापूर्वी प्रत्येक मूल्य तपासा; कोणताही डेटा अपलोड होत नाही.",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost"
 }

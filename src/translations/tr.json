@@ -7594,9 +7594,9 @@
   "details": "ayrıntılar",
   "Fill from a short description": "Kısa bir açıklamadan doldurun",
   "Tool name and labelled numbers": "Araç adı ve etiketli sayılar",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Yerel kurallar aşağıda gösterilen altı araç adını destekler. Diğer diller, İngilizce veya Çince araç adıyla çevrilmiş alan etiketlerini kullanabilir. Yalnızca etiketli sayılar tanınır. Uygulanmadan önce her değeri incelersiniz; hiçbir şey yüklenmez.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Tarayıcıdaki yerel kurallar aşağıdaki altı araç adını tanır. Diğer dillerde, çevrilmiş alan adlarıyla birlikte İngilizce veya Çince araç adı kullanın. Yalnızca alan adı belirtilen sayılar tanınır. Uygulamadan önce her değeri kontrol edin; hiçbir veri yüklenmez.",
   "Preview values": "Değerleri önizleyin",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "ipotek · kredi · bileşik faiz · kira mı satın alma mı · serbest meslek sahibi · AI maliyet",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Apply reviewed values": "İncelenen değerleri uygulayın",
   "The input schema is unavailable. Use the calculator directly.": "Giriş şeması kullanılamıyor. Hesap makinesini doğrudan kullanın.",
   "Value is outside the calculator’s allowed range or step.": "Değer izin verilen aralığın dışındadır veya hesap makinesinin kabul ettiği giriş artışına uymamaktadır.",
@@ -8926,5 +8926,6 @@
   "Bring your calculators into one workspace": "Hesap makinelerinizi tek bir çalışma alanında birleştirin",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "En fazla dört hesap makinesini karşılaştırın, her aracın girdilerini koruyun ve gerektiğinde sonucu başka bir hesap makinesine aktarın.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Mevcut hesap makineleri girdileri tarayıcınızda işler. Hesaplama için girdiğiniz değerleri almayız.",
-  "Input preview is unavailable. Open the calculator to enter values.": "Girdi önizlemesi kullanılamıyor. Değerleri girmek için hesap makinesini açın."
+  "Input preview is unavailable. Open the calculator to enter values.": "Girdi önizlemesi kullanılamıyor. Değerleri girmek için hesap makinesini açın.",
+  "Use complete numbers within the supported numeric range.": "Desteklenen sayısal aralık içinde sayıları eksiksiz girin."
 }

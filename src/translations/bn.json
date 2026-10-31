@@ -1313,7 +1313,7 @@
   "Equalized spacing": "সমান ব্যবধান",
   "cm:translations": "cm:অনুবাদ",
   "Reduced ratio": "হ্রাসকৃত অনুপাত",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "বন্ধক · ঋণ · চক্রবৃদ্ধি · ভাড়া বনাম ক্রয় · ফ্রিল্যান্স · AI খরচ",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "billable share": "বিলযোগ্য শেয়ার",
   "arcsec": "আর্কসেক",
   "Assumes settlement on a coupon date, no default, no call option and no accrued interest.": "ধরে নেওয়া হচ্ছে যে, কুপন তারিখেই নিষ্পত্তি হবে, কোনো খেলাপি হবে না, কোনো কল অপশন থাকবে না এবং কোনো অর্জিত সুদ থাকবে না।",
@@ -7605,7 +7605,7 @@
   "details": "বিস্তারিত",
   "Fill from a short description": "একটি সংক্ষিপ্ত বিবরণ থেকে পূরণ করুন",
   "Tool name and labelled numbers": "টুলের নাম এবং লেবেলযুক্ত সংখ্যা",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "স্থানীয় নিয়মগুলি নীচে দেখানো ছয়টি টুলের নাম সমর্থন করে। অন্যান্য ভাষাগুলি একটি ইংরেজি বা চীনা টুলের নাম সহ অনুবাদিত ফিল্ড লেবেল ব্যবহার করতে পারে। শুধুমাত্র লেবেলযুক্ত সংখ্যাগুলি স্বীকৃত। প্রয়োগ করার আগে আপনি প্রতিটি মান পর্যালোচনা করেন; কিছুই আপলোড করা হয় না।",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "ব্রাউজারের স্থানীয় নিয়ম নিচের ছয়টি টুলের নাম শনাক্ত করে। অন্য ভাষায় অনূদিত ঘরের নামের সঙ্গে ইংরেজি বা চীনা টুলের নাম ব্যবহার করুন। কেবল ঘরের নামসহ লেখা সংখ্যাগুলো শনাক্ত হয়। প্রয়োগের আগে প্রতিটি মান যাচাই করুন; কোনো তথ্য আপলোড হয় না।",
   "Preview values": "মানগুলির পূর্বরূপ দেখুন",
   "Apply reviewed values": "পর্যালোচনা করা মানগুলি প্রয়োগ করুন",
   "The input schema is unavailable. Use the calculator directly.": "ইনপুট স্কিমা অনুপলব্ধ। সরাসরি ক্যালকুলেটর ব্যবহার করুন।",
@@ -8925,5 +8925,6 @@
   "Bring your calculators into one workspace": "আপনার ক্যালকুলেটরগুলো এক কর্মক্ষেত্রে আনুন",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "সর্বোচ্চ চারটি ক্যালকুলেটর তুলনা করুন, প্রতিটির ইনপুট বজায় রাখুন এবং প্রয়োজনে ফলাফল অন্য ক্যালকুলেটরে পাঠান।",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "বর্তমান ক্যালকুলেটরগুলো আপনার ব্রাউজারেই ইনপুট প্রক্রিয়া করে। গণনার জন্য আপনি যে মান দেন, তা আমরা পাই না।",
-  "Input preview is unavailable. Open the calculator to enter values.": "ইনপুটের পূর্বরূপ পাওয়া যাচ্ছে না। মান লিখতে ক্যালকুলেটরটি খুলুন।"
+  "Input preview is unavailable. Open the calculator to enter values.": "ইনপুটের পূর্বরূপ পাওয়া যাচ্ছে না। মান লিখতে ক্যালকুলেটরটি খুলুন।",
+  "Use complete numbers within the supported numeric range.": "সমর্থিত সংখ্যার সীমার মধ্যে সম্পূর্ণ সংখ্যামান লিখুন।"
 }

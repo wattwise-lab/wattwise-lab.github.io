@@ -1339,7 +1339,7 @@
   "All four spaces are in use. Pick a tool below to choose which card to replace.": "Nafasi zote nne zinatumika. Chagua kifaa kilicho hapa chini ili kuchagua kadi gani ya kubadilisha.",
   "Monthly housing, buy or rent, loan amount and remaining debt.": "Nyumba ya kila mwezi, ununuzi au kodi, kiasi cha mkopo na deni lililobaki.",
   "Run a shop": "Endesha duka",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "rehani · mkopo · kiwanja · kodi dhidi ya kununua · kujitegemea · gharama ya AI",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "billable share": "hisa inayoweza kutozwa",
   "turn": "zamu",
   "frequency": "masafa",
@@ -7608,7 +7608,7 @@
   "details": "maelezo",
   "Fill from a short description": "Jaza kutoka kwa maelezo mafupi",
   "Tool name and labelled numbers": "Jina la zana na nambari zilizo na lebo",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Sheria za mitaa zinaunga mkono majina sita ya zana yaliyoonyeshwa hapa chini. Lugha zingine zinaweza kutumia lebo za sehemu zilizotafsiriwa, zenye jina la zana la Kiingereza au Kichina. Nambari zilizo na lebo pekee ndizo zinazotambuliwa. Unapitia kila thamani kabla haijatumika; hakuna kinachopakiwa.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Kanuni za ndani ya kivinjari hutambua majina sita ya zana yaliyo hapa chini. Kwa lugha nyingine, tumia lebo za sehemu zilizotafsiriwa pamoja na jina la zana la Kiingereza au Kichina. Namba zenye lebo za sehemu pekee ndizo hutambuliwa. Kagua kila thamani kabla ya kuitumia; hakuna data inayopakiwa.",
   "Preview values": "Thamani za hakikisho",
   "Apply reviewed values": "Tumia thamani zilizopitiwa",
   "The input schema is unavailable. Use the calculator directly.": "Mpango wa ingizo haupatikani. Tumia kikokotoo moja kwa moja.",
@@ -8926,5 +8926,6 @@
   "Bring your calculators into one workspace": "Leta vikokotoo vyako katika eneo moja la kazi",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Linganisha hadi vikokotoo vinne, bakiza ingizo la kila zana, na tuma matokeo kwa kikokotoo kingine inapohitajika.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Vikokotoo vya sasa huchakata ingizo ndani ya kivinjari chako. Hatupokei thamani unazoingiza kwa mahesabu.",
-  "Input preview is unavailable. Open the calculator to enter values.": "Onyesho la awali la ingizo halipatikani. Fungua kikokotoo ili kuingiza thamani."
+  "Input preview is unavailable. Open the calculator to enter values.": "Onyesho la awali la ingizo halipatikani. Fungua kikokotoo ili kuingiza thamani.",
+  "Use complete numbers within the supported numeric range.": "Andika namba kikamilifu ndani ya masafa ya namba yanayotumika."
 }

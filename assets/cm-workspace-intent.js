@@ -36,6 +36,9 @@
   status.setAttribute('role', 'status');
   const supported = el('p', 'mortgage · loan · compound · rent vs buy · freelance · AI cost');
   supported.className = 'ws-intent__supported';
+  supported.dataset.cmNoTranslate = '';
+  supported.lang = 'en';
+  supported.dir = 'ltr';
   form.append(label, input, hint, supported, preview, status);
   section.append(summary, form);
   document.querySelector('.ws-search-panel').append(section);
@@ -50,6 +53,11 @@
     cancel = el('button'),
     apply = el('button');
   dialog.className = 'ws-tool-choice';
+  dialog.id = 'ws-intent-preview';
+  title.id = 'ws-intent-preview-title';
+  note.id = 'ws-intent-preview-description';
+  dialog.setAttribute('aria-labelledby', title.id);
+  dialog.setAttribute('aria-describedby', note.id);
   note.className = 'ws-intent__hint';
   replace.id = 'ws-intent-replace';
   replaceLabel.htmlFor = replace.id;

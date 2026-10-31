@@ -45,5 +45,8 @@
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "تعالج الآلات الحاسبة الحالية المدخلات داخل متصفحك. لا نتلقى القيم التي تدخلها لإجراء الحسابات.",
   "Input preview is unavailable. Open the calculator to enter values.": "معاينة المدخلات غير متاحة. افتح الآلة الحاسبة لإدخال القيم.",
   "Value is outside the calculator’s allowed range or step.": "القيمة خارج النطاق المسموح أو لا تتوافق مع فاصل القيم الذي تقبله الآلة الحاسبة.",
-  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "راجع هذه القيم. تحتفظ الحقول الأخرى بالقيم الافتراضية للمثال. لا تُستنتج العملة ولا تُحوّل؛ تحقّق من الضرائب والتأمين والافتراضات المحلية في البطاقة."
+  "Review these values. Other fields keep their example defaults. Currency is not inferred or converted; check tax, insurance and local assumptions in the card.": "راجع هذه القيم. تحتفظ الحقول الأخرى بالقيم الافتراضية للمثال. لا تُستنتج العملة ولا تُحوّل؛ تحقّق من الضرائب والتأمين والافتراضات المحلية في البطاقة.",
+  "Use complete numbers within the supported numeric range.": "أدخل الأعداد كاملة ضمن النطاق العددي المدعوم.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "تتعرف القواعد المحلية في المتصفح على أسماء الأدوات الستة أدناه. في اللغات الأخرى، استخدم أسماء الحقول المترجمة مع اسم الأداة بالإنجليزية أو الصينية. لا تُقبل إلا الأعداد المرفقة بأسماء الحقول. راجع كل قيمة قبل تطبيقها؛ لا تُرفع أي بيانات.",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost"
 }

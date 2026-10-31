@@ -7562,9 +7562,9 @@
   "details": "Detalles",
   "Fill from a short description": "Rellenar a partir de una breve descripción",
   "Tool name and labelled numbers": "Nombre de la herramienta y números etiquetados",
-  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Las reglas locales admiten los seis nombres de herramientas que se muestran a continuación. Otros idiomas pueden usar etiquetas de campo traducidas, con un nombre de herramienta en inglés o chino. Solo se reconocen los números etiquetados. Revise cada valor antes de aplicarlo; no se carga nada.",
+  "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Las reglas del navegador reconocen los seis nombres de herramienta de abajo. En otros idiomas, usa las etiquetas de campo traducidas con un nombre de herramienta en inglés o chino. Solo se reconocen números con etiquetas de campo. Revisa cada valor antes de aplicarlo; no se sube ningún dato.",
   "Preview values": "Previsualizar valores",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "hipoteca · préstamo · compuesto · alquilar vs. comprar · autónomo · AI coste",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Apply reviewed values": "Aplicar valores revisados",
   "The input schema is unavailable. Use the calculator directly.": "El esquema de entrada no está disponible. Use la calculadora directamente.",
   "Value is outside the calculator’s allowed range or step.": "El valor no cumple el rango permitido o el incremento de entrada admitido por la calculadora.",
@@ -8939,5 +8939,6 @@
   "Bring your calculators into one workspace": "Reúne tus calculadoras en un solo espacio de trabajo",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "Compara hasta cuatro calculadoras, conserva los datos introducidos en cada una y envía un resultado a otra cuando lo necesites.",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "Las calculadoras actuales procesan los datos en tu navegador. No recibimos los valores que introduces para calcular.",
-  "Input preview is unavailable. Open the calculator to enter values.": "La vista previa de los datos no está disponible. Abre la calculadora para introducir los valores."
+  "Input preview is unavailable. Open the calculator to enter values.": "La vista previa de los datos no está disponible. Abre la calculadora para introducir los valores.",
+  "Use complete numbers within the supported numeric range.": "Introduce los números completos dentro del intervalo numérico admitido."
 }

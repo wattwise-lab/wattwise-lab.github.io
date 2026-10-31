@@ -50,6 +50,11 @@
     apply = button('Replace selected card|替换选中卡片', () => {}),
     cancel = button('Cancel|取消', () => chooser.close());
   apply.type = 'submit';
+  chooser.id = 'ws-tool-choice';
+  dialogTitle.id = 'ws-tool-choice-title';
+  message.id = 'ws-tool-choice-description';
+  chooser.setAttribute('aria-labelledby', dialogTitle.id);
+  chooser.setAttribute('aria-describedby', message.id);
   form.append(dialogTitle, message, options, el('div', 'ws-tool-choice__actions'));
   form.lastChild.append(cancel, apply);
   chooser.append(form);

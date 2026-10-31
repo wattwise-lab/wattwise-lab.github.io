@@ -8642,7 +8642,7 @@
   "desk={0}": "desk={0}",
   "desk=": "desk=",
   "details": "详情",
-  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "抵押贷款·贷款·复合·租与买·自由职业·AI成本",
+  "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "mortgage": "抵押贷款",
   "price": "价格",
   "home price": "房价",
@@ -10162,5 +10162,6 @@
   "Bring your calculators into one workspace": "把常用计算器放在同一个工作台",
   "Compare up to four calculators, keep each tool’s inputs, and send a result to another calculator when needed.": "最多组合四个计算器，保留各自输入，并按需把结果传给其他计算器。",
   "Current calculators process inputs in your browser. We do not receive the calculation values you enter.": "当前计算器在浏览器中处理输入，不会将您填写的计算数值发送给我们。",
-  "Input preview is unavailable. Open the calculator to enter values.": "暂时无法预览输入，请打开计算器直接填写。"
+  "Input preview is unavailable. Open the calculator to enter values.": "暂时无法预览输入，请打开计算器直接填写。",
+  "Use complete numbers within the supported numeric range.": "请填写完整且处于可支持数值范围内的数字。"
 }
