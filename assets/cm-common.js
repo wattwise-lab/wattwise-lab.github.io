@@ -1,4 +1,4 @@
-/* Strict list parsing shared by old and new statistics tools. */
+/* Numeric input and output shared by calculators and generated pages. */
 var CMData = (() => {
   'use strict';
   function digits(value) {
@@ -54,7 +54,78 @@ var CMData = (() => {
     if (decimal && decimal !== '.') text = text.replaceAll(decimal, '.');
     return text;
   }
-  return { digits, list, displayNumber, expression };
+  function resultNumberOptions(value, domain) {
+    if (value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12))
+      return { maximumSignificantDigits: 8, notation: 'scientific' };
+    const measured = domain === 'Health' || domain === 'Home and Everyday';
+    return { maximumSignificantDigits: measured && !Number.isInteger(value) ? 6 : 12 };
+  }
+  function unit(source, value = 2, locale = 'en', translate = (s) => s, t = (s) => s) {
+    const rateTime = (key) =>
+      locale === 'zh-CN'
+        ? { month: '月', year: '年', hour: '小时' }[key] || unit(key, 1, locale, translate, t)
+        : locale === 'ja'
+          ? { month: '月', year: '年', hour: '時間' }[key] || unit(key, 1, locale, translate, t)
+          : unit(key, 1, locale, translate, t);
+    const composite = String(source).match(/^([A-Z]{3})\/(month|year|hour|call|order)$/);
+    if (composite)
+      return (
+        composite[1] +
+        '/' +
+        (composite[2] === 'call'
+          ? t('unitCall')
+          : composite[2] === 'order'
+            ? t('unitOrder')
+            : rateTime(composite[2]))
+      );
+    const count = String(source).match(/^(calls|orders)\/(month|year)$/);
+    if (count)
+      return (
+        t(
+          count[1] === 'calls'
+            ? Number(value) === 1
+              ? 'unitCall'
+              : 'unitCalls'
+            : Number(value) === 1
+              ? 'unitOrder'
+              : 'unitOrders',
+        ) +
+        '/' +
+        rateTime(count[2])
+      );
+    const units = {
+      weeks: 'week',
+      week: 'week',
+      years: 'year',
+      year: 'year',
+      months: 'month',
+      month: 'month',
+      days: 'day',
+      day: 'day',
+      hours: 'hour',
+      hour: 'hour',
+      minutes: 'minute',
+      minute: 'minute',
+      seconds: 'second',
+      second: 'second',
+      bits: 'bit',
+      bytes: 'byte',
+    };
+    if (units[source])
+      try {
+        return new Intl.NumberFormat(locale === 'pcm' ? 'en-NG' : locale, {
+          style: 'unit',
+          unit: units[source],
+          unitDisplay: 'long',
+        })
+          .formatToParts(Math.abs(Number(value) || 0))
+          .filter((x) => x.type === 'unit')
+          .map((x) => x.value)
+          .join(' ');
+      } catch {}
+    return translate(source);
+  }
+  return { digits, list, displayNumber, expression, resultNumberOptions, unit };
 })();
 
 ;
@@ -3577,7 +3648,7 @@ window.CMUiCopy = {
 })();
 
 ;
-window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.9fa5607af4fc.js","hi":"/assets/dist/hi.6023bcb8925e.js","es":"/assets/dist/es.2a6e701c70da.js","ar":"/assets/dist/ar.e036cbd91074.js","fr":"/assets/dist/fr.b8f55e1cbe77.js","bn":"/assets/dist/bn.7bb101ae805f.js","pt":"/assets/dist/pt.0895766ec1f7.js","id":"/assets/dist/id.bcfd7aaf0635.js","ur":"/assets/dist/ur.b9b81fbcbb78.js","ru":"/assets/dist/ru.162edf24e326.js","de":"/assets/dist/de.0b21617aff4f.js","ja":"/assets/dist/ja.58e82258860b.js","pcm":"/assets/dist/pcm.24d264a933ef.js","mr":"/assets/dist/mr.3b77842537d9.js","vi":"/assets/dist/vi.59756ba109d9.js","te":"/assets/dist/te.f0fc5e82a555.js","sw":"/assets/dist/sw.b91d1f21f663.js","ha":"/assets/dist/ha.16b9816e56e2.js","tr":"/assets/dist/tr.a39b35e187c5.js"};
+window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.9c898fac12c5.js","hi":"/assets/dist/hi.d926a5ca57a6.js","es":"/assets/dist/es.f649fe95d48f.js","ar":"/assets/dist/ar.473ccb8e261b.js","fr":"/assets/dist/fr.f65f7bebc2ce.js","bn":"/assets/dist/bn.01663c26a5d2.js","pt":"/assets/dist/pt.83193adb50ce.js","id":"/assets/dist/id.72bae499eb8f.js","ur":"/assets/dist/ur.5b16761c752b.js","ru":"/assets/dist/ru.493976b59f9e.js","de":"/assets/dist/de.2eb7f6a8d8ec.js","ja":"/assets/dist/ja.e01c3620cfa3.js","pcm":"/assets/dist/pcm.8907376de076.js","mr":"/assets/dist/mr.b50d33c0230a.js","vi":"/assets/dist/vi.1eb10c1de692.js","te":"/assets/dist/te.1721094ab48f.js","sw":"/assets/dist/sw.5ec27a13619b.js","ha":"/assets/dist/ha.736c50367242.js","tr":"/assets/dist/tr.ece27b072d04.js"};
 
 ;
 window.CMI18n = (() => {
@@ -3662,7 +3733,11 @@ window.CMI18n = (() => {
         }
         resolve();
       };
-      script.onerror = () => resolve();
+      script.onerror = () => {
+        loads.delete(locale);
+        script.remove();
+        resolve();
+      };
       document.head.append(script);
     });
     loads.set(locale, promise);
@@ -3778,70 +3853,9 @@ window.CMI18n = (() => {
       .join(' ');
   }
   function unit(source, value = 2) {
-    const rateTime = (key) =>
-      lang === 'zh-CN'
-        ? { month: '月', year: '年', hour: '小时' }[key] || unit(key, 1)
-        : lang === 'ja'
-          ? { month: '月', year: '年', hour: '時間' }[key] || unit(key, 1)
-          : unit(key, 1);
-    const composite = String(source).match(/^([A-Z]{3})\/(month|year|hour|call|order)$/);
-    if (composite)
-      return (
-        composite[1] +
-        '/' +
-        (composite[2] === 'call'
-          ? t('unitCall')
-          : composite[2] === 'order'
-            ? t('unitOrder')
-            : rateTime(composite[2]))
-      );
-    const count = String(source).match(/^(calls|orders)\/(month|year)$/);
-    if (count)
-      return (
-        t(
-          count[1] === 'calls'
-            ? Number(value) === 1
-              ? 'unitCall'
-              : 'unitCalls'
-            : Number(value) === 1
-              ? 'unitOrder'
-              : 'unitOrders',
-        ) +
-        '/' +
-        rateTime(count[2])
-      );
-    const units = {
-      weeks: 'week',
-      week: 'week',
-      years: 'year',
-      year: 'year',
-      months: 'month',
-      month: 'month',
-      days: 'day',
-      day: 'day',
-      hours: 'hour',
-      hour: 'hour',
-      minutes: 'minute',
-      minute: 'minute',
-      seconds: 'second',
-      second: 'second',
-      bits: 'bit',
-      bytes: 'byte',
-    };
-    if (units[source])
-      try {
-        return new Intl.NumberFormat(lang === 'pcm' ? 'en-NG' : lang, {
-          style: 'unit',
-          unit: units[source],
-          unitDisplay: 'long',
-        })
-          .formatToParts(Math.abs(Number(value) || 0))
-          .filter((x) => x.type === 'unit')
-          .map((x) => x.value)
-          .join(' ');
-      } catch {}
-    return translate(source);
+    return CMData.unit(source, value, lang, translate, t);
   }
+
   function url(path, locale = lang) {
     if (document.documentElement.hasAttribute('data-cm-localized-routes') && window.CMLocaleRoutes)
       return window.CMLocaleRoutes.url(path, locale, location.origin);

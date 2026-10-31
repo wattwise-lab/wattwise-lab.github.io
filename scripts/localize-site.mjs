@@ -9,6 +9,7 @@ const escapeXml = (value) =>
 export async function localizeSite(root, catalog, pages, selected) {
   const context = { window: {}, URL };
   for (const file of [
+    'cm-data-core.js',
     'cm-locale-core.js',
     'cm-metadata-core.js',
     'cm-info-metadata.js',
@@ -142,6 +143,32 @@ export async function localizeSite(root, catalog, pages, selected) {
       $('[data-cm-pair]').each((_, element) => {
         const [en, zh] = $(element).attr('data-cm-pair').split('|');
         $(element).text(locale === 'zh-CN' ? zh || en : translate(en, locale));
+      });
+      $('[data-cm-value]').each((_, element) => {
+        const e = $(element),
+          value = Number(e.attr('data-cm-value')),
+          digits = Number(e.attr('data-cm-significant-digits'));
+        if (!Number.isFinite(value)) return;
+        const options = {
+          maximumSignificantDigits:
+            Number.isInteger(digits) && digits >= 1 && digits <= 21 ? digits : 12,
+          ...(e.attr('data-cm-notation') === 'scientific' ? { notation: 'scientific' } : {}),
+        };
+        const number = new Intl.NumberFormat(locale === 'pcm' ? 'en-NG' : locale, options).format(
+            Object.is(value, -0) ? 0 : value,
+          ),
+          sourceUnit = e.attr('data-cm-unit'),
+          unit = sourceUnit
+            ? context.CMData.unit(
+                sourceUnit,
+                value,
+                locale,
+                (source) => translate(source, locale),
+                (key) =>
+                  context.window.CMUiCopy[locale]?.[key] ?? context.window.CMUiCopy.en[key] ?? key,
+              )
+            : '';
+        e.text(number + (unit ? ' ' + unit : ''));
       });
       $('[placeholder],[aria-label],[alt]').each((_, element) => {
         const e = $(element);

@@ -193,6 +193,14 @@ for (const file of files) {
   }
   const walk = (node, parent) => {
     if (!node || typeof node !== 'object') return;
+    // This shared formatter's strings are Intl unit identifiers and authored
+    // CMUiCopy keys; they are not additional untranslated interface messages.
+    if (
+      file === 'assets/cm-data-core.js' &&
+      node.type === 'FunctionDeclaration' &&
+      node.id?.name === 'unit'
+    )
+      return;
     if (implementationLiteral(node, parent)) return;
     if (file.startsWith('assets/models/') && parent?.type === 'CallExpression') {
       const callee = parent.callee?.name;

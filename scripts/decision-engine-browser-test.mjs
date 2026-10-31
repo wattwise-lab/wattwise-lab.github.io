@@ -73,6 +73,38 @@ try {
     await context.close();
   }
   if (shard === 0) {
+    const entryContext = await browser.newContext({ viewport: { width: 375, height: 812 } });
+    const entryPage = await entryContext.newPage();
+    await entryPage.goto(base + '/fr/gravel-base-calculator', { waitUntil: 'load' });
+    await entryPage.locator('.cm-expanded__standalone > a').click();
+    await entryPage.waitForLoadState('load');
+    await entryPage.waitForFunction(() => {
+      const card = document.querySelector('.ws-card');
+      const rect = card?.getBoundingClientRect();
+      return card && document.activeElement === card && rect.top >= 0 && rect.top < 140;
+    });
+    assert.equal(await entryPage.locator('.ws-card:not(.empty-slot)').count(), 1);
+    assert.equal(
+      await entryPage.locator('[data-w="eyebrow"]').innerText(),
+      'VOTRE ESPACE DE CALCULATRICES',
+    );
+    await entryPage.goto(base + '/fr/sales-tax-calculator', { waitUntil: 'load' });
+    await entryPage.locator('#subtotal').fill('250');
+    await entryPage.locator('#rate').fill('12');
+    await entryPage.waitForFunction(() =>
+      document.querySelector('#verdictText').textContent.includes('250 $'),
+    );
+    const taxVerdict = await entryPage.locator('#verdictText').innerText();
+    assert.match(taxVerdict, /sous-total de 250 \$/);
+    assert.match(taxVerdict, /taux de 12%/);
+    assert.match(taxVerdict, /est de 30,00/);
+    assert.match(taxVerdict, /total TTC de 280,00/);
+    results.push({
+      test: 'French calculator entry reveals its new card and tax explanation assigns each amount correctly',
+      engine,
+      passed: true,
+    });
+    await entryContext.close();
     const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const page = await context.newPage();
     await page.goto(base + '/loan-calculator?lang=en', { waitUntil: 'load' });
@@ -159,6 +191,36 @@ try {
     assert.match(await page.locator('#result').innerText(), /5,5626846E-307/);
     assert.equal(await page.locator('#n').inputValue(), '2');
     assert.equal(await page.locator('#b').inputValue(), '1024');
+    await page.goto(base + '/scientific-notation-calculator?lang=en', { waitUntil: 'load' });
+    for (const [raw, coefficient, exponent] of [
+      ['5e-324', '5', '-324'],
+      ['-5e-324', '-5', '-324'],
+      ['0', '0', '0'],
+    ]) {
+      await page.locator('#a').fill(raw);
+      await page.waitForFunction(
+        ([c, e]) =>
+          document.querySelector('#result').firstChild.textContent === c + ' × 10' &&
+          document.querySelector('#result sup')?.textContent === e,
+        [coefficient, exponent],
+      );
+      assert.equal(await page.locator('#a').inputValue(), raw);
+      assert.equal(await page.locator('#cm-copy').isEnabled(), true);
+    }
+    await page.goto(base + '/carpet-roll-length-calculator?lang=en', { waitUntil: 'load' });
+    await page.locator('#a').fill('1');
+    await page.waitForFunction(
+      () => document.querySelector('#result').textContent.replace(/\s/g, '') === '6m',
+    );
+    assert.match(await page.locator('#cm-model-guide').innerText(), /L₁ = ceil\(W\/R\)\(L\+t\)/);
+    assert.match(await page.locator('#cm-model-guide').innerText(), /L₂ = ceil\(L\/R\)\(W\+t\)/);
+    const workspaceEntry = page.getByRole('link', { name: 'Add to workspace', exact: true });
+    const entrySize = await workspaceEntry.evaluate((element) => ({
+      width: element.getBoundingClientRect().width,
+      height: element.getBoundingClientRect().height,
+    }));
+    assert.ok(entrySize.width >= 44 && entrySize.height >= 44, 'Usable workspace entry target');
+    assert.equal(await workspaceEntry.locator('svg[aria-hidden="true"]').count(), 1);
     for (const slug of [
       'internal-rate-of-return-calculator',
       'modified-internal-rate-calculator',

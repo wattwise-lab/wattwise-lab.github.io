@@ -70,6 +70,24 @@ for (const r of routes) {
       assert.equal($('#' + optional).attr('required'), undefined, 'today reference is optional');
       assert.ok($('#' + optional).is('[data-cm-optional]'));
     }
+    if (r.locale === 'zh-CN' && r.path.endsWith('/gravel-base-calculator'))
+      assert.equal(
+        $('[data-cm-value][data-cm-unit="tonnes"]').text(),
+        '3.84 吨',
+        'Native unit before JavaScript',
+      );
+    if (r.locale === 'zh-CN' && r.path.endsWith('/run-walk-interval-calculator'))
+      assert.equal(
+        $('[data-cm-value="40"][data-cm-unit="minutes"]').text(),
+        '40 分钟',
+        'Native time unit before JavaScript',
+      );
+    if (r.locale === 'en' && r.path.endsWith('/tile-grout-calculator'))
+      assert.equal(
+        $('[data-cm-value][data-cm-unit="kg"]').text(),
+        '3.4679 kg',
+        'Readable measured example before JavaScript',
+      );
     for (const element of $('[data-cm-i18n]').toArray()) {
       const key = $(element).attr('data-cm-i18n');
       assert.notEqual($(element).text().trim(), key, 'Unresolved UI key: ' + key);

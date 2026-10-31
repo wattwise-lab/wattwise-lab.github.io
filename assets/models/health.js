@@ -20,7 +20,7 @@
     'Compare waist circumference with measured height.|比较实测腰围与身高。',
     [p('w', 'Waist circumference (cm)|腰围（cm）', 80), height],
     (v) => [R('Waist / height|腰围身高比', v.w / v.h)],
-    'Ratio=waist circumference/height',
+    'Use R = W/H. W is measured waist circumference and H is measured height in the same unit. The ratio has no unit.|使用 R = W/H。W 为实测腰围，H 为实测身高，两者单位必须相同；所得比值无单位。',
     [4 / 9],
   );
   D(
@@ -32,7 +32,7 @@
       p('h', 'Hip circumference (cm)|臀围（cm）', 100),
     ],
     (v) => [R('Waist / hip|腰臀比', v.w / v.h)],
-    'WHR=waist/hip',
+    'Use WHR = W/H. W is waist circumference and H is hip circumference, measured in the same unit.|使用 WHR = W/H。W 为腰围，H 为臀围，两者使用相同的测量单位。',
     [0.8],
   );
   D(
@@ -41,7 +41,7 @@
     'Estimate body surface area with the Mosteller formula.|用 Mosteller 公式估算体表面积。',
     [weight, height],
     (v) => [R('Estimated surface area|估算体表面积', Math.sqrt((v.w * v.h) / 3600), 'm²')],
-    'BSA=√[height(cm)×mass(kg)/3600]',
+    'Use BSA = √(HW/3600). H is height in cm and W is body mass in kg. The Mosteller estimate is in m².|使用 BSA = √(HW/3600)。H 为身高（cm），W 为体重（kg）；Mosteller 体表面积估算结果的单位为 m²。',
     [Math.sqrt(3.75)],
     'Mosteller approximation for educational comparison. Never use this page to determine medication or chemotherapy doses.|Mosteller 近似，仅供教育性比较；不得据此确定药物或化疗剂量。',
   );
@@ -57,7 +57,7 @@
         R('Fat-free mass|去脂体重', lean, 'kg'),
       ];
     },
-    'FFMI=mass×(1−fat fraction)/height(m)²',
+    'Use FFMI = W(1−f)/h². W is body mass in kg, f is measured body fat as a fraction, and h is height converted to m. The index is in kg/m².|使用 FFMI = W(1−f)/h²。W 为体重（kg），f 为测量体脂率换成的小数比例，h 为换算成 m 的身高；指数单位为 kg/m²。',
     [60 / 3.24, 60],
   );
   D(
@@ -69,7 +69,7 @@
       R('FMI|脂肪质量指数', (v.w * v.f) / 100 / (v.h / 100) ** 2, 'kg/m²'),
       R('Fat mass|脂肪质量', (v.w * v.f) / 100, 'kg'),
     ],
-    'FMI=mass×fat fraction/height(m)²',
+    'Use FMI = Wf/h². W is body mass in kg, f is measured body fat as a fraction, and h is height converted to m. The index is in kg/m².|使用 FMI = Wf/h²。W 为体重（kg），f 为测量体脂率换成的小数比例，h 为换算成 m 的身高；指数单位为 kg/m²。',
     [15 / 3.24, 15],
   );
   D(
@@ -91,7 +91,7 @@
         R('Heart-rate reserve|心率储备', v.m - v.r, 'bpm'),
       ];
     },
-    'Target=resting+(maximum−resting)×intensity',
+    'Use T = R+(M−R)i. R is resting heart rate, M is measured maximum heart rate, and i is your chosen reserve intensity as a fraction. T uses the same heart-rate unit.|使用 T = R+(M−R)i。R 为静息心率，M 为实测最大心率，i 为自选储备强度的小数比例；T 与输入心率的单位相同。',
     [138, 130],
     'Enter an intensity approved for your circumstances. Medicines and health conditions can change heart-rate responses; this does not set a safe exercise zone.|请填写适合自身情况且经确认的强度；药物和健康状况可能改变心率反应，本工具不确定安全运动区间。',
   );
@@ -104,7 +104,7 @@
       p('m', 'Measured maximum heart rate (bpm)|实测最大心率（bpm）', 200),
     ],
     (v) => [R('Percentage of entered maximum|占所填最大心率', (100 * v.h) / v.m, '%')],
-    'Intensity=observed heart rate/maximum×100',
+    'Use I = 100H/M. H is observed heart rate and M is the entered measured maximum, in the same unit. I is the percentage of that maximum.|使用 I = 100H/M。H 为观测心率，M 为自填实测最大心率，两者单位相同；I 为观测心率占该最大值的百分数。',
     [75],
   );
   D(
@@ -119,7 +119,7 @@
       R('Epley estimate|Epley 估算', v.r === 1 ? v.w : v.w * (1 + v.r / 30), 'kg'),
       R('Brzycki estimate|Brzycki 估算', (v.w * 36) / (37 - v.r), 'kg'),
     ],
-    'Epley=w(1+r/30) for r>1; Brzycki=36w/(37−r)',
+    'For r > 1, use Epley E = w(1+r/30); at r = 1 use E = w. Brzycki uses B = 36w/(37−r). w is lifted weight and r is completed repetitions. Both results use the weight unit.|当 r > 1 时，Epley 估算为 E = w(1+r/30)；r = 1 时使用 E = w。Brzycki 估算为 B = 36w/(37−r)。w 为举起重量，r 为完成次数；两个结果均使用输入重量的单位。',
     [70, 67.5],
     'Prediction only, not a recommendation to attempt the weight. Limited to 1–10 technically sound repetitions; fatigue, exercise type and training history affect accuracy.|仅为预测，不建议据此尝试该重量。限 1–10 次动作规范的重复；疲劳、动作类型与训练经历影响准确度。',
   );
@@ -132,7 +132,7 @@
       n('r', 'Session RPE from 0 to 10|单次 RPE（0–10）', 5, 0, 10),
     ],
     (v) => [R('Session load|单次训练负荷', v.t * v.r, 'AU')],
-    'Session load=minutes×session RPE',
+    'Use L = tR. t is session duration in minutes and R is the entered session rating of perceived exertion. L is a load score in arbitrary units, not energy expenditure.|使用 L = tR。t 为训练时长（分钟），R 为自填单次训练主观用力评分；L 为任意单位的负荷分数，并非能量消耗。',
     [300],
   );
   D(
@@ -193,7 +193,7 @@
         R('Total weight|总重量', v.t, 'kg'),
       ];
     },
-    'Target each side=(total−bar)/2; integer dynamic programming minimizes plate count|每侧目标重量=(总重量−杠铃杆重量)/2；用整数动态规划求最少杠铃片数量。',
+    'Each side needs S = (T−B)/2. T is target total weight and B is bar weight in the same unit. Choose matching plate pairs to reach S on each side with the fewest plates. Each entered plate size is assumed to have enough matching pairs.|每侧需要 S = (T−B)/2。T 为目标总重量，B 为同单位空杆重量；选择成对杠铃片，使每侧达到 S 且片数最少，假设每种自填片重都有足够成对片。',
     ['2 × 20 kg', 2, 100],
     'Assumes enough matching pairs of each size. Collars are excluded; include their mass in bar weight if needed.|假设每种片重有足够成对片；不含卡扣，必要时将其质量计入空杆。',
   );
@@ -203,7 +203,7 @@
     'Express a lifted load as a multiple of body mass.|将举起重量表示为体重倍数。',
     [n('l', 'Lifted load (kg)|举起负荷（kg）', 100), weight],
     (v) => [R('Load / body mass|负荷体重比', v.l / v.w, '×')],
-    'Relative strength=lifted load/body mass',
+    'Use S = L/W. L is lifted load and W is body mass in the same weight unit. The result is the load as a multiple of body mass.|使用 S = L/W。L 为举起负荷，W 为体重，两者重量单位相同；结果表示负荷是体重的多少倍。',
     [4 / 3],
   );
   D(
@@ -220,7 +220,7 @@
       R('Projected finish time|推算完成时间', v.t * (v.n / v.d) ** v.e, 'minutes'),
       R('Projected pace|推算配速', (v.t * (v.n / v.d) ** v.e) / v.n, 'min/km'),
     ],
-    'T₂=T₁(D₂/D₁)ᵉ',
+    'Use T₂ = T₁(D₂/D₁)^e. T₁ is known finish time, D₁ is known distance, D₂ is target distance in the same unit, and e is the editable endurance exponent. Projected time T₂ uses the original time unit.|使用 T₂ = T₁(D₂/D₁)^e。T₁ 为已知完成时间，D₁ 为已知距离，D₂ 为同单位目标距离，e 为可编辑耐力指数；推算时间 T₂ 使用原时间单位。',
     [25 * 2 ** 1.06, 2.5 * 2 ** 1.06],
     'Empirical power-law projection; exponent 1.06 is only a starting assumption. Fitness, terrain, weather and distance affect accuracy.|经验幂律推算，1.06 仅为初始假设；体能、地形、天气及距离影响准确度。',
   );
@@ -243,7 +243,7 @@
         R('Final partial time|最后不足一段用时', (v.t / v.d) * rem, 'minutes'),
       ];
     },
-    'Split time=total time×split distance/total distance',
+    'Use t = Ts/D. T is total finish time in minutes, s is split length, and D is total distance in the same distance unit. t is full-split time in minutes under an even-pace assumption.|使用 t = Ts/D。T 为总完成时间（分钟），s 为分段长度，D 为总距离，两个距离使用相同单位；t 为匀速假设下完整分段的用时（分钟）。',
     [5, 10, 0, 0],
   );
   D(
@@ -261,7 +261,7 @@
       R('Session duration|总时长', (v.r + v.w) * v.n, 'minutes'),
       R('Estimated distance|估计距离', ((v.r * v.rs + v.w * v.ws) * v.n) / 60, 'km'),
     ],
-    'Time=n(run+walk); distance=n(runMinutes×runSpeed+walkMinutes×walkSpeed)/60',
+    'Use T = n(r+w) and D = n(ra+wb)/60. n is cycles; r and w are running and walking minutes per cycle. a and b are the corresponding speeds in km/h. T is minutes and D is km.|使用 T = n(r+w) 及 D = n(ra+wb)/60。n 为轮数，r 与 w 为每轮跑步及步行分钟数，a 与 b 为对应速度（km/h）；T 的单位为分钟，D 的单位为 km。',
     [40, 35 / 6],
   );
   D(
@@ -278,7 +278,7 @@
       R('Pool lengths|泳池趟数', v.d / v.l),
       R('Average speed|平均速度', v.d / v.t / 60, 'm/s'),
     ],
-    'Pace100=100×minutes/distance',
+    'Use P = 100t/d. t is elapsed time in minutes and d is distance in m. P is minutes per 100 m. Pool lengths equal distance divided by pool length.|使用 P = 100t/d。t 为用时（分钟），d 为距离（m），P 为每 100 m 的分钟数；泳池趟数为总距离除以泳池长度。',
     [2, 40, 5 / 6],
   );
   D(
@@ -287,7 +287,7 @@
     'Compare cycling power with rider mass.|比较骑行功率与骑手体重。',
     [n('p', 'Measured power (W)|实测功率（W）', 250), weight],
     (v) => [R('Power to body mass|功率体重比', v.p / v.w, 'W/kg')],
-    'Relative power=watts/body mass(kg)',
+    'Use R = P/m. P is measured power in W and m is body mass in kg. Relative power is in W/kg.|使用 R = P/m。P 为实测功率，单位为 W；m 为体重，单位为 kg。功率体重比的单位为 W/kg。',
     [10 / 3],
   );
   D(
@@ -304,7 +304,7 @@
       R('Theoretical speed|理论速度', ((v.c * v.f) / v.r) * v.w * 0.06, 'km/h'),
       R('Distance per crank revolution|每转曲柄行进距离', (v.f / v.r) * v.w, 'm'),
     ],
-    'Speed=cadence×front/rear×wheel circumference×0.06',
+    'Use v = c(F/R)C×0.06. c is cadence in revolutions per minute, F and R are front and rear tooth counts, and C is loaded wheel circumference in m. Speed v is in km/h.|使用 v = c(F/R)C×0.06。c 为每分钟踏频，F 与 R 为前后齿数，C 为负载轮周（m）；速度 v 的单位为 km/h。',
     [22.68, 4.2],
     'Assumes no wheel slip and accurate loaded wheel circumference; wind and gradients affect the power required.|假设车轮不打滑且负载轮周测量准确；风与坡度影响所需功率。',
   );
@@ -320,7 +320,7 @@
       R('Running speed|跑步速度', v.c * v.s * 0.06, 'km/h'),
       R('Distance in one minute|一分钟距离', v.c * v.s, 'm'),
     ],
-    'Speed=steps/min×metres/step×0.06',
+    'Use v = cs×0.06. c is cadence in steps per minute and s is the length of a single step in m. Speed v is in km/h.|使用 v = cs×0.06。c 为每分钟步数，s 为单步长度（m）；速度 v 的单位为 km/h。',
     [10.8, 180],
     'A step is one foot contact, not a full two-step stride.|这里一步指一次脚触地，不是左右两步的完整步幅。',
   );
@@ -370,7 +370,7 @@
         ),
       ];
     },
-    'Monotony=mean daily load/population SD; strain=weekly sum×monotony',
+    'Use M = μ/σ and S = LM. μ is mean daily load, σ is population standard deviation of the seven entered daily loads, and L is their sum. Monotony M and strain S are undefined when daily variation is zero.|使用 M = μ/σ 及 S = LM。μ 为日均负荷，σ 为所填七天负荷的总体标准差，L 为七天负荷之和；日负荷无变化时，单调度 M 和训练应激 S 均无定义。',
     [1400, Math.sqrt(7 / 4)],
     'Uses population SD of all seven days. Monitoring summary only; no injury prediction or safe-load threshold is inferred.|采用七天总体标准差，仅作监测汇总；不推断伤病概率或安全负荷阈值。',
   );
@@ -396,7 +396,7 @@
         R('Estimated sweat loss|估计出汗量', loss, 'L'),
       ];
     },
-    'Loss(L)≈preMass−postMass+drink−urine; rate=loss/hours',
+    'Estimate L = A−B+D−U and R = L/t. A and B are pre- and post-exercise mass in kg; D and U are drink and urine volumes in L; t is hours. The approximation treats a kilogram of mass change as a litre of fluid; R is in L/h.|估算 L = A−B+D−U 及 R = L/t。A 与 B 为运动前后体重（kg），D 与 U 为饮入及排尿体积（L），t 为小时数；近似将一千克体重变化视为一升体液，R 的单位为 L/h。',
     [1, 1],
     'Approximation treats 1 kg mass change as 1 L and omits respiratory/metabolic changes. This is not a fluid or sodium intake prescription.|近似将 1 kg 质量变化视为 1 L，忽略呼吸与代谢变化；不构成补液或补钠处方。',
   );
@@ -415,7 +415,7 @@
       R('Carbohydrate energy|碳水能量', 4 * v.c, 'kcal'),
       R('Fat energy|脂肪能量', 9 * v.f, 'kcal'),
     ],
-    'Energy=4×protein+4×available carbohydrate+9×fat',
+    'Use E = 4P+4C+9F. P, C and F are grams of protein, available carbohydrate and fat. Estimated energy E is in kcal, using general food-label factors.|使用 E = 4P+4C+9F。P、C、F 分别为蛋白质、可利用碳水和脂肪的克数；使用通用食品标签系数，能量估算值 E 的单位为 kcal。',
     [410, 120, 200, 90],
     'General 4/4/9 factors; fibre, sugar alcohols, organic acids and food-specific factors can differ. This does not recommend macro targets.|使用通用 4/4/9 系数；纤维、糖醇、有机酸及食物特定系数可能不同，不建议营养素目标。',
   );
@@ -432,7 +432,7 @@
       R('Energy per 100 g|每百克能量', (100 * v.e) / v.w, 'kcal'),
       R('Target serving energy|目标份能量', (v.e * v.s) / v.w, 'kcal'),
     ],
-    'Density=energy/mass; serving energy=density×serving mass',
+    'Use d = E/W and Q = ds. E is measured-portion energy in kcal, W is its mass in g, and s is target serving mass in g. d is energy per gram and Q is target serving energy in kcal.|使用 d = E/W 及 Q = ds。E 为测量份能量（kcal），W 为该份质量（g），s 为目标份质量（g）；d 为每克能量，Q 为目标份能量（kcal）。',
     [250, 150],
   );
   D(
@@ -451,7 +451,7 @@
         R('Entered standard-drink equivalents|按自填标准杯折算', g / v.s),
       ];
     },
-    'Ethanol(g)=volume(mL)×ABV×0.789 g/mL',
+    'Use G = Va×0.789. V is drink volume in mL and a is alcohol by volume as a fraction. G is estimated ethanol mass in g. Divide by your entered grams per standard drink for standard-drink equivalents.|使用 G = Va×0.789。V 为饮品体积（mL），a 为酒精体积比的小数比例，G 为估计纯酒精质量（g）；除以自填每标准杯酒精克数，即得标准杯折算数。',
     [19.725, 1.9725],
     'Approximate ethanol density at room temperature. Standard-drink definitions vary; this does not estimate blood alcohol, driving fitness or a safe consumption limit.|使用室温近似酒精密度；标准杯定义因地区而异，不估计血液酒精、驾驶能力或安全饮用上限。',
   );
@@ -472,7 +472,7 @@
         R('Estimated time asleep|估计睡着时长', t, 'minutes'),
       ];
     },
-    'Efficiency=(time in bed−latency−awake time)/time in bed',
+    'Use E = (B−L−W)/B. B is time in bed, L is sleep-onset latency, and W is later awake time, all in minutes. Sleep efficiency E is a fraction, displayed as a percentage.|使用 E = (B−L−W)/B。B 为在床时长，L 为入睡等待，W 为入睡后清醒时长，均使用分钟；睡眠效率 E 为比例，结果以百分比显示。',
     [87.5, 420],
     'Self-reported estimate; not a sleep-disorder diagnosis or a replacement for a sleep study.|自我报告估算，不用于睡眠障碍诊断，也不能替代睡眠检查。',
   );

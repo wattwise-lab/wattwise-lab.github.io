@@ -58,7 +58,7 @@
         R('Second reduced term|化简后第二项', v.b / g),
       ];
     },
-    'a : b → (a ÷ gcd) : (b ÷ gcd)',
+    'Use a:b = (a/g):(b/g), where g = gcd(a,b) is the greatest common divisor of the entered nonnegative integers. The quantities cannot both be zero.|使用 a:b = (a/g):(b/g)，其中 g = gcd(a,b) 为自填非负整数的最大公约数；两项不能同时为零。',
     [2, 3],
   );
   D(
@@ -82,7 +82,7 @@
         R('Signed relative error|带符号相对误差', ((v.a - v.b) / Math.abs(v.b)) * 100, '%'),
       ];
     },
-    '100 × |measured − reference| ÷ |reference|',
+    'Use E = 100abs(m−r)/abs(r). m is measured value, r is the nonzero reference in the same unit, and abs means absolute value. E is percent error.|使用 E = 100abs(m−r)/abs(r)。m 为测量值，r 为同单位非零参考值，abs 表示绝对值；E 为百分误差。',
     [2, -2],
   );
   D(
@@ -137,7 +137,7 @@
         R('Decimal|小数', Number(num) / Number(b / g)),
       ];
     },
-    'sign × (whole × denominator + numerator) ÷ denominator',
+    'Use s(wd+n)/d. w is the whole part, n is fractional numerator, d is denominator, and s is the selected sign. The resulting fraction is reduced by its greatest common divisor.|使用 s(wd+n)/d。w 为整数部分，n 为分数部分的分子，d 为分母，s 为自选正负号；所得分数再按最大公约数约分。',
     ['7/3', 7 / 3],
   );
   D(
@@ -150,7 +150,7 @@
       const q = Math.trunc(v.a / v.b);
       return [R('Quotient|商', q), R('Remainder|余数', v.a - v.b * q)];
     },
-    'a = b × trunc(a/b) + remainder',
+    'Use q = trunc(a/b) and r = a−bq. a is dividend and b is nonzero divisor. trunc rounds toward zero; q is quotient and r is the signed remainder.|使用 q = trunc(a/b) 及 r = a−bq。a 为被除数，b 为非零除数；trunc 表示向零取整，q 为商，r 为带符号余数。',
     [3, 2],
   );
   D(
@@ -222,7 +222,7 @@
       }
       return [R('Least common multiple|最小公倍数', r.toString())];
     },
-    'lcm(a,b) = |a × b| ÷ gcd(a,b)',
+    'Use lcm(a,b) = abs(ab)/gcd(a,b) repeatedly across the entered nonzero integers. gcd is greatest common divisor and abs means absolute value. The result is the least positive common multiple.|对自填非零整数依次使用 lcm(a,b) = abs(ab)/gcd(a,b)。gcd 为最大公约数，abs 表示绝对值；结果为最小正公倍数。',
     ['180'],
   );
   D(
@@ -283,7 +283,7 @@
       R('Principal square root|主平方根', Math.sqrt(v.a)),
       R('Negative root|负平方根', -Math.sqrt(v.a)),
     ],
-    'r² = x, principal r ≥ 0',
+    'Use r = √x with r ≥ 0. x is the nonnegative radicand and r is its principal square root. The other displayed root is its opposite.|使用 r = √x，且 r ≥ 0。x 为非负被开方数，r 为主平方根；另一个显示值为其相反数。',
     [9, -9],
   );
   D(
@@ -307,7 +307,7 @@
       );
       return [R('Real root|实数根', Math.sign(v.a) * Math.abs(v.a) ** (1 / v.b))];
     },
-    'r = sign(x) × |x|^(1/n); negative x requires odd n.',
+    'Use r = sign(x)abs(x)^(1/n). x is the radicand, n is a positive integer root degree, abs means absolute value, and sign gives the sign of the input. Negative inputs require an odd root degree.|使用 r = sign(x)abs(x)^(1/n)。x 为被开方数，n 为正整数根次数，abs 表示绝对值，sign 返回输入的符号；负数的实数根要求奇数根次数。',
     [2],
   );
   D(
@@ -322,7 +322,7 @@
       );
       return [R('Exponentiation result|乘方结果', v.a ** v.b)];
     },
-    'y = base^exponent',
+    'Use y = b^e. b is the real base and e is the entered exponent. This tool requires an integer exponent for a negative base and a positive exponent for a zero base.|使用 y = b^e。b 为实数底数，e 为自填指数；本工具对负底数要求整数指数，对零底数要求正指数。',
     [1024],
   );
   D(
@@ -334,7 +334,7 @@
       check(v.b !== 1, 'Logarithm base cannot be one.|对数底数不能为 1。');
       return [R('Logarithm|对数', Math.log(v.a) / Math.log(v.b))];
     },
-    'log_b(x) = ln(x) ÷ ln(b)',
+    'Use log_b(x) = ln(x)/ln(b). x is a positive value and b is a positive base other than unity. ln is the natural logarithm.|使用 log_b(x) = ln(x)/ln(b)。x 为正数，b 为大于零且不等于一的底数，ln 为自然对数。',
     [3],
   );
   D(
@@ -343,11 +343,12 @@
     'Separate a finite number into its decimal coefficient and power of ten.|把有限数拆成十进制系数和 10 的指数。',
     [u('a', 'Value|数值', 12345)],
     (v) => {
-      const e = v.a === 0 ? 0 : Math.floor(Math.log10(Math.abs(v.a))),
-        m = v.a / 10 ** e;
+      const [coefficient, exponent] = v.a.toExponential().split('e'),
+        m = Number(coefficient),
+        e = Number(exponent);
       return [R('Coefficient|系数', m), R('Power of ten|10 的指数', e)];
     },
-    'x = coefficient × 10^exponent; 1 ≤ |coefficient| < 10 for nonzero x.',
+    'Write x = m×10^e. x is the entered value, m is the coefficient, and e is an integer exponent. For nonzero input, 1 ≤ abs(m) < 10; abs means absolute value. Zero uses zero coefficient and exponent.|写成 x = m×10^e。x 为输入值，m 为系数，e 为整数指数；输入非零时满足 1 ≤ abs(m) < 10，abs 表示绝对值；零使用零系数和零指数。',
     [1.2345, 4],
   );
   D(
@@ -367,7 +368,7 @@
         ),
       ];
     },
-    'sign(x) × round(|x| × 10^places) ÷ 10^places',
+    'Use R = sign(x)round(abs(x)×10^p)/10^p. x is the value and p is decimal places. abs means absolute value; sign restores the sign. Halfway cases round away from zero; negative places round to larger place values.|使用 R = sign(x)round(abs(x)×10^p)/10^p。x 为数值，p 为小数位数；abs 表示绝对值，sign 恢复正负号；恰好一半时向远离零的方向舍入，负位数舍入到更高数位。',
     [123.46],
   );
   D(
@@ -385,7 +386,7 @@
     'Find a number’s distance from zero and its sign.|计算数到零的距离并判断正负号。',
     [u('a', 'Value|数值', -12.5)],
     (v) => [R('Absolute value|绝对值', Math.abs(v.a)), R('Sign|符号', Math.sign(v.a))],
-    '|x| = x when x ≥ 0, otherwise −x',
+    'Use A = abs(x). x is the entered real number and abs means its distance from zero. The absolute value is nonnegative; the separate sign result identifies positive, negative or zero input.|使用 A = abs(x)。x 为自填实数，abs 表示到零的距离；绝对值非负，单独列出的符号结果区分正数、负数或零。',
     [12.5, -1],
   );
   // 22–47: coordinates, algebra, matrices and vectors.
@@ -404,7 +405,7 @@
         R('Run|横向变化', dx),
       ];
     },
-    'slope = (y₂ − y₁) ÷ (x₂ − x₁)',
+    'Use m = (y₂−y₁)/(x₂−x₁) for points (x₁,y₁) and (x₂,y₂). m is slope. The points must differ; equal horizontal coordinates produce a vertical line with undefined slope.|对点 (x₁,y₁) 与 (x₂,y₂)，使用 m = (y₂−y₁)/(x₂−x₁)，其中 m 为斜率；两点必须不同，横坐标相等时为垂直直线，斜率无定义。',
     [4 / 3, 8, 6],
   );
   D(
@@ -631,7 +632,7 @@
         ).join(', '),
       ),
     ],
-    'Coefficient of x^(n−k) = C(n,k) a^(n−k) b^k',
+    'In (ax+b)^n, the coefficient of x^(n−k) is C(n,k)a^(n−k)b^k. a and b are entered constants, n is the nonnegative integer power, and k runs from zero through that power. C(n,k) is a binomial coefficient.|在 (ax+b)^n 中，x^(n−k) 的系数为 C(n,k)a^(n−k)b^k。a 与 b 为自填常数，n 为非负整数幂，k 从零取到该幂次，C(n,k) 为二项式系数。',
     ['1, 3, 3, 1'],
   );
   D(
@@ -657,7 +658,7 @@
     'Calculate determinant and identify singular two-by-two matrices.|计算二阶矩阵的行列式，判断是否奇异。',
     matrix,
     (v) => [R('Determinant|行列式', v.a * v.d - v.b * v.c)],
-    'det([[a,b],[c,d]]) = ad−bc',
+    'For matrix [[a,b],[c,d]], use det = ad−bc. The letters give entries in row order. A zero determinant identifies a singular matrix.|对矩阵 [[a,b],[c,d]]，使用 det = ad−bc。字母按行表示矩阵元素，行列式为零表示矩阵奇异。',
     [-2],
   );
   D(
@@ -745,7 +746,7 @@
       R('Radius|半径', Math.hypot(v.x, v.y)),
       R('Angle|角度', deg(Math.atan2(v.y, v.x)), '°'),
     ],
-    'r=√(x²+y²); θ=atan2(y,x)',
+    'Use r = √(x²+y²) and θ = atan2(y,x). x and y are Cartesian coordinates in the same unit. Radius r keeps that unit; the signed angle θ is converted from radians to degrees for display.|使用 r = √(x²+y²) 及 θ = atan2(y,x)。x 与 y 为同单位直角坐标，半径 r 使用该单位，带符号角 θ 从弧度换算成度显示。',
     [5, 53.13010235415598],
   );
   D(
@@ -789,7 +790,7 @@
         R('Unit vector z|单位向量 z', v.c / m),
       ];
     },
-    '|v|=√(x²+y²+z²); unit vector = v/|v|',
+    'Use M = √(x²+y²+z²) and u = (x/M,y/M,z/M). x, y and z are vector components, M is magnitude, and u is the unit direction. The vector must be nonzero.|使用 M = √(x²+y²+z²) 及 u = (x/M,y/M,z/M)。x、y、z 为向量分量，M 为向量模，u 为单位方向；向量必须非零。',
     [5, 0.6, 0.8, 0],
   );
   D(
@@ -809,7 +810,7 @@
         ),
       ];
     },
-    'θ = acos((A·B)/(|A||B|))',
+    'Use θ = acos[(A·B)/(norm(A)norm(B))]. A and B are nonzero vectors, the dot denotes their dot product, and norm means Euclidean magnitude. The angle is displayed in degrees.|使用 θ = acos[(A·B)/(norm(A)norm(B))]。A 与 B 为非零向量，点号表示点积，norm 表示欧几里得模；夹角以度显示。',
     [90],
   );
 })();

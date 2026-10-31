@@ -69,3 +69,25 @@ assert.equal(D.expression('sin(٣٠)+१٫५', 'ar'), 'sin(30)+1.5');
 assert.equal(D.expression('1,5+2', 'de'), '1.5+2');
 assert.equal(D.expression('1,000', 'en'), '1,000');
 console.log('Localized scientific input: native digits and locale decimal normalization PASS');
+
+for (const [value, domain, expected] of [
+  [250 / 75, 'Health', '3.33333'],
+  [3.46789530438, 'Home and Everyday', '3.4679'],
+  [123456789012, 'Home and Everyday', '123,456,789,012'],
+  [1e-8, 'Health', '1E-8'],
+  [1e15, 'Home and Everyday', '1E15'],
+  [1 / 3, 'Math and Time', '0.333333333333'],
+])
+  assert.equal(
+    new Intl.NumberFormat('en', D.resultNumberOptions(value, domain)).format(value),
+    expected,
+  );
+assert.equal(D.unit('minutes', 5, 'zh-CN'), '分钟');
+assert.equal(D.unit('USD/month', 2, 'ja'), 'USD/月');
+assert.equal(
+  D.unit('tonnes', 3.84, 'zh-CN', (source) => (source === 'tonnes' ? '吨' : source)),
+  '吨',
+);
+console.log(
+  'Measured-result precision: readable estimates, intact integers/tiny values, math precision and shared native units PASS',
+);

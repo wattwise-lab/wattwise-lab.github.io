@@ -100,8 +100,12 @@ body.cm-tool {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 .cm-tool .cm-crumb a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   text-decoration: none;
 }
 .cm-tool .tag {

@@ -14,10 +14,7 @@
     valid = false,
     scheduled = null,
     scenarios = [];
-  const numberOptions = (value) =>
-      value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12)
-        ? { maximumSignificantDigits: 8, notation: 'scientific' }
-        : { maximumSignificantDigits: 12 },
+  const numberOptions = (value) => CMData.resultNumberOptions(value, model.domain),
     label = (value) => I.pick(value),
     format = (value, literal = false) =>
       typeof value === 'number'

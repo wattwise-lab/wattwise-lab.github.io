@@ -49,7 +49,7 @@
       R('Gauge pressure increase|表压增量', v.d * v.g * v.h, 'Pa'),
       R('Absolute pressure|绝对压强', v.s + v.d * v.g * v.h, 'Pa'),
     ],
-    'Pabsolute=Psurface+ρgh',
+    'Use P = Pₛ+ρgh. Pₛ is absolute surface pressure in Pa, ρ is fluid density in kg/m³, g is gravity in m/s², and h is depth in m. Absolute pressure P is in Pa.|使用 P = Pₛ+ρgh。Pₛ 为液面绝对压强（Pa），ρ 为流体密度（kg/m³），g 为重力加速度（m/s²），h 为深度（m）；绝对压强 P 的单位为 Pa。',
     [98066.5, 199391.5],
   );
   D(
@@ -58,7 +58,7 @@
     'Apply displaced-fluid volume to Archimedes’ principle.|用排开流体体积应用阿基米德原理。',
     [density, n('v', 'Displaced volume (m³)|排开体积（m³）', 0.01), gravity],
     (v) => [R('Buoyant force|浮力', v.d * v.v * v.g, 'N')],
-    'Fb=ρfluid Vdisplaced g',
+    'Use F = ρVg. ρ is fluid density in kg/m³, V is displaced fluid volume in m³, and g is gravity in m/s². Buoyant force F is in N.|使用 F = ρVg。ρ 为流体密度（kg/m³），V 为排开流体体积（m³），g 为重力加速度（m/s²）；浮力 F 的单位为 N。',
     [98.0665],
   );
   D(
@@ -166,7 +166,7 @@
       n('a', 'Reference frontal area (m²)|参考迎风面积（m²）', 1),
     ],
     (v) => [R('Drag force magnitude|阻力大小', 0.5 * v.d * v.v * v.v * v.c * v.a, 'N')],
-    'Fd=½ρv²CdA',
+    'Use F = ρv²C_dA/2. ρ is fluid density in kg/m³, v is relative speed in m/s, C_d is the entered drag coefficient, and A is reference frontal area in m². Drag magnitude F is in N.|使用 F = ρv²C_dA/2。ρ 为流体密度（kg/m³），v 为相对速率（m/s），C_d 为自填阻力系数，A 为参考迎风面积（m²）；阻力大小 F 的单位为 N。',
     [30.625],
   );
   D(
@@ -224,7 +224,7 @@
       p('v', 'Volume (m³)|体积（m³）', 0.025),
     ],
     (v) => [R('Absolute pressure|绝对压强', (v.n * Rgas * v.t) / v.v, 'Pa')],
-    'P=nRT/V; R=8.31446261815324 J/(mol·K)',
+    'Use P = nRT/V with R = 8.31446261815324 J/(mol·K). n is amount in mol, T is absolute temperature in K, and V is volume in m³. Pressure P is in Pa.|使用 P = nRT/V，其中 R = 8.31446261815324 J/(mol·K)。n 为物质的量（mol），T 为绝对温度（K），V 为体积（m³）；压强 P 的单位为 Pa。',
     [99773.5514178389],
   );
   D(
@@ -253,7 +253,7 @@
       u('d', 'Hot minus cold temperature (K)|热侧减冷侧温差（K）', 20),
     ],
     (v) => [R('Heat flow rate|热流率', (v.k * v.a * v.d) / v.l, 'W')],
-    'Qdot=kAΔT/L',
+    'Use P = kAΔT/L. k is conductivity in W/m·K, A is area in m², ΔT is the signed hot-minus-cold temperature difference in K, and L is thickness in m. Heat flow rate P is in W.|使用 P = kAΔT/L。k 为导热系数（W/m·K），A 为面积（m²），ΔT 为热侧减冷侧的带符号温差（K），L 为厚度（m）；热流率 P 的单位为 W。',
     [80],
   );
   D(
@@ -266,7 +266,7 @@
       u('d', 'Surface minus fluid temperature (K)|表面减流体温差（K）', 20),
     ],
     (v) => [R('Heat flow rate|热流率', v.h * v.a * v.d, 'W')],
-    'Qdot=hA(Tsurface−Tfluid)',
+    'Use P = hAΔT. h is convection coefficient in W/m²·K, A is surface area in m², and ΔT is signed surface-minus-fluid temperature difference in K. Heat flow rate P is in W.|使用 P = hAΔT。h 为对流换热系数（W/m²·K），A 为表面积（m²），ΔT 为表面减流体的带符号温差（K）；热流率 P 的单位为 W。',
     [400],
   );
   D(
@@ -286,7 +286,7 @@
         'W',
       ),
     ],
-    'Qdot=εσA(T⁴−Tsurroundings⁴)',
+    'Use P = εσA(T⁴−Tₛ⁴). ε is emissivity, σ is the Stefan–Boltzmann constant, A is area in m², and T and Tₛ are surface and surrounding temperatures in K. Positive P means net outward power in W.|使用 P = εσA(T⁴−Tₛ⁴)。ε 为发射率，σ 为斯特藩–玻尔兹曼常数，A 为面积（m²），T 与 Tₛ 为表面及环境温度（K）；P 为正表示向外净功率，单位为 W。',
     [893.0839709925],
     'Gray diffuse surface in a large isothermal enclosure, view factor 1; convection and conduction excluded.|灰体漫反射表面处于大型等温包围环境，视角因子为 1；不含对流与导热。',
   );
@@ -305,7 +305,7 @@
       );
       return [R('Theoretical maximum efficiency|理论最高效率', 100 * (1 - v.c / v.h), '%')];
     },
-    'ηmax=1−Tcold/Thot',
+    'Use η = 1−T_c/T_h. T_c and T_h are cold and hot reservoir absolute temperatures in K. The theoretical efficiency fraction η is displayed as a percentage; the hot reservoir must be hotter.|使用 η = 1−T_c/T_h。T_c 与 T_h 为低温及高温热源绝对温度（K）；理论效率比例 η 以百分比显示，高温热源必须更热。',
     [50],
     'Absolute temperatures required. Real engines have additional losses and lower efficiency.|必须使用绝对温度；实际热机还存在其他损失，效率更低。',
   );
@@ -334,7 +334,7 @@
         ),
       ];
     },
-    'Tf=(mAcATA+mBcBTB)/(mAcA+mBcB)',
+    'Use T = (mₐcₐTₐ+mᵦcᵦTᵦ)/(mₐcₐ+mᵦcᵦ). m denotes mass, c specific heat, and subscripts identify the materials. Tₐ and Tᵦ are initial temperatures in °C; equilibrium temperature T uses the same scale. Assume no heat loss or phase change.|使用 T = (mₐcₐTₐ+mᵦcᵦTᵦ)/(mₐcₐ+mᵦcᵦ)。m 表示质量，c 表示比热容，下标区分材料；Tₐ 与 Tᵦ 为初始温度（°C），平衡温度 T 使用相同温标，假设无热损和相变。',
     [35],
     'Insulated mixture, constant heat capacities, no container heat, no reaction and no phase change.|绝热混合、比热恒定，忽略容器吸热、反应及相变。',
   );
@@ -360,7 +360,7 @@
       temp,
     ],
     (v) => [R('Ideal gas density|理想气体密度', (v.p * v.m) / 1000 / (Rgas * v.t), 'kg/m³')],
-    'ρ=PM/(RT), M in kg/mol',
+    'Use ρ = PM/(RT). P is absolute pressure in Pa, M is molar mass converted to kg/mol, T is absolute temperature in K, and R is the gas constant. Density ρ is in kg/m³.|使用 ρ = PM/(RT)。P 为绝对压强（Pa），M 为换算成 kg/mol 的摩尔质量，T 为绝对温度（K），R 为气体常数；密度 ρ 的单位为 kg/m³。',
     [1.1768189899],
   );
   D(

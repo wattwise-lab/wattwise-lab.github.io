@@ -41,7 +41,7 @@
       );
       return [R('Area|面积', v.a * v.h, 'm²'), R('Perimeter|周长', 2 * (v.a + v.b), 'm')];
     },
-    'A=base×height; P=2(base+side)',
+    'Use A = bh and P = 2(b+s). b is base, h is perpendicular height, and s is the adjacent side, all in the same length unit. A is area and P is perimeter.|使用 A = bh 及 P = 2(b+s)。b 为底，h 为垂直高，s 为邻边，均使用同一长度单位；A 为面积，P 为周长。',
     [24, 22],
   );
   D(
@@ -57,7 +57,7 @@
       R('Area|面积', ((v.a + v.b) * v.h) / 2, 'm²'),
       R('Midline|中位线', (v.a + v.b) / 2, 'm'),
     ],
-    'A=(a+b)h/2; midline=(a+b)/2',
+    'Use A = (a+b)h/2 and m = (a+b)/2. a and b are parallel side lengths and h is perpendicular height in the same unit. m is midline length.|使用 A = (a+b)h/2 及 m = (a+b)/2。a 与 b 为两条平行边长度，h 为同单位垂直高，m 为中位线长度。',
     [26, 6.5],
   );
   D(
@@ -76,7 +76,7 @@
         R('Perimeter|周长', 4 * s, 'm'),
       ];
     },
-    'A=d₁d₂/2; side=√(d₁²+d₂²)/2',
+    'Use A = d₁d₂/2 and s = √(d₁²+d₂²)/2. d₁ and d₂ are the rhombus diagonals in the same length unit. A is area and s is side length.|使用 A = d₁d₂/2 及 s = √(d₁²+d₂²)/2。d₁ 与 d₂ 为同长度单位的菱形对角线，A 为面积，s 为边长。',
     [24, 5, 20],
   );
   D(
@@ -100,7 +100,7 @@
         R('Projection y|垂足 y', v.y - (v.b * q) / d),
       ];
     },
-    'distance=|Ax+By+C|/√(A²+B²)',
+    'Use d = abs(Ax+By+C)/√(A²+B²) for the line Ax+By+C = 0 and point (x,y). abs means absolute value. The line coefficients A and B cannot both be zero.|对直线 Ax+By+C = 0 与点 (x,y)，使用 d = abs(Ax+By+C)/√(A²+B²)。abs 表示绝对值，直线系数 A 与 B 不能同时为零。',
     [1.2, 0.28, 1.04],
   );
   D(
@@ -140,7 +140,7 @@
         R('Boundary length|边界长度', arc + 2 * v.r, 'm'),
       ];
     },
-    'θ in radians; A=r²θ/2; arc=rθ',
+    'Convert the entered angle a in degrees to θ = πa/180 radians. Use A = r²θ/2 and s = rθ. r is radius, A is sector area, and s is arc length.|将自填角度 a 从度换算为弧度 θ = πa/180，再使用 A = r²θ/2 及 s = rθ。r 为半径，A 为扇形面积，s 为弧长。',
     [4.71238898038469, PI, 9.141592653589793],
   );
   D(
@@ -155,7 +155,7 @@
         R('Chord|弦长', 2 * v.r * Math.sin(a / 2), 'm'),
       ];
     },
-    'A=r²(θ−sinθ)/2; chord=2r sin(θ/2)',
+    'Convert the entered angle a in degrees to θ = πa/180 radians. Use A = r²(θ−sinθ)/2 and c = 2r sin(θ/2). r is radius, A is segment area, and c is chord length.|将自填角度 a 从度换算为弧度 θ = πa/180，再使用 A = r²(θ−sinθ)/2 及 c = 2r sin(θ/2)。r 为半径，A 为圆弓形面积，c 为弦长。',
     [0.3623442948243183, 2],
   );
   D(
@@ -170,7 +170,7 @@
         R('Total boundary|边界总长', 2 * PI * (v.a + v.b), 'm'),
       ];
     },
-    'A=π(R²−r²); boundary=2π(R+r)',
+    'Use A = π(R²−r²) and P = 2π(R+r). R and r are outer and inner radii in the same unit. A is annular area; P includes both boundary circles.|使用 A = π(R²−r²) 及 P = 2π(R+r)。R 与 r 为同单位外、内半径；A 为圆环面积，P 包含内外两条圆周。',
     [65.97344572538566, 43.982297150257104],
   );
   D(
@@ -184,7 +184,7 @@
       R('Apothem|边心距', v.s / (2 * Math.tan(PI / v.n)), 'm'),
       R('Circumradius|外接圆半径', v.s / (2 * Math.sin(PI / v.n)), 'm'),
     ],
-    'A=ns²/(4tan(π/n)); P=ns',
+    'Use A = ns²/[4tan(π/n)] and P = ns. n is the number of equal sides and s is side length. The tangent uses radians. A is area and P is perimeter.|使用 A = ns²/[4tan(π/n)] 及 P = ns。n 为等长边数，s 为边长，正切按弧度计算；A 为面积，P 为周长。',
     [10.392304845413264, 12, Math.sqrt(3), 2],
   );
   D(
@@ -207,7 +207,7 @@
       }
       return [R('Area|面积', Math.abs(area) / 2, 'm²'), R('Perimeter|周长', perimeter, 'm')];
     },
-    'Shoelace area = |Σ(xᵢyᵢ₊₁−xᵢ₊₁yᵢ)|/2',
+    'Use A = abs[Σ(xᵢyᵢ₊₁−xᵢ₊₁yᵢ)]/2. (xᵢ,yᵢ) are vertices in boundary order; the last vertex connects back to the first. abs means absolute value. Coordinates must use the same length unit.|使用 A = abs[Σ(xᵢyᵢ₊₁−xᵢ₊₁yᵢ)]/2。(xᵢ,yᵢ) 为沿边界顺序排列的顶点，末点连接回首点；abs 表示绝对值，坐标使用相同长度单位。',
     [6, 12],
     'Vertices must follow the boundary of a non-self-intersecting polygon. Self-intersections are not interpreted as filled unions.|顶点需沿不自交的多边形边界排列；自交图形不按区域并集求面积。',
   );
@@ -257,7 +257,7 @@
         R('Angle C|角 C', c, '°'),
       ];
     },
-    'a/sin(A)=b/sin(B)=c/sin(C); C=180°−A−B',
+    'Use a/sin(A) = b/sin(B) = c/sin(C) and C = 180°−A−B. Each lowercase side is opposite its matching uppercase angle. Input angles are in degrees and side lengths share a unit.|使用 a/sin(A) = b/sin(B) = c/sin(C) 及 C = 180°−A−B。每个小写边长均为对应大写角的对边；输入角度使用度，所有边长使用相同单位。',
     [8.660254037844387, 10, 90],
   );
   D(
@@ -277,7 +277,7 @@
       ),
       R('Area|面积', (v.b * v.c * Math.sin(rad(v.A))) / 2, 'm²'),
     ],
-    'a²=b²+c²−2bc cos(A); area=bc sin(A)/2',
+    'Use a² = b²+c²−2bc cos(A) and K = bc sin(A)/2. b and c are the entered sides and A is their included angle in degrees. a is the opposite side and K is triangle area.|使用 a² = b²+c²−2bc cos(A) 及 K = bc sin(A)/2。b 与 c 为自填两边，A 为其夹角（度），a 为对边，K 为三角形面积。',
     [5, 6],
   );
   D(
@@ -347,7 +347,7 @@
         R('Minor central angle|较小圆心角', 2 * deg(Math.acos(v.d / v.r)), '°'),
       ];
     },
-    'chord=2√(r²−d²)',
+    'Use c = 2√(r²−d²). r is radius and d is perpendicular distance from the centre to the chord in the same unit. Chord length c uses that length unit.|使用 c = 2√(r²−d²)。r 为半径，d 为圆心到弦的同单位垂直距离；弦长 c 使用该长度单位。',
     [8, 106.26020470831196],
   );
   D(
@@ -366,7 +366,7 @@
         R('Chord length|弦长', 2 * v.r * Math.sin(a / 2), 'm'),
       ];
     },
-    'θ=s/r radians; chord=2r sin(θ/2)',
+    'Use θ = s/r and c = 2r sin(θ/2). s is arc length and r is radius in the same unit. θ is radians before conversion to displayed degrees; c is chord length.|使用 θ = s/r 及 c = 2r sin(θ/2)。s 为弧长，r 为同单位半径；θ 为弧度，随后换算成度显示，c 为弦长。',
     [60, 3],
   );
   D(
@@ -408,7 +408,7 @@
       R('Surface area|表面积', 2 * (v.a * v.b + v.b * v.c + v.a * v.c), 'm²'),
       R('Space diagonal|体对角线', Math.hypot(v.a, v.b, v.c), 'm'),
     ],
-    'V=lwh; S=2(lw+lh+wh)',
+    'Use V = lwh and S = 2(lw+lh+wh). l, w and h are cuboid length, width and height in the same unit. V is volume and S is total surface area.|使用 V = lwh 及 S = 2(lw+lh+wh)。l、w、h 为同单位长方体长、宽、高；V 为体积，S 为总表面积。',
     [60, 94, 7.0710678118654755],
   );
   D(
@@ -487,7 +487,7 @@
         'm²',
       ),
     ],
-    'V=lwh/3; S=lw+l√(h²+(w/2)²)+w√(h²+(l/2)²)',
+    'Use V = lwh/3 and S = lw+l√(h²+(w/2)²)+w√(h²+(l/2)²). l and w are rectangular base dimensions and h is perpendicular height, all in the same unit. S includes the base.|使用 V = lwh/3 及 S = lw+l√(h²+(w/2)²)+w√(h²+(l/2)²)。l 与 w 为矩形底面长宽，h 为垂直高，均使用同一单位；S 包含底面积。',
     [48, 96],
   );
   D(
@@ -534,7 +534,7 @@
       p('c', 'Semiaxis c (m)|半轴 c（m）', 1),
     ],
     (v) => [R('Volume|体积', (4 * PI * v.a * v.b * v.c) / 3, 'm³')],
-    'V=4πabc/3',
+    'Use V = 4πabc/3. a, b and c are the ellipsoid semiaxes in the same unit, not full diameters. Volume V uses the cubed length unit.|使用 V = 4πabc/3。a、b、c 为同单位椭球半轴，并非完整直径；体积 V 使用该长度单位的立方。',
     [25.132741228718345],
   );
   D(
@@ -563,7 +563,7 @@
       R('Curved area|曲面面积', 2 * PI * v.r * v.r, 'm²'),
       R('Total area with base|含底面总面积', 3 * PI * v.r * v.r, 'm²'),
     ],
-    'V=2πr³/3; curved=2πr²; total=3πr²',
+    'Use V = 2πr³/3, C = 2πr² and S = 3πr². r is radius, V is hemisphere volume, C is curved area, and S includes the circular base.|使用 V = 2πr³/3、C = 2πr² 及 S = 3πr²。r 为半径，V 为半球体积，C 为曲面面积，S 包含圆形底面。',
     [16.755160819145562, 25.132741228718345, 37.69911184307752],
   );
   // 80–88: trigonometry and numerical algebra.
@@ -598,7 +598,7 @@
       R('Hyperbolic cosine|双曲余弦', Math.cosh(v.a)),
       R('Hyperbolic tangent|双曲正切', Math.tanh(v.a)),
     ],
-    'sinhx=(eˣ−e⁻ˣ)/2; coshx=(eˣ+e⁻ˣ)/2',
+    "Use sinh(x) = (e^x−e^(−x))/2, cosh(x) = (e^x+e^(−x))/2 and tanh(x) = sinh(x)/cosh(x). x is the real argument and e is Euler's number.|使用 sinh(x) = (e^x−e^(−x))/2、cosh(x) = (e^x+e^(−x))/2 及 tanh(x) = sinh(x)/cosh(x)。x 为实数自变量，e 为自然常数。",
     [1.1752011936438014, 1.5430806348152437, 0.7615941559557649],
   );
   D(
@@ -652,7 +652,7 @@
         R('Second imaginary part|第二特征值虚部', -Math.sqrt(-disc) / 2),
       ];
     },
-    'λ=(trace ± √((a−d)²+4bc))/2',
+    'For the matrix [[a,b],[c,d]], use λ = (a+d±√((a−d)²+4bc))/2. A negative discriminant gives conjugate complex eigenvalues; the result lists real and imaginary parts separately.|对矩阵 [[a,b],[c,d]]，使用 λ = (a+d±√((a−d)²+4bc))/2。判别式为负时得到共轭复特征值，结果分别列出实部与虚部。',
     [3, 0, 1, 0],
   );
   D(
@@ -716,7 +716,7 @@
         ),
       ];
     },
-    'Lagrange polynomial: y=Σ yᵢ ∏ⱼ≠ᵢ (x−xⱼ)/(xᵢ−xⱼ)',
+    'Use y = Σ yᵢ ∏ⱼ≠ᵢ (x−xⱼ)/(xᵢ−xⱼ) over the three entered points (xᵢ,yᵢ). x is the target coordinate. The input horizontal coordinates must be distinct; outside them, the polynomial is an extrapolation.|对三个自填点 (xᵢ,yᵢ)，使用 y = Σ yᵢ ∏ⱼ≠ᵢ (x−xⱼ)/(xᵢ−xⱼ)。x 为目标横坐标，输入横坐标必须互不相同；目标位于其范围外时属于多项式外推。',
     [2.25],
   );
   D(
@@ -771,7 +771,7 @@
         ),
       ];
     },
-    '∫ aₙxⁿ dx = aₙx^(n+1)/(n+1); evaluate F(upper)−F(lower).',
+    'Integrate each polynomial term with ∫ aₙxⁿ dx = aₙx^(n+1)/(n+1), then evaluate F(b)−F(a). aₙ is a coefficient, n is its nonnegative integer power, and a and b are lower and upper limits. F is the summed antiderivative.|逐项使用 ∫ aₙxⁿ dx = aₙx^(n+1)/(n+1) 积分，再求 F(b)−F(a)。aₙ 为系数，n 为其非负整数幂，a 与 b 为积分下、上限，F 为各项相加所得原函数。',
     [3],
   );
 })();

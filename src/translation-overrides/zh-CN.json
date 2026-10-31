@@ -147,5 +147,11 @@
   "From date (leave blank for today)": "起始日期（留空使用今天）",
   "Calendar days until or since a target date.": "计算目标日期之前或之后相隔的日历天数。",
   "Deurenberg et al. (1991): adult body-fat prediction equation": "Deurenberg 等（1991）：成人体脂预测方程",
-  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "2 次多项式在复数范围内按重数计算有两个根。两个根可以重合，也可以是一对非实复根；计入重数后总数始终是两个。"
+  "A polynomial of degree 2 has two roots counting multiplicity. They can coincide (one repeated root) or be a complex pair, but there are always two.": "2 次多项式在复数范围内按重数计算有两个根。两个根可以重合，也可以是一对非实复根；计入重数后总数始终是两个。",
+  "The rule gives t ≈ 72/p, while constant compound growth gives t = ln(2)/ln(1+p/100). p is the positive annual percentage rate and t is years. The rule is an approximation.": "经验法则为 t ≈ 72/p；恒定复利增长的精确年数为 t = ln(2)/ln(1+p/100)。p 为正年增长百分率，t 为年数；该经验法则仅为近似。",
+  "Use S = (fp−eq)D/100. f is fuel litres and e is EV wall energy in kWh per 100 km; p is fuel price per litre, q is electricity price per kWh, and D is annual distance in km. S is annual energy-cost saving.": "使用 S = (fp−eq)D/100。f 为每 100 km 油耗升数，e 为同里程充电时从电网取用的电量（kWh，包含充电损耗），p 为每升油价，q 为每 kWh 电价，D 为年里程（km）；S 为年能源费节省。",
+  "Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.": "使用 L = B⁻¹(α/2;k,n−k+1) 及 U = B⁻¹(1−α/2;k+1,n−k)。k 为成功次数，n 为试验次数；置信水平的小数比例为 c，使用 α = 1−c，B⁻¹ 为贝塔分位函数；边界按 k = 0 → L = 0 及 k = n → U = 1 处理。",
+  "YOUR CALCULATOR DESK": "你的计算器工作台",
+  "CHOOSE A TOOL": "选择工具",
+  "Tax of {0} at {1} brings a ${2} subtotal to {3}.": "小计 ${2}，税率 {1}，税额 {0}，含税总额 {3}。"
 }

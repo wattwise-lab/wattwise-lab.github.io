@@ -56,7 +56,7 @@
         R('Trough observation number|谷值观测序号', end + 1),
       ];
     },
-    'MDD=maxₜ(1−Vₜ/maxₛ≤ₜVₛ)',
+    'At each time, compare portfolio value with the highest value reached so far. The drawdown is 1−Vₜ/Hₜ; maximum drawdown is the largest such fraction. Vₜ is current value and Hₜ is the running peak.|逐时点比较组合价值与此前达到的最高价值。回撤比例为 1−Vₜ/Hₜ，最大回撤为这些比例的最大值；Vₜ 为当前价值，Hₜ 为截至该时点的峰值。',
     [100 / 3, 2, 5],
   );
   D(
@@ -83,7 +83,7 @@
         R('Total cost|总成本', sum(a) + v.f),
       ];
     },
-    'Units=Σ(amount/price); average=(Σamount+fees)/units',
+    'Use U = Σ(Aᵢ/Pᵢ) and P̄ = (ΣAᵢ+F)/U. Aᵢ is each purchase amount excluding fees, Pᵢ is its unit price, F is total fees, and U is total units bought. P̄ includes fees.|使用 U = Σ(Aᵢ/Pᵢ) 和 P̄ = (ΣAᵢ+F)/U。Aᵢ 为每笔不含手续费的购买金额，Pᵢ 为对应单价，F 为总手续费，U 为总购买数量；P̄ 将手续费计入平均成本。',
     [308 / 19, 19, 308],
   );
   D(
@@ -105,7 +105,7 @@
         R('Net sale proceeds|税后卖出净收入', v.s - v.f - tax),
       ];
     },
-    'Gain=sale−fees−basis; tax=max(gain,0)×entered rate',
+    'Use G = S−F−B and T = max(G,0)r. S is sale proceeds, F is sale fees, B is purchase cost basis, and r is the entered gains tax fraction. G is modeled gain and T is estimated tax; no jurisdiction rules are applied.|使用 G = S−F−B 和 T = max(G,0)r。S 为出售所得，F 为出售费用，B 为购入成本基础，r 为所填资本利得税率比例；G 为模型损益，T 为税额估算，不套用任何司法辖区税法。',
     [90, 360, 1360],
     'No country-specific rules, allowances, holding-period rules or loss offsets are applied. Use the rate and basis confirmed for your situation.|不应用任何特定国家规则、免税额、持有期规则或亏损抵扣；请使用经核实适用于你的税率和成本基础。',
   );
@@ -118,7 +118,7 @@
       n('f', 'Inflation (%)|通胀（%）', 5, -99.99, 10000),
     ],
     (v) => [R('Real return|实际回报率', 100 * ((1 + v.r / 100) / (1 + v.f / 100) - 1), '%')],
-    'Real return=(1+nominal)/(1+inflation)−1',
+    'Use R = (1+r)/(1+f)−1. r is nominal return, f is inflation, and R is real return. Rates in the equation are fractions over the same period.|使用 R = (1+r)/(1+f)−1。r 为名义收益率，f 为通胀率，R 为实际收益率；公式中的利率均为相同期间的比例。',
     [100 / 21],
   );
   D(
@@ -130,7 +130,7 @@
       R('Rule-of-72 estimate|72 法则估算', 72 / v.r, 'years'),
       R('Exact annual compounding|精确年度复利', Math.LN2 / Math.log1p(v.r / 100), 'years'),
     ],
-    'Approximate years=72/r%; exact years=ln2/ln(1+r)',
+    'The rule gives t ≈ 72/p, while constant compound growth gives t = ln(2)/ln(1+p/100). p is the positive annual percentage rate and t is years. The rule is an approximation.|经验法则为 t ≈ 72/p；恒定复利增长的精确年数为 t = ln(2)/ln(1+p/100)。p 为正年增长百分率，t 为年数；该经验法则仅为近似。',
     [12, 11.89566104594],
   );
   D(
@@ -145,7 +145,7 @@
       check(v.m >= 1, 'Target multiple must be at least one.|目标倍数不得小于 1。');
       return [R('Time to target|达到目标所需时间', Math.log(v.m) / Math.log1p(v.r / 100), 'years')];
     },
-    't=ln(target multiple)/ln(1+r)',
+    'Use t = ln(M)/ln(1+r). M is the target growth multiple, r is the annual effective growth fraction, and t is years. This generalizes doubling to the multiple you enter.|使用 t = ln(M)/ln(1+r)。M 为目标增长倍数，r 为有效年增长率比例，t 为年数；可计算所填倍数，不限于翻倍。',
     [11.5267046072476],
   );
   D(
@@ -204,7 +204,7 @@
         R('Monthly financing charge|月融资费用', fin),
       ];
     },
-    'Payment=[(cap−residual)/months+(cap+residual)×money factor]×(1+tax)',
+    'Use A = [(C−S)/n+(C+S)f](1+τ). C is adjusted capitalized cost, S is residual value, n is months, f is the money factor, and τ is the payment tax fraction. The two terms are depreciation and financing charges.|使用 A = [(C−S)/n+(C+S)f](1+τ)。C 为调整后资本化成本，S 为残值，n 为月数，f 为租赁资金因子，τ 为付款税率比例；括号内两项分别为折旧和融资费用。',
     [1096, 1000, 96],
     'Common money-factor lease estimate. Contracts may apply taxes and fees differently; mileage and end-of-lease charges are excluded.|常见货币因子租赁估算；合同税费方式可能不同，不含里程与期末费用。',
   );
@@ -228,7 +228,7 @@
         R('Final balloon|期末尾款', v.b),
       ];
     },
-    'A=[P−B/(1+r)ⁿ]/annuityFactor(r,n)',
+    'Use A = [P−B/(1+r)^n]/a(r,n). P is principal, B is the balloon balance, r is the monthly interest fraction, and n is months. a(r,n) sums the end-of-month discount factors; the balloon is paid at the end.|使用 A = [P−B/(1+r)^n]/a(r,n)。P 为本金，B 为期末气球尾款，r 为月利率比例，n 为月数；a(r,n) 为各月月末折现因子之和，尾款在期末支付。',
     [500, 0, 6000],
   );
   D(
@@ -241,7 +241,7 @@
       R('Interest over entered term|所填期限利息', ((v.a * v.r) / 1200) * v.t),
       R('Principal still due|仍应归还本金', v.a),
     ],
-    'Monthly interest=P×annual nominal rate/12',
+    'Monthly interest is I = Pr/12 and term interest is nI. P is principal, r is the nominal annual interest fraction, and n is months. Interest-only payments leave the principal due.|每月利息为 I = Pr/12，整个期间利息为 nI。P 为本金，r 为名义年利率比例，n 为月数；只付利息不会偿还应付本金。',
     [500, 6000, 100000],
   );
   D(
@@ -283,7 +283,7 @@
       R('Principal supported by payment|该月供对应本金', v.a * annuity(v.r / 1200, v.t)),
       R('Total scheduled payments|计划总还款', v.a * v.t),
     ],
-    'P=A×annuityFactor(r,n)',
+    'Use P = A×a(r,n). A is the monthly payment budget, r is the monthly interest fraction, and n is months. a(r,n) is the sum of end-of-month discount factors. The result is payment arithmetic only.|使用 P = A×a(r,n)。A 为每月还款预算，r 为月利率比例，n 为月数；a(r,n) 为各月月末折现因子之和。结果仅为还款金额推算。',
     [12000, 12000],
     'This is payment arithmetic, not a lending approval or affordability assessment. Other costs and obligations are excluded.|仅为还款数学，不代表贷款审批或负担能力评估；不含其他成本与义务。',
   );
@@ -330,7 +330,7 @@
         R('Reducing total interest|递减余额总利息', am * v.t - v.a),
       ];
     },
-    'Flat interest=P×annual rate×years; reducing payment=P/annuityFactor(r,n)',
+    'Flat interest is I = Pjn/12; reducing-balance payment is A = P/a(j/12,n). P is principal, j is the nominal annual interest fraction, and n is months. a(r,n) sums the monthly discount factors at rate r.|平息利息为 I = Pjn/12，递减余额法月供为 A = P/a(j/12,n)。P 为本金，j 为名义年利率比例，n 为月数；a(r,n) 为按月利率 r 计算的各月折现因子之和。',
     [1060, 1032.797156485, 720, 393.56587782],
     'Same quoted rates do not mean equal borrowing costs. Fees and lender rounding are omitted.|相同报价利率不等于相同借款成本；不含费用与放款机构舍入规则。',
   );
@@ -430,7 +430,7 @@
       n('p', 'Payable days|应付账款天数', 20),
     ],
     (v) => [R('Cash conversion cycle|现金周转周期', v.i + v.r - v.p, 'days')],
-    'CCC=DIO+DSO−DPO',
+    'Use CCC = DIO+DSO−DPO. DIO is inventory days, DSO is receivable days, and DPO is payable days. The result is the modeled cash conversion cycle in days.|使用 CCC = DIO+DSO−DPO。DIO 为存货天数，DSO 为应收账款天数，DPO 为应付账款天数；结果为模型中的现金转换周期天数。',
     [55],
   );
   B(
@@ -439,7 +439,7 @@
     'Compare current assets with current liabilities.|比较流动资产与流动负债。',
     [cash('a', 'Current assets|流动资产', 200000), p('l', 'Current liabilities|流动负债', 100000)],
     (v) => [R('Current ratio|流动比率', v.a / v.l)],
-    'Current ratio=current assets/current liabilities',
+    'Use R = A/L. A is current assets and L is current liabilities. The current ratio is a dimensionless comparison of those entered amounts.|使用 R = A/L。A 为流动资产，L 为流动负债；流动比率为所填两项金额之间的无量纲比值。',
     [2],
   );
   B(
@@ -459,7 +459,7 @@
       );
       return [R('Quick ratio|速动比率', (v.a - v.i - v.p) / v.l)];
     },
-    'Quick ratio=(current assets−inventory−prepayments)/current liabilities',
+    'Use Q = (A−I−P)/L. A is current assets, I is inventory, P is prepayments, and L is current liabilities. The quick ratio excludes inventory and prepayments from the numerator.|使用 Q = (A−I−P)/L。A 为流动资产，I 为存货，P 为预付款，L 为流动负债；速动比率的分子扣除存货和预付款。',
     [1.4],
   );
   B(
@@ -479,7 +479,7 @@
         'days',
       ),
     ],
-    'Turnover=COGS/average inventory; DIO=days/turnover',
+    'Use T = C/I and D = d/T. C is cost of goods sold for the period, I is average inventory, and d is days in that period. T is turnover and D is inventory days.|使用 T = C/I 和 D = d/T。C 为该期间销售成本，I 为平均存货，d 为该期间天数；T 为存货周转次数，D 为存货周转天数。',
     [6, 365 / 6],
   );
   B(
@@ -499,7 +499,7 @@
         'days',
       ),
     ],
-    'Turnover=net credit sales/average receivables',
+    'Use T = S/A and D = d/T. S is net credit sales, A is average receivables, and d is days in the same period. T is receivables turnover and D is collection days.|使用 T = S/A 和 D = d/T。S 为赊销净额，A 为平均应收账款，d 为同一期间天数；T 为应收账款周转次数，D 为收款周转天数。',
     [12, 365 / 12],
   );
   B(
@@ -519,7 +519,7 @@
         'days',
       ),
     ],
-    'Turnover=net credit purchases/average payables',
+    'Use T = S/A and D = d/T. S is net credit purchases, A is average trade payables, and d is days in the same period. T is payables turnover and D is payment days.|使用 T = S/A 和 D = d/T。S 为赊购净额，A 为平均贸易应付款，d 为同一期间天数；T 为应付账款周转次数，D 为付款周转天数。',
     [12, 365 / 12],
   );
   B(
@@ -535,7 +535,7 @@
       R('Net working capital|净营运资本', v.a - v.l),
       R('Working capital / revenue|营运资本占收入', (100 * (v.a - v.l)) / v.s, '%'),
     ],
-    'NWC=current assets−current liabilities',
+    'Use NWC = A−L. A is current assets and L is current liabilities. Dividing NWC by the entered annual revenue gives the working-capital-to-revenue fraction.|使用 NWC = A−L。A 为流动资产，L 为流动负债；将 NWC 除以所填年度收入，可得营运资金占收入的比例。',
     [80000, 8],
   );
   B(
@@ -560,7 +560,7 @@
         R('Operating profit|经营利润', profit),
       ];
     },
-    'DOL=Q(P−V)/[Q(P−V)−F]',
+    'Use DOL = Q(P−V)/[Q(P−V)−F]. Q is units sold, P is selling price per unit, V is variable cost per unit, and F is fixed operating costs. The denominator is modeled operating profit.|使用 DOL = Q(P−V)/[Q(P−V)−F]。Q 为销量，P 为单位售价，V 为单位变动成本，F 为固定运营成本；分母为模型中的营业利润。',
     [2, 5000],
   );
   B(
@@ -580,7 +580,7 @@
         R('Annual ordering plus holding cost|年订货与持有成本', (v.d / q) * v.s + (q / 2) * v.h),
       ];
     },
-    'EOQ=√(2DS/H)',
+    'Use EOQ = √(2DS/H). D is annual demand in units, S is cost per order, and H is annual holding cost per unit. The result balances modeled ordering and holding costs.|使用 EOQ = √(2DS/H)。D 为年度需求数量，S 为每次订货成本，H 为每单位年度持有成本；结果平衡模型中的订货成本与持有成本。',
     [Math.sqrt(500000), Math.sqrt(200), Math.sqrt(2000000)],
     'Assumes constant demand, instant replenishment, no shortages, no bulk discounts and an unlimited shelf life.|假设需求稳定、即时补货、无缺货、无批量折扣且保质期不受限。',
   );
@@ -594,7 +594,7 @@
       n('s', 'Safety stock units|安全库存数量', 100),
     ],
     (v) => [R('Reorder point|再订货点', v.d * v.l + v.s, 'units')],
-    'ROP=daily demand×lead time+safety stock',
+    'Use ROP = dL+S. d is average daily demand, L is lead time in days, and S is safety stock. The reorder point combines lead-time demand with that stock allowance.|使用 ROP = dL+S。d 为平均每日需求，L 为以天表示的交货提前期，S 为安全库存；再订货点将提前期需求与安全库存相加。',
     [450],
   );
   B(
@@ -607,7 +607,7 @@
       n('l', 'Fixed lead time in days|固定交货期天数', 9),
     ],
     (v) => [R('Safety stock|安全库存', v.z * v.s * Math.sqrt(v.l), 'units')],
-    'SS=zσdaily√leadTime',
+    'Use SS = zσ√L. z is the chosen service factor, σ is the standard deviation of daily demand, and L is fixed lead time in days. Daily demand is assumed independent with stable variance.|使用 SS = zσ√L。z 为自选服务系数，σ 为每日需求标准差，L 为固定交货提前期天数；假设各日需求相互独立且方差稳定。',
     [49.5],
     'Independent daily demand with stable variance and fixed lead time. Choose the service factor separately; this is not a guaranteed fill rate.|假设每日需求独立、方差稳定且交货期固定；服务系数需另行确定，不代表保证满足率。',
   );
@@ -625,7 +625,7 @@
       R('Undiscounted contribution lifetime value|未折现贡献生命周期价值', (v.a * v.m) / v.c - v.s),
       R('Expected customer lifetime|预期客户存续期', 100 / v.c, 'months'),
     ],
-    'LTV=monthly revenue×margin/monthly churn−one-time cost',
+    'Use LTV = Rm/c−S. R is monthly revenue per customer, m is the contribution-margin fraction, c is the monthly churn fraction, and S is one-time servicing cost. Constant churn gives an expected lifetime of 1/c months; this model does not discount future contributions.|使用 LTV = Rm/c−S。R 为每位客户月收入，m 为贡献毛利率比例，c 为月流失率比例，S 为一次性服务成本；在流失率恒定时，预期客户存续期为 1/c 个月。模型不对未来贡献折现。',
     [600, 20],
     'Assumes constant churn and margin, no expansion and no discounting. Small churn changes can produce large value changes.|假设流失率与利润率固定，无增购且不折现；小幅流失变化可能显著改变价值。',
   );
@@ -638,7 +638,7 @@
       i('n', 'New paying customers|新增付费客户', 100, 1, 100000000),
     ],
     (v) => [R('Cost per acquired customer|每新增客户成本', v.a / v.n)],
-    'CAC=attributable acquisition spending/new paying customers',
+    'Use CAC = A/N. A is the acquisition spending attributed to the same period and customer group, and N is the number of newly acquired paying customers.|使用 CAC = A/N。A 为归属于相同期间与客户群的获客支出，N 为新获取的付费客户数量。',
     [100],
   );
   B(
@@ -659,7 +659,7 @@
         R('Cohort retention|群体留存率', 100 * (1 - v.l / v.a), '%'),
       ];
     },
-    'Churn=lost starting-cohort customers/starting customers',
+    'Use c = L/S and r = 1−c. S is starting customers and L is customers lost from that starting group. c is the churn fraction and r is the retained fraction; new customers do not enter either numerator.|使用 c = L/S 和 r = 1−c。S 为期初客户数，L 为该期初客户群中的流失客户数；c 为流失比例，r 为留存比例，两项分子均不计新客户。',
     [5, 95],
   );
   B(
@@ -682,7 +682,7 @@
         R('Gross revenue retention|毛收入留存率', (100 * (v.s - v.d - v.c)) / v.s, '%'),
       ];
     },
-    'NRR=(start+expansion−contraction−churn)/start',
+    'Use NRR = (S+E−D−C)/S. S is starting recurring revenue, E is expansion, D is contraction, and C is churned revenue from the same starting customer group. NRR is a fraction; all new-customer revenue is excluded.|使用 NRR = (S+E−D−C)/S。S 为期初经常性收入，E 为扩张收入，D 为收缩收入，C 为相同期初客户群的流失收入；NRR 为比例，排除全部新客户收入。',
     [110, 90],
     'Exclude all new-customer revenue; use the same starting cohort and recurring-revenue period.|排除所有新客户收入，使用同一期初群体与经常性收入期间。',
   );
@@ -704,7 +704,7 @@
         '×',
       ),
     ],
-    'ROAS=revenue/ad spend; break-even ROAS=1/margin',
+    'Use ROAS = R/A and break-even ROAS = 1/m. R is attributed revenue, A is advertising spend, and m is the pre-ad contribution-margin fraction. Modeled contribution after advertising is Rm−A.|使用 ROAS = R/A，保本时 ROAS = 1/m。R 为归因收入，A 为广告支出，m 为广告前贡献毛利率比例；模型中的广告后贡献为 Rm−A。',
     [5, 2000, 2.5],
     'Attribution is your assumption and does not establish incremental sales. Excludes costs outside entered margin.|归因为自填假设，不能证明增量销量；不含所填利润率之外的成本。',
   );
@@ -722,7 +722,7 @@
       R('Contribution ratio|贡献毛益率', (100 * (v.p - v.v)) / v.p, '%'),
       R('Total contribution|总贡献毛益', (v.p - v.v) * v.q),
     ],
-    'Contribution=P−V; contribution ratio=(P−V)/P',
+    'Use C = P−V, M = C/P and T = QC. P is unit price, V is unit variable cost, and Q is units sold. C is contribution per unit, M is the contribution fraction, and T is total contribution.|使用 C = P−V、M = C/P 和 T = QC。P 为单位售价，V 为单位变动成本，Q 为销量；C 为单位贡献，M 为贡献比例，T 为总贡献。',
     [8, 40, 8000],
   );
   B(
@@ -746,7 +746,7 @@
         R('Percentage fees per unit|单位比例费用', (p * v.f) / 100),
       ];
     },
-    'Price=cost/(1−target margin−fee rate)',
+    'Use P = C/(1−m−f). C is unit cost including fixed per-sale fees, m is the target profit-margin fraction, and f is the revenue-based fee fraction. The combined fractions must leave a positive denominator.|使用 P = C/(1−m−f)。C 为包含每笔固定费用的单位成本，m 为目标利润率比例，f 为按收入计费的比例；两项比例合计后须使分母保持为正。',
     [600 / 7, 150 / 7, 30 / 7],
   );
 })();

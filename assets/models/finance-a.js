@@ -40,7 +40,7 @@
         '%',
       ),
     ],
-    'EAR=(1+j/m)ᵐ−1',
+    'Use EAR = (1+j/m)^m−1. j is the nominal annual rate as a fraction, m is compounding periods per year, and EAR is the effective annual rate as a fraction.|使用 EAR = (1+j/m)^m−1。j 为名义年利率比例，m 为每年复利次数，EAR 为有效年利率比例。',
     [12.68250301319698],
   );
   D(
@@ -51,7 +51,7 @@
     (v) => [
       R('Nominal annual rate|名义年利率', 100 * v.m * Math.expm1(Math.log1p(v.r / 100) / v.m), '%'),
     ],
-    'j=m[(1+EAR)¹ᐟᵐ−1]',
+    'Use j = m[(1+EAR)^(1/m)−1]. EAR is the effective annual rate as a fraction, m is compounding periods per year, and j is the equivalent nominal annual rate as a fraction.|使用 j = m[(1+EAR)^(1/m)−1]。EAR 为有效年利率比例，m 为每年复利次数，j 为等效名义年利率比例。',
     [12],
   );
   D(
@@ -162,7 +162,7 @@
     'Discount a complete dated-by-period cash-flow series.|折现包含初始投入的等间隔现金流。',
     [stream, rate('r', 'Discount rate per period (%)|每期折现率（%）', 10)],
     (v) => [R('Net present value|净现值', npv(nums(v.c), v.r / 100))],
-    'NPV=ΣCₜ/(1+r)ᵗ',
+    'Use NPV = Σ Cₜ/(1+r)^t, including the cash flow at time zero. Cₜ is cash flow at period t and r is the discount rate per period as a fraction. Cash flows use equal time intervals.|使用 NPV = Σ Cₜ/(1+r)^t，包含零时点现金流。Cₜ 为第 t 期现金流，r 为每期折现率比例；各期时间间隔相等。',
     [-5.25920360631115],
   );
   D(
@@ -181,7 +181,7 @@
       );
       return [R('IRR per period|每期 IRR', 100 * bisect((r) => npv(a, r), -0.9999, 1000), '%')];
     },
-    'Solve ΣCₜ/(1+IRR)ᵗ=0',
+    'Find a supported r satisfying Σ Cₜ/(1+r)^t = 0. Cₜ is the equally spaced cash flow at period t, starting at time zero. r is the return per cash-flow period; a cash-flow series can have no root or multiple roots.|在支持区间内求满足 Σ Cₜ/(1+r)^t = 0 的 r。Cₜ 为从零时点开始、等间隔的第 t 期现金流；r 为每期收益率比例。现金流序列可能无解或有多个解。',
     [9.7010257403],
   );
   D(
@@ -204,7 +204,7 @@
         fv = sum(a.map((x, k) => Math.max(x, 0) * (1 + v.r / 100) ** (t - k)));
       return [R('MIRR per period|每期 MIRR', 100 * ((fv / pv) ** (1 / t) - 1), '%')];
     },
-    'MIRR=(FVpositive/|PVnegative|)¹ᐟⁿ−1',
+    'Use MIRR = (F/abs(P))^(1/n)−1. F is positive cash flows accumulated to the final period at the reinvestment rate, P is negative cash flows discounted to time zero at the financing rate, and n is the number of intervals. abs means absolute value.|使用 MIRR = (F/abs(P))^(1/n)−1。F 为正现金流按再投资利率累计至末期的终值，P 为负现金流按融资利率折现至零时点的现值，n 为期间数；abs 表示绝对值。',
     [9.098975834465172],
   );
   D(
@@ -255,7 +255,7 @@
       const q = sum(a.map((x, k) => x / (1 + v.r / 100) ** (k + 1)));
       return [R('Profitability index|获利指数', q / v.a), R('Net present value|净现值', q - v.a)];
     },
-    'PI=PV(future inflows)/initial cost',
+    'Use PI = Σ Cₜ/(1+r)^t / I for periods after the initial investment. Cₜ is a future inflow, r is the discount rate per period as a fraction, and I is the initial cost. The ratio compares discounted inflows with that cost.|对初始投资之后的各期使用 PI = Σ Cₜ/(1+r)^t / I。Cₜ 为未来流入，r 为每期折现率比例，I 为初始成本；该比率比较折现后的流入与初始成本。',
     [1.2, 200],
   );
   D(
@@ -274,7 +274,7 @@
         pv = v.a - v.s / (1 + r) ** v.t;
       return [R('Equivalent annual cost|等额年成本', pv / annuity(r, v.t) + v.c)];
     },
-    'EAC=[P−S/(1+r)ⁿ]/annuityFactor(r,n)+annual cost',
+    'Use EAC = [P−S/(1+r)^n]/a(r,n)+C. P is purchase cost, S is final resale value, C is annual operating cost, r is the annual discount fraction, and n is years. a(r,n) is the sum of the end-of-year discount factors.|使用 EAC = [P−S/(1+r)^n]/a(r,n)+C。P 为购置成本，S 为期末转售额，C 为年度运营成本，r 为年折现率比例，n 为年数；a(r,n) 为各年年末折现因子之和。',
     [300],
   );
   const bondFields = [
@@ -315,7 +315,7 @@
         '%',
       ),
     ],
-    'Solve P=ΣC/(1+y/m)ᵏ+F/(1+y/m)ᴺ',
+    'Solve P = Σ C/(1+y/m)^k + F/(1+y/m)^N for y. P is market price, F is face value, C is each coupon payment, m is payments per year, and N is total coupon periods. y is the nominal annual yield fraction.|求使 P = Σ C/(1+y/m)^k + F/(1+y/m)^N 成立的 y。P 为市场价格，F 为面值，C 为每期票息，m 为每年付息次数，N 为总付息期数；y 为名义年到期收益率比例。',
     [5],
     'Uses equal coupon periods and settlement on a coupon date; excludes default and accrued interest.|使用等长付息期，假设在付息日结算；不含违约与应计利息。',
   );
@@ -325,7 +325,7 @@
     'Compare annual coupon income with the bond purchase price.|比较债券每年票息收入与买入价。',
     [cash('c', 'Annual coupon income|年票息收入', 50), p('p', 'Purchase price|买入价', 1000)],
     (v) => [R('Current yield|当期收益率', (100 * v.c) / v.p, '%')],
-    'Current yield=annual coupon/price',
+    'Use Y = C/P. C is annual coupon income, P is the purchase price, and Y is current yield as a fraction. This ratio excludes capital gains and time to maturity.|使用 Y = C/P。C 为年度票息收入，P 为购入价格，Y 为当期收益率比例；该比率不含资本损益与到期时间的影响。',
     [5],
     'This omits capital gains, reinvestment and time to maturity.|不含资本利得、再投资和到期时间。',
   );
@@ -346,7 +346,7 @@
         R('Modified duration|修正久期', d / (1 + r), 'years'),
       ];
     },
-    'D=Σ(t×PV(CF))/P; Dmodified=D/(1+y/m)',
+    'Use PVₖ = CFₖ/(1+y/m)^k, tₖ = k/m, D = Σ(tₖPVₖ)/P and Dₘ = D/(1+y/m). CFₖ is the payment in coupon period k, including principal when due; m is payments per year, y is the annual yield fraction, and P is the sum of discounted payments. Both durations are in years.|使用 PVₖ = CFₖ/(1+y/m)^k、tₖ = k/m、D = Σ(tₖPVₖ)/P 和 Dₘ = D/(1+y/m)。CFₖ 为第 k 个付息期的款项，包含该期到期应付的本金；m 为每年付息次数，y 为年收益率比例，P 为各笔款项折现后的总价。两种久期均以年表示。',
     [4.485432762, 4.376031963],
     'Local sensitivity estimate for small yield changes, with no embedded options.|适用于小幅利率变化且无内嵌期权的局部敏感度估计。',
   );
@@ -364,7 +364,7 @@
         q += (k * (k + 1) * (c + (k === t ? v.f : 0))) / (1 + r) ** (k + 2);
       return [R('Annualized convexity|年化凸性', q / (bond(v) * v.m * v.m))];
     },
-    'Convexity=Σ[k(k+1)CFₖ/(1+y/m)ᵏ⁺²]/(Pm²)',
+    'Use K = Σ[k(k+1)CFₖ/(1+y/m)^(k+2)]/(Pm²). CFₖ is the payment in coupon period k, P is bond price, y is the nominal annual yield fraction, and m is payments per year. K estimates local price curvature with respect to yield.|使用 K = Σ[k(k+1)CFₖ/(1+y/m)^(k+2)]/(Pm²)。CFₖ 为第 k 个付息期的付款额，P 为债券价格，y 为名义年收益率比例，m 为每年付息次数；K 估计债券价格随收益率变化的局部曲率。',
     [22.612322],
     'Assumes equal coupon periods and no embedded options.|假设付息期相等，且无内嵌期权。',
   );
@@ -393,7 +393,7 @@
     'Compare annual dividends with the current share price.|比较年度股息与当前股价。',
     [cash('d', 'Annual dividend per share|每股年度股息', 3), p('p', 'Share price|股价', 60)],
     (v) => [R('Dividend yield|股息率', (100 * v.d) / v.p, '%')],
-    'Dividend yield=D/P',
+    'Use Y = D/P. D is annual dividend per share, P is share price, and Y is dividend yield as a fraction. Price changes and dividend reinvestment are excluded.|使用 Y = D/P。D 为每股年度股息，P 为股价，Y 为股息收益率比例；不含股价变动与股息再投资。',
     [5],
   );
   D(
@@ -406,7 +406,7 @@
       p('s', 'Weighted average common shares|加权平均普通股数', 300000),
     ],
     (v) => [R('Basic earnings per share|基本每股收益', (v.a - v.d) / v.s)],
-    'EPS=(net earnings−preferred dividends)/weighted average common shares',
+    'Use EPS = (E−D)/S. E is net earnings, D is preferred dividends, and S is weighted average common shares. This is basic earnings per share.|使用 EPS = (E−D)/S。E 为净利润，D 为优先股股息，S 为普通股加权平均股数；结果为基本每股收益。',
     [3],
     'Basic EPS only; diluted shares, reporting standards and accounting adjustments are not modeled.|仅为基本 EPS；不模拟稀释股份、会计准则及调整项。',
   );
@@ -423,7 +423,7 @@
         '%',
       ),
     ],
-    'P/E=price/EPS',
+    'Use PE = P/E. P is share price and E is annual earnings per share. The ratio compares share price with the entered annual earnings.|使用 PE = P/E。P 为股价，E 为年度每股收益；该比率比较股价与所填年度每股收益。',
     [20, 5],
   );
   D(
@@ -432,7 +432,7 @@
     'Compare share price with positive book value per share.|比较股价与正的每股账面价值。',
     [cash('p', 'Share price|股价', 40), p('b', 'Book value per share|每股账面价值', 20)],
     (v) => [R('Price / book|市净率', v.p / v.b)],
-    'P/B=price/book value per share',
+    'Use PB = P/B. P is share price and B is book value per share. The ratio compares share price with the entered book value.|使用 PB = P/B。P 为股价，B 为每股账面价值；该比率比较股价与所填每股账面价值。',
     [2],
   );
   D(
@@ -468,7 +468,7 @@
         R('WACC|加权平均资本成本', (v.e * v.r + v.d * v.c * (1 - v.t / 100)) / (v.e + v.d), '%'),
       ];
     },
-    'WACC=E/(D+E)Re+D/(D+E)Rd(1−tax)',
+    'Use WACC = E×rₑ/(D+E)+D×r_d×(1−τ)/(D+E). E and D are equity and debt market values. rₑ, r_d and τ are equity cost, debt cost and effective tax rate, each as a fraction.|使用 WACC = E×rₑ/(D+E)+D×r_d×(1−τ)/(D+E)。E、D 分别为股权和债务市场价值；rₑ、r_d、τ 分别为股权成本、债务成本和有效税率比例。',
     [7.5],
   );
   D(
@@ -528,7 +528,7 @@
       p('s', 'Same-period volatility (%)|同期波动率（%）', 16),
     ],
     (v) => [R('Sharpe ratio|夏普比率', (v.r - v.f) / v.s)],
-    'Sharpe=(R−Rf)/σ',
+    'Use S = (R−F)/σ. R is period return, F is the risk-free return, and σ is volatility. All three inputs must use the same period and consistent rate units.|使用 S = (R−F)/σ。R 为期间收益率，F 为无风险收益率，σ 为波动率；三项输入须采用相同期间和一致的利率单位。',
     [0.5],
     'Use matching return periods. This does not annualize or estimate volatility from prices.|请使用相同期间；不自动年化，也不从价格估算波动率。',
   );
@@ -542,7 +542,7 @@
       p('d', 'Same-period downside deviation (%)|同期下行偏差（%）', 8),
     ],
     (v) => [R('Sortino ratio|索提诺比率', (v.r - v.t) / v.d)],
-    'Sortino=(R−target)/downside deviation',
+    'Use S = (R−T)/d. R is period return, T is the same-period target return, and d is downside deviation measured consistently with that target and period.|使用 S = (R−T)/d。R 为期间收益率，T 为同期间目标收益率，d 为按该目标和期间一致衡量的下行偏差。',
     [1],
   );
   D(
@@ -555,7 +555,7 @@
       p('b', 'Positive market beta|正市场贝塔', 1),
     ],
     (v) => [R('Treynor ratio (decimal return)|特雷诺比率（小数回报）', (v.r - v.f) / 100 / v.b)],
-    'Treynor=(R−Rf)/β',
+    'Use T = (R−F)/β. R and F are the period return and same-period risk-free return as fractions; β is the entered positive market beta. The result uses decimal return per unit of beta.|使用 T = (R−F)/β。R 与 F 分别为同期间的收益率比例和无风险收益率比例，β 为所填正市场贝塔值；结果为每单位贝塔对应的小数回报。',
     [0.08],
   );
   D(
@@ -568,7 +568,7 @@
       p('s', 'Tracking error (%)|跟踪误差（%）', 6),
     ],
     (v) => [R('Information ratio|信息比率', (v.r - v.b) / v.s)],
-    'IR=(Rp−Rb)/tracking error',
+    'Use IR = (R−B)/e. R is portfolio return, B is benchmark return, and e is tracking error. All inputs must refer to the same period and rate units.|使用 IR = (R−B)/e。R 为组合收益率，B 为基准收益率，e 为跟踪误差；三项输入须采用相同期间和利率单位。',
     [0.5],
   );
 })();

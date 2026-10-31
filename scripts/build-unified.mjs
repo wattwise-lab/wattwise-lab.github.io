@@ -11,6 +11,7 @@ import { renderEmbeds } from './render-embeds.mjs';
 import { compileTranslations } from './compile-translations.mjs';
 import { finishMetadata, secureMarkup } from './site-metadata.mjs';
 import { upgradeCorePage } from './upgrade-core-pages.mjs';
+import { pruneAssets } from './prune-assets.mjs';
 
 const root = new URL('../', import.meta.url);
 const read = (p) => fs.readFile(new URL(p, root), 'utf8');
@@ -22,6 +23,9 @@ const exists = async (p) =>
   );
 const previousManifest = (await exists('src/asset-manifest.json'))
   ? JSON.parse(await read('src/asset-manifest.json'))
+  : {};
+const retainedManifest = (await exists('src/retained-asset-manifest.json'))
+  ? JSON.parse(await read('src/retained-asset-manifest.json'))
   : {};
 const previousSources = new Map(
   Object.entries(previousManifest).map(([source, output]) => [output.replace(/^\//, ''), source]),
@@ -139,11 +143,13 @@ const keypadCatalog = pinned.slice(0, 2).map(([slug, key]) => ({
   },
   priority: key === 'basic' ? 1 : 2,
 }));
-let expanded = [];
+let expanded = [],
+  resultNumberOptions;
 if (await exists('assets/models/core.js')) {
   const mctx = {};
   vm.createContext(mctx);
   vm.runInContext(await read('assets/cm-data-core.js'), mctx);
+  resultNumberOptions = mctx.CMData.resultNumberOptions;
   vm.runInContext(await read('assets/models/core.js'), mctx);
   for (const file of (await fs.readdir(new URL('assets/models/', root)))
     .filter((x) => x !== 'core.js' && x.endsWith('.js'))
@@ -558,6 +564,7 @@ for (const model of expanded)
       asset,
       schemas,
       catalog,
+      resultNumberOptions,
     }),
   );
 
@@ -995,7 +1002,7 @@ await write(
 const localized = await localizeSite(root, catalog, metadataPages);
 const embedFiles = await renderEmbeds(root, catalog);
 
-// Retain every asset referenced by the generated pages, then remove obsolete fingerprints.
+// Retain the release snapshot as well: already-open tabs can request its language packs.
 const referenced = new Set(Object.values(manifest).map((p) => p.replace(/^\//, '')));
 const htmlFiles = [
   ...(await fs.readdir(root)).filter((f) => f.endsWith('.html') && !f.startsWith('._')),
@@ -1009,13 +1016,7 @@ for (const file of htmlFiles) {
   for (const match of html.matchAll(/(?:src|href)="\/(assets\/dist\/[^"?#]+)/g))
     referenced.add(match[1]);
 }
-let cleanedAssets = 0;
-for (const file of await fs.readdir(new URL('assets/dist/', root))) {
-  if (!referenced.has('assets/dist/' + file)) {
-    await fs.unlink(new URL('assets/dist/' + file, root));
-    cleanedAssets++;
-  }
-}
+const assetCleanup = await pruneAssets(root, referenced, retainedManifest);
 console.log(
   'Built unified site:',
   catalog.length,
@@ -1024,6 +1025,11 @@ console.log(
   'locales with native tool/info routes;',
   embedFiles.length,
   'calculator embeds. Removed',
-  cleanedAssets,
-  'obsolete asset fingerprints.',
+  assetCleanup.removed,
+  'content-verified obsolete asset fingerprints (' +
+    assetCleanup.removedBytes +
+    ' bytes). Retained',
+  assetCleanup.keptRetained,
+  'previous-generation assets; unavailable snapshot paths:',
+  assetCleanup.unavailableRetained,
 );

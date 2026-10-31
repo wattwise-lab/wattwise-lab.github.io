@@ -51,7 +51,7 @@
       n('t', 'Duration (s)|持续时间（s）', 3),
     ],
     (v) => [R('Impulse|冲量', v.f * v.t, 'N·s')],
-    'J=Faverage Δt',
+    'Use J = FΔt. F is average signed force in N and Δt is duration in s. Impulse J has units N·s and equals the modeled signed change in momentum.|使用 J = FΔt。F 为平均带符号力（N），Δt 为持续时间（s）；冲量 J 的单位为 N·s，等于模型中的带符号动量变化。',
     [60],
   );
   D(
@@ -82,7 +82,7 @@
       angle,
     ],
     (v) => [R('Work|功', v.f * v.s * Math.cos(rad(v.a)), 'J')],
-    'W=Fs cosθ',
+    'Use W = Fs cosθ. F is force magnitude in N, s is displacement magnitude in m, and θ is the angle between them in degrees. Signed work W is in J.|使用 W = Fs cosθ。F 为力大小（N），s 为位移大小（m），θ 为两者夹角（度）；带符号功 W 的单位为 J。',
     [100],
   );
   D(
@@ -104,7 +104,7 @@
       n('a', 'Included angle (degrees)|夹角（度）', 90, 0, 180),
     ],
     (v) => [R('Torque magnitude|力矩大小', v.f * v.r * Math.sin(rad(v.a)), 'N·m')],
-    'τ=rF sinθ',
+    'Use τ = rF sinθ. r is distance to the force application point in m, F is force magnitude in N, and θ is their included angle in degrees. Torque magnitude τ is in N·m.|使用 τ = rF sinθ。r 为施力点到轴心距离（m），F 为力大小（N），θ 为两者夹角（度）；力矩大小 τ 的单位为 N·m。',
     [10],
   );
   D(
@@ -183,7 +183,7 @@
       R('Angular velocity|角速度', (v.f * 2 * PI) / 60, 'rad/s'),
       R('Rim velocity|边缘线速度', ((v.f * 2 * PI) / 60) * v.r, 'm/s'),
     ],
-    'ω=2π rpm/60; v=ωr',
+    'Use ω = 2πn/60 and v = ωr. n is rotations per minute and r is radius in m. Angular speed ω is in rad/s and tangential speed v is in m/s.|使用 ω = 2πn/60 及 v = ωr。n 为每分钟转数，r 为半径（m）；角速率 ω 的单位为 rad/s，切向速率 v 的单位为 m/s。',
     [2 * PI, PI],
   );
   D(
@@ -234,7 +234,7 @@
       R('Flight time|飞行时间', (2 * v.v * Math.sin(rad(v.a))) / v.g, 's'),
       R('Maximum rise|最高上升高度', (v.v * Math.sin(rad(v.a))) ** 2 / (2 * v.g), 'm'),
     ],
-    'Range=v²sin(2θ)/g; time=2v sinθ/g',
+    'Use R = v²sin(2θ)/g and t = 2v sinθ/g. v is launch speed in m/s, θ is elevation in degrees, and g is gravity in m/s². Range R is in m and flight time t is in s, with equal launch and landing heights and no air resistance.|使用 R = v²sin(2θ)/g 及 t = 2v sinθ/g。v 为发射速率（m/s），θ 为仰角（度），g 为重力加速度（m/s²）；射程 R 的单位为 m，飞行时间 t 的单位为 s，假设起落等高且无空气阻力。',
     [400 / 9.80665, (20 * Math.SQRT2) / 9.80665, 100 / 9.80665],
     'Same launch and landing height, constant gravity, no drag, wind or Earth curvature.|起落等高、重力恒定，忽略阻力、风与地球曲率。',
   );
@@ -247,7 +247,7 @@
       R('Fall time|下落时间', Math.sqrt((2 * v.h) / v.g), 's'),
       R('Impact speed magnitude|触地速率', Math.sqrt(2 * v.g * v.h), 'm/s'),
     ],
-    't=√(2h/g); speed=√(2gh)',
+    'Use t = √(2h/g) and v = √(2gh). h is release height in m and g is gravity in m/s². Time t is in s and speed v is in m/s, starting from rest without air resistance.|使用 t = √(2h/g) 及 v = √(2gh)。h 为释放高度（m），g 为重力加速度（m/s²）；时间 t 的单位为 s，速率 v 的单位为 m/s，假设由静止释放且无空气阻力。',
     [Math.sqrt(40 / 9.80665), Math.sqrt(40 * 9.80665)],
     'Released from rest in uniform gravity, without drag. Not a fall-safety assessment.|均匀重力下从静止释放且忽略阻力，不用于坠落安全评估。',
   );
@@ -313,7 +313,7 @@
       R('Final A velocity|A 末速度', ((v.a - v.b) * v.u + 2 * v.b * v.v) / (v.a + v.b), 'm/s'),
       R('Final B velocity|B 末速度', (2 * v.a * v.u + (v.b - v.a) * v.v) / (v.a + v.b), 'm/s'),
     ],
-    'vA=[(mA−mB)uA+2mBuB]/(mA+mB); vB=[2mAuA+(mB−mA)uB]/(mA+mB)',
+    'Use vₐ = [(mₐ−mᵦ)uₐ+2mᵦuᵦ]/(mₐ+mᵦ) and vᵦ = [2mₐuₐ+(mᵦ−mₐ)uᵦ]/(mₐ+mᵦ). m denotes mass, u initial signed velocity, and v final signed velocity; subscripts distinguish the bodies. Use consistent mass and velocity units.|使用 vₐ = [(mₐ−mᵦ)uₐ+2mᵦuᵦ]/(mₐ+mᵦ) 及 vᵦ = [2mₐuₐ+(mᵦ−mₐ)uᵦ]/(mₐ+mᵦ)。m 表示质量，u 表示初始带符号速度，v 表示最终带符号速度，下标区分物体；质量和速度分别使用一致单位。',
     [0, 5],
   );
 })();

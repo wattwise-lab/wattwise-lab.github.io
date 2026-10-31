@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-const source = await fs.readFile(new URL('../assets/cm-i18n.js', import.meta.url), 'utf8');
+const source =
+  (await fs.readFile(new URL('../assets/cm-data-core.js', import.meta.url), 'utf8')) +
+  '\n' +
+  (await fs.readFile(new URL('../assets/cm-i18n.js', import.meta.url), 'utf8'));
 const corpus = JSON.parse(
   await fs.readFile(new URL('../src/i18n-corpus.json', import.meta.url), 'utf8'),
 );
@@ -10,21 +13,35 @@ for (const fragment of ['The discriminant D = b²', "It is the parabola's turnin
     corpus.some((row) => row.active && row.source.includes(fragment)),
     'Explanations containing both inequality signs must remain translatable: ' + fragment,
   );
-for (const source of ['use strict', '[data-w]', 'input,select,textarea'])
+for (const source of [
+  'use strict',
+  '[data-w]',
+  'input,select,textarea',
+  'call',
+  'order',
+  'hour',
+  'minute',
+  'second',
+  'bit',
+  'byte',
+])
   assert.ok(
     !corpus.some((row) => row.active && row.source === source),
     'Implementation syntax must not count as public translation copy: ' + source,
   );
 assert.ok(corpus.some((row) => row.active && row.source === 'Remove calculator'));
-function runtime(locale) {
+function runtime(locale, { assets = {}, scripts = [] } = {}) {
   const document = {
     documentElement: { lang: locale, hasAttribute: () => false },
     body: {},
     readyState: 'loading',
     querySelectorAll: () => [],
     addEventListener() {},
+    createElement: () => ({ remove() {} }),
+    head: { append: (script) => scripts.push(script) },
   };
   const window = {
+    CMTranslationAssets: assets,
     CMTranslations: {
       [locale]: {
         messages: {
@@ -92,6 +109,16 @@ assert.ok(fr.searchText(tool).includes('rayons'));
 const ja = runtime('ja');
 assert.equal(ja.unit('USD/month'), 'USD/月');
 assert.equal(ja.unit('USD/hour'), 'USD/時間');
+const languageScripts = [],
+  retry = runtime('en', { assets: { de: '/assets/dist/de.test.js' }, scripts: languageScripts });
+const failedLoad = retry.ensureTranslations('de');
+assert.equal(languageScripts.length, 1);
+languageScripts[0].onerror();
+await failedLoad;
+const secondLoad = retry.ensureTranslations('de');
+assert.equal(languageScripts.length, 2, 'Failed language loads must be retryable');
+languageScripts[1].onload();
+await secondLoad;
 console.log(
   'Translation runtime: mixed localized dates, authored Chinese preservation, literal email, rate-unit denominators and negative zero PASS',
 );

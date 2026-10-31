@@ -1,4 +1,4 @@
-/* Strict list parsing shared by old and new statistics tools. */
+/* Numeric input and output shared by calculators and generated pages. */
 var CMData = (() => {
   'use strict';
   function digits(value) {
@@ -54,5 +54,76 @@ var CMData = (() => {
     if (decimal && decimal !== '.') text = text.replaceAll(decimal, '.');
     return text;
   }
-  return { digits, list, displayNumber, expression };
+  function resultNumberOptions(value, domain) {
+    if (value !== 0 && (Math.abs(value) < 0.0001 || Math.abs(value) >= 1e12))
+      return { maximumSignificantDigits: 8, notation: 'scientific' };
+    const measured = domain === 'Health' || domain === 'Home and Everyday';
+    return { maximumSignificantDigits: measured && !Number.isInteger(value) ? 6 : 12 };
+  }
+  function unit(source, value = 2, locale = 'en', translate = (s) => s, t = (s) => s) {
+    const rateTime = (key) =>
+      locale === 'zh-CN'
+        ? { month: '月', year: '年', hour: '小时' }[key] || unit(key, 1, locale, translate, t)
+        : locale === 'ja'
+          ? { month: '月', year: '年', hour: '時間' }[key] || unit(key, 1, locale, translate, t)
+          : unit(key, 1, locale, translate, t);
+    const composite = String(source).match(/^([A-Z]{3})\/(month|year|hour|call|order)$/);
+    if (composite)
+      return (
+        composite[1] +
+        '/' +
+        (composite[2] === 'call'
+          ? t('unitCall')
+          : composite[2] === 'order'
+            ? t('unitOrder')
+            : rateTime(composite[2]))
+      );
+    const count = String(source).match(/^(calls|orders)\/(month|year)$/);
+    if (count)
+      return (
+        t(
+          count[1] === 'calls'
+            ? Number(value) === 1
+              ? 'unitCall'
+              : 'unitCalls'
+            : Number(value) === 1
+              ? 'unitOrder'
+              : 'unitOrders',
+        ) +
+        '/' +
+        rateTime(count[2])
+      );
+    const units = {
+      weeks: 'week',
+      week: 'week',
+      years: 'year',
+      year: 'year',
+      months: 'month',
+      month: 'month',
+      days: 'day',
+      day: 'day',
+      hours: 'hour',
+      hour: 'hour',
+      minutes: 'minute',
+      minute: 'minute',
+      seconds: 'second',
+      second: 'second',
+      bits: 'bit',
+      bytes: 'byte',
+    };
+    if (units[source])
+      try {
+        return new Intl.NumberFormat(locale === 'pcm' ? 'en-NG' : locale, {
+          style: 'unit',
+          unit: units[source],
+          unitDisplay: 'long',
+        })
+          .formatToParts(Math.abs(Number(value) || 0))
+          .filter((x) => x.type === 'unit')
+          .map((x) => x.value)
+          .join(' ');
+      } catch {}
+    return translate(source);
+  }
+  return { digits, list, displayNumber, expression, resultNumberOptions, unit };
 })();

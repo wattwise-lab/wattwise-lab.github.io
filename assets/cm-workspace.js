@@ -519,16 +519,19 @@
     }
     refresh();
     const card = replace !== null ? cards.find((c) => !c.ready) : cards[cards.length - 1];
+    revealCard(card);
+    announce(
+      t(replace !== null ? 'replaced' : 'added') + (cards.length === 4 ? ' ' + t('fullHint') : ''),
+    );
+    return card;
+  }
+  function revealCard(card) {
     card?.node.focus({ preventScroll: true });
     requestAnimationFrame(() => {
       if (!card?.node?.isConnected) return;
       card.node.scrollIntoView({ block: 'start', behavior: 'auto' });
       card.node.focus({ preventScroll: true });
     });
-    announce(
-      t(replace !== null ? 'replaced' : 'added') + (cards.length === 4 ? ' ' + t('fullHint') : ''),
-    );
-    return card;
   }
   function removeCard(id) {
     const index = cards.findIndex((c) => c.id === id),
@@ -892,4 +895,13 @@
     else pendingAdd = added;
   }
   refresh();
+  if (bySlug.has(added) && !pendingAdd) {
+    const card = cards[cards.length - 1];
+    const reveal = () => {
+      revealCard(card);
+      announce(t('added'));
+    };
+    if (document.readyState === 'complete') reveal();
+    else window.addEventListener('load', reveal, { once: true });
+  }
 })();

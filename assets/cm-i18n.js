@@ -80,7 +80,11 @@ window.CMI18n = (() => {
         }
         resolve();
       };
-      script.onerror = () => resolve();
+      script.onerror = () => {
+        loads.delete(locale);
+        script.remove();
+        resolve();
+      };
       document.head.append(script);
     });
     loads.set(locale, promise);
@@ -196,70 +200,9 @@ window.CMI18n = (() => {
       .join(' ');
   }
   function unit(source, value = 2) {
-    const rateTime = (key) =>
-      lang === 'zh-CN'
-        ? { month: '月', year: '年', hour: '小时' }[key] || unit(key, 1)
-        : lang === 'ja'
-          ? { month: '月', year: '年', hour: '時間' }[key] || unit(key, 1)
-          : unit(key, 1);
-    const composite = String(source).match(/^([A-Z]{3})\/(month|year|hour|call|order)$/);
-    if (composite)
-      return (
-        composite[1] +
-        '/' +
-        (composite[2] === 'call'
-          ? t('unitCall')
-          : composite[2] === 'order'
-            ? t('unitOrder')
-            : rateTime(composite[2]))
-      );
-    const count = String(source).match(/^(calls|orders)\/(month|year)$/);
-    if (count)
-      return (
-        t(
-          count[1] === 'calls'
-            ? Number(value) === 1
-              ? 'unitCall'
-              : 'unitCalls'
-            : Number(value) === 1
-              ? 'unitOrder'
-              : 'unitOrders',
-        ) +
-        '/' +
-        rateTime(count[2])
-      );
-    const units = {
-      weeks: 'week',
-      week: 'week',
-      years: 'year',
-      year: 'year',
-      months: 'month',
-      month: 'month',
-      days: 'day',
-      day: 'day',
-      hours: 'hour',
-      hour: 'hour',
-      minutes: 'minute',
-      minute: 'minute',
-      seconds: 'second',
-      second: 'second',
-      bits: 'bit',
-      bytes: 'byte',
-    };
-    if (units[source])
-      try {
-        return new Intl.NumberFormat(lang === 'pcm' ? 'en-NG' : lang, {
-          style: 'unit',
-          unit: units[source],
-          unitDisplay: 'long',
-        })
-          .formatToParts(Math.abs(Number(value) || 0))
-          .filter((x) => x.type === 'unit')
-          .map((x) => x.value)
-          .join(' ');
-      } catch {}
-    return translate(source);
+    return CMData.unit(source, value, lang, translate, t);
   }
+
   function url(path, locale = lang) {
     if (document.documentElement.hasAttribute('data-cm-localized-routes') && window.CMLocaleRoutes)
       return window.CMLocaleRoutes.url(path, locale, location.origin);

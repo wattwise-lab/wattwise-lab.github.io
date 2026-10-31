@@ -85,7 +85,7 @@
       );
       return [R('Geometric mean|几何平均数', Math.exp(mean(a.map(Math.log))))];
     },
-    'GM = exp(Σln(xᵢ)/n)',
+    "Use G = exp[Σln(xᵢ)/n]. xᵢ are positive observations, n is their count, ln is natural logarithm, and exp is its inverse. Geometric mean G has the observations' unit.|使用 G = exp[Σln(xᵢ)/n]。xᵢ 为正数观测值，n 为数量，ln 为自然对数，exp 为其反函数；几何平均数 G 与观测值单位相同。",
     [4],
   );
   D(
@@ -114,7 +114,7 @@
       const a = nums(v.values);
       return [R('Root mean square|均方根', Math.sqrt(mean(a.map((x) => x * x))))];
     },
-    'RMS = √(Σxᵢ²/n)',
+    "Use R = √[Σxᵢ²/n]. xᵢ are observations and n is their count. The root mean square R is nonnegative and uses the observations' unit.|使用 R = √[Σxᵢ²/n]。xᵢ 为观测值，n 为数量；均方根 R 非负，使用观测值的单位。",
     [3.5355339059327378],
   );
   D(
@@ -132,7 +132,7 @@
         R('Maximum|最大值', hi),
       ];
     },
-    'Range = maximum − minimum',
+    "Use R = max(x)−min(x). x is the entered observation list; max and min select its largest and smallest values. The range R uses the observations' unit.|使用 R = max(x)−min(x)。x 为自填观测值列表，max 与 min 分别选择最大及最小值；极差 R 使用观测值的单位。",
     [7, -2, 5],
   );
   D(
@@ -185,7 +185,7 @@
         R('Equal observations|相等的观测数量', equal),
       ];
     },
-    '100 × (count below + convention weight × count equal) / n',
+    'Use R = 100(B+wE)/n. B counts observations below the target, E counts equal observations, and n is sample count. Convention weight w is 0 for strictly below, 0.5 for midrank, or 1 for inclusive rank.|使用 R = 100(B+wE)/n。B 为低于目标的观测数，E 为相等观测数，n 为样本数；约定权重 w 在严格低于、中秩、低于等于三种口径下分别为 0、0.5、1。',
     [60, 2],
   );
   D(
@@ -207,7 +207,7 @@
         R('Observations outside fences|界限外观测数', a.filter((x) => x < lo || x > hi).length),
       ];
     },
-    'IQR=Q3−Q1; fences Q1−1.5IQR and Q3+1.5IQR',
+    'Use IQR = Q₃−Q₁ with fences Q₁−1.5IQR and Q₃+1.5IQR. Q₁ and Q₃ are lower and upper quartiles using linear interpolation. Values beyond the fences are flagged, not automatically treated as errors.|使用 IQR = Q₃−Q₁，界限为 Q₁−1.5IQR 与 Q₃+1.5IQR。Q₁ 与 Q₃ 为采用线性插值的下、上四分位数；界外值仅被标示，不自动视为错误。',
     [2.5, -1.5, 8.5, 1],
     'Fences are descriptive screening rules, not proof that a value is erroneous.|界限只是描述性筛查规则，不能证明某个观测值错误。',
   );
@@ -242,7 +242,7 @@
         R('Mean|均值', mean(a)),
       ];
     },
-    'CV=100 × sample SD / mean',
+    'Use CV = 100s/μ. s is sample standard deviation and μ is the positive arithmetic mean of the entered nonnegative observations. The coefficient of variation is displayed as a percentage.|使用 CV = 100s/μ。s 为样本标准差，μ 为所填非负观测值的大于零的算术均值；变异系数以百分数显示。',
     [50, 10, 20],
     'Not suitable for arbitrary zero scales such as Celsius temperatures or means close to zero.|不适合摄氏温度等零点任意的尺度，也不宜用于接近零的均值。',
   );
@@ -260,7 +260,7 @@
         R('Sample size|样本量', a.length),
       ];
     },
-    'SE = sample SD / √n',
+    'Use SE = s/√n. s is sample standard deviation and n is the number of independent observations. Standard error describes variability of a sample mean, not the spread of individual observations.|使用 SE = s/√n。s 为样本标准差，n 为独立观测数；标准误描述样本均值的变动，而非单个观测值的离散程度。',
     [5.773502691896258, 10, 3],
   );
   D(
@@ -284,7 +284,7 @@
         R('Degrees of freedom|自由度', v.n - 1),
       ];
     },
-    'mean ± t_(1−α/2,n−1) × s/√n',
+    'Use m±t_c s/√n. m is sample mean, s is sample standard deviation, n is sample size, and t_c is the two-sided Student critical value for the chosen confidence and n−1 degrees of freedom.|使用 m±t_c s/√n。m 为样本均值，s 为样本标准差，n 为样本量，t_c 为按自选双侧置信水平及 n−1 个自由度取得的 Student 临界值。',
     [7.868550454440677, 12.131449545559324],
     'Assumes independent observations and a suitable sampling model; small samples need approximately normal observations.|假设观测独立且抽样模型适用；小样本需要观测近似正态。',
   );
@@ -306,7 +306,7 @@
         R('Observed proportion|观测比例', 100 * p, '%'),
       ];
     },
-    'Wilson centre=(p+z²/(2n))/(1+z²/n); half-width=z√(p(1−p)/n+z²/(4n²))/(1+z²/n)',
+    'Use Wilson centre C = (p+z²/(2n))/(1+z²/n) and half-width H = z√[p(1−p)/n+z²/(4n²)]/(1+z²/n). p is successes divided by trials, n is trials, and z is the two-sided standard-normal critical value. Bounds are C−H and C+H, displayed as percentages.|使用 Wilson 中心 C = (p+z²/(2n))/(1+z²/n) 及半宽 H = z√[p(1−p)/n+z²/(4n²)]/(1+z²/n)。p 为成功次数除以试验次数，n 为试验次数，z 为双侧标准正态临界值；上下界为 C−H 与 C+H，以百分比显示。',
     [40.38315302709716, 59.61684697290284, 50],
     'Independent binary trials; confidence describes the method’s repeated-sample coverage, not a probability assigned to a fixed true proportion.|假设独立二项试验；置信水平描述方法在重复抽样中的覆盖率，不是固定真实比例的概率。',
   );
@@ -326,7 +326,7 @@
         needed = v.N > 0 ? n0 / (1 + (n0 - 1) / v.N) : n0;
       return [R('Required sample size|所需样本量', Math.max(1, Math.ceil(needed)))];
     },
-    'n₀=(zσ/E)²; finite-population correction n=n₀/(1+(n₀−1)/N)',
+    'Use n₀ = (zσ/E)². σ is assumed population deviation, E is desired half-width, and z is the two-sided normal critical value. For finite population N, use n = n₀/[1+(n₀−1)/N]; otherwise keep the uncorrected value. Round up to a whole sample count.|使用 n₀ = (zσ/E)²。σ 为假设总体标准差，E 为目标半宽误差，z 为双侧正态临界值；有限总体大小为 N 时使用 n = n₀/[1+(n₀−1)/N]，否则保留未修正值，再向上取整为样本数。',
     [97],
     'Normal approximation for simple random sampling. The assumed deviation must come from relevant evidence.|用于简单随机抽样的正态近似；假设标准差需要相关依据。',
   );
@@ -396,7 +396,7 @@
         R('Two-sided p-value|双侧 p 值', tP(t, a.length - 1)),
       ];
     },
-    't=(sample mean−μ₀)/(s/√n); df=n−1',
+    'Use t = (m−μ₀)/(s/√n) with df = n−1. m is sample mean, μ₀ is the null-hypothesis mean, s is sample standard deviation, and n is sample size. The displayed p-value is two-sided.|使用 t = (m−μ₀)/(s/√n)，自由度为 df = n−1。m 为样本均值，μ₀ 为原假设均值，s 为样本标准差，n 为样本量；显示的 p 值为双侧。',
     [0.7071067811865475, 4, 0.5185185185185185],
     'Requires an appropriate independent-sampling model. A p-value does not measure the probability that the null hypothesis is true.|需要适当的独立抽样模型；p 值不是原假设为真的概率。',
   );
@@ -422,7 +422,7 @@
         R('Two-sided p-value|双侧 p 值', tP(t, df)),
       ];
     },
-    't=(m₁−m₂)/√(s₁²/n₁+s₂²/n₂); Welch–Satterthwaite degrees of freedom.',
+    "Use t = (m₁−m₂)/√(s₁²/n₁+s₂²/n₂). m, s and n are each sample's mean, sample standard deviation and size; subscripts distinguish the samples. The two-sided p-value uses Welch–Satterthwaite degrees of freedom, without assuming equal variances.|使用 t = (m₁−m₂)/√(s₁²/n₁+s₂²/n₂)。m、s、n 分别为各组均值、样本标准差和样本量，下标区分样本；双侧 p 值采用 Welch–Satterthwaite 自由度，不假设两组方差相等。",
     [2, 8, 0.08051623795726259],
     'For independent samples. Paired measurements require a paired test.|用于独立样本；配对测量应使用配对检验。',
   );
@@ -514,7 +514,7 @@
         R('p-value|p 值', gammaQ(df / 2, stat / 2)),
       ];
     },
-    'χ²=Σ(Oᵢ−Eᵢ)²/Eᵢ; df=categories−1−estimated parameters',
+    'Use χ² = Σ(Oᵢ−Eᵢ)²/Eᵢ and df = k−1−p. Oᵢ and Eᵢ are observed and expected counts, k is category count, and p is parameters estimated from the same data. The p-value is the upper chi-square tail.|使用 χ² = Σ(Oᵢ−Eᵢ)²/Eᵢ，自由度为 df = k−1−p。Oᵢ 与 Eᵢ 为观测和期望计数，k 为类别数，p 为从同一数据估计的参数数；p 值采用卡方分布上尾。',
     [10, 2, 0.006737946999085467],
   );
   D(
@@ -558,7 +558,7 @@
         R('Predicted y|预测 y', intercept + slope * v.target),
       ];
     },
-    'slope=Σ(x−x̄)(y−ȳ)/Σ(x−x̄)²; intercept=ȳ−slope×x̄',
+    'Use b = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² and a = ȳ−bx̄. xᵢ and yᵢ are paired observations, bars denote means, b is slope, and a is intercept. Prediction at the entered target is a+bx.|使用 b = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² 及 a = ȳ−bx̄。xᵢ 与 yᵢ 为成对观测值，横线表示均值，b 为斜率，a 为截距；目标点的预测值为 a+bx。',
     [0.7, 2, 5.5],
     'Ordinary least squares with an intercept. Extrapolation beyond the observed x range can be unreliable.|采用带截距的普通最小二乘法；超出观测 x 范围的外推可能不可靠。',
   );
@@ -577,7 +577,7 @@
         R('Root mean squared error|均方根误差', Math.sqrt(sse / a.length)),
       ];
     },
-    'R²=1−SSE/SST; RMSE=√(SSE/n)',
+    'Use R² = 1−SSE/SST and RMSE = √(SSE/n). SSE is summed squared prediction error, SST is summed squared deviation of observations from their mean, and n is count. A constant observed series has undefined explained-variation ratio.|使用 R² = 1−SSE/SST 及 RMSE = √(SSE/n)。SSE 为预测误差平方和，SST 为观测值相对均值的离差平方和，n 为数量；观测值全部相同时，解释变异比例无定义。',
     [0.75, 0.816496580927726],
     'R² can be negative for poor predictions. This does not adjust for fitted parameter count.|预测较差时 R² 可以为负；本工具不按拟合参数数目做调整。',
   );
@@ -657,7 +657,7 @@
         R('Probability at least one fails|至少一个未发生的概率', 100 * (1 - p), '%'),
       ];
     },
-    'P(all)=∏pᵢ; P(not all)=1−∏pᵢ',
+    'For independent events, use P = ∏pᵢ for all events occurring and 1−P for not all occurring. pᵢ are entered probability fractions. The complement means at least one event fails, not that every event fails.|对独立事件，全部发生的概率为 P = ∏pᵢ，并非全部发生的概率为 1−P。pᵢ 为自填概率比例；补事件表示至少一项不发生，并非每项都不发生。',
     [8, 92],
     'Multiplication requires independence. Related events need a joint or conditional model.|相乘要求事件独立；有关联的事件需要联合或条件模型。',
   );

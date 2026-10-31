@@ -177,7 +177,7 @@
         R('Variance|方差', (v.b - v.a) ** 2 / 12),
       ];
     },
-    'P(l≤X≤h)=max(0,min(b,h)−max(a,l))/(b−a)',
+    'Use P = max(0,min(b,h)−max(a,l))/(b−a). a and b are continuous uniform distribution bounds, and l and h are query bounds. The formula measures the overlap divided by the distribution width; the result is displayed as a percentage.|使用 P = max(0,min(b,h)−max(a,l))/(b−a)。a 与 b 为连续均匀分布下、上界，l 与 h 为查询下、上界；公式为重叠宽度除以分布宽度，结果以百分比显示。',
     [50, 6, 64 / 12],
   );
   D(
@@ -285,7 +285,7 @@
       for (let k = 0; k < v.n; k++) log += Math.log1p(-k / v.d);
       return [R('At least one shared birthday|至少一组生日相同', -100 * Math.expm1(log), '%')];
     },
-    'P(collision)=1−∏ᵢ₌₀ⁿ⁻¹(1−i/d)',
+    'Use P = 1−∏ᵢ₌₀ⁿ⁻¹(1−i/d). n is people and d is equally likely days; the product is the no-match probability. If people outnumber days, a match is certain. The result assumes independent birthdays.|使用 P = 1−∏ᵢ₌₀ⁿ⁻¹(1−i/d)。n 为人数，d 为等概率日期数，连乘积为无重复概率；人数多于日期数时必定有重复，结果假设生日独立。',
     [50.7297234323985],
     'Assumes independent and equally likely birthdays; actual birth dates are not uniform.|假设生日独立且等概率；实际出生日期并非均匀分布。',
   );
@@ -352,7 +352,7 @@
         R('Standard deviation|标准差', Math.sqrt(s)),
       ];
     },
-    'E[X]=Σpᵢxᵢ; Var(X)=Σpᵢ(xᵢ−E[X])²',
+    'Use μ = Σpᵢxᵢ and V = Σpᵢ(xᵢ−μ)². xᵢ are outcome values and pᵢ are matching probability fractions totaling unity. μ is expected value and V is variance; standard deviation is its square root.|使用 μ = Σpᵢxᵢ 及 V = Σpᵢ(xᵢ−μ)²。xᵢ 为各结果数值，pᵢ 为对应概率比例且合计为一；μ 为期望值，V 为方差，标准差为方差的平方根。',
     [11, 49, 7],
   );
   D(
@@ -475,7 +475,7 @@
         R('Approximate 95% upper bound|近似 95% 上界', Math.exp(Math.log(r) + z * s)),
       ];
     },
-    'OR=ad/(bc); CI=exp[ln(OR)±1.96√(1/a+1/b+1/c+1/d)]',
+    'Use OR = ad/(bc) and bounds exp[ln(OR)±1.96√(1/a+1/b+1/c+1/d)]. a and b are group A event and non-event counts; c and d are group B counts. The logarithmic interval uses a normal approximation and requires positive counts.|使用 OR = ad/(bc)，区间界为 exp[ln(OR)±1.96√(1/a+1/b+1/c+1/d)]。a 与 b 为 A 组发生及未发生数，c 与 d 为 B 组相应计数；对数区间采用正态近似，要求计数均为正。',
     [2.25],
     'Use positive cell counts. The large-sample interval can be unreliable for small samples; no continuity correction is applied.|各格计数应为正。小样本时大样本区间可能不可靠；未使用连续性修正。',
   );
@@ -501,7 +501,7 @@
         R('B event proportion|B 组发生比例', (100 * v.b) / v.m, '%'),
       ];
     },
-    'RR=(a/nA)/(b/nB); difference=a/nA−b/nB',
+    'Use RR = (a/n)/(b/m) and D = a/n−b/m. a and b are event counts for groups A and B; n and m are their totals. D is the probability difference, displayed in percentage points.|使用 RR = (a/n)/(b/m) 及 D = a/n−b/m。a 与 b 为 A、B 组发生数，n 与 m 为对应总数；D 为概率差，以百分点显示。',
     [2, 10, 20, 10],
     'Association does not establish causation. A zero reference proportion makes the ratio undefined.|关联不能证明因果。参照组比例为零时，比值无定义。',
   );
@@ -563,7 +563,7 @@
         R('Observed proportion|观测比例', (100 * v.k) / v.n, '%'),
       ];
     },
-    'Lower=B⁻¹(α/2;k,n−k+1); upper=B⁻¹(1−α/2;k+1,n−k)',
+    'Use L = B⁻¹(α/2;k,n−k+1) and U = B⁻¹(1−α/2;k+1,n−k). k is successes and n is trials. For confidence-level fraction c, set α = 1−c; B⁻¹ is the beta quantile. Handle boundaries k = 0 → L = 0 and k = n → U = 1.|使用 L = B⁻¹(α/2;k,n−k+1) 及 U = B⁻¹(1−α/2;k+1,n−k)。k 为成功次数，n 为试验次数；置信水平的小数比例为 c，使用 α = 1−c，B⁻¹ 为贝塔分位函数；边界按 k = 0 → L = 0 及 k = n → U = 1 处理。',
     [18.7086028447208, 81.2913971552792, 50],
   );
   D(
@@ -583,7 +583,7 @@
         R('Upper correlation bound|相关系数上界', Math.tanh(z + d)),
       ];
     },
-    'CI=tanh[atanh(r)±zα/₂/√(n−3)]',
+    "Use tanh[atanh(r)±z/√(n−3)]. r is sample Pearson correlation, n is paired observation count, and z is the two-sided standard-normal critical value for the chosen confidence. The transforms convert between correlation and Fisher's scale.|使用 tanh[atanh(r)±z/√(n−3)]。r 为样本 Pearson 相关系数，n 为成对观测数，z 为自选置信水平的双侧标准正态临界值；变换在相关系数与 Fisher 尺度之间转换。",
     [-0.3602692225955644, 0.3602692225955644],
     'Approximation assumes independent paired observations and approximately bivariate-normal data.|近似方法假设成对观测相互独立，且数据近似二元正态分布。',
   );
@@ -604,7 +604,7 @@
         R('Effective equally likely outcomes|等概率有效结果数', 2 ** h),
       ];
     },
-    'H=−Σpᵢlog₂pᵢ',
+    'Use H = −Σpᵢlog₂(pᵢ). pᵢ are probability fractions totaling unity. Zero-probability terms contribute zero. The logarithm base makes entropy H measured in bits.|使用 H = −Σpᵢlog₂(pᵢ)。pᵢ 为合计等于一的概率比例，零概率项贡献零；对数底数使信息熵 H 的单位为比特。',
     [1, 2],
   );
   D(
@@ -626,7 +626,7 @@
         R('Effective categories|有效类别数', Math.exp(h)),
       ];
     },
-    'H=−Σpᵢlnpᵢ; J=H/lnS',
+    'Use H = −Σpᵢln(pᵢ) and J = H/ln(S). pᵢ is each positive category count divided by total count, and S is category count. ln is natural logarithm. A single category uses the convention J = 1.|使用 H = −Σpᵢln(pᵢ) 及 J = H/ln(S)。pᵢ 为各正类别计数除以总计数，S 为类别数，ln 为自然对数；仅一类时按约定使用 J = 1。',
     [Math.log(3), 1, 3],
   );
   D(
@@ -664,7 +664,7 @@
         R('Arithmetic mean|算术均值', m),
       ];
     },
-    'MADmean=Σ|xᵢ−x̄|/n',
+    'Use D = Σabs(xᵢ−μ)/n. xᵢ are observations, μ is their arithmetic mean, n is count, and abs means absolute value. D measures mean absolute distance from the mean.|使用 D = Σabs(xᵢ−μ)/n。xᵢ 为观测值，μ 为算术均值，n 为数量，abs 表示绝对值；D 为相对均值的平均绝对距离。',
     [2, 5],
   );
   D(
@@ -685,7 +685,7 @@
         R('Median|中位数', m),
       ];
     },
-    'MAD=median(|xᵢ−median(x)|); scaled≈1.4826022185 MAD',
+    'Use D = median(abs(xᵢ−median(x))) and scaled value 1.482602218505602D. xᵢ are observations, median selects the middle of sorted values, and abs means absolute value. Scaling gives a normal-consistent spread estimate.|使用 D = median(abs(xᵢ−median(x))) 及缩放值 1.482602218505602D。xᵢ 为观测值，median 为排序后的中位数，abs 表示绝对值；缩放后得到正态一致性离散程度估计。',
     [1, 1.482602218505602, 2],
   );
   D(

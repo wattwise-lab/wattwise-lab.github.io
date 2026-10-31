@@ -136,7 +136,7 @@
         R('Cash at horizon end|期末现金', a.end),
       ];
     },
-    'Each week: cash += income−essential−active costs−new upfront costs; free hours=capacity−fixed−active hours',
+    "Each week, update cash with C = C+I−E−A−U and free hours with H = T−F−P. I is income, E is essential spending, A is active-plan recurring costs, and U is newly starting plans' upfront costs. T is available hours, F is fixed hours, and P is active-plan hours.|每周用 C = C+I−E−A−U 更新现金，用 H = T−F−P 求自由小时。I 为收入，E 为必要支出，A 为有效计划的经常费用，U 为当周新开始计划的初始费用；T 为可用小时，F 为固定小时，P 为有效计划小时。",
     [3, 2, 4, 0, 1140],
     'A planning simulation, not a prediction. Weekly income and capacity are constant; upfront costs occur at each plan’s start. Plans outside the horizon are excluded. Time cannot be borrowed from another week; cash carries forward.|这是规划模拟，不是预测；每周收入与容量固定，初始费用在计划起始周发生，期限外项目不计；时间不跨周借用，现金余额结转。',
   );
@@ -301,7 +301,7 @@
         R('Net benefit of failed-resource backup|故障资源备用净收益', a.total - b.total),
       ];
     },
-    'Downstream interruption=max(dependency interruptions)+restart delay; backup may shorten one resource; total=Σ(independent hourly loss×downtime)+backup cost',
+    'For an affected downstream resource, use dᵢ = max(dⱼ)+rᵢ over its dependencies. d is interruption hours and r is restart delay; the initial failure uses direct repair time. A backup can shorten one interruption. Total modeled loss is L = Σ(ℓᵢdᵢ)+B, where ℓ is independent hourly loss and B is activated backup cost.|对受影响的下游资源，按其依赖使用 dᵢ = max(dⱼ)+rᵢ。d 为中断小时，r 为重启延迟，初始故障使用直接修复时间；备用方案可缩短一项中断。总模型损失为 L = Σ(ℓᵢdᵢ)+B，其中 ℓ 为互不重复的每小时损失，B 为实际启用的备用成本。',
     [3, 11, 940, 270, 670],
     'Deterministic what-if graph, not a failure probability estimate. Every named dependency is required. Loss rates must represent separate losses to avoid counting the same revenue twice. Backups bypass that resource’s dependencies at the entered recovery time; each comparison activates one backup only.|确定性情景依赖图，不估算故障概率；所有列出的依赖均为必要条件。各项损失率须独立，避免重复计算同一收入；备用按所填恢复时间绕过该资源依赖，每次比较只启用一个备用。',
   );
@@ -463,7 +463,7 @@
         R('Largest net saving from one cancellation|单项取消最大净节省', Math.max(0, ...savings)),
       ];
     },
-    'Effective stop=max(start,earliestStop,requestMonth+notice); charge active months before stop plus exit fee in stop month',
+    "Use S = max(a,e,c+n). a is start month, e is earliest stop month, c is cancellation-request month, and n is notice months. If S is within the item's end month, charge active months before it and the exit fee in the stop month; otherwise the original end remains.|使用 S = max(a,e,c+n)。a 为起始月，e 为最早停止月，c 为申请取消月，n 为通知月数；若 S 不晚于项目结束月，则计算此前有效月份费用，并在停止月计入退出费，否则仍按原结束月计算。",
     [4400, 256, 1550, 32, 870],
     'Month 1 is your first planning month. Costs and time are uniform within each active month; cancellation takes effect at the start of the stop month. Comparisons include only the horizon, and each cancels one item. Contract terms must be checked separately.|第 1 月为你的首个规划月；有效月份内费用与时间固定，取消在停止月月初生效；仅比较期限内结果，每次取消一项，合同条款须另行核实。',
   );

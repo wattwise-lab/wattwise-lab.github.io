@@ -303,7 +303,7 @@
         R('Raw nominal capacity|标称原始容量', v.n * v.s, 'TB'),
       ];
     },
-    'RAID0=N×S; RAID1=S; RAID5=(N−1)S; RAID6=(N−2)S; RAID10=N×S/2',
+    'With N equal-size disks of S TB, usable capacity is NS for RAID0, S for RAID1, (N−1)S for RAID5, (N−2)S for RAID6, and NS/2 for RAID10. Redundancy does not replace a backup.|N 个等容量磁盘、每个容量为 S TB 时，RAID0 可用容量为 NS，RAID1 为 S，RAID5 为 (N−1)S，RAID6 为 (N−2)S，RAID10 为 NS/2。冗余不能替代备份。',
     [12, 16],
     'Before filesystem, controller metadata, spare disks and reserved capacity. RAID is not a backup.|未计文件系统、控制器元数据、热备盘与保留空间；RAID 不是备份。',
   );

@@ -32,7 +32,7 @@
         R('Area including waste|含损耗面积', v.a * (1 + v.w / 100), 'm²'),
       ];
     },
-    'Tiles=ceil[area(1+waste)/(tile length×width)]',
+    'Use N = ceil[A(1+w)/(lb)]. A is net area in m², l and b are tile dimensions converted to m, and w is waste allowance as a fraction. ceil rounds up to whole tiles; boxes are rounded up separately.|使用 N = ceil[A(1+w)/(lb)]。A 为净面积（m²），l 与 b 为换算成 m 的瓷砖长宽，w 为损耗比例；ceil 表示向上取整为片数，箱数另外向上取整。',
     [88, 11, 22],
   );
   D(
@@ -56,7 +56,7 @@
         ),
       ];
     },
-    'Bricks=ceil[(wall−openings)(1+waste)/joint-adjusted face area]',
+    'Use N = ceil[(A−O)(1+w)/((l+j)(h+j))]. A and O are wall and opening areas in m²; brick face dimensions l, h and joint width j are converted to m. w is the waste fraction and ceil rounds up.|使用 N = ceil[(A−O)(1+w)/((l+j)(h+j))]。A 与 O 为墙体及洞口面积（m²）；砖面长高 l、h 与灰缝宽 j 均换算为 m。w 为损耗比例，ceil 表示向上取整。',
     [550],
     'Single face layer only; bonding pattern, corners and structural wall thickness require a separate takeoff.|仅单面一层；砌筑方式、转角与结构墙厚需另行算量。',
   );
@@ -84,7 +84,7 @@
         R('Cut length per strip|每条裁切长度', length, 'm'),
       ];
     },
-    'Cut length=round up(height+trim) to repeat; rolls=ceil(strips/floor(rollLength/cutLength))|裁切长度为 height+trim 按花纹重复长度向上取整；卷数 rolls=ceil(strips/floor(rollLength/cutLength))。',
+    'For r = 0, cut length is c = h+t; for r > 0, use c = r ceil((h+t)/r). Rolls are N = ceil[ceil(P/w)/floor(L/c)]. h is wall height, t is trim, r is pattern repeat, P is wall perimeter, w is roll width, and L is roll length, all in m. ceil rounds up and floor rounds down.|当 r = 0 时，裁切长度为 c = h+t；当 r > 0 时，使用 c = r ceil((h+t)/r)。卷数为 N = ceil[ceil(P/w)/floor(L/c)]。h 为墙高，t 为修边余量，r 为花纹重复长度，P 为墙面周长，w 为卷宽，L 为卷长，均使用 m；ceil 表示向上取整，floor 表示向下取整。',
     [5, 20, 4, 2.5],
   );
   D(
@@ -105,7 +105,7 @@
         R('Material cost|材料成本', q * v.c),
       ];
     },
-    'Packs=ceil[area(1+waste)/packCoverage]',
+    'Use N = ceil[A(1+w)/C]. A is net area and C is coverage per pack in the same area unit. w is the waste fraction. ceil rounds up to whole packs.|使用 N = ceil[A(1+w)/C]。A 为净面积，C 为每包覆盖面积，使用相同面积单位；w 为损耗比例，ceil 表示向上取整为整包数。',
     [11, 22, 550],
   );
   D(
@@ -128,7 +128,7 @@
         R('Purchased carpet area|购买地毯面积', Math.min(a, b) * v.r, 'm²'),
       ];
     },
-    'Compare ceil(roomWidth/rollWidth)×roomLength and rotated layout|比较 ceil(roomWidth/rollWidth)×roomLength 与旋转铺设方向后的用量。',
+    'Compare L₁ = ceil(W/R)(L+t) and L₂ = ceil(L/R)(W+t), then choose the smaller requirement. L and W are room length and width, R is carpet roll width, and t is extra trim on each strip, all in m. ceil rounds the strip count up.|比较 L₁ = ceil(W/R)(L+t) 与 L₂ = ceil(L/R)(W+t)，取较小用量。L 与 W 为房间长宽，R 为地毯卷宽，t 为每条额外修边余量，均使用 m；ceil 表示将条数向上取整。',
     [5, 5, 8, 20],
     'Rectangular room, joined parallel strips and no pattern matching. Confirm seam placement and pile direction with the installer.|矩形房间、平行拼接条带且不匹配图案；请与安装者确认接缝位置及绒毛方向。',
   );
@@ -152,7 +152,7 @@
         R('Joint volume|缝体积', l, 'L'),
       ];
     },
-    'Joint fraction=1−LW/[(L+j)(W+j)]; litres=area×fraction×depth(mm)',
+    'Use f = 1−lb/[(l+j)(b+j)] and V = Afd. l, b and j are tile length, width and joint width in the same unit; A is area in m² and d is joint depth in mm. V is litres; mass also includes entered density and waste.|使用 f = 1−lb/[(l+j)(b+j)] 及 V = Afd。l、b、j 为同单位的砖长、砖宽与缝宽；A 为面积（m²），d 为缝深（mm）；V 的单位为升，质量还计入自填密度与损耗。',
     [(180900 / 91809) * 1.76, 180900 / 91809],
   );
   D(
@@ -172,7 +172,7 @@
         R('Estimated delivered mass|估计配送质量', (loose * v.rho) / 1000, 'tonnes'),
       ];
     },
-    'Loose volume=area×finished depth×(1+compaction allowance)',
+    'Use V = Ad(1+c). A is area in m², d is finished depth converted to m, and c is the extra loose-volume fraction for compaction. Loose volume V is in m³.|使用 V = Ad(1+c)。A 为面积（m²），d 为换算成 m 的压实厚度，c 为压实所需额外松散体积比例；松散体积 V 的单位为 m³。',
     [2.4, 3.84],
   );
   D(
@@ -191,7 +191,7 @@
         R('Total coverage volume|总覆盖体积', litres, 'L'),
       ];
     },
-    'Litres=area(m²)×depth(cm)×10',
+    'Use V = 10Ad and N = ceil(V/B). A is area in m², d is depth in cm, and B is litres per bag. V is litres and ceil rounds up to whole bags.|使用 V = 10Ad 及 N = ceil(V/B)。A 为面积（m²），d 为厚度（cm），B 为每袋升数；V 的单位为升，ceil 表示向上取整为整袋数。',
     [20, 1000],
   );
   D(
@@ -206,7 +206,7 @@
       R('Basic stud positions|基本墙柱位置数', Math.ceil((v.l * 1000) / v.s - 1e-10) + 1),
       R('Equalized spacing|等分间距', (v.l * 1000) / Math.ceil((v.l * 1000) / v.s - 1e-10), 'mm'),
     ],
-    'Positions=ceil(length/maxSpacing)+1',
+    'Use N = ceil(L/s)+1. L is wall length and s is maximum centre spacing, converted to the same unit. ceil rounds up the number of intervals; the extra position includes both ends.|使用 N = ceil(L/s)+1。L 为墙长，s 为最大中心间距，两者换算至同一单位；ceil 将间隔数向上取整，再增加一个位置以包含两端。',
     [9, 600],
     'Layout count only. Doors, corners, double studs, loads, bracing and code compliance require a construction plan.|仅计算布置数量；门洞、转角、双柱、荷载、支撑与规范合规需施工图确认。',
   );
@@ -227,7 +227,7 @@
         'tonnes',
       ),
     ],
-    'Mass=area×thickness×density×(1+waste)',
+    'Use M = Adρ(1+w). A is area in m², d is compacted thickness converted to m, ρ is density in kg/m³, and w is the waste fraction. M is kilograms before conversion to tonnes.|使用 M = Adρ(1+w)。A 为面积（m²），d 为换算成 m 的压实厚度，ρ 为密度（kg/m³），w 为损耗比例；M 为千克数，随后换算成吨显示。',
     [2.64],
   );
   D(
@@ -244,7 +244,7 @@
       R('Slope rise per 12 run|水平 12 对应升高', (12 * v.r) / v.l),
       R('Sloping area|斜面面积', (v.a * Math.hypot(v.r, v.l)) / v.l, 'm²'),
     ],
-    'Angle=atan(rise/run); area=projectedArea×√(1+(rise/run)²)',
+    'Use θ = atan(r/l) and S = A√(1+(r/l)²). r is roof rise and l is horizontal run in the same unit. A is horizontal projected area and S is sloping area in the same area unit. The angle is displayed in degrees.|使用 θ = atan(r/l) 及 S = A√(1+(r/l)²)。r 为屋顶升高，l 为同单位水平距离；A 为水平投影面积，S 为同面积单位的斜面面积，坡角以度显示。',
     [36.86989764584402, 9, 100],
   );
   D(
@@ -265,7 +265,7 @@
         R('Straight horizontal run|直梯水平长度', (k - 1) * v.g, 'mm'),
       ];
     },
-    'Risers=ceil(totalRise/maxRiser); treads=risers−1',
+    'Use N = ceil(H/r) and T = N−1. H is total rise and r is the preferred maximum riser height in the same unit. ceil rounds up; T counts treads before the upper landing. Actual riser height is H/N.|使用 N = ceil(H/r) 及 T = N−1。H 为总升高，r 为同单位的偏好最大踢面高度；ceil 表示向上取整，T 为上平台前踏面数，实际踢面高度为 H/N。',
     [16, 175, 15, 3750],
     'Geometry sketch only; not a building-code check. Headroom, landings, guards and local accessibility rules are excluded.|仅几何草算，不检查建筑规范；不含净空、平台、护栏与当地无障碍规定。',
   );
@@ -279,7 +279,7 @@
       R('Ramp length|坡长', Math.hypot(v.h, v.l), 'm'),
       R('Angle|坡角', deg(Math.atan(v.h / v.l)), '°'),
     ],
-    'Gradient=rise/run; length=√(rise²+run²)',
+    'Use g = h/l and s = √(h²+l²). h is rise and l is horizontal run in the same unit. Gradient g is displayed as a percentage; ramp length s keeps the distance unit.|使用 g = h/l 及 s = √(h²+l²)。h 为升高，l 为同单位水平距离；坡度 g 以百分比显示，坡长 s 使用原距离单位。',
     [25 / 3, Math.sqrt(36.25), 4.763641690726178],
     'Describes geometry; does not certify wheelchair access or compliance with local ramp standards.|仅描述几何形状，不认证轮椅通行或当地坡道规范合规。',
   );
@@ -299,7 +299,7 @@
       R('Posts needed|所需立柱', Math.ceil(v.l / v.s - 1e-10) + (v.loop === 'open' ? 1 : 0)),
       R('Equal spacing|等分柱距', v.l / Math.ceil(v.l / v.s - 1e-10), 'm'),
     ],
-    'Open posts=ceil(length/spacing)+1; closed posts=ceil(length/spacing)',
+    'Let n = ceil(L/s), where L is fence length and s is maximum post spacing in the same unit. Open-run post count is n+1; a closed loop uses n posts. ceil rounds up.|设 n = ceil(L/s)，其中 L 为围栏长度，s 为同单位的最大柱距；开放直线需 n+1 根立柱，闭合环线需 n 根。ceil 表示向上取整。',
     [13, 2.5],
     'No gates, corners, intermediate bracing or terrain changes are included.|不含门、转角、中间支撑或地形变化。',
   );
@@ -323,7 +323,7 @@
         R('Installed linear board length|安装板材延米', rows * v.l, 'm'),
       ];
     },
-    'Rows=ceil[(deckWidth+gap)/(boardWidth+gap)]',
+    'Use N = ceil[(W+g)/(b+g)]. W is deck width, b is board width, and g is the gap, all in the same unit. ceil rounds up to board rows. Stock board count also accounts for length without reusing cut pieces.|使用 N = ceil[(W+g)/(b+g)]。W 为露台宽，b 为板宽，g 为板间缝，均使用同一单位；ceil 表示向上取整为板排数，库存板数还计入长度且不复用裁片。',
     [21, 21, 105],
   );
   D(
@@ -340,7 +340,7 @@
       R('Total board feet|总板英尺', (v.t * v.w * v.l * v.q) / 12, 'board ft'),
       R('Volume|体积', ((v.t * v.w * v.l * v.q) / 12) * 0.002359737216, 'm³'),
     ],
-    'Board feet=thickness(in)×width(in)×length(ft)×pieces/12',
+    'Use B = twLq/12. t and w are thickness and width in in, L is length in ft, and q is piece count. B is total board feet.|使用 B = twLq/12。t 与 w 为厚度及宽度（in），L 为长度（ft），q 为件数；B 为总板英尺。',
     [80, 0.18877897728],
   );
   D(
@@ -365,7 +365,7 @@
         R('Finished material yield|成品材料利用率', (100 * q * v.p) / v.l, '%'),
       ];
     },
-    'Pieces=floor[(stock+kerf)/(piece+kerf)]',
+    'Use N = floor[(L+k)/(p+k)]. L is stock length, p is finished piece length, and k is saw kerf in the same unit. floor rounds down. This counts kerf between pieces; a final separation cut may need another kerf.|使用 N = floor[(L+k)/(p+k)]。L 为原料长，p 为成品长，k 为同单位锯缝；floor 表示向下取整。仅计成品间锯缝，末次切离余料可能还需一刀锯缝。',
     [4, 391, 250 / 3],
     'Counts kerf between pieces only; if separating leftover stock requires an extra cut, subtract that kerf from the remainder and check fit.|仅计成品间锯缝；若需切离余料，余长还应扣一刀锯缝并检查是否足够。',
   );
@@ -388,7 +388,7 @@
         R('Fill fraction|充填比例', (100 * a) / (PI * v.r * v.r), '%'),
       ];
     },
-    'A=r²acos((r−h)/r)−(r−h)√(2rh−h²); V=AL',
+    'Use A = r²acos((r−h)/r)−(r−h)√(2rh−h²) and V = AL. r is inner radius, h is liquid depth from the bottom, and L is cylinder length, all in m. acos uses radians; V is in m³.|使用 A = r²acos((r−h)/r)−(r−h)√(2rh−h²) 及 V = AL。r 为内半径，h 为底部起液深，L 为直筒长度，均使用 m；acos 按弧度计算，V 的单位为 m³。',
     [PI, 50],
     'Straight circular cylinder with flat ends. Dished end caps, tilt and wall thickness are excluded.|直圆柱平底端盖模型，不含封头、倾斜与壁厚。',
   );
@@ -406,7 +406,7 @@
       R('Pool volume|泳池容积', (v.l * v.w * (v.a + v.b)) / 2, 'm³'),
       R('Water volume|水量', (1000 * v.l * v.w * (v.a + v.b)) / 2, 'L'),
     ],
-    'V=length×width×(shallow+deep)/2',
+    'Use V = lw(a+b)/2. l and w are rectangular pool length and width; a and b are shallow and deep depths, all in m. V is in m³, assuming a uniformly sloping floor.|使用 V = lw(a+b)/2。l 与 w 为矩形泳池长宽，a 与 b 为浅深两端深度，均使用 m；假设池底均匀倾斜，V 的单位为 m³。',
     [60, 60000],
   );
   D(
@@ -427,7 +427,7 @@
         R('Overflow|溢流量', Math.max(0, q - v.s), 'L'),
       ];
     },
-    'Litres=roof area(m²)×rainfall(mm)×efficiency',
+    'Use V = Are. A is roof catchment area in m², r is rainfall in mm, and e is collection efficiency as a fraction. V is potential collected litres; actual storage is capped by entered spare tank capacity.|使用 V = Are。A 为集雨屋面面积（m²），r 为降雨量（mm），e 为收集效率的小数比例；V 为潜在集水升数，实际存水受自填水箱剩余容量限制。',
     [1600, 1000, 600],
   );
   D(
@@ -447,7 +447,7 @@
         R('Supply water volume|供水量', q, 'L'),
       ];
     },
-    'Supply litres=area×depth/efficiency; minutes=litres/flow',
+    'Use V = Ad/e and t = V/q. A is area in m², d is chosen water depth in mm, e is application efficiency as a fraction, and q is total emitter flow in L/min. V is litres and t is minutes.|使用 V = Ad/e 及 t = V/q。A 为面积（m²），d 为自选灌水深度（mm），e 为施用效率的小数比例，q 为滴头总流量（L/min）；V 为升数，t 为分钟数。',
     [12.5, 250],
   );
   D(
@@ -467,7 +467,7 @@
         R('Packs needed|所需包数', Math.ceil(kg / v.b - 1e-10)),
       ];
     },
-    'Seed mass=area×labelled rate×(1+waste)',
+    'Use M = Ar(1+w). A is area in m², r is labelled sowing rate in g/m², and w is the waste fraction. M is grams before conversion to kilograms; packs are rounded up using entered pack mass.|使用 M = Ar(1+w)。A 为面积（m²），r 为标签播种率（g/m²），w 为损耗比例；M 为克数，随后换算为千克，并按自填每包质量向上取整为包数。',
     [0.66, 1],
   );
   D(
@@ -480,7 +480,7 @@
       n('p', 'Product nitrogen by mass (%)|产品氮质量分数（%）', 10, 0.0001, 100),
     ],
     (v) => [R('Fertilizer product mass|肥料产品质量', (v.a * v.n) / (v.p / 100) / 1000, 'kg')],
-    'Product mass=area×chosen N rate/N fraction',
+    'Use M = An/f. A is area in m², n is the separately confirmed nitrogen target in g/m², and f is product nitrogen by mass as a fraction. M is product grams before conversion to kilograms.|使用 M = An/f。A 为面积（m²），n 为另行确认的施氮目标（g/m²），f 为产品氮质量分数的小数比例；M 为产品克数，随后换算为千克。',
     [0.4],
     'Does not recommend an application rate. Follow soil testing, product labels, runoff controls and local restrictions; other nutrients are not evaluated.|不建议施用率；应遵守土壤检测、产品标签、径流控制及当地限制，未评估其他养分。',
   );
@@ -499,7 +499,7 @@
       R('Fixture count|灯具数量', Math.ceil((v.a * v.lux) / (v.l * v.u * v.m) - 1e-10)),
       R('Required installed lumens|所需安装流明', (v.a * v.lux) / (v.u * v.m), 'lm'),
     ],
-    'Fixtures=ceil(area×lux/(lumens×utilization×maintenance))',
+    'Use N = ceil(AE/(Φum)). A is area in m², E is chosen illuminance in lux, Φ is lumens per fixture, and u and m are utilization and maintenance factors. ceil rounds up to whole fixtures.|使用 N = ceil(AE/(Φum))。A 为面积（m²），E 为自选照度（lux），Φ 为每灯具流明，u 与 m 为利用及维护系数；ceil 表示向上取整为灯具数量。',
     [13, 12500],
     'Lumen-method estimate, not a lighting simulation. Glare, daylight, task placement and electrical design require separate review.|流明法估算，不是照明仿真；眩光、日光、任务位置与电气设计需另行审核。',
   );
@@ -519,7 +519,7 @@
         'minutes',
       ),
     ],
-    'ACH=airflow(m³/h)/roomVolume',
+    'Use ACH = Q/V. Q is measured airflow in m³/h and V is room volume in m³. ACH is air changes per hour; it is a flow-to-volume ratio, not a contaminant-removal guarantee.|使用 ACH = Q/V。Q 为实测风量（m³/h），V 为房间体积（m³）；ACH 为每小时换气次数，是风量与体积之比，不保证污染物清除效果。',
     [5, 12],
     'Perfect mixing is not assumed to guarantee contaminant removal. No ventilation safety or infection-risk assessment is made.|换气数不保证污染物清除效果；不进行通风安全或感染风险评估。',
   );
@@ -537,7 +537,7 @@
       R('Period energy|期间发电量', v.p * v.h * (1 - v.l / 100) * v.d, 'kWh'),
       R('Average daily energy|日均发电量', v.p * v.h * (1 - v.l / 100), 'kWh'),
     ],
-    'Energy=peak kW×peak sun hours×(1−loss)×days',
+    'Use E = Ph(1−l)d. P is peak array capacity in kW, h is average peak sun hours per day, l is system loss as a fraction, and d is days. Period energy E is in kWh.|使用 E = Ph(1−l)d。P 为组件峰值容量（kW），h 为日均峰值日照小时，l 为系统损耗的小数比例，d 为天数；期间发电量 E 的单位为 kWh。',
     [480, 16],
     'Sun hours are an input assumption, not a live local forecast. Shading, orientation and seasonal variation require site-specific modeling.|日照为自填假设，不是当地实时预测；遮挡、朝向及季节变化需场址模型。',
   );
@@ -568,7 +568,7 @@
         ),
       ];
     },
-    'Saving kWh=A(Uold−Unew)degreeDays×24/(1000×efficiency)',
+    'Use E = A(Uₒ−Uₙ)D×24/(1000η). A is area in m²; Uₒ and Uₙ are old and new transmittance in W/m²·K; D is annual heating degree days in K·day; η is system efficiency. E is annual energy saving in kWh.|使用 E = A(Uₒ−Uₙ)D×24/(1000η)。A 为面积（m²），Uₒ 与 Uₙ 分别为旧、新传热系数（W/m²·K），D 为年采暖度日（K·day），η 为系统效率；E 为年能源节省（kWh）。',
     [2400, 480, 25 / 12],
     'Steady degree-day estimate; excludes air leakage, cooling changes, rebound, finance and energy-price changes.|稳态度日估算，不含漏风、制冷变化、反弹效应、融资与能源价格变化。',
   );
@@ -593,7 +593,7 @@
         ),
       ];
     },
-    'Annual saving=(old kWh−new kWh)×price',
+    'Use S = (Eₒ−Eₙ)p. Eₒ and Eₙ are old and new annual energy use in kWh, and p is price per kWh. S is annual bill saving; simple payback divides net replacement cost by a positive saving.|使用 S = (Eₒ−Eₙ)p。Eₒ 与 Eₙ 为旧、新电器年耗电（kWh），p 为每 kWh 电价；S 为年电费节省，简单回收期为净更换成本除以正向节省。',
     [50, 8],
   );
   D(
@@ -623,7 +623,7 @@
         ),
       ];
     },
-    'Annual saving=(fuel L×fuelPrice−wall kWh×electricityPrice)×annualKm/100',
+    'Use S = (fp−eq)D/100. f is fuel litres and e is EV wall energy in kWh per 100 km; p is fuel price per litre, q is electricity price per kWh, and D is annual distance in km. S is annual energy-cost saving.|使用 S = (fp−eq)D/100。f 为每 100 km 油耗升数，e 为同里程充电时从电网取用的电量（kWh，包含充电损耗），p 为每升油价，q 为每 kWh 电价，D 为年里程（km）；S 为年能源费节省。',
     [10.5, 4.5, 600, 10],
     'Use electricity measured at the wall to include charging losses. Excludes maintenance, insurance, taxes, depreciation and incentives.|使用墙端电量以包含充电损失；不含维护、保险、税费、折旧与补贴。',
   );
@@ -640,7 +640,7 @@
       R('Total travel time|总出行时间', v.d / v.v + v.s / 60, 'hours'),
       R('Moving time|行驶时间', v.d / v.v, 'hours'),
     ],
-    'Total hours=distance/speed+stopMinutes/60',
+    'Use T = D/v+s/60. D is distance in km, v is average moving speed in km/h, and s is total stop time in minutes. Total travel time T is in hours.|使用 T = D/v+s/60。D 为距离（km），v 为平均行驶速度（km/h），s 为总停留分钟数；总出行时间 T 的单位为小时。',
     [3.5, 3],
   );
   D(
@@ -665,7 +665,7 @@
         R('Base group cost|全组基础费用', b),
       ];
     },
-    'Budget=(transport+nights×lodging+people×days×dailySpend)(1+buffer)',
+    'Use B = (T+nH+pdF)(1+w). T is group transport cost, n is nights, H is group lodging cost per night, p is people, d is days, F is daily spending per person, and w is the buffer fraction. Costs use the same currency.|使用 B = (T+nH+pdF)(1+w)。T 为全组交通费，n 为晚数，H 为全组每晚住宿费，p 为人数，d 为天数，F 为每人每日支出，w 为预算余量比例；所有费用使用同一货币。',
     [1210, 605, 1100],
   );
   D(
@@ -719,7 +719,7 @@
         return R('Ingredient ' + (k + 1) + '|原料 ' + (k + 1), (x * v.b) / v.a);
       }),
     ],
-    'New quantity=original quantity×target servings/original servings',
+    "Use q = xB/A. x is an original ingredient amount, A is original servings, and B is target servings. Each scaled amount q retains that ingredient's original unit.|使用 q = xB/A。x 为原原料数量，A 为原份数，B 为目标份数；每项缩放后数量 q 保留该原料原来的单位。",
     [1.5, 300, 150, 3],
     'Units remain unchanged. Cooking time, seasoning and leavening may not scale linearly.|单位保持不变；烹饪时间、调味及膨松剂可能不按线性比例缩放。',
   );
@@ -735,7 +735,7 @@
       R('Brew water|冲煮用水', v.c * v.r, 'g'),
       R('Combined starting mass|总初始质量', v.c * (1 + v.r), 'g'),
     ],
-    'Water mass=coffee mass×water-to-coffee ratio',
+    'Use W = Cr. C is coffee mass in g and r is water grams per gram of coffee. W is required water mass in g; the ratio compares water with coffee.|使用 W = Cr。C 为咖啡粉质量（g），r 为每克咖啡对应的水克数；W 为所需水质量（g），比例方向为水比咖啡。',
     [300, 320],
     'Water input, not final beverage yield; retention and evaporation are excluded.|计算投入用水，不等于最终饮品量；未计吸水滞留与蒸发。',
   );
@@ -760,7 +760,7 @@
         R('Total water|总水', v.w + sw, 'g'),
       ];
     },
-    'Preferment flour=S/(1+h); hydration=(mainWater+prefermentWater)/(mainFlour+prefermentFlour)',
+    'Use Fₚ = S/(1+h), Wₚ = S−Fₚ and H = (W+Wₚ)/(F+Fₚ). S is preferment mass, h is its hydration fraction, and F and W are main-dough flour and water, all masses in g. Total hydration H is displayed as a percentage.|使用 Fₚ = S/(1+h)、Wₚ = S−Fₚ 及 H = (W+Wₚ)/(F+Fₚ)。S 为酵种质量，h 为酵种含水率的小数比例，F 与 W 为主面团面粉及水，所有质量均使用 g；总含水率 H 以百分比显示。',
     [70, 500, 350],
   );
 })();

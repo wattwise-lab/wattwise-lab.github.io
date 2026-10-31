@@ -62,6 +62,25 @@ for (const file of files) {
     }
     if (slug === 'bond-yield-calculator')
       assert.ok(relatedLinks.includes('/bond-duration-calculator'), 'related bond analysis');
+    if (slug === 'net-revenue-retention-calculator') {
+      assert.ok(
+        relatedLinks.includes('/customer-churn-rate-calculator'),
+        'related customer retention',
+      );
+      assert.ok(catalog.some((tool) => tool.slug === 'net-salary-calculator'));
+      assert.ok(
+        !relatedLinks.includes('/net-salary-calculator'),
+        'net alone does not relate salary',
+      );
+    }
+    if (slug === 'race-time-prediction-calculator') {
+      assert.ok(relatedLinks.includes('/running-splits-calculator'), 'related running pace');
+      assert.ok(catalog.some((tool) => tool.slug === 'jump-height-flight-time-calculator'));
+      assert.ok(
+        !relatedLinks.includes('/jump-height-flight-time-calculator'),
+        'time alone does not relate jumping',
+      );
+    }
     if (slug === 'hash-collision-probability-calculator') {
       assert.ok(
         relatedLinks.includes('/random-password-entropy-calculator'),

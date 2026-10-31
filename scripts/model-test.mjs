@@ -12,6 +12,40 @@ for (const file of ['core.js', ...files])
     filename: file,
   });
 const models = ctx.CMModels.models;
+const scientificNotation = models.find((m) => m.slug === 'scientific-notation-calculator');
+const carpet = models.find((m) => m.slug === 'carpet-roll-length-calculator');
+for (const [input, expected] of [
+  [{ l: 5, w: 4, r: 4, a: 1 }, [6, 6, 10, 24]],
+  [{ l: 3, w: 5, r: 4, a: 0.2 }, [5.2, 6.4, 5.2, 20.8]],
+]) {
+  const result = carpet.calculate(input);
+  expected.forEach((value, index) =>
+    assert.ok(Math.abs(result[index].value - value) < 1e-10, 'Carpet trim/orientation result'),
+  );
+}
+assert.ok(carpet.formula.includes('(L+t)') && carpet.formula.includes('(W+t)'));
+for (const [input, coefficient, exponent] of [
+  [0, 0, 0],
+  [-0, 0, 0],
+  [5e-324, 5, -324],
+  [-5e-324, -5, -324],
+  [1e-323, 1, -323],
+  [3.2e-200, 3.2, -200],
+  [1e-7, 1, -7],
+  [1e-6, 1, -6],
+  [12345, 1.2345, 4],
+  [1.25e12, 1.25, 12],
+  [1e15, 1, 15],
+]) {
+  const result = scientificNotation.calculate({ a: input });
+  assert.equal(result[0].value, coefficient, 'Scientific coefficient for ' + input);
+  assert.equal(result[1].value, exponent, 'Scientific exponent for ' + input);
+  assert.ok(
+    input === 0 || (Math.abs(result[0].value) >= 1 && Math.abs(result[0].value) < 10),
+    'Normalized scientific coefficient',
+  );
+  assert.equal(Number(result[0].value + 'e' + result[1].value), input || 0);
+}
 let cases = 0;
 const failures = [];
 for (const model of models) {
