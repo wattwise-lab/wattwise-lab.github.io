@@ -43,6 +43,12 @@ a {
   color: #12665f;
   text-underline-offset: 3px;
 }
+.cm-merchant main a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
 button {
   cursor: pointer;
   min-height: 44px;
