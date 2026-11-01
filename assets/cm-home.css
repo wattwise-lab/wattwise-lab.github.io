@@ -24,6 +24,9 @@
   color: var(--cm-mint);
   font-style: normal;
 }
+.cm-home h2 {
+  text-wrap: balance;
+}
 .cm-home__hero > p {
   font-size: 14px;
   color: var(--cm-muted);
@@ -129,6 +132,7 @@
   font-weight: 650;
   line-height: 1.4;
   overflow-wrap: anywhere;
+  hyphens: auto;
 }
 .cm-home__promo {
   display: flex;
