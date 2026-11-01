@@ -34,6 +34,40 @@ async function validPage(page, tool) {
   );
   assert.equal(await page.locator('h1').count(), 1);
   assert.equal(await page.locator('#cm-site-language option').count(), 20);
+  const languageControl = await page.locator('#cm-site-language').evaluate((element) => {
+    const doc = element.ownerDocument,
+      style = doc.defaultView.getComputedStyle(element),
+      rect = element.getBoundingClientRect();
+    return {
+      width: rect.width,
+      height: rect.height,
+      fontSize: style.fontSize,
+      footerDirection: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer'))
+        .flexDirection,
+      skipFont: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-skip')).fontSize,
+    };
+  });
+  assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
+  assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
+  assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
+  near(languageControl.height, 44, 0.1);
+  if (page.viewportSize().width === 375) {
+    near(languageControl.width, 108, 0.1);
+    const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
+      const rect = e.getBoundingClientRect(),
+        style = e.ownerDocument.defaultView.getComputedStyle(e);
+      return {
+        width: rect.width,
+        height: rect.height,
+        padding: style.padding,
+        margin: style.margin,
+      };
+    });
+    near(menuControl.width, 44, 0.1);
+    near(menuControl.height, 44, 0.1);
+    assert.equal(menuControl.padding, '0px', tool.slug + ': shared menu padding');
+    assert.equal(menuControl.margin, '0px', tool.slug + ': shared menu margin');
+  }
   assert.ok(
     !(await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
@@ -336,7 +370,14 @@ try {
           const displayed = document.querySelector('#result').innerText.replaceAll(',', '');
           const first =
             slug === 'matrix-eigenvalues' ? displayed.match(/λ₁ = ([^;]+)/)?.[1] : displayed;
-          return Math.abs(Number.parseFloat(first) / expected - 1) < 1e-7;
+          const firstReady = Math.abs(Number.parseFloat(first) / expected - 1) < 1e-7;
+          // Updating the large diagonal already produces the expected first eigenvalue.
+          // Also wait for the last edited small diagonal to reach the displayed pair.
+          if (slug === 'matrix-eigenvalues') {
+            const second = Number.parseFloat(displayed.match(/λ₂ = (.+)/)?.[1]);
+            return firstReady && Math.abs(second / 1e-8 - 1) < 1e-7;
+          }
+          return firstReady;
         },
         { slug, expected },
       );

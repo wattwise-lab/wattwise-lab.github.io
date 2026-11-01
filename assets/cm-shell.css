@@ -69,7 +69,10 @@ body.cm-unified [hidden] {
 .cm-embedded .cm-workspace-entry {
   display: none !important;
 }
-.cm-site-skip {
+body.cm-unified .cm-site-skip {
+  font-size: 15px;
+  line-height: 1.5;
+  text-underline-offset: 4px;
   position: fixed;
   z-index: 200;
   inset-inline-start: 12px;
@@ -81,8 +84,13 @@ body.cm-unified [hidden] {
   border: 2px solid var(--cm-mint);
   border-radius: 8px;
 }
-.cm-site-skip:focus {
+body.cm-unified .cm-site-skip:focus {
   transform: none;
+}
+.cm-site-header,
+.cm-site-footer {
+  font-size: 15px;
+  line-height: 1.5;
 }
 .cm-site-header {
   background: var(--cm-paper);
@@ -94,6 +102,7 @@ body.cm-unified [hidden] {
   margin: auto;
   padding: 16px 24px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
@@ -115,6 +124,9 @@ body.cm-unified [hidden] {
 }
 .cm-site-header__brand b {
   color: var(--cm-mint);
+}
+.cm-unified .cm-site-header__brand {
+  color: var(--cm-ink);
 }
 .cm-site-header__nav {
   display: flex;
@@ -142,7 +154,10 @@ body.cm-unified [hidden] {
   align-items: center;
   gap: 10px;
 }
-.cm-site-header__language {
+body.cm-unified .cm-site-header__language {
+  display: block;
+  width: auto;
+  height: 44px;
   max-width: 180px;
   min-width: 112px;
   border: 1px solid var(--cm-line);
@@ -152,13 +167,20 @@ body.cm-unified [hidden] {
   min-height: 44px;
   padding: 8px 28px 8px 12px;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 .cm-site-header__mobile {
   display: none;
   position: relative;
 }
-.cm-site-header__mobile summary {
+body.cm-unified .cm-site-header__mobile > summary {
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  line-height: 1.5;
   list-style: none;
   min-width: 44px;
   min-height: 44px;
@@ -347,7 +369,7 @@ body.cm-unified [hidden] {
   .cm-site-header {
     min-height: 73px;
   }
-  .cm-site-header__language {
+  body.cm-unified .cm-site-header__language {
     max-width: 154px;
   }
   .cm-site-header__brand {
@@ -370,11 +392,10 @@ body.cm-unified [hidden] {
   }
 }
 @media (max-width: 350px) {
-  .cm-site-header__language {
+  body.cm-unified .cm-site-header__language {
     max-width: 116px;
     min-width: 0;
     padding-inline: 7px;
-    font-size: 13px;
   }
   .cm-site-header__inner {
     gap: 6px;
@@ -587,7 +608,7 @@ body.cm-unified .kp-screen {
     width: 26px;
     height: 26px;
   }
-  .cm-site-header__language {
+  body.cm-unified .cm-site-header__language {
     width: 108px;
     max-width: 108px;
     min-width: 0;
