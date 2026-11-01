@@ -600,6 +600,16 @@
   margin-top: auto;
   color: var(--cm-mint);
 }
+@media (max-width: 359px) {
+  .cm-pinned__tool {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    justify-items: start;
+    gap: 7px;
+    min-height: 100px;
+  }
+}
 @media (max-width: 760px) {
   .cm-originals {
     margin: 38px 0;
