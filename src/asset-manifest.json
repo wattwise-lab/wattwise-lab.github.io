@@ -502,7 +502,7 @@
   "assets/cm-calendar-core.js": "/assets/dist/cm-calendar-core.926724855d0e.js",
   "assets/cm-catalog-v3.js": "/assets/dist/cm-catalog-v3.266ba89e5eab.js",
   "assets/cm-commercial.css": "/assets/dist/cm-commercial.9f3229f14c2e.css",
-  "assets/cm-common.js": "/assets/dist/cm-common.a8f6cd5826ff.js",
+  "assets/cm-common.js": "/assets/dist/cm-common.cd87d4d1dfae.js",
   "assets/cm-core-decisions.js": "/assets/dist/cm-core-decisions.6ea9f8831a70.js",
   "assets/cm-decisions.css": "/assets/dist/cm-decisions.ab384f8bb403.css",
   "assets/cm-expanded.css": "/assets/dist/cm-expanded.050faa4e7097.css",
@@ -527,7 +527,7 @@
   "assets/cm-ranking.css": "/assets/dist/cm-ranking.7e1e4ce6f294.css",
   "assets/cm-ranking.js": "/assets/dist/cm-ranking.43b523698e6f.js",
   "assets/cm-scenario-editor.js": "/assets/dist/cm-scenario-editor.b8890cdcd6d7.js",
-  "assets/cm-shell.css": "/assets/dist/cm-shell.648300ef5470.css",
+  "assets/cm-shell.css": "/assets/dist/cm-shell.37d0465e9136.css",
   "assets/cm-shell.js": "/assets/dist/cm-shell.e0acffe8a70c.js",
   "assets/cm-tool-page.js": "/assets/dist/cm-tool-page.42f2ad3bc02f.js",
   "assets/cm-unit-contracts.js": "/assets/dist/cm-unit-contracts.eb4beb481363.js",
@@ -772,5 +772,5 @@
   "assets/translations/tr.js": "/assets/dist/tr.f9639acb6114.js",
   "assets/translations/ur.js": "/assets/dist/ur.72be4a8869da.js",
   "assets/translations/vi.js": "/assets/dist/vi.477b677c6188.js",
-  "assets/translations/zh-CN.js": "/assets/dist/zh-CN.02a51918076f.js"
+  "assets/translations/zh-CN.js": "/assets/dist/zh-CN.0b4c7974728b.js"
 }
