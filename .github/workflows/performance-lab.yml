@@ -31,7 +31,7 @@ jobs:
             sleep 1
           done
           exit 1
-      - name: Collect all twelve initial-load lab samples
+      - name: Collect all twelve samples and enforce initial-load budgets
         run: node scripts/performance-lab.mjs
         env:
           BASE_URL: http://127.0.0.1:4173

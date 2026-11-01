@@ -601,16 +601,27 @@ export async function runLab(config) {
     };
     report.thresholds = {
       meaning:
-        'Strict per-sample main-frame comparisons only; collection CI success does not enforce or certify thresholds.',
+        'Strict per-sample initial-load main-frame laboratory budgets, enforced separately from collection validity. Not production, iframe-aggregate or field certification.',
       lcpMilliseconds: { operator: '<', limit: 2500 },
       cls: { operator: '<', limit: 0.1 },
-      samples: report.samples.map((sample) => ({
-        scenario: sample.scenario,
-        repetition: sample.repetition,
-        collectionValid: sample.valid,
-        ...sample.mainFrameComparison,
-      })),
+      samples: report.samples.map((sample) => {
+        const metrics = sample.frames.find((frame) => frame.isMainFrame)?.metrics;
+        return {
+          scenario: sample.scenario,
+          repetition: sample.repetition,
+          collectionValid: sample.valid,
+          lcpMs: metrics?.lcp.valueMs ?? null,
+          cls: metrics?.cls.value ?? null,
+          localhostTtfbMs: metrics?.ttfb.valueMs ?? null,
+          ...sample.mainFrameComparison,
+        };
+      }),
     };
+    report.thresholds.allPassed =
+      report.thresholds.samples.length === report.collection.scheduledSamples &&
+      report.thresholds.samples.every(
+        (sample) => sample.collectionValid && sample.lcpUnder2500 && sample.clsUnderPoint1,
+      );
     report.status =
       !report.fatalErrors.length &&
       report.collection.recordedSamples === report.collection.scheduledSamples &&
@@ -635,6 +646,11 @@ export async function runLab(config) {
     report.status,
     'VALID_LOCAL_LAB_COLLECTION_ONLY',
     'See all retained samples and raw evidence.',
+  );
+  assert.equal(
+    report.thresholds.allPassed,
+    true,
+    'Initial-load main-frame laboratory budget failed; all measurements and failures are retained.',
   );
 }
 

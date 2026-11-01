@@ -2,6 +2,7 @@
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { chromium, firefox, webkit } from 'playwright';
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const engine = process.env.BROWSER || 'chromium';
@@ -24,7 +25,49 @@ const results = [],
   failures = [];
 const near = (value, expected, tolerance = 0.02) =>
   assert.ok(Math.abs(value - expected) <= tolerance, `${value} != ${expected}`);
-async function validPage(page, tool) {
+async function validFormTargets(page) {
+  const controls = await page
+    .locator('main input,main select,main textarea')
+    .evaluateAll((elements) => {
+      const visible = (element) =>
+          element.getClientRects().length &&
+          globalThis.getComputedStyle(element).visibility === 'visible',
+        rect = (element) => {
+          const box = element.getBoundingClientRect();
+          return { width: box.width, height: box.height };
+        };
+      return elements.flatMap((element) => {
+        if (element.type === 'hidden') return [];
+        const shown = visible(element),
+          toggle = ['radio', 'checkbox'].includes(element.type),
+          labels = toggle
+            ? [...(element.labels || [])].filter(
+                (label) => label.control === element && visible(label),
+              )
+            : [];
+        if (!shown && !labels.length) return [];
+        return [
+          {
+            id: element.id || element.getAttribute('aria-label') || element.tagName,
+            type: element.type || element.tagName,
+            fontSize: shown
+              ? Number.parseFloat(globalThis.getComputedStyle(element).fontSize)
+              : null,
+            targets: [...labels.map(rect), ...(shown ? [rect(element)] : [])],
+          },
+        ];
+      });
+    });
+  for (const control of controls) {
+    if (control.fontSize !== null)
+      assert.ok(control.fontSize >= 16, 'Form text smaller than 16px: ' + JSON.stringify(control));
+    assert.ok(
+      control.targets.some((rect) => rect.width >= 43.8 && rect.height >= 43.8),
+      'Form target without a 44px control or associated label: ' + JSON.stringify(control),
+    );
+  }
+}
+async function validPage(page, tool, { embedded = false } = {}) {
   const visible = page.locator('#result,#main,.kp-value,#result-contribution').first();
   await visible.waitFor({ state: 'visible' });
   const text = (await visible.innerText()).trim();
@@ -32,57 +75,72 @@ async function validPage(page, tool) {
     text && !/^(?:—|NaN|Infinity|-Infinity)$|not defined|is not a function/i.test(text),
     tool.slug + ': invalid result ' + text,
   );
-  assert.equal(await page.locator('h1').count(), 1);
-  assert.equal(await page.locator('#cm-site-language option').count(), 20);
-  const languageControl = await page.locator('#cm-site-language').evaluate((element) => {
-    const doc = element.ownerDocument,
-      style = doc.defaultView.getComputedStyle(element),
-      rect = element.getBoundingClientRect();
-    return {
-      width: rect.width,
-      height: rect.height,
-      fontSize: style.fontSize,
-      footerDirection: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer'))
-        .flexDirection,
-      skipFont: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-skip')).fontSize,
-    };
-  });
-  assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
-  assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
-  assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
-  const undersizedShell = await page
-    .locator('.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a')
-    .evaluateAll((elements) =>
-      elements
-        .filter((e) => e.getClientRects().length)
-        .filter((e) => {
-          const rect = e.getBoundingClientRect();
-          return rect.width < 43.8 || rect.height < 43.8;
-        })
-        .map((e) => e.getAttribute('aria-label') || e.textContent.trim()),
+  if (embedded) {
+    assert.ok(
+      await page
+        .locator('body')
+        .evaluate((body) => body.classList.contains('cm-unified--embedded')),
+      tool.slug + ': embedded shell mode',
     );
-  assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
-  if (await page.locator('#kp-input').count()) {
-    const expression = await page.locator('#kp-input').boundingBox();
-    assert.ok(expression?.width >= 44 && expression.height >= 44, 'Scientific expression target');
-  }
-  near(languageControl.height, 44, 0.1);
-  if (page.viewportSize().width === 375) {
-    near(languageControl.width, 108, 0.1);
-    const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
-      const rect = e.getBoundingClientRect(),
-        style = e.ownerDocument.defaultView.getComputedStyle(e);
+    const visibleShell = await page
+      .locator('.cm-site-header,.cm-site-footer,.cm-site-skip')
+      .evaluateAll(
+        (elements) => elements.filter((element) => element.getClientRects().length).length,
+      );
+    assert.equal(visibleShell, 0, tool.slug + ': standalone shell leaked into embed');
+  } else {
+    assert.equal(await page.locator('h1').count(), 1);
+    assert.equal(await page.locator('#cm-site-language option').count(), 20);
+    const languageControl = await page.locator('#cm-site-language').evaluate((element) => {
+      const doc = element.ownerDocument,
+        style = doc.defaultView.getComputedStyle(element),
+        rect = element.getBoundingClientRect();
       return {
         width: rect.width,
         height: rect.height,
-        padding: style.padding,
-        margin: style.margin,
+        fontSize: style.fontSize,
+        footerDirection: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer'))
+          .flexDirection,
+        skipFont: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-skip')).fontSize,
       };
     });
-    near(menuControl.width, 44, 0.1);
-    near(menuControl.height, 44, 0.1);
-    assert.equal(menuControl.padding, '0px', tool.slug + ': shared menu padding');
-    assert.equal(menuControl.margin, '0px', tool.slug + ': shared menu margin');
+    assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
+    assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
+    assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
+    const undersizedShell = await page
+      .locator('.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a')
+      .evaluateAll((elements) =>
+        elements
+          .filter((e) => e.getClientRects().length)
+          .filter((e) => {
+            const rect = e.getBoundingClientRect();
+            return rect.width < 43.8 || rect.height < 43.8;
+          })
+          .map((e) => e.getAttribute('aria-label') || e.textContent.trim()),
+      );
+    assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
+    near(languageControl.height, 44, 0.1);
+    if (page.viewportSize().width === 375) {
+      near(languageControl.width, 108, 0.1);
+      const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
+        const rect = e.getBoundingClientRect(),
+          style = e.ownerDocument.defaultView.getComputedStyle(e);
+        return {
+          width: rect.width,
+          height: rect.height,
+          padding: style.padding,
+          margin: style.margin,
+        };
+      });
+      near(menuControl.width, 44, 0.1);
+      near(menuControl.height, 44, 0.1);
+      assert.equal(menuControl.padding, '0px', tool.slug + ': shared menu padding');
+      assert.equal(menuControl.margin, '0px', tool.slug + ': shared menu margin');
+    }
+  }
+  if (await page.locator('#kp-input').count()) {
+    const expression = await page.locator('#kp-input').boundingBox();
+    assert.ok(expression?.width >= 44 && expression.height >= 44, 'Scientific expression target');
   }
   assert.ok(
     !(await page.evaluate(
@@ -100,6 +158,53 @@ async function validPage(page, tool) {
       .map((element) => element.textContent.trim()),
   );
   assert.deepEqual(undersized, [], tool.slug + ': interactive targets smaller than 44px');
+  await validFormTargets(page);
+  return text;
+}
+async function readyWorkspace(page, { frames = false } = {}) {
+  await page.waitForFunction(() => {
+    const root = document.documentElement,
+      search = document.getElementById('ws-direct-search');
+    return (
+      !root.hasAttribute('data-cm-workspace-booting') &&
+      document.body.getAttribute('aria-busy') !== 'true' &&
+      search?.getClientRects().length &&
+      globalThis.getComputedStyle(search).visibility === 'visible'
+    );
+  });
+  assert.equal(await page.locator('.ws-initial-status').isVisible(), false);
+  if (frames)
+    await page.waitForFunction(() => {
+      const cards = globalThis.CMWorkspace?.cards();
+      return (
+        cards?.length &&
+        cards.every(
+          (card) =>
+            card.ready &&
+            !card.frame.hasAttribute('data-ws-loading') &&
+            globalThis.getComputedStyle(card.frame).visibility === 'visible' &&
+            !card.node.querySelector('.ws-card-footer button').disabled,
+        )
+      );
+    });
+  const undersized = await page.locator('main button,main summary,main a').evaluateAll((elements) =>
+    elements
+      .filter(
+        (element) =>
+          element.getClientRects().length &&
+          globalThis.getComputedStyle(element).visibility === 'visible',
+      )
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.width < 43.8 || rect.height < 43.8;
+      })
+      .map((element) => ({
+        tag: element.tagName,
+        label: element.getAttribute('aria-label') || element.textContent.trim() || element.id,
+      })),
+  );
+  assert.deepEqual(undersized, [], 'Visible workspace targets smaller than 44px');
+  await validFormTargets(page);
 }
 try {
   for (const size of [
@@ -131,6 +236,49 @@ try {
       }
     }
     await context.close();
+  }
+  const embedSize = { width: 340, height: 812 },
+    embedContext = await browser.newContext({ viewport: embedSize, colorScheme: 'dark' });
+  try {
+    for (const [index, tool] of catalog.entries()) {
+      if (index % shards !== shard) continue;
+      const page = await embedContext.newPage(),
+        errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      try {
+        const response = await page.goto(base + '/' + tool.slug + '?embed=1&lang=en', {
+          waitUntil: 'load',
+        });
+        assert.equal(response.status(), 200);
+        const result = await validPage(page, tool, { embedded: true });
+        assert.deepEqual(errors, [], 'Unhandled embedded calculator error');
+        results.push({
+          slug: tool.slug,
+          mode: 'embed',
+          width: embedSize.width,
+          engine,
+          result,
+          passed: true,
+        });
+      } catch (error) {
+        failures.push({
+          slug: tool.slug,
+          mode: 'embed',
+          width: embedSize.width,
+          engine,
+          error: error.message,
+          errors,
+        });
+        await page.screenshot({
+          path: new URL(`${engine}-embed-${embedSize.width}-${tool.slug}.png`, out).pathname,
+          fullPage: true,
+        });
+      } finally {
+        await page.close();
+      }
+    }
+  } finally {
+    await embedContext.close();
   }
   if (shard === 0) {
     const legacyPositions = [];
@@ -853,7 +1001,92 @@ try {
         tools: ['mechanical-power-calculator', 'solar-energy-production-calculator'],
       }),
     );
-    await page.goto(base + '/workspace?lang=en#desk=' + linkedLayout, { waitUntil: 'load' });
+    const previousViewport = page.viewportSize(),
+      startupScreenshots = [],
+      captureStartup = async (phase, state) => {
+        const file = `${engine}-workspace-${phase}.png`,
+          bytes = await page.screenshot({ path: new URL(file, out).pathname, fullPage: false });
+        startupScreenshots.push({
+          file,
+          sha256: createHash('sha256').update(bytes).digest('hex'),
+          viewport: page.viewportSize(),
+          width: bytes.readUInt32BE(16),
+          height: bytes.readUInt32BE(20),
+          sourceCommit: process.env.GITHUB_SHA || null,
+          state,
+        });
+      };
+    await page.setViewportSize({ width: 1365, height: 1000 });
+    let releaseEmbed, releaseTools, navigation;
+    const heldEmbed = new Promise((resolve) => (releaseEmbed = resolve)),
+      heldTools = new Promise((resolve) => (releaseTools = resolve)),
+      holdSource = async (route) => {
+        const url = new URL(route.request().url());
+        if (/\/cm-workspace-tools\.[a-f0-9]{12}\.js$/.test(url.pathname)) await heldTools;
+        if (url.pathname.endsWith('/mechanical-power-calculator') && url.searchParams.has('embed'))
+          await heldEmbed;
+        await route.continue();
+      };
+    await page.route('**/*', holdSource);
+    try {
+      navigation = page.goto(base + '/workspace?lang=en#desk=' + linkedLayout, {
+        waitUntil: 'domcontentloaded',
+      });
+      navigation.catch(() => {});
+      await page.locator('.ws-initial-status').waitFor({ state: 'visible' });
+      await page.locator('.cm-site-footer').waitFor({ state: 'attached' });
+      const pending = await page.evaluate(() => ({
+        booting: document.documentElement.hasAttribute('data-cm-workspace-booting'),
+        busy: document.body.getAttribute('aria-busy'),
+        mainVisibility: globalThis.getComputedStyle(document.querySelector('main.ws-shell'))
+          .visibility,
+        footerVisibility: globalThis.getComputedStyle(document.querySelector('.cm-site-footer'))
+          .visibility,
+        headerVisibility: globalThis.getComputedStyle(document.querySelector('.cm-site-header'))
+          .visibility,
+        mainHasLayout: document.querySelector('main.ws-shell').getClientRects().length > 0,
+        footerHasLayout: document.querySelector('.cm-site-footer').getClientRects().length > 0,
+        text: document.querySelector('.ws-initial-status').textContent,
+      }));
+      assert.equal(pending.booting, true);
+      assert.equal(pending.busy, 'true');
+      assert.equal(pending.mainVisibility, 'hidden');
+      assert.equal(pending.footerVisibility, 'hidden');
+      assert.equal(pending.headerVisibility, 'visible');
+      assert.equal(pending.mainHasLayout, true);
+      assert.equal(pending.footerHasLayout, true);
+      assert.equal(await page.locator('.cm-site-header').isVisible(), true);
+      await captureStartup('startup-pending', pending);
+      releaseTools();
+      assert.equal((await navigation).status(), 200);
+      await readyWorkspace(page);
+      assert.equal(await page.locator('#ws-direct-search').isEnabled(), true);
+      assert.equal(await page.locator('#desk-1 iframe[data-ws-loading]').count(), 1);
+      assert.equal(await page.locator('#desk-1 iframe').isVisible(), false);
+      assert.equal(await page.locator('#desk-1 .ws-loading').isVisible(), true);
+      await page.locator('#desk-1').scrollIntoViewIfNeeded();
+      await captureStartup(
+        'frame-pending',
+        await page.locator('#desk-1').evaluate((card) => {
+          const frame = card.querySelector('iframe');
+          return {
+            booting: document.documentElement.hasAttribute('data-cm-workspace-booting'),
+            busy: document.body.getAttribute('aria-busy'),
+            frameLoading: frame.hasAttribute('data-ws-loading'),
+            frameVisibility: globalThis.getComputedStyle(frame).visibility,
+            loadingText: card.querySelector('.ws-loading').textContent,
+          };
+        }),
+      );
+    } finally {
+      releaseTools();
+      releaseEmbed();
+      await page.unroute('**/*', holdSource);
+      if (navigation) await navigation.catch(() => {});
+    }
+    await readyWorkspace(page, { frames: true });
+    await page.setViewportSize(previousViewport);
+    await readyWorkspace(page, { frames: true });
     const mechanical = page.frameLocator('#desk-1 iframe'),
       solar = page.frameLocator('#desk-2 iframe');
     await mechanical.locator('#w').fill('2000');
@@ -865,22 +1098,28 @@ try {
     await page.locator('#ws-link-field').selectOption('p');
     await page.locator('.ws-links__form button[type="submit"]').click();
     await page.waitForFunction(() => {
-      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
-      return input.readOnly && Number(input.value) === 0.4;
+      const input = document.querySelector('#desk-2 iframe')?.contentDocument?.getElementById('p');
+      return Boolean(input && input.readOnly && Number(input.value) === 0.4);
     });
     await page.locator('#desk-1 .ws-card-actions button').nth(2).click();
     await page.waitForFunction(() => {
-      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
-      return input.readOnly && Number(input.value) === 0.4;
+      const input = document.querySelector('#desk-2 iframe')?.contentDocument?.getElementById('p');
+      return Boolean(input && input.readOnly && Number(input.value) === 0.4);
     });
     await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
     assert.equal(await page.locator('.ws-links__item').count(), 0);
     assert.equal(await page.locator('.ws-links__status').innerText(), '');
     assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), false);
     await page.locator('#ws-message button').click();
+    await readyWorkspace(page, { frames: true });
     await page.waitForFunction(() => {
-      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
-      return input.readOnly && Number(input.value) === 0.4 && input.hasAttribute('data-ws-linked');
+      const input = document.querySelector('#desk-2 iframe')?.contentDocument?.getElementById('p');
+      return Boolean(
+        input &&
+        input.readOnly &&
+        Number(input.value) === 0.4 &&
+        input.hasAttribute('data-ws-linked'),
+      );
     });
     assert.equal(await page.locator('.ws-links__item').count(), 1);
     assert.equal(await mechanical.locator('#w').inputValue(), '2000');
@@ -917,18 +1156,20 @@ try {
     );
     await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
     await page.locator('#ws-message button').click();
+    await readyWorkspace(page, { frames: true });
     await page.waitForFunction(() => {
       const frame = document.querySelector('#desk-1 iframe'),
-        doc = frame.contentDocument,
-        input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
-      return (
-        frame.contentWindow.CMI18n?.language === 'zh-CN' &&
-        doc.documentElement.lang === 'zh-CN' &&
-        doc.querySelector('label[for="w"]')?.textContent === '功（J）' &&
-        doc.querySelector('label[for="t"]')?.textContent === '用时（s）' &&
-        doc.getElementById('w')?.value === '4000' &&
+        doc = frame?.contentDocument,
+        input = document.querySelector('#desk-2 iframe')?.contentDocument?.getElementById('p');
+      return Boolean(
+        input &&
+        frame?.contentWindow?.CMI18n?.language === 'zh-CN' &&
+        doc?.documentElement.lang === 'zh-CN' &&
+        doc?.querySelector('label[for="w"]')?.textContent === '功（J）' &&
+        doc?.querySelector('label[for="t"]')?.textContent === '用时（s）' &&
+        doc?.getElementById('w')?.value === '4000' &&
         input.readOnly &&
-        Number(input.value) === 0.8
+        Number(input.value) === 0.8,
       );
     });
     assert.equal(await page.locator('.ws-links__item').count(), 1);
@@ -944,8 +1185,9 @@ try {
     assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), false);
     assert.equal(await page.locator('.ws-links__status').innerText(), '');
     results.push({
-      test: 'workspace live-link move, remove/Undo, restored propagation and native iframe reload',
+      test: 'workspace nonblocking startup, live-link move/Undo and native iframe reload',
       engine,
+      startupScreenshots,
       passed: true,
     });
     await context.addInitScript(() => {

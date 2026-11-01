@@ -1100,6 +1100,29 @@ for (const [slug, policy] of Object.entries(context.window.CMPreferenceStore.pol
   await write(slug + '.html', $.html());
 }
 
+// Establish embedded and workspace startup layout before the first body paint.
+// This small parser-blocking, self-hosted script also works with the response CSP;
+// no inline executable code or relaxed policy is required.
+const initialLayout = await asset('assets/cm-initial-layout.js');
+for (const file of [
+  ...catalog.map((tool) => tool.slug + '.html'),
+  'workspace.html',
+  'embed/merchant-profit.html',
+]) {
+  const $ = load(await read(file));
+  $('script[data-cm-initial-layout],script[src*="cm-initial-layout"]').remove();
+  $('body').prepend('<script data-cm-initial-layout src="' + initialLayout + '"></script>');
+  if (file === 'workspace.html') {
+    $('.ws-initial-status').remove();
+    $('main')
+      .first()
+      .before(
+        '<p class="ws-initial-status" role="status" data-cm-pair="Loading calculator…|正在加载计算器…">Loading calculator…</p>',
+      );
+  }
+  await write(file, $.html());
+}
+
 const metadataPages = await finishMetadata(root, catalog);
 await secureMarkup(root, [
   ...metadataPages.map((p) => p.file),
