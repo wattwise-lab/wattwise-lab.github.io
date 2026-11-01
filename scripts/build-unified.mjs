@@ -169,12 +169,14 @@ const keypadCatalog = pinned.slice(0, 2).map(([slug, key]) => ({
   priority: key === 'basic' ? 1 : 2,
 }));
 let expanded = [],
-  resultNumberOptions;
+  resultNumberOptions,
+  isUnitSymbol;
 if (await exists('assets/models/core.js')) {
   const mctx = {};
   vm.createContext(mctx);
   vm.runInContext(await read('assets/cm-data-core.js'), mctx);
   resultNumberOptions = mctx.CMData.resultNumberOptions;
+  isUnitSymbol = mctx.CMData.isUnitSymbol;
   vm.runInContext(await read('assets/models/core.js'), mctx);
   for (const file of (await fs.readdir(new URL('assets/models/', root)))
     .filter((x) => x !== 'core.js' && x.endsWith('.js'))
@@ -602,6 +604,7 @@ for (const model of expanded)
       schemas,
       catalog,
       resultNumberOptions,
+      isUnitSymbol,
     }),
   );
 
@@ -609,6 +612,8 @@ for (const model of expanded)
 for (const tool of base) {
   const slug = tool.slug,
     $ = load(await read(slug + '.html'));
+  // Reinsert the startup script once below; it is not a calculator model or formula source.
+  $('script[data-cm-initial-layout],script[src*="cm-initial-layout"]').remove();
   upgradeCorePage($, slug);
   const mainHeading = $('.wrap h1').first();
   mainHeading.removeAttr('data-cm-pair').text(tool.name);

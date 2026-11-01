@@ -1081,7 +1081,8 @@ try {
     } finally {
       releaseTools();
       releaseEmbed();
-      await page.unroute('**/*', holdSource);
+      // Drain released handlers before disabling interception; keep route errors visible.
+      await page.unrouteAll({ behavior: 'wait' });
       if (navigation) await navigation.catch(() => {});
     }
     await readyWorkspace(page, { frames: true });
