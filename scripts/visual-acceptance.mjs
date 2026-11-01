@@ -582,12 +582,94 @@ async function run(config) {
         };
       });
     }
+    await recordCase('native-home-language-roundtrip', async () => {
+      await page.setViewportSize({ width: 320, height: 1000 });
+      await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
+      const homes = Object.fromEntries(
+        ['en', 'ja'].map((locale) => {
+          const file = (locale === 'en' ? '' : locale + '/') + 'index.html';
+          const record = routes.find((route) => route.locale === locale && route.file === file);
+          assert.ok(record, 'Observed native home route: ' + locale);
+          return [locale, new URL(record.path, config.origin).href];
+        }),
+      );
+      const normalizeHeading = (value) => value.replace(/\s+/gu, '');
+      const japaneseHeading = '複雑な数式に、答えを隠さない。';
+      const stages = [],
+        images = [];
+      const captureStage = async (name, locale, expectedHeading, response) => {
+        await page.waitForFunction(
+          (language) =>
+            document.documentElement.lang === language &&
+            document.querySelector('#cm-site-language')?.value === language &&
+            (language === 'en' || Boolean(globalThis.CMTranslations?.[language])),
+          locale,
+        );
+        await settled(page);
+        await drain();
+        const state = await mainState(page);
+        const heading = await page.locator('h1').innerText();
+        const normalizedHeading = normalizeHeading(heading);
+        assert.equal(page.url(), homes[locale], 'The header selection must load the native URL.');
+        assert.equal(normalizedHeading, expectedHeading);
+        assert.equal(state.selected, locale);
+        assert.equal(state.options, 20);
+        assert.equal(state.scripts.filter((src) => src === common).length, 1);
+        if (response) {
+          assert.equal(response.status(), 200);
+          assert.equal(response.url(), homes[locale]);
+        }
+        const observed = report.responses.findLast(
+          (entry) => entry.url === homes[locale] && entry.exact,
+        );
+        assert.ok(observed, 'The actual native HTML response must match its artifact bytes.');
+        stages.push({
+          name,
+          locale,
+          url: page.url(),
+          heading,
+          normalizedHeading,
+          responseSHA256: observed.sha256,
+          state,
+        });
+        images.push(await screenshot(page, config.out, name));
+      };
+      // Drain completed response bodies before leaving a document; do not cancel provenance reads.
+      await drain();
+      await navigate(homes.en, 'en');
+      const englishHeading = normalizeHeading(await page.locator('h1').innerText());
+      await captureStage('native-home-en-baseline', 'en', englishHeading);
+      await drain();
+      await navigate(homes.ja, 'ja');
+      await captureStage('native-home-ja-before', 'ja', japaneseHeading);
+      for (const [locale, expected, name] of [
+        ['en', englishHeading, 'native-home-en-return'],
+        ['ja', japaneseHeading, 'native-home-ja-return'],
+      ]) {
+        await drain();
+        const [response] = await Promise.all([
+          page.waitForNavigation({ url: homes[locale], waitUntil: 'load', timeout: 45000 }),
+          page.locator('#cm-site-language').selectOption(locale),
+        ]);
+        assert.ok(response, 'Home language selection must perform a real document navigation.');
+        await captureStage(name, locale, expected, response);
+      }
+      return {
+        stages,
+        segments: images,
+        scope:
+          'Real header-select JA-to-EN-to-JA native document navigation; exact responses and complete native Japanese heading, with direct English heading baseline. No runtime heading replacement or fake navigation.',
+      };
+    });
     const followups = [
       ['de', 'area-converter'],
       ['id', 'area-converter'],
       ['tr', 'area-converter'],
       ['es', 'area-converter'],
       ['zh-CN', 'area-converter'],
+      ['zh-CN', 'weight-converter'],
+      ['zh-CN', 'speed-converter'],
+      ['zh-CN', 'volume-converter'],
       ['ar', 'area-converter'],
       ['sw', 'unit-converter'],
       ['ur', 'ramp-gradient-calculator'],
@@ -619,7 +701,145 @@ async function run(config) {
           scope: 'Complete final375 native page for the recorded unit-language corrections.',
         };
       });
+    await recordCase('rtl-area-guide-language-roundtrip', async () => {
+      await page.setViewportSize({ width: 375, height: 1000 });
+      await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
+      await drain();
+      await navigate(routeFor('ar', 'area-converter'), 'ar');
+      await page.locator('#val').fill('123.45');
+      await page.locator('#from').selectOption('acre');
+      await page.locator('#to').selectOption('sqft');
+      const originalInput = await page.locator('#val').elementHandle();
+      const readGuide = () =>
+        page.evaluate(() => {
+          const sections = [...document.querySelectorAll('.cm-tool [data-cm-section]')];
+          return {
+            url: location.href,
+            lang: document.documentElement.lang,
+            dir: document.documentElement.dir,
+            values: Object.fromEntries(
+              ['val', 'from', 'to'].map((id) => [id, document.getElementById(id).value]),
+            ),
+            sections: sections.map((section) => ({
+              key: section.dataset.cmSection,
+              text: section.textContent,
+            })),
+            managed: [...document.querySelectorAll('[data-cm-bidi-source]')].map((wrapper) => ({
+              source: wrapper.getAttribute('data-cm-bidi-source'),
+              text: wrapper.textContent,
+              isolates: [...wrapper.querySelectorAll('bdi')].map((bdi) => ({
+                text: bdi.textContent,
+                dir: bdi.getAttribute('dir'),
+                direction: globalThis.getComputedStyle(bdi).direction,
+                unicodeBidi: globalThis.getComputedStyle(bdi).unicodeBidi,
+              })),
+              paragraphDirection: globalThis.getComputedStyle(
+                wrapper.closest('p') || wrapper.parentElement,
+              ).direction,
+            })),
+            nestedManaged: document.querySelectorAll('[data-cm-bidi-source] [data-cm-bidi-source]')
+              .length,
+            heroManaged: document.querySelectorAll('.hero [data-cm-bidi-source]').length,
+          };
+        });
+      const expectedInputs = { val: '123.45', from: 'acre', to: 'sqft' },
+        stages = [],
+        images = [];
+      const captureGuide = async (name, locale) => {
+        await page.waitForFunction((language) => {
+          const managed = [...document.querySelectorAll('[data-cm-bidi-source]')];
+          return (
+            document.documentElement.lang === language &&
+            managed.length > 0 &&
+            (language === 'en'
+              ? managed.every(
+                  (wrapper) =>
+                    wrapper.textContent === wrapper.getAttribute('data-cm-bidi-source') &&
+                    wrapper.querySelectorAll('bdi').length === 0,
+                )
+              : document
+                  .querySelector('[data-cm-section="example"] bdi[dir="ltr"]')
+                  ?.textContent.startsWith('100 m² ÷'))
+          );
+        }, locale);
+        await settled(page);
+        await drain();
+        assert.ok(
+          await originalInput.evaluate((input) => input.isConnected),
+          'Calculator language changes must keep the original input document.',
+        );
+        const state = await readGuide();
+        assert.equal(state.url, routeFor(locale, 'area-converter'));
+        assert.deepEqual(state.values, expectedInputs);
+        assert.equal(state.nestedManaged, 0);
+        assert.equal(state.heroManaged, 0);
+        const result = await page.locator('#result').innerText();
+        near(actualNumber(result, locale), 123.45 * 43560);
+        const isolates = state.managed.flatMap((wrapper) => wrapper.isolates);
+        if (locale === 'en') {
+          assert.equal(isolates.length, 0);
+          assert.ok(
+            state.sections.every(
+              (section) =>
+                ![...section.text].some(
+                  (char) => /\p{Script=Arabic}/u.test(char) && /\p{L}/u.test(char),
+                ),
+            ),
+            'The complete English guide must not retain Arabic prose.',
+          );
+        } else {
+          assert.equal(state.dir, 'rtl');
+          assert.ok(isolates.some((isolate) => /[=÷×]/.test(isolate.text)));
+          assert.ok(
+            isolates.every(
+              (isolate) =>
+                isolate.dir === 'ltr' &&
+                isolate.direction === 'ltr' &&
+                isolate.unicodeBidi.includes('isolate'),
+            ),
+          );
+          assert.ok(
+            state.managed.every((wrapper) => wrapper.paragraphDirection === 'rtl'),
+            'Arabic paragraphs remain RTL around their numeric phrases.',
+          );
+        }
+        stages.push({ name, locale, result, state });
+        for (const [region, locator] of [
+          ['example', page.locator('[data-cm-section="example"]')],
+          ['faq-equation', page.locator('[data-cm-section="faq"] p').nth(1)],
+        ]) {
+          await locator.scrollIntoViewIfNeeded();
+          await settled(page);
+          images.push(await screenshot(page, config.out, name + '-' + region));
+        }
+        return state;
+      };
+      const initial = await captureGuide('rtl-area-ar-before', 'ar');
+      await drain();
+      await page.locator('#cm-site-language').selectOption('en');
+      await captureGuide('rtl-area-en-in-place', 'en');
+      await drain();
+      await page.locator('#cm-site-language').selectOption('ar');
+      const restored = await captureGuide('rtl-area-ar-return', 'ar');
+      assert.deepEqual(
+        restored.sections,
+        initial.sections,
+        'Every Arabic guide section must return to its original full text.',
+      );
+      assert.deepEqual(
+        restored.managed,
+        initial.managed,
+        'No duplicate or stale isolates after ar-en-ar.',
+      );
+      return {
+        stages,
+        segments: images,
+        scope:
+          'Actual Arabic area guide numeric BDI isolation and ar-to-en-to-ar in-place translation; all guide text/source/isolate structure recorded, original raw input/unit choices/result preserved, six actual equation views.',
+      };
+    });
     for (const [locale, name, viewport, dark] of [
+      ['de', 'workspace-de-narrow', { width: 320, height: 1000 }, false],
       ['zh-CN', 'workspace-zh-desktop', { width: 1365, height: 1000 }, false],
       ['ar', 'workspace-ar-tablet', { width: 768, height: 1000 }, false],
       ['en', 'workspace-en-4k', { width: 3840, height: 1200 }, false],
@@ -678,7 +898,14 @@ async function run(config) {
       await page.waitForFunction(
         () => !document.documentElement.hasAttribute('data-cm-workspace-booting'),
       );
-      assert.equal(await page.locator('#desk .ws-card').count(), 0);
+      const emptyState = {
+        tools: await page.locator('#desk .ws-card:not(.empty-slot)').count(),
+        placeholders: await page.locator('#desk .ws-card.empty-slot').count(),
+        frames: await page.locator('#desk iframe').count(),
+      };
+      assert.equal(emptyState.tools, 0);
+      assert.equal(emptyState.placeholders, 1);
+      assert.equal(emptyState.frames, 0);
       await page.locator('#ws-direct-search').fill('普通');
       const matching = page
         .locator('#ws-direct-results button')
@@ -692,10 +919,12 @@ async function run(config) {
           document.querySelectorAll('#desk .ws-card iframe:not([data-ws-loading])').length === 1,
       );
       assert.equal(await page.locator('#desk iframe[src*="basic-calculator"]').count(), 1);
+      assert.equal(await page.locator('#desk .ws-card:not(.empty-slot)').count(), 1);
       await page.locator('#desk').scrollIntoViewIfNeeded();
       await settled(page);
       return {
         locale: 'zh-CN',
+        emptyState,
         state: await mainState(page),
         segments: [search, await screenshot(page, config.out, 'zh-CN-workspace-added')],
         scope:
@@ -865,6 +1094,44 @@ async function selfTest() {
   assert.equal(historySymbols('sin(30) ='), 'sin(30) =');
   assert.equal(historySymbols('sin(pi/2) ='), 'sin(pi÷2) =');
   assert.equal(historySymbols('pi*-2/3 ='), 'pi×−2÷3 =');
+  const shellSource = await fs.readFile(path.join(root, 'assets/cm-shell.js'), 'utf8');
+  const start = shellSource.indexOf("  document\n    .querySelectorAll('[data-cm-language]')");
+  const end = shellSource.indexOf("  document.addEventListener('click'", start);
+  assert.ok(start >= 0 && end > start, 'Extract the actual shared-shell language handler.');
+  const handlerSource = shellSource.slice(start, end);
+  for (const isHome of [true, false]) {
+    let callback;
+    const calls = [];
+    const select = {
+      value: 'ja',
+      addEventListener: (event, listener) => {
+        assert.equal(event, 'change');
+        callback = listener;
+      },
+    };
+    const mock = {
+      I: { setLanguage: (value, options) => calls.push({ value, navigate: options.navigate }) },
+      document: {
+        querySelectorAll: (selector) => {
+          assert.equal(selector, '[data-cm-language]');
+          return [select];
+        },
+        querySelector: (selector) => {
+          assert.equal(selector, '[data-cm-home]');
+          return isHome ? {} : null;
+        },
+      },
+    };
+    vm.runInNewContext(handlerSource, mock);
+    assert.equal(typeof callback, 'function');
+    callback();
+    select.value = 'en';
+    callback();
+    assert.deepEqual(calls, [
+      { value: 'ja', navigate: isHome },
+      { value: 'en', navigate: isHome },
+    ]);
+  }
   console.log(
     'PASS origin/CLI/native-path boundaries and choices-only layout; browser launches0, HTTP requests0.',
   );

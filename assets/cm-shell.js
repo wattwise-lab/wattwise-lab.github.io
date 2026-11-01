@@ -54,7 +54,11 @@
   }
   document
     .querySelectorAll('[data-cm-language]')
-    .forEach((s) => s.addEventListener('change', () => I.setLanguage(s.value)));
+    .forEach((s) =>
+      s.addEventListener('change', () =>
+        I.setLanguage(s.value, { navigate: Boolean(document.querySelector('[data-cm-home]')) }),
+      ),
+    );
   document.addEventListener('click', (e) => {
     const a = e.target.closest?.('a[href]');
     if (!a || a.hasAttribute('download')) return;

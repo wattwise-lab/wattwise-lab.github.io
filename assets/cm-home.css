@@ -14,6 +14,7 @@
   letter-spacing: 0.09em;
 }
 .cm-home h1 {
+  text-wrap: balance;
   font-size: clamp(30px, 3.6vw, 44px);
   line-height: 1.18;
   letter-spacing: -0.04em;
@@ -28,6 +29,7 @@
   text-wrap: balance;
 }
 .cm-home__hero > p {
+  text-wrap: balance;
   font-size: 14px;
   color: var(--cm-muted);
   max-width: 800px;

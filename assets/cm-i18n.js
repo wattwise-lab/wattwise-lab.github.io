@@ -331,8 +331,92 @@ window.CMI18n = (() => {
           }) + (element.dataset.cmUnit ? ' ' + unit(element.dataset.cmUnit, value) : '');
     });
   }
+  function bidiParts(source) {
+    if (!/[0-9٠-٩۰-۹]/.test(source)) return [{ text: source, ltr: false }];
+    const digits = '[0-9٠-٩۰-۹]',
+      amount = '[+\\-−]?' + digits + '+(?:[.,٫٬]' + digits + '+)*(?:[eE][+\\-−]?' + digits + '+)?',
+      unitAtom = '(?:[A-Za-zµμΩ°%][A-Za-zµμΩ°%²³⁻¹·]*[23]?|\\([A-Za-zµμΩ°%²³⁻¹·]+\\))',
+      unit = unitAtom + '(?:/' + unitAtom + ')*',
+      quantity = amount + '(?:[ \\t\\u00a0]*' + unit + ')?',
+      operand = '(?:\\([ \\t]*)?' + quantity + '(?:[ \\t]*\\))?',
+      operator = '[=≈≠<>≤≥+−×÷*/^\\-]',
+      expression = new RegExp(
+        '(?<![A-Za-z0-9٠-٩۰-۹_])' + operand + '(?:[ \\t]*' + operator + '[ \\t]*' + operand + ')*',
+        'gu',
+      ),
+      binary = new RegExp(quantity + '[ \\t]*' + operator + '[ \\t]*' + quantity, 'u'),
+      legacyUnits = new Set(
+        'ft ft² ft³ in in² in³ yd yd² yd³ mi mi² lb lbs oz mg cm² cm³ mm³ km² L mL ml gal qt pt ha acre acres mu ac min h'.split(
+          ' ',
+        ),
+      ),
+      knownUnit = (value) =>
+        CMData.isUnitSymbol(value) ||
+        legacyUnits.has(value) ||
+        (value.includes('/') &&
+          value.split('/').every((part) => CMData.isUnitSymbol(part) || legacyUnits.has(part))),
+      parts = [];
+    let cursor = 0;
+    for (const match of source.matchAll(expression)) {
+      const text = match[0],
+        units = [...text.matchAll(new RegExp(unit, 'gu'))];
+      if (
+        /^\d{4}[-/]\d{1,2}[-/]\d{1,2}$/.test(text) ||
+        (!binary.test(text) && !units.some((entry) => knownUnit(entry[0])))
+      )
+        continue;
+      if (match.index > cursor) parts.push({ text: source.slice(cursor, match.index), ltr: false });
+      parts.push({ text, ltr: true });
+      cursor = match.index + text.length;
+    }
+    if (cursor < source.length || !parts.length)
+      parts.push({ text: source.slice(cursor), ltr: false });
+    return parts;
+  }
+  function legacyMathParent(parent) {
+    return Boolean(
+      parent?.closest('.cm-tool [data-cm-section]') &&
+      !parent.closest(
+        '.cm-expanded,.hero,form,input,select,textarea,button,output,script,style,noscript,code,pre,time,bdi,[data-cm-no-translate],[data-cm-value],.big,.metric',
+      ),
+    );
+  }
+  function renderBidiSource(wrapper) {
+    const value = translate(wrapper.getAttribute('data-cm-bidi-source')),
+      parts = ['ar', 'ur'].includes(lang) ? bidiParts(value) : [{ text: value, ltr: false }],
+      children = [...wrapper.childNodes];
+    if (
+      children.length === parts.length &&
+      parts.every((part, index) => {
+        const child = children[index];
+        return part.ltr
+          ? child.nodeType === Node.ELEMENT_NODE &&
+              child.tagName === 'BDI' &&
+              child.getAttribute('dir') === 'ltr' &&
+              child.childNodes.length === 1 &&
+              child.firstChild.nodeType === Node.TEXT_NODE &&
+              child.textContent === part.text
+          : child.nodeType === Node.TEXT_NODE && child.textContent === part.text;
+      })
+    )
+      return;
+    wrapper.replaceChildren(
+      ...parts.map((part) => {
+        if (!part.ltr) return document.createTextNode(part.text);
+        const span = document.createElement('bdi');
+        span.setAttribute('dir', 'ltr');
+        span.textContent = part.text;
+        return span;
+      }),
+    );
+  }
   function translateTree(root) {
+    const managed = [...(root.querySelectorAll?.('[data-cm-bidi-source]') || [])];
+    if (root.matches?.('[data-cm-bidi-source]')) managed.unshift(root);
+    for (const wrapper of managed)
+      if (legacyMathParent(wrapper.parentElement)) renderBidiSource(wrapper);
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const replacements = [];
     let node;
     while ((node = walker.nextNode())) {
       const parent = node.parentElement;
@@ -351,8 +435,25 @@ window.CMI18n = (() => {
         originalText.set(node, original);
       }
       const value = translate(original);
+      if (
+        ['ar', 'ur'].includes(lang) &&
+        legacyMathParent(parent) &&
+        !parent.closest('[dir="ltr"]') &&
+        bidiParts(value).some((part) => part.ltr)
+      ) {
+        replacements.push({ node, original });
+        continue;
+      }
       if (node.textContent !== value) node.textContent = value;
       appliedText.set(node, value);
+    }
+    // Replacing after traversal preserves the walker's next text node and later paragraphs.
+    for (const { node, original } of replacements) {
+      const wrapper = document.createElement('span');
+      wrapper.setAttribute('data-cm-bidi-source', original);
+      wrapper.setAttribute('data-cm-no-translate', '');
+      renderBidiSource(wrapper);
+      node.replaceWith(wrapper);
     }
     root.querySelectorAll?.('[placeholder],[aria-label],[alt]').forEach((el) => {
       if (el.matches('[data-cm-language],[data-cm-placeholder],[data-cm-label],[data-aria]'))

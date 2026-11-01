@@ -184,6 +184,7 @@ a {
   color: #4b8467;
 }
 .ws-intro h1 {
+  text-wrap: balance;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.15;
   letter-spacing: -0.04em;
@@ -191,6 +192,7 @@ a {
   margin: 9px 0 12px;
 }
 .ws-intro p {
+  text-wrap: balance;
   margin: 0;
   color: var(--muted);
   font-size: 14px;

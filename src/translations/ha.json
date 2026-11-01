@@ -1283,7 +1283,7 @@
   "Ideal AC transformer; excludes losses, saturation, insulation and current ratings. Not applicable to steady DC.": "Tsarin transformer na AC mai kyau; ba ya haɗa da asara, jikewa, rufin da ƙimar halin yanzu. Bai dace da tsayayyen DC ba.",
   "Average signed force (N)": "Matsakaicin ƙarfin da aka sanya hannu (N)",
   "Principal still due": "Har yanzu ana jiran shugaban makarantar",
-  "Days in period": "Kwanaki a cikin haila",
+  "Days in period": "Yawan kwanaki",
   "Annual effective growth (%)": "Ci gaban da ya dace a kowace shekara (%)",
   "Subnet mask": "Abin rufe fuska na subnet",
   "Count equal-length IPv6 child prefixes using exact integers.": "Ƙidaya prefixes na yaro masu tsayi daidai IPv6 ta amfani da ma'auni daidai.",

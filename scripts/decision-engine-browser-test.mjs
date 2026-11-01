@@ -852,6 +852,16 @@ try {
     }
     assert.equal(await page.locator('#ws-direct-results button').count(), 8);
     assert.ok(await page.locator('#ws-direct-status').isVisible());
+    assert.equal(await page.locator('#ws-direct-results').isVisible(), false);
+    assert.equal(
+      await page.locator('#ws-direct-status').innerText(),
+      'All four spaces are in use. Choose Replace on any card to change its calculator.',
+    );
+    assert.equal(await page.locator('#ws-direct-search').inputValue(), '');
+    await page.locator('#ws-direct-search').press('Enter');
+    assert.equal(await page.locator('.ws-card:not(.empty-slot)').count(), 4);
+    assert.equal(await page.locator('#ws-tool-choice').isVisible(), false);
+    assert.equal(await page.frameLocator('#desk-1 iframe').locator('#s').inputValue(), '001.5000');
     await page.locator('#ws-direct-search').fill('fluid');
     await page.locator('#ws-direct-results button').first().click();
     await page.locator('#ws-replace-target').selectOption('4');
