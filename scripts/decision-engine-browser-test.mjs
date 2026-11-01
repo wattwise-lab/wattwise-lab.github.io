@@ -50,6 +50,22 @@ async function validPage(page, tool) {
   assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
   assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
   assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
+  const undersizedShell = await page
+    .locator('.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a')
+    .evaluateAll((elements) =>
+      elements
+        .filter((e) => e.getClientRects().length)
+        .filter((e) => {
+          const rect = e.getBoundingClientRect();
+          return rect.width < 43.8 || rect.height < 43.8;
+        })
+        .map((e) => e.getAttribute('aria-label') || e.textContent.trim()),
+    );
+  assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
+  if (await page.locator('#kp-input').count()) {
+    const expression = await page.locator('#kp-input').boundingBox();
+    assert.ok(expression?.width >= 44 && expression.height >= 44, 'Scientific expression target');
+  }
   near(languageControl.height, 44, 0.1);
   if (page.viewportSize().width === 375) {
     near(languageControl.width, 108, 0.1);
