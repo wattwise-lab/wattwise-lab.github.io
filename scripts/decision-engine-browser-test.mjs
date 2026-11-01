@@ -908,11 +908,43 @@ try {
     });
     assert.equal(await page.locator('.ws-links__status').innerText(), '');
     assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), true);
+    await mechanical.locator('#w').fill('4000');
+    await page.waitForFunction(
+      () =>
+        Number(
+          document.querySelector('#desk-2 iframe').contentDocument.getElementById('p').value,
+        ) === 0.8,
+    );
+    await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
+    await page.locator('#ws-message button').click();
+    await page.waitForFunction(() => {
+      const frame = document.querySelector('#desk-1 iframe'),
+        doc = frame.contentDocument,
+        input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
+      return (
+        frame.contentWindow.CMI18n?.language === 'zh-CN' &&
+        doc.documentElement.lang === 'zh-CN' &&
+        doc.querySelector('label[for="w"]')?.textContent === '功（J）' &&
+        doc.querySelector('label[for="t"]')?.textContent === '用时（s）' &&
+        doc.getElementById('w')?.value === '4000' &&
+        input.readOnly &&
+        Number(input.value) === 0.8
+      );
+    });
+    assert.equal(await page.locator('.ws-links__item').count(), 1);
+    assert.equal(await page.locator('.ws-links__status').innerText(), '');
+    await mechanical.locator('#w').fill('4500');
+    await page.waitForFunction(
+      () =>
+        Number(
+          document.querySelector('#desk-2 iframe').contentDocument.getElementById('p').value,
+        ) === 0.9,
+    );
     await page.locator('.ws-links__item button').click();
     assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), false);
     assert.equal(await page.locator('.ws-links__status').innerText(), '');
     results.push({
-      test: 'workspace live-link move, remove/Undo, restored propagation and settled native UI',
+      test: 'workspace live-link move, remove/Undo, restored propagation and native iframe reload',
       engine,
       passed: true,
     });

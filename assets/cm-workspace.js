@@ -402,6 +402,8 @@
         failed(t('openError'));
         return;
       }
+      const i18n = frame.contentWindow.CMI18n;
+      if (i18n && i18n.language !== lang) i18n.setLanguage(lang);
       if (card.pendingState) {
         try {
           const saved = card.pendingState,
