@@ -298,7 +298,7 @@
     share.disabled = A.cards().length === 0;
     csv.disabled = !A.cards().some((c) => c.ready);
     overviewList.replaceChildren();
-    for (const card of A.cards()) {
+    for (const [index, card] of A.cards().entries()) {
       const b = button(
           '',
           () => {
@@ -307,7 +307,11 @@
           },
           'ws-overview__item',
         ),
-        strong = el('strong', '', name(catalog.find((x) => x.slug === card.slug))),
+        strong = el(
+          'strong',
+          '',
+          I.number(index + 1) + ' · ' + name(catalog.find((x) => x.slug === card.slug)),
+        ),
         value = el('span'),
         rows = card.ready ? A.results(card) : [];
       delete b.dataset.cmPair;

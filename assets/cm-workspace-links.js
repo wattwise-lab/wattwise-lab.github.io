@@ -24,7 +24,8 @@
     },
     name = (card) => {
       const tool = window.CMCatalog.find((t) => t.slug === card.slug);
-      return tool?.names?.[I.language] || I.translate(tool?.name || card.slug);
+      const label = tool?.names?.[I.language] || I.translate(tool?.name || card.slug);
+      return I.number(A.cards().indexOf(card) + 1) + ' · ' + label;
     },
     byId = (id) => A.cards().find((c) => String(c.id) === String(id));
   const panel = el('details', 'ws-links'),
@@ -160,6 +161,12 @@
     preview.textContent = p(
       'Choose the source, result and destination input.|请选择来源、结果和目标输入。',
     );
+    if (dst?.ready && !fields(dst).length) {
+      preview.textContent = p(
+        'A unit is not declared. Use “Send result” for a deliberate one-time copy; live linking is unavailable.|有单位未明确声明，请使用「传递结果」手动复制一次，暂不提供持续联动。',
+      );
+      return;
+    }
     if (!row || !target) return;
     const c = U.contract(row.unit, target.unit);
     if (c.state !== 'compatible') {

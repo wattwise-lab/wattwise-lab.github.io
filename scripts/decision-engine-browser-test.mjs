@@ -386,6 +386,44 @@ try {
     assert.equal(await page.locator('body.cm-invalid').count(), 1);
     await page.locator('#b').fill('0');
     assert.match(await page.locator('.big').innerText(), /1,41421356237/);
+    await page.goto(base + '/inflation-calculator?lang=en', { waitUntil: 'load' });
+    for (const [id, value] of Object.entries({
+      amt: '100',
+      y1: '2000',
+      y2: '2002',
+      inf: '-20',
+    }))
+      await page.locator('#' + id).fill(value);
+    await page.waitForFunction(
+      () =>
+        !document.body.classList.contains('cm-invalid') &&
+        document.querySelector('#result').textContent === '$64.00',
+    );
+    assert.equal(await page.locator('#result').isVisible(), true);
+    assert.equal(await page.locator('#inf').evaluate((input) => input.validity.valid), true);
+    assert.equal(await page.locator('#chipBack').innerText(), '$156.25');
+    assert.doesNotMatch(await page.locator('#verdictText').innerText(), /Prices rose -/);
+    await page.locator('#inf').fill('-100');
+    await page.waitForFunction(() => document.body.classList.contains('cm-invalid'));
+    assert.equal(await page.locator('#result').isVisible(), false, 'no stale amount at −100%');
+    assert.equal(await page.locator('#cm-input-error').isVisible(), true);
+    assert.match(await page.locator('#cm-input-error').innerText(), /above −100%/);
+    assert.equal(await page.locator('[data-cm-action=copy]').isEnabled(), false);
+    await page.locator('#inf').fill('0');
+    await page.waitForFunction(
+      () =>
+        !document.body.classList.contains('cm-invalid') &&
+        document.querySelector('#result').textContent === '$100.00',
+    );
+    assert.equal(await page.locator('#result').isVisible(), true);
+    assert.equal(await page.locator('#chipBack').innerText(), '$100.00');
+    assert.equal(await page.locator('#cm-input-error').isVisible(), false);
+    assert.equal(await page.locator('[data-cm-action=copy]').isEnabled(), true);
+    results.push({
+      test: 'Deflation passes native validation, rejects −100% and recovers at zero',
+      engine,
+      passed: true,
+    });
     await page.goto(base + '/ipv6-subnet-count-calculator?lang=en', { waitUntil: 'load' });
     const integerBoxes = await page.locator('.cm-expanded__exact-integer').evaluateAll((elements) =>
       elements.map((element) => ({

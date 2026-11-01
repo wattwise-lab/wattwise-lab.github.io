@@ -73,6 +73,35 @@ for (const file of files) {
     }
     if (slug === 'bond-yield-calculator')
       assert.ok(relatedLinks.includes('/bond-duration-calculator'), 'related bond analysis');
+    if (slug === 'inflation-calculator') {
+      assert.equal($('#inf').attr('min'), '-100', 'native validation allows deflation');
+      assert.equal($('#inf').attr('step'), 'any', 'fractional inflation rates remain usable');
+    }
+    if (
+      [
+        'unit-converter',
+        'data-storage-converter',
+        'area-converter',
+        'speed-converter',
+        'volume-converter',
+        'temperature-converter',
+        'weight-converter',
+      ].includes(slug)
+    ) {
+      for (const [id, pair] of [
+        ['from', 'From unit|原单位'],
+        ['to', 'To unit|目标单位'],
+      ]) {
+        const control = $('#' + id),
+          label = control.prev('label');
+        assert.equal(control.length, 1, 'one unit selector #' + id);
+        assert.equal(label.length, 1, 'unit selector has an adjacent label');
+        assert.equal($('label[for="' + id + '"]').length, 1, 'one associated unit label');
+        assert.equal(label.attr('for'), id, 'unit label targets its selector');
+        assert.equal(label.attr('data-cm-pair'), pair, 'unit label uses the translated key');
+        assert.equal(label.text(), pair.split('|')[0], 'English unit label');
+      }
+    }
     if (slug === 'net-revenue-retention-calculator') {
       assert.ok(
         relatedLinks.includes('/customer-churn-rate-calculator'),

@@ -79,7 +79,17 @@ export function upgradeCorePage($, slug) {
       if (pairs[text]) e.attr('data-cm-pair', pairs[text]).text(pairs[text].split('|')[0]);
     });
   }
-  if (slug === 'unit-converter') {
+  if (
+    [
+      'unit-converter',
+      'data-storage-converter',
+      'area-converter',
+      'speed-converter',
+      'volume-converter',
+      'temperature-converter',
+      'weight-converter',
+    ].includes(slug)
+  ) {
     for (const [id, pair] of [
       ['from', 'From unit|原单位'],
       ['to', 'To unit|目标单位'],
@@ -88,6 +98,40 @@ export function upgradeCorePage($, slug) {
         .prev('label')
         .attr({ for: id, 'data-cm-pair': pair })
         .text(pair.split('|')[0]);
+  }
+  if (
+    [
+      'unit-converter',
+      'data-storage-converter',
+      'area-converter',
+      'speed-converter',
+      'volume-converter',
+      'weight-converter',
+    ].includes(slug)
+  ) {
+    const inverseRate = (value) =>
+      value.replace(
+        /(\S+)\s+(\S+)\s+per\s+1\s+(\S+)/g,
+        slug === 'speed-converter' ? '$1 ($2)/($3)' : '$1 $2/$3',
+      );
+    $('#chipInv')
+      .find('*')
+      .addBack()
+      .each((_, element) => {
+        const inverse = $(element);
+        inverse.contents().each((_, node) => {
+          if (node.type === 'text') node.data = inverseRate(node.data);
+        });
+        for (const name of [
+          'data-cm-source',
+          'data-cm-original-en',
+          'data-original',
+          'data-runtime',
+        ]) {
+          const value = inverse.attr(name);
+          if (value !== undefined) inverse.attr(name, inverseRate(value));
+        }
+      });
   }
   if (slug === 'mean-median-mode-calculator') {
     $('th,td,h2').each((_, element) => {
@@ -411,6 +455,8 @@ export function upgradeCorePage($, slug) {
   if (slug === 'inflation-calculator') {
     $('#y1,#y2').attr({ min: '1', max: '9999', step: '1' });
     $('#amt').attr('min', '0');
+    // Native validation permits deflation; the model rejects the exact −100% endpoint.
+    $('#inf').attr({ min: '-100', step: 'any' });
     paragraph(
       'Scope and limitations',
       'This page applies one constant assumed inflation rate, without fetching CPI data. A compound annual rate can reproduce the change between two index endpoints, but cannot describe the intervening yearly path. Use a consistent published CPI series, country and comparison period for historical work. The result compares general purchasing power, not the price of a particular item.',

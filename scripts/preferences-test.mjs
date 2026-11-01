@@ -90,6 +90,9 @@ function runtime({
   returning = false,
   reloading = false,
   deny = false,
+  merchant = false,
+  emptySelect = false,
+  changedSelect = false,
 } = {}) {
   class Element {
     constructor() {
@@ -116,7 +119,16 @@ function runtime({
   }
   const from = new Select('from', ['m', 'km', 'cm', 'mm', 'in', 'ft', 'mi'], 'm'),
     to = new Select('to', ['m', 'km', 'cm', 'mm', 'in', 'ft', 'mi'], 'ft'),
-    number = { id: 'val', type: 'number', defaultValue: '1', value: changed ? '739.005' : '1' },
+    currency = new Select('currency', ['USD', 'JPY', 'TWD', 'EUR'], 'USD'),
+    baseline = new Select('baseline-select', [], ''),
+    slug = merchant ? 'merchant-profit-planner' : 'unit-converter',
+    numberDefault = merchant ? '100' : '1',
+    number = {
+      id: merchant ? 'price' : 'val',
+      type: 'number',
+      defaultValue: numberDefault,
+      value: changed ? '739.005' : numberDefault,
+    },
     remember = new Element(),
     forget = new Element(),
     status = new Element(),
@@ -128,10 +140,14 @@ function runtime({
     events = {},
     storage = memory(deny),
     document = {
-      body: { dataset: { cmPreferenceTool: 'unit-converter' } },
+      body: { dataset: { cmPreferenceTool: slug } },
       querySelector: () => panel,
-      querySelectorAll: () => [from, to, number],
-      getElementById: (id) => ({ from, to })[id],
+      querySelectorAll: () => [
+        ...(merchant ? [currency] : [from, to]),
+        number,
+        ...(emptySelect ? [baseline] : []),
+      ],
+      getElementById: (id) => ({ from, to, currency })[id],
       addEventListener: (name, callback) => (events[name] = callback),
     },
     window = {
@@ -145,10 +161,14 @@ function runtime({
     };
   window.self = window;
   window.top = embedded ? {} : window;
+  if (changedSelect) (merchant ? currency : from).value = merchant ? 'EUR' : 'km';
   if (saved)
     storage.data.set(
       S.key,
-      JSON.stringify({ version: 1, tools: { 'unit-converter': { from: 'cm', to: 'm' } } }),
+      JSON.stringify({
+        version: 1,
+        tools: { [slug]: merchant ? { currency: 'JPY' } : { from: 'cm', to: 'm' } },
+      }),
     );
   const ctx = {
     window,
@@ -156,11 +176,24 @@ function runtime({
     localStorage: storage,
     HTMLSelectElement: Select,
     URLSearchParams,
-    location: { pathname: '/unit-converter', search, hash },
+    location: { pathname: '/' + slug, search, hash },
   };
   vm.runInNewContext(coreSource, ctx);
   vm.runInNewContext(runtimeSource, ctx);
-  return { window, from, to, number, remember, forget, status, events, panel, storage };
+  return {
+    window,
+    from,
+    to,
+    currency,
+    baseline,
+    number,
+    remember,
+    forget,
+    status,
+    events,
+    panel,
+    storage,
+  };
 }
 const fresh = runtime();
 assert.equal(fresh.from.value, 'cm');
@@ -233,6 +266,42 @@ assert.equal(optIn.remember.attributes['aria-pressed'], 'false');
 const denied = runtime({ saved: false, deny: true });
 denied.remember.events.click();
 assert.equal(denied.status.textContent, 'native:preferenceFailure');
+
+// Merchant comparison choices are populated by its app after common initialization.
+// An untouched empty SSR select must not block a fresh saved-currency preference.
+const merchantHTML = load(await fs.readFile(new URL('merchant-profit-planner.html', root), 'utf8'));
+assert.equal(merchantHTML('#baseline-select').length, 1);
+assert.equal(merchantHTML('#baseline-select option').length, 0);
+const merchantFresh = runtime({ merchant: true, emptySelect: true });
+assert.equal(merchantFresh.currency.value, 'JPY');
+assert.equal(merchantFresh.number.value, '100', 'Currency preference never changes an amount');
+assert.equal(merchantFresh.baseline.value, '');
+assert.equal(
+  merchantFresh.window.CMPreferences.initialChoice('merchant-profit-planner', 'currency'),
+  'JPY',
+);
+assert.equal(merchantFresh.status.textContent, 'native:preferenceRestored');
+const merchantQuery = runtime({ merchant: true, emptySelect: true, search: '?currency=EUR' });
+assert.equal(
+  merchantQuery.currency.value,
+  'USD',
+  'Explicit query leaves currency initialization to the merchant app',
+);
+assert.equal(
+  merchantQuery.window.CMPreferences.initialChoice('merchant-profit-planner', 'currency'),
+  undefined,
+);
+assert.equal(merchantQuery.status.textContent, 'native:preferenceSkipped');
+for (const state of [{ changed: true }, { changedSelect: true }]) {
+  const current = runtime({ merchant: true, emptySelect: true, ...state });
+  assert.equal(
+    current.window.CMPreferences.initialChoice('merchant-profit-planner', 'currency'),
+    undefined,
+  );
+  assert.equal(current.status.textContent, 'native:preferenceSkipped');
+  assert.equal(current.currency.value, state.changedSelect ? 'EUR' : 'USD');
+  assert.equal(current.number.value, state.changed ? '739.005' : '100');
+}
 
 const locales = [
     'en',

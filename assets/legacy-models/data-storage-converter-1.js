@@ -12,7 +12,7 @@ function render(){ const v=get();
   const base=parseFloat(v.base); const r=compute(v.val,v.from,v.to,base);
   $("result").textContent=fmt(r.result)+" "+v.to;
   $("chipBase").textContent=fmt(r.base)+" B";
-  $("chipInv").textContent=fmt(compute(1,v.to,v.from,base).result)+" "+v.from+" per 1 "+v.to;
+  $("chipInv").textContent=fmt(compute(1,v.to,v.from,base).result)+" "+v.from+"/"+v.to;
   let rh=""; for(const u of Object.keys(LV)){ rh+="<tr><td>"+u+"</td><td class='num'>"+fmt(r.all[u])+"</td></tr>"; }
   $("tblRows").innerHTML=rh;
   const vd=$("verdict"); vd.className="verdict"; $("verdictText").textContent="Base "+v.base+": each step multiplies or divides by "+v.base+". Switch the base to see how the same value reads under the other convention.";

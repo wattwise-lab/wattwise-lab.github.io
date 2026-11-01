@@ -13,7 +13,7 @@ function render(){ const v=get();
   const r=compute(v.val,v.from,v.to);
   $("result").textContent=fmt(r.result)+" "+v.to;
   $("chipBase").textContent=fmt(r.base)+" m²";
-  $("chipInv").textContent=fmt(compute(1,v.to,v.from).result)+" "+v.from+" per 1 "+v.to;
+  $("chipInv").textContent=fmt(compute(1,v.to,v.from).result)+" "+v.from+"/"+v.to;
   let rh=""; for(const u of Object.keys(F)){ rh+="<tr><td>"+u+"</td><td class='num'>"+fmt(r.all[u])+"</td></tr>"; }
   $("tblRows").innerHTML=rh;
   const vd=$("verdict"); vd.className="verdict"; $("verdictText").textContent="Same area, four units — the table below shows the full conversion so you can quote whichever unit your document uses.";
