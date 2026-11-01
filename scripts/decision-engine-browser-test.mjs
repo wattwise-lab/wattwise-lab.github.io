@@ -1005,7 +1005,18 @@ try {
       startupScreenshots = [],
       captureStartup = async (phase, state) => {
         const file = `${engine}-workspace-${phase}.png`,
+          previousFontReadyWait = process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY;
+        let bytes;
+        // A held defer request keeps WebKit fonts.ready pending. This pinned harness-only
+        // switch captures the live loading state without changing page fonts or styles.
+        try {
+          process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY = '1';
           bytes = await page.screenshot({ path: new URL(file, out).pathname, fullPage: false });
+        } finally {
+          if (previousFontReadyWait === undefined)
+            delete process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY;
+          else process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY = previousFontReadyWait;
+        }
         startupScreenshots.push({
           file,
           sha256: createHash('sha256').update(bytes).digest('hex'),
@@ -1013,6 +1024,7 @@ try {
           width: bytes.readUInt32BE(16),
           height: bytes.readUInt32BE(20),
           sourceCommit: process.env.GITHUB_SHA || null,
+          fontReadyWait: 'Skipped only for this deliberately held-network viewport capture.',
           state,
         });
       };
