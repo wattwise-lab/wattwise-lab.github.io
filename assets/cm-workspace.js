@@ -378,69 +378,129 @@
     frame.src = window.CMLocaleRoutes.path('/' + card.slug, lang) + '?embed=1';
     frame.setAttribute('referrerpolicy', 'same-origin');
     card.frame = frame;
+    let loadVersion = 0;
+    card.beginLoading = () => {
+      loadVersion++;
+      card.observer?.disconnect();
+      card.ready = false;
+      frame.setAttribute('data-ws-loading', '');
+      frame.style.height = '470px';
+      send.disabled = true;
+      send.title = t('loading');
+      loading.replaceChildren(document.createTextNode(t('loading')));
+      if (!loading.isConnected) frame.before(loading);
+    };
+    const attached = () => cards.includes(card) && card.node.isConnected && card.frame === frame;
+    const current = (d, version) => {
+      try {
+        return attached() && version === loadVersion && frame.contentDocument === d;
+      } catch {
+        return false;
+      }
+    };
     const failed = (message) => {
       card.ready = false;
+      frame.setAttribute('data-ws-loading', '');
       send.disabled = true;
       loading.replaceChildren(document.createTextNode(message + ' '));
       loading.append(
         button(window.CMI18n.pick('Reload calculator|重新载入计算器'), () => {
-          loading.replaceChildren(document.createTextNode(t('loading')));
-          frame.contentWindow.location.reload();
+          card.beginLoading();
+          try {
+            frame.contentWindow.location.reload();
+          } catch {
+            failed(t('openError'));
+          }
         }),
       );
       if (!loading.isConnected) frame.before(loading);
     };
-    frame.addEventListener('load', () => {
-      card.observer?.disconnect();
-      const d = frame.contentDocument;
-      if (frame.contentWindow.location.href === 'about:blank') return;
-      if (
-        d?.body.dataset.cmPageKind !== 'calculator' ||
-        !d.querySelector('main') ||
-        !d.querySelector('input,select')
-      ) {
-        failed(t('openError'));
-        return;
-      }
-      if (card.pendingState) {
-        try {
-          const saved = card.pendingState,
-            w = frame.contentWindow;
-          if (saved.kind === 'bridge') w.CMCalculatorBridge.restore(saved.data);
-          else w.CMFormState.restore(d, saved.data);
-          card.pendingState = null;
-        } catch {
-          failed(
-            window.CMI18n.pick(
-              'This calculator could not restore its previous state. The snapshot remains in this tab; reload the card to retry.|此计算器未能恢复先前状态，快照仍保留在当前标签页，可重新载入卡片重试。',
-            ),
-          );
+    const loadFrame = async () => {
+      let d, version;
+      try {
+        if (!attached()) return;
+        card.beginLoading();
+        version = loadVersion;
+        d = frame.contentDocument;
+        if (frame.contentWindow.location.href === 'about:blank') return;
+        if (
+          d?.body.dataset.cmPageKind !== 'calculator' ||
+          !d.querySelector('main') ||
+          !d.querySelector('input,select')
+        ) {
+          failed(t('openError'));
           return;
         }
-      }
-      if (card.pendingValues) {
-        for (const [id, value] of card.pendingValues) {
-          const f = d.getElementById(id);
-          if (f) {
-            f.value = value;
-            f.dispatchEvent(new frame.contentWindow.Event('input', { bubbles: true }));
-            f.dispatchEvent(new frame.contentWindow.Event('change', { bubbles: true }));
+        const w = frame.contentWindow,
+          i18n = w.CMI18n;
+        if (!i18n?.ensureTranslations) throw Error('Missing calculator language runtime');
+        while (current(d, version)) {
+          const locale = window.CMI18n.language;
+          if (i18n.language !== locale) i18n.setLanguage(locale);
+          try {
+            await i18n.ensureTranslations(locale);
+          } catch (error) {
+            if (!current(d, version)) return;
+            if (locale !== window.CMI18n.language) continue;
+            throw error;
+          }
+          if (!current(d, version)) return;
+          if (locale !== window.CMI18n.language || i18n.language !== locale) continue;
+          if (locale !== 'en' && !w.CMTranslations?.[locale])
+            throw Error('Calculator language pack unavailable');
+          break;
+        }
+        if (!current(d, version)) return;
+        if (card.pendingState) {
+          const saved = card.pendingState,
+            message = window.CMI18n.pick(
+              'This calculator could not restore its previous state. The snapshot remains in this tab; reload the card to retry.|此计算器未能恢复先前状态，快照仍保留在当前标签页，可重新载入卡片重试。',
+            );
+          try {
+            if (saved.kind === 'bridge') w.CMCalculatorBridge.restore(saved.data);
+            else w.CMFormState.restore(d, saved.data);
+            card.pendingState = null;
+          } catch {
+            failed(message);
+            return;
           }
         }
-        card.pendingValues = null;
+        if (card.pendingValues) {
+          for (const [id, value] of card.pendingValues) {
+            const f = d.getElementById(id);
+            if (f) {
+              f.value = value;
+              f.dispatchEvent(new w.Event('input', { bubbles: true }));
+              f.dispatchEvent(new w.Event('change', { bubbles: true }));
+            }
+          }
+          card.pendingValues = null;
+        }
+        if (!current(d, version)) return;
+        fit(card);
+        loading.remove();
+        card.ready = true;
+        send.disabled = false;
+        send.removeAttribute('title');
+        frame.removeAttribute('data-ws-loading');
+        const refit = () => current(d, version) && card.ready && fit(card),
+          observer = new ResizeObserver(refit);
+        observer.observe(d.body);
+        card.observer = observer;
+        d.addEventListener('input', refit);
+        d.addEventListener('change', refit);
+        document.dispatchEvent(new Event('cm:workspace-results'));
+        d.dispatchEvent(new w.Event('cm:model-updated'));
+      } catch {
+        if (
+          attached() &&
+          (version === undefined || version === loadVersion) &&
+          (!d || current(d, version))
+        )
+          failed(t('openError'));
       }
-      loading.remove();
-      card.ready = true;
-      send.disabled = false;
-      send.removeAttribute('title');
-      document.dispatchEvent(new Event('cm:workspace-results'));
-      fit(card);
-      const observer = new ResizeObserver(() => fit(card));
-      observer.observe(d.body);
-      card.observer = observer;
-      d.addEventListener('input', () => fit(card));
-      d.addEventListener('change', () => fit(card));
-    });
+    };
+    frame.addEventListener('load', loadFrame);
     section.append(frame);
     const foot = el('div', 'ws-card-footer'),
       send = button(t('send') + ' →', () => openTransfer(card.id));
@@ -452,6 +512,7 @@
     full.rel = 'noopener';
     foot.append(send, full);
     section.append(foot);
+    card.beginLoading();
     return section;
   }
   function refresh() {
@@ -460,14 +521,16 @@
       if (!cards.some((c) => c.node === node)) node.remove();
     cards.forEach((c, i) => {
       if (!c.node) mount(c);
-      if (!c.node.isConnected) $('desk').append(c.node);
+      if (!c.node.isConnected) {
+        c.beginLoading();
+        $('desk').append(c.node);
+      }
       const at = $('desk').children[i];
       if (at !== c.node) {
         if (typeof $('desk').moveBefore === 'function') $('desk').moveBefore(c.node, at);
         else {
           if (!captureCard(c)) return;
-          c.ready = false;
-          c.node.querySelector('.ws-card-footer button').disabled = true;
+          c.beginLoading();
           $('desk').insertBefore(c.node, at);
         }
       }
@@ -538,11 +601,11 @@
       card = cards[index];
     if (!card) return;
     if (!captureCard(card)) return;
-    card.ready = false;
-    card.observer?.disconnect();
+    const links = window.CMWorkspaceLinks?.snapshotForCard(id) || [];
+    card.beginLoading();
     cards.splice(index, 1);
     card.node.remove();
-    lastRemoved = { card, index };
+    lastRemoved = { card, index, links };
     refresh();
     announce(t('removed'), () => {
       if (!lastRemoved || cards.length === 4) return;
@@ -550,6 +613,7 @@
       cards.splice(Math.min(r.index, cards.length), 0, r.card);
       lastRemoved = null;
       refresh();
+      window.CMWorkspaceLinks?.restore(r.links);
       announce(t('added'));
     });
   }

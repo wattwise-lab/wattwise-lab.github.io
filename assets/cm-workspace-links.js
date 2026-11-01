@@ -257,6 +257,7 @@
     const message = pausedMessage(),
       changed = input.getAttribute('data-ws-link-paused') !== message;
     input.readOnly = true;
+    input.setAttribute('data-ws-linked', '');
     input.dataset.wsLinkPaused = message;
     input.setCustomValidity(message);
     if (changed) notifyInput(input, card);
@@ -279,6 +280,7 @@
     const link = links.find((l) => l.id === id);
     if (link) release(link);
     links = links.filter((l) => l.id !== id);
+    status.textContent = '';
     draw();
     drawPreview();
   }
@@ -331,6 +333,7 @@
         }
         link.state = 'Linked; destination follows the source.|持续联动中，目标跟随来源。';
         input.readOnly = true;
+        input.setAttribute('data-ws-linked', '');
         const resumed = input.hasAttribute('data-ws-link-paused');
         if (resumed) {
           input.removeAttribute('data-ws-link-paused');
@@ -372,14 +375,51 @@
   }
   function refresh() {
     const ids = new Set(A.cards().map((c) => c.id));
+    const removed = links.some((l) => !ids.has(l.source) || !ids.has(l.destination));
     for (const link of links)
       if (!ids.has(link.source) || !ids.has(link.destination)) release(link);
     links = links.filter((l) => ids.has(l.source) && ids.has(l.destination));
+    if (removed) status.textContent = '';
     watch();
     updateChoices();
     draw();
     I.apply(panel);
   }
+  window.CMWorkspaceLinks = {
+    snapshotForCard(id) {
+      return links
+        .filter((link) => link.source === id || link.destination === id)
+        .map((link) => ({
+          ...link,
+          sourceSlug: byId(link.source)?.slug,
+          destinationSlug: byId(link.destination)?.slug,
+        }));
+    },
+    restore(snapshots) {
+      for (const saved of snapshots || []) {
+        const src = byId(saved.source),
+          dst = byId(saved.destination);
+        if (
+          !src ||
+          !dst ||
+          src.slug !== saved.sourceSlug ||
+          dst.slug !== saved.destinationSlug ||
+          links.length >= 12 ||
+          links.some(
+            (link) =>
+              link.id === saved.id ||
+              (link.destination === saved.destination && link.field === saved.field),
+          ) ||
+          cycles(saved.source, saved.destination)
+        )
+          continue;
+        links.push({ ...saved, state: '' });
+      }
+      status.textContent = '';
+      draw();
+      queue();
+    },
+  };
   document.addEventListener('cm:workspace-change', refresh);
   document.addEventListener('cm:workspace-results', updateChoices);
   document.addEventListener('cm:language', refresh);

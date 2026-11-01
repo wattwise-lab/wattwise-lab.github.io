@@ -386,7 +386,25 @@
     }
     table.append(body);
   }
+  const isLiteralUnit = (value, name) =>
+    !!model.referenceTable && value === name && CMData.isUnitSymbol(value);
+  function protectUnitSymbol(element, symbol) {
+    element.removeAttribute('data-cm-pair');
+    element.setAttribute('data-cm-no-translate', '');
+    element.textContent = symbol;
+  }
   function localize() {
+    if (model.referenceTable) {
+      for (const field of model.fields.filter((f) => f.type === 'select'))
+        for (const option of $(field.id).options) {
+          const original = field.options.find((o) => o[0] === option.value);
+          if (original && isLiteralUnit(...original)) protectUnitSymbol(option, original[0]);
+        }
+      document.querySelectorAll('.cm-expanded__factors tbody th').forEach((th, index) => {
+        const original = model.referenceTable.units[index];
+        if (original && isLiteralUnit(original[0], original[1])) protectUnitSymbol(th, original[0]);
+      });
+    }
     I.apply();
     if (!document.body.hasAttribute('data-cm-page-name'))
       document.title =
@@ -402,7 +420,8 @@
       if (field.type === 'select')
         for (const option of e.options) {
           const original = field.options.find((o) => o[0] === option.value);
-          if (original) option.textContent = label(original[1]);
+          if (original)
+            option.textContent = isLiteralUnit(...original) ? original[0] : label(original[1]);
         }
     }
     $('cm-model-note').textContent = label(model.note);

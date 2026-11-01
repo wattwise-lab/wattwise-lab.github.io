@@ -169,12 +169,14 @@ const keypadCatalog = pinned.slice(0, 2).map(([slug, key]) => ({
   priority: key === 'basic' ? 1 : 2,
 }));
 let expanded = [],
-  resultNumberOptions;
+  resultNumberOptions,
+  isUnitSymbol;
 if (await exists('assets/models/core.js')) {
   const mctx = {};
   vm.createContext(mctx);
   vm.runInContext(await read('assets/cm-data-core.js'), mctx);
   resultNumberOptions = mctx.CMData.resultNumberOptions;
+  isUnitSymbol = mctx.CMData.isUnitSymbol;
   vm.runInContext(await read('assets/models/core.js'), mctx);
   for (const file of (await fs.readdir(new URL('assets/models/', root)))
     .filter((x) => x !== 'core.js' && x.endsWith('.js'))
@@ -462,7 +464,8 @@ for (const lang of locales) {
           `<link rel="alternate" hreflang="${l}" href="https://calcmintly.com${l === 'en' ? '/' : '/' + l.toLowerCase() + '/'}">`,
       )
       .join('') + '<link rel="alternate" hreflang="x-default" href="https://calcmintly.com/">';
-  const main = `<main class="cm-home" id="main-content" data-cm-home><section class="cm-home__hero"><span class="cm-home__eyebrow">${esc(tr(lang, '一个入口，解决日常计算'))}</span><h1>${esc(tr(lang, homeKeys.headline))}<br><em>${esc(tr(lang, homeKeys.em))}</em>${lang === 'zh-CN' ? '里。' : '.'}</h1><p>${esc(tr(lang, homeKeys.intro))}</p><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label></section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2><p>${esc(t(lang, 'pinnedHint'))}</p></div><div class="cm-pinned__grid">${pinned.map(([slug, key]) => `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`).join('')}</div></section><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}">${esc(t(lang, 'workspace'))} →</a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
+  const homeHeadline = `<h1>${esc(tr(lang, homeKeys.headline))}<br><em>${esc(tr(lang, homeKeys.em))}</em><span data-cm-pair=".|里。">${lang === 'zh-CN' ? '里。' : '.'}</span></h1>`;
+  const main = `<main class="cm-home" id="main-content" data-cm-home><section class="cm-home__hero"><span class="cm-home__eyebrow">${esc(tr(lang, '一个入口，解决日常计算'))}</span>${homeHeadline}<p>${esc(tr(lang, homeKeys.intro))}</p><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label></section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2><p>${esc(t(lang, 'pinnedHint'))}</p></div><div class="cm-pinned__grid">${pinned.map(([slug, key]) => `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`).join('')}</div></section><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}"><span data-cm-i18n="workspace">${esc(t(lang, 'workspace'))}</span><span aria-hidden="true"> →</span></a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
     ['实时反馈', '没有“计算”按钮。输入变化，结果、图表和提示同步更新。'],
     ['公式透明', '显示计算方法、默认值和适用限制，方便检查和复算。'],
     ['情境解释', '把结果转换成可行动的区间和提示，而不是制造伪精确。'],
@@ -602,6 +605,7 @@ for (const model of expanded)
       schemas,
       catalog,
       resultNumberOptions,
+      isUnitSymbol,
     }),
   );
 
@@ -609,6 +613,8 @@ for (const model of expanded)
 for (const tool of base) {
   const slug = tool.slug,
     $ = load(await read(slug + '.html'));
+  // Reinsert the startup script once below; it is not a calculator model or formula source.
+  $('script[data-cm-initial-layout],script[src*="cm-initial-layout"]').remove();
   upgradeCorePage($, slug);
   const mainHeading = $('.wrap h1').first();
   mainHeading.removeAttr('data-cm-pair').text(tool.name);
@@ -1098,6 +1104,29 @@ for (const [slug, policy] of Object.entries(context.window.CMPreferenceStore.pol
     '<link rel="stylesheet" href="' + (await asset('assets/cm-preferences.css')) + '">',
   );
   await write(slug + '.html', $.html());
+}
+
+// Establish embedded and workspace startup layout before the first body paint.
+// This small parser-blocking, self-hosted script also works with the response CSP;
+// no inline executable code or relaxed policy is required.
+const initialLayout = await asset('assets/cm-initial-layout.js');
+for (const file of [
+  ...catalog.map((tool) => tool.slug + '.html'),
+  'workspace.html',
+  'embed/merchant-profit.html',
+]) {
+  const $ = load(await read(file));
+  $('script[data-cm-initial-layout],script[src*="cm-initial-layout"]').remove();
+  $('body').prepend('<script data-cm-initial-layout src="' + initialLayout + '"></script>');
+  if (file === 'workspace.html') {
+    $('.ws-initial-status').remove();
+    $('main')
+      .first()
+      .before(
+        '<p class="ws-initial-status" role="status" data-cm-pair="Loading calculator…|正在加载计算器…">Loading calculator…</p>',
+      );
+  }
+  await write(file, $.html());
 }
 
 const metadataPages = await finishMetadata(root, catalog);

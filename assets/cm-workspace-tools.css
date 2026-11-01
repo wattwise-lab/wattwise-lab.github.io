@@ -47,10 +47,16 @@
   font: inherit;
 }
 .ws-direct-tool strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 13px;
   line-height: 1.5;
 }
 .ws-direct-tool small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 10px;
   color: var(--cm-muted);
   grid-column: 1;
@@ -86,9 +92,15 @@
   font: inherit;
 }
 .ws-goal-pack strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 14px;
 }
 .ws-goal-pack span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 11px;
   line-height: 1.7;
   color: var(--cm-muted);
@@ -123,6 +135,9 @@
   min-height: 80px;
 }
 .ws-overview__item strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 12px;
   line-height: 1.6;
 }

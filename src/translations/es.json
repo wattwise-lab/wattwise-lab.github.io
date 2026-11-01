@@ -398,7 +398,7 @@
   "Square metres per unit": "Metros cuadrados por unidad",
   "Square metre (m²)": "Metro cuadrado (m²)",
   "Square foot (ft²)": "Pie cuadrado (ft²)",
-  "Acre": "Hectárea",
+  "Acre": "Acre (ac)",
   "The square-foot and acre factors are exact international definitions. The mu factor 666.6667 m² is the commonly used Chinese definition (1 mu = 2000/3 m², rounded here); cadastral and local land units may follow other definitions.": "Los factores de pies cuadrados y acre son definiciones internacionales exactas. El factor mu 666.6667 m² es la definición china comúnmente utilizada (1 mu = 2000/3 m², redondeado aquí); Las unidades de tierra catastrales y locales pueden seguir otras definiciones.",
   "What is a mu?": "¿Qué es un mu?",
   "A Chinese area unit. This page uses the common modern definition 1 mu = 666.6667 m² (2000/3 m²). Older or local definitions differ, so check before using it for land documents.": "Una unidad de área china. Esta página utiliza la definición moderna común 1 mu = 666.6667 m² (2000/3 m²). Las definiciones más antiguas o locales difieren, así que verifíquelas antes de usarlas para documentos territoriales.",

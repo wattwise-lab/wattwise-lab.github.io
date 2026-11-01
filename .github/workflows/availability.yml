@@ -3,15 +3,35 @@ on:
   schedule:
     - cron: '17,47 * * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['pages-build-deployment']
+    types: [completed]
+    branches: [main]
 permissions:
   contents: read
 jobs:
   probe:
+    if: >-
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.workflow_id == 349934633 &&
+       github.event.workflow_run.event == 'dynamic' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Record tested checkout
+        run: git rev-parse HEAD
       - run: node scripts/http-probe.mjs
+        env:
+          CALCMINTLY_ORIGIN: https://calcmintly.com

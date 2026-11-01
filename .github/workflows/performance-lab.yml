@@ -1,0 +1,44 @@
+name: Initial-load performance lab
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-chromium-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Check collector and missing-value semantics
+        run: node scripts/performance-lab.mjs --self-test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Start existing local preview
+        run: python3 scripts/preview-server.py > /tmp/calcmintly-performance-http.log 2>&1 &
+      - name: Wait for local preview
+        run: |
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:4173/; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+      - name: Collect all twelve samples and enforce initial-load budgets
+        run: node scripts/performance-lab.mjs
+        env:
+          BASE_URL: http://127.0.0.1:4173
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-lab-${{ github.run_id }}-${{ github.run_attempt }}
+          path: browser-evidence/performance-lab/
+          retention-days: 14
+          if-no-files-found: warn

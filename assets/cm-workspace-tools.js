@@ -104,7 +104,8 @@
   }
   function draw() {
     query = search.value.trim().toLocaleLowerCase();
-    const words = query.split(/\s+/).filter(Boolean),
+    const cardCount = A.cards().length,
+      words = query.split(/\s+/).filter(Boolean),
       matches = [...catalog]
         .filter((x) => words.every((word) => I.searchText(x).toLocaleLowerCase().includes(word)))
         .sort((a, b) => a.priority - b.priority);
@@ -121,7 +122,7 @@
       delete b.dataset.cmPair;
       b.setAttribute(
         'aria-label',
-        text(A.cards().length < 4 ? 'Add|添加' : 'Replace with|替换为') + ' ' + name(item),
+        text(cardCount < 4 ? 'Add|添加' : 'Replace with|替换为') + ' ' + name(item),
       );
       b.append(strong, small, icon);
       results.append(b);
@@ -131,24 +132,28 @@
       : text(
           'Eight everyday shortcuts. Search all 500 by name or purpose.|八个常用入口；按名称或用途搜索全部 500 个工具。',
         );
-    results.hidden = A.cards().length > 0 && A.cards().length < 4 && !query;
-    hint.hidden = results.hidden;
+    results.hidden = cardCount > 0 && !query;
+    hint.hidden = results.hidden && cardCount < 4;
     more.hidden = matches.length <= 8 || results.hidden;
-    more.disabled = A.cards().length >= 4;
-    if (A.cards().length >= 4) {
+    more.disabled = cardCount >= 4;
+    if (cardCount >= 4) {
       more.hidden = true;
-      hint.textContent +=
-        ' ' +
-        text(
-          'All four spaces are in use. Pick a tool below to choose which card to replace.|四个位置已满，点击下方工具后选择要替换的卡片。',
-        );
+      hint.textContent = query
+        ? hint.textContent +
+          ' ' +
+          text(
+            'All four spaces are in use. Pick a tool below to choose which card to replace.|四个位置已满，点击下方工具后选择要替换的卡片。',
+          )
+        : text(
+            'All four spaces are in use. Choose Replace on any card to change its calculator.|四个位置已满。点击任意卡片上的「替换」即可更换工具。',
+          );
     }
   }
   search.addEventListener('input', draw);
   search.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      results.querySelector('button')?.click();
+      if (!results.hidden) results.querySelector('button')?.click();
     }
   });
   const packs = [

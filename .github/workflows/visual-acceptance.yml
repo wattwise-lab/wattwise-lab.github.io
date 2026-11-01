@@ -1,0 +1,56 @@
+name: Native visual acceptance
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Install system glyph coverage for all20 languages
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk fonts-noto-extra
+      - run: npm run build
+      - name: Start the generated preview
+        run: python3 scripts/preview-server.py > /tmp/calcmintly-visual-http.log 2>&1 &
+      - name: Capture all native workspaces and affected unit pages
+        run: node scripts/visual-acceptance.mjs --wait-ms 30000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-visual-local
+          path: visual-evidence/local/
+          retention-days: 14
+  production-visual:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Install system glyph coverage for all20 languages
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk fonts-noto-extra
+      - name: Capture the exact formal deployment after it is available
+        run: node scripts/visual-acceptance.mjs --origin https://calcmintly.com --wait-ms 300000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-visual-production
+          path: visual-evidence/production/
+          retention-days: 14

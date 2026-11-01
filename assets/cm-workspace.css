@@ -4,6 +4,36 @@
   --mint: #0c6655;
   --line: #dce6df;
 }
+html[data-cm-workspace-booting] {
+  overflow-y: scroll;
+}
+html[data-cm-workspace-booting] .ws-shell,
+html[data-cm-workspace-booting] .cm-site-footer {
+  visibility: hidden;
+}
+.ws-initial-status {
+  display: none;
+}
+html[data-cm-workspace-booting] .ws-initial-status {
+  display: block;
+  position: fixed;
+  inset-inline: 24px;
+  top: 112px;
+  z-index: 20;
+  max-width: 640px;
+  min-height: 44px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  border: 1px solid var(--cm-line, var(--line));
+  border-radius: 12px;
+  background: var(--cm-paper, #fff);
+  color: var(--cm-ink, var(--ink));
+  font-size: 16px;
+  line-height: 1.6;
+}
+.ws-card iframe[data-ws-loading] {
+  visibility: hidden;
+}
 * {
   box-sizing: border-box;
 }
@@ -154,6 +184,7 @@ a {
   color: #4b8467;
 }
 .ws-intro h1 {
+  text-wrap: balance;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.15;
   letter-spacing: -0.04em;
@@ -161,6 +192,7 @@ a {
   margin: 9px 0 12px;
 }
 .ws-intro p {
+  text-wrap: balance;
   margin: 0;
   color: var(--muted);
   font-size: 14px;
@@ -356,8 +388,13 @@ a {
   padding: 6px 10px;
 }
 .ws-card-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   font-size: 12px;
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
 .ws-loading {
   padding: 16px;
@@ -770,8 +807,9 @@ dialog::backdrop {
   font-size: 12px;
   font-weight: 650;
   cursor: pointer;
-  min-height: 24px;
+  min-height: 44px;
   line-height: 24px;
+  padding-block: 10px;
 }
 .ws-starters > p {
   margin: 6px 0 10px;

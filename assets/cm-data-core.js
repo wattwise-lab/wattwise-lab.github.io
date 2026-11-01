@@ -1,6 +1,18 @@
 /* Numeric input and output shared by calculators and generated pages. */
 var CMData = (() => {
   'use strict';
+  // Unit symbols are notation, even when a dictionary also contains the same ordinary word.
+  // Keep this boundary in unit contexts; descriptive unit names still use normal localization.
+  const unitSymbols = new Set(
+    (
+      'A Ah AU Bq C Ci F GBq GHz Gal Gy GΩ H Hz J L L/h L/min L/mol L/s MB MB/s MBq MHz MJ MP MPa MV MW MΩ Mbps N N/C N·cm N·m N·s PPI Pa Pa·s TB Torr V W W/(cm·K) W/(m·K) W/cm² W/ft² W/kg W/m² W/m²·K Wh ' +
+      'atm bar bpm cm dB dyn eV ft/s² ft³/min g g/cm³ g/mL kA kBq kHz kJ kN kPa kV kW kW/m² kWh kcal kg kg/L kg/m² kg/m³ kgf kgf·m kg·m/s kg·m² km km/h kΩ lb/ft³ lbf lbf·ft lbf·in ' +
+      'm m/s m/s² mA mAh mC mCi mF mGy mH mPa·s mV mW/(m·K) min/km mm mm²/s ms m² m²/s m²·K/W m³ m³/h m³/s mΩ nA nC nF nH nm pF psi px rad rad/s rad/s² rpm s vw µA µC µCi µF µGy µH µV µΩ Ω ° °C % × 1/h lm lx'
+    ).split(' '),
+  );
+  function isUnitSymbol(source) {
+    return unitSymbols.has(source);
+  }
   function digits(value) {
     return String(value)
       .replace(/[٠-٩۰-۹०-९০-৯౦-౯]/g, (char) => {
@@ -63,6 +75,7 @@ var CMData = (() => {
     return { maximumSignificantDigits: measured && !Number.isInteger(value) ? 6 : 12 };
   }
   function unit(source, value = 2, locale = 'en', translate = (s) => s, t = (s) => s) {
+    if (isUnitSymbol(source)) return source;
     const rateTime = (key) =>
       locale === 'zh-CN'
         ? { month: '月', year: '年', hour: '小时' }[key] || unit(key, 1, locale, translate, t)
@@ -127,5 +140,5 @@ var CMData = (() => {
       } catch {}
     return translate(source);
   }
-  return { digits, list, displayNumber, expression, resultNumberOptions, unit };
+  return { digits, list, displayNumber, expression, resultNumberOptions, isUnitSymbol, unit };
 })();

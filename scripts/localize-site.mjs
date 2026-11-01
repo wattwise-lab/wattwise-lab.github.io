@@ -110,6 +110,13 @@ export async function localizeSite(root, catalog, pages, selected) {
         .attr('lang', locale)
         .attr('dir', ['ar', 'ur'].includes(locale) ? 'rtl' : 'ltr')
         .attr('data-cm-localized-routes', '');
+      // This pass produces the final native home; earlier per-locale homes are replaced.
+      // Keep Japanese word order and punctuation as a complete protected sentence.
+      if (page.path === '/' && locale === 'ja')
+        $('.cm-home__hero>h1')
+          .attr('data-cm-no-translate', '')
+          .text('複雑な数式に、')
+          .append($('<br>'), $('<em>').text('答えを隠さない'), '。');
       // Each translated text node keeps its exact source. A surrounding element can
       // still replace its contents normally; that also removes the obsolete source.
       const nodes = [];

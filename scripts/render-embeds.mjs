@@ -17,7 +17,7 @@ export async function renderEmbeds(root, catalog) {
       $('meta[name=robots]').remove();
       $('head').append('<meta name="robots" content="noindex,follow">');
       $('body')
-        .addClass('cm-embedded')
+        .addClass('cm-embedded cm-unified--embedded')
         .attr('data-cm-canonical-path', '/' + tool.slug);
       if (['basic-calculator', 'scientific-calculator'].includes(tool.slug))
         $('body').addClass('kp-embedded');
