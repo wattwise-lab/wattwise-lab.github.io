@@ -218,6 +218,12 @@ try {
     assert.match(intentPreview, /Vérifiez ces valeurs/);
     assert.doesNotMatch(intentPreview, /Review these values|请核对/);
     await entryPage.keyboard.press('Escape');
+    // The native close event restores focus in a queued user-interaction task.
+    await entryPage.waitForFunction(
+      () =>
+        !document.querySelector('#ws-intent-preview').open &&
+        document.querySelector('#ws-intent-input') === document.activeElement,
+    );
     assert.equal(
       await entryPage.locator('#ws-intent-input').evaluate((e) => e === document.activeElement),
       true,
