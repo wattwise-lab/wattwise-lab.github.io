@@ -847,6 +847,75 @@ try {
       .frameLocator('iframe[src*="annulus-calculator"]')
       .locator('#result')
       .waitFor({ state: 'visible' });
+    const linkedLayout = encodeURIComponent(
+      JSON.stringify({
+        v: 1,
+        tools: ['mechanical-power-calculator', 'solar-energy-production-calculator'],
+      }),
+    );
+    await page.goto(base + '/workspace?lang=en#desk=' + linkedLayout, { waitUntil: 'load' });
+    const mechanical = page.frameLocator('#desk-1 iframe'),
+      solar = page.frameLocator('#desk-2 iframe');
+    await mechanical.locator('#w').fill('2000');
+    await mechanical.locator('#t').fill('5');
+    await page.locator('.ws-links summary').click();
+    await page.locator('#ws-link-source').selectOption('1');
+    await page.locator('#ws-link-result').selectOption('0');
+    await page.locator('#ws-link-destination').selectOption('2');
+    await page.locator('#ws-link-field').selectOption('p');
+    await page.locator('.ws-links__form button[type="submit"]').click();
+    await page.waitForFunction(() => {
+      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
+      return input.readOnly && Number(input.value) === 0.4;
+    });
+    await page.locator('#desk-1 .ws-card-actions button').nth(2).click();
+    await page.waitForFunction(() => {
+      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
+      return input.readOnly && Number(input.value) === 0.4;
+    });
+    await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
+    assert.equal(await page.locator('.ws-links__item').count(), 0);
+    assert.equal(await page.locator('.ws-links__status').innerText(), '');
+    assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), false);
+    await page.locator('#ws-message button').click();
+    await page.waitForFunction(() => {
+      const input = document.querySelector('#desk-2 iframe').contentDocument.getElementById('p');
+      return input.readOnly && Number(input.value) === 0.4 && input.hasAttribute('data-ws-linked');
+    });
+    assert.equal(await page.locator('.ws-links__item').count(), 1);
+    assert.equal(await mechanical.locator('#w').inputValue(), '2000');
+    await mechanical.locator('#w').fill('3000');
+    await page.waitForFunction(
+      () =>
+        Number(
+          document.querySelector('#desk-2 iframe').contentDocument.getElementById('p').value,
+        ) === 0.6,
+    );
+    await page.locator('#cm-site-language').selectOption('zh-CN');
+    // Translation dictionaries arrive asynchronously; assert settled UI, not the transition frame.
+    await page.waitForFunction(() => {
+      const I = globalThis.CMI18n,
+        tool = globalThis.CMCatalog.find((item) => item.slug === 'mechanical-power-calculator');
+      return (
+        I.language === 'zh-CN' &&
+        document.querySelector('label[for="ws-direct-search"]').textContent ===
+          I.t('searchLabel') &&
+        document.querySelector('#desk-1 iframe').title === I.toolName(tool) &&
+        document.querySelector('#ws-message').textContent.includes('计算器') &&
+        !document.querySelector('#ws-message').textContent.includes('Calculator') &&
+        document.querySelector('.ws-links__item').textContent.includes('持续联动')
+      );
+    });
+    assert.equal(await page.locator('.ws-links__status').innerText(), '');
+    assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), true);
+    await page.locator('.ws-links__item button').click();
+    assert.equal(await solar.locator('#p').evaluate((input) => input.readOnly), false);
+    assert.equal(await page.locator('.ws-links__status').innerText(), '');
+    results.push({
+      test: 'workspace live-link move, remove/Undo, restored propagation and settled native UI',
+      engine,
+      passed: true,
+    });
     await context.addInitScript(() => {
       Object.defineProperty(globalThis.Element.prototype, 'moveBefore', {
         value: undefined,

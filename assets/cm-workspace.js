@@ -538,11 +538,12 @@
       card = cards[index];
     if (!card) return;
     if (!captureCard(card)) return;
+    const links = window.CMWorkspaceLinks?.snapshotForCard(id) || [];
     card.ready = false;
     card.observer?.disconnect();
     cards.splice(index, 1);
     card.node.remove();
-    lastRemoved = { card, index };
+    lastRemoved = { card, index, links };
     refresh();
     announce(t('removed'), () => {
       if (!lastRemoved || cards.length === 4) return;
@@ -550,6 +551,7 @@
       cards.splice(Math.min(r.index, cards.length), 0, r.card);
       lastRemoved = null;
       refresh();
+      window.CMWorkspaceLinks?.restore(r.links);
       announce(t('added'));
     });
   }
