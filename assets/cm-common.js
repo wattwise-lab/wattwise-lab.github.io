@@ -5050,7 +5050,7 @@ window.CMI18n = (() => {
         return false;
       if (control instanceof HTMLSelectElement) {
         const original = [...control.options].find((option) => option.defaultSelected);
-        return control.value !== (original || control.options[0])?.value;
+        return control.value !== ((original || control.options[0])?.value ?? '');
       }
       if (['radio', 'checkbox'].includes(control.type))
         return control.checked !== control.defaultChecked;
