@@ -4455,7 +4455,7 @@ window.CMPreferenceStore = (() => {
 })();
 
 ;
-window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.7dbab5b7dbba.js","hi":"/assets/dist/hi.1fc059440f9d.js","es":"/assets/dist/es.abc107b6fa45.js","ar":"/assets/dist/ar.ad7fa6159c20.js","fr":"/assets/dist/fr.c95e62222b11.js","bn":"/assets/dist/bn.357f20ae0606.js","pt":"/assets/dist/pt.7a2b8624e225.js","id":"/assets/dist/id.e18356df2d1a.js","ur":"/assets/dist/ur.c34ecb547cd8.js","ru":"/assets/dist/ru.46a414a9a322.js","de":"/assets/dist/de.7b7dd8d8bc11.js","ja":"/assets/dist/ja.9f17bf07e3fb.js","pcm":"/assets/dist/pcm.3276c9868df9.js","mr":"/assets/dist/mr.5baf7198238c.js","vi":"/assets/dist/vi.7168521d3e42.js","te":"/assets/dist/te.03f493716803.js","sw":"/assets/dist/sw.b324803acc73.js","ha":"/assets/dist/ha.95750107e216.js","tr":"/assets/dist/tr.b0a3d5280d4a.js"};
+window.CMTranslationAssets={"zh-CN":"/assets/dist/zh-CN.dc2ce096af23.js","hi":"/assets/dist/hi.673157405af0.js","es":"/assets/dist/es.26a3f4b28b51.js","ar":"/assets/dist/ar.cc36d6d30410.js","fr":"/assets/dist/fr.f159c81933d6.js","bn":"/assets/dist/bn.cdd978bbd6cf.js","pt":"/assets/dist/pt.7a2b8624e225.js","id":"/assets/dist/id.e18356df2d1a.js","ur":"/assets/dist/ur.c34ecb547cd8.js","ru":"/assets/dist/ru.3a50b76a15c7.js","de":"/assets/dist/de.7b7dd8d8bc11.js","ja":"/assets/dist/ja.e11956e6a489.js","pcm":"/assets/dist/pcm.3276c9868df9.js","mr":"/assets/dist/mr.5baf7198238c.js","vi":"/assets/dist/vi.477b677c6188.js","te":"/assets/dist/te.03f493716803.js","sw":"/assets/dist/sw.b05d32411085.js","ha":"/assets/dist/ha.95750107e216.js","tr":"/assets/dist/tr.e147525526d1.js"};
 
 ;
 window.CMI18n = (() => {
