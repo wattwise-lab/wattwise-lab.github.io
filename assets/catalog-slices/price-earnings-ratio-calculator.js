@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"price-earnings-ratio-calculator","name":"Price to Earnings Ratio","names":{"zh-CN":"市盈率"},"domain":"Finance","keywords":"Price to Earnings Ratio 市盈率 price-earnings-ratio-calculator","new":true,"description":"Compare share price with positive earnings per share.","descriptions":{"zh-CN":"比较股价与正的每股收益。"},"priority":170}];

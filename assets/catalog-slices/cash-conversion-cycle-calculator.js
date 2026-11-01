@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cash-conversion-cycle-calculator","name":"Cash Conversion Cycle","names":{"zh-CN":"现金周转周期"},"domain":"Business","keywords":"Cash Conversion Cycle 现金周转周期 cash-conversion-cycle-calculator","new":true,"description":"Combine inventory, collection and supplier-payment days.","descriptions":{"zh-CN":"合并存货、收款与付款天数。"},"priority":195}];

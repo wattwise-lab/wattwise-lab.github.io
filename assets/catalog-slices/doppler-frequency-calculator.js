@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"doppler-frequency-calculator","name":"Doppler Observed Frequency","names":{"zh-CN":"多普勒观测频率"},"domain":"Science","keywords":"Doppler Observed Frequency 多普勒观测频率 doppler-frequency-calculator","new":true,"description":"Estimate a sound-frequency shift along one line.","descriptions":{"zh-CN":"估计一条直线上的声频变化。"},"priority":382}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"triangle-centroid-calculator","name":"Triangle Centroid","names":{"zh-CN":"三角形重心"},"domain":"Math and Time","keywords":"Triangle Centroid 三角形重心 triangle-centroid-calculator","new":true,"description":"Average the three vertex coordinates to locate the triangle centroid.","descriptions":{"zh-CN":"根据三个顶点坐标求三角形重心。"},"priority":287}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"force-converter",name:"Force Converter",names:{"zh-CN":"\u529B\u5355\u4F4D\u6362\u7B97"},domain:"Converters",keywords:"Force Converter \u529B\u5355\u4F4D\u6362\u7B97 force-converter",new:!0,description:"Convert force independently of mass.",descriptions:{"zh-CN":"\u6362\u7B97\u529B\u5355\u4F4D\uFF0C\u533A\u522B\u4E8E\u8D28\u91CF\u3002"},priority:101}];

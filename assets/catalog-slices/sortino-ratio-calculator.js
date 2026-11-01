@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sortino-ratio-calculator","name":"Sortino Ratio","names":{"zh-CN":"索提诺比率"},"domain":"Finance","keywords":"Sortino Ratio 索提诺比率 sortino-ratio-calculator","new":true,"description":"Compare return above a target with downside deviation.","descriptions":{"zh-CN":"比较超过目标的回报与下行偏差。"},"priority":177}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pixel-density-calculator","name":"Screen Pixel Density","names":{"zh-CN":"屏幕像素密度"},"domain":"Digital and Technology","keywords":"Screen Pixel Density 屏幕像素密度 pixel-density-calculator","new":true,"description":"Convert resolution and diagonal size into pixels per inch.","descriptions":{"zh-CN":"由分辨率与对角线长度计算每英寸像素。"},"priority":128}];

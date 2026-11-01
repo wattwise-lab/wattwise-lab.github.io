@@ -1,0 +1,58 @@
+(() => {
+  'use strict';
+
+  const num = (n) =>
+    Number(n).toLocaleString(
+      typeof window !== 'undefined' && window.CMI18n ? window.CMI18n.formatLocale : 'en-US',
+      { maximumFractionDigits: 2 },
+    );
+  const $ = (id) => document.getElementById(id);
+  function get() {
+    const v = {};
+    document.querySelectorAll('input').forEach((e) => {
+      v[e.id] = e.value.trim() ? Number(e.value) : NaN;
+    });
+    return v;
+  }
+  function render() {
+    const v = get();
+    if (!(Number.isFinite(v.dist) && Number.isFinite(v.time) && v.dist >= 0 && v.time > 0)) {
+      $('result').textContent = '—';
+      $('chipMs').textContent = '—';
+      $('chipPace').textContent = '—';
+      const vd = $('verdict');
+      vd.className = 'verdict warn';
+      $('verdictText').textContent =
+        'Enter a finite distance at zero or above and a finite time above zero.';
+      return;
+    }
+    const kmh = v.dist / v.time,
+      ms = kmh / 3.6,
+      pace = kmh > 0 ? 60 / kmh : 0;
+    if (![kmh, ms, pace].every(Number.isFinite) || (v.dist > 0 && kmh === 0)) {
+      $('result').textContent = '—';
+      $('chipMs').textContent = '—';
+      $('chipPace').textContent = '—';
+      $('verdict').className = 'verdict warn';
+      $('verdictText').textContent = 'These values are outside the supported numeric range.';
+      return;
+    }
+    $('result').textContent = num(kmh) + ' km/h';
+    $('chipMs').textContent = num(ms) + ' m/s';
+    $('chipPace').textContent = kmh > 0 ? num(pace) + ' min/km' : '—';
+    const vd = $('verdict');
+    vd.className = 'verdict';
+    $('verdictText').textContent =
+      num(v.dist) +
+      ' km in ' +
+      num(v.time) +
+      ' hours averages ' +
+      num(kmh) +
+      ' km/h (' +
+      num(ms) +
+      ' m/s).';
+  }
+
+  document.querySelectorAll('input').forEach((e) => e.addEventListener('input', render));
+  render();
+})();

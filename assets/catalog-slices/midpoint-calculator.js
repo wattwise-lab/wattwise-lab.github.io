@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"midpoint-calculator","name":"Midpoint Calculator","names":{"zh-CN":"中点计算器"},"domain":"Math and Time","keywords":"Midpoint Calculator 中点计算器 midpoint-calculator","new":true,"description":"Find the coordinate halfway between two points.","descriptions":{"zh-CN":"求两点之间的中点坐标。"},"priority":337}];

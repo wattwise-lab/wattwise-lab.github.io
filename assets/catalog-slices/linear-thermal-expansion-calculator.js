@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"linear-thermal-expansion-calculator","name":"Linear Thermal Expansion","names":{"zh-CN":"线性热膨胀"},"domain":"Science","keywords":"Linear Thermal Expansion 线性热膨胀 linear-thermal-expansion-calculator","new":true,"description":"Estimate length change with constant expansion coefficient.","descriptions":{"zh-CN":"按恒定膨胀系数估计长度变化。"},"priority":404}];

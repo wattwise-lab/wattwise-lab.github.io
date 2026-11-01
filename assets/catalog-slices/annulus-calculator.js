@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"annulus-calculator","name":"Annulus Calculator","names":{"zh-CN":"圆环面积"},"domain":"Math and Time","keywords":"Annulus Calculator 圆环面积 annulus-calculator","new":true,"description":"Find area and total inner-plus-outer boundary of a circular ring.","descriptions":{"zh-CN":"求圆环面积及内外边界总长。"},"priority":281}];

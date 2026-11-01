@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"capacitance-converter","name":"Capacitance Converter","names":{"zh-CN":"电容单位换算"},"domain":"Converters","keywords":"Capacitance Converter 电容单位换算 capacitance-converter","new":true,"description":"Convert farads, microfarads, nanofarads and picofarads.","descriptions":{"zh-CN":"换算法拉、微法、纳法与皮法。"},"priority":108}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"littles-law-calculator","name":"Little’s Law Capacity","names":{"zh-CN":"利特尔定律容量"},"domain":"Digital and Technology","keywords":"Little’s Law Capacity 利特尔定律容量 littles-law-calculator","new":true,"description":"Relate stable throughput, time in system and work in progress.","descriptions":{"zh-CN":"联系稳定系统的吞吐率、停留时间与在途工作量。"},"priority":143}];

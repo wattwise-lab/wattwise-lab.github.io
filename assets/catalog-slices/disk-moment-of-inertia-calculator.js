@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"disk-moment-of-inertia-calculator","name":"Disk Moment of Inertia","names":{"zh-CN":"圆盘转动惯量"},"domain":"Science","keywords":"Disk Moment of Inertia 圆盘转动惯量 disk-moment-of-inertia-calculator","new":true,"description":"Find inertia of a uniform solid disk about its central normal axis.","descriptions":{"zh-CN":"计算均匀实心圆盘绕中心垂直轴的转动惯量。"},"priority":433}];

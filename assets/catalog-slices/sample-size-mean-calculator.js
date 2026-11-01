@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sample-size-mean-calculator","name":"Sample Size for a Mean","names":{"zh-CN":"均值估计所需样本量"},"domain":"Math and Time","keywords":"Sample Size for a Mean 均值估计所需样本量 sample-size-mean-calculator","new":true,"description":"Plan sample size from assumed population deviation and desired error.","descriptions":{"zh-CN":"按假设总体标准差和目标误差规划样本量。"},"priority":455}];

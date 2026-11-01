@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rectangle-calculator","name":"Rectangle Area and Diagonal","names":{"zh-CN":"矩形面积与对角线"},"domain":"Math and Time","keywords":"Rectangle Area and Diagonal 矩形面积与对角线 rectangle-calculator","new":true,"description":"Calculate rectangle area, perimeter and diagonal from two side lengths.","descriptions":{"zh-CN":"由两边长度计算矩形面积、周长和对角线。"},"priority":273}];

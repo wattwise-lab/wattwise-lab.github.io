@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"tip-calculator","name":"Tip Calculator","domain":"Business","keywords":"tip gratuity tip calculator restaurant tip","names":{"zh-CN":"小费计算器","ja":"チップ計算"},"new":false,"description":"Split a restaurant bill after adding a chosen tip percentage.","descriptions":{"zh-CN":"计算小费、总账单和多人分摊后的每人金额。"},"priority":10}];

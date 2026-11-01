@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"fat-free-mass-index-calculator","name":"Fat Free Mass Index","names":{"zh-CN":"去脂体重指数 FFMI"},"domain":"Health","keywords":"Fat Free Mass Index 去脂体重指数 FFMI fat-free-mass-index-calculator","new":true,"description":"Scale measured fat-free mass by height squared.","descriptions":{"zh-CN":"将测量推算的去脂体重按身高平方标准化。"},"priority":216}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"linear-regression-calculator","name":"Simple Linear Regression","names":{"zh-CN":"一元线性回归"},"domain":"Math and Time","keywords":"Simple Linear Regression 一元线性回归 linear-regression-calculator","new":true,"description":"Fit y=intercept+slope×x and predict y at an editable x.","descriptions":{"zh-CN":"拟合一元线性回归，并在指定 x 处求预测值。"},"priority":464}];

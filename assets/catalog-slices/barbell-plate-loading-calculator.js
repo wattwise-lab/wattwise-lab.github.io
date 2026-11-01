@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"barbell-plate-loading-calculator","name":"Barbell Plate Loading","names":{"zh-CN":"杠铃配片"},"domain":"Health","keywords":"Barbell Plate Loading 杠铃配片 barbell-plate-loading-calculator","new":true,"description":"Find balanced plate pairs from an available set of denominations.","descriptions":{"zh-CN":"根据可用片重组合找到左右平衡的配片方案。"},"priority":222}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"inventory-safety-stock-calculator","name":"Inventory Safety Stock","names":{"zh-CN":"库存安全量"},"domain":"Business","keywords":"Inventory Safety Stock 库存安全量 inventory-safety-stock-calculator","new":true,"description":"Estimate a demand-variation buffer for fixed lead time.","descriptions":{"zh-CN":"在交货期固定时估计需求波动缓冲。"},"priority":205}];

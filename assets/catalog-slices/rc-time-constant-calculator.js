@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rc-time-constant-calculator","name":"RC Time Constant","names":{"zh-CN":"RC 时间常数"},"domain":"Science","keywords":"RC Time Constant RC 时间常数 rc-time-constant-calculator","new":true,"description":"Find capacitor charging time scales for an ideal RC circuit.","descriptions":{"zh-CN":"求理想 RC 电路电容充电的时间尺度。"},"priority":369}];

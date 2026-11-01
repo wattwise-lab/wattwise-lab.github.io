@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"harmonic-mean-calculator","name":"Harmonic Mean","names":{"zh-CN":"调和平均数"},"domain":"Math and Time","keywords":"Harmonic Mean 调和平均数 harmonic-mean-calculator","new":true,"description":"Average positive rates when their numerators carry equal weight.","descriptions":{"zh-CN":"在分子等权的条件下计算正比率的调和平均。"},"priority":443}];

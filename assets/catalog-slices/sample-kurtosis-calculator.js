@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sample-kurtosis-calculator","name":"Unbiased Excess Kurtosis","names":{"zh-CN":"无偏超额峰度"},"domain":"Math and Time","keywords":"Unbiased Excess Kurtosis 无偏超额峰度 sample-kurtosis-calculator","new":true,"description":"Measure sample tail weight relative to a normal distribution.","descriptions":{"zh-CN":"衡量样本尾部相对正态分布的厚重程度。"},"priority":488}];

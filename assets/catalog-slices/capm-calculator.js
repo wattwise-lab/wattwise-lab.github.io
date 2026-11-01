@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"capm-calculator","name":"Capital Asset Pricing Model","names":{"zh-CN":"资本资产定价模型"},"domain":"Finance","keywords":"Capital Asset Pricing Model 资本资产定价模型 capm-calculator","new":true,"description":"Estimate a required return from market beta and a risk premium.","descriptions":{"zh-CN":"按市场贝塔与风险溢价估计必要回报率。"},"priority":172}];

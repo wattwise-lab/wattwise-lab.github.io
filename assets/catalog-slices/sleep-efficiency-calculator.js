@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sleep-efficiency-calculator","name":"Sleep Efficiency","names":{"zh-CN":"睡眠效率"},"domain":"Health","keywords":"Sleep Efficiency 睡眠效率 sleep-efficiency-calculator","new":true,"description":"Compare estimated time asleep with time spent in bed.","descriptions":{"zh-CN":"比较估计睡着时长与在床时长。"},"priority":237}];

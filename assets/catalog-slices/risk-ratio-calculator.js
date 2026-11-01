@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"risk-ratio-calculator","name":"Risk Ratio and Difference","names":{"zh-CN":"风险比与概率差"},"domain":"Math and Time","keywords":"Risk Ratio and Difference 风险比与概率差 risk-ratio-calculator","new":true,"description":"Compare observed event proportions between groups.","descriptions":{"zh-CN":"比较两组观测事件比例。"},"priority":491}];

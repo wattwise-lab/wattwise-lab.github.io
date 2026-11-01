@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"meeting-cost","name":"Meeting Cost","domain":"Math and Time","keywords":"meeting cost meeting expense cost of meeting","names":{"zh-CN":"会议成本","ja":"会議コスト"},"new":false,"description":"Annual time value of a recurring meeting from people, hourly cost, length and frequency.","descriptions":{"zh-CN":"根据人数、时薪和会议时长，估算会议及年度重复会议成本。"},"priority":79}];

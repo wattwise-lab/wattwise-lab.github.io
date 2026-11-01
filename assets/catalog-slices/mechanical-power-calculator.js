@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mechanical-power-calculator","name":"Mechanical Power","names":{"zh-CN":"机械功率"},"domain":"Science","keywords":"Mechanical Power 机械功率 mechanical-power-calculator","new":true,"description":"Convert work over time to average mechanical power.","descriptions":{"zh-CN":"由做功与用时计算平均机械功率。"},"priority":423}];

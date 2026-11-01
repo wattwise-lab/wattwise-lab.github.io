@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"weight-converter","name":"Weight Converter","domain":"Converters","keywords":"weight converter kg pounds lbs kilograms","names":{"zh-CN":"重量单位换算","ja":"重量換算"},"new":false,"description":"Convert weight between kilograms, grams, pounds, and ounces, with every unit shown side by side.","descriptions":{"zh-CN":"在千克、磅、盎司和克之间换算重量。"},"priority":18}];

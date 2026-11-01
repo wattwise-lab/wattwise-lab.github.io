@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"kinematic-viscosity-converter","name":"Kinematic Viscosity Converter","names":{"zh-CN":"运动黏度单位换算"},"domain":"Converters","keywords":"Kinematic Viscosity Converter 运动黏度单位换算 kinematic-viscosity-converter","new":true,"description":"Convert kinematic viscosity, including stokes and centistokes.","descriptions":{"zh-CN":"换算运动黏度，包括斯托克斯与厘斯。"},"priority":115}];

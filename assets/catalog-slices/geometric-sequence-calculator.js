@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"geometric-sequence-calculator","name":"Geometric Sequence","names":{"zh-CN":"等比数列"},"domain":"Math and Time","keywords":"Geometric Sequence 等比数列 geometric-sequence-calculator","new":true,"description":"Find the nth term and finite sum with an editable common ratio.","descriptions":{"zh-CN":"按公比计算等比数列的第 n 项及有限和。"},"priority":345}];

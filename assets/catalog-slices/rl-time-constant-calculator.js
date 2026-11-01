@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rl-time-constant-calculator","name":"RL Time Constant","names":{"zh-CN":"RL 时间常数"},"domain":"Science","keywords":"RL Time Constant RL 时间常数 rl-time-constant-calculator","new":true,"description":"Find current rise time scales in an ideal series RL circuit.","descriptions":{"zh-CN":"求理想串联 RL 电路电流上升时间尺度。"},"priority":370}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"absolute-value-calculator","name":"Absolute Value","names":{"zh-CN":"绝对值"},"domain":"Math and Time","keywords":"Absolute Value 绝对值 absolute-value-calculator","new":true,"description":"Find a number’s distance from zero and its sign.","descriptions":{"zh-CN":"计算数到零的距离并判断正负号。"},"priority":334}];

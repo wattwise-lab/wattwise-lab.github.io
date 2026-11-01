@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bond-convexity-calculator","name":"Bond Convexity","names":{"zh-CN":"债券凸性"},"domain":"Finance","keywords":"Bond Convexity 债券凸性 bond-convexity-calculator","new":true,"description":"Measure curvature in a fixed bond’s price-yield relationship.","descriptions":{"zh-CN":"衡量固定票息债券价格与收益率关系的曲率。"},"priority":166}];

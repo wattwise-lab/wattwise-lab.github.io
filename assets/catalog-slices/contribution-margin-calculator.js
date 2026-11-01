@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"contribution-margin-calculator","name":"Contribution Margin","names":{"zh-CN":"贡献毛益"},"domain":"Business","keywords":"Contribution Margin 贡献毛益 contribution-margin-calculator","new":true,"description":"Measure revenue remaining after variable costs.","descriptions":{"zh-CN":"计算收入扣除变动成本后可覆盖固定成本的金额。"},"priority":211}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"flooring-packs-calculator","name":"Flooring Packs","names":{"zh-CN":"地板包数"},"domain":"Home and Everyday","keywords":"Flooring Packs 地板包数 flooring-packs-calculator","new":true,"description":"Calculate whole packs and total area bought.","descriptions":{"zh-CN":"计算整包地板及采购总覆盖面积。"},"priority":241}];

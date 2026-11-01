@@ -1,25 +1,17 @@
-name: I18n Smoke
+name: Locale structure checks
 on:
-  push:
-    branches: [main]
-    paths:
-      - '_next/static/chunks/language-provider-*.js'
-      - '_next/static/chunks/site-shell-*.js'
-      - 'scripts/i18n-smoke.mjs'
-      - '.github/workflows/i18n-smoke.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  smoke:
+  locales:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - run: node --check _next/static/chunks/language-provider-Dh2x92in.js
-      - run: node --check _next/static/chunks/language-provider-C-xlUVXD.js
-      - run: node --check _next/static/chunks/site-shell-EXo-4ePF.js
-      - run: node --check _next/static/chunks/site-shell-D_30KB5T.js
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
       - run: node scripts/i18n-smoke.mjs
+      - run: node scripts/release-check.mjs --strict-i18n

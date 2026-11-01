@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"arithmetic-sequence-calculator","name":"Arithmetic Sequence","names":{"zh-CN":"等差数列"},"domain":"Math and Time","keywords":"Arithmetic Sequence 等差数列 arithmetic-sequence-calculator","new":true,"description":"Find the nth term and sum of an arithmetic progression.","descriptions":{"zh-CN":"计算等差数列的第 n 项及前 n 项和。"},"priority":344}];

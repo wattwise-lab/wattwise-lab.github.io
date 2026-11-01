@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"scientific-notation-calculator","name":"Scientific Notation","names":{"zh-CN":"科学计数法"},"domain":"Math and Time","keywords":"Scientific Notation 科学计数法 scientific-notation-calculator","new":true,"description":"Separate a finite number into its decimal coefficient and power of ten.","descriptions":{"zh-CN":"把有限数拆成十进制系数和 10 的指数。"},"priority":331}];

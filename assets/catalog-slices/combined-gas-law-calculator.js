@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"combined-gas-law-calculator","name":"Combined Gas Law","names":{"zh-CN":"综合气体定律"},"domain":"Science","keywords":"Combined Gas Law 综合气体定律 combined-gas-law-calculator","new":true,"description":"Find a final volume when pressure and temperature change.","descriptions":{"zh-CN":"在气体量固定时由压强与温度变化求末体积。"},"priority":406}];

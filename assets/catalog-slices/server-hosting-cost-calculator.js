@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"server-hosting-cost-calculator","name":"Server Hosting Cost","names":{"zh-CN":"服务器托管费用"},"domain":"Digital and Technology","keywords":"Server Hosting Cost 服务器托管费用 server-hosting-cost-calculator","new":true,"description":"Combine instance hours with traffic and fixed charges.","descriptions":{"zh-CN":"合并实例小时、流量及固定费用。"},"priority":144}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"birthday-probability-calculator","name":"Birthday Collision Probability","names":{"zh-CN":"生日碰撞概率"},"domain":"Math and Time","keywords":"Birthday Collision Probability 生日碰撞概率 birthday-probability-calculator","new":true,"description":"Find the chance that at least two people share a birthday.","descriptions":{"zh-CN":"求至少两人生日相同的概率。"},"priority":481}];

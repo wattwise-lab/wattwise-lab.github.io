@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"friction-force-calculator","name":"Friction Force","names":{"zh-CN":"摩擦力"},"domain":"Science","keywords":"Friction Force 摩擦力 friction-force-calculator","new":true,"description":"Compare kinetic friction with the maximum static-friction limit.","descriptions":{"zh-CN":"比较动摩擦力与最大静摩擦界限。"},"priority":428}];

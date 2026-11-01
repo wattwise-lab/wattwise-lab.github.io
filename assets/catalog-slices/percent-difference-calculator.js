@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"percent-difference-calculator","name":"Percent Difference","names":{"zh-CN":"百分差异"},"domain":"Math and Time","keywords":"Percent Difference 百分差异 percent-difference-calculator","new":true,"description":"Compare two nonnegative values symmetrically using their average.","descriptions":{"zh-CN":"以两数均值为基准，对称比较两个非负数。"},"priority":317}];

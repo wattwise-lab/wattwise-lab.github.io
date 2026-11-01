@@ -1,0 +1,13 @@
+node_modules/
+_next/
+assets/dist/
+assets/translations/
+assets/merchant-i18n/
+assets/cm-catalog-v3.js
+assets/cm-home-copy-v3.js
+assets/cm-intent-schema.js
+assets/cm-translation-index.js
+assets/cm-unit-contracts.js
+assets/catalog-slices/
+assets/cm-common.js
+assets/cm-form-state.js

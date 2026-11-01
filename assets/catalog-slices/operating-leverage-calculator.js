@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"operating-leverage-calculator","name":"Degree of Operating Leverage","names":{"zh-CN":"经营杠杆系数"},"domain":"Business","keywords":"Degree of Operating Leverage 经营杠杆系数 operating-leverage-calculator","new":true,"description":"Estimate local operating-profit sensitivity to sales volume.","descriptions":{"zh-CN":"估计经营利润对销量的局部敏感度。"},"priority":202}];

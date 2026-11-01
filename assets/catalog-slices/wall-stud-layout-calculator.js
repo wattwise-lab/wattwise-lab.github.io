@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"wall-stud-layout-calculator","name":"Wall Stud Layout","names":{"zh-CN":"墙柱间距布置"},"domain":"Home and Everyday","keywords":"Wall Stud Layout 墙柱间距布置 wall-stud-layout-calculator","new":true,"description":"Estimate equally spaced stud positions including both wall ends.","descriptions":{"zh-CN":"估计包含墙两端的等间距墙柱位置数。"},"priority":246}];

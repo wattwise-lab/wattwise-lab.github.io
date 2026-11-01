@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"gross-margin-calculator","name":"Gross Margin Calculator","domain":"Business","keywords":"gross margin margin markup gross profit","names":{"zh-CN":"毛利率计算器","ja":"粗利益率"},"new":false,"description":"Calculate gross profit, gross margin, and the cost-of-goods ratio.","descriptions":{"zh-CN":"根据收入与销售成本，计算毛利润和毛利率。"},"priority":24}];

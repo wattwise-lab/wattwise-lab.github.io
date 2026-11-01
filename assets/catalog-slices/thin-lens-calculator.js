@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"thin-lens-calculator","name":"Thin Lens Image","names":{"zh-CN":"薄透镜成像"},"domain":"Science","keywords":"Thin Lens Image 薄透镜成像 thin-lens-calculator","new":true,"description":"Solve image distance and magnification using signed distances.","descriptions":{"zh-CN":"用带符号距离求像距与放大率。"},"priority":385}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"perpetuity-calculator","name":"Perpetuity Present Value","names":{"zh-CN":"永续年金现值"},"domain":"Finance","keywords":"Perpetuity Present Value 永续年金现值 perpetuity-calculator","new":true,"description":"Value a level payment continuing indefinitely.","descriptions":{"zh-CN":"计算无限期等额付款的理论现值。"},"priority":154}];

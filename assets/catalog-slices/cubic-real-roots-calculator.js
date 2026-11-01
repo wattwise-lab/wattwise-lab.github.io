@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cubic-real-roots-calculator","name":"Cubic Real Roots","names":{"zh-CN":"一元三次方程实根"},"domain":"Math and Time","keywords":"Cubic Real Roots 一元三次方程实根 cubic-real-roots-calculator","new":true,"description":"Find the real roots of a cubic polynomial using its depressed form.","descriptions":{"zh-CN":"用降幂形式求一元三次方程的实根。"},"priority":343}];

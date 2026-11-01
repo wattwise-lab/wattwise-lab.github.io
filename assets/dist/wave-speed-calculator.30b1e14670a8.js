@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"wave-speed-calculator",name:"Wave Speed",names:{"zh-CN":"\u6CE2\u901F"},domain:"Science",keywords:"Wave Speed \u6CE2\u901F wave-speed-calculator",new:!0,description:"Combine frequency and wavelength.",descriptions:{"zh-CN":"\u7ED3\u5408\u9891\u7387\u4E0E\u6CE2\u957F\u6C42\u6CE2\u901F\u3002"},priority:381}];

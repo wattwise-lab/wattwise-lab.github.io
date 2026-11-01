@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"matrix-inverse-calculator","name":"2 × 2 Matrix Inverse","names":{"zh-CN":"二阶矩阵求逆"},"domain":"Math and Time","keywords":"2 × 2 Matrix Inverse 二阶矩阵求逆 matrix-inverse-calculator","new":true,"description":"Find the four entries of a nonsingular matrix inverse.","descriptions":{"zh-CN":"求非奇异二阶矩阵的逆矩阵四个元素。"},"priority":353}];

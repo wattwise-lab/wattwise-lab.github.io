@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"waist-hip-ratio-calculator","name":"Waist to Hip Ratio","names":{"zh-CN":"腰臀比"},"domain":"Health","keywords":"Waist to Hip Ratio 腰臀比 waist-hip-ratio-calculator","new":true,"description":"Compare waist and hip circumference in the same unit.","descriptions":{"zh-CN":"用相同单位比较腰围与臀围。"},"priority":214}];

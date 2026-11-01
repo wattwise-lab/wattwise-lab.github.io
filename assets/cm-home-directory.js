@@ -1,20 +1,315 @@
-(()=>{'use strict';
-function boot(){const data=window.CMCatalog;if(!data){const s=document.createElement('script');s.src='/assets/cm-catalog-v3.js?v=20261030r2';s.onload=boot;document.head.append(s);return;}
-const grid=document.querySelector('.tool-directory .tool-card-grid'),tabs=document.querySelector('.category-tabs'),search=document.querySelector('.hero-search input');if(!grid||!tabs||grid.dataset.cmCatalog==='20261030r2')return;grid.dataset.cmCatalog='20261030r2';document.querySelectorAll('.cm-pagebar').forEach(p=>p.remove());
-let page=1,selected=0,query=search?.value||'',lang=document.querySelector('.language-select')?.value||document.documentElement.lang||'en';const zh=()=>/^zh/.test(lang),size=()=>matchMedia('(max-width:700px)').matches?6:12;
-const clean=s=>String(s).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
-const dateSlugs=['age-calculator','countdown-calculator','date-difference-calculator','workday-calculator'],travel=['fuel-cost-calculator','fuel-economy-calculator','pace-calculator','timezone-converter'];
-function matches(x){const d=x.domain;return selected===0||selected===1&&d==='Math and Time'&&!dateSlugs.includes(x.slug)||selected===2&&d==='Finance'||selected===3&&d==='Health'||selected===4&&dateSlugs.includes(x.slug)||selected===5&&d==='Converters'||selected===6&&d==='Business'||selected===7&&d==='AI and Work-life'||selected===8&&d==='Home and Everyday'||selected===9&&travel.includes(x.slug)||selected===10&&['paint-calculator','concrete-calculator','square-area-calculator','rent-vs-buy-calculator'].includes(x.slug)||selected===11&&['gpa-calculator','learning-roi','mean-median-mode-calculator','standard-deviation-calculator','variance-calculator'].includes(x.slug)||selected===12&&d==='Science';}
-const icons={Finance:'$',Business:'%',Health:'+',Converters:'⇄','Math and Time':'÷','Home and Everyday':'⌂','AI and Work-life':'AI',Science:'Ω'};
-const priority=['percentage-calculator','loan-calculator','bmi-calculator','age-calculator','unit-converter','profit-calculator','merchant-profit-planner','mortgage-calculator','compound-interest-calculator','discount-calculator','currency-converter','savings-goal-calculator'];
-const sorted=[...data].sort((a,b)=>(priority.indexOf(a.slug)<0?999:priority.indexOf(a.slug))-(priority.indexOf(b.slug)<0?999:priority.indexOf(b.slug)));
-const science=tabs.children[12]||document.createElement('button');science.type='button';science.setAttribute('role','tab');science.setAttribute('aria-selected','false');science.textContent=zh()?'科学':'Science';tabs.append(science);
-const pager=document.createElement('nav');pager.className='cm-pagebar';pager.setAttribute('aria-label','Calculator pages');const prev=document.createElement('button'),next=document.createElement('button'),position=document.createElement('span'),all=document.createElement('a');prev.type=next.type='button';position.setAttribute('role','status');all.href='/directory';all.className='cm-alltools';pager.append(prev,position,next,all);grid.after(pager);
-const params=new URLSearchParams(location.search),category=params.get('category');const aliases={'数学':1,'金融':2,'健康':3,'日期':4,'换算':5,'商业':6,'科技':7,'生活':8,'出行':9,'家居':10,'教育':11,'Science':12};selected=aliases[category]||0;
-function locale(){lang=document.querySelector('.language-select')?.value||document.documentElement.lang||'en';return window.CMHomeCopy?.[lang]||window.CMHomeCopy?.en;}
-function render(){const copy=locale();const words=clean(query).split(' ').filter(Boolean);const rows=sorted.filter(x=>matches(x)&&words.every(w=>clean([x.name,...Object.values(x.names||{}),x.keywords,x.description,...Object.values(x.descriptions||{}),x.domain].join(' ')).includes(w)));const n=size(),pages=Math.max(1,Math.ceil(rows.length/n));page=Math.max(1,Math.min(page,pages));const start=(page-1)*n,frag=document.createDocumentFragment();for(const x of rows.slice(start,start+n)){const a=document.createElement('a');a.href='/'+x.slug;a.className='hub-tool-card';const top=document.createElement('div');top.className='tool-card-top';const icon=document.createElement('span');icon.className='tool-icon';icon.setAttribute('aria-hidden','true');icon.textContent=icons[x.domain];top.append(icon);if(x.new){const badge=document.createElement('b');badge.textContent=copy?.new||'New';top.append(badge);}const d=document.createElement('small');d.textContent=copy?.domains[x.domain]||x.domain;const h=document.createElement('h3');h.textContent=x.names?.[lang]||x.name;const p=document.createElement('p');p.textContent=x.descriptions?.[lang]||x.description;const open=document.createElement('span');open.className='open-tool';open.textContent=zh()?'打开计算器 →':'Open calculator →';a.append(top,d,h,p,open);frag.append(a);}if(!rows.length){const empty=document.createElement('p');empty.className='cm-home-empty';empty.textContent=copy?.none||'No matching calculators';frag.append(empty);}grid.replaceChildren(frag);prev.textContent=copy?.previous||'Previous';next.textContent=copy?.next||'Next';prev.disabled=page===1;next.disabled=page===pages;const vars={start:rows.length?start+1:0,end:Math.min(start+n,rows.length),count:rows.length};position.textContent=Object.entries(vars).reduce((s,[k,v])=>s.replaceAll('{'+k+'}',v),copy?.count||'{start}–{end} of {count}')+' · '+page+'/'+pages;all.textContent=(copy?.all||'All calculators')+' · '+data.length;science.textContent=copy?.domains.Science||'Science';[...tabs.children].forEach((b,i)=>b.setAttribute('aria-selected',String(i===selected)));for(const nav of [document.querySelector('.category-menu'),document.querySelector('.mobile-nav>div')]){if(!nav)continue;if(!nav.querySelector('.cm-added-link')){for(const [href,title]of [['/directory',all.textContent],['/merchant-profit-planner',copy?.merchant||'Merchant profit']]){const a=document.createElement('a');a.className='cm-added-link';a.href=href;a.textContent=title;nav.append(a);}}}}
-prev.addEventListener('click',()=>{page--;render();grid.scrollIntoView({block:'start'});});next.addEventListener('click',()=>{page++;render();grid.scrollIntoView({block:'start'});});window.addEventListener('click',e=>{if(!grid.isConnected)return;const b=e.target.closest('.category-tabs button');if(!b)return;e.preventDefault();e.stopImmediatePropagation();selected=[...tabs.children].indexOf(b);page=1;render();},true);window.addEventListener('input',e=>{if(!grid.isConnected||e.target!==search)return;e.stopImmediatePropagation();query=search.value;page=1;render();},true);
-const menu=document.querySelector('.nav-categories');if(menu){menu.addEventListener('mouseenter',()=>{if(matchMedia('(min-width:701px)').matches)menu.open=true;});menu.addEventListener('mouseleave',()=>{if(!menu.contains(document.activeElement))menu.open=false;});document.addEventListener('keydown',e=>{if(e.key==='Escape')menu.open=false;});document.addEventListener('pointerdown',e=>{if(!menu.contains(e.target))menu.open=false;});}
-document.querySelector('.language-select')?.addEventListener('change',()=>setTimeout(()=>{page=1;render();},100));let mobile=size()===6;addEventListener('resize',()=>{if(mobile!==(size()===6)){mobile=!mobile;page=1;render();}});
-const copyScript=document.createElement('script');copyScript.src='/assets/cm-home-copy-v3.js?v=20261030r2';copyScript.onload=render;document.head.append(copyScript);render();
-}boot();})();
+(() => {
+  'use strict';
+  function boot() {
+    const data = window.CMCatalog;
+    if (!data) {
+      const s = document.createElement('script');
+      s.src = '/assets/cm-catalog-v3.js?v=20261030r2';
+      s.onload = boot;
+      document.head.append(s);
+      return;
+    }
+    const grid = document.querySelector('.tool-directory .tool-card-grid'),
+      tabs = document.querySelector('.category-tabs'),
+      search = document.querySelector('.hero-search input');
+    if (!grid || !tabs || grid.dataset.cmCatalog === '20261030r2') return;
+    grid.dataset.cmCatalog = '20261030r2';
+    document.querySelectorAll('.cm-pagebar').forEach((p) => p.remove());
+    let page = 1,
+      selected = 0,
+      query = search?.value || '',
+      lang =
+        document.querySelector('.language-select')?.value || document.documentElement.lang || 'en';
+    const zh = () => /^zh/.test(lang),
+      size = () => (matchMedia('(max-width:700px)').matches ? 6 : 12);
+    const clean = (s) =>
+      String(s)
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    const dateSlugs = [
+        'age-calculator',
+        'countdown-calculator',
+        'date-difference-calculator',
+        'workday-calculator',
+      ],
+      travel = [
+        'fuel-cost-calculator',
+        'fuel-economy-calculator',
+        'pace-calculator',
+        'timezone-converter',
+      ];
+    function matches(x) {
+      const d = x.domain;
+      return (
+        selected === 0 ||
+        (selected === 1 && d === 'Math and Time' && !dateSlugs.includes(x.slug)) ||
+        (selected === 2 && d === 'Finance') ||
+        (selected === 3 && d === 'Health') ||
+        (selected === 4 && dateSlugs.includes(x.slug)) ||
+        (selected === 5 && d === 'Converters') ||
+        (selected === 6 && d === 'Business') ||
+        (selected === 7 && d === 'AI and Work-life') ||
+        (selected === 8 && d === 'Home and Everyday') ||
+        (selected === 9 && travel.includes(x.slug)) ||
+        (selected === 10 &&
+          [
+            'paint-calculator',
+            'concrete-calculator',
+            'square-area-calculator',
+            'rent-vs-buy-calculator',
+          ].includes(x.slug)) ||
+        (selected === 11 &&
+          [
+            'gpa-calculator',
+            'learning-roi',
+            'mean-median-mode-calculator',
+            'standard-deviation-calculator',
+            'variance-calculator',
+          ].includes(x.slug)) ||
+        (selected === 12 && d === 'Science')
+      );
+    }
+    const icons = {
+      Finance: '$',
+      Business: '%',
+      Health: '+',
+      Converters: '⇄',
+      'Math and Time': '÷',
+      'Home and Everyday': '⌂',
+      'AI and Work-life': 'AI',
+      Science: 'Ω',
+    };
+    const priority = [
+      'percentage-calculator',
+      'loan-calculator',
+      'bmi-calculator',
+      'age-calculator',
+      'unit-converter',
+      'profit-calculator',
+      'merchant-profit-planner',
+      'mortgage-calculator',
+      'compound-interest-calculator',
+      'discount-calculator',
+      'currency-converter',
+      'savings-goal-calculator',
+    ];
+    const sorted = [...data].sort(
+      (a, b) =>
+        (priority.indexOf(a.slug) < 0 ? 999 : priority.indexOf(a.slug)) -
+        (priority.indexOf(b.slug) < 0 ? 999 : priority.indexOf(b.slug)),
+    );
+    const science = tabs.children[12] || document.createElement('button');
+    science.type = 'button';
+    science.setAttribute('role', 'tab');
+    science.setAttribute('aria-selected', 'false');
+    science.textContent = zh() ? '科学' : 'Science';
+    tabs.append(science);
+    const pager = document.createElement('nav');
+    pager.className = 'cm-pagebar';
+    pager.setAttribute('aria-label', 'Calculator pages');
+    const prev = document.createElement('button'),
+      next = document.createElement('button'),
+      position = document.createElement('span'),
+      all = document.createElement('a');
+    prev.type = next.type = 'button';
+    position.setAttribute('role', 'status');
+    all.href = '/directory';
+    all.className = 'cm-alltools';
+    pager.append(prev, position, next, all);
+    grid.after(pager);
+    const params = new URLSearchParams(location.search),
+      category = params.get('category');
+    const aliases = {
+      数学: 1,
+      金融: 2,
+      健康: 3,
+      日期: 4,
+      换算: 5,
+      商业: 6,
+      科技: 7,
+      生活: 8,
+      出行: 9,
+      家居: 10,
+      教育: 11,
+      Science: 12,
+    };
+    selected = aliases[category] || 0;
+    function locale() {
+      lang =
+        document.querySelector('.language-select')?.value || document.documentElement.lang || 'en';
+      return window.CMHomeCopy?.[lang] || window.CMHomeCopy?.en;
+    }
+    function render() {
+      const copy = locale();
+      const words = clean(query).split(' ').filter(Boolean);
+      const rows = sorted.filter(
+        (x) =>
+          matches(x) &&
+          words.every((w) =>
+            clean(
+              [
+                x.name,
+                ...Object.values(x.names || {}),
+                x.keywords,
+                x.description,
+                ...Object.values(x.descriptions || {}),
+                x.domain,
+              ].join(' '),
+            ).includes(w),
+          ),
+      );
+      const n = size(),
+        pages = Math.max(1, Math.ceil(rows.length / n));
+      page = Math.max(1, Math.min(page, pages));
+      const start = (page - 1) * n,
+        frag = document.createDocumentFragment();
+      for (const x of rows.slice(start, start + n)) {
+        const a = document.createElement('a');
+        a.href = '/' + x.slug;
+        a.className = 'hub-tool-card';
+        const top = document.createElement('div');
+        top.className = 'tool-card-top';
+        const icon = document.createElement('span');
+        icon.className = 'tool-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = icons[x.domain];
+        top.append(icon);
+        if (x.new) {
+          const badge = document.createElement('b');
+          badge.textContent = copy?.new || 'New';
+          top.append(badge);
+        }
+        const d = document.createElement('small');
+        d.textContent = copy?.domains[x.domain] || x.domain;
+        const h = document.createElement('h3');
+        h.textContent = x.names?.[lang] || x.name;
+        const p = document.createElement('p');
+        p.textContent = x.descriptions?.[lang] || x.description;
+        const open = document.createElement('span');
+        open.className = 'open-tool';
+        open.textContent = zh() ? '打开计算器 →' : 'Open calculator →';
+        a.append(top, d, h, p, open);
+        frag.append(a);
+      }
+      if (!rows.length) {
+        const empty = document.createElement('p');
+        empty.className = 'cm-home-empty';
+        empty.textContent = copy?.none || 'No matching calculators';
+        frag.append(empty);
+      }
+      grid.replaceChildren(frag);
+      prev.textContent = copy?.previous || 'Previous';
+      next.textContent = copy?.next || 'Next';
+      prev.disabled = page === 1;
+      next.disabled = page === pages;
+      const vars = {
+        start: rows.length ? start + 1 : 0,
+        end: Math.min(start + n, rows.length),
+        count: rows.length,
+      };
+      position.textContent =
+        Object.entries(vars).reduce(
+          (s, [k, v]) => s.replaceAll('{' + k + '}', v),
+          copy?.count || '{start}–{end} of {count}',
+        ) +
+        ' · ' +
+        page +
+        '/' +
+        pages;
+      all.textContent = (copy?.all || 'All calculators') + ' · ' + data.length;
+      science.textContent = copy?.domains.Science || 'Science';
+      [...tabs.children].forEach((b, i) => b.setAttribute('aria-selected', String(i === selected)));
+      for (const nav of [
+        document.querySelector('.category-menu'),
+        document.querySelector('.mobile-nav>div'),
+      ]) {
+        if (!nav) continue;
+        if (!nav.querySelector('.cm-added-link')) {
+          for (const [href, title] of [
+            ['/directory', all.textContent],
+            ['/merchant-profit-planner', copy?.merchant || 'Merchant profit'],
+          ]) {
+            const a = document.createElement('a');
+            a.className = 'cm-added-link';
+            a.href = href;
+            a.textContent = title;
+            nav.append(a);
+          }
+        }
+      }
+    }
+    prev.addEventListener('click', () => {
+      page--;
+      render();
+      grid.scrollIntoView({ block: 'start' });
+    });
+    next.addEventListener('click', () => {
+      page++;
+      render();
+      grid.scrollIntoView({ block: 'start' });
+    });
+    window.addEventListener(
+      'click',
+      (e) => {
+        if (!grid.isConnected) return;
+        const b = e.target.closest('.category-tabs button');
+        if (!b) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        selected = [...tabs.children].indexOf(b);
+        page = 1;
+        render();
+      },
+      true,
+    );
+    window.addEventListener(
+      'input',
+      (e) => {
+        if (!grid.isConnected || e.target !== search) return;
+        e.stopImmediatePropagation();
+        query = search.value;
+        page = 1;
+        render();
+      },
+      true,
+    );
+    const menu = document.querySelector('.nav-categories');
+    if (menu) {
+      menu.addEventListener('mouseenter', () => {
+        if (matchMedia('(min-width:701px)').matches) menu.open = true;
+      });
+      menu.addEventListener('mouseleave', () => {
+        if (!menu.contains(document.activeElement)) menu.open = false;
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') menu.open = false;
+      });
+      document.addEventListener('pointerdown', (e) => {
+        if (!menu.contains(e.target)) menu.open = false;
+      });
+    }
+    document.querySelector('.language-select')?.addEventListener('change', () =>
+      setTimeout(() => {
+        page = 1;
+        render();
+      }, 100),
+    );
+    let mobile = size() === 6;
+    addEventListener('resize', () => {
+      if (mobile !== (size() === 6)) {
+        mobile = !mobile;
+        page = 1;
+        render();
+      }
+    });
+    const copyScript = document.createElement('script');
+    copyScript.src = '/assets/cm-home-copy-v3.js?v=20261030r2';
+    copyScript.onload = render;
+    document.head.append(copyScript);
+    render();
+  }
+  boot();
+})();

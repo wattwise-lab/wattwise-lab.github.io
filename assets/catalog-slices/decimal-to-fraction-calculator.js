@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"decimal-to-fraction-calculator","name":"Decimal to Fraction","names":{"zh-CN":"小数转分数"},"domain":"Math and Time","keywords":"Decimal to Fraction 小数转分数 decimal-to-fraction-calculator","new":true,"description":"Convert the entered finite decimal into a reduced fraction.","descriptions":{"zh-CN":"将输入的有限小数转为约分后的分数。"},"priority":318}];

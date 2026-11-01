@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"law-of-sines-calculator","name":"Law of Sines","names":{"zh-CN":"正弦定理"},"domain":"Math and Time","keywords":"Law of Sines 正弦定理 law-of-sines-calculator","new":true,"description":"Solve a triangle from two angles and the side opposite the first.","descriptions":{"zh-CN":"由两个角及第一角的对边解三角形。"},"priority":285}];

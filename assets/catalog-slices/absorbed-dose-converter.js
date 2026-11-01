@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"absorbed-dose-converter","name":"Absorbed Dose Converter","names":{"zh-CN":"吸收剂量单位换算"},"domain":"Converters","keywords":"Absorbed Dose Converter 吸收剂量单位换算 absorbed-dose-converter","new":true,"description":"Convert gray and rad without assuming biological weighting.","descriptions":{"zh-CN":"换算戈瑞与拉德，不假定生物权重。"},"priority":120}];

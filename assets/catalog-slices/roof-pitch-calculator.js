@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"roof-pitch-calculator","name":"Roof Pitch and Area","names":{"zh-CN":"屋顶坡度与面积"},"domain":"Home and Everyday","keywords":"Roof Pitch and Area 屋顶坡度与面积 roof-pitch-calculator","new":true,"description":"Convert rise and run to pitch angle and sloping area.","descriptions":{"zh-CN":"由升高与水平距离求坡角及斜面面积。"},"priority":248}];

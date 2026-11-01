@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"diffraction-grating-calculator","name":"Diffraction Grating Angle","names":{"zh-CN":"光栅衍射角"},"domain":"Science","keywords":"Diffraction Grating Angle 光栅衍射角 diffraction-grating-calculator","new":true,"description":"Find the angle of a diffraction order at normal incidence.","descriptions":{"zh-CN":"求垂直入射光栅的指定级次衍射角。"},"priority":390}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"point-charge-field-calculator","name":"Point Charge Electric Field","names":{"zh-CN":"点电荷电场"},"domain":"Science","keywords":"Point Charge Electric Field 点电荷电场 point-charge-field-calculator","new":true,"description":"Find the radial electric field of a point charge in vacuum.","descriptions":{"zh-CN":"求真空点电荷的径向电场。"},"priority":377}];

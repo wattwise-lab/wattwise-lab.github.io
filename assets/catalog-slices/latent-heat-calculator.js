@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"latent-heat-calculator","name":"Latent Heat","names":{"zh-CN":"相变潜热"},"domain":"Science","keywords":"Latent Heat 相变潜热 latent-heat-calculator","new":true,"description":"Estimate energy for a phase change at constant temperature.","descriptions":{"zh-CN":"估计恒温相变所需热量。"},"priority":412}];

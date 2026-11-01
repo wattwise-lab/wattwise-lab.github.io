@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"parallel-resistance-calculator","name":"Parallel Resistance","names":{"zh-CN":"并联电阻"},"domain":"Science","keywords":"Parallel Resistance 并联电阻 parallel-resistance-calculator","new":true,"description":"Combine ideal resistors sharing the same voltage.","descriptions":{"zh-CN":"合并承受相同电压的理想并联电阻。"},"priority":363}];

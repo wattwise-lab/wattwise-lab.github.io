@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"universal-gravitation-calculator","name":"Universal Gravitation","names":{"zh-CN":"万有引力"},"domain":"Science","keywords":"Universal Gravitation 万有引力 universal-gravitation-calculator","new":true,"description":"Calculate mutual gravitational attraction between point masses.","descriptions":{"zh-CN":"计算点质量间的万有引力。"},"priority":437}];

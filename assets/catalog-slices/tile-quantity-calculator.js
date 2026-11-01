@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"tile-quantity-calculator","name":"Tile Quantity","names":{"zh-CN":"瓷砖数量"},"domain":"Home and Everyday","keywords":"Tile Quantity 瓷砖数量 tile-quantity-calculator","new":true,"description":"Convert a floor area into tiles, boxes and waste allowance.","descriptions":{"zh-CN":"将铺设面积换算为瓷砖、箱数与损耗余量。"},"priority":238}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"room-lighting-lumens-calculator","name":"Room Lighting Lumens","names":{"zh-CN":"房间照明流明"},"domain":"Home and Everyday","keywords":"Room Lighting Lumens 房间照明流明 room-lighting-lumens-calculator","new":true,"description":"Translate a chosen illuminance target into fixture quantity.","descriptions":{"zh-CN":"将自选照度目标换算为灯具数量。"},"priority":261}];

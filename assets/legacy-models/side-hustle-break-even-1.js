@@ -1,0 +1,35 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function calc(v){const contrib=v.profit*v.sales-v.fixed;const months=contrib>0?v.startup/contrib:Infinity;const orders=v.profit>0?v.startup/v.profit:Infinity;return {contrib:contrib,months:months,orders:orders,net12:contrib*12-v.startup,net24:contrib*24-v.startup};}
+function render(){
+  const v=get();
+  if(!(v.startup>=0&&v.fixed>=0&&v.profit>=0&&v.sales>=0)){
+    $("result").textContent="—";$("chipA").textContent="—";$("chipB").textContent="—";$("chipC").textContent="—";
+    $("breakRows").innerHTML="";$("bars").innerHTML="";$("cumRows").innerHTML="";
+    const vd=$("verdict");vd.className="verdict warn";
+    $("verdictText").textContent="Enter startup cost, fixed costs, profit per order, and orders per month at zero or above, to see the estimate.";window.__summary="";return;
+  }
+  const r=calc(v);
+  $("result").textContent=isFinite(r.months)?num(r.months)+" months":"never";
+  $("chipA").textContent=money(r.contrib)+"/mo";$("chipB").textContent=money(r.net12);$("chipC").textContent=isFinite(r.orders)?num(r.orders)+" orders":"—";
+  const row=(l,val)=>"<tr><td>"+l+"</td><td class='num'>"+val+"</td></tr>";
+  $("breakRows").innerHTML=row("Monthly gross contribution (profit x orders)",money(v.profit*v.sales))+row("Monthly fixed costs",money(v.fixed))+row("Monthly net contribution",money(r.contrib)+"/mo")+row("Startup cost to recover",money(v.startup))+row("Months to break even",isFinite(r.months)?num(r.months)+" months":"no break-even")+row("Orders to recover startup cost",isFinite(r.orders)?num(r.orders)+" orders":"—")+row("Net after 12 months",money(r.net12));
+  $("bars").innerHTML=barRow("Startup cost",money(v.startup),v.startup,Math.max(v.startup,Math.max(r.contrib,0)*12,1),"newbad")+barRow("12-month contribution",money(Math.max(r.contrib,0)*12),Math.max(r.contrib,0)*12,Math.max(v.startup,Math.max(r.contrib,0)*12,1),"new");
+  $("cumRows").innerHTML=row("After 3 months",money(r.contrib*3-v.startup))+row("After 6 months",money(r.contrib*6-v.startup))+row("After 12 months",money(r.contrib*12-v.startup))+row("After 24 months",money(r.contrib*24-v.startup));
+  const vd=$("verdict");
+  if(!isFinite(r.months)){vd.className="verdict bad";$("verdictText").textContent="No break-even on these inputs: monthly contribution is "+money(r.contrib)+", so the "+money(v.startup)+" startup cost is never recovered at this sales level. Raise orders, raise profit per order, or cut fixed costs until contribution turns positive.";}
+  else if(r.months>24){vd.className="verdict warn";$("verdictText").textContent="Slow recovery: "+num(r.months)+" months to recover "+money(v.startup)+" at "+money(r.contrib)+" per month. That is a long exposure to demand risk — test the plan at lower sales before committing the full startup cost.";}
+  else{vd.className="verdict";$("verdictText").textContent="Break-even in "+num(r.months)+" months on these assumptions: "+money(r.contrib)+" monthly contribution repays the "+money(v.startup)+" startup cost, needing "+num(r.orders)+" orders in total. After 12 months the net position is "+money(r.net12)+". Sales and margins are assumptions, not guaranteed demand.";}
+  window.__summary="Side hustle break-even: "+(isFinite(r.months)?num(r.months)+" months":"never")+" (contribution "+money(r.contrib)+"/mo against startup "+money(v.startup)+").";
+}
+function barRow(l,disp,val,maxV,cls){const p=maxV>0?Math.max(0,Math.min(100,val/maxV*100)):0;return "<div class='bar-row'><label><span>"+l+"</span><span>"+disp+"</span></label><div class='bar'><i class='"+cls+"' style='width:"+p+"%'></i></div></div>";}
+
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

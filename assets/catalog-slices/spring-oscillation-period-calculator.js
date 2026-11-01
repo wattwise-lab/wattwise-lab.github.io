@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"spring-oscillation-period-calculator","name":"Spring Oscillation Period","names":{"zh-CN":"弹簧振子周期"},"domain":"Science","keywords":"Spring Oscillation Period 弹簧振子周期 spring-oscillation-period-calculator","new":true,"description":"Find an ideal mass-spring system’s natural period.","descriptions":{"zh-CN":"计算理想质点弹簧系统的固有周期。"},"priority":439}];

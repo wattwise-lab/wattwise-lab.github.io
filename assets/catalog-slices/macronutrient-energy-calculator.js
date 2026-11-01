@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"macronutrient-energy-calculator","name":"Macronutrient Energy","names":{"zh-CN":"三大营养素能量"},"domain":"Health","keywords":"Macronutrient Energy 三大营养素能量 macronutrient-energy-calculator","new":true,"description":"Convert entered protein, carbohydrate and fat grams to label-style energy.","descriptions":{"zh-CN":"将自填蛋白质、碳水与脂肪克数换算为常见标签能量。"},"priority":234}];

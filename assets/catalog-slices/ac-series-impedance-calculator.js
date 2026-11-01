@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ac-series-impedance-calculator","name":"AC Series Impedance","names":{"zh-CN":"交流串联阻抗"},"domain":"Science","keywords":"AC Series Impedance 交流串联阻抗 ac-series-impedance-calculator","new":true,"description":"Combine resistance and opposing series reactances.","descriptions":{"zh-CN":"合并电阻及相反方向的串联电抗。"},"priority":374}];

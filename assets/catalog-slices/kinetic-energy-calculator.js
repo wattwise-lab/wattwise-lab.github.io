@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"kinetic-energy-calculator","name":"Kinetic Energy","names":{"zh-CN":"动能"},"domain":"Science","keywords":"Kinetic Energy 动能 kinetic-energy-calculator","new":true,"description":"Find translational kinetic energy at nonrelativistic speed.","descriptions":{"zh-CN":"计算非相对论速度下的平动动能。"},"priority":420}];

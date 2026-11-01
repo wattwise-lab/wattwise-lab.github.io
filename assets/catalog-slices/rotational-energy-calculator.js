@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"rotational-energy-calculator","name":"Rotational Kinetic Energy","names":{"zh-CN":"转动动能"},"domain":"Science","keywords":"Rotational Kinetic Energy 转动动能 rotational-energy-calculator","new":true,"description":"Calculate rotation energy from moment of inertia and angular velocity.","descriptions":{"zh-CN":"由转动惯量与角速度计算转动动能。"},"priority":432}];

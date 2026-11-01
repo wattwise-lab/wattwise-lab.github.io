@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"vector-dot-product-calculator","name":"Vector Dot Product","names":{"zh-CN":"向量点积"},"domain":"Math and Time","keywords":"Vector Dot Product 向量点积 vector-dot-product-calculator","new":true,"description":"Find the scalar product of two three-dimensional vectors.","descriptions":{"zh-CN":"求两个三维向量的数量积。"},"priority":357}];

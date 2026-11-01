@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"discount-calculator","name":"Discount Calculator","domain":"Business","keywords":"discount sale price percent off discounted price","names":{"zh-CN":"折扣计算器","ja":"割引計算"},"new":false,"description":"Calculate the final price and total savings after percentage and fixed discounts.","descriptions":{"zh-CN":"计算百分比折扣和额外减免后的实付金额。"},"priority":9}];

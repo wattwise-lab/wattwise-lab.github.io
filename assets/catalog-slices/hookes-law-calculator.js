@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"hookes-law-calculator","name":"Hooke’s Law Spring Force","names":{"zh-CN":"胡克定律弹簧力"},"domain":"Science","keywords":"Hooke’s Law Spring Force 胡克定律弹簧力 hookes-law-calculator","new":true,"description":"Calculate restoring force for a linear elastic spring.","descriptions":{"zh-CN":"计算线性弹性弹簧的回复力。"},"priority":426}];

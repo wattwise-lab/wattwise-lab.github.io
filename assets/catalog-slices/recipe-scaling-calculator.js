@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"recipe-scaling-calculator","name":"Recipe Scaling","names":{"zh-CN":"食谱份量缩放"},"domain":"Home and Everyday","keywords":"Recipe Scaling 食谱份量缩放 recipe-scaling-calculator","new":true,"description":"Scale ingredient amounts from original servings to target servings.","descriptions":{"zh-CN":"按原份数与目标份数同比缩放原料。"},"priority":270}];

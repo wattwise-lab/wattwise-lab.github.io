@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"chord-length-calculator","name":"Chord Length from Centre Offset","names":{"zh-CN":"弦长计算器"},"domain":"Math and Time","keywords":"Chord Length from Centre Offset 弦长计算器 chord-length-calculator","new":true,"description":"Find chord length from radius and perpendicular distance to the centre.","descriptions":{"zh-CN":"由半径及圆心到弦的垂直距离求弦长。"},"priority":290}];

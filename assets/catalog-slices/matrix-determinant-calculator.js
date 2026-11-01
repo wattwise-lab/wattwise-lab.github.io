@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"matrix-determinant-calculator","name":"2 × 2 Matrix Determinant","names":{"zh-CN":"二阶矩阵行列式"},"domain":"Math and Time","keywords":"2 × 2 Matrix Determinant 二阶矩阵行列式 matrix-determinant-calculator","new":true,"description":"Calculate determinant and identify singular two-by-two matrices.","descriptions":{"zh-CN":"计算二阶矩阵的行列式，判断是否奇异。"},"priority":352}];

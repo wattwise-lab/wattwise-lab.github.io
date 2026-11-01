@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pressure-converter","name":"Pressure Converter","names":{"zh-CN":"压强单位换算"},"domain":"Converters","keywords":"Pressure Converter 压强单位换算 pressure-converter","new":true,"description":"Convert absolute or gauge pressure values without changing their reference.","descriptions":{"zh-CN":"换算绝对压强或表压数值，保持压力参考基准。"},"priority":98}];

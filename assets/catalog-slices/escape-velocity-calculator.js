@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"escape-velocity-calculator","name":"Escape Velocity","names":{"zh-CN":"逃逸速度"},"domain":"Science","keywords":"Escape Velocity 逃逸速度 escape-velocity-calculator","new":true,"description":"Estimate escape speed from a spherical gravitating body.","descriptions":{"zh-CN":"估算球形天体表面的逃逸速度。"},"priority":436}];

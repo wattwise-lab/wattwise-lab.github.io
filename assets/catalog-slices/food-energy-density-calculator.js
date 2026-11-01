@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"food-energy-density-calculator","name":"Food Energy Density","names":{"zh-CN":"食物能量密度"},"domain":"Health","keywords":"Food Energy Density 食物能量密度 food-energy-density-calculator","new":true,"description":"Scale a serving’s energy to 100 grams or another serving weight.","descriptions":{"zh-CN":"将一份食物能量换算至每百克或其他份量。"},"priority":235}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"weight-force-calculator","name":"Weight Force","names":{"zh-CN":"重力大小"},"domain":"Science","keywords":"Weight Force 重力大小 weight-force-calculator","new":true,"description":"Convert mass to weight under an entered gravitational field.","descriptions":{"zh-CN":"按自填重力场将质量转换为重力。"},"priority":417}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"capacitor-energy-calculator","name":"Capacitor Energy","names":{"zh-CN":"电容储能"},"domain":"Science","keywords":"Capacitor Energy 电容储能 capacitor-energy-calculator","new":true,"description":"Calculate charge and stored energy in an ideal capacitor.","descriptions":{"zh-CN":"计算理想电容的电荷与储能。"},"priority":366}];

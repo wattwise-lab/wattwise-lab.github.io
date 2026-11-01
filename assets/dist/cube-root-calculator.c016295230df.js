@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"cube-root-calculator",name:"Cube Root",names:{"zh-CN":"\u7ACB\u65B9\u6839"},domain:"Math and Time",keywords:"Cube Root \u7ACB\u65B9\u6839 cube-root-calculator",new:!0,description:"Find the real cube root of a positive or negative value.",descriptions:{"zh-CN":"\u6C42\u6B63\u6570\u6216\u8D1F\u6570\u7684\u5B9E\u6570\u7ACB\u65B9\u6839\u3002"},priority:327}];

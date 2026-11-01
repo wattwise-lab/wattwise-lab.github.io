@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"hemisphere-calculator","name":"Hemisphere Calculator","names":{"zh-CN":"半球体计算器"},"domain":"Math and Time","keywords":"Hemisphere Calculator 半球体计算器 hemisphere-calculator","new":true,"description":"Find a hemisphere’s volume, curved area and total area including its base.","descriptions":{"zh-CN":"求半球体积、曲面面积及包含底面的总面积。"},"priority":304}];

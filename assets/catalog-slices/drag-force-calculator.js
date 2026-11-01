@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"drag-force-calculator","name":"Drag Force","names":{"zh-CN":"阻力"},"domain":"Science","keywords":"Drag Force 阻力 drag-force-calculator","new":true,"description":"Estimate aerodynamic or hydrodynamic drag from an entered coefficient.","descriptions":{"zh-CN":"用自填阻力系数估计气动或水动阻力。"},"priority":401}];

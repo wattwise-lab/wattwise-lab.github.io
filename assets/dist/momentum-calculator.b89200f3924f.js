@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"momentum-calculator",name:"Linear Momentum",names:{"zh-CN":"\u7EBF\u52A8\u91CF"},domain:"Science",keywords:"Linear Momentum \u7EBF\u52A8\u91CF momentum-calculator",new:!0,description:"Calculate signed momentum along a single axis.",descriptions:{"zh-CN":"\u8BA1\u7B97\u5355\u4E00\u8F74\u5411\u5E26\u7B26\u53F7\u52A8\u91CF\u3002"},priority:418}];

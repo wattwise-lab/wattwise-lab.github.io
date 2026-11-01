@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"carnot-efficiency-calculator","name":"Carnot Efficiency Limit","names":{"zh-CN":"卡诺效率极限"},"domain":"Science","keywords":"Carnot Efficiency Limit 卡诺效率极限 carnot-efficiency-calculator","new":true,"description":"Find the theoretical heat-engine efficiency limit.","descriptions":{"zh-CN":"求热机理论最高效率。"},"priority":410}];

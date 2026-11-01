@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"parallel-capacitance-calculator","name":"Parallel Capacitance","names":{"zh-CN":"并联电容"},"domain":"Science","keywords":"Parallel Capacitance 并联电容 parallel-capacitance-calculator","new":true,"description":"Combine ideal capacitors in parallel.","descriptions":{"zh-CN":"合并理想并联电容。"},"priority":368}];

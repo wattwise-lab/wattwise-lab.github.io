@@ -1,0 +1,42 @@
+(()=>{'use strict';
+
+const money=n=>(typeof window!=='undefined'&&window.CMI18n?window.CMI18n.currency(Number(n),'USD',{maximumFractionDigits:2,minimumFractionDigits:2}):"$"+Number(n).toLocaleString("en-US",{maximumFractionDigits:2,minimumFractionDigits:2}));
+const num=n=>Number(n).toLocaleString((typeof window!=='undefined'&&window.CMI18n?window.CMI18n.formatLocale:'en-US'),{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+function get(){const v={};document.querySelectorAll("input").forEach(e=>{v[e.id]=parseFloat(e.value)||0});return v;}
+function pmt(P,r,n){return r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);}
+function balAfter(P,r,n,paid){return P*Math.pow(1+r,paid)-pmt(P,r,n)*((Math.pow(1+r,paid)-1)/r);}
+
+const INVALID_MSG='Enter minutes per day, planned days and workday length above zero, with completion between 0% and 100%, to see the total hours.';
+function calc(v){
+ if(!(v.mins>0&&v.days>0&&v.workday>0&&v.comp>=0&&v.comp<=100)) return null;
+ const sched=v.mins/60*v.days, done=sched*v.comp/100, missed=sched-done, wd=done/v.workday;
+ return {big:num(done)+" hours",
+  chips:[["Scheduled",num(sched)+" hours"],["Missed",num(missed)+" hours"],["Workdays",num(wd)+" days"]],
+  rows:[["Scheduled hours",num(sched)+" hours"],["Completion rate",num(v.comp)+"%"],["Completed hours",num(done)+" hours"],["Missed hours",num(missed)+" hours"],["Completed minutes",num(done*60)+" min"],["Equivalent workdays",num(wd)+" days"]],
+  bars:[["Completed",done,num(done)+" hrs"],["Missed",missed,num(missed)+" hrs"]],
+  cum:[30,90,180,365].filter(function(d){return d<=v.days;}).concat([30,90,180,365].indexOf(v.days)===-1?[v.days]:[]).map(function(d){return ["After "+num(d)+" days",num(v.mins/60*d*v.comp/100)+" hours"];}),
+  vclass:v.comp===0?"warn":"",
+  verdict:v.comp===0?"Completed hours are 0 at a 0% completion rate — the scheduled "+num(sched)+" hours are all missed on these inputs.":"At "+num(v.mins)+" minutes a day for "+num(v.days)+" days with "+num(v.comp)+"% completion, you accumulate "+num(done)+" hours ("+num(wd)+" workdays of "+num(v.workday)+" hours). Hours alone do not measure quality or mastery — see Scope and limitations.",
+  summary:"Habit: scheduled "+num(sched)+" hrs, completed "+num(done)+" hrs at "+num(v.comp)+"%, missed "+num(missed)+" hrs, "+num(wd)+" workdays."};}
+
+function render(){
+  const v=get(); const c=calc(v);
+  if(!c){
+    $("result").textContent="—"; $("chips").innerHTML=""; $("compRows").innerHTML=""; $("bars").innerHTML=""; $("cumRows").innerHTML="";
+    const vd=$("verdict"); vd.className="verdict warn"; $("verdictText").textContent=INVALID_MSG; window.__summary=""; return;
+  }
+  $("result").textContent=c.big;
+  $("chips").innerHTML=c.chips.map(ch=>'<span class="chip">'+ch[0]+': <strong>'+ch[1]+'</strong></span>').join("");
+  $("compRows").innerHTML=c.rows.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const mx=Math.max.apply(null,c.bars.map(b=>b[1]).concat([1]));
+  $("bars").innerHTML=c.bars.map(b=>'<div class="bar-row"><label><span>'+b[0]+'</span><span>'+b[2]+'</span></label><div class="bar"><i style="width:'+(b[1]/mx*100)+'%">'+'</i></div></div>').join("");
+  $("cumRows").innerHTML=c.cum.map(r=>"<tr><td>"+r[0]+"</td><td class='num'>"+r[1]+"</td></tr>").join("");
+  const vd=$("verdict"); vd.className="verdict"+(c.vclass?" "+c.vclass:""); $("verdictText").textContent=c.verdict;
+  window.__summary=c.summary;
+}
+
+
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",render));render();
+
+})();

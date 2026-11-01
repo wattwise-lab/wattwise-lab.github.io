@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"current-divider-calculator","name":"Current Divider","names":{"zh-CN":"电流分流"},"domain":"Science","keywords":"Current Divider 电流分流 current-divider-calculator","new":true,"description":"Split total current between two parallel resistors.","descriptions":{"zh-CN":"计算两个并联电阻的支路电流。"},"priority":365}];

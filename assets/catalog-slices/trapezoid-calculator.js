@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"trapezoid-calculator","name":"Trapezoid Area","names":{"zh-CN":"梯形面积"},"domain":"Math and Time","keywords":"Trapezoid Area 梯形面积 trapezoid-calculator","new":true,"description":"Find trapezoid area and the length of its midline.","descriptions":{"zh-CN":"求梯形面积及中位线长度。"},"priority":275}];

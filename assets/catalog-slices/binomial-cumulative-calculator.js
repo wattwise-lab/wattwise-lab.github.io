@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"binomial-cumulative-calculator","name":"Binomial Cumulative Probability","names":{"zh-CN":"二项分布累积概率"},"domain":"Math and Time","keywords":"Binomial Cumulative Probability 二项分布累积概率 binomial-cumulative-calculator","new":true,"description":"Find the probability of at most k successes.","descriptions":{"zh-CN":"求最多成功 k 次的概率。"},"priority":471}];

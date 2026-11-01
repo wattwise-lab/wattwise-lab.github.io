@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"weighted-bill-split-calculator","name":"Weighted Bill Split","names":{"zh-CN":"按权重分账"},"domain":"Home and Everyday","keywords":"Weighted Bill Split 按权重分账 weighted-bill-split-calculator","new":true,"description":"Split a total by chosen shares and reconcile currency rounding.","descriptions":{"zh-CN":"按自选权重分账，并对齐货币舍入尾差。"},"priority":269}];

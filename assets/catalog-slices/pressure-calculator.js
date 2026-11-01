@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"pressure-calculator","name":"Pressure from Force","names":{"zh-CN":"受力压强"},"domain":"Science","keywords":"Pressure from Force 受力压强 pressure-calculator","new":true,"description":"Distribute perpendicular force over an area.","descriptions":{"zh-CN":"将垂直作用力分摊至面积。"},"priority":392}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"de-broglie-wavelength-calculator","name":"De Broglie Wavelength","names":{"zh-CN":"德布罗意波长"},"domain":"Science","keywords":"De Broglie Wavelength 德布罗意波长 de-broglie-wavelength-calculator","new":true,"description":"Estimate nonrelativistic matter wavelength from mass and speed.","descriptions":{"zh-CN":"由质量与速率估计非相对论物质波长。"},"priority":389}];

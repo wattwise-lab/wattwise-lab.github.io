@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"savings-goal-calculator","name":"Savings Goal Calculator","domain":"Finance","keywords":"savings goal save money savings plan monthly savings","names":{"zh-CN":"储蓄目标计算器","ja":"貯蓄目標"},"new":false,"description":"Estimate the monthly contribution needed to reach a future savings target.","descriptions":{"zh-CN":"从目标金额倒推，估算每月需要存多少钱。"},"priority":27}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"margin-of-error-calculator","name":"Proportion Margin of Error","names":{"zh-CN":"比例误差界限"},"domain":"Math and Time","keywords":"Proportion Margin of Error 比例误差界限 margin-of-error-calculator","new":true,"description":"Estimate a normal-approximation margin from sample size and proportion.","descriptions":{"zh-CN":"由样本量和比例估算正态近似误差界限。"},"priority":457}];

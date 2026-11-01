@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"quartiles-calculator","name":"Quartiles","names":{"zh-CN":"四分位数"},"domain":"Math and Time","keywords":"Quartiles 四分位数 quartiles-calculator","new":true,"description":"Find the lower quartile, median and upper quartile by linear interpolation.","descriptions":{"zh-CN":"用线性插值法求下四分位数、中位数和上四分位数。"},"priority":446}];

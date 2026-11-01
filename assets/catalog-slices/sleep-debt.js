@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sleep-debt","name":"Sleep Debt","domain":"Health","keywords":"sleep debt sleep sleep deficit rest","names":{"zh-CN":"睡眠欠账估算","ja":"睡眠負債の目安"},"new":false,"description":"Accumulated sleep shortfall from a nightly target, actual average sleep, and the number of days.","descriptions":{"zh-CN":"比较目标睡眠与实际睡眠，估算一段时间的累计睡眠不足。"},"priority":67}];

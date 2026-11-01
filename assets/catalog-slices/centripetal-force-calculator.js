@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"centripetal-force-calculator","name":"Centripetal Force","names":{"zh-CN":"向心力"},"domain":"Science","keywords":"Centripetal Force 向心力 centripetal-force-calculator","new":true,"description":"Find inward force and acceleration for circular motion.","descriptions":{"zh-CN":"求圆周运动的向心力与向心加速度。"},"priority":429}];

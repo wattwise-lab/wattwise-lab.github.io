@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ratio-simplifier-calculator","name":"Ratio Simplifier","names":{"zh-CN":"比例化简"},"domain":"Math and Time","keywords":"Ratio Simplifier 比例化简 ratio-simplifier-calculator","new":true,"description":"Reduce two whole-number quantities to their smallest ratio.","descriptions":{"zh-CN":"把两个整数数量约成最简比例。"},"priority":314}];

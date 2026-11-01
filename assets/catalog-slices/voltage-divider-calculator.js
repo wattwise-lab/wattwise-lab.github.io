@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"voltage-divider-calculator","name":"Voltage Divider","names":{"zh-CN":"电阻分压"},"domain":"Science","keywords":"Voltage Divider 电阻分压 voltage-divider-calculator","new":true,"description":"Find unloaded output voltage across the lower divider resistor.","descriptions":{"zh-CN":"求无负载分压器下侧电阻电压。"},"priority":364}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"data-range-calculator","name":"Data Statistical range","names":{"zh-CN":"极差计算器"},"domain":"Math and Time","keywords":"Data Statistical range 极差计算器 data-range-calculator","new":true,"description":"Find the spread between the largest and smallest observations.","descriptions":{"zh-CN":"计算最大值、最小值及其差值。"},"priority":445}];

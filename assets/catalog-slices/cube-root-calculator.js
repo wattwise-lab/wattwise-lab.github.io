@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cube-root-calculator","name":"Cube Root","names":{"zh-CN":"立方根"},"domain":"Math and Time","keywords":"Cube Root 立方根 cube-root-calculator","new":true,"description":"Find the real cube root of a positive or negative value.","descriptions":{"zh-CN":"求正数或负数的实数立方根。"},"priority":327}];

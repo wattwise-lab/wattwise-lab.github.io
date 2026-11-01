@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"two-asset-volatility-calculator","name":"Two Asset Portfolio Volatility","names":{"zh-CN":"双资产组合波动率"},"domain":"Finance","keywords":"Two Asset Portfolio Volatility 双资产组合波动率 two-asset-volatility-calculator","new":true,"description":"Combine two asset volatilities and their correlation.","descriptions":{"zh-CN":"合并两项资产的波动率及相关性。"},"priority":175}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"number-base-converter","name":"Integer Number Base Converter","names":{"zh-CN":"整数进制换算"},"domain":"Converters","keywords":"Integer Number Base Converter 整数进制换算 number-base-converter","new":true,"description":"Convert exact signed integers between bases 2 and 36.","descriptions":{"zh-CN":"在 2–36 进制间精确换算带符号整数。"},"priority":121}];

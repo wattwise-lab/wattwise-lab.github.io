@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"equivalent-annual-cost-calculator","name":"Equivalent Annual Cost","names":{"zh-CN":"等额年成本"},"domain":"Finance","keywords":"Equivalent Annual Cost 等额年成本 equivalent-annual-cost-calculator","new":true,"description":"Annualize a purchase and recurring costs at a chosen discount rate.","descriptions":{"zh-CN":"按折现率将购置与维护费用换算为等额年成本。"},"priority":161}];

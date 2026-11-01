@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"ideal-gas-molar-volume-calculator","name":"Ideal Gas Molar Volume","names":{"zh-CN":"理想气体摩尔体积"},"domain":"Science","keywords":"Ideal Gas Molar Volume 理想气体摩尔体积 ideal-gas-molar-volume-calculator","new":true,"description":"Calculate volume occupied per mole under chosen conditions.","descriptions":{"zh-CN":"计算指定温压下每摩尔理想气体占据体积。"},"priority":415}];

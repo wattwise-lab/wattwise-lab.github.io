@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"odds-ratio-calculator","name":"Odds Ratio","names":{"zh-CN":"比值比"},"domain":"Math and Time","keywords":"Odds Ratio 比值比 odds-ratio-calculator","new":true,"description":"Compare event odds across two independent groups.","descriptions":{"zh-CN":"比较两个独立群体的事件优势比。"},"priority":490}];

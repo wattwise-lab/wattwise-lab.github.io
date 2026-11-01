@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"discriminant-calculator","name":"Quadratic Discriminant","names":{"zh-CN":"二次方程判别式"},"domain":"Math and Time","keywords":"Quadratic Discriminant 二次方程判别式 discriminant-calculator","new":true,"description":"Classify the real roots of ax² + bx + c using the discriminant.","descriptions":{"zh-CN":"用判别式判断二次方程的实根情况。"},"priority":341}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"one-sample-t-test-calculator","name":"One-Sample t Test","names":{"zh-CN":"单样本 t 检验"},"domain":"Math and Time","keywords":"One-Sample t Test 单样本 t 检验 one-sample-t-test-calculator","new":true,"description":"Compare a sample mean with a stated reference using a two-sided t test.","descriptions":{"zh-CN":"用双侧 t 检验比较样本均值与给定参考值。"},"priority":458}];

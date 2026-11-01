@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"insulation-payback-calculator","name":"Insulation Savings Payback","names":{"zh-CN":"保温节省回收期"},"domain":"Home and Everyday","keywords":"Insulation Savings Payback 保温节省回收期 insulation-payback-calculator","new":true,"description":"Estimate conduction savings and simple installation payback.","descriptions":{"zh-CN":"估计导热节省与简单安装成本回收期。"},"priority":264}];

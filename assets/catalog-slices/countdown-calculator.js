@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"countdown-calculator","name":"Countdown Calculator","domain":"Math and Time","keywords":"countdown countdown timer days until time left","names":{"zh-CN":"倒计时计算器","ja":"カウントダウン"},"new":false,"description":"Calendar days until or since a target date.","descriptions":{"zh-CN":"计算距离目标日期还剩多少天、周和月。"},"priority":77}];

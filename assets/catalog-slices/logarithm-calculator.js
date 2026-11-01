@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"logarithm-calculator","name":"Logarithm Calculator","names":{"zh-CN":"对数计算器"},"domain":"Math and Time","keywords":"Logarithm Calculator 对数计算器 logarithm-calculator","new":true,"description":"Find the logarithm of a positive value in a valid chosen base.","descriptions":{"zh-CN":"计算正数在指定合法底数下的对数。"},"priority":330}];

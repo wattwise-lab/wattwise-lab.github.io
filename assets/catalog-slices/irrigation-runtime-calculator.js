@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"irrigation-runtime-calculator","name":"Irrigation Runtime","names":{"zh-CN":"灌溉运行时间"},"domain":"Home and Everyday","keywords":"Irrigation Runtime 灌溉运行时间 irrigation-runtime-calculator","new":true,"description":"Convert a chosen water depth and emitter flow into runtime.","descriptions":{"zh-CN":"将自选水深及出水流量换算为运行时长。"},"priority":258}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"running-cadence-speed-calculator","name":"Running Cadence and Step Length","names":{"zh-CN":"跑步步频步长"},"domain":"Health","keywords":"Running Cadence and Step Length 跑步步频步长 running-cadence-speed-calculator","new":true,"description":"Combine steps per minute and length per step.","descriptions":{"zh-CN":"结合每分钟步数与单步步长。"},"priority":230}];

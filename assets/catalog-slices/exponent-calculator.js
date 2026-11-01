@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"exponent-calculator","name":"Exponent Calculator","names":{"zh-CN":"乘方计算器"},"domain":"Math and Time","keywords":"Exponent Calculator 乘方计算器 exponent-calculator","new":true,"description":"Raise a real base to an exponent within the real-number domain.","descriptions":{"zh-CN":"计算实数底数的乘方，检查实数定义域。"},"priority":329}];

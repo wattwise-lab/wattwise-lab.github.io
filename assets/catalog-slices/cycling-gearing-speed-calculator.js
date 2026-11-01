@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cycling-gearing-speed-calculator","name":"Cycling Gearing Speed","names":{"zh-CN":"自行车齿比速度"},"domain":"Health","keywords":"Cycling Gearing Speed 自行车齿比速度 cycling-gearing-speed-calculator","new":true,"description":"Convert cadence and gear ratio into theoretical road speed.","descriptions":{"zh-CN":"由踏频与齿比计算理论行驶速度。"},"priority":229}];

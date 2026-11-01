@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"heat-flux-converter","name":"Heat Flux Converter","names":{"zh-CN":"热流密度单位换算"},"domain":"Converters","keywords":"Heat Flux Converter 热流密度单位换算 heat-flux-converter","new":true,"description":"Convert heat flow per unit area.","descriptions":{"zh-CN":"换算单位面积热流。"},"priority":117}];

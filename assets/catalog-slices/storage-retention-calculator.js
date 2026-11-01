@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"storage-retention-calculator","name":"Storage Retention Time","names":{"zh-CN":"存储保留时长"},"domain":"Digital and Technology","keywords":"Storage Retention Time 存储保留时长 storage-retention-calculator","new":true,"description":"Compare usable storage with daily generated data and replicas.","descriptions":{"zh-CN":"比较可用存储与每日产生数据及副本数。"},"priority":135}];

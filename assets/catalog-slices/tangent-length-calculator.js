@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"tangent-length-calculator","name":"Tangent Length to Circle","names":{"zh-CN":"圆外切线长度"},"domain":"Math and Time","keywords":"Tangent Length to Circle 圆外切线长度 tangent-length-calculator","new":true,"description":"Find tangent length from an external point to a circle.","descriptions":{"zh-CN":"由圆外点到圆心的距离和半径求切线长。"},"priority":289}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"receivables-turnover-calculator","name":"Receivables Turnover","names":{"zh-CN":"应收账款周转率"},"domain":"Business","keywords":"Receivables Turnover 应收账款周转率 receivables-turnover-calculator","new":true,"description":"Compare credit sales with average receivables.","descriptions":{"zh-CN":"比较赊销额与平均应收账款。"},"priority":199}];

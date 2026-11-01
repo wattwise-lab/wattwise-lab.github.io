@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"parallelogram-calculator","name":"Parallelogram Calculator","names":{"zh-CN":"平行四边形"},"domain":"Math and Time","keywords":"Parallelogram Calculator 平行四边形 parallelogram-calculator","new":true,"description":"Calculate area using perpendicular height and perimeter using side lengths.","descriptions":{"zh-CN":"用垂直高求面积，用两邻边求周长。"},"priority":274}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"series-capacitance-calculator","name":"Series Capacitance","names":{"zh-CN":"串联电容"},"domain":"Science","keywords":"Series Capacitance 串联电容 series-capacitance-calculator","new":true,"description":"Combine ideal capacitors in series.","descriptions":{"zh-CN":"合并理想串联电容。"},"priority":367}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"mulch-bags-calculator","name":"Mulch Bags","names":{"zh-CN":"覆盖物袋数"},"domain":"Home and Everyday","keywords":"Mulch Bags 覆盖物袋数 mulch-bags-calculator","new":true,"description":"Convert garden area and layer depth into whole bags.","descriptions":{"zh-CN":"将花园面积及覆盖厚度换算为整袋数量。"},"priority":245}];

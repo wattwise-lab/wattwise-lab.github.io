@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"hydrostatic-pressure-calculator","name":"Hydrostatic Pressure","names":{"zh-CN":"静水压强"},"domain":"Science","keywords":"Hydrostatic Pressure 静水压强 hydrostatic-pressure-calculator","new":true,"description":"Calculate fluid pressure with depth and surface pressure.","descriptions":{"zh-CN":"由深度与表面压力计算静止流体压强。"},"priority":393}];

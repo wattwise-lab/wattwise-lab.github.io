@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sum-of-squares-calculator","name":"Sum of Squares","names":{"zh-CN":"平方和"},"domain":"Math and Time","keywords":"Sum of Squares 平方和 sum-of-squares-calculator","new":true,"description":"Sum the squares of positive integers from one through n.","descriptions":{"zh-CN":"计算 1 到 n 各整数的平方之和。"},"priority":348}];

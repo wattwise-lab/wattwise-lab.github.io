@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"roi-calculator","name":"ROI Calculator","domain":"Business","keywords":"roi return on investment investment return","names":{"zh-CN":"投资回报率 ROI","ja":"投資利益率 ROI"},"new":false,"description":"Measure investment gain or loss relative to the initial amount invested.","descriptions":{"zh-CN":"比较投入成本和最终回报，计算投资回报率 ROI。"},"priority":62}];

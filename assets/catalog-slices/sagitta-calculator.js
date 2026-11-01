@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sagitta-calculator","name":"Sagitta of a Circular Arc","names":{"zh-CN":"圆弧弓高"},"domain":"Math and Time","keywords":"Sagitta of a Circular Arc 圆弧弓高 sagitta-calculator","new":true,"description":"Find the minor-arc height above a chord.","descriptions":{"zh-CN":"由半径和弦长求较小圆弧的弓高。"},"priority":292}];

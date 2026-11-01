@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"body-fat-calculator","name":"Body Fat Calculator","domain":"Health","keywords":"body fat body fat percentage fat percent","names":{"zh-CN":"体脂率估算","ja":"体脂肪率の目安"},"new":false,"description":"Estimate body-fat percentage from BMI, age, and sex using the Deurenberg population equation.","descriptions":{"zh-CN":"根据身体围度等数据估算体脂率，仅供参考。"},"priority":64}];

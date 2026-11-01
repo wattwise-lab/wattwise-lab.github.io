@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"bond-duration-calculator","name":"Bond Duration","names":{"zh-CN":"债券久期"},"domain":"Finance","keywords":"Bond Duration 债券久期 bond-duration-calculator","new":true,"description":"Estimate interest-rate sensitivity using discounted cash-flow timing.","descriptions":{"zh-CN":"用折现现金流时间估计利率敏感度。"},"priority":165}];

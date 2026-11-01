@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"slope-calculator","name":"Slope between Two Points","names":{"zh-CN":"两点斜率"},"domain":"Math and Time","keywords":"Slope between Two Points 两点斜率 slope-calculator","new":true,"description":"Find rise divided by run and identify vertical lines.","descriptions":{"zh-CN":"求两点间的纵向变化与横向变化之比。"},"priority":335}];

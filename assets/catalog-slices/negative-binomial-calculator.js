@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"negative-binomial-calculator","name":"Negative Binomial Trials","names":{"zh-CN":"负二项分布试验次数"},"domain":"Math and Time","keywords":"Negative Binomial Trials 负二项分布试验次数 negative-binomial-calculator","new":true,"description":"Find the chance the rth success occurs on trial n.","descriptions":{"zh-CN":"求第 r 次成功恰好出现在第 n 次试验的概率。"},"priority":479}];

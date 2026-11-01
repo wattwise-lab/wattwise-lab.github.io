@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"normal-quantile-calculator","name":"Normal Quantile","names":{"zh-CN":"正态分布分位数"},"domain":"Math and Time","keywords":"Normal Quantile 正态分布分位数 normal-quantile-calculator","new":true,"description":"Find a value from its normal-distribution percentile.","descriptions":{"zh-CN":"由正态分布累积百分位求对应数值。"},"priority":475}];

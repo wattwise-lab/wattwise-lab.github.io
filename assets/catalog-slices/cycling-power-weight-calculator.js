@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"cycling-power-weight-calculator","name":"Cycling Power to Weight","names":{"zh-CN":"骑行功率体重比"},"domain":"Health","keywords":"Cycling Power to Weight 骑行功率体重比 cycling-power-weight-calculator","new":true,"description":"Compare cycling power with rider mass.","descriptions":{"zh-CN":"比较骑行功率与骑手体重。"},"priority":228}];

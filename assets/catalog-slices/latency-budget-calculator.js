@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"latency-budget-calculator","name":"Sequential Latency Budget","names":{"zh-CN":"串行延迟预算"},"domain":"Digital and Technology","keywords":"Sequential Latency Budget 串行延迟预算 latency-budget-calculator","new":true,"description":"Add sequential stages and compare them with a target.","descriptions":{"zh-CN":"合计串行阶段延迟并与目标比较。"},"priority":142}];

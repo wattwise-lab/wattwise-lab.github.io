@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"prime-number-calculator","name":"Prime Number Check","names":{"zh-CN":"质数判断"},"domain":"Math and Time","keywords":"Prime Number Check 质数判断 prime-number-calculator","new":true,"description":"Check whether an integer has any divisor other than one and itself.","descriptions":{"zh-CN":"判断整数是否只有 1 和自身两个正因数。"},"priority":325}];

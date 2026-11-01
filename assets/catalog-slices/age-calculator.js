@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"age-calculator","name":"Age Calculator","domain":"Math and Time","keywords":"age age calculator how old birthday age","names":{"zh-CN":"年龄计算器","ja":"年齢計算"},"new":false,"description":"Exact age in years, months and days, total days lived, and days until the next birthday.","descriptions":{"zh-CN":"按出生日期和参考日期，计算年龄、总天数及下次生日间隔。"},"priority":7}];

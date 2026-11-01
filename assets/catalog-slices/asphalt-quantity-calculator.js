@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"asphalt-quantity-calculator","name":"Asphalt Quantity","names":{"zh-CN":"沥青用量"},"domain":"Home and Everyday","keywords":"Asphalt Quantity 沥青用量 asphalt-quantity-calculator","new":true,"description":"Convert area and compacted thickness into material mass.","descriptions":{"zh-CN":"由面积与压实厚度计算材料质量。"},"priority":247}];

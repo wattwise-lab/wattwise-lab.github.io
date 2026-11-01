@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"binomial-probability-calculator","name":"Binomial Probability","names":{"zh-CN":"二项分布点概率"},"domain":"Math and Time","keywords":"Binomial Probability 二项分布点概率 binomial-probability-calculator","new":true,"description":"Find the chance of exactly k successes in n independent trials.","descriptions":{"zh-CN":"求 n 次独立二项试验中恰好成功 k 次的概率。"},"priority":470}];

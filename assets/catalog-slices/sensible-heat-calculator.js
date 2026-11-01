@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"sensible-heat-calculator","name":"Sensible Heat Energy","names":{"zh-CN":"显热能量"},"domain":"Science","keywords":"Sensible Heat Energy 显热能量 sensible-heat-calculator","new":true,"description":"Calculate energy for a temperature change without a phase transition.","descriptions":{"zh-CN":"计算无相变温度变化所需能量。"},"priority":403}];

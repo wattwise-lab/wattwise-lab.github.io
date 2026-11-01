@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"stair-layout-calculator","name":"Stair Layout","names":{"zh-CN":"楼梯踏步布置"},"domain":"Home and Everyday","keywords":"Stair Layout 楼梯踏步布置 stair-layout-calculator","new":true,"description":"Divide total rise into equal risers under an entered height limit.","descriptions":{"zh-CN":"按自填高度上限将总升高分为等高踏步。"},"priority":249}];

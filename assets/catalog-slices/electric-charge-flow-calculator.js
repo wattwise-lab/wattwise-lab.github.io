@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"electric-charge-flow-calculator","name":"Electric Charge from Current","names":{"zh-CN":"电流电荷量"},"domain":"Science","keywords":"Electric Charge from Current 电流电荷量 electric-charge-flow-calculator","new":true,"description":"Integrate a constant or average electric current over time.","descriptions":{"zh-CN":"将恒定或平均电流乘以持续时间。"},"priority":375}];

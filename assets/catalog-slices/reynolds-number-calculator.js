@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"reynolds-number-calculator","name":"Reynolds Number","names":{"zh-CN":"雷诺数"},"domain":"Science","keywords":"Reynolds Number 雷诺数 reynolds-number-calculator","new":true,"description":"Compare inertia and viscosity in an entered flow scale.","descriptions":{"zh-CN":"比较所填流动尺度下的惯性与黏性。"},"priority":399}];

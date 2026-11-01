@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"race-time-prediction-calculator","name":"Race Time Projection","names":{"zh-CN":"比赛时间推算"},"domain":"Health","keywords":"Race Time Projection 比赛时间推算 race-time-prediction-calculator","new":true,"description":"Project another distance using an editable endurance exponent.","descriptions":{"zh-CN":"使用可编辑耐力指数推算另一距离用时。"},"priority":224}];

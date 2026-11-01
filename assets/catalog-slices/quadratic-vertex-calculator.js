@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"quadratic-vertex-calculator","name":"Quadratic Vertex","names":{"zh-CN":"抛物线顶点"},"domain":"Math and Time","keywords":"Quadratic Vertex 抛物线顶点 quadratic-vertex-calculator","new":true,"description":"Find the vertex, axis and opening direction of a quadratic.","descriptions":{"zh-CN":"求二次函数的顶点、对称轴和开口方向。"},"priority":351}];

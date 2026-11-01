@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"resistance-converter","name":"Resistance Converter","names":{"zh-CN":"电阻单位换算"},"domain":"Converters","keywords":"Resistance Converter 电阻单位换算 resistance-converter","new":true,"description":"Convert ohms and their decimal multiples.","descriptions":{"zh-CN":"换算欧姆及其十进制倍数。"},"priority":107}];

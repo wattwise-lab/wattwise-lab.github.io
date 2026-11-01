@@ -1,0 +1,1 @@
+window.CMCatalog=[{slug:"series-capacitance-calculator",name:"Series Capacitance",names:{"zh-CN":"\u4E32\u8054\u7535\u5BB9"},domain:"Science",keywords:"Series Capacitance \u4E32\u8054\u7535\u5BB9 series-capacitance-calculator",new:!0,description:"Combine ideal capacitors in series.",descriptions:{"zh-CN":"\u5408\u5E76\u7406\u60F3\u4E32\u8054\u7535\u5BB9\u3002"},priority:367}];

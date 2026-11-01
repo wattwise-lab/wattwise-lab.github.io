@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"illuminance-converter","name":"Illuminance Converter","names":{"zh-CN":"照度单位换算"},"domain":"Converters","keywords":"Illuminance Converter 照度单位换算 illuminance-converter","new":true,"description":"Convert lux, foot-candles and phot.","descriptions":{"zh-CN":"换算勒克斯、英尺烛光与辐透。"},"priority":118}];

@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"information-ratio-calculator","name":"Information Ratio","names":{"zh-CN":"信息比率"},"domain":"Finance","keywords":"Information Ratio 信息比率 information-ratio-calculator","new":true,"description":"Compare active return with tracking error.","descriptions":{"zh-CN":"比较相对基准的超额回报与跟踪误差。"},"priority":179}];

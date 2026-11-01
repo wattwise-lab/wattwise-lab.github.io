@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"square-root-calculator","name":"Square Root","names":{"zh-CN":"平方根"},"domain":"Math and Time","keywords":"Square Root 平方根 square-root-calculator","new":true,"description":"Find the nonnegative principal square root and its opposite.","descriptions":{"zh-CN":"求非负主平方根及其相反数。"},"priority":326}];

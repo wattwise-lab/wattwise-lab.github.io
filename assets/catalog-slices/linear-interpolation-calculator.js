@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"linear-interpolation-calculator","name":"Linear Interpolation","names":{"zh-CN":"线性插值"},"domain":"Math and Time","keywords":"Linear Interpolation 线性插值 linear-interpolation-calculator","new":true,"description":"Estimate a value between two known coordinate pairs.","descriptions":{"zh-CN":"根据两个已知点线性插值。"},"priority":310}];

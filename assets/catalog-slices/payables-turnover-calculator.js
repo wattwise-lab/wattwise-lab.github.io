@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"payables-turnover-calculator","name":"Payables Turnover","names":{"zh-CN":"应付账款周转率"},"domain":"Business","keywords":"Payables Turnover 应付账款周转率 payables-turnover-calculator","new":true,"description":"Compare credit purchases with average trade payables.","descriptions":{"zh-CN":"比较赊购额与平均贸易应付账款。"},"priority":200}];

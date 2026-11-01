@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"perpendicular-bisector-calculator","name":"Perpendicular Bisector","names":{"zh-CN":"垂直平分线"},"domain":"Math and Time","keywords":"Perpendicular Bisector 垂直平分线 perpendicular-bisector-calculator","new":true,"description":"Find coefficients of the perpendicular bisector of a segment.","descriptions":{"zh-CN":"求线段垂直平分线的一般式系数。"},"priority":340}];

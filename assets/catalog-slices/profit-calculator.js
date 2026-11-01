@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"profit-calculator","name":"Profit Calculator","domain":"Business","keywords":"profit profit margin business profit earnings","names":{"zh-CN":"利润计算器","ja":"利益計算"},"new":false,"description":"Net profit, net margin, total cost, and cost ratio from revenue and costs.","descriptions":{"zh-CN":"从收入中扣除变动成本和固定成本，计算净利润与净利率。"},"priority":25}];

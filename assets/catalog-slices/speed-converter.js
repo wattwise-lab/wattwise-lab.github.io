@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"speed-converter","name":"Speed Converter","domain":"Converters","keywords":"speed converter mph kph kmh miles per hour","names":{"zh-CN":"速度单位换算","ja":"速度換算"},"new":false,"description":"Convert speed between km/h, m/s, mph, and knots, with every unit shown side by side.","descriptions":{"zh-CN":"在公里每小时、英里每小时等速度单位之间换算。"},"priority":70}];

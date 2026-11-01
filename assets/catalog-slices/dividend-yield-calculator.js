@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"dividend-yield-calculator","name":"Dividend Yield","names":{"zh-CN":"股息率"},"domain":"Finance","keywords":"Dividend Yield 股息率 dividend-yield-calculator","new":true,"description":"Compare annual dividends with the current share price.","descriptions":{"zh-CN":"比较年度股息与当前股价。"},"priority":168}];

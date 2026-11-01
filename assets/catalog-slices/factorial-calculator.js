@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"factorial-calculator","name":"Factorial","names":{"zh-CN":"阶乘"},"domain":"Math and Time","keywords":"Factorial 阶乘 factorial-calculator","new":true,"description":"Multiply all positive integers up to n, with 0! defined as 1.","descriptions":{"zh-CN":"计算从 1 到 n 的整数乘积，并规定 0! 为 1。"},"priority":484}];

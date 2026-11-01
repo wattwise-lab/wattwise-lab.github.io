@@ -1,0 +1,1 @@
+window.CMCatalog=[{"slug":"current-ratio-calculator","name":"Current Ratio","names":{"zh-CN":"流动比率"},"domain":"Business","keywords":"Current Ratio 流动比率 current-ratio-calculator","new":true,"description":"Compare current assets with current liabilities.","descriptions":{"zh-CN":"比较流动资产与流动负债。"},"priority":196}];
