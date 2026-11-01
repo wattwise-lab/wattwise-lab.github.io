@@ -4198,7 +4198,17 @@
     "Inch (in)",
     "Foot (ft)",
     "Metres per unit",
-    "Negative lengths are rejected as invalid. Display values are rounded to 6 decimal places; the underlying calculation is not rounded. This page uses the international mile; the old US survey mile (about 2 parts per million longer) is not used."
+    "Negative lengths are rejected as invalid. Display values are rounded to 6 decimal places; the underlying calculation is not rounded. This page uses the international mile; the old US survey mile (about 2 parts per million longer) is not used.",
+    "Reverse rate:",
+    "All units for this value",
+    "All seven units describe the same length; the inch and foot factors below are exact definitions.",
+    "Is the inch exact?",
+    "What about yards?",
+    "Not listed separately: 1 yard = 3 feet = 0.9144 m. Enter feet and divide by 3, or enter metres and use the foot result.",
+    "Why does the mile row show so many decimals for 1 m?",
+    "Because 1 m is a tiny fraction of a mile (0.000621 mi); 6 decimal places keep it visible instead of rounding to zero.",
+    "Does this cover area or volume?",
+    "No — length only. Area and volume have their own converters in the related tools below."
   ],
   "hi": [
     "Home",
@@ -4613,7 +4623,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Value"
   ],
   "es": [
     "Home",
@@ -5007,7 +5018,9 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "To unit",
+    "What about yards?"
   ],
   "ar": [
     "Home",
@@ -5416,7 +5429,12 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Area Converter",
+    "Volume Converter",
+    "Formula version",
+    "Reverse rate:",
+    "1 m ÷ 0.3048 m/ft = 3.280840 ft, and 1 m ÷ 0.0254 m/in = 39.370079 in. A 5 km run is 5,000 ÷ 1,609.344 = 3.106856 miles."
   ],
   "fr": [
     "Home",
@@ -5825,7 +5843,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Area Converter"
   ],
   "bn": [
     "Home",
@@ -6218,7 +6237,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Value"
   ],
   "pt": [
     "Home",
@@ -7826,7 +7846,10 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Value",
+    "Area Converter",
+    "Volume Converter"
   ],
   "de": [
     "Home",
@@ -8681,7 +8704,10 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Area Converter",
+    "Volume Converter",
+    "Value"
   ],
   "pcm": [
     "Home",
@@ -17443,7 +17469,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "Volume Converter"
   ],
   "te": [
     "Home",
@@ -18249,7 +18276,8 @@
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
     "Weighted Bill Split",
-    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay."
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
+    "Inch (in)"
   ],
   "ha": [
     "Home",
@@ -19085,6 +19113,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "From unit",
+    "To unit"
   ]
 }

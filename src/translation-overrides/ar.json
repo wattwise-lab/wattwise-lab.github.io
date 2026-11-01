@@ -50,5 +50,10 @@
   "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "تتعرف القواعد المحلية في المتصفح على أسماء الأدوات الستة أدناه. في اللغات الأخرى، استخدم أسماء الحقول المترجمة مع اسم الأداة بالإنجليزية أو الصينية. لا تُقبل إلا الأعداد المرفقة بأسماء الحقول. راجع كل قيمة قبل تطبيقها؛ لا تُرفع أي بيانات.",
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "أدخل وزناً غير سالب لكل مشارك، بترتيب النتائج. يُقرَّب المجموع إلى المنازل العشرية المختارة للعملة، وتُقرَّب حالات المنتصف إلى الأعلى. تُوزَّع الوحدات النقدية الصغرى المتبقية على أصحاب أكبر البواقي؛ وعند التعادل تُعطى الأولوية للمشاركين الأسبق. تُحسب الحصص فقط ولا تُحوَّل أي أموال.",
-  "Weighted Bill Split": "تقسيم الفاتورة حسب الأوزان"
+  "Weighted Bill Split": "تقسيم الفاتورة حسب الأوزان",
+  "Area Converter": "محوّل وحدات المساحة",
+  "Volume Converter": "محوّل وحدات الحجم",
+  "Formula version": "إصدار الصيغة",
+  "Reverse rate:": "معدل التحويل العكسي:",
+  "1 m ÷ 0.3048 m/ft = 3.280840 ft, and 1 m ÷ 0.0254 m/in = 39.370079 in. A 5 km run is 5,000 ÷ 1,609.344 = 3.106856 miles.": "عند تحويل متر واحد: ⁦1 m ÷ 0.3048 m/ft = 3.280840 ft⁩، و⁦1 m ÷ 0.0254 m/in = 39.370079 in⁩. ومسافة جري قدرها ⁦5 km⁩ تساوي ⁦5,000 ÷ 1,609.344 = 3.106856 mi⁩."
 }

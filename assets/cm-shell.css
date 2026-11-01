@@ -618,3 +618,8 @@ body.cm-unified .kp-screen {
 .cm-embed-document body {
   min-height: 100vh;
 }
+/* The system italic face lacks Hausa hooked-letter glyphs on some platforms. */
+html[lang='ha'] .cm-tool main > p > em {
+  font-style: normal;
+  font-weight: inherit;
+}

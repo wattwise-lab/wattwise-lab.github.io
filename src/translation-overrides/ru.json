@@ -43,5 +43,8 @@
   "Local rules support the six tool names shown below. Other languages can use translated field labels, with an English or Chinese tool name. Only labelled numbers are recognized. You review every value before it is applied; nothing is uploaded.": "Локальные правила браузера распознают шесть названий инструментов ниже. На других языках используйте переведённые подписи полей с названием инструмента на английском или китайском. Распознаются только числа с подписями полей. Проверьте каждое значение перед применением; данные никуда не отправляются.",
   "mortgage · loan · compound · rent vs buy · freelance · AI cost": "mortgage · loan · compound · rent vs buy · freelance · AI cost",
   "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.": "Введите по одному неотрицательному весу для каждого участника в порядке результатов. Общая сумма округляется до выбранной точности валюты; значения ровно посередине округляются вверх. Оставшиеся минимальные денежные единицы распределяются по наибольшим остаткам; при равенстве преимущество у участников, указанных раньше. Рассчитываются только доли, деньги не переводятся.",
-  "Weighted Bill Split": "Разделение счёта по долям"
+  "Weighted Bill Split": "Разделение счёта по долям",
+  "Value": "Значение",
+  "Area Converter": "Конвертер площади",
+  "Volume Converter": "Конвертер объёма"
 }
