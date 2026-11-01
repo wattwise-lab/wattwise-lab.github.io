@@ -111,6 +111,86 @@ export function fileForPath(pathname, routes) {
   throw Error('Unexpected same-origin response path: ' + pathname);
 }
 
+async function disableBrowserCache(context, page) {
+  const session = await context.newCDPSession(page);
+  await session.send('Network.enable');
+  await session.send('Network.setCacheDisabled', { cacheDisabled: true });
+  return {
+    disabled: true,
+    method: 'Chromium CDP Network.setCacheDisabled',
+    target: 'The capture page target, configured before its first navigation.',
+    performanceMeasurement: false,
+  };
+}
+
+async function inspectResponse(response, config, routes, expectedBytes, report) {
+  const url = new URL(response.url());
+  if (url.origin !== config.origin) {
+    report.externalRequests.push({ url: response.url(), status: response.status() });
+    return;
+  }
+  if (response.status() >= 300 && response.status() < 400) return;
+  if (url.pathname === '/favicon.ico') return;
+  const request = response.request();
+  const record = {
+    url: response.url(),
+    file: null,
+    status: response.status(),
+    contentType: response.headers()['content-type'],
+    headers: response.headers(),
+    resourceType: request.resourceType(),
+    method: request.method(),
+    frameURL: null,
+    parentFrameURL: null,
+    frameDetached: null,
+    bodyRetrieved: false,
+    sha256: null,
+    expectedSHA256: null,
+    exact: null,
+  };
+  // Keep the real response identity even when Chromium cannot expose its body.
+  report.responses.push(record);
+  let stage = 'frame-metadata';
+  try {
+    const frame = request.frame();
+    record.frameURL = frame.url();
+    record.parentFrameURL = frame.parentFrame()?.url() || null;
+    record.frameDetached = frame.isDetached();
+    stage = 'artifact-route';
+    record.file = fileForPath(url.pathname, routes);
+    assert.ok(record.file);
+    stage = 'browser-response-body';
+    const bytes = await response.body();
+    record.bodyRetrieved = true;
+    record.bodyBytes = bytes.length;
+    record.sha256 = digest(bytes);
+    stage = 'expected-artifact';
+    const expected = await expectedBytes(record.file);
+    record.expectedSHA256 = digest(expected);
+    record.exact = bytes.equals(expected);
+    stage = 'runtime-fingerprint';
+    if (
+      /\.(?:js|css)$/i.test(url.pathname) ||
+      /^(?:text\/css|(?:application|text)\/(?:javascript|ecmascript))(?:[; ]|$)/i.test(
+        record.contentType || '',
+      )
+    )
+      assert.ok(
+        fingerprintedRuntimePath(url.pathname),
+        'Runtime JS/CSS response must use its fingerprinted asset URL: ' + response.url(),
+      );
+    stage = 'response-status';
+    assert.equal(record.status, 200, 'Failed response ' + response.url());
+    stage = 'artifact-bytes';
+    assert.ok(record.exact, 'Response bytes differ from the artifact: ' + response.url());
+  } catch (error) {
+    record.failureStage = stage;
+    record.error = String(error);
+    record.stack = error.stack || String(error);
+    throw error;
+  }
+}
+
 async function settled(page) {
   await page.evaluate(
     () =>
@@ -337,6 +417,11 @@ async function run(config) {
       systemFonts: true,
       performanceMeasurement: false,
       actualViewportScreenshots: true,
+      browserCache: {
+        disabled: false,
+        method: 'Chromium CDP Network.setCacheDisabled; setup is pending.',
+        performanceMeasurement: false,
+      },
     },
     readiness,
     pages: [],
@@ -373,41 +458,10 @@ async function run(config) {
   const pending = new Set();
   const responseFailures = [];
   page.on('response', (response) => {
-    const work = (async () => {
-      const url = new URL(response.url());
-      if (url.origin !== config.origin) {
-        report.externalRequests.push({ url: response.url(), status: response.status() });
-        return;
-      }
-      if (response.status() >= 300 && response.status() < 400) return;
-      const file = fileForPath(url.pathname, routes);
-      if (!file) return;
-      const bytes = await response.body(),
-        expected = await expectedBytes(file);
-      const record = {
-        url: response.url(),
-        file,
-        status: response.status(),
-        contentType: response.headers()['content-type'],
-        sha256: digest(bytes),
-        expectedSHA256: digest(expected),
-        exact: bytes.equals(expected),
-      };
-      report.responses.push(record);
-      if (
-        /\.(?:js|css)$/i.test(url.pathname) ||
-        /^(?:text\/css|(?:application|text)\/(?:javascript|ecmascript))(?:[; ]|$)/i.test(
-          record.contentType || '',
-        )
+    const work = inspectResponse(response, config, routes, expectedBytes, report)
+      .catch((error) =>
+        responseFailures.push(response.url() + '\n' + (error.stack || String(error))),
       )
-        assert.ok(
-          fingerprintedRuntimePath(url.pathname),
-          'Runtime JS/CSS response must use its fingerprinted asset URL: ' + response.url(),
-        );
-      assert.equal(record.status, 200, 'Failed response ' + response.url());
-      assert.ok(record.exact, 'Response bytes differ from the artifact: ' + response.url());
-    })()
-      .catch((error) => responseFailures.push(String(error)))
       .finally(() => pending.delete(work));
     pending.add(work);
   });
@@ -568,6 +622,7 @@ async function run(config) {
     };
   }
   try {
+    report.conditions.browserCache = await disableBrowserCache(context, page);
     for (const locale of locales) {
       await recordCase('workspace-' + locale, () => workspace(locale));
       await recordCase('home-' + locale, async () => {
@@ -1263,6 +1318,127 @@ async function selfTest() {
     '/assets/dist/nested/name.0123456789ab.js',
   ])
     assert.equal(fingerprintedRuntimePath(pathname), false);
+  const capturePage = {};
+  const commands = [];
+  const cache = await disableBrowserCache(
+    {
+      newCDPSession: async (target) => {
+        assert.equal(target, capturePage);
+        return { send: async (...command) => commands.push(command) };
+      },
+    },
+    capturePage,
+  );
+  assert.deepEqual(commands, [
+    ['Network.enable'],
+    ['Network.setCacheDisabled', { cacheDisabled: true }],
+  ]);
+  assert.equal(cache.disabled, true);
+  assert.equal(cache.performanceMeasurement, false);
+  await assert.rejects(
+    disableBrowserCache(
+      {
+        newCDPSession: async () => ({
+          send: async () => {
+            throw Error('CDP unavailable');
+          },
+        }),
+      },
+      capturePage,
+    ),
+    /CDP unavailable/,
+  );
+  const responseURL = local + '/assets/dist/example.0123456789ab.js';
+  const bodyBytes = Buffer.from('actual browser response');
+  const frame = {
+    url: () => local + '/pcm/workspace',
+    parentFrame: () => ({ url: () => local + '/workspace' }),
+    isDetached: () => false,
+  };
+  const responseFixture = (body, changes = {}) => ({
+    url: () => responseURL,
+    status: () => 200,
+    headers: () => ({
+      'content-type': 'text/javascript',
+      'content-length': String(bodyBytes.length),
+    }),
+    request: () => ({ resourceType: () => 'script', method: () => 'GET', frame: () => frame }),
+    body,
+    ...changes,
+  });
+  const responseReport = () => ({ responses: [], externalRequests: [] });
+  let completeBody;
+  const actual = responseReport();
+  const pendingBody = inspectResponse(
+    responseFixture(
+      () =>
+        new Promise((resolve) => {
+          completeBody = resolve;
+        }),
+    ),
+    { origin: local },
+    routes,
+    async () => bodyBytes,
+    actual,
+  );
+  assert.equal(actual.responses.length, 1);
+  assert.equal(actual.responses[0].url, responseURL);
+  assert.equal(actual.responses[0].bodyRetrieved, false);
+  completeBody(bodyBytes);
+  await pendingBody;
+  assert.equal(actual.responses[0].exact, true);
+  const failedBody = responseReport();
+  await assert.rejects(
+    inspectResponse(
+      responseFixture(async () => {
+        throw Error('simulated Chromium body unavailable');
+      }),
+      { origin: local },
+      routes,
+      async () => {
+        assert.fail('No substitute request or expected body may mask a failed browser body.');
+      },
+      failedBody,
+    ),
+    /simulated Chromium body unavailable/,
+  );
+  const failed = failedBody.responses[0];
+  assert.equal(failedBody.responses.length, 1);
+  assert.equal(failed.url, responseURL);
+  assert.equal(failed.file, 'assets/dist/example.0123456789ab.js');
+  assert.equal(failed.status, 200);
+  assert.equal(failed.headers['content-length'], String(bodyBytes.length));
+  assert.equal(failed.contentType, 'text/javascript');
+  assert.equal(failed.resourceType, 'script');
+  assert.equal(failed.method, 'GET');
+  assert.equal(failed.frameURL, frame.url());
+  assert.equal(failed.parentFrameURL, frame.parentFrame().url());
+  assert.equal(failed.frameDetached, false);
+  assert.equal(failed.bodyRetrieved, false);
+  assert.equal(failed.exact, null);
+  assert.equal(failed.failureStage, 'browser-response-body');
+  assert.match(failed.error, /simulated Chromium body unavailable/);
+  assert.match(failed.stack, /simulated Chromium body unavailable/);
+  for (const [changes, expected, pattern] of [
+    [{}, Buffer.from('different artifact'), /Response bytes differ/],
+    [{ url: () => local + '/assets/unversioned.js' }, bodyBytes, /fingerprinted asset URL/],
+    [{ status: () => 500 }, bodyBytes, /Failed response/],
+  ]) {
+    const rejected = responseReport();
+    await assert.rejects(
+      inspectResponse(
+        responseFixture(async () => bodyBytes, changes),
+        { origin: local },
+        routes,
+        async () => expected,
+        rejected,
+      ),
+      pattern,
+    );
+    assert.equal(rejected.responses.length, 1);
+    assert.equal(rejected.responses[0].bodyRetrieved, true);
+    assert.match(rejected.responses[0].error, pattern);
+  }
   assert.throws(() => fileForPath('/assets/%2e%2e/private', routes));
   assert.throws(() => fileForPath('/not-an-observed-route', routes));
   const decoded = JSON.parse(decodeURIComponent(layout.slice('#desk='.length)));
@@ -1345,7 +1521,7 @@ async function selfTest() {
     ]);
   }
   console.log(
-    'PASS origin/CLI/native-path boundaries and choices-only layout; browser launches0, HTTP requests0.',
+    'PASS origin/CLI/native paths, choices-only layout, CDP cold-cache ordering and retained strict response failures; mocked protocol/body checks only, browser launches0, HTTP requests0.',
   );
 }
 
