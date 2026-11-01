@@ -289,6 +289,10 @@ async function asset(p) {
   previousSources.set(output, p);
   return manifest[p];
 }
+// The compatible merchant widget is copied after standalone pages are fingerprinted.
+// Register its own assets before the manifest is consumed by native pages and embeds.
+for (const file of ['assets/cm-merchant-widget-v2.css', 'assets/cm-merchant-widget-v2.js'])
+  await asset(file);
 await compileTranslations(root, locales);
 const translationAssets = {};
 for (const locale of locales.filter((l) => l !== 'en'))
@@ -1160,7 +1164,7 @@ await write(
   ) + '\n',
 );
 const localized = await localizeSite(root, catalog, metadataPages);
-const embedFiles = await renderEmbeds(root, catalog);
+const embedFiles = await renderEmbeds(root, catalog, { manifest, sourceFor });
 
 // Retain the release snapshot as well: already-open tabs can request its language packs.
 const referenced = new Set(Object.values(manifest).map((p) => p.replace(/^\//, '')));

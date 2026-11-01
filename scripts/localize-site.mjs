@@ -78,15 +78,19 @@ export async function localizeSite(root, catalog, pages, selected) {
       $('script[data-cm-locale-dictionary]').remove();
       $('script[data-cm-merchant-dictionary]').remove();
       if (page.path === '/merchant-profit-planner') {
-        if (locale !== 'en')
+        if (locale !== 'en') {
+          const merchantDictionary = manifest['assets/merchant-i18n/' + locale + '.js'];
+          if (!merchantDictionary?.startsWith('/assets/dist/'))
+            throw new Error('Missing fingerprinted merchant dictionary: ' + locale);
           $('script[defer]')
             .first()
             .before(
               $('<script>')
                 .attr('defer', '')
                 .attr('data-cm-merchant-dictionary', locale)
-                .attr('src', '/assets/merchant-i18n/' + locale + '.js'),
+                .attr('src', merchantDictionary),
             );
+        }
         const copy = context.window.CMMerchantCopy[locale];
         $('[data-t]').each((_, e) => {
           const value = copy[$(e).attr('data-t')];

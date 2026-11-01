@@ -12,6 +12,12 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const production = 'https://calcmintly.com';
 const local = 'http://127.0.0.1:4173';
+const merchantCompatFiles = Object.freeze({
+  '/embed/merchant-profit': 'embed/merchant-profit.html',
+  '/embed/merchant-profit-planner': 'embed/merchant-profit-planner.html',
+});
+const fingerprintedRuntimePath = (pathname) =>
+  /^\/assets\/dist\/[^/]+\.[a-f0-9]{12}\.(?:js|css)$/.test(pathname);
 const locales = [
   'en',
   'zh-CN',
@@ -99,6 +105,7 @@ export function fileForPath(pathname, routes) {
   if (known) return known.file;
   const decoded = decodeURIComponent(pathname);
   assert.ok(decoded.startsWith('/') && !decoded.split('/').some((part) => part === '..'));
+  if (Object.hasOwn(merchantCompatFiles, decoded)) return merchantCompatFiles[decoded];
   if (decoded.startsWith('/assets/')) return decoded.slice(1);
   if (decoded === '/favicon.ico') return null;
   throw Error('Unexpected same-origin response path: ' + pathname);
@@ -206,8 +213,8 @@ async function screenshot(page, directory, name) {
   return { ...position, file, sha256: digest(bytes), personallyViewed: false };
 }
 
-async function entirePage(page, directory, name) {
-  await page.locator('.cm-site-header__brand').press('Home');
+async function entirePage(page, directory, name, topControl = '.cm-site-header__brand') {
+  await page.locator(topControl).press('Home');
   await settled(page);
   assert.equal((await geometry(page)).y, 0, 'Capture must begin at the top.');
   const segments = [];
@@ -387,6 +394,16 @@ async function run(config) {
         exact: bytes.equals(expected),
       };
       report.responses.push(record);
+      if (
+        /\.(?:js|css)$/i.test(url.pathname) ||
+        /^(?:text\/css|(?:application|text)\/(?:javascript|ecmascript))(?:[; ]|$)/i.test(
+          record.contentType || '',
+        )
+      )
+        assert.ok(
+          fingerprintedRuntimePath(url.pathname),
+          'Runtime JS/CSS response must use its fingerprinted asset URL: ' + response.url(),
+        );
       assert.equal(record.status, 200, 'Failed response ' + response.url());
       assert.ok(record.exact, 'Response bytes differ from the artifact: ' + response.url());
     })()
@@ -1035,6 +1052,155 @@ async function run(config) {
           'Actual500 catalog UI/link form, EN-to-CN language switch, source and target remove/Undo with raw values preserved and continued W-to-kW live transfer.',
       };
     });
+    for (const specification of [
+      { name: 'merchant-native-en-desktop', locale: 'en', width: 1365 },
+      { name: 'merchant-native-zh-phone', locale: 'zh-CN', width: 375 },
+      {
+        name: 'merchant-compatible-en-phone',
+        locale: 'en',
+        width: 375,
+        compatibilityPath: '/embed/merchant-profit',
+      },
+      {
+        name: 'merchant-compatible-zh-desktop',
+        locale: 'zh-CN',
+        width: 1365,
+        compatibilityPath: '/embed/merchant-profit-planner',
+      },
+    ])
+      await recordCase(specification.name, async () => {
+        const { name, locale, width, compatibilityPath } = specification;
+        const embedded = Boolean(compatibilityPath);
+        if (embedded) assert.ok(Object.hasOwn(merchantCompatFiles, compatibilityPath));
+        await page.setViewportSize({ width, height: 1000 });
+        await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
+        await drain();
+        if (embedded) {
+          const response = await page.goto(
+            config.origin + compatibilityPath + '?lang=' + locale + '&currency=USD',
+            { waitUntil: 'load', timeout: 45000 },
+          );
+          assert.equal(response.status(), 200);
+        } else
+          await navigate(routeFor(locale, 'merchant-profit-planner') + '?currency=USD', locale);
+        const input = embedded ? '#w-price' : '#input-price';
+        const resultIDs = embedded
+          ? ['contribution', 'adcap', 'monthly']
+          : ['result-contribution', 'result-cap', 'result-monthly'];
+        const languageControl = embedded ? '#language' : '#cm-site-language';
+        await page.locator(input).waitFor({ state: 'visible' });
+        await page.waitForFunction(
+          (language) =>
+            document.documentElement.lang === language &&
+            document.querySelector('#language')?.options.length === 20,
+          locale,
+        );
+        await settled(page);
+        await drain();
+        const assetReferences = await page.evaluate(() =>
+          [...document.querySelectorAll('script[src],link[rel="stylesheet"]')].map((element) => ({
+            kind: element.tagName,
+            url: new URL(element.getAttribute('src') || element.getAttribute('href'), location.href)
+              .pathname,
+            integrity: element.getAttribute('integrity'),
+          })),
+        );
+        assert.ok(
+          assetReferences.every(
+            (reference) =>
+              !/^\/assets\/(?:merchant-i18n\/|cm-merchant-widget-v2\.(?:js|css)$)/.test(
+                reference.url,
+              ),
+          ),
+          'Merchant runtime references must use their current fingerprinted assets.',
+        );
+        const merchantSources = [
+          'assets/cm-merchant-model-v2.js',
+          ...(embedded
+            ? ['assets/cm-merchant-widget-v2.js', 'assets/cm-merchant-widget-v2.css']
+            : ['assets/cm-merchant-app-v2.js']),
+          ...locales.map((language) => 'assets/merchant-i18n/' + language + '.js'),
+        ];
+        for (const source of merchantSources) {
+          const fingerprint = manifest[source];
+          assert.ok(fingerprint?.startsWith('/assets/dist/'), 'Merchant asset manifest: ' + source);
+          const reference = assetReferences.find((entry) => entry.url === fingerprint);
+          assert.ok(reference, 'Current merchant asset is loaded: ' + source);
+          if (source.endsWith('.js'))
+            assert.equal(
+              reference.integrity,
+              'sha256-' +
+                createHash('sha256')
+                  .update(await expectedBytes(fingerprint.slice(1)))
+                  .digest('base64'),
+              'Merchant script SRI: ' + source,
+            );
+        }
+        if (embedded)
+          assert.equal(await page.locator('.cm-site-header,.cm-site-footer').count(), 0);
+        const stages = [],
+          images = [];
+        const readStage = async (stage, language, price, expected) => {
+          await page.waitForFunction(
+            ({ language, selector, price }) =>
+              document.documentElement.lang === language &&
+              document.querySelector(selector)?.value === price &&
+              document.querySelector('#language')?.value === language,
+            { language, selector: input, price },
+          );
+          await settled(page);
+          await drain();
+          assert.equal(await page.locator(languageControl).inputValue(), language);
+          assert.equal(await page.locator('#language option').count(), 20);
+          assert.equal(await page.locator('#currency').inputValue(), 'USD');
+          const results = await Promise.all(
+            resultIDs.map((id) => page.locator('#' + id).innerText()),
+          );
+          results.forEach((text, index) => near(actualNumber(text, language), expected[index]));
+          const state = await mainState(page);
+          assert.ok((await geometry(page)).scroll <= (await geometry(page)).client + 1);
+          stages.push({ stage, locale: language, price, currency: 'USD', results, state });
+        };
+        await readStage('defaults', locale, '100', [33.5, 33.5, 3050]);
+        await page.locator(input).fill('200');
+        await readStage('price-200', locale, '200', [125.5, 125.5, 12250]);
+        await page.locator('#' + resultIDs[0]).scrollIntoViewIfNeeded();
+        await settled(page);
+        images.push(await screenshot(page, config.out, name + '-edited-result'));
+        const otherLocale = locale === 'en' ? 'zh-CN' : 'en';
+        await page.locator(languageControl).selectOption(otherLocale);
+        await readStage('language-switched', otherLocale, '200', [125.5, 125.5, 12250]);
+        await page.locator('#' + resultIDs[0]).scrollIntoViewIfNeeded();
+        await settled(page);
+        images.push(await screenshot(page, config.out, name + '-translated-result'));
+        await page.locator(languageControl).selectOption(locale);
+        await readStage('language-returned', locale, '200', [125.5, 125.5, 12250]);
+        images.push(
+          ...(await entirePage(
+            page,
+            config.out,
+            name,
+            embedded ? '#full-tool' : '.cm-site-header__brand',
+          )),
+        );
+        if (embedded) {
+          await page.locator('#reset').click();
+          await readStage('reset', locale, '100', [33.5, 33.5, 3050]);
+          await page.locator('#' + resultIDs[0]).scrollIntoViewIfNeeded();
+          await settled(page);
+          images.push(await screenshot(page, config.out, name + '-reset-result'));
+        }
+        return {
+          locale,
+          embedded,
+          compatibilityPath,
+          assetReferences,
+          stages,
+          segments: images,
+          scope:
+            'Actual merchant price input, EN/CN language roundtrip with USD and values preserved, hand-derived contribution/ad cap/monthly profit, widget reset, full original-width page captures and fingerprinted merchant script SRI. Existing66 cases remain unchanged.',
+        };
+      });
     await drain();
   } catch (error) {
     report.failures.push({ name: 'fatal-run', error: String(error) });
@@ -1082,6 +1248,21 @@ async function selfTest() {
   assert.equal(fileForPath('/', routes), 'index.html');
   assert.equal(fileForPath('/zh-cn/workspace', routes), 'zh-cn/workspace.html');
   assert.equal(fileForPath('/assets/dist/example.js', routes), 'assets/dist/example.js');
+  assert.equal(fileForPath('/embed/merchant-profit', routes), 'embed/merchant-profit.html');
+  assert.equal(
+    fileForPath('/embed/merchant-profit-planner', routes),
+    'embed/merchant-profit-planner.html',
+  );
+  assert.throws(() => fileForPath('/embed/another-widget', routes));
+  assert.ok(fingerprintedRuntimePath('/assets/dist/zh-CN.0123456789ab.js'));
+  assert.ok(fingerprintedRuntimePath('/assets/dist/cm-merchant-widget-v2.0123456789ab.css'));
+  for (const pathname of [
+    '/assets/merchant-i18n/zh-CN.js',
+    '/assets/cm-merchant-widget-v2.css',
+    '/assets/dist/name.0123456789a.js',
+    '/assets/dist/nested/name.0123456789ab.js',
+  ])
+    assert.equal(fingerprintedRuntimePath(pathname), false);
   assert.throws(() => fileForPath('/assets/%2e%2e/private', routes));
   assert.throws(() => fileForPath('/not-an-observed-route', routes));
   const decoded = JSON.parse(decodeURIComponent(layout.slice('#desk='.length)));
@@ -1098,6 +1279,26 @@ async function selfTest() {
   }
   assert.throws(() => actualNumber('1 and 2', 'en'));
   assert.throws(() => actualNumber('—', 'en'));
+  const merchantContext = {};
+  vm.runInNewContext(
+    await fs.readFile(path.join(root, 'assets/cm-merchant-model-v2.js'), 'utf8'),
+    merchantContext,
+  );
+  const merchant = merchantContext.CMMerchant;
+  // Independent arithmetic with the authored default refund/fee/cost assumptions.
+  const beforeAd100 = 105 - 5.25 - 35 + 1.4 - 2 - 8 - 1 - 3.45 - 0.2;
+  const beforeAd200 = 205 - 10.25 - 35 + 1.4 - 2 - 8 - 1 - 6.45 - 0.2;
+  for (const [price, beforeAd, contribution, monthly] of [
+    [100, beforeAd100, 33.5, 3050],
+    [200, beforeAd200, 125.5, 12250],
+  ]) {
+    const result = merchant.calculate({ ...merchant.DEFAULTS, price });
+    assert.equal(result.ok, true);
+    near(result.beforeAd, beforeAd);
+    near(result.afterAd, contribution);
+    near(result.monthlyProfit, monthly);
+    near(merchant.floorMoney(result.targetAd, 'USD'), contribution);
+  }
   const keypadSource = await fs.readFile(path.join(root, 'assets/cm-keypad-app.js'), 'utf8');
   const renderer = keypadSource.match(/const symbols = (.+);/);
   assert.ok(renderer, 'Read the real history display formatter.');
