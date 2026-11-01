@@ -35,6 +35,17 @@ const manifest = JSON.parse(await read('src/asset-manifest.json')),
   failures = [],
   titles = new Set(),
   descriptions = new Set();
+for (const [source, output] of Object.entries(manifest)) {
+  assert.ok(!source.startsWith('assets/dist/'), 'Generated assets cannot become source inputs');
+  assert.equal(
+    output
+      .split('/')
+      .at(-1)
+      .replace(/\.[a-f0-9]{12}(?=\.(?:js|css)$)/, ''),
+    source.split('/').at(-1),
+    'Asset fingerprints retain the original source basename',
+  );
+}
 let scriptCount = 0;
 for (const file of files) {
   try {
@@ -170,6 +181,37 @@ for (const file of files) {
         'calculator schema',
       );
       assert.equal($('.wrap,.kp-wrap').length, 1, 'one calculator wrapper');
+      if (!$('body').attr('data-model')) {
+        const evidence = $('.cm-formula-meta'),
+          version = evidence.find('code[data-cm-formula-version]'),
+          sources = JSON.parse(version.attr('data-cm-formula-sources') || 'null'),
+          hash = createHash('sha256');
+        assert.equal(evidence.length, 1, 'one legacy/keypad formula evidence record');
+        assert.ok(Array.isArray(sources) && sources.length > 1, 'formula sources declared');
+        assert.deepEqual(sources, [...new Set(sources)].sort(), 'unique sorted formula sources');
+        for (const source of sources) {
+          assert.match(source, /^assets\/[a-zA-Z0-9/_-]+\.js$/, 'local formula source');
+          hash
+            .update(source + '\0')
+            .update(await read(source))
+            .update('\0');
+        }
+        assert.equal(
+          version.text(),
+          hash.digest('hex').slice(0, 12),
+          'formula version matches sources',
+        );
+        assert.equal(
+          evidence.find('time').attr('datetime'),
+          '2026-10-31',
+          'recorded example verification date',
+        );
+        assert.equal(
+          evidence.find('time').text(),
+          '2026-10-31',
+          'visible example verification date',
+        );
+      }
     }
   } catch (error) {
     failures.push({ file, error: error.message });

@@ -638,6 +638,29 @@ for (const changed of [
   render();
   assert.equal(nodes.result.textContent, 'x = 3, 2');
 }
+// Preserve the independent arithmetic fixtures from the retired 92-tool release checker.
+const fractionSource = await fs.readFile(
+    new URL('../assets/legacy-models/fraction-calculator-1.js', import.meta.url),
+    'utf8',
+  ),
+  fractionStart = fractionSource.indexOf('function gcd('),
+  fractionEnd = fractionSource.indexOf('function fmtDec('),
+  fractionContext = vm.createContext({});
+assert.ok(fractionStart >= 0 && fractionEnd > fractionStart, 'fraction calculation source');
+vm.runInContext(fractionSource.slice(fractionStart, fractionEnd), fractionContext);
+for (const [a, b, operation, c, d, expected] of [
+  [1, 2, 'add', 1, 3, '5/6'],
+  [1.1, 2, 'add', 1, 3, '53/60'],
+  [0.1, 0.2, 'add', 1, 2, '1/1'],
+  [-1, 2, 'mul', 2, 3, '-1/3'],
+  [1, -2, 'sub', 1, 3, '-5/6'],
+  [1, 2, 'div', 3, 4, '2/3'],
+  [0, 2, 'add', 0, 3, '0/1'],
+  [1e-7, 1, 'add', 2e-7, 1, '3/10000000'],
+])
+  assert.equal(fractionContext.opCalc(a, b, operation, c, d).simp, expected);
+assert.ok(fractionContext.opCalc(1, 0, 'add', 1, 2).error);
+assert.ok(fractionContext.opCalc(1, 2, 'div', 0, 3).error);
 console.log(
   'Legacy boundaries: 5 Devine references/7 invalid recovery, 5 inflation references/13 invalid, 4 linear cases/6 invalid PASS.',
   'Present value: 6 references/10 invalid recovery PASS.',
@@ -645,4 +668,5 @@ console.log(
   'Body fat: 5 references/15 invalid recovery PASS.',
   'BMR/TDEE: 10 references/27 invalid recovery; water: 4 references/12 invalid recovery PASS.',
   'Linear system: 10 references/9 invalid recovery; temperature: 8 references/9 invalid recovery; quadratic: 12 references/11 invalid recovery PASS.',
+  'Exact fraction arithmetic: 8 references/2 invalid cases PASS.',
 );

@@ -2167,7 +2167,7 @@
   },
   {
     "id": "00362",
-    "source": "Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours). Note: the source page labelled this result in minutes; the unit is points out of 100, and this page corrects that label.",
+    "source": "Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours).",
     "origin": "automation-fit-score.html",
     "active": true
   },
@@ -16039,7 +16039,7 @@
   },
   {
     "id": "02674",
-    "source": "The engagement multiplier and the 85%–120% range are custom scenario rules from the source page, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
+    "source": "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
     "origin": "sponsor-rate.html",
     "active": true
   },
@@ -16075,7 +16075,7 @@
   },
   {
     "id": "02680",
-    "source": "An illustrative negotiation band around the estimate, from the source page's own scenario rules. It is not a market range and does not come from sponsor data.",
+    "source": "An illustrative negotiation band around the estimate, using custom scenario rules for this calculator. It is not a market range and does not come from sponsor data.",
     "origin": "sponsor-rate.html",
     "active": true
   },

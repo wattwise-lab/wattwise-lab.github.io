@@ -8,6 +8,31 @@ const para = (en, zh) => `<p data-cm-pair="${esc(en + '|' + zh)}">${esc(en)}</p>
 const code = (s) =>
   `<p class="cm-expanded__formula" data-cm-no-translate><code>${esc(s)}</code></p>`;
 export function upgradeCorePage($, slug) {
+  const editorialCopy = {
+    'automation-fit-score': [
+      [
+        'Frequency 80 runs per month',
+        'Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours).',
+        '每月执行 80 次，每次 15 分钟；规则清晰度 8、数字化程度 7、风险 4。规则项得分 = 4 × 8 = 32，数字化项得分 = 3 × 7 = 21，工作量得分 = 80 × 15 ÷ 600 × 3 = 6，未达到 30 分上限。风险扣分 = 2 × 4 = 8，总分 = 32 + 21 + 6 − 8 = 51（满分 100），落在 40–69 分的“需先评估”区间。每月执行该任务共需 80 × 15 = 1,200 分钟（20 小时）。',
+      ],
+    ],
+    'sponsor-rate': [
+      [
+        'The engagement multiplier and the 85%',
+        'The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.',
+        '参与度乘数和85%-120%范围是本计算器的自定义场景规则，而不是市场估值。权利、排他性、使用期限、修订、白名单和重用均被排除在外，其中任何一项都可以比公式更大地改变实际费率。预期观看次数是一种假设，而不是保证，并且 CPM 由您输入 - 从其他利基或平台借用的 CPM 可能不适用。过去的表现、观众契合度和可交付成果仍然决定赞助商实际支付的费用。',
+      ],
+      [
+        'An illustrative negotiation band around the estimate',
+        'An illustrative negotiation band around the estimate, using custom scenario rules for this calculator. It is not a market range and does not come from sponsor data.',
+        '围绕估算值给出的示例协商区间，依据本计算器的自定义场景规则生成。它不是市场价格范围，也不来自赞助商报价数据。',
+      ],
+    ],
+  };
+  for (const [prefix, en, zh] of editorialCopy[slug] || [])
+    $('.wrap p')
+      .filter((_, element) => $(element).text().trim().startsWith(prefix))
+      .replaceWith(para(en, zh));
   const source = {
     'apr-calculator': [
       'cm-apr-source',
@@ -53,6 +78,16 @@ export function upgradeCorePage($, slug) {
         pairs = { Current: 'Electric current|电流', Power: 'Electrical power|电功率' };
       if (pairs[text]) e.attr('data-cm-pair', pairs[text]).text(pairs[text].split('|')[0]);
     });
+  }
+  if (slug === 'unit-converter') {
+    for (const [id, pair] of [
+      ['from', 'From unit|原单位'],
+      ['to', 'To unit|目标单位'],
+    ])
+      $('#' + id)
+        .prev('label')
+        .attr({ for: id, 'data-cm-pair': pair })
+        .text(pair.split('|')[0]);
   }
   if (slug === 'mean-median-mode-calculator') {
     $('th,td,h2').each((_, element) => {

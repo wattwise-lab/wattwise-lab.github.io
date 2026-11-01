@@ -61,7 +61,9 @@
   const preferences = M.parsePreferences(location.search, Object.keys(COPY), fallback);
   lang = window.CMI18n?.language || preferences.language;
   let state = demo();
-  state.currency = preferences.currency;
+  state.currency =
+    window.CMPreferences?.initialChoice('merchant-profit-planner', 'currency') ||
+    preferences.currency;
   let autoNames = [0, 1, 2],
     autoSources = [true, true, true];
   const active = () => state.scenarios[state.active];

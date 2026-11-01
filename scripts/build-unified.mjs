@@ -30,7 +30,15 @@ const retainedManifest = (await exists('src/retained-asset-manifest.json'))
 const previousSources = new Map(
   Object.entries(previousManifest).map(([source, output]) => [output.replace(/^\//, ''), source]),
 );
-const sourceFor = (p) => previousSources.get(p) || p;
+const sourceFor = (p) => {
+  const visited = new Set();
+  while (previousSources.has(p) && !visited.has(p)) {
+    visited.add(p);
+    p = previousSources.get(p);
+  }
+  if (p.startsWith('assets/dist/')) throw new Error('Unresolved generated asset source: ' + p);
+  return p;
+};
 await fs.mkdir(new URL('src/', root), { recursive: true });
 for (const name of ['cm-unit-contracts', 'cm-form-state'])
   await write(
@@ -50,6 +58,8 @@ for (const file of [
   'cm-home-copy-v3.js',
   'cm-legacy-copy.js',
   'cm-ui-copy.js',
+  'cm-preferences-core.js',
+  'cm-preferences-copy.js',
   'cm-keypad-copy.js',
 ])
   vm.runInNewContext(await read('assets/' + file), context);
@@ -88,6 +98,19 @@ const esc = (s) =>
     .replaceAll('"', '&quot;');
 const workspaceEntry = (slug) =>
   `<a class="cm-workspace-entry" data-cm-href="/workspace?add=${slug}" href="/workspace?add=${slug}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-cm-i18n="addWorkspace">${esc(U.en.addWorkspace)}</span></a>`;
+// These example suites were verified on this date. A rebuild must not imply a new review.
+const legacyExampleChecked = '2026-10-31';
+async function formulaEvidence(sourceFiles) {
+  const sources = [...new Set(sourceFiles)].sort(),
+    hash = createHash('sha256');
+  for (const file of sources)
+    hash
+      .update(file + '\0')
+      .update(await read(file))
+      .update('\0');
+  const version = hash.digest('hex').slice(0, 12);
+  return `<p class="cm-formula-meta muted"><span data-cm-pair="Formula version|公式版本">Formula version</span>: <code data-cm-formula-version data-cm-formula-sources="${esc(JSON.stringify(sources))}">${version}</code> · <span data-cm-pair="Example checked|示例核查日期">Example checked</span>: <time datetime="${legacyExampleChecked}">${legacyExampleChecked}</time></p>`;
+}
 const t = (lang, key) => U[lang]?.[key] || C[lang]?.[key] || U.en[key] || C.en[key] || key;
 const tr = (lang, zh) => (lang === 'zh-CN' ? zh : L[lang]?.[zh] || L.en[zh] || zh);
 const href = (p, lang) =>
@@ -239,6 +262,7 @@ await write('assets/cm-home-copy-v3.js', 'window.CMHomeCopy = ' + JSON.stringify
 await write('assets/cm-catalog-v3.js', 'window.CMCatalog = ' + JSON.stringify(catalog) + ';\n');
 const manifest = {};
 async function asset(p) {
+  p = sourceFor(p);
   if (manifest[p]) return manifest[p];
   let text = await read(p);
   if (p.endsWith('.js') || p.endsWith('.css')) {
@@ -258,6 +282,9 @@ async function asset(p) {
     output = 'assets/dist/' + name.slice(0, dot) + '.' + hash + name.slice(dot);
   await write(output, text);
   manifest[p] = '/' + output;
+  // Pages may already contain this fingerprint after an interrupted build.
+  // Make its original source available before any HTML is rewritten.
+  previousSources.set(output, p);
   return manifest[p];
 }
 await compileTranslations(root, locales);
@@ -278,10 +305,13 @@ const commonSourceScripts = [
   'assets/cm-home-copy-v3.js',
   'assets/cm-legacy-copy.js',
   'assets/cm-ui-copy.js',
+  'assets/cm-preferences-core.js',
+  'assets/cm-preferences-copy.js',
   'assets/cm-keypad-copy.js',
   'assets/cm-translation-index.js',
   'assets/cm-i18n.js',
   'assets/cm-usage.js',
+  'assets/cm-preferences.js',
 ];
 await fs.mkdir(new URL('assets/catalog-slices/', root), { recursive: true });
 for (const tool of catalog)
@@ -531,6 +561,11 @@ for (const [slug, key] of pinned.slice(0, 2)) {
     ['%', '%'],
     ['Ans', 'Ans'],
   ];
+  const evidence = await formulaEvidence([
+    'assets/cm-data-core.js',
+    'assets/cm-keypad-core.js',
+    'assets/cm-keypad-app.js',
+  ]);
   const main = `<main class="kp-wrap" id="main-content"><div class="kp-intro"><span>CALCMINTLY</span><h1 data-cm-i18n="${key}">${U.en[key]}</h1><p data-cm-i18n="${science ? 'scientificDescription' : 'basicDescription'}">${esc(U.en[science ? 'scientificDescription' : 'basicDescription'])}</p>${workspaceEntry(slug)}</div><div class="kp-layout"><section class="kp-machine${science ? ' kp-scientific' : ''}" data-cm-label="${key}" aria-label="${U.en[key]}"><div class="kp-top"><strong>CALCMINTLY</strong><span class="kp-mode" data-cm-i18n="${key}">${U.en[key]}</span></div><div class="kp-screen" dir="ltr"><span class="kp-memory" id="kp-memory" hidden>M</span>${science ? '<label for="kp-input" class="cm-sr-only" data-cm-i18n="expression">Expression</label><input class="kp-input" id="kp-input" type="text" inputmode="text" dir="ltr" autocomplete="off" spellcheck="false" maxlength="500" aria-describedby="kp-error" placeholder="(2 + 3) × 4">' : '<div class="kp-expression" id="kp-expression"></div>'}<output class="kp-value big" id="kp-result" role="status" aria-live="polite" aria-atomic="true">0</output></div><div class="kp-memory-keys">${[
     ['MC', 'MC', 'memoryClear'],
     ['MR', 'MR', 'memoryRecall'],
@@ -540,7 +575,7 @@ for (const [slug, key] of pinned.slice(0, 2)) {
     .map(([s, k, l]) => b(s, k, '', l))
     .join(
       '',
-    )}</div>${science ? `<fieldset class="kp-angle"><legend class="cm-sr-only">° / rad</legend><label><input type="radio" name="kp-angle" id="kp-deg" checked><span data-cm-i18n="degree">Degrees</span></label><label><input type="radio" name="kp-angle" id="kp-rad"><span data-cm-i18n="radian">Radians</span></label></fieldset><div class="kp-science">${scientificKeys.map(([s, k]) => b(s, k)).join('')}</div>` : `<div class="kp-memory-keys">${b('%', '%', '', 'percentKey') + b('√', 'sqrt', '', 'squareRoot') + b('1/x', 'reciprocal', '', 'reciprocal') + b('±', 'sign', '', 'sign')}</div>`}<div class="kp-keys">${keys.map(([s, k, c, l]) => b(s, k, c, l)).join('')}</div><p class="kp-note" id="kp-error" role="status"></p><div class="kp-copy"><button id="kp-copy" type="button" data-cm-i18n="copyResult">Copy result</button><span id="kp-copy-status" role="status"></span></div><p class="kp-note" data-cm-i18n="note">${esc(t('en', 'note'))}</p></section><aside class="kp-history"><div class="kp-history-head"><h2 data-cm-i18n="history">History</h2><button class="kp-clear-history" id="kp-clear-history" type="button" data-cm-i18n="clearHistory">Clear history</button></div><p class="kp-empty" id="kp-empty" data-cm-i18n="emptyHistory">${U.en.emptyHistory}</p><ol class="kp-history-list" id="kp-history-list"></ol></aside></div><section class="kp-guide"><h2 data-cm-i18n="help">${U.en.help}</h2><p>⌨ 0–9 · + − * / · Enter = · Backspace ⌫ · Escape AC · Delete CE</p><h2 data-cm-i18n="formula">Formula</h2>${science ? '<p><code>2 + 3 × 4 = 14</code> · <code>(2 + 3) × 4 = 20</code></p><p><code>-2^2 = -4</code> · <code>(-2)^2 = 4</code> · <code>2^3^2 = 512</code></p><p><code>sin(30°) = 0.5</code> · <code>sin(π/2 rad) = 1</code> · <code>10% = 0.1</code></p>' : '<p><code>2 + 3 × 4 → (2 + 3) × 4 = 20</code></p><p><code>200 + 10% = 220</code> · <code>200 × 10% = 20</code></p><p><code>0.1 + 0.2 = 0.3</code> · <code>5 + 2 = = → 9</code></p>'}<h2 data-cm-i18n="scope">Scope and limitations</h2><p data-cm-i18n="${science ? 'scientificScope' : 'basicScope'}">${esc(U.en[science ? 'scientificScope' : 'basicScope'])}</p><p><a href="/${science ? 'basic' : 'scientific'}-calculator" data-cm-href="/${science ? 'basic' : 'scientific'}-calculator" data-cm-i18n="${science ? 'basic' : 'scientific'}">${U.en[science ? 'basic' : 'scientific']}</a></p></section></main>`;
+    )}</div>${science ? `<fieldset class="kp-angle"><legend class="cm-sr-only">° / rad</legend><label><input type="radio" name="kp-angle" id="kp-deg" checked><span data-cm-i18n="degree">Degrees</span></label><label><input type="radio" name="kp-angle" id="kp-rad"><span data-cm-i18n="radian">Radians</span></label></fieldset><div class="kp-science">${scientificKeys.map(([s, k]) => b(s, k)).join('')}</div>` : `<div class="kp-memory-keys">${b('%', '%', '', 'percentKey') + b('√', 'sqrt', '', 'squareRoot') + b('1/x', 'reciprocal', '', 'reciprocal') + b('±', 'sign', '', 'sign')}</div>`}<div class="kp-keys">${keys.map(([s, k, c, l]) => b(s, k, c, l)).join('')}</div><p class="kp-note" id="kp-error" role="status"></p><div class="kp-copy"><button id="kp-copy" type="button" data-cm-i18n="copyResult">Copy result</button><span id="kp-copy-status" role="status"></span></div><p class="kp-note" data-cm-i18n="note">${esc(t('en', 'note'))}</p></section><aside class="kp-history"><div class="kp-history-head"><h2 data-cm-i18n="history">History</h2><button class="kp-clear-history" id="kp-clear-history" type="button" data-cm-i18n="clearHistory">Clear history</button></div><p class="kp-empty" id="kp-empty" data-cm-i18n="emptyHistory">${U.en.emptyHistory}</p><ol class="kp-history-list" id="kp-history-list"></ol></aside></div><section class="kp-guide"><h2 data-cm-i18n="help">${U.en.help}</h2><p>⌨ 0–9 · + − * / · Enter = · Backspace ⌫ · Escape AC · Delete CE</p><h2 data-cm-i18n="formula">Formula</h2>${science ? '<p><code>2 + 3 × 4 = 14</code> · <code>(2 + 3) × 4 = 20</code></p><p><code>-2^2 = -4</code> · <code>(-2)^2 = 4</code> · <code>2^3^2 = 512</code></p><p><code>sin(30°) = 0.5</code> · <code>sin(π/2 rad) = 1</code> · <code>10% = 0.1</code></p>' : '<p><code>2 + 3 × 4 → (2 + 3) × 4 = 20</code></p><p><code>200 + 10% = 220</code> · <code>200 × 10% = 20</code></p><p><code>0.1 + 0.2 = 0.3</code> · <code>5 + 2 = = → 9</code></p>'}<h2 data-cm-i18n="scope">Scope and limitations</h2><p data-cm-i18n="${science ? 'scientificScope' : 'basicScope'}">${esc(U.en[science ? 'scientificScope' : 'basicScope'])}</p>${evidence}<p><a href="/${science ? 'basic' : 'scientific'}-calculator" data-cm-href="/${science ? 'basic' : 'scientific'}-calculator" data-cm-i18n="${science ? 'basic' : 'scientific'}">${U.en[science ? 'basic' : 'scientific']}</a></p></section></main>`;
   const desc = keypadCatalog.find((x) => x.slug === slug).description;
   await write(
     slug + '.html',
@@ -627,7 +662,9 @@ for (const tool of base) {
   });
   const merchant = slug === 'merchant-profit-planner';
   // Render shared controls before scripts run so the page starts in its final layout.
-  $('.wrap .cm-workspace-entry,.wrap .cm-add,.wrap .cm-guide,.wrap .cm-copy-status').remove();
+  $(
+    '.wrap .cm-workspace-entry,.wrap .cm-add,.wrap .cm-guide,.wrap .cm-copy-status,.wrap .cm-preferences',
+  ).remove();
   const intro = merchant ? $('.wrap .hero').first().find('p').last() : $('.wrap>.sub').first();
   if (!intro.length) throw Error('Missing calculator introduction: ' + slug);
   intro.after(workspaceEntry(slug));
@@ -817,6 +854,22 @@ for (const tool of base) {
     wrap.get(0).name = 'main';
     wrap.attr('id', 'main-content').removeAttr('role');
   } else $('main').first().attr('id', 'main-content');
+  $('.cm-formula-meta').remove();
+  const formulaSources = [
+    'assets/cm-data-core.js',
+    ...$('script[src]')
+      .map((_, element) => {
+        const output = $(element).attr('src'),
+          current = Object.entries(manifest).find(([, value]) => value === output)?.[0];
+        return current || sourceFor(output.replace(/^\//, ''));
+      })
+      .get()
+      .filter((file) => !isCommon(file) && file !== 'assets/cm-shell.js'),
+  ];
+  const evidence = await formulaEvidence(formulaSources),
+    scope = $('[data-cm-section="scope"]').first();
+  if (scope.length) scope.append(evidence);
+  else $('main').append(evidence);
   const hasAppSchema = $('script[type="application/ld+json"]')
     .toArray()
     .some((element) => {
@@ -887,7 +940,9 @@ for (const [slug, page] of Object.entries(JSON.parse(await read('src/info-pages.
   $('header,footer,script,link').remove();
   if (slug === 'privacy')
     $('main').append(
-      '<section><h2>Local data controls</h2><p>Saved layouts, language preferences and optional device-only usage history are stored in this browser. Use this button to remove CalcMintly local data.</p><button type="button" id="cm-clear-local">Clear CalcMintly local data</button><p id="cm-local-status" role="status"></p></section>',
+      '<section><h2>Local data controls</h2><p>Saved layouts, language preferences and optional device-only usage history are stored in this browser. Use this button to remove CalcMintly local data.</p><p data-cm-i18n="preferencePrivacy">' +
+        esc(U.en.preferencePrivacy) +
+        '</p><button type="button" id="cm-clear-local">Clear CalcMintly local data</button><p id="cm-local-status" role="status"></p></section>',
     );
   await write(
     slug + '.html',
@@ -1023,6 +1078,26 @@ for (const page of ['directory', 'workspace']) {
       '<link rel="stylesheet" href="' + (await asset('assets/cm-workspace-tools.css')) + '">',
     );
   await write(page + '.html', $.html());
+}
+
+// Explicit preference choices only: add one fixed, closed disclosure before localization.
+// Controls are present in native HTML; calculator scripts still own all numeric inputs.
+for (const [slug, policy] of Object.entries(context.window.CMPreferenceStore.policies)) {
+  const $ = load(await read(slug + '.html'));
+  $('.cm-preferences').remove();
+  $('body').attr('data-cm-preference-tool', slug);
+  const entry = $('.cm-workspace-entry').first(),
+    anchor = entry.parent().is('p') ? entry.parent() : entry,
+    hint = Object.hasOwn(policy, 'currency') ? 'preferenceCurrencyHint' : 'preferenceHint';
+  if (!entry.length) throw Error('Missing preference placement: ' + slug);
+  anchor.after(
+    `<details class="cm-preferences"><summary data-cm-i18n="preferenceTitle">${esc(U.en.preferenceTitle)}</summary><div class="cm-preferences__body"><p data-cm-i18n="${hint}">${esc(U.en[hint])}</p><div class="cm-preferences__actions"><button type="button" data-cm-preference-action="remember" data-cm-i18n="preferenceRemember" aria-pressed="false" disabled>${esc(U.en.preferenceRemember)}</button><button type="button" data-cm-preference-action="forget" data-cm-i18n="preferenceForget" disabled>${esc(U.en.preferenceForget)}</button></div><p data-cm-preference-status role="status" aria-live="polite"></p></div></details>`,
+  );
+  $('link[href*="cm-preferences"]').remove();
+  $('head').append(
+    '<link rel="stylesheet" href="' + (await asset('assets/cm-preferences.css')) + '">',
+  );
+  await write(slug + '.html', $.html());
 }
 
 const metadataPages = await finishMetadata(root, catalog);

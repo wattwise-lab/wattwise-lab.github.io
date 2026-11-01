@@ -14,6 +14,7 @@ export async function localizeSite(root, catalog, pages, selected) {
     'cm-metadata-core.js',
     'cm-info-metadata.js',
     'cm-ui-copy.js',
+    'cm-preferences-copy.js',
     'cm-keypad-copy.js',
     'cm-home-copy-v3.js',
     'cm-legacy-copy.js',

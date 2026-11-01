@@ -81,6 +81,7 @@
       try {
         for (const key of Object.keys(localStorage))
           if (key.startsWith('calcmintly')) localStorage.removeItem(key);
+        document.dispatchEvent(new CustomEvent('cm:local-data-cleared'));
         document.getElementById('cm-local-status').textContent = I.pick(
           'Saved CalcMintly browser data cleared.|已清除本浏览器保存的 CalcMintly 数据。',
         );

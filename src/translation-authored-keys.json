@@ -4190,7 +4190,15 @@
     "YOUR CALCULATOR DESK",
     "CHOOSE A TOOL",
     "Tax of {0} at {1} brings a ${2} subtotal to {3}.",
-    "mortgage · loan · compound · rent vs buy · freelance · AI cost"
+    "mortgage · loan · compound · rent vs buy · freelance · AI cost",
+    "Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours).",
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
+    "An illustrative negotiation band around the estimate, using custom scenario rules for this calculator. It is not a market range and does not come from sponsor data.",
+    "Metre (m)",
+    "Inch (in)",
+    "Foot (ft)",
+    "Metres per unit",
+    "Negative lengths are rejected as invalid. Display values are rounded to 6 decimal places; the underlying calculation is not rounded. This page uses the international mile; the old US survey mile (about 2 parts per million longer) is not used."
   ],
   "hi": [
     "Home",
@@ -7415,7 +7423,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay."
   ],
   "ru": [
     "Home",
@@ -9340,7 +9349,7 @@
     "Total",
     "Sum, then clamped to 0–100",
     "Bands used by the verdict: 70–100 strong candidate, 40–69 review first, below 40 weak fit. The bands are this page's own reading of the score, not a validated threshold.",
-    "Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours). Note: the source page labelled this result in minutes; the unit is points out of 100, and this page corrects that label.",
+    "Frequency 80 runs per month, 15 minutes per run, rule clarity 8, digitisation 7, risk 4. Rule points = 4 × 8 = 32. Digitisation points = 3 × 7 = 21. Volume = 80 × 15 ÷ 600 × 3 = 6, below the 30 cap. Risk deduction = 2 × 4 = 8. Total = 32 + 21 + 6 − 8 = 51 out of 100 — a mixed case in the 40–69 review band. Monthly time on the task is 80 × 15 = 1,200 minutes (20 hours).",
     "This is a custom weighted checklist, not a validated scientific score and not a prediction of automation success. The weights (4, 3, volume cap 30, risk 2) and the 70/40 bands are heuristic choices made for this page; changing them changes the score. It does not assess implementation cost, exception rates, data quality, change management, or regulatory constraints — a high score still needs a pilot, and a low score may still be worth automating for compliance or coverage reasons.",
     "What do the bands mean?",
     "Why is volume capped at 30?",
@@ -11524,10 +11533,10 @@
     "Each row reuses your CPM, engagement, hours, and hourly cost and varies only expected views. Production cost is fixed, so the rate does not scale in direct proportion to views.",
     "Sponsor rate = views ÷ 1,000 × CPM × clamp(engagement ÷ 4, 0.7, 1.5) + production hours × hourly cost. The 85%–120% range shown is the estimate times 0.85 and 1.20.",
     "Views 80,000, CPM $120, engagement 4.5%, production 16 hours at $200. Multiplier = 4.5 ÷ 4 = 1.125, inside the 0.7–1.5 clamp. CPM-based value = 80,000 ÷ 1,000 × $120 × 1.125 = $10,800. Production cost = 16 × $200 = $3,200. Total = $14,000. Illustrative range: $14,000 × 85% = $11,900 to $14,000 × 120% = $16,800.",
-    "The engagement multiplier and the 85%–120% range are custom scenario rules from the source page, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay.",
     "Views divided by 1,000 times CPM times an engagement multiplier (engagement divided by 4, clamped between 0.7 and 1.5), plus production hours times hourly cost.",
     "Because two creators with the same view count do not deliver the same attention. The 4% reference point means engagement above 4% lifts the rate and below 4% reduces it, within the clamp.",
-    "An illustrative negotiation band around the estimate, from the source page's own scenario rules. It is not a market range and does not come from sponsor data.",
+    "An illustrative negotiation band around the estimate, using custom scenario rules for this calculator. It is not a market range and does not come from sponsor data.",
     "This page bundles it into one rate so the total reflects both audience value and labour. If a sponsor prefers a split quote, the breakdown table gives you both halves to present separately.",
     "The multiplier still caps at 1.5, so engagement above 6% (6 divided by 4) adds nothing further in this model. Exceptional engagement should be argued with evidence, not by stretching the multiplier.",
     "Usage rights, exclusivity, revision rounds, paid amplification, and contract length. Price those explicitly on top of this estimate rather than letting the formula silently absorb them.",
@@ -18239,7 +18248,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay."
   ],
   "ha": [
     "Home",
@@ -18672,7 +18682,8 @@
     "mortgage · loan · compound · rent vs buy · freelance · AI cost",
     "CalcMintly",
     "Enter one nonnegative weight per participant, in result order. The total is rounded to the selected currency precision, with halfway amounts rounded up. Largest remainders receive the remaining minor units; ties go to earlier participants. This computes shares only; no money is transferred.",
-    "Weighted Bill Split"
+    "Weighted Bill Split",
+    "The engagement multiplier and the 85%–120% range are custom scenario rules for this calculator, not a market valuation. Rights, exclusivity, usage period, revisions, whitelisting, and reuse are excluded, and any of them can move a real rate more than the formula does. Expected views are an assumption, not a guarantee, and CPM is entered by you — a CPM borrowed from another niche or platform may not apply. Past performance, audience fit, and deliverables still decide what a sponsor will actually pay."
   ],
   "tr": [
     "Home",
