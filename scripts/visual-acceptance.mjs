@@ -229,8 +229,23 @@ async function geometry(page) {
   }));
 }
 
+function assertUniqueDocumentResources(state, documentURL) {
+  for (const kind of ['scripts', 'styles']) {
+    const seen = new Set();
+    for (const reference of state[kind]) {
+      const url = new URL(reference, documentURL);
+      url.hash = '';
+      assert.ok(
+        !seen.has(url.href),
+        'Duplicate ' + kind + ' URL in ' + documentURL + ': ' + url.href,
+      );
+      seen.add(url.href);
+    }
+  }
+}
+
 async function mainState(page) {
-  return page.evaluate(() => {
+  const state = await page.evaluate(() => {
     const visible = (element) =>
       element.getClientRects().length &&
       globalThis.getComputedStyle(element).visibility === 'visible';
@@ -277,6 +292,8 @@ async function mainState(page) {
       text: document.querySelector('main')?.innerText,
     };
   });
+  assertUniqueDocumentResources(state, page.url());
+  return state;
 }
 
 async function screenshot(page, directory, name) {
@@ -1318,6 +1335,24 @@ async function selfTest() {
     '/assets/dist/nested/name.0123456789ab.js',
   ])
     assert.equal(fingerprintedRuntimePath(pathname), false);
+  const documentAssets = {
+    scripts: ['/assets/dist/example.0123456789ab.js'],
+    styles: ['/assets/dist/example.0123456789ab.css'],
+  };
+  assertUniqueDocumentResources(documentAssets, local + '/workspace');
+  assertUniqueDocumentResources(documentAssets, local + '/another-frame');
+  for (const kind of ['scripts', 'styles']) {
+    for (const duplicate of [documentAssets[kind][0], local + documentAssets[kind][0] + '#again']) {
+      assert.throws(
+        () =>
+          assertUniqueDocumentResources(
+            { ...documentAssets, [kind]: [...documentAssets[kind], duplicate] },
+            local + '/workspace',
+          ),
+        new RegExp('Duplicate ' + kind + ' URL'),
+      );
+    }
+  }
   const capturePage = {};
   const commands = [];
   const cache = await disableBrowserCache(
@@ -1521,7 +1556,7 @@ async function selfTest() {
     ]);
   }
   console.log(
-    'PASS origin/CLI/native paths, choices-only layout, CDP cold-cache ordering and retained strict response failures; mocked protocol/body checks only, browser launches0, HTTP requests0.',
+    'PASS origin/CLI/native paths, choices-only layout, per-document unique assets, CDP cold-cache ordering and retained strict response failures; mocked DOM/protocol/body checks only, browser launches0, HTTP requests0.',
   );
 }
 

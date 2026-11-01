@@ -23,6 +23,19 @@ const toolSlugs = new Set(priorities),
 let pages = 0,
   integrity = 0;
 async function checkAssets($) {
+  for (const [selector, attribute, kind] of [
+    ['script[src]', 'src', 'script'],
+    ['link[rel=stylesheet]', 'href', 'stylesheet'],
+  ]) {
+    const urls = $(selector)
+      .map((_, element) => {
+        const url = new URL($(element).attr(attribute), 'https://calcmintly.com/');
+        url.hash = '';
+        return url.href;
+      })
+      .get();
+    assert.equal(new Set(urls).size, urls.length, 'Duplicate runtime ' + kind + ' URL');
+  }
   for (const e of $('script[src],link[rel=stylesheet],img[src]').toArray()) {
     const el = $(e),
       path = (el.attr('src') || el.attr('href')).split('?')[0];
