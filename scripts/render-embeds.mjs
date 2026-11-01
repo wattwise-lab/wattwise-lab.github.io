@@ -2,13 +2,26 @@ import fs from 'node:fs/promises';
 import { load } from 'cheerio';
 import { secureMarkup } from './site-metadata.mjs';
 
-export async function renderEmbeds(root, catalog) {
+export async function renderEmbeds(root, catalog, { manifest, sourceFor }) {
   const files = [];
   await fs.mkdir(new URL('embed/', root), { recursive: true });
   for (const tool of catalog) {
     const file = 'embed/' + tool.slug + '.html';
     if (tool.slug === 'merchant-profit-planner') {
-      await fs.copyFile(new URL('embed/merchant-profit.html', root), new URL(file, root));
+      const template = 'embed/merchant-profit.html',
+        $ = load(await fs.readFile(new URL(template, root), 'utf8'));
+      $('script[src],link[rel=stylesheet]').each((_, element) => {
+        const el = $(element),
+          attribute = element.tagName === 'script' ? 'src' : 'href',
+          source = sourceFor(el.attr(attribute).split(/[?#]/)[0].replace(/^\//, '')),
+          fingerprint = manifest[source];
+        if (!fingerprint?.startsWith('/assets/dist/'))
+          throw new Error('Missing fingerprinted merchant embed asset: ' + source);
+        el.attr(attribute, fingerprint);
+      });
+      const html = $.html();
+      await fs.writeFile(new URL(template, root), html);
+      await fs.writeFile(new URL(file, root), html);
     } else {
       const $ = load(await fs.readFile(new URL(tool.slug + '.html', root), 'utf8'));
       $('html').addClass('cm-embed-document');
@@ -31,6 +44,6 @@ export async function renderEmbeds(root, catalog) {
     }
     files.push(file);
   }
-  await secureMarkup(root, files);
+  await secureMarkup(root, [...files, 'embed/merchant-profit.html']);
   return files;
 }

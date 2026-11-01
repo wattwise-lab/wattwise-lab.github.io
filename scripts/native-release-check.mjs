@@ -27,6 +27,12 @@ async function checkAssets($) {
     const el = $(e),
       path = (el.attr('src') || el.attr('href')).split('?')[0];
     assert.ok(path.startsWith('/'), 'self-hosted asset ' + path);
+    if (e.tagName === 'script' || e.tagName === 'link')
+      assert.match(
+        path,
+        /^\/assets\/dist\/[^/]+\.[a-f0-9]{12}\.(?:js|css)$/,
+        'Runtime JavaScript/CSS requires a content-fingerprinted URL: ' + path,
+      );
     if (!hashes.has(path)) {
       const bytes = await fs.readFile(new URL(path.slice(1), root));
       hashes.set(path, 'sha256-' + createHash('sha256').update(bytes).digest('base64'));
