@@ -47,6 +47,7 @@ for (const lang of locales) {
   assert.equal($('html').attr('lang'), lang);
   assert.equal($('html').attr('dir'), ['ar', 'ur'].includes(lang) ? 'rtl' : 'ltr');
   assert.equal($('h1').length, 1);
+  if (lang === 'ja') assert.equal($('h1').text(), '複雑な数式に、答えを隠さない。');
   assert.equal($('.cm-pinned__tool').length, 8);
   assert.equal($('.cm-originals__tool').length, 3);
   assert.equal($('[data-cm-language] option').length, 20);

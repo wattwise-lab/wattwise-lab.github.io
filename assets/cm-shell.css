@@ -346,6 +346,9 @@ body.cm-unified .cm-site-header__mobile > summary {
   direction: ltr;
   unicode-bidi: plaintext;
 }
+.cm-unified [data-cm-bidi-source] bdi[dir='ltr'] {
+  unicode-bidi: isolate;
+}
 @media (max-width: 1024px) {
   .cm-site-header__nav {
     gap: 14px;

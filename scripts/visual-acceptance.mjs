@@ -440,13 +440,14 @@ async function run(config) {
     const record = { name, personallyViewed: false };
     report.pages.push(record);
     try {
-      Object.assign(record, await action());
+      Object.assign(record, await action(record));
       await drain();
       record.passed = true;
     } catch (error) {
       record.passed = false;
       record.error = String(error);
-      report.failures.push({ name, error: String(error) });
+      record.stack = error.stack || String(error);
+      report.failures.push({ name, error: String(error), stack: record.stack });
       try {
         record.failureScreenshot = await screenshot(page, config.out, name + '-FAILED');
       } catch (screenshotError) {
@@ -701,7 +702,7 @@ async function run(config) {
           scope: 'Complete final375 native page for the recorded unit-language corrections.',
         };
       });
-    await recordCase('rtl-area-guide-language-roundtrip', async () => {
+    await recordCase('rtl-area-guide-language-roundtrip', async (record) => {
       await page.setViewportSize({ width: 375, height: 1000 });
       await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
       await drain();
@@ -745,6 +746,8 @@ async function run(config) {
       const expectedInputs = { val: '123.45', from: 'acre', to: 'sqft' },
         stages = [],
         images = [];
+      record.stages = stages;
+      record.diagnostics = [];
       const captureGuide = async (name, locale) => {
         await page.waitForFunction((language) => {
           const managed = [...document.querySelectorAll('[data-cm-bidi-source]')];
@@ -764,16 +767,24 @@ async function run(config) {
         }, locale);
         await settled(page);
         await drain();
+        const state = await readGuide();
+        const result = await page.locator('#result').innerText();
+        const originalInputConnected = await originalInput.evaluate((input) => input.isConnected);
+        const evidence = { name, locale, result, state, originalInputConnected };
+        stages.push(evidence);
+        const diagnosticFile = name + '-state.json';
+        const diagnosticBytes =
+          JSON.stringify({ source: gitSHA, origin: config.origin, ...evidence }, null, 2) + '\n';
+        await fs.writeFile(path.join(config.out, diagnosticFile), diagnosticBytes);
+        record.diagnostics.push({ file: diagnosticFile, sha256: digest(diagnosticBytes) });
         assert.ok(
-          await originalInput.evaluate((input) => input.isConnected),
+          originalInputConnected,
           'Calculator language changes must keep the original input document.',
         );
-        const state = await readGuide();
         assert.equal(state.url, routeFor(locale, 'area-converter'));
         assert.deepEqual(state.values, expectedInputs);
         assert.equal(state.nestedManaged, 0);
         assert.equal(state.heroManaged, 0);
-        const result = await page.locator('#result').innerText();
         near(actualNumber(result, locale), 123.45 * 43560);
         const isolates = state.managed.flatMap((wrapper) => wrapper.isolates);
         if (locale === 'en') {
@@ -797,13 +808,13 @@ async function run(config) {
                 isolate.direction === 'ltr' &&
                 isolate.unicodeBidi.includes('isolate'),
             ),
+            'Numeric BDI phrases must retain computed LTR isolation: ' + JSON.stringify(isolates),
           );
           assert.ok(
             state.managed.every((wrapper) => wrapper.paragraphDirection === 'rtl'),
             'Arabic paragraphs remain RTL around their numeric phrases.',
           );
         }
-        stages.push({ name, locale, result, state });
         for (const [region, locator] of [
           ['example', page.locator('[data-cm-section="example"]')],
           ['faq-equation', page.locator('[data-cm-section="faq"] p').nth(1)],
