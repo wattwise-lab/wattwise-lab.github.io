@@ -99,13 +99,15 @@ async function validPage(page, tool, { embedded = false } = {}) {
         width: rect.width,
         height: rect.height,
         fontSize: style.fontSize,
-        footerDirection: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer'))
-          .flexDirection,
+        footerLayout: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer__main'))
+          .display,
+        footerGroups: doc.querySelectorAll('.cm-site-footer__group').length,
         skipFont: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-skip')).fontSize,
       };
     });
     assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
-    assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
+    assert.equal(languageControl.footerLayout, 'grid', tool.slug + ': grouped footer layout');
+    assert.equal(languageControl.footerGroups, 2, tool.slug + ': named footer navigation groups');
     assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
     const undersizedShell = await page
       .locator('.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a')
@@ -121,7 +123,10 @@ async function validPage(page, tool, { embedded = false } = {}) {
     assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
     near(languageControl.height, 44, 0.1);
     if (page.viewportSize().width === 375) {
-      near(languageControl.width, 108, 0.1);
+      assert.ok(
+        languageControl.width >= 148 && languageControl.width <= 176.1,
+        tool.slug + ': responsive language width leaves room for names',
+      );
       const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
         const rect = e.getBoundingClientRect(),
           style = e.ownerDocument.defaultView.getComputedStyle(e);
@@ -352,9 +357,9 @@ try {
     assert.equal(
       await entryPage
         .locator('.cm-site-footer')
-        .evaluate((e) => e.ownerDocument.defaultView.getComputedStyle(e).flexDirection),
-      'row',
-      'Workspace retains the shared footer flow on phones',
+        .evaluate((e) => e.ownerDocument.defaultView.getComputedStyle(e).display),
+      'block',
+      'Workspace retains the shared footer container on phones',
     );
     await entryPage.locator('.ws-intent summary').click();
     const intentRequest = 'loan principal 100000 rate 5 term 20';

@@ -86,6 +86,24 @@
   document.addEventListener('cm:local-data-cleared', () => applyTheme('system'));
   document.addEventListener('cm:language', renderAppearance);
   renderAppearance();
+  // Keep keyboard order aligned with the two-row narrow header and one-row desktop header.
+  const header = document.querySelector('.cm-site-header__inner');
+  const primaryNavigation = header?.querySelector('.cm-site-header__nav');
+  const headerControls = header?.querySelector('.cm-site-header__end');
+  if (header && primaryNavigation && headerControls) {
+    const narrowHeader = window.matchMedia('(max-width: 1100px)');
+    const orderHeader = () => {
+      const first = narrowHeader.matches ? headerControls : primaryNavigation;
+      const second = narrowHeader.matches ? primaryNavigation : headerControls;
+      if (first.nextElementSibling === second) return;
+      const focused = document.activeElement;
+      header.insertBefore(first, second);
+      if (focused && header.contains(focused) && focused !== document.activeElement)
+        focused.focus({ preventScroll: true });
+    };
+    orderHeader();
+    narrowHeader.addEventListener('change', orderHeader);
+  }
   const tableScrollers = new Map();
   function updateTableScrollers() {
     for (const [scroll, heading] of tableScrollers) {
@@ -127,7 +145,7 @@
     I.updateMetadata();
     discoverTableScrollers();
     const current = location.pathname.replace(/\.html$/, '');
-    document.querySelectorAll('.cm-site-header nav a').forEach((a) => {
+    document.querySelectorAll('.cm-site-header nav a,.cm-site-footer nav a').forEach((a) => {
       if (new URL(a.href).pathname === current) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     });
