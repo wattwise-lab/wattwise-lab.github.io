@@ -124,7 +124,7 @@ async function validPage(page, tool, { embedded = false } = {}) {
     near(languageControl.height, 44, 0.1);
     if (page.viewportSize().width === 375) {
       assert.ok(
-        languageControl.width >= 148 && languageControl.width <= 168.1,
+        languageControl.width >= 148 && languageControl.width <= 176.1,
         tool.slug + ': responsive language width leaves room for names',
       );
       const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {

@@ -422,7 +422,7 @@ body.cm-unified .cm-site-header__mobile > summary {
     height: 26px;
   }
   body.cm-unified .cm-site-header__language {
-    width: clamp(108px, calc(100vw - 207px), 180px);
+    width: clamp(108px, calc(100vw - 199px), 180px);
     max-width: 180px;
     min-width: 0;
     padding-inline: 9px;
