@@ -179,7 +179,10 @@ try {
             '.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a',
           ),
         ]
-          .filter((e) => e.getClientRects().length)
+          .filter(
+            (e) =>
+              e.getClientRects().length && !e.closest('.cm-site-header__mobile:not([open]) nav'),
+          )
           .filter((e) => {
             const r = e.getBoundingClientRect();
             return r.width < 43.8 || r.height < 43.8;
@@ -197,7 +200,10 @@ try {
           small,
           footerDisplay: getComputedStyle(footer).display,
           focusOrder: [...header.querySelectorAll('a,select,summary')]
-            .filter((e) => e.getClientRects().length)
+            .filter(
+              (e) =>
+                e.getClientRects().length && !e.closest('.cm-site-header__mobile:not([open]) nav'),
+            )
             .map((e) => {
               const r = e.getBoundingClientRect();
               return {
@@ -280,7 +286,9 @@ try {
         ) {
           const controls = page
             .locator('.cm-site-header')
-            .locator('a:visible,select:visible,summary:visible');
+            .locator(
+              '.cm-site-header__brand,.cm-site-header__nav a,#cm-site-language,.cm-site-header__mobile > summary',
+            );
           await controls.first().focus();
           for (let i = 0; i < (await controls.count()); i++) {
             if (i) await page.keyboard.press('Tab');
