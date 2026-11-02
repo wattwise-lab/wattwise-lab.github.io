@@ -14,6 +14,7 @@ export async function localizeSite(root, catalog, pages, selected) {
     'cm-metadata-core.js',
     'cm-info-metadata.js',
     'cm-ui-copy.js',
+    'cm-appearance-copy.js',
     'cm-preferences-copy.js',
     'cm-keypad-copy.js',
     'cm-home-copy-v3.js',
@@ -207,6 +208,19 @@ export async function localizeSite(root, catalog, pages, selected) {
         .filter((_, element) => $(element).attr('value') === locale)
         .attr('selected', '');
       $('.cm-site-header__locale-name').text(locale === 'zh-CN' ? '中文' : locale.toUpperCase());
+      const appearance = context.window.CMAppearanceCopy[locale];
+      $('[data-cm-appearance-title]').text(appearance[0]);
+      $('.cm-appearance-trigger,.cm-appearance-panel,.cm-appearance-modes').attr(
+        'aria-label',
+        appearance[0],
+      );
+      $('[data-cm-palette-name]').each((_, e) =>
+        $(e).text(appearance[Number($(e).attr('data-cm-palette-name')) + 4]),
+      );
+      $('[data-cm-mode-name]').each((_, e) =>
+        $(e).text(appearance[Number($(e).attr('data-cm-mode-name')) + 1]),
+      );
+      $('[data-cm-mode-toggle]').attr('aria-label', appearance[3]);
       $('#cm-site-language').attr('title', $('#cm-site-language option[selected]').text());
       $('a[href]').each((_, element) => {
         const e = $(element),

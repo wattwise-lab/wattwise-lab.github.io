@@ -1165,8 +1165,8 @@ async function run(config) {
         steps.push({ name, fields, target, power, energy });
       };
       await recordStep('workspace-link-before-undo', '2000', 0.4, 38.4);
-      await page.locator('.cm-site-header__mobile > summary').click();
-      await page.locator('#cm-site-theme').selectOption('ocean');
+      await page.locator('.cm-appearance-trigger').click();
+      await page.locator('[data-cm-theme-choice="ocean"]').click();
       await page.keyboard.press('Escape');
       await page.waitForFunction(() =>
         [...document.querySelectorAll('#desk iframe')].every(
@@ -1182,8 +1182,8 @@ async function run(config) {
       }));
       assert.equal(embeddedPalette.resultInk, embeddedPalette.bodyInk);
       assert.equal(embeddedPalette.copyInk, embeddedPalette.linkInk);
-      await page.locator('.cm-site-header__mobile > summary').click();
-      await page.locator('#cm-site-theme').selectOption('system');
+      await page.locator('.cm-appearance-trigger').click();
+      await page.locator('[data-cm-theme-choice="system"]').click();
       await page.keyboard.press('Escape');
       await page.waitForFunction(() =>
         [...document.querySelectorAll('#desk iframe')].every(
@@ -1359,7 +1359,7 @@ async function run(config) {
         };
       });
     for (const dark of [false, true]) {
-      for (const theme of ['system', 'ocean', 'sand', 'graphite']) {
+      for (const theme of ['system', 'ocean', 'sand', 'graphite', 'violet', 'rose']) {
         const name = 'appearance-' + theme + (dark ? '-dark' : '-light');
         await recordCase(name, async () => {
           await page.setViewportSize({ width: 375, height: 1000 });
@@ -1370,18 +1370,25 @@ async function run(config) {
           await navigate(routeFor('zh-CN', 'basic-calculator'), 'zh-CN');
           for (const digit of '12345') await page.locator('[data-key="' + digit + '"]').click();
           near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
-          const menu = page.locator('.cm-site-header__mobile');
+          const menu = page.locator('.cm-appearance-menu');
           await menu.locator('summary').focus();
           await page.keyboard.press('Enter');
           assert.equal(await menu.getAttribute('open'), '');
-          await page.locator('#cm-site-theme').selectOption(theme);
+          await page.locator('[data-cm-theme-choice="' + theme + '"]').click();
+          await page.locator('[data-cm-mode-choice="' + (dark ? 'light' : 'dark') + '"]').click();
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          assert.equal(
+            await page.evaluate(() => document.documentElement.dataset.cmMode),
+            dark ? 'light' : 'dark',
+          );
+          await page.locator('[data-cm-mode-choice="auto"]').click();
           near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const open = await screenshot(page, config.out, name + '-menu');
           await page.keyboard.press('Escape');
           assert.equal(await menu.getAttribute('open'), null);
           assert.equal(
             await page
-              .locator('.cm-site-header__mobile > summary')
+              .locator('.cm-appearance-trigger')
               .evaluate((e) => e === document.activeElement),
             true,
           );
@@ -1420,8 +1427,10 @@ async function run(config) {
           assert.ok(palette.width <= palette.viewport, 'Theme must not overflow.');
           await page.reload({ waitUntil: 'networkidle' });
           assert.equal(
-            await page.locator('#cm-site-theme').inputValue(),
-            theme,
+            await page
+              .locator('[data-cm-theme-choice="' + theme + '"]')
+              .getAttribute('aria-pressed'),
+            'true',
             'Theme survives reload.',
           );
           await settled(page);
@@ -1435,8 +1444,8 @@ async function run(config) {
         });
       }
     }
-    await page.locator('.cm-site-header__mobile > summary').click();
-    await page.locator('#cm-site-theme').selectOption('system');
+    await page.locator('.cm-appearance-trigger').click();
+    await page.locator('[data-cm-theme-choice="system"]').click();
     await page.keyboard.press('Escape');
     await drain();
   } catch (error) {

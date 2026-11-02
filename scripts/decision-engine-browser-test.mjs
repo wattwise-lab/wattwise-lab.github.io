@@ -286,6 +286,138 @@ try {
     await embedContext.close();
   }
   if (shard === 0) {
+    const palettePages = {
+      system: ['rgb(244, 248, 245)', 'rgb(20, 37, 29)'],
+      ocean: ['rgb(241, 246, 251)', 'rgb(20, 35, 49)'],
+      sand: ['rgb(250, 246, 239)', 'rgb(41, 35, 28)'],
+      graphite: ['rgb(244, 245, 247)', 'rgb(30, 33, 41)'],
+      violet: ['rgb(246, 243, 252)', 'rgb(37, 28, 48)'],
+      rose: ['rgb(255, 244, 246)', 'rgb(48, 29, 37)'],
+    };
+    for (const scheme of ['light', 'dark']) {
+      const headerContext = await browser.newContext({
+        viewport: { width: 375, height: 900 },
+        colorScheme: scheme,
+      });
+      try {
+        const headerPage = await headerContext.newPage();
+        await headerPage.goto(base + '/zh-cn/basic-calculator', { waitUntil: 'networkidle' });
+        assert.equal(
+          await headerPage.evaluate(() => globalThis.CMCatalog.length),
+          1,
+          'Standalone starts with a scoped catalog',
+        );
+        for (const digit of ['7', '8'])
+          await headerPage.locator('[data-key="' + digit + '"]').click();
+        await headerPage.locator('.cm-appearance-trigger').click();
+        for (const [theme, pages] of Object.entries(palettePages)) {
+          await headerPage.locator('[data-cm-theme-choice="' + theme + '"]').click();
+          for (const mode of ['auto', 'light', 'dark']) {
+            await headerPage.locator('[data-cm-mode-choice="' + mode + '"]').click();
+            const state = await headerPage.evaluate(() => ({
+              background: globalThis.getComputedStyle(document.body).backgroundColor,
+              theme: document.documentElement.dataset.cmTheme,
+              mode: document.documentElement.dataset.cmMode || 'auto',
+              result: document.getElementById('kp-result').textContent,
+            }));
+            const dark = mode === 'dark' || (mode === 'auto' && scheme === 'dark');
+            assert.equal(state.background, pages[dark ? 1 : 0]);
+            assert.equal(state.theme, theme);
+            assert.equal(state.mode, mode);
+            assert.equal(state.result, '78');
+          }
+        }
+        await headerPage.keyboard.press('Escape');
+        assert.equal(
+          await headerPage
+            .locator('.cm-appearance-trigger')
+            .evaluate((e) => e === document.activeElement),
+          true,
+        );
+        await headerPage.locator('[data-cm-command-open]').click();
+        await headerPage.locator('#cm-command-query').fill('mortgage');
+        await headerPage
+          .locator('.cm-command-results a[href="/zh-cn/mortgage-calculator"]')
+          .waitFor();
+        assert.equal(
+          await headerPage.evaluate(() => globalThis.CMCatalog.length),
+          500,
+          'Full catalog only loads when searched',
+        );
+        assert.equal(
+          await headerPage.locator('.cm-command-results a').first().getAttribute('href'),
+          '/zh-cn/mortgage-calculator',
+          'Matching tool names rank before incidental mentions',
+        );
+        for (let step = 0; step < 12; step++) {
+          await headerPage.keyboard.press('Tab');
+          assert.equal(
+            await headerPage.evaluate(() => Boolean(document.activeElement.closest('.cm-command'))),
+            true,
+            'Search dialog contains keyboard focus',
+          );
+        }
+        await headerPage.locator('#cm-command-query').focus();
+        await headerPage.keyboard.press('Escape');
+        assert.equal(await headerPage.locator('.cm-command').getAttribute('open'), null);
+        assert.equal(
+          await headerPage
+            .locator('[data-cm-command-open]')
+            .evaluate((e) => e === document.activeElement),
+          true,
+        );
+        assert.equal(await headerPage.locator('#kp-result').innerText(), '78');
+        await headerPage.keyboard.press('Control+k');
+        assert.equal(await headerPage.locator('.cm-command').getAttribute('open'), '');
+        await headerPage.locator('#cm-command-query').fill('mortgage');
+        await headerPage.locator('#cm-command-query').press('Enter');
+        await headerPage.waitForURL(base + '/zh-cn/mortgage-calculator');
+        assert.equal(await headerPage.locator('html').getAttribute('lang'), 'zh-CN');
+        results.push({
+          test: 'header36 palette/mode states across OS schemes, scoped/local search, focus containment, Escape, shortcut, native navigation and preserved calculation',
+          engine,
+          scheme,
+          passed: true,
+        });
+      } finally {
+        await headerContext.close();
+      }
+    }
+    const delayedContext = await browser.newContext({ viewport: { width: 375, height: 900 } });
+    let releaseTranslations;
+    const translationsReady = new Promise((resolve) => {
+      releaseTranslations = resolve;
+    });
+    try {
+      await delayedContext.route('**/assets/dist/fr.*.js', async (route) => {
+        await translationsReady;
+        await route.continue();
+      });
+      const delayed = await delayedContext.newPage();
+      await delayed.goto(base + '/basic-calculator', { waitUntil: 'networkidle' });
+      await delayed.locator('#cm-site-language').selectOption('fr');
+      await delayed.locator('[data-cm-command-open]').click();
+      await delayed.locator('#cm-command-query').fill('conduite');
+      await delayed.waitForFunction(() => globalThis.CMCatalog.length === 500);
+      const target = delayed.locator(
+        '.cm-command-results a[href="/fr/pipe-flow-speed-calculator"]',
+      );
+      assert.equal(await target.count(), 0, 'Delayed dictionary is not yet available');
+      releaseTranslations();
+      await target.waitFor();
+      assert.equal(
+        await delayed.locator('.cm-command-all').getAttribute('href'),
+        '/fr/directory?q=conduite',
+      );
+      results.push({
+        test: 'search refreshes when delayed translations arrive and preserves query in full results',
+        engine,
+        passed: true,
+      });
+    } finally {
+      releaseTranslations();
+      await delayedContext.close();
+    }
     const legacyPositions = [];
     for (const javaScriptEnabled of [false, true]) {
       const context = await browser.newContext({

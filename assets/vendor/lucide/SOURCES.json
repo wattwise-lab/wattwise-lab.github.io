@@ -1,0 +1,47 @@
+{
+  "project": "Lucide",
+  "source": "https://github.com/lucide-icons/lucide",
+  "license": "ISC for Lucide; MIT for Feather-derived icons; full notices in LICENSE.txt",
+  "files": [
+    {
+      "file": "LICENSE.txt",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/LICENSE",
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    },
+    {
+      "file": "check.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/check.svg",
+      "sha256": "7f33acc9a77a61659531044525fc008edebe215bf4dcf1c789c8674ad3277db0"
+    },
+    {
+      "file": "chevron-down.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chevron-down.svg",
+      "sha256": "66ea878e72ed3488bb3b464c39dfdccee8d1f78e560dccea40e5e12da0e87e87"
+    },
+    {
+      "file": "monitor.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/monitor.svg",
+      "sha256": "d1a443233345724859de8e4fb48968ba91e885e12ddbd710701548bd91b39428"
+    },
+    {
+      "file": "moon.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/moon.svg",
+      "sha256": "205b959e940d5841f0ce1d09c933153da9d9c94130a54d5cc0c68c2af1d403da"
+    },
+    {
+      "file": "palette.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/palette.svg",
+      "sha256": "8e7d3fde990cffd10469ba351f27c50202b057a9bb9af5626322e53fd3abc78c"
+    },
+    {
+      "file": "search.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/search.svg",
+      "sha256": "283d371c2e433817bb9c0c8310caa6c77fa4177c0f4f1168d9c83b97af7389dc"
+    },
+    {
+      "file": "sun.svg",
+      "sourceURL": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/sun.svg",
+      "sha256": "a3955c8b0425fcc5c9ba12d2bdd77fe53b2cd5dd05e7742a56f342e996fb2ef8"
+    }
+  ]
+}

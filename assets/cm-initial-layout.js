@@ -2,10 +2,16 @@
   'use strict';
   try {
     const theme = localStorage.getItem('calcmintly.theme.v1');
-    if (['system', 'ocean', 'sand', 'graphite'].includes(theme))
+    if (['system', 'ocean', 'sand', 'graphite', 'violet', 'rose'].includes(theme))
       document.documentElement.dataset.cmTheme = theme;
   } catch {
     /* Respect browsers that disable persistent storage. */
+  }
+  try {
+    const mode = localStorage.getItem('calcmintly.color-mode.v1');
+    if (['light', 'dark'].includes(mode)) document.documentElement.dataset.cmMode = mode;
+  } catch {
+    /* System mode remains available. */
   }
   const body = document.body;
   if (!body) return;
