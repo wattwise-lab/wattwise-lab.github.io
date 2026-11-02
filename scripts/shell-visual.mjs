@@ -181,7 +181,10 @@ try {
         ]
           .filter(
             (e) =>
-              e.getClientRects().length && !e.closest('.cm-site-header__mobile:not([open]) nav'),
+              e.getClientRects().length &&
+              !e.closest(
+                '.cm-site-header__mobile:not([open]) nav,.cm-appearance-menu:not([open]) section',
+              ),
           )
           .filter((e) => {
             const r = e.getBoundingClientRect();
@@ -217,7 +220,10 @@ try {
           focusOrder: [...header.querySelectorAll('a,button,select,summary')]
             .filter(
               (e) =>
-                e.getClientRects().length && !e.closest('.cm-site-header__mobile:not([open]) nav'),
+                e.getClientRects().length &&
+                !e.closest(
+                  '.cm-site-header__mobile:not([open]) nav,.cm-appearance-menu:not([open]) section',
+                ),
             )
             .map((e) => {
               const r = e.getBoundingClientRect();
