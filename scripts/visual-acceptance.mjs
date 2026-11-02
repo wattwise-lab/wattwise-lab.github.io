@@ -77,6 +77,20 @@ function actualNumber(source, locale) {
 const near = (actual, expected) =>
   assert.ok(Math.abs(actual - expected) < 1e-8, actual + ' != ' + expected);
 
+function contrastRGB(first, second) {
+  const luminance = (color) => {
+    const rgb = (color.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+    assert.equal(rgb.length, 3, 'Actual browser RGB required: ' + color);
+    const channels = rgb
+      .map((n) => n / 255)
+      .map((n) => (n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4));
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  };
+  const a = luminance(first),
+    b = luminance(second);
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
+
 export function parseOptions(args) {
   const options = { origin: local, out: null, waitMs: 0, selfTest: false };
   for (let index = 0; index < args.length; index++) {
@@ -1308,7 +1322,9 @@ async function run(config) {
           for (const digit of '12345') await page.locator('[data-key="' + digit + '"]').click();
           near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const menu = page.locator('.cm-site-header__mobile');
-          await menu.locator('summary').click();
+          await menu.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          assert.equal(await menu.getAttribute('open'), '');
           await page.locator('#cm-site-theme').selectOption(theme);
           near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const open = await screenshot(page, config.out, name + '-menu');
@@ -1328,11 +1344,29 @@ async function run(config) {
             theme: document.documentElement.dataset.cmTheme,
             ink: getComputedStyle(document.body).color,
             page: getComputedStyle(document.body).backgroundColor,
+            resultInk: getComputedStyle(document.querySelector('#kp-result')).color,
+            copyInk: getComputedStyle(document.querySelector('#kp-copy')).color,
+            copyPaper: getComputedStyle(document.querySelector('#kp-copy')).backgroundColor,
+            resultPaper: getComputedStyle(document.querySelector('.kp-screen')).backgroundColor,
+            eyebrowInk: getComputedStyle(document.querySelector('.kp-intro > span')).color,
             storage: localStorage.getItem('calcmintly.theme.v1'),
             width: document.documentElement.scrollWidth,
             viewport: innerWidth,
           }));
           assert.equal(palette.theme, theme);
+          assert.equal(
+            palette.resultInk,
+            palette.ink,
+            'The result must use the current theme ink.',
+          );
+          palette.contrast = {
+            body: contrastRGB(palette.ink, palette.page),
+            result: contrastRGB(palette.resultInk, palette.resultPaper),
+            copy: contrastRGB(palette.copyInk, palette.copyPaper),
+            eyebrow: contrastRGB(palette.eyebrowInk, palette.page),
+          };
+          for (const [part, ratio] of Object.entries(palette.contrast))
+            assert.ok(ratio >= 4.5, theme + ' actual ' + part + ' contrast below4.5: ' + ratio);
           assert.equal(palette.storage, theme);
           assert.ok(palette.width <= palette.viewport, 'Theme must not overflow.');
           await page.reload({ waitUntil: 'networkidle' });
@@ -1385,6 +1419,9 @@ async function run(config) {
 }
 
 async function selfTest() {
+  near(contrastRGB('rgb(0, 0, 0)', 'rgb(255, 255, 255)'), 21);
+  near(contrastRGB('rgb(255, 255, 255)', 'rgb(0, 0, 0)'), 21);
+  near(contrastRGB('rgb(50, 50, 50)', 'rgb(50, 50, 50)'), 1);
   assert.equal(parseOptions([]).origin, local);
   assert.equal(parseOptions(['--origin', production, '--wait-ms', '300000']).waitMs, 300000);
   for (const origin of [

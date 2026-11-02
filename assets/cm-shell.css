@@ -466,9 +466,9 @@ body.cm-unified .cm-site-header__mobile > summary {
   .cm-unified textarea,
   .cm-unified button,
   .cm-unified .chip {
-    background: #213b2c;
+    background: var(--cm-soft);
     color: var(--cm-ink);
-    border-color: #52715d;
+    border-color: var(--cm-control-line);
   }
   .cm-unified .kp-screen {
     background: #1a2b20;
@@ -819,4 +819,20 @@ html[data-cm-theme]:not([data-cm-theme='system'])
     :is(button.primary, .kp-keys .equals) {
     color: var(--cm-page);
   }
+}
+
+/* Secondary text and keypad actions use the same palette as the page. */
+.cm-unified .eyebrow,
+.cm-unified .kp-intro > span {
+  color: var(--cm-muted);
+}
+.cm-unified .kp-value,
+.cm-unified .kp-input {
+  color: var(--cm-ink);
+}
+.cm-unified .kp-copy button,
+.cm-unified .kp-clear-history {
+  background: var(--cm-paper);
+  color: var(--cm-mint);
+  border-color: var(--cm-control-line);
 }
