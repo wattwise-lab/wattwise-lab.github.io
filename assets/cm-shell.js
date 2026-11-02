@@ -201,6 +201,12 @@
       }
     });
     dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        dialog.close();
+        return;
+      }
       const links = Array.from(results.querySelectorAll('a'));
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
         event.preventDefault();
