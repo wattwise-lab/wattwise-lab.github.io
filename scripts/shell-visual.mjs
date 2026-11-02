@@ -164,6 +164,7 @@ try {
       await page.goto(origin + route.path, { waitUntil: 'networkidle' });
       await page.evaluate(() => document.fonts.ready);
       await page.locator('#cm-site-language').waitFor();
+      await page.locator('.cm-site-footer').waitFor({ state: 'visible' });
       const record = await page.evaluate(() => {
         const header = document.querySelector('.cm-site-header'),
           footer = document.querySelector('.cm-site-footer');
@@ -195,6 +196,16 @@ try {
           links,
           small,
           footerDisplay: getComputedStyle(footer).display,
+          focusOrder: [...header.querySelectorAll('a,select,summary')]
+            .filter((e) => e.getClientRects().length)
+            .map((e) => {
+              const r = e.getBoundingClientRect();
+              return {
+                name: e.getAttribute('aria-label') || e.id || e.textContent.trim(),
+                x: r.x + r.width / 2,
+                y: r.y + r.height / 2,
+              };
+            }),
         };
       });
       assert.equal(record.languageOptions, 20);
@@ -251,6 +262,63 @@ try {
       if (!baseline) {
         assert.equal(await page.locator('.cm-site-footer__group').count(), 2);
         assert.equal(await page.locator('.cm-site-header__nav a').count(), 3);
+        for (let i = 1; i < record.focusOrder.length; i++) {
+          const previous = record.focusOrder[i - 1],
+            current = record.focusOrder[i];
+          if (Math.abs(current.y - previous.y) < 12)
+            assert.ok(
+              record.dir === 'rtl' ? current.x < previous.x : current.x > previous.x,
+              'Focus follows horizontal visual order',
+            );
+          else assert.ok(current.y > previous.y, 'Focus follows vertical visual order');
+        }
+        if (
+          ['en', 'zh-CN', 'ar', 'de'].includes(config.lang) &&
+          config.route === '/' &&
+          config.theme === 'system' &&
+          config.scheme === 'light'
+        ) {
+          const controls = page
+            .locator('.cm-site-header')
+            .locator('a:visible,select:visible,summary:visible');
+          await controls.first().focus();
+          for (let i = 0; i < (await controls.count()); i++) {
+            if (i) await page.keyboard.press('Tab');
+            assert.equal(
+              await controls.nth(i).evaluate((e) => e === document.activeElement),
+              true,
+              'Actual header Tab order',
+            );
+          }
+          record.actualTabOrderPassed = true;
+        }
+        if (config.lang === 'zh-CN' && config.width === 320 && config.route === '/') {
+          const language = page.locator('#cm-site-language');
+          await language.focus();
+          await page.setViewportSize({ width: 1365, height: 1000 });
+          await page.waitForFunction(() =>
+            document
+              .querySelector('.cm-site-header__nav')
+              .nextElementSibling?.classList.contains('cm-site-header__end'),
+          );
+          assert.equal(
+            await language.evaluate((e) => e === document.activeElement),
+            true,
+            'Language focus survives wide breakpoint',
+          );
+          await page.setViewportSize({ width: 320, height: 1000 });
+          await page.waitForFunction(() =>
+            document
+              .querySelector('.cm-site-header__end')
+              .nextElementSibling?.classList.contains('cm-site-header__nav'),
+          );
+          assert.equal(
+            await language.evaluate((e) => e === document.activeElement),
+            true,
+            'Language focus survives narrow breakpoint',
+          );
+          record.breakpointFocusPreserved = true;
+        }
       }
       report.cases.push({ name: prefix, ...config, record, passed: true });
     } catch (error) {
