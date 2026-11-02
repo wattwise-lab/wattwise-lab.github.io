@@ -344,6 +344,11 @@ try {
           500,
           'Full catalog only loads when searched',
         );
+        assert.equal(
+          await headerPage.locator('.cm-command-results a').first().getAttribute('href'),
+          '/zh-cn/mortgage-calculator',
+          'Matching tool names rank before incidental mentions',
+        );
         for (let step = 0; step < 12; step++) {
           await headerPage.keyboard.press('Tab');
           assert.equal(

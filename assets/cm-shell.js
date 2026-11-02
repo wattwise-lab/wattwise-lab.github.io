@@ -154,8 +154,24 @@
       const query = input.value.trim().toLocaleLowerCase(I.language);
       const catalog = window.CMCatalog || [];
       const matches = query
-        ? catalog.filter((t) => I.searchText(t).toLocaleLowerCase(I.language).includes(query))
-        : common.map((s) => catalog.find((t) => t.slug === s)).filter(Boolean);
+        ? catalog
+            .filter((tool) => I.searchText(tool).toLocaleLowerCase(I.language).includes(query))
+            .map((tool) => {
+              const names = [I.toolName(tool), tool.name, ...Object.values(tool.names || {})]
+                .filter(Boolean)
+                .map((name) => name.toLocaleLowerCase(I.language));
+              const rank = names.some((name) => name === query)
+                ? 0
+                : names.some((name) => name.startsWith(query))
+                  ? 1
+                  : names.some((name) => name.includes(query))
+                    ? 2
+                    : 3;
+              return { tool, rank };
+            })
+            .sort((a, b) => a.rank - b.rank || (a.tool.priority || 500) - (b.tool.priority || 500))
+            .map((item) => item.tool)
+        : common.map((slug) => catalog.find((tool) => tool.slug === slug)).filter(Boolean);
       results.replaceChildren();
       matches.slice(0, 8).forEach((tool) => {
         const link = document.createElement('a');
@@ -208,6 +224,23 @@
         event.stopPropagation();
         dialog.close();
         return;
+      }
+      if (event.key === 'Tab') {
+        const controls = Array.from(dialog.querySelectorAll('button,input,a[href]')).filter(
+          (element) =>
+            !element.disabled && element.tabIndex >= 0 && element.getClientRects().length,
+        );
+        if (controls.length) {
+          event.preventDefault();
+          const index = controls.indexOf(document.activeElement);
+          const next =
+            index < 0
+              ? event.shiftKey
+                ? controls.length - 1
+                : 0
+              : (index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+          controls[next].focus();
+        }
       }
       const links = Array.from(results.querySelectorAll('a'));
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
