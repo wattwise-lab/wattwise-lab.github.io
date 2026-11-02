@@ -109,6 +109,8 @@ body.cm-unified .cm-site-skip:focus {
 }
 .cm-site-header__brand {
   display: inline-flex;
+  justify-self: start;
+  max-width: 100%;
   min-height: 44px;
   align-items: center;
   gap: 10px;
@@ -466,9 +468,9 @@ body.cm-unified .cm-site-header__mobile > summary {
   .cm-unified textarea,
   .cm-unified button,
   .cm-unified .chip {
-    background: #213b2c;
+    background: var(--cm-soft);
     color: var(--cm-ink);
-    border-color: #52715d;
+    border-color: var(--cm-control-line);
   }
   .cm-unified .kp-screen {
     background: #1a2b20;
@@ -533,8 +535,8 @@ body.cm-unified .kp-screen {
 
 @media (prefers-color-scheme: dark) {
   .cm-unified main code {
-    background: #294932;
-    color: #e4f0e9;
+    background: var(--cm-soft);
+    color: var(--cm-ink);
   }
   .cm-unified .cm-home__search input {
     background: transparent;
@@ -587,7 +589,7 @@ body.cm-unified .kp-screen {
     background: var(--cm-paper);
   }
   .cm-unified tbody tr:nth-child(even) {
-    background: #20392b;
+    background: var(--cm-soft);
   }
   .cm-unified td {
     background: transparent;
@@ -649,4 +651,219 @@ body.cm-unified .kp-screen {
 html[lang='ha'] .cm-tool main > p > em {
   font-style: normal;
   font-weight: inherit;
+}
+
+/* The header has three stable regions; long translations move to the menu. */
+.cm-site-header__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 24px;
+}
+.cm-site-header__nav {
+  justify-content: center;
+  gap: clamp(12px, 1.5vw, 22px);
+}
+.cm-site-header__end {
+  justify-self: end;
+}
+.cm-site-header__mobile {
+  display: block;
+}
+.cm-site-header__brand span {
+  white-space: nowrap;
+}
+.cm-site-header__mobile nav {
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
+}
+.cm-appearance {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  border-top: 1px solid var(--cm-line);
+  padding: 14px 12px 8px;
+}
+.cm-appearance label {
+  color: var(--cm-muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+body.cm-unified .cm-appearance select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--cm-control-line);
+  border-radius: 8px;
+  color: var(--cm-ink);
+  background: var(--cm-paper);
+}
+@media (max-width: 1100px) {
+  .cm-site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+  .cm-site-header__nav {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .cm-site-header__inner {
+    gap: 8px;
+  }
+}
+:root[data-cm-theme='ocean'] {
+  --cm-ink: #17354b;
+  --cm-muted: #4c6173;
+  --cm-mint: #075e9b;
+  --cm-line: #ccdce8;
+  --cm-control-line: #6b8497;
+  --cm-page: #f1f6fb;
+  --cm-paper: #ffffff;
+  --cm-soft: #e5eff9;
+}
+:root[data-cm-theme='sand'] {
+  --cm-ink: #413326;
+  --cm-muted: #6e5b4c;
+  --cm-mint: #865020;
+  --cm-line: #e3d6c7;
+  --cm-control-line: #927d65;
+  --cm-page: #faf6ef;
+  --cm-paper: #fffdf9;
+  --cm-soft: #f2e8da;
+}
+:root[data-cm-theme='graphite'] {
+  --cm-ink: #292d35;
+  --cm-muted: #585e6a;
+  --cm-mint: #454d65;
+  --cm-line: #d8dbe3;
+  --cm-control-line: #7a8090;
+  --cm-page: #f4f5f7;
+  --cm-paper: #ffffff;
+  --cm-soft: #e9ebf1;
+}
+:root[data-cm-theme] {
+  --ink: var(--cm-ink);
+  --muted: var(--cm-muted);
+  --mint: var(--cm-mint);
+  --line: var(--cm-line);
+  --paper: var(--cm-paper);
+  --page: var(--cm-page);
+}
+html[data-cm-theme]:not([data-cm-theme='system'])
+  .cm-unified
+  :is(.card, .panel, .ws-card, .ws-card-head, .tool, .hub-tool-card, .kp-history, dialog) {
+  background: var(--cm-paper) !important;
+  border-color: var(--cm-line) !important;
+  color: var(--cm-ink) !important;
+}
+html[data-cm-theme]:not([data-cm-theme='system'])
+  .cm-unified
+  :is(.workspace-promo, .ws-starters, .ws-help, .kp-machine) {
+  background: var(--cm-soft) !important;
+  border-color: var(--cm-line) !important;
+}
+html[data-cm-theme]:not([data-cm-theme='system'])
+  .cm-unified
+  :is(input, select, textarea, .kp-screen):not([aria-invalid='true']) {
+  background: var(--cm-paper);
+  color: var(--cm-ink);
+  border-color: var(--cm-control-line);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-cm-theme='ocean'] {
+    --cm-ink: #e1edf8;
+    --cm-muted: #b2c5d7;
+    --cm-mint: #83c7fc;
+    --cm-line: #3d5266;
+    --cm-control-line: #7894ac;
+    --cm-page: #142331;
+    --cm-paper: #1c3041;
+    --cm-soft: #243e53;
+  }
+  :root[data-cm-theme='sand'] {
+    --cm-ink: #f6ebdd;
+    --cm-muted: #d3c0aa;
+    --cm-mint: #edb87f;
+    --cm-line: #625140;
+    --cm-control-line: #aa9074;
+    --cm-page: #29231c;
+    --cm-paper: #382e24;
+    --cm-soft: #473a2b;
+  }
+  :root[data-cm-theme='graphite'] {
+    --cm-ink: #eceef5;
+    --cm-muted: #bdc2d2;
+    --cm-mint: #b3c2f0;
+    --cm-line: #4b5263;
+    --cm-control-line: #929ab0;
+    --cm-page: #1e2129;
+    --cm-paper: #292e39;
+    --cm-soft: #353c4b;
+  }
+}
+html[data-cm-theme]:not([data-cm-theme='system'])
+  .cm-unified
+  :is(button.primary, .kp-keys .equals) {
+  background: var(--cm-mint);
+  color: var(--cm-paper);
+  border-color: var(--cm-mint);
+}
+html[data-cm-theme]:not([data-cm-theme='system'])
+  .cm-unified
+  :is(.kp-keys button:not(.equals):not(.clear), .kp-memory-keys button, .kp-science button) {
+  background: var(--cm-soft);
+  color: var(--cm-ink);
+  border-color: var(--cm-control-line);
+}
+@media (prefers-color-scheme: dark) {
+  html[data-cm-theme]:not([data-cm-theme='system'])
+    .cm-unified
+    :is(button.primary, .kp-keys .equals) {
+    color: var(--cm-page);
+  }
+}
+
+/* Secondary text and keypad actions use the same palette as the page. */
+.cm-unified .eyebrow,
+.cm-unified .kp-intro > span {
+  color: var(--cm-muted);
+}
+.cm-unified .kp-value,
+.cm-unified .kp-input {
+  color: var(--cm-ink);
+}
+.cm-unified .kp-copy button,
+.cm-unified .kp-clear-history {
+  background: var(--cm-paper);
+  color: var(--cm-mint);
+  border-color: var(--cm-control-line);
+}
+
+.cm-unified main code {
+  background: var(--cm-soft);
+  color: var(--cm-ink);
+}
+.cm-unified th {
+  background: var(--cm-soft);
+  color: var(--cm-muted);
+  border-color: var(--cm-line);
+}
+/* Typed numeric results keep their number and unit together inside RTL prose. */
+.cm-unified [data-cm-value],
+.cm-unified [data-cm-numeric-result] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+/* Legacy calculator colors follow an explicitly chosen palette as well. */
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool .big {
+  color: var(--cm-ink);
+}
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool button:not(.primary) {
+  background: var(--cm-paper);
+  color: var(--cm-mint);
+  border-color: var(--cm-control-line);
+}
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool .chip {
+  background: var(--cm-paper);
+  border-color: var(--cm-line);
 }

@@ -177,6 +177,23 @@ function link(from, to) {
   flush();
 }
 flush();
+const suggestions = document.elements.find(
+  (element) => element.className === 'ws-links__suggestions',
+);
+assert.equal(suggestions.children.length, 2, 'Offer both compatible W/kW directions.');
+const wrongDimension = card(99, 'unrelated-mass', 'kg', 3);
+refresh();
+assert.equal(suggestions.children.length, 2, 'Mass must never be suggested as a power connection.');
+suggestions.children[0].dispatchEvent(new Event('click'));
+assert.equal(document.getElementById('ws-link-source').value, '1');
+assert.equal(document.getElementById('ws-link-destination').value, '2');
+assert.equal(document.getElementById('ws-link-result').value, '0');
+assert.equal(document.getElementById('ws-link-field').value, 'power');
+assert.equal(target.input.value, '5', 'Choosing a suggestion must not apply its converted value.');
+assert.equal(target.input.readOnly, false, 'A suggestion must not lock an input.');
+assert.equal(api.snapshotForCard(source.id).length, 0, 'Explicit confirmation is still required.');
+cards.splice(cards.indexOf(wrongDimension), 1);
+refresh();
 link(source, target);
 assert.equal(list.children.length, 1);
 assert.equal(target.input.value, '0.4');

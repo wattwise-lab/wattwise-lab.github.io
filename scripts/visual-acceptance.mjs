@@ -1,5 +1,5 @@
 /* CI-only actual viewport evidence. No local browser launch; images require personal review. */
-/* global document, location, innerWidth, innerHeight, scrollY, requestAnimationFrame */
+/* global document, location, innerWidth, innerHeight, scrollY, requestAnimationFrame, getComputedStyle */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -76,6 +76,20 @@ function actualNumber(source, locale) {
 }
 const near = (actual, expected) =>
   assert.ok(Math.abs(actual - expected) < 1e-8, actual + ' != ' + expected);
+
+function contrastRGB(first, second) {
+  const luminance = (color) => {
+    const rgb = (color.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+    assert.equal(rgb.length, 3, 'Actual browser RGB required: ' + color);
+    const channels = rgb
+      .map((n) => n / 255)
+      .map((n) => (n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4));
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  };
+  const a = luminance(first),
+    b = luminance(second);
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
 
 export function parseOptions(args) {
   const options = { origin: local, out: null, waitMs: 0, selfTest: false };
@@ -277,6 +291,21 @@ async function mainState(page) {
         element.getAttribute('href'),
       ),
       targets,
+      numericRuns: [...document.querySelectorAll('[data-cm-value],[data-cm-numeric-result]')]
+        .filter(visible)
+        .map((element) => ({
+          value:
+            element.getAttribute('data-cm-value') ?? element.getAttribute('data-cm-numeric-result'),
+          source: element.closest('.ws-overview')
+            ? 'overview'
+            : element.hasAttribute('data-cm-numeric-result')
+              ? 'secondary'
+              : 'authored',
+          unit: element.getAttribute('data-cm-unit'),
+          text: element.textContent,
+          direction: getComputedStyle(element).direction,
+          bidi: getComputedStyle(element).unicodeBidi,
+        })),
       inputs: [...document.querySelectorAll('main input,main select')].map((input) => ({
         id: input.id,
         value: input.value,
@@ -293,6 +322,20 @@ async function mainState(page) {
     };
   });
   assertUniqueDocumentResources(state, page.url());
+  if (state.dir === 'rtl' && new URL(page.url()).pathname.endsWith('/law-of-cosines-calculator'))
+    assert.ok(
+      state.numericRuns.some((number) => number.source === 'secondary' && number.unit === 'm²'),
+      'The live secondary area result must participate in numeric direction checks.',
+    );
+  if (state.dir === 'rtl')
+    for (const number of state.numericRuns) {
+      assert.equal(number.direction, 'ltr', 'Keep numeric result and unit in logical order.');
+      assert.equal(
+        number.bidi,
+        'isolate',
+        'Isolate a typed numeric result from surrounding RTL text.',
+      );
+    }
   return state;
 }
 
@@ -564,6 +607,11 @@ async function run(config) {
     await settled(page);
     const state = await mainState(page);
     assert.equal(state.booting, false);
+    assert.equal(
+      state.numericRuns.filter((number) => number.source === 'overview').length,
+      4,
+      'Each loaded overview quantity must participate in numeric direction checks.',
+    );
     assert.equal(state.busy, null);
     for (const source of ['assets/cm-initial-layout.js', 'assets/cm-workspace.js'])
       assert.equal(state.scripts.filter((src) => src === manifest[source]).length, 1);
@@ -1050,10 +1098,21 @@ async function run(config) {
       await mechanical.locator('#w').fill('2000');
       await mechanical.locator('#t').fill('5');
       await page.locator('.ws-links summary').click();
-      await page.locator('#ws-link-source').selectOption('1');
-      await page.locator('#ws-link-result').selectOption('0');
-      await page.locator('#ws-link-destination').selectOption('2');
-      await page.locator('#ws-link-field').selectOption('p');
+      await page.locator('.ws-links').scrollIntoViewIfNeeded();
+      await settled(page);
+      const suggestionEvidence = await screenshot(
+        page,
+        config.out,
+        'workspace-link-suggestions-preview',
+      );
+      const unlinkedValue = await solar.locator('#p').inputValue();
+      await page.locator('.ws-links__suggestion').filter({ hasText: 'W → kW' }).first().click();
+      assert.equal(await page.locator('#ws-link-source').inputValue(), '1');
+      assert.equal(await page.locator('#ws-link-result').inputValue(), '0');
+      assert.equal(await page.locator('#ws-link-destination').inputValue(), '2');
+      assert.equal(await page.locator('#ws-link-field').inputValue(), 'p');
+      assert.equal(await solar.locator('#p').inputValue(), unlinkedValue);
+      assert.equal(await solar.locator('#p').getAttribute('readonly'), null);
       await page.locator('.ws-links__form button[type="submit"]').click();
       const linked = (expected) =>
         page.waitForFunction((value) => {
@@ -1074,7 +1133,7 @@ async function run(config) {
         );
       });
       const steps = [],
-        images = [];
+        images = [suggestionEvidence];
       const recordStep = async (name, expectedWork, expectedPower, expectedEnergy) => {
         await ready();
         await linked(expectedPower);
@@ -1106,6 +1165,32 @@ async function run(config) {
         steps.push({ name, fields, target, power, energy });
       };
       await recordStep('workspace-link-before-undo', '2000', 0.4, 38.4);
+      await page.locator('.cm-site-header__mobile > summary').click();
+      await page.locator('#cm-site-theme').selectOption('ocean');
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('#desk iframe')].every(
+          (frame) => frame.contentDocument?.documentElement.dataset.cmTheme === 'ocean',
+        ),
+      );
+      await recordStep('workspace-link-ocean-theme', '2000', 0.4, 38.4);
+      const embeddedPalette = await mechanical.getByRole('main').evaluate((main) => ({
+        bodyInk: getComputedStyle(main.ownerDocument.body).color,
+        resultInk: getComputedStyle(main.querySelector('#result')).color,
+        copyInk: getComputedStyle(main.querySelector('#cm-copy')).color,
+        linkInk: getComputedStyle(main.querySelector('a')).color,
+      }));
+      assert.equal(embeddedPalette.resultInk, embeddedPalette.bodyInk);
+      assert.equal(embeddedPalette.copyInk, embeddedPalette.linkInk);
+      await page.locator('.cm-site-header__mobile > summary').click();
+      await page.locator('#cm-site-theme').selectOption('system');
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('#desk iframe')].every(
+          (frame) => frame.contentDocument?.documentElement.dataset.cmTheme === 'system',
+        ),
+      );
+
       await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
       assert.equal(await page.locator('.ws-links__item').count(), 0);
       await page.locator('#ws-message button').click();
@@ -1273,6 +1358,86 @@ async function run(config) {
             'Actual merchant price input, EN/CN language roundtrip with USD and values preserved, hand-derived contribution/ad cap/monthly profit, widget reset, full original-width page captures and fingerprinted merchant script SRI. Existing66 cases remain unchanged.',
         };
       });
+    for (const dark of [false, true]) {
+      for (const theme of ['system', 'ocean', 'sand', 'graphite']) {
+        const name = 'appearance-' + theme + (dark ? '-dark' : '-light');
+        await recordCase(name, async () => {
+          await page.setViewportSize({ width: 375, height: 1000 });
+          await page.emulateMedia({
+            colorScheme: dark ? 'dark' : 'light',
+            reducedMotion: 'reduce',
+          });
+          await navigate(routeFor('zh-CN', 'basic-calculator'), 'zh-CN');
+          for (const digit of '12345') await page.locator('[data-key="' + digit + '"]').click();
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          const menu = page.locator('.cm-site-header__mobile');
+          await menu.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          assert.equal(await menu.getAttribute('open'), '');
+          await page.locator('#cm-site-theme').selectOption(theme);
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          const open = await screenshot(page, config.out, name + '-menu');
+          await page.keyboard.press('Escape');
+          assert.equal(await menu.getAttribute('open'), null);
+          assert.equal(
+            await page
+              .locator('.cm-site-header__mobile > summary')
+              .evaluate((e) => e === document.activeElement),
+            true,
+          );
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          await page.keyboard.press('Escape');
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          const state = await mainState(page);
+          const palette = await page.evaluate(() => ({
+            theme: document.documentElement.dataset.cmTheme,
+            ink: getComputedStyle(document.body).color,
+            page: getComputedStyle(document.body).backgroundColor,
+            resultInk: getComputedStyle(document.querySelector('#kp-result')).color,
+            copyInk: getComputedStyle(document.querySelector('#kp-copy')).color,
+            copyPaper: getComputedStyle(document.querySelector('#kp-copy')).backgroundColor,
+            resultPaper: getComputedStyle(document.querySelector('.kp-screen')).backgroundColor,
+            eyebrowInk: getComputedStyle(document.querySelector('.kp-intro > span')).color,
+            storage: localStorage.getItem('calcmintly.theme.v1'),
+            width: document.documentElement.scrollWidth,
+            viewport: innerWidth,
+          }));
+          assert.equal(palette.theme, theme);
+          assert.equal(
+            palette.resultInk,
+            palette.ink,
+            'The result must use the current theme ink.',
+          );
+          palette.contrast = {
+            body: contrastRGB(palette.ink, palette.page),
+            result: contrastRGB(palette.resultInk, palette.resultPaper),
+            copy: contrastRGB(palette.copyInk, palette.copyPaper),
+            eyebrow: contrastRGB(palette.eyebrowInk, palette.page),
+          };
+          for (const [part, ratio] of Object.entries(palette.contrast))
+            assert.ok(ratio >= 4.5, theme + ' actual ' + part + ' contrast below4.5: ' + ratio);
+          assert.equal(palette.storage, theme);
+          assert.ok(palette.width <= palette.viewport, 'Theme must not overflow.');
+          await page.reload({ waitUntil: 'networkidle' });
+          assert.equal(
+            await page.locator('#cm-site-theme').inputValue(),
+            theme,
+            'Theme survives reload.',
+          );
+          await settled(page);
+          return {
+            state,
+            palette,
+            segments: [open, await screenshot(page, config.out, name + '-restored')],
+            scope:
+              'Actual appearance selection, input preserved, Escape focus returned, stored choice restored, original viewport. No performance claim.',
+          };
+        });
+      }
+    }
+    await page.locator('.cm-site-header__mobile > summary').click();
+    await page.locator('#cm-site-theme').selectOption('system');
+    await page.keyboard.press('Escape');
     await drain();
   } catch (error) {
     report.failures.push({ name: 'fatal-run', error: String(error) });
@@ -1303,6 +1468,9 @@ async function run(config) {
 }
 
 async function selfTest() {
+  near(contrastRGB('rgb(0, 0, 0)', 'rgb(255, 255, 255)'), 21);
+  near(contrastRGB('rgb(255, 255, 255)', 'rgb(0, 0, 0)'), 21);
+  near(contrastRGB('rgb(50, 50, 50)', 'rgb(50, 50, 50)'), 1);
   assert.equal(parseOptions([]).origin, local);
   assert.equal(parseOptions(['--origin', production, '--wait-ms', '300000']).waitMs, 300000);
   for (const origin of [

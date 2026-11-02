@@ -215,11 +215,12 @@
   }
   document.addEventListener('keydown', (e) => {
     if (
+      e.defaultPrevented ||
       e.ctrlKey ||
       e.metaKey ||
       e.altKey ||
       e.target.isContentEditable ||
-      e.target.closest('input,select,textarea,dialog')
+      e.target.closest('.cm-site-header,input,select,textarea,dialog')
     )
       return;
     if (e.target.closest('button,a') && ['Enter', ' '].includes(e.key)) return;

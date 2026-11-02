@@ -320,21 +320,26 @@
         value = el('span'),
         rows = card.ready ? A.results(card) : [];
       delete b.dataset.cmPair;
-      value.textContent = rows.length
-        ? rows[0].label +
-          ': ' +
+      if (rows.length) {
+        const formatted =
           I.number(
             rows[0].value,
             rows[0].unit?.startsWith('USD')
               ? { minimumFractionDigits: 2, maximumFractionDigits: 2 }
               : { maximumSignificantDigits: 8 },
-          ) +
-          (rows[0].unit ? ' ' + I.unit(rows[0].unit, rows[0].value) : '')
-        : text(
-            card.ready
-              ? 'Open the card to inspect the result|打开卡片查看结果'
-              : 'Loading…|正在加载…',
-          );
+          ) + (rows[0].unit ? ' ' + I.unit(rows[0].unit, rows[0].value) : '');
+        if (typeof rows[0].value === 'number') {
+          const quantity = el('bdi', '', formatted);
+          quantity.dataset.cmNumericResult = String(rows[0].value);
+          quantity.dataset.cmUnit = rows[0].unit || '';
+          value.append(el('span', '', rows[0].label + ': '), quantity);
+        } else value.textContent = rows[0].label + ': ' + formatted;
+      } else
+        value.textContent = text(
+          card.ready
+            ? 'Open the card to inspect the result|打开卡片查看结果'
+            : 'Loading…|正在加载…',
+        );
       b.append(strong, value);
       overviewList.append(b);
     }

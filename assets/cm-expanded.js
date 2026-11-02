@@ -219,6 +219,10 @@
             dd = document.createElement('dd');
           dt.textContent = label(r.label);
           if (r.literal) dd.setAttribute('data-cm-no-translate', '');
+          if (typeof r.value === 'number') {
+            dd.dataset.cmNumericResult = String(r.value);
+            dd.dataset.cmUnit = r.unit || '';
+          }
           dd.textContent =
             format(r.value, r.literal, r.fractionDigits) +
             (r.unit ? ' ' + I.unit(r.unit, r.value) : '');
