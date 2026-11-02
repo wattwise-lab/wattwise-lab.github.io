@@ -487,9 +487,10 @@
         el(
           'p',
           '',
-          new Intl.DateTimeFormat(I.language, { dateStyle: 'medium', timeStyle: 'short' }).format(
-            new Date(),
-          ),
+          new Intl.DateTimeFormat(I.formatLocale || I.language, {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+          }).format(new Date()),
         ),
         pair(
           'p',

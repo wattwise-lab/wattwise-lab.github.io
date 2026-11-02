@@ -1050,10 +1050,14 @@ async function run(config) {
       await mechanical.locator('#w').fill('2000');
       await mechanical.locator('#t').fill('5');
       await page.locator('.ws-links summary').click();
-      await page.locator('#ws-link-source').selectOption('1');
-      await page.locator('#ws-link-result').selectOption('0');
-      await page.locator('#ws-link-destination').selectOption('2');
-      await page.locator('#ws-link-field').selectOption('p');
+      const unlinkedValue = await solar.locator('#p').inputValue();
+      await page.locator('.ws-links__suggestion').filter({ hasText: 'W → kW' }).first().click();
+      assert.equal(await page.locator('#ws-link-source').inputValue(), '1');
+      assert.equal(await page.locator('#ws-link-result').inputValue(), '0');
+      assert.equal(await page.locator('#ws-link-destination').inputValue(), '2');
+      assert.equal(await page.locator('#ws-link-field').inputValue(), 'p');
+      assert.equal(await solar.locator('#p').inputValue(), unlinkedValue);
+      assert.equal(await solar.locator('#p').getAttribute('readonly'), null);
       await page.locator('.ws-links__form button[type="submit"]').click();
       const linked = (expected) =>
         page.waitForFunction((value) => {
@@ -1106,6 +1110,24 @@ async function run(config) {
         steps.push({ name, fields, target, power, energy });
       };
       await recordStep('workspace-link-before-undo', '2000', 0.4, 38.4);
+      await page.locator('.cm-site-header__mobile > summary').click();
+      await page.locator('#cm-site-theme').selectOption('ocean');
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('#desk iframe')].every(
+          (frame) => frame.contentDocument?.documentElement.dataset.cmTheme === 'ocean',
+        ),
+      );
+      await recordStep('workspace-link-ocean-theme', '2000', 0.4, 38.4);
+      await page.locator('.cm-site-header__mobile > summary').click();
+      await page.locator('#cm-site-theme').selectOption('system');
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('#desk iframe')].every(
+          (frame) => frame.contentDocument?.documentElement.dataset.cmTheme === 'system',
+        ),
+      );
+
       await page.locator('#desk-1 .ws-card-actions button').nth(3).click();
       assert.equal(await page.locator('.ws-links__item').count(), 0);
       await page.locator('#ws-message button').click();
