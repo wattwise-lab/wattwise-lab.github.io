@@ -187,9 +187,6 @@ body.cm-unified .cm-site-skip:focus {
 .cm-site-header__nav .cm-site-header__workspace[aria-current='page'] {
   color: var(--cm-paper);
   text-decoration: none;
-  box-shadow:
-    0 0 0 2px var(--cm-paper),
-    0 0 0 3px var(--cm-ink);
 }
 .cm-site-header__end {
   display: flex;
@@ -313,6 +310,10 @@ body.cm-unified .cm-site-header__mobile > summary {
 .cm-site-header__mobile nav a[aria-current='page'] {
   background: var(--cm-soft);
   color: var(--cm-mint);
+}
+html[lang='bn'] .cm-site-header nav a,
+html[lang='ur'] .cm-site-header nav a {
+  font-size: 16px;
 }
 .cm-site-footer {
   max-width: none;
