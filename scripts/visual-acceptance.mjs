@@ -291,10 +291,12 @@ async function mainState(page) {
         element.getAttribute('href'),
       ),
       targets,
-      numericRuns: [...document.querySelectorAll('[data-cm-value]')]
+      numericRuns: [...document.querySelectorAll('[data-cm-value],[data-cm-numeric-result]')]
         .filter(visible)
         .map((element) => ({
-          value: element.getAttribute('data-cm-value'),
+          value:
+            element.getAttribute('data-cm-value') ?? element.getAttribute('data-cm-numeric-result'),
+          source: element.hasAttribute('data-cm-numeric-result') ? 'secondary' : 'authored',
           unit: element.getAttribute('data-cm-unit'),
           text: element.textContent,
           direction: getComputedStyle(element).direction,
@@ -316,6 +318,11 @@ async function mainState(page) {
     };
   });
   assertUniqueDocumentResources(state, page.url());
+  if (state.dir === 'rtl' && new URL(page.url()).pathname.endsWith('/law-of-cosines-calculator'))
+    assert.ok(
+      state.numericRuns.some((number) => number.source === 'secondary' && number.unit === 'm²'),
+      'The live secondary area result must participate in numeric direction checks.',
+    );
   if (state.dir === 'rtl')
     for (const number of state.numericRuns) {
       assert.equal(number.direction, 'ltr', 'Keep numeric result and unit in logical order.');

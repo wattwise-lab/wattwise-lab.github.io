@@ -849,7 +849,8 @@ html[data-cm-theme]:not([data-cm-theme='system'])
   border-color: var(--cm-line);
 }
 /* Typed numeric results keep their number and unit together inside RTL prose. */
-.cm-unified [data-cm-value] {
+.cm-unified [data-cm-value],
+.cm-unified [data-cm-numeric-result] {
   direction: ltr;
   unicode-bidi: isolate;
 }
