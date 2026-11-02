@@ -296,7 +296,11 @@ async function mainState(page) {
         .map((element) => ({
           value:
             element.getAttribute('data-cm-value') ?? element.getAttribute('data-cm-numeric-result'),
-          source: element.hasAttribute('data-cm-numeric-result') ? 'secondary' : 'authored',
+          source: element.closest('.ws-overview')
+            ? 'overview'
+            : element.hasAttribute('data-cm-numeric-result')
+              ? 'secondary'
+              : 'authored',
           unit: element.getAttribute('data-cm-unit'),
           text: element.textContent,
           direction: getComputedStyle(element).direction,
@@ -603,6 +607,11 @@ async function run(config) {
     await settled(page);
     const state = await mainState(page);
     assert.equal(state.booting, false);
+    assert.equal(
+      state.numericRuns.filter((number) => number.source === 'overview').length,
+      4,
+      'Each loaded overview quantity must participate in numeric direction checks.',
+    );
     assert.equal(state.busy, null);
     for (const source of ['assets/cm-initial-layout.js', 'assets/cm-workspace.js'])
       assert.equal(state.scripts.filter((src) => src === manifest[source]).length, 1);
@@ -1165,6 +1174,14 @@ async function run(config) {
         ),
       );
       await recordStep('workspace-link-ocean-theme', '2000', 0.4, 38.4);
+      const embeddedPalette = await mechanical.getByRole('main').evaluate((main) => ({
+        bodyInk: getComputedStyle(main.ownerDocument.body).color,
+        resultInk: getComputedStyle(main.querySelector('#result')).color,
+        copyInk: getComputedStyle(main.querySelector('#cm-copy')).color,
+        linkInk: getComputedStyle(main.querySelector('a')).color,
+      }));
+      assert.equal(embeddedPalette.resultInk, embeddedPalette.bodyInk);
+      assert.equal(embeddedPalette.copyInk, embeddedPalette.linkInk);
       await page.locator('.cm-site-header__mobile > summary').click();
       await page.locator('#cm-site-theme').selectOption('system');
       await page.keyboard.press('Escape');

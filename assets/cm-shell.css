@@ -854,3 +854,16 @@ html[data-cm-theme]:not([data-cm-theme='system'])
   direction: ltr;
   unicode-bidi: isolate;
 }
+/* Legacy calculator colors follow an explicitly chosen palette as well. */
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool .big {
+  color: var(--cm-ink);
+}
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool button:not(.primary) {
+  background: var(--cm-paper);
+  color: var(--cm-mint);
+  border-color: var(--cm-control-line);
+}
+html[data-cm-theme]:not([data-cm-theme='system']) .cm-unified.cm-tool .chip {
+  background: var(--cm-paper);
+  border-color: var(--cm-line);
+}
