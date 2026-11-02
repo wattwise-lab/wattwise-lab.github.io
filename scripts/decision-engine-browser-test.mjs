@@ -378,6 +378,40 @@ try {
         await headerContext.close();
       }
     }
+    const delayedContext = await browser.newContext({ viewport: { width: 375, height: 900 } });
+    let releaseTranslations;
+    const translationsReady = new Promise((resolve) => {
+      releaseTranslations = resolve;
+    });
+    try {
+      await delayedContext.route('**/assets/dist/fr.*.js', async (route) => {
+        await translationsReady;
+        await route.continue();
+      });
+      const delayed = await delayedContext.newPage();
+      await delayed.goto(base + '/fr/basic-calculator', { waitUntil: 'domcontentloaded' });
+      await delayed.locator('[data-cm-command-open]').click();
+      await delayed.locator('#cm-command-query').fill('conduite');
+      await delayed.waitForFunction(() => globalThis.CMCatalog.length === 500);
+      const target = delayed.locator(
+        '.cm-command-results a[href="/fr/pipe-flow-speed-calculator"]',
+      );
+      assert.equal(await target.count(), 0, 'Delayed dictionary is not yet available');
+      releaseTranslations();
+      await target.waitFor();
+      assert.equal(
+        await delayed.locator('.cm-command-all').getAttribute('href'),
+        '/fr/directory?q=conduite',
+      );
+      results.push({
+        test: 'search refreshes when delayed translations arrive and preserves query in full results',
+        engine,
+        passed: true,
+      });
+    } finally {
+      releaseTranslations();
+      await delayedContext.close();
+    }
     const legacyPositions = [];
     for (const javaScriptEnabled of [false, true]) {
       const context = await browser.newContext({

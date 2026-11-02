@@ -148,7 +148,9 @@
       input.placeholder = I.t('search');
       results.setAttribute('aria-label', I.t('searchLabel'));
       all.textContent = I.t('all');
-      all.href = I.url('/directory');
+      all.href = I.url(
+        '/directory' + (input.value.trim() ? '?q=' + encodeURIComponent(input.value.trim()) : ''),
+      );
       const query = input.value.trim().toLocaleLowerCase(I.language);
       const catalog = window.CMCatalog || [];
       const matches = query
@@ -227,6 +229,7 @@
       }
     });
     document.addEventListener('cm:language', renderSearch);
+    document.addEventListener('cm:translations', renderSearch);
   }
   const tableScrollers = new Map();
   function updateTableScrollers() {
