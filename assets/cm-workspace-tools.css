@@ -547,7 +547,8 @@
 .ws-links > summary {
   display: list-item;
   list-style-position: inside;
-  line-height: 44px;
+  line-height: 1.6;
+  padding-block: 10px;
   color: var(--cm-mint);
 }
 .ws-links[open] > summary {

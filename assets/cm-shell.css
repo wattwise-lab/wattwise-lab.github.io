@@ -109,6 +109,8 @@ body.cm-unified .cm-site-skip:focus {
 }
 .cm-site-header__brand {
   display: inline-flex;
+  justify-self: start;
+  max-width: 100%;
   min-height: 44px;
   align-items: center;
   gap: 10px;
@@ -533,8 +535,8 @@ body.cm-unified .kp-screen {
 
 @media (prefers-color-scheme: dark) {
   .cm-unified main code {
-    background: #294932;
-    color: #e4f0e9;
+    background: var(--cm-soft);
+    color: var(--cm-ink);
   }
   .cm-unified .cm-home__search input {
     background: transparent;
@@ -587,7 +589,7 @@ body.cm-unified .kp-screen {
     background: var(--cm-paper);
   }
   .cm-unified tbody tr:nth-child(even) {
-    background: #20392b;
+    background: var(--cm-soft);
   }
   .cm-unified td {
     background: transparent;
@@ -762,7 +764,7 @@ html[data-cm-theme]:not([data-cm-theme='system'])
 }
 html[data-cm-theme]:not([data-cm-theme='system'])
   .cm-unified
-  :is(input, select, textarea, .kp-screen) {
+  :is(input, select, textarea, .kp-screen):not([aria-invalid='true']) {
   background: var(--cm-paper);
   color: var(--cm-ink);
   border-color: var(--cm-control-line);
@@ -835,4 +837,19 @@ html[data-cm-theme]:not([data-cm-theme='system'])
   background: var(--cm-paper);
   color: var(--cm-mint);
   border-color: var(--cm-control-line);
+}
+
+.cm-unified main code {
+  background: var(--cm-soft);
+  color: var(--cm-ink);
+}
+.cm-unified th {
+  background: var(--cm-soft);
+  color: var(--cm-muted);
+  border-color: var(--cm-line);
+}
+/* Typed numeric results keep their number and unit together inside RTL prose. */
+.cm-unified [data-cm-value] {
+  direction: ltr;
+  unicode-bidi: isolate;
 }

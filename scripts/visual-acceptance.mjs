@@ -291,6 +291,15 @@ async function mainState(page) {
         element.getAttribute('href'),
       ),
       targets,
+      numericRuns: [...document.querySelectorAll('[data-cm-value]')]
+        .filter(visible)
+        .map((element) => ({
+          value: element.getAttribute('data-cm-value'),
+          unit: element.getAttribute('data-cm-unit'),
+          text: element.textContent,
+          direction: getComputedStyle(element).direction,
+          bidi: getComputedStyle(element).unicodeBidi,
+        })),
       inputs: [...document.querySelectorAll('main input,main select')].map((input) => ({
         id: input.id,
         value: input.value,
@@ -307,6 +316,15 @@ async function mainState(page) {
     };
   });
   assertUniqueDocumentResources(state, page.url());
+  if (state.dir === 'rtl')
+    for (const number of state.numericRuns) {
+      assert.equal(number.direction, 'ltr', 'Keep numeric result and unit in logical order.');
+      assert.equal(
+        number.bidi,
+        'isolate',
+        'Isolate a typed numeric result from surrounding RTL text.',
+      );
+    }
   return state;
 }
 
@@ -1064,6 +1082,13 @@ async function run(config) {
       await mechanical.locator('#w').fill('2000');
       await mechanical.locator('#t').fill('5');
       await page.locator('.ws-links summary').click();
+      await page.locator('.ws-links').scrollIntoViewIfNeeded();
+      await settled(page);
+      const suggestionEvidence = await screenshot(
+        page,
+        config.out,
+        'workspace-link-suggestions-preview',
+      );
       const unlinkedValue = await solar.locator('#p').inputValue();
       await page.locator('.ws-links__suggestion').filter({ hasText: 'W → kW' }).first().click();
       assert.equal(await page.locator('#ws-link-source').inputValue(), '1');
@@ -1092,7 +1117,7 @@ async function run(config) {
         );
       });
       const steps = [],
-        images = [];
+        images = [suggestionEvidence];
       const recordStep = async (name, expectedWork, expectedPower, expectedEnergy) => {
         await ready();
         await linked(expectedPower);
