@@ -2321,6 +2321,8 @@ window.CMUiCopy = {
     unitOrder: 'order',
     unitOrders: 'orders',
     jsRequired: 'Interactive features need JavaScript. Page content and links remain available.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Explore',
   },
   'zh-CN': {
     home: '首页',
@@ -2387,6 +2389,8 @@ window.CMUiCopy = {
     unitOrder: '单',
     unitOrders: '单',
     jsRequired: '交互功能需要启用 JavaScript。页面内容和链接仍可查看。',
+    intentExample: '房贷 房价300000 首付90000 利率3.5% 期限30年',
+    explore: '探索',
   },
   hi: {
     home: 'होम',
@@ -2454,6 +2458,8 @@ window.CMUiCopy = {
     unitOrders: 'ऑर्डर',
     jsRequired:
       'इंटरैक्टिव सुविधाओं के लिए JavaScript चाहिए। पेज की सामग्री और लिंक उपलब्ध रहते हैं।',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'एक्सप्लोर करें',
   },
   es: {
     home: 'Inicio',
@@ -2521,6 +2527,8 @@ window.CMUiCopy = {
     unitOrders: 'pedidos',
     jsRequired:
       'Las funciones interactivas requieren JavaScript. El contenido y los enlaces siguen disponibles.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Explorar',
   },
   ar: {
     home: 'الرئيسية',
@@ -2587,6 +2595,8 @@ window.CMUiCopy = {
     unitOrder: 'طلب',
     unitOrders: 'طلبات',
     jsRequired: 'تتطلب الميزات التفاعلية JavaScript. يظل محتوى الصفحة والروابط متاحًا.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'استكشف',
   },
   fr: {
     home: 'Accueil',
@@ -2654,6 +2664,8 @@ window.CMUiCopy = {
     unitOrders: 'commandes',
     jsRequired:
       'Les fonctions interactives nécessitent JavaScript. Le contenu et les liens restent accessibles.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Découvrir',
   },
   bn: {
     home: 'হোম',
@@ -2721,6 +2733,8 @@ window.CMUiCopy = {
     unitOrders: 'অর্ডার',
     jsRequired:
       'ইন্টার‌্যাক্টিভ সুবিধার জন্য JavaScript দরকার। পৃষ্ঠার বিষয়বস্তু ও লিংক ব্যবহার করা যাবে।',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'ঘুরে দেখুন',
   },
   pt: {
     home: 'Início',
@@ -2788,6 +2802,8 @@ window.CMUiCopy = {
     unitOrders: 'pedidos',
     jsRequired:
       'Os recursos interativos precisam de JavaScript. O conteúdo e os links continuam disponíveis.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Explorar',
   },
   id: {
     home: 'Beranda',
@@ -2854,6 +2870,8 @@ window.CMUiCopy = {
     unitOrder: 'pesanan',
     unitOrders: 'pesanan',
     jsRequired: 'Fitur interaktif memerlukan JavaScript. Isi halaman dan tautan tetap tersedia.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Jelajahi',
   },
   ur: {
     home: 'ہوم',
@@ -2920,6 +2938,8 @@ window.CMUiCopy = {
     unitOrder: 'آرڈر',
     unitOrders: 'آرڈرز',
     jsRequired: 'تفاعلی خصوصیات کے لیے JavaScript درکار ہے۔ صفحے کا مواد اور روابط دستیاب رہیں گے۔',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'دریافت کریں',
   },
   ru: {
     home: 'Главная',
@@ -2987,6 +3007,8 @@ window.CMUiCopy = {
     unitOrders: 'заказы',
     jsRequired:
       'Для интерактивных функций нужен JavaScript. Содержимое страницы и ссылки остаются доступными.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Обзор',
   },
   de: {
     home: 'Startseite',
@@ -3054,6 +3076,8 @@ window.CMUiCopy = {
     unitOrders: 'Bestellungen',
     jsRequired:
       'Interaktive Funktionen benötigen JavaScript. Seiteninhalte und Links bleiben verfügbar.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Entdecken',
   },
   ja: {
     home: 'ホーム',
@@ -3120,6 +3144,8 @@ window.CMUiCopy = {
     unitOrder: '件',
     unitOrders: '件',
     jsRequired: '操作機能には JavaScript が必要です。ページの内容とリンクは引き続き利用できます。',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: '見つける',
   },
   pcm: {
     home: 'Home',
@@ -3186,6 +3212,8 @@ window.CMUiCopy = {
     unitOrder: 'order',
     unitOrders: 'orders',
     jsRequired: 'Interactive features need JavaScript. Page content and links still dey available.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Find tools',
   },
   mr: {
     home: 'मुख्यपृष्ठ',
@@ -3253,6 +3281,8 @@ window.CMUiCopy = {
     unitOrders: 'ऑर्डर',
     jsRequired:
       'परस्परसंवादी सुविधांसाठी JavaScript आवश्यक आहे. पानावरील मजकूर आणि दुवे उपलब्ध राहतात.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'एक्सप्लोर करा',
   },
   vi: {
     home: 'Trang chủ',
@@ -3320,6 +3350,8 @@ window.CMUiCopy = {
     unitOrders: 'đơn',
     jsRequired:
       'Các tính năng tương tác cần JavaScript. Nội dung trang và các liên kết vẫn xem được.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Khám phá',
   },
   te: {
     home: 'హోమ్',
@@ -3386,6 +3418,8 @@ window.CMUiCopy = {
     unitOrder: 'ఆర్డర్',
     unitOrders: 'ఆర్డర్లు',
     jsRequired: 'ఇంటరాక్టివ్ సౌకర్యాలకు JavaScript అవసరం. పేజీ సమాచారం, లింకులు అందుబాటులో ఉంటాయి.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'అన్వేషించండి',
   },
   sw: {
     home: 'Mwanzo',
@@ -3453,6 +3487,8 @@ window.CMUiCopy = {
     unitOrders: 'maagizo',
     jsRequired:
       'Vipengele shirikishi vinahitaji JavaScript. Maudhui ya ukurasa na viungo bado vinapatikana.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Gundua',
   },
   ha: {
     home: 'Gida',
@@ -3520,6 +3556,8 @@ window.CMUiCopy = {
     unitOrders: 'odoci',
     jsRequired:
       'Fasalolin mu’amala suna buƙatar JavaScript. Ana iya karanta shafin da amfani da hanyoyin haɗi.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Bincika',
   },
   tr: {
     home: 'Ana sayfa',
@@ -3587,18 +3625,10 @@ window.CMUiCopy = {
     unitOrders: 'siparişler',
     jsRequired:
       'Etkileşimli özellikler JavaScript gerektirir. Sayfa içeriği ve bağlantılar kullanılabilir.',
+    intentExample: 'mortgage home price 300000 down payment 90000 rate 3.5% term 30',
+    explore: 'Keşfet',
   },
 };
-
-// These working examples intentionally use a supported parser language.
-(() => {
-  'use strict';
-  for (const [locale, copy] of Object.entries(window.CMUiCopy))
-    copy.intentExample =
-      locale === 'zh-CN'
-        ? '房贷 房价300000 首付90000 利率3.5% 期限30年'
-        : 'mortgage home price 300000 down payment 90000 rate 3.5% term 30';
-})();
 
 ;
 /* Explicit, non-sensitive enum preferences only. Never store calculator inputs. */
