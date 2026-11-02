@@ -6,6 +6,9 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Content-Security-Policy: default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; frame-ancestors 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'; upgrade-insecure-requests
   Cache-Control: public, max-age=0, must-revalidate, no-transform
+/sitemap.xml
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
 /assets/*
   ! Cache-Control
   Cache-Control: public, no-cache
