@@ -199,6 +199,7 @@ try {
           links,
           small,
           footerDisplay: getComputedStyle(footer).display,
+          localeBadge: document.querySelector('.cm-site-header__locale-name')?.textContent,
           innerBounds: ['.cm-site-header__inner', '.cm-site-footer__inner'].map((selector) => {
             const element = document.querySelector(selector);
             if (!element) return null;
@@ -272,6 +273,14 @@ try {
         assert.equal(await summary.evaluate((e) => e === document.activeElement), true);
       }
       if (!baseline) {
+        assert.equal(
+          record.localeBadge,
+          config.lang === 'zh-CN' ? '中文' : config.lang.toUpperCase(),
+        );
+        assert.ok(
+          Math.abs(record.headerHeight - (config.width <= 960 ? 64 : 72)) < 1,
+          'Single-row header height',
+        );
         assert.equal(record.footerDisplay, 'block');
         const [headerBounds, footerBounds] = record.innerBounds;
         assert.ok(headerBounds && footerBounds, 'Shared content containers exist');
@@ -305,7 +314,8 @@ try {
             .locator('.cm-site-header')
             .locator(
               '.cm-site-header__brand,.cm-site-header__nav a,#cm-site-language,.cm-site-header__mobile > summary',
-            );
+            )
+            .filter({ visible: true });
           await controls.first().focus();
           for (let i = 0; i < (await controls.count()); i++) {
             if (i) await page.keyboard.press('Tab');
@@ -321,10 +331,9 @@ try {
           const language = page.locator('#cm-site-language');
           await language.focus();
           await page.setViewportSize({ width: 1365, height: 1000 });
-          await page.waitForFunction(() =>
-            document
-              .querySelector('.cm-site-header__nav')
-              .nextElementSibling?.classList.contains('cm-site-header__end'),
+          await page.waitForFunction(
+            () =>
+              getComputedStyle(document.querySelector('.cm-site-header__nav')).display !== 'none',
           );
           assert.equal(
             await language.evaluate((e) => e === document.activeElement),
@@ -332,10 +341,9 @@ try {
             'Language focus survives wide breakpoint',
           );
           await page.setViewportSize({ width: 320, height: 1000 });
-          await page.waitForFunction(() =>
-            document
-              .querySelector('.cm-site-header__end')
-              .nextElementSibling?.classList.contains('cm-site-header__nav'),
+          await page.waitForFunction(
+            () =>
+              getComputedStyle(document.querySelector('.cm-site-header__nav')).display === 'none',
           );
           assert.equal(
             await language.evaluate((e) => e === document.activeElement),
