@@ -24,8 +24,8 @@ jobs:
       - run: npm run build
       - name: Start the generated preview
         run: python3 scripts/preview-server.py > /tmp/calcmintly-visual-http.log 2>&1 &
-      - name: Capture shared header and footer baseline
-        run: node scripts/shell-visual.mjs --baseline
+      - name: Capture shared header and footer
+        run: node scripts/shell-visual.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -56,8 +56,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-noto-core fonts-noto-cjk fonts-noto-extra
       - name: Capture the exact formal deployment after it is available
         run: node scripts/visual-acceptance.mjs --origin https://calcmintly.com --wait-ms 300000
-      - name: Capture shared header and footer baseline on the formal site
-        run: node scripts/shell-visual.mjs --baseline --origin https://calcmintly.com --out visual-evidence/shell-production
+      - name: Capture shared header and footer on the formal site
+        run: node scripts/shell-visual.mjs --origin https://calcmintly.com --out visual-evidence/shell-production
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -99,13 +99,15 @@ async function validPage(page, tool, { embedded = false } = {}) {
         width: rect.width,
         height: rect.height,
         fontSize: style.fontSize,
-        footerDirection: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer'))
-          .flexDirection,
+        footerLayout: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-footer__main'))
+          .display,
+        footerGroups: doc.querySelectorAll('.cm-site-footer__group').length,
         skipFont: doc.defaultView.getComputedStyle(doc.querySelector('.cm-site-skip')).fontSize,
       };
     });
     assert.equal(languageControl.fontSize, '16px', tool.slug + ': shared language font');
-    assert.equal(languageControl.footerDirection, 'row', tool.slug + ': shared footer flow');
+    assert.equal(languageControl.footerLayout, 'grid', tool.slug + ': grouped footer layout');
+    assert.equal(languageControl.footerGroups, 2, tool.slug + ': named footer navigation groups');
     assert.equal(languageControl.skipFont, '15px', tool.slug + ': shared skip-link font');
     const undersizedShell = await page
       .locator('.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a')

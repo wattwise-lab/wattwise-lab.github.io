@@ -353,27 +353,34 @@ async function scriptTags(files, catalogSlug = '') {
 function shellHeader(lang) {
   const link = (p, key) =>
     `<a href="${href(p, lang)}" data-cm-href="${p}" data-cm-i18n="${key}">${esc(t(lang, key))}</a>`;
-  const links =
-    link('/directory', 'all') +
-    link('/ranking', 'ranking') +
-    link('/workspace', 'workspace') +
-    link('/methodology', 'methods');
-  return `<a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">${esc(t(lang, 'skip'))}</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}">${links}</nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">${esc(t(lang, 'language'))}</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language>${locales.map((l) => `<option value="${l}"${l === lang ? ' selected' : ''}>${names[l]}</option>`).join('')}</select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><nav aria-label="${esc(t(lang, 'menu'))}">${links + link('/basic-calculator', 'basic') + link('/scientific-calculator', 'scientific') + link('/about', 'about')}</nav></details></div></div></header>`;
+  const primary =
+    link('/directory', 'all') + link('/ranking', 'ranking') + link('/workspace', 'workspace');
+  const shortcuts =
+    link('/basic-calculator', 'basic') +
+    link('/scientific-calculator', 'scientific') +
+    link('/percentage-calculator', 'percentage') +
+    link('/unit-converter', 'unit');
+  const secondary =
+    link('/methodology', 'methods') + link('/about', 'about') + link('/contact', 'contact');
+  return `<a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">${esc(t(lang, 'skip'))}</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}">${primary}</nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">${esc(t(lang, 'language'))}</label><select class="cm-site-header__language" id="cm-site-language" data-cm-language>${locales.map((l) => `<option value="${l}"${l === lang ? ' selected' : ''}>${names[l]}</option>`).join('')}</select><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="cm-site-header__menu-label" data-cm-i18n="menu">${esc(t(lang, 'menu'))}</span></summary><nav data-cm-label="explore" aria-label="${esc(t(lang, 'explore'))}"><div class="cm-site-header__shortcuts">${shortcuts}</div>${secondary}</nav></details></div></div></header>`;
 }
 function shellFooter(lang) {
-  return `<footer class="cm-site-footer"><div><p>© CalcMintly</p><p data-cm-i18n="note">${esc(t(lang, 'note'))}</p></div><nav>${[
-    ['/methodology', 'methods'],
-    ['/about', 'about'],
-    ['/privacy', 'privacy'],
-    ['/terms', 'terms'],
-    ['/contact', 'contact'],
-  ]
-    .map(
-      ([p, k]) =>
-        `<a data-cm-href="${p}" data-cm-i18n="${k}" href="${href(p, lang)}">${esc(t(lang, k))}</a>`,
-    )
-    .join('')}</nav></footer>`;
+  const link = (p, key) =>
+    `<a data-cm-href="${p}" data-cm-i18n="${key}" href="${href(p, lang)}">${esc(t(lang, key))}</a>`;
+  const tools =
+    link('/directory', 'all') +
+    link('/basic-calculator', 'basic') +
+    link('/scientific-calculator', 'scientific') +
+    link('/unit-converter', 'unit');
+  const explore =
+    link('/workspace', 'workspace') +
+    link('/ranking', 'ranking') +
+    link('/methodology', 'methods') +
+    link('/about', 'about') +
+    link('/contact', 'contact');
+  return `<footer class="cm-site-footer"><div class="cm-site-footer__inner"><div class="cm-site-footer__main"><div class="cm-site-footer__identity"><a class="cm-site-footer__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><p data-cm-i18n="note">${esc(t(lang, 'note'))}</p></div><nav class="cm-site-footer__group" aria-labelledby="cm-footer-tools"><h2 id="cm-footer-tools" data-cm-i18n="heading">${esc(t(lang, 'heading'))}</h2>${tools}</nav><nav class="cm-site-footer__group" aria-labelledby="cm-footer-explore"><h2 id="cm-footer-explore" data-cm-i18n="explore">${esc(t(lang, 'explore'))}</h2>${explore}</nav></div><div class="cm-site-footer__bottom"><p><bdi dir="ltr">© CalcMintly</bdi></p><nav class="cm-site-footer__legal" data-cm-label="privacy" aria-label="${esc(t(lang, 'privacy'))}">${link('/privacy', 'privacy') + link('/terms', 'terms')}</nav></div></div></footer>`;
 }
+
 function schemas(title, slug) {
   return (
     '<script type="application/ld+json">' +

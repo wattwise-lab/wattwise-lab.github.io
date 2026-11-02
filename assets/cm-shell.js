@@ -127,7 +127,7 @@
     I.updateMetadata();
     discoverTableScrollers();
     const current = location.pathname.replace(/\.html$/, '');
-    document.querySelectorAll('.cm-site-header nav a').forEach((a) => {
+    document.querySelectorAll('.cm-site-header nav a,.cm-site-footer nav a').forEach((a) => {
       if (new URL(a.href).pathname === current) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     });
