@@ -179,7 +179,7 @@ body.cm-unified .cm-site-header__language {
   height: 44px;
   min-height: 44px;
   margin: 0;
-  padding: 8px 28px 8px 12px;
+  padding: 8px 9px;
   border: 1px solid var(--cm-line);
   border-radius: 8px;
   color: var(--cm-ink);
