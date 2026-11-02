@@ -1305,16 +1305,12 @@ async function run(config) {
             reducedMotion: 'reduce',
           });
           await navigate(routeFor('zh-CN', 'basic-calculator'), 'zh-CN');
-          const input = page.locator('#kp-input');
-          await input.fill('12345');
+          for (const digit of '12345') await page.locator('[data-key="' + digit + '"]').click();
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const menu = page.locator('.cm-site-header__mobile');
           await menu.locator('summary').click();
           await page.locator('#cm-site-theme').selectOption(theme);
-          assert.equal(
-            await input.inputValue(),
-            '12345',
-            'Appearance must preserve the calculation.',
-          );
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const open = await screenshot(page, config.out, name + '-menu');
           await page.keyboard.press('Escape');
           assert.equal(await menu.getAttribute('open'), null);
