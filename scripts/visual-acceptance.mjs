@@ -1320,6 +1320,9 @@ async function run(config) {
               .evaluate((e) => e === document.activeElement),
             true,
           );
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
+          await page.keyboard.press('Escape');
+          near(actualNumber(await page.locator('#kp-result').innerText(), 'zh-CN'), 12345);
           const state = await mainState(page);
           const palette = await page.evaluate(() => ({
             theme: document.documentElement.dataset.cmTheme,

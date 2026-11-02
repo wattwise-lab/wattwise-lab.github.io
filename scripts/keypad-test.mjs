@@ -153,6 +153,53 @@ for (const bad of [
   assert.equal(q.error, null);
   cases++;
 }
+// Exercise the real document keyboard listener with focus on navigation and the keypad.
+const appSource = await fs.readFile(new URL('../assets/cm-keypad-app.js', import.meta.url), 'utf8');
+const listenerStart = appSource.indexOf("  document.addEventListener('keydown',");
+const listenerEnd = appSource.indexOf("  $('kp-copy')", listenerStart);
+assert.ok(listenerStart >= 0 && listenerEnd > listenerStart);
+let keyboard;
+const actions = [];
+vm.runInNewContext(appSource.slice(listenerStart, listenerEnd), {
+  document: {
+    addEventListener: (name, callback) => {
+      assert.equal(name, 'keydown');
+      keyboard = callback;
+    },
+  },
+  window: { CMData: { expression: (key) => key } },
+  I: { formatLocale: 'en' },
+  scientific: false,
+  action: (key) => actions.push(key),
+});
+for (const [kind, key, prevented, expected] of [
+  ['.cm-site-header', 'Escape', false, []],
+  ['.cm-site-header', '7', false, []],
+  ['.cm-site-header', 'Enter', false, []],
+  ['input', 'Escape', false, []],
+  ['select', '7', false, []],
+  ['main', 'Escape', true, []],
+  ['main', 'Escape', false, ['AC']],
+  ['main', '7', false, ['7']],
+  ['main', 'Delete', false, ['CE']],
+]) {
+  actions.length = 0;
+  const event = {
+    key,
+    defaultPrevented: prevented,
+    preventDefault() {
+      this.defaultPrevented = true;
+    },
+    target: {
+      tagName: 'DIV',
+      isContentEditable: false,
+      closest: (selector) => (selector.split(',').includes(kind) ? {} : null),
+    },
+  };
+  keyboard(event);
+  assert.deepEqual(actions, expected, kind + ' ' + key);
+  cases++;
+}
 console.log(
   'PASS:',
   cases,
