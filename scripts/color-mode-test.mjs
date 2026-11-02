@@ -14,19 +14,19 @@ output.walkRules((rule) => {
   else if (rule.selector.includes('data-cm-mode="dark"')) explicit.push(...rule.selectors);
 });
 assert.deepEqual(automatic, [
-  ':root:not([data-cm-mode="light"])',
-  'html:not([data-cm-mode="light"])[data-cm-theme="rose"] .card',
-  ':root:not([data-cm-mode="light"]) .field:focus',
+  ':root:where(:not([data-cm-mode="light"]))',
+  'html:where(:not([data-cm-mode="light"]))[data-cm-theme="rose"] .card',
+  ':where(:root:not([data-cm-mode="light"])) .field:focus',
 ]);
 assert.deepEqual(explicit, [
-  ':root[data-cm-mode="dark"]',
-  'html[data-cm-mode="dark"][data-cm-theme="rose"] .card',
-  ':root[data-cm-mode="dark"] .field:focus',
+  ':root:where([data-cm-mode="dark"])',
+  'html:where([data-cm-mode="dark"])[data-cm-theme="rose"] .card',
+  ':where(:root[data-cm-mode="dark"]) .field:focus',
 ]);
 assert.match(output.toString(), /prefers-reduced-motion: reduce/);
 assert.match(
   colorModeCSS('@media screen and (prefers-color-scheme: dark) {.metric {color:white}}'),
-  /@media screen[^{]*\{\s*:root\[data-cm-mode="dark"\]/,
+  /@media screen[^{]*\{\s*:where\(:root\[data-cm-mode="dark"\]\)/,
 );
 assert.equal(colorModeCSS('.card {color:red}'), '.card {color:red}');
 const boot = await fs.readFile(new URL('../assets/cm-initial-layout.js', import.meta.url), 'utf8');

@@ -195,6 +195,11 @@ try {
           mode: document.documentElement.dataset.cmMode || 'auto',
           ink: getComputedStyle(document.body).color,
           page: getComputedStyle(document.body).backgroundColor,
+          workspaceColors: (() => {
+            const e = header.querySelector('.cm-site-header__nav .cm-site-header__workspace');
+            const s = getComputedStyle(e);
+            return [s.color, s.backgroundColor];
+          })(),
           headerHeight: header.getBoundingClientRect().height,
           footerHeight: footer.getBoundingClientRect().height,
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
@@ -228,6 +233,21 @@ try {
       assert.equal(record.lang, config.lang);
       assert.equal(record.theme, config.theme);
       assert.equal(record.mode, config.mode || 'auto');
+      const luminance = (color) => {
+        const c = color
+          .match(/[\d.]+/g)
+          .slice(0, 3)
+          .map(Number)
+          .map((v) => {
+            v /= 255;
+            return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+          });
+        return c[0] * 0.2126 + c[1] * 0.7152 + c[2] * 0.0722;
+      };
+      const [ink, paper] = record.workspaceColors.map(luminance);
+      record.workspaceContrast = (Math.max(ink, paper) + 0.05) / (Math.min(ink, paper) + 0.05);
+      assert.ok(record.workspaceContrast >= 4.5, 'Visible workspace CTA contrast');
+
       const dark =
         config.mode === 'dark' ||
         ((!config.mode || config.mode === 'auto') && config.scheme === 'dark');

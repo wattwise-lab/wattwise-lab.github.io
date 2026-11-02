@@ -10,8 +10,8 @@ export function colorModeCSS(source) {
   });
   const prefix = (selector, condition) => {
     if (/^(:root|html)(?=[\s.#:[>+~]|$)/.test(selector))
-      return selector.replace(/^(:root|html)/, '$1' + condition);
-    return ':root' + condition + ' ' + selector;
+      return selector.replace(/^(:root|html)/, '$1:where(' + condition + ')');
+    return ':where(:root' + condition + ') ' + selector;
   };
   for (const media of dark) {
     const explicit = media.clone();
