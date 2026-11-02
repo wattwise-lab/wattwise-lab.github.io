@@ -394,7 +394,8 @@ try {
         await route.continue();
       });
       const delayed = await delayedContext.newPage();
-      await delayed.goto(base + '/fr/basic-calculator', { waitUntil: 'domcontentloaded' });
+      await delayed.goto(base + '/basic-calculator', { waitUntil: 'networkidle' });
+      await delayed.locator('#cm-site-language').selectOption('fr');
       await delayed.locator('[data-cm-command-open]').click();
       await delayed.locator('#cm-command-query').fill('conduite');
       await delayed.waitForFunction(() => globalThis.CMCatalog.length === 500);
