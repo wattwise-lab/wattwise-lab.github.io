@@ -357,9 +357,9 @@ try {
     assert.equal(
       await entryPage
         .locator('.cm-site-footer')
-        .evaluate((e) => e.ownerDocument.defaultView.getComputedStyle(e).flexDirection),
-      'row',
-      'Workspace retains the shared footer flow on phones',
+        .evaluate((e) => e.ownerDocument.defaultView.getComputedStyle(e).display),
+      'block',
+      'Workspace retains the shared footer container on phones',
     );
     await entryPage.locator('.ws-intent summary').click();
     const intentRequest = 'loan principal 100000 rate 5 term 20';

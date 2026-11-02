@@ -199,6 +199,12 @@ try {
           links,
           small,
           footerDisplay: getComputedStyle(footer).display,
+          innerBounds: ['.cm-site-header__inner', '.cm-site-footer__inner'].map((selector) => {
+            const element = document.querySelector(selector);
+            if (!element) return null;
+            const { x, width } = element.getBoundingClientRect();
+            return { x, width };
+          }),
           focusOrder: [...header.querySelectorAll('a,select,summary')]
             .filter(
               (e) =>
@@ -266,6 +272,17 @@ try {
         assert.equal(await summary.evaluate((e) => e === document.activeElement), true);
       }
       if (!baseline) {
+        assert.equal(record.footerDisplay, 'block');
+        const [headerBounds, footerBounds] = record.innerBounds;
+        assert.ok(headerBounds && footerBounds, 'Shared content containers exist');
+        assert.ok(
+          Math.abs(headerBounds.x - footerBounds.x) < 1,
+          'Header/footer share horizontal alignment',
+        );
+        assert.ok(
+          Math.abs(headerBounds.width - footerBounds.width) < 1,
+          'Header/footer share content width',
+        );
         assert.equal(await page.locator('.cm-site-footer__group').count(), 2);
         assert.equal(await page.locator('.cm-site-header__nav a').count(), 3);
         for (let i = 1; i < record.focusOrder.length; i++) {

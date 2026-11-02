@@ -781,7 +781,7 @@ window.CMUiCopy = {
     mortgage: 'Immobilienkredit',
     bmi: 'BMI',
     age: 'Alter',
-    unit: 'Einheitenumrechnung',
+    unit: 'Einheiten umrechnen',
     history: 'Verlauf',
     emptyHistory: 'Hier erscheinen deine Berechnungen.',
     clearHistory: 'Verlauf löschen',
