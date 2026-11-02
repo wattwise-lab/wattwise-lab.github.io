@@ -123,7 +123,10 @@ async function validPage(page, tool, { embedded = false } = {}) {
     assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
     near(languageControl.height, 44, 0.1);
     if (page.viewportSize().width === 375) {
-      near(languageControl.width, 108, 0.1);
+      assert.ok(
+        languageControl.width >= 148 && languageControl.width <= 168.1,
+        tool.slug + ': responsive language width leaves room for names',
+      );
       const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
         const rect = e.getBoundingClientRect(),
           style = e.ownerDocument.defaultView.getComputedStyle(e);
