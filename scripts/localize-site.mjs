@@ -206,6 +206,8 @@ export async function localizeSite(root, catalog, pages, selected) {
         .removeAttr('selected')
         .filter((_, element) => $(element).attr('value') === locale)
         .attr('selected', '');
+      $('.cm-site-header__locale-name').text(locale === 'zh-CN' ? '中文' : locale.toUpperCase());
+      $('#cm-site-language').attr('title', $('#cm-site-language option[selected]').text());
       $('a[href]').each((_, element) => {
         const e = $(element),
           href = e.attr('href');

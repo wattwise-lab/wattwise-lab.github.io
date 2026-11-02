@@ -123,10 +123,10 @@ async function validPage(page, tool, { embedded = false } = {}) {
     assert.deepEqual(undersizedShell, [], tool.slug + ': shared targets smaller than 44px');
     near(languageControl.height, 44, 0.1);
     if (page.viewportSize().width === 375) {
-      assert.ok(
-        languageControl.width >= 148 && languageControl.width <= 176.1,
-        tool.slug + ': responsive language width leaves room for names',
-      );
+      near(languageControl.width, 44, 0.1);
+      const localeBadge = await page.locator('.cm-site-header__locale-name').innerText();
+      const currentLocale = await page.locator('html').getAttribute('lang');
+      assert.equal(localeBadge, currentLocale === 'zh-CN' ? '中文' : currentLocale.toUpperCase());
       const menuControl = await page.locator('.cm-site-header__mobile > summary').evaluate((e) => {
         const rect = e.getBoundingClientRect(),
           style = e.ownerDocument.defaultView.getComputedStyle(e);
