@@ -90,10 +90,10 @@ if (!baseline) {
   for (const width of [768, 1024, 3840])
     for (const lang of ['en', 'ar'])
       cases.push({ lang, width, route: '/', theme: 'system', scheme: 'light' });
-  for (const theme of ['system', 'ocean', 'sand', 'graphite'])
+  for (const theme of ['system', 'ocean', 'sand', 'graphite', 'violet', 'rose'])
     for (const scheme of ['light', 'dark'])
-      if (theme !== 'system' || scheme !== 'light')
-        cases.push({ lang: 'zh-CN', width: 375, route: '/', theme, scheme });
+      for (const mode of ['auto', 'light', 'dark'])
+        cases.push({ lang: 'zh-CN', width: 375, route: '/', theme, scheme, mode });
 }
 try {
   for (let index = 0; index < cases.length; index++) {
@@ -122,10 +122,10 @@ try {
       reducedMotion: 'reduce',
       deviceScaleFactor: 1,
     });
-    await context.addInitScript(
-      (value) => localStorage.setItem('calcmintly.theme.v1', value),
-      config.theme,
-    );
+    await context.addInitScript((value) => {
+      localStorage.setItem('calcmintly.theme.v1', value.theme);
+      localStorage.setItem('calcmintly.color-mode.v1', value.mode || 'auto');
+    }, config);
     const page = await context.newPage(),
       pending = [];
     const cdp = await context.newCDPSession(page);
@@ -176,7 +176,7 @@ try {
         );
         const small = [
           ...document.querySelectorAll(
-            '.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-footer a',
+            '.cm-site-header a,.cm-site-header select,.cm-site-header summary,.cm-site-header button,.cm-site-footer a',
           ),
         ]
           .filter(
@@ -192,6 +192,9 @@ try {
           lang: document.documentElement.lang,
           dir: document.documentElement.dir,
           theme: document.documentElement.dataset.cmTheme,
+          mode: document.documentElement.dataset.cmMode || 'auto',
+          ink: getComputedStyle(document.body).color,
+          page: getComputedStyle(document.body).backgroundColor,
           headerHeight: header.getBoundingClientRect().height,
           footerHeight: footer.getBoundingClientRect().height,
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
@@ -206,7 +209,7 @@ try {
             const { x, width } = element.getBoundingClientRect();
             return { x, width };
           }),
-          focusOrder: [...header.querySelectorAll('a,select,summary')]
+          focusOrder: [...header.querySelectorAll('a,button,select,summary')]
             .filter(
               (e) =>
                 e.getClientRects().length && !e.closest('.cm-site-header__mobile:not([open]) nav'),
@@ -224,6 +227,23 @@ try {
       assert.equal(record.languageOptions, 20);
       assert.equal(record.lang, config.lang);
       assert.equal(record.theme, config.theme);
+      assert.equal(record.mode, config.mode || 'auto');
+      const dark =
+        config.mode === 'dark' ||
+        ((!config.mode || config.mode === 'auto') && config.scheme === 'dark');
+      const expectedPages = {
+        system: ['rgb(244, 248, 245)', 'rgb(20, 37, 29)'],
+        ocean: ['rgb(241, 246, 251)', 'rgb(20, 35, 49)'],
+        sand: ['rgb(250, 246, 239)', 'rgb(41, 35, 28)'],
+        graphite: ['rgb(244, 245, 247)', 'rgb(30, 33, 41)'],
+        violet: ['rgb(246, 243, 252)', 'rgb(37, 28, 48)'],
+        rose: ['rgb(255, 244, 246)', 'rgb(48, 29, 37)'],
+      };
+      assert.equal(
+        record.page,
+        expectedPages[config.theme][dark ? 1 : 0],
+        'Actual page palette follows explicit mode independently of the OS',
+      );
       assert.equal(record.overflow, false);
       assert.deepEqual(record.small, []);
       for (const link of record.links)
@@ -245,6 +265,49 @@ try {
       };
       await shot('header', page.locator('.cm-site-header'));
       await shot('footer', page.locator('.cm-site-footer'));
+      if (!baseline) {
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.locator('.cm-appearance-trigger').click();
+        assert.equal(await page.locator('[data-cm-theme-choice]').count(), 6);
+        assert.equal(
+          await page
+            .locator('[data-cm-theme-choice="' + config.theme + '"]')
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.equal(
+          await page
+            .locator('[data-cm-mode-choice="' + (config.mode || 'auto') + '"]')
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const panelBounds = await page.locator('.cm-appearance-panel').boundingBox();
+        assert.ok(
+          panelBounds.x >= 0 && panelBounds.x + panelBounds.width <= config.width + 1,
+          'Theme popup fits viewport',
+        );
+        await shot('theme-viewport', page);
+        await page.keyboard.press('Escape');
+        assert.equal(await page.locator('.cm-appearance-menu').getAttribute('open'), null);
+        assert.equal(
+          await page
+            .locator('.cm-appearance-trigger')
+            .evaluate((e) => e === document.activeElement),
+          true,
+        );
+        await page.locator('[data-cm-command-open]').click();
+        await page.locator('#cm-command-query').fill('mortgage');
+        await page.locator('.cm-command-results a[href*="mortgage-calculator"]').waitFor();
+        await shot('search-viewport', page);
+        await page.keyboard.press('Escape');
+        assert.equal(
+          await page
+            .locator('[data-cm-command-open]')
+            .evaluate((e) => e === document.activeElement),
+          true,
+        );
+      }
+
       if (
         config.lang === 'zh-CN' &&
         config.route === '/' &&
@@ -278,8 +341,9 @@ try {
           config.lang === 'zh-CN' ? '中文' : config.lang.toUpperCase(),
         );
         assert.ok(
-          Math.abs(record.headerHeight - (config.width <= 960 ? 64 : 72)) < 1,
-          'Single-row header height',
+          record.headerHeight >= (config.width <= 700 ? 112 : 80) &&
+            record.headerHeight <= (config.width <= 700 ? 160 : 100),
+          'Responsive header keeps primary actions visible without clipping',
         );
         assert.equal(record.footerDisplay, 'block');
         const [headerBounds, footerBounds] = record.innerBounds;
@@ -313,7 +377,7 @@ try {
           const controls = page
             .locator('.cm-site-header')
             .locator(
-              '.cm-site-header__brand,.cm-site-header__nav a,#cm-site-language,.cm-site-header__mobile > summary',
+              '.cm-site-header__brand,.cm-site-header__nav a,.cm-header-search,.cm-appearance-trigger,.cm-header-mode,#cm-site-language,.cm-site-header__mobile > summary',
             )
             .filter({ visible: true });
           await controls.first().focus();
@@ -343,7 +407,7 @@ try {
           await page.setViewportSize({ width: 320, height: 1000 });
           await page.waitForFunction(
             () =>
-              getComputedStyle(document.querySelector('.cm-site-header__nav')).display === 'none',
+              getComputedStyle(document.querySelector('.cm-site-header__nav a')).display === 'none',
           );
           assert.equal(
             await language.evaluate((e) => e === document.activeElement),

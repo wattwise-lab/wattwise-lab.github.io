@@ -6,86 +6,222 @@
   if (!I) return;
   document.body.classList.add('cm-unified');
   if (embedded) document.body.classList.add('cm-unified--embedded');
-  // Appearance is an explicit device preference; calculator inputs are never stored here.
   const themeKey = 'calcmintly.theme.v1';
-  const themes = ['system', 'ocean', 'sand', 'graphite'];
-  const themeCopy = {
-    en: ['Appearance', 'System · Mint', 'Ocean', 'Warm sand', 'Graphite'],
-    'zh-CN': ['外观主题', '跟随系统 · 薄荷', '海洋蓝', '暖沙色', '石墨灰'],
-    hi: ['रूप', 'सिस्टम · पुदीना', 'समुद्री नीला', 'गर्म रेत', 'ग्रेफाइट'],
-    es: ['Apariencia', 'Sistema · Menta', 'Océano', 'Arena cálida', 'Grafito'],
-    ar: ['المظهر', 'النظام · نعناع', 'المحيط', 'رمال دافئة', 'جرافيت'],
-    fr: ['Apparence', 'Système · Menthe', 'Océan', 'Sable chaud', 'Graphite'],
-    bn: ['চেহারা', 'সিস্টেম · পুদিনা', 'সমুদ্র', 'উষ্ণ বালি', 'গ্রাফাইট'],
-    pt: ['Aparência', 'Sistema · Menta', 'Oceano', 'Areia quente', 'Grafite'],
-    id: ['Tampilan', 'Sistem · Mint', 'Samudra', 'Pasir hangat', 'Grafit'],
-    ur: ['ظاہری شکل', 'سسٹم · پودینہ', 'سمندر', 'گرم ریت', 'گریفائٹ'],
-    ru: ['Оформление', 'Система · Мята', 'Океан', 'Тёплый песок', 'Графит'],
-    de: ['Darstellung', 'System · Minze', 'Ozean', 'Warmer Sand', 'Graphit'],
-    ja: ['外観', 'システム · ミント', 'オーシャン', 'ウォームサンド', 'グラファイト'],
-    pcm: ['How e look', 'System · Mint', 'Ocean blue', 'Warm sand', 'Graphite'],
-    mr: ['दिसणे', 'सिस्टम · मिंट', 'सागर', 'उबदार वाळू', 'ग्रॅफाइट'],
-    vi: ['Giao diện', 'Hệ thống · Bạc hà', 'Đại dương', 'Cát ấm', 'Than chì'],
-    te: ['రూపం', 'సిస్టమ్ · మింట్', 'సముద్రం', 'వెచ్చని ఇసుక', 'గ్రాఫైట్'],
-    sw: ['Mwonekano', 'Mfumo · Mnanaa', 'Bahari', 'Mchanga wenye joto', 'Grafiti'],
-    ha: ['Kamanni', 'Tsarin na’ura · Mint', 'Teku', 'Yashi mai ɗumi', 'Grafit'],
-    tr: ['Görünüm', 'Sistem · Nane', 'Okyanus', 'Sıcak kum', 'Grafit'],
-  };
-  let selectedTheme = 'system';
+  const modeKey = 'calcmintly.color-mode.v1';
+  const themes = ['system', 'ocean', 'sand', 'graphite', 'violet', 'rose'];
+  let selectedTheme = 'system',
+    selectedMode = 'auto';
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
   try {
-    const saved = localStorage.getItem(themeKey);
+    const saved = localStorage.getItem(themeKey),
+      mode = localStorage.getItem(modeKey);
     if (themes.includes(saved)) selectedTheme = saved;
+    if (['auto', 'light', 'dark'].includes(mode)) selectedMode = mode;
   } catch {
-    /* Appearance still works when browser storage is unavailable. */
-  }
-  function applyTheme(value) {
-    selectedTheme = themes.includes(value) ? value : 'system';
-    document.documentElement.dataset.cmTheme = selectedTheme;
-    document.querySelectorAll('[data-cm-theme-select]').forEach((s) => {
-      s.value = selectedTheme;
-    });
-  }
-  const appearanceMenu = document.querySelector('.cm-site-header__mobile nav');
-  let themeLabel, themeSelect;
-  if (appearanceMenu) {
-    const group = document.createElement('div');
-    group.className = 'cm-appearance';
-    themeLabel = document.createElement('label');
-    themeLabel.htmlFor = 'cm-site-theme';
-    themeSelect = document.createElement('select');
-    themeSelect.id = 'cm-site-theme';
-    themeSelect.dataset.cmThemeSelect = '';
-    themes.forEach((value) => {
-      const option = document.createElement('option');
-      option.value = value;
-      themeSelect.append(option);
-    });
-    group.append(themeLabel, themeSelect);
-    appearanceMenu.append(group);
-    themeSelect.addEventListener('change', () => {
-      applyTheme(themeSelect.value);
-      try {
-        localStorage.setItem(themeKey, selectedTheme);
-      } catch {
-        /* Session-only choice. */
-      }
-    });
+    /* Session preferences still work without storage. */
   }
   function renderAppearance() {
-    const copy = themeCopy[I.language] || themeCopy.en;
-    if (themeLabel) themeLabel.textContent = copy[0];
-    if (themeSelect)
-      Array.from(themeSelect.options).forEach((o, i) => {
-        o.textContent = copy[i + 1];
-      });
-    applyTheme(selectedTheme);
+    const copy = window.CMAppearanceCopy[I.language] || window.CMAppearanceCopy.en;
+    document.documentElement.dataset.cmTheme = selectedTheme;
+    if (selectedMode === 'auto') delete document.documentElement.dataset.cmMode;
+    else document.documentElement.dataset.cmMode = selectedMode;
+    const dark = selectedMode === 'dark' || (selectedMode === 'auto' && systemDark.matches);
+    document
+      .querySelectorAll('[data-cm-theme-choice]')
+      .forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.cmThemeChoice === selectedTheme)),
+      );
+    document
+      .querySelectorAll('[data-cm-mode-choice]')
+      .forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.cmModeChoice === selectedMode)),
+      );
+    document
+      .querySelectorAll('[data-cm-appearance-title]')
+      .forEach((e) => (e.textContent = copy[0]));
+    document
+      .querySelectorAll('.cm-appearance-trigger,.cm-appearance-panel,.cm-appearance-modes')
+      .forEach((e) => e.setAttribute('aria-label', copy[0]));
+    document
+      .querySelectorAll('[data-cm-palette-name]')
+      .forEach((e) => (e.textContent = copy[Number(e.dataset.cmPaletteName) + 4]));
+    document
+      .querySelectorAll('[data-cm-mode-name]')
+      .forEach((e) => (e.textContent = copy[Number(e.dataset.cmModeName) + 1]));
+    document.querySelectorAll('[data-cm-mode-toggle]').forEach((b) => {
+      b.setAttribute('aria-label', copy[dark ? 2 : 3]);
+      b.title = copy[dark ? 2 : 3];
+    });
+    document
+      .querySelectorAll('[data-cm-mode-symbol]')
+      .forEach((e) => (e.hidden = e.dataset.cmModeSymbol !== (dark ? 'light' : 'dark')));
   }
+  function saveAppearance() {
+    renderAppearance();
+    try {
+      localStorage.setItem(themeKey, selectedTheme);
+      localStorage.setItem(modeKey, selectedMode);
+    } catch {
+      /* Session-only choice. */
+    }
+  }
+  document.querySelectorAll('[data-cm-theme-choice]').forEach((b) =>
+    b.addEventListener('click', () => {
+      selectedTheme = b.dataset.cmThemeChoice;
+      saveAppearance();
+    }),
+  );
+  document.querySelectorAll('[data-cm-mode-choice]').forEach((b) =>
+    b.addEventListener('click', () => {
+      selectedMode = b.dataset.cmModeChoice;
+      saveAppearance();
+    }),
+  );
+  document.querySelectorAll('[data-cm-mode-toggle]').forEach((b) =>
+    b.addEventListener('click', () => {
+      selectedMode =
+        selectedMode === 'dark' || (selectedMode === 'auto' && systemDark.matches)
+          ? 'light'
+          : 'dark';
+      saveAppearance();
+    }),
+  );
+  systemDark.addEventListener('change', renderAppearance);
   window.addEventListener('storage', (event) => {
-    if (event.key === themeKey || event.key === null) applyTheme(event.newValue);
+    if (event.key === themeKey || event.key === null)
+      selectedTheme = themes.includes(event.newValue) ? event.newValue : 'system';
+    if (event.key === modeKey || event.key === null)
+      selectedMode = ['light', 'dark'].includes(event.newValue) ? event.newValue : 'auto';
+    renderAppearance();
   });
-  document.addEventListener('cm:local-data-cleared', () => applyTheme('system'));
+  document.addEventListener('cm:local-data-cleared', () => {
+    selectedTheme = 'system';
+    selectedMode = 'auto';
+    renderAppearance();
+  });
   document.addEventListener('cm:language', renderAppearance);
   renderAppearance();
+
+  // Search stays local: only a static catalog is loaded, never the typed query.
+  const commandButton = document.querySelector('[data-cm-command-open]');
+  if (commandButton) {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'cm-command';
+    dialog.setAttribute('aria-labelledby', 'cm-command-title');
+    const top = document.createElement('div');
+    top.className = 'cm-command-top';
+    const title = document.createElement('label');
+    title.id = 'cm-command-title';
+    title.htmlFor = 'cm-command-query';
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.textContent = 'Esc';
+    close.addEventListener('click', () => dialog.close());
+    const input = document.createElement('input');
+    input.id = 'cm-command-query';
+    input.type = 'search';
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    const results = document.createElement('nav');
+    results.className = 'cm-command-results';
+    const status = document.createElement('p');
+    status.className = 'cm-command-status';
+    status.setAttribute('role', 'status');
+    const all = document.createElement('a');
+    all.className = 'cm-command-all';
+    top.append(title, close);
+    dialog.append(top, input, status, results, all);
+    document.body.append(dialog);
+    const common = [
+      'basic-calculator',
+      'scientific-calculator',
+      'percentage-calculator',
+      'loan-calculator',
+      'mortgage-calculator',
+      'bmi-calculator',
+      'age-calculator',
+      'unit-converter',
+    ];
+    let catalogLoading = false;
+    function renderSearch() {
+      title.textContent = I.t('searchLabel');
+      input.placeholder = I.t('search');
+      results.setAttribute('aria-label', I.t('searchLabel'));
+      all.textContent = I.t('all');
+      all.href = I.url('/directory');
+      const query = input.value.trim().toLocaleLowerCase(I.language);
+      const catalog = window.CMCatalog || [];
+      const matches = query
+        ? catalog.filter((t) => I.searchText(t).toLocaleLowerCase(I.language).includes(query))
+        : common.map((s) => catalog.find((t) => t.slug === s)).filter(Boolean);
+      results.replaceChildren();
+      matches.slice(0, 8).forEach((tool) => {
+        const link = document.createElement('a');
+        link.href = I.url('/' + tool.slug);
+        link.textContent = I.toolName(tool);
+        results.append(link);
+      });
+      status.textContent = query && !matches.length && !catalogLoading ? I.t('none') : '';
+      status.hidden = !status.textContent;
+    }
+    function openSearch() {
+      document.querySelectorAll('.cm-site-header details[open]').forEach((d) => (d.open = false));
+      renderSearch();
+      dialog.showModal();
+      input.focus();
+      if ((window.CMCatalog || []).length < 500 && !catalogLoading) {
+        catalogLoading = true;
+        const script = document.createElement('script');
+        script.src = commandButton.dataset.cmCatalogSource;
+        script.onload = () => {
+          catalogLoading = false;
+          renderSearch();
+        };
+        script.onerror = () => {
+          catalogLoading = false;
+          renderSearch();
+          script.remove();
+        };
+        document.head.append(script);
+      }
+    }
+    commandButton.addEventListener('click', openSearch);
+    input.addEventListener('input', renderSearch);
+    dialog.addEventListener('close', () => commandButton.focus());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) {
+        const r = dialog.getBoundingClientRect();
+        if (
+          event.clientX < r.left ||
+          event.clientX > r.right ||
+          event.clientY < r.top ||
+          event.clientY > r.bottom
+        )
+          dialog.close();
+      }
+    });
+    dialog.addEventListener('keydown', (event) => {
+      const links = Array.from(results.querySelectorAll('a'));
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        const i = links.indexOf(document.activeElement);
+        const next = event.key === 'ArrowDown' ? i + 1 : i - 1;
+        if (links.length) links[(next + links.length) % links.length].focus();
+      }
+      if (event.key === 'Enter' && document.activeElement === input && links[0]) {
+        event.preventDefault();
+        links[0].click();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        if (dialog.open) dialog.close();
+        else openSearch();
+      }
+    });
+    document.addEventListener('cm:language', renderSearch);
+  }
   const tableScrollers = new Map();
   function updateTableScrollers() {
     for (const [scroll, heading] of tableScrollers) {

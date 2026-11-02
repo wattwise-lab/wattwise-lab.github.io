@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import { createHash } from 'node:crypto';
 import { load } from 'cheerio';
 import { transform } from 'esbuild';
+import { colorModeCSS } from './color-mode-css.mjs';
 import { renderExpanded } from './render-expanded.mjs';
 import { renderRanking } from './render-ranking.mjs';
 import { localizeSite } from './localize-site.mjs';
@@ -56,6 +57,7 @@ await fs.mkdir(new URL('assets/legacy-models/', root), { recursive: true });
 const context = { window: {} };
 for (const file of [
   'cm-home-copy-v3.js',
+  'cm-appearance-copy.js',
   'cm-legacy-copy.js',
   'cm-ui-copy.js',
   'cm-preferences-core.js',
@@ -267,6 +269,7 @@ async function asset(p) {
   p = sourceFor(p);
   if (manifest[p]) return manifest[p];
   let text = await read(p);
+  if (p.endsWith('.css')) text = colorModeCSS(text);
   if (p.endsWith('.js') || p.endsWith('.css')) {
     const result = await transform(text, {
       loader: p.endsWith('.css') ? 'css' : 'js',
@@ -331,7 +334,24 @@ await write(
     await Promise.all(commonSourceScripts.filter((f) => f !== 'assets/cm-catalog-v3.js').map(read))
   ).join('\n;\n'),
 );
-const commonScripts = ['assets/cm-catalog-v3.js', 'assets/cm-common.js'];
+const commonScripts = [
+  'assets/cm-catalog-v3.js',
+  'assets/cm-common.js',
+  'assets/cm-appearance-copy.js',
+];
+const shellIcons = Object.fromEntries(
+  await Promise.all(
+    ['palette', 'sun', 'moon', 'monitor', 'search', 'check', 'chevron-down'].map(async (name) => [
+      name,
+      (await read('assets/vendor/lucide/' + name + '.svg')).replace(
+        '<svg ',
+        '<svg aria-hidden="true" ',
+      ),
+    ]),
+  ),
+);
+const commandCatalogURL = await asset('assets/cm-catalog-v3.js');
+const palettes = ['system', 'ocean', 'sand', 'graphite', 'violet', 'rose'];
 const isCommon = (file) =>
   commonSourceScripts.includes(file) ||
   commonScripts.includes(file) ||
@@ -362,7 +382,11 @@ function shellHeader(lang) {
     link('/unit-converter', 'unit');
   const secondary =
     link('/methodology', 'methods') + link('/about', 'about') + link('/contact', 'contact');
-  return `<a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">${esc(t(lang, 'skip'))}</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}">${primary}</nav><div class="cm-site-header__end"><label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">${esc(t(lang, 'language'))}</label><span class="cm-site-header__locale"><span class="cm-site-header__locale-name" aria-hidden="true" data-cm-no-translate>${lang === 'zh-CN' ? '中文' : lang.toUpperCase()}</span><select class="cm-site-header__language" id="cm-site-language" data-cm-language title="${esc(names[lang])}">${locales.map((l) => `<option value="${l}"${l === lang ? ' selected' : ''}>${names[l]}</option>`).join('')}</select></span><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="cm-site-header__menu-label" data-cm-i18n="menu">${esc(t(lang, 'menu'))}</span></summary><nav data-cm-label="explore" aria-label="${esc(t(lang, 'explore'))}"><div class="cm-site-header__mobile-primary">${primary}</div><div class="cm-site-header__shortcuts">${shortcuts}</div>${secondary}</nav></details></div></div></header>`;
+  const a = context.window.CMAppearanceCopy[lang];
+  const appearance = `<details class="cm-appearance-menu"><summary class="cm-appearance-trigger" aria-label="${esc(a[0])}">${shellIcons.palette}<span data-cm-appearance-title>${esc(a[0])}</span>${shellIcons['chevron-down']}</summary><section class="cm-appearance-panel" aria-label="${esc(a[0])}"><div class="cm-appearance-palettes">${palettes.map((value, i) => `<button type="button" data-cm-theme-choice="${value}" aria-pressed="${value === 'system'}"><span class="cm-theme-preview" data-palette="${value}" aria-hidden="true"><span></span><span></span><span></span>${shellIcons.check}</span><span data-cm-palette-name="${i}">${esc(a[i + 4])}</span></button>`).join('')}</div><div class="cm-appearance-modes" role="group" aria-label="${esc(a[0])}">${['auto', 'light', 'dark'].map((mode, i) => `<button type="button" data-cm-mode-choice="${mode}" aria-pressed="${i === 0}">${shellIcons[['monitor', 'sun', 'moon'][i]]}<span data-cm-mode-name="${i}">${esc(a[i + 1])}</span></button>`).join('')}</div></section></details>`;
+  const command = `<button type="button" class="cm-header-search" data-cm-command-open data-cm-label="searchLabel" aria-label="${esc(t(lang, 'searchLabel'))}" data-cm-catalog-source="${commandCatalogURL}" aria-haspopup="dialog">${shellIcons.search}<span data-cm-i18n="searchLabel">${esc(t(lang, 'searchLabel'))}</span><kbd>Ctrl K</kbd></button>`;
+  const mode = `<button type="button" class="cm-header-mode" data-cm-mode-toggle aria-label="${esc(a[3])}"><span data-cm-mode-symbol="light">${shellIcons.sun}</span><span data-cm-mode-symbol="dark">${shellIcons.moon}</span></button>`;
+  return `<a class="cm-site-skip" href="#main-content" data-cm-i18n="skip">${esc(t(lang, 'skip'))}</a><header class="cm-site-header"><div class="cm-site-header__inner"><a class="cm-site-header__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><nav class="cm-site-header__nav" data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}">${primary}</nav>${command}<div class="cm-site-header__end">${appearance}${mode}<label class="cm-sr-only" for="cm-site-language" data-cm-i18n="language">${esc(t(lang, 'language'))}</label><span class="cm-site-header__locale"><span class="cm-site-header__locale-name" aria-hidden="true" data-cm-no-translate>${lang === 'zh-CN' ? '中文' : lang.toUpperCase()}</span><select class="cm-site-header__language" id="cm-site-language" data-cm-language title="${esc(names[lang])}">${locales.map((l) => `<option value="${l}"${l === lang ? ' selected' : ''}>${names[l]}</option>`).join('')}</select></span><details class="cm-site-header__mobile"><summary data-cm-label="menu" aria-label="${esc(t(lang, 'menu'))}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span class="cm-site-header__menu-label" data-cm-i18n="menu">${esc(t(lang, 'menu'))}</span></summary><nav data-cm-label="explore" aria-label="${esc(t(lang, 'explore'))}"><div class="cm-site-header__mobile-primary">${primary}</div><div class="cm-site-header__shortcuts">${shortcuts}</div>${secondary}</nav></details></div></div></header>`;
 }
 function shellFooter(lang) {
   const link = (p, key) =>
