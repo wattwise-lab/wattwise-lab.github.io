@@ -1,5 +1,5 @@
 /* CI-only actual viewport evidence. No local browser launch; images require personal review. */
-/* global document, location, innerWidth, innerHeight, scrollY, requestAnimationFrame */
+/* global document, location, innerWidth, innerHeight, scrollY, requestAnimationFrame, getComputedStyle */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -1273,6 +1273,67 @@ async function run(config) {
             'Actual merchant price input, EN/CN language roundtrip with USD and values preserved, hand-derived contribution/ad cap/monthly profit, widget reset, full original-width page captures and fingerprinted merchant script SRI. Existing66 cases remain unchanged.',
         };
       });
+    for (const dark of [false, true]) {
+      for (const theme of ['system', 'ocean', 'sand', 'graphite']) {
+        const name = 'appearance-' + theme + (dark ? '-dark' : '-light');
+        await recordCase(name, async () => {
+          await page.setViewportSize({ width: 375, height: 1000 });
+          await page.emulateMedia({
+            colorScheme: dark ? 'dark' : 'light',
+            reducedMotion: 'reduce',
+          });
+          await navigate(routeFor('zh-CN', 'basic-calculator'), 'zh-CN');
+          const input = page.locator('#kp-input');
+          await input.fill('12345');
+          const menu = page.locator('.cm-site-header__mobile');
+          await menu.locator('summary').click();
+          await page.locator('#cm-site-theme').selectOption(theme);
+          assert.equal(
+            await input.inputValue(),
+            '12345',
+            'Appearance must preserve the calculation.',
+          );
+          const open = await screenshot(page, config.out, name + '-menu');
+          await page.keyboard.press('Escape');
+          assert.equal(await menu.getAttribute('open'), null);
+          assert.equal(
+            await page
+              .locator('.cm-site-header__mobile > summary')
+              .evaluate((e) => e === document.activeElement),
+            true,
+          );
+          const state = await mainState(page);
+          const palette = await page.evaluate(() => ({
+            theme: document.documentElement.dataset.cmTheme,
+            ink: getComputedStyle(document.body).color,
+            page: getComputedStyle(document.body).backgroundColor,
+            storage: localStorage.getItem('calcmintly.theme.v1'),
+            width: document.documentElement.scrollWidth,
+            viewport: innerWidth,
+          }));
+          assert.equal(palette.theme, theme);
+          assert.equal(palette.storage, theme);
+          assert.ok(palette.width <= palette.viewport, 'Theme must not overflow.');
+          await page.reload({ waitUntil: 'networkidle' });
+          assert.equal(
+            await page.locator('#cm-site-theme').inputValue(),
+            theme,
+            'Theme survives reload.',
+          );
+          await settled(page);
+          return {
+            state,
+            palette,
+            segments: [open, await screenshot(page, config.out, name + '-restored')],
+            scope:
+              'Actual appearance selection, input preserved, Escape focus returned, stored choice restored, original viewport. No performance claim.',
+          };
+        });
+      }
+    }
+    await page.locator('.cm-site-header__mobile > summary').click();
+    await page.locator('#cm-site-theme').selectOption('system');
+    await page.keyboard.press('Escape');
     await drain();
   } catch (error) {
     report.failures.push({ name: 'fatal-run', error: String(error) });

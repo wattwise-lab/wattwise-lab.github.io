@@ -21,7 +21,7 @@
       step1: 'Add a calculator by name or purpose. Use Replace on a card to change it.',
       step2: 'Edit the example numbers. Every calculator updates independently.',
       step3:
-        'Use “Send result” to copy a number into another card. Check the units first; values do not stay linked.',
+        'Use “Send result” for a one-time copy. Use “Live links” for compatible units that should keep updating. Check the units before connecting.',
 
       saveNote:
         'Saving remembers tool choices and order on this device. Inputs stay in the current tab and are not saved.',
@@ -104,7 +104,8 @@
       helpTitle: '三步开始使用',
       step1: '按名称或用途搜索并添加计算器。点击卡片上的「替换」可直接更换。',
       step2: '把示例数字换成自己的数值，各计算器会独立实时更新。',
-      step3: '点击「传递结果」，将一个数值填入另一块计算器。请核对单位；数值不会持续联动。',
+      step3:
+        '「传递结果」只复制一次；需要持续更新时，使用「持续联动」连接单位兼容的结果与输入。建立前请核对单位。',
 
       saveNote: '保存只记住本设备上的工具名称和顺序，不保存输入数值。当前输入会保留在此标签页。',
       start: '快速开始',

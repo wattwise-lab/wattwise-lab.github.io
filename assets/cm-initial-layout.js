@@ -1,5 +1,12 @@
 (() => {
   'use strict';
+  try {
+    const theme = localStorage.getItem('calcmintly.theme.v1');
+    if (['system', 'ocean', 'sand', 'graphite'].includes(theme))
+      document.documentElement.dataset.cmTheme = theme;
+  } catch {
+    /* Respect browsers that disable persistent storage. */
+  }
   const body = document.body;
   if (!body) return;
   const slug = location.pathname

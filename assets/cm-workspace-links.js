@@ -38,7 +38,8 @@
     preview = el('p', 'ws-links__preview'),
     create = pair('button', 'Create live link|建立持续联动'),
     status = el('p', 'ws-links__status'),
-    list = el('div', 'ws-links__list');
+    list = el('div', 'ws-links__list'),
+    suggestions = el('div', 'ws-links__suggestions');
   create.type = 'submit';
   status.setAttribute('role', 'status');
   preview.setAttribute('role', 'status');
@@ -62,7 +63,7 @@
     form.append(box);
   }
   form.append(preview, create);
-  panel.append(summary, help, form, status, list);
+  panel.append(summary, help, suggestions, form, status, list);
   document.getElementById('desk').before(panel);
   let links = [],
     next = 1,
@@ -118,6 +119,59 @@
       'Choose an input|请选择输入项',
     );
     drawPreview();
+    drawSuggestions();
+  }
+  // Suggestions propose a unit-compatible route. They never change a calculator value.
+  function drawSuggestions() {
+    suggestions.replaceChildren();
+    const cards = A.cards().filter((card) => card.ready);
+    let count = 0;
+    for (const src of cards) {
+      for (const [index, row] of A.results(src).entries()) {
+        if (!Number.isFinite(row.value) || !row.unit) continue;
+        for (const dst of cards) {
+          if (src.id === dst.id || cycles(src.id, dst.id)) continue;
+          for (const target of fields(dst)) {
+            if (links.some((link) => link.destination === dst.id && link.field === target.id))
+              continue;
+            if (U.contract(row.unit, target.unit).state !== 'compatible') continue;
+            const value = U.convert(row.value, row.unit, target.unit);
+            if (
+              value === null ||
+              !probe(dst.frame.contentDocument.getElementById(target.id), value)
+            )
+              continue;
+            const choice = el('button', 'ws-links__suggestion');
+            choice.type = 'button';
+            choice.textContent =
+              name(src) +
+              ' · ' +
+              row.label +
+              ' → ' +
+              name(dst) +
+              ' · ' +
+              target.label +
+              ' (' +
+              row.unit +
+              ' → ' +
+              target.unit +
+              ')';
+            choice.addEventListener('click', () => {
+              source.value = String(src.id);
+              updateChoices();
+              result.value = String(row.key ?? index);
+              destination.value = String(dst.id);
+              updateChoices();
+              field.value = target.id;
+              drawPreview();
+              create.focus?.();
+            });
+            suggestions.append(choice);
+            if (++count >= 4) return;
+          }
+        }
+      }
+    }
   }
   function selection() {
     const src = byId(source.value),
