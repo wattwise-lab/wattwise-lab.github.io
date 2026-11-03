@@ -27,7 +27,7 @@ async function ready(count) {
 }
 try {
   await page.goto(base + '/zh-cn/');
-  await page.locator('.cm-site-header__workspace').tap();
+  await page.locator('.cm-site-header__nav > .cm-site-header__workspace').tap();
   await page.waitForURL('**/zh-cn/workspace');
   await page.locator('#add-tool').tap();
   await pick('普通计算器');
