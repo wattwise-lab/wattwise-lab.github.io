@@ -290,6 +290,7 @@ try {
   );
   await page.locator('#ai-shop-item-0-quantity').fill('3');
   await page.locator('#cm-site-language').selectOption('fr');
+  assert.equal(await page.locator('#cm-ai-status').innerText(), 'Résultats');
   assert.equal(await page.locator('#ai-shop-item-0-quantity').inputValue(), '3');
   assert.ok((await page.locator('.cm-ai-card details').getAttribute('open')) !== null);
   await page.locator('.cm-ai-card form button[type=submit]').click();
@@ -424,6 +425,11 @@ try {
   assert.equal(await page.locator('#cm-ai-question').inputValue(), '保留这段输入');
   assert.ok(await page.locator('#cm-ai-send').isEnabled());
   assert.equal(await page.locator('.cm-ai-results').count(), 0);
+  await page.locator('#cm-site-language').selectOption('ar');
+  assert.equal(
+    await page.locator('#cm-ai-status').innerText(),
+    'تعذر إكمال الطلب. راجع الشروط أو حاول مجدداً.',
+  );
   await page.locator('#cm-ai-clear').click();
   assert.equal(await page.locator('#cm-ai-status').innerText(), '');
   assert.deepEqual(failures, []);

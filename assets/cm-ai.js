@@ -102,8 +102,19 @@
     if (!r.ok) throw Error(value.error || 'service_error');
     return value;
   }
+  function setStatus(key, suffix = '') {
+    if (key) {
+      status.dataset.aiStatusKey = key;
+      status.dataset.aiStatusSuffix = suffix;
+      status.textContent = copy(key) + suffix;
+    } else {
+      delete status.dataset.aiStatusKey;
+      delete status.dataset.aiStatusSuffix;
+      status.textContent = '';
+    }
+  }
   const failure = (e) => {
-    status.textContent = copy('error');
+    setStatus('error');
     status.dataset.errorCode = e.message;
   };
   function textReport() {
@@ -166,7 +177,7 @@
         current.result = null;
         dirty.add(current.id);
       }
-    status.textContent = copy(missing ? 'missing' : 'recalc');
+    setStatus(missing ? 'missing' : 'recalc');
     renderPlan(step.id);
     document.getElementById('ai-' + step.id + '-item-' + focusIndex + '-name')?.focus();
   }
@@ -196,7 +207,7 @@
     cp.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(textReport());
-        status.textContent = copy('copy') + ' ✓';
+        setStatus('copy', ' ✓');
       } catch (e) {
         failure(e);
       }
@@ -363,7 +374,7 @@
         captureDraft();
         output.inert = true;
         recalc.disabled = true;
-        status.textContent = copy('recalc') + '…';
+        setStatus('recalc', '…');
         try {
           const steps = plan.steps.map((step) => ({
             id: step.id,
@@ -380,7 +391,7 @@
           plan.edited = true;
           plan.explanation = '';
           const missing = plan.steps.some((step) => step.missing.length);
-          status.textContent = copy(missing ? 'missing' : 'results');
+          setStatus(missing ? 'missing' : 'results');
           output.inert = false;
           renderPlan();
           const heading = [...output.querySelectorAll('[data-ai-step]')]
@@ -549,6 +560,8 @@
       }
     }
     question.placeholder = c.placeholder;
+    if (status.dataset.aiStatusKey)
+      status.textContent = c[status.dataset.aiStatusKey] + (status.dataset.aiStatusSuffix || '');
     output.setAttribute('aria-label', c.results);
     if (!controller) {
       captureDraft();
@@ -567,14 +580,14 @@
     output.inert = false;
     output.replaceChildren();
     output.setAttribute('aria-busy', 'true');
-    status.textContent = copy('working');
+    setStatus('working');
     delete status.dataset.errorCode;
     try {
       const response = await request('/plan', { text: question.value, locale: I.language });
       if (current !== generation) return;
       plan = response.plan;
       renderPlan();
-      status.textContent = plan.questions.length ? copy('missing') : copy('results');
+      setStatus(plan.questions.length ? 'missing' : 'results');
       const target = output.querySelector('h2') || output;
       target.tabIndex = -1;
       target.focus({ preventScroll: true });
@@ -585,7 +598,7 @@
         });
     } catch (error) {
       if (current === generation) {
-        if (error.name === 'AbortError') status.textContent = copy('error');
+        if (error.name === 'AbortError') setStatus('error');
         else failure(error);
       }
     } finally {
@@ -605,7 +618,7 @@
     send.disabled = false;
     question.value = '';
     output.inert = false;
-    status.textContent = '';
+    setStatus(null);
     output.setAttribute('aria-busy', 'false');
     output.replaceChildren();
     question.focus();
