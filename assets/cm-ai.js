@@ -45,7 +45,7 @@
       : s.tool === 'loan-calculator'
         ? 'M = P × r / (1 − (1+r)^(−n)); r = i /1200; n =12y; r=0 ⇒ M=P/n'
         : s.tool === 'mortgage-calculator'
-          ? 'M + tax/12 + insurance/12 + PMI + HOA'
+          ? 'M + tax/12 + insurance/12 + PMI + HOA + extra'
           : s.tool === 'arithmetic'
             ? s.values.expression
             : s.tool === 'electricity-usage'

@@ -268,9 +268,20 @@ const financeTools = [
       nf('extra', 'Extra monthly payment (currency)|每月额外还款（货币）', 0, 1e15, 0),
     ],
     formula:
-      'Fixed-rate principal and interest plus annual property tax /12, insurance /12, applicable PMI and monthly HOA.',
+      'Fixed-rate principal and interest plus annual property tax /12, insurance /12, applicable PMI, monthly HOA and entered extra principal payments.',
     note: 'Unstated tax, insurance, PMI, HOA and extra payments are excluded (0), not estimated. Currency is preserved without exchange. PMI uses the linked calculator’s 80% LTV convention.',
-    calculate: (v) => finance.mortgage(v).rows,
+    calculate: (v) => {
+      const home = finance.mortgage(v);
+      return [
+        { ...home.rows[0], value: home.total + v.extra },
+        ...home.rows.slice(1),
+        ...(v.extra > 0
+          ? finance
+              .loan({ prin: home.loan, rate: v.rate, term: v.term, extra: v.extra })
+              .rows.slice(2)
+          : []),
+      ];
+    },
   },
 ];
 const energy = {

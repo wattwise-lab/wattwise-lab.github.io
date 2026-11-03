@@ -31,6 +31,28 @@ test('loan with currency', () => {
   near(r.rows[0].value, 1000);
   assert.ok(r.rows.some((x) => x.unit.includes('CNY')));
 });
+test('mortgage includes entered extra payments and PMI boundary', () => {
+  const r = calculate(
+    'mortgage-calculator',
+    {
+      price: 120000,
+      down: 24000,
+      rate: 0,
+      term: 8,
+      tax: 1200,
+      ins: 120,
+      pmirate: 1,
+      hoa: 20,
+      extra: 50,
+    },
+    'EUR',
+  );
+  near(r.rows[0].value, 1180);
+  near(r.rows[1].value, 1000);
+  near(r.rows[2].value, 96000);
+  near(r.rows[4].value, 92);
+  assert.equal(r.rows[0].unit, 'EUR/month');
+});
 test('energy daily use', () =>
   near(calculate('electricity-usage', { power: 1500, hours: 2, days: 30 }).rows[0].value, 90));
 test('SI prefix case', () => near(convert(1, 'mW', 'MW'), 1e-9));
