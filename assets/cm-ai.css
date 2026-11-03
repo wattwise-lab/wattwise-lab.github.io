@@ -135,6 +135,7 @@
   line-height: 1.7;
 }
 .cm-ai-output {
+  scroll-margin-top: 150px;
   min-width: 0;
 }
 .cm-ai-card {

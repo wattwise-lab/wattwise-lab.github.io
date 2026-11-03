@@ -134,6 +134,10 @@ try {
       ?.textContent.includes('4,000'),
   );
   assert.ok(await page.locator('#ai-p-f').isDisabled());
+  assert.equal(
+    await page.evaluate(() => globalThis.document.activeElement?.textContent),
+    '1. 质量加速度求力',
+  );
   await page.screenshot({ path: new URL('chain-desktop.png', out).pathname, fullPage: true });
   await page.setViewportSize({ width: 375, height: 812 });
   assert.ok(

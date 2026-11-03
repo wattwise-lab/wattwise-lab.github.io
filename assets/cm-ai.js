@@ -421,10 +421,12 @@
             ),
           );
       }
+      const method = el('p', formula(s), 'cm-ai-method');
+      method.dir = 'ltr';
       card.append(
         valuesDetails,
         el('h3', copy('method')),
-        el('p', formula(s), 'cm-ai-method'),
+        method,
         el('h3', copy('limits')),
         el('p', contextNote(s), 'cm-ai-note'),
       );
@@ -507,6 +509,14 @@
       plan = response.plan;
       renderPlan();
       status.textContent = plan.questions.length ? copy('missing') : copy('results');
+      const target = output.querySelector('h2') || output;
+      target.tabIndex = -1;
+      target.focus({ preventScroll: true });
+      if (matchMedia('(max-width: 800px)').matches)
+        output.scrollIntoView({
+          block: 'start',
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        });
     } catch (error) {
       if (current === generation) {
         if (error.name === 'AbortError') status.textContent = copy('error');
