@@ -52,6 +52,7 @@
               ? 'E = P × h × d /1000 (kWh)'
               : pick(s.schema.formula);
   function fieldLabel(f, s) {
+    if (s.tool === 'arithmetic' && f.id === 'mode') return copy('unit');
     if (I.language === 'zh-CN') return pick(f.label);
     const aliases = {
       prin: 'Principal',
@@ -137,11 +138,49 @@
       )
       .join('\n\n');
   }
-  function renderPlan() {
+  function editItems(step, focusIndex) {
+    generation++;
+    controller?.abort();
+    controller = null;
+    output.inert = false;
+    output.setAttribute('aria-busy', 'false');
+    plan.edited = true;
+    plan.explanation = '';
+    const missing =
+      !step.values.items.length ||
+      step.values.items.some((item) =>
+        ['name', 'quantity', 'unit', 'price', 'perUnit', 'currency'].some(
+          (key) => item[key] === null || item[key] === undefined || item[key] === '',
+        ),
+      );
+    step.missing = step.missing.filter((field) => field !== 'items');
+    if (missing) step.missing.push('items');
+    const dirty = new Set([step.id]);
+    for (const current of plan.steps)
+      if (
+        dirty.has(current.id) ||
+        Object.values(current.sources || {}).some(
+          (source) => source.ref && dirty.has(source.ref.step),
+        )
+      ) {
+        current.result = null;
+        dirty.add(current.id);
+      }
+    status.textContent = copy(missing ? 'missing' : 'recalc');
+    renderPlan(step.id);
+    document.getElementById('ai-' + step.id + '-item-' + focusIndex + '-name')?.focus();
+  }
+  function renderPlan(openStep) {
     if (!plan) return;
+    const expanded = new Set(
+      [...output.querySelectorAll('details[open]')].map(
+        (node) => node.closest('[data-ai-step]')?.dataset.aiStep,
+      ),
+    );
     output.replaceChildren();
     output.setAttribute('aria-label', copy('results'));
-    if (plan.title) output.append(el('h2', plan.title));
+    if (plan.edited || plan.title)
+      output.append(el('h2', plan.edited ? copy('results') : plan.title));
     if (plan.explanation) output.append(el('p', plan.explanation, 'cm-ai-note'));
     if (plan.unsupported || !plan.steps.length) {
       output.append(el('p', copy('error'), 'cm-ai-missing'));
@@ -180,9 +219,8 @@
       const valuesDetails = el('details'),
         summary = el('summary', copy('review')),
         edit = el('form'),
-        fields = el('div', undefined, 'cm-ai-fields'),
-        controls = {};
-      valuesDetails.open = !!s.missing.length;
+        fields = el('div', undefined, 'cm-ai-fields');
+      valuesDetails.open = !!s.missing.length || expanded.has(s.id) || openStep === s.id;
       valuesDetails.append(summary, edit);
       edit.append(fields);
       function control(f, key, value, parent = fields) {
@@ -255,11 +293,22 @@
             Array.isArray(s.values.items) && s.values.items.length
               ? s.values.items
               : [{ name: '', quantity: null, unit: '', price: null, perUnit: '', currency: '' }];
-          controls.items = items.map((item, k) => {
+          items.forEach((item, k) => {
             const box = el('div', undefined, 'cm-ai-item');
-            box.append(el('strong', String(k + 1)));
+            const rowHead = el('div', undefined, 'cm-ai-item-head'),
+              remove = el('button', I.t('remove'));
+            remove.type = 'button';
+            remove.dataset.aiRemoveItem = String(k);
+            remove.setAttribute('aria-label', I.t('remove') + ' ' + (item.name || String(k + 1)));
+            remove.addEventListener('click', () => {
+              captureDraft();
+              s.values.items.splice(k, 1);
+              delete s.sources.items;
+              editItems(s, Math.max(0, Math.min(k, s.values.items.length - 1)));
+            });
+            rowHead.append(el('strong', String(k + 1)), remove);
+            box.append(rowHead);
             fields.append(box);
-            const cells = {};
             for (const [key, label, type] of [
               ['name', 'items', 'text'],
               ['quantity', 'quantity', 'number'],
@@ -268,7 +317,7 @@
               ['perUnit', 'perUnit', 'text'],
               ['currency', 'currency', 'text'],
             ])
-              cells[key] = control(
+              control(
                 { label: copy(label), type, min: type === 'number' ? 0 : undefined },
                 'item-' + k + '-' + key,
                 item[key],
@@ -279,10 +328,10 @@
               proof.dir = 'auto';
               box.append(proof);
             }
-            return { cells, source: item.source };
           });
           const add = el('button', copy('items') + ' +');
           add.type = 'button';
+          add.dataset.aiAddItem = '';
           add.addEventListener('click', () => {
             captureDraft();
             if (s.values.items.length >= 60) return;
@@ -294,10 +343,11 @@
               perUnit: '',
               currency: s.values.items[0]?.currency || '',
             });
-            renderPlan();
+            delete s.sources.items;
+            editItems(s, s.values.items.length - 1);
           });
           fields.append(add);
-        } else controls[f.id] = control(f, f.id, s.values[f.id]);
+        } else control(f, f.id, s.values[f.id]);
       }
       const recalc = el('button', copy('recalc'), 'cm-ai-primary');
       recalc.type = 'submit';
@@ -310,32 +360,8 @@
         const timer = setTimeout(() => controller?.abort(), 20000);
         send.disabled = false;
         output.setAttribute('aria-busy', 'true');
-        const values = {};
-        for (const f of s.schema.fields) {
-          if (f.type === 'items')
-            values.items = (controls.items || []).map(({ cells, source }, k) => {
-              const item = Object.fromEntries(
-                Object.entries(cells).map(([key, n]) => [
-                  key,
-                  ['quantity', 'price'].includes(key) ? Number(n.value) : n.value,
-                ]),
-              );
-              if (
-                Object.entries(item).every(([key, value]) => value === s.values.items?.[k]?.[key])
-              )
-                item.source = source;
-              return item;
-            });
-          else
-            values[f.id] =
-              f.type === 'number' ? Number(controls[f.id].value) : controls[f.id].value;
-        }
-        for (const f of s.schema.fields)
-          if (
-            !s.sources?.[f.id]?.ref &&
-            JSON.stringify(values[f.id]) !== JSON.stringify(s.values[f.id])
-          )
-            delete s.sources[f.id];
+        captureDraft();
+        output.inert = true;
         recalc.disabled = true;
         status.textContent = copy('recalc') + '…';
         try {
@@ -344,17 +370,18 @@
             index: step.index,
             tool: step.tool,
             currency: step.currency,
-            values: step.id === s.id ? values : step.values,
+            values: step.values,
             sources: step.sources,
             normalized: step.normalized,
           }));
           const response = await request('/recalculate', { steps, locale: I.language });
           if (current !== generation) return;
-          const hadMissing = plan.steps.some((step) => step.missing.length);
           plan.steps = response.steps;
+          plan.edited = true;
+          plan.explanation = '';
           const missing = plan.steps.some((step) => step.missing.length);
-          if (hadMissing && !missing) plan.explanation = '';
           status.textContent = copy(missing ? 'missing' : 'results');
+          output.inert = false;
           renderPlan();
           const heading = [...output.querySelectorAll('[data-ai-step]')]
             .find((node) => node.dataset.aiStep === s.id)
@@ -362,6 +389,15 @@
           if (heading) {
             heading.tabIndex = -1;
             heading.focus({ preventScroll: true });
+            const card = heading.closest('.cm-ai-card');
+            const rect = heading.getBoundingClientRect();
+            if (rect.top < 140 || rect.bottom > innerHeight)
+              card.scrollIntoView({
+                block: 'start',
+                behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
+                  ? 'auto'
+                  : 'smooth',
+              });
           }
         } catch (error) {
           if (current === generation) failure(error);
@@ -370,6 +406,7 @@
           recalc.disabled = false;
           if (current === generation) {
             controller = null;
+            output.inert = false;
             output.setAttribute('aria-busy', 'false');
           }
         }
@@ -388,7 +425,9 @@
                     )
                       ? 6
                       : 12,
-                    ...(/^(?:CNY|USD|EUR|GBP|JPY|INR)(?:\/|$)/.test(r.unit || '')
+                    ...(/^(?:currency|CNY|USD|EUR|GBP|JPY|INR|IDR|RUB|BRL|TRY|NGN)(?:\/|$)/.test(
+                      r.unit || '',
+                    )
                       ? {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -469,8 +508,7 @@
         } else {
           const n = document.getElementById('ai-' + step.id + '-' + f.id);
           if (n && !n.disabled) {
-            const next =
-              f.type === 'number' ? (n.value === '' ? undefined : Number(n.value)) : n.value;
+            const next = f.type === 'number' ? (n.value === '' ? null : Number(n.value)) : n.value;
             if (next !== step.values[f.id]) delete step.sources[f.id];
             step.values[f.id] = next;
           }
@@ -526,6 +564,7 @@
     const timer = setTimeout(() => controller?.abort(), 100000);
     send.disabled = true;
     plan = null;
+    output.inert = false;
     output.replaceChildren();
     output.setAttribute('aria-busy', 'true');
     status.textContent = copy('working');
@@ -565,6 +604,7 @@
     plan = null;
     send.disabled = false;
     question.value = '';
+    output.inert = false;
     status.textContent = '';
     output.setAttribute('aria-busy', 'false');
     output.replaceChildren();

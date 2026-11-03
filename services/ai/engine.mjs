@@ -142,9 +142,21 @@ function numbersIn(source, locale = 'en') {
 }
 const matchesNumber = (values, value) =>
   values.some((n) => Math.abs(n - value) <= Math.max(1, Math.abs(value)) * 1e-12);
+const currencyCode = (value) => {
+  if (typeof value !== 'string') return value;
+  const code = value.trim().toUpperCase();
+  return ['元', '人民币', '人民币元', 'RMB', 'YUAN', 'RENMINBI'].includes(code)
+    ? 'CNY'
+    : code === 'CURRENCY'
+      ? 'currency'
+      : code;
+};
 export function convert(value, from, to) {
   if (!finite(value)) bad('invalid_number');
-  if (to === 'currency' && /^(?:currency|USD|CNY|EUR|GBP|JPY|INR|IDR|RUB|BRL|TRY|NGN)$/i.test(from))
+  if (
+    to === 'currency' &&
+    /^(?:currency|USD|CNY|EUR|GBP|JPY|INR|IDR|RUB|BRL|TRY|NGN)$/i.test(currencyCode(from))
+  )
     return value;
   if (norm(from) === norm(to)) return value;
   const temperatures = new Map([
@@ -400,6 +412,7 @@ function linkedCurrency(current, incoming) {
   return incoming;
 }
 export function calculate(slug, values, currency = 'currency', locale = 'en') {
+  currency = currencyCode(currency);
   const m = bySlug.get(slug);
   if (!m) bad('unknown_tool', slug);
   if (!values || typeof values !== 'object' || Array.isArray(values)) bad('invalid_inputs');
@@ -420,7 +433,12 @@ export function calculate(slug, values, currency = 'currency', locale = 'en') {
       if (!f.options.some((o) => o[0] === x)) bad('invalid_field', f.id);
     } else if (f.type !== 'items' && (!safe(x, f.type === 'textarea' ? 8000 : 300) || !x.trim()))
       bad('invalid_field', f.id);
-    v[f.id] = slug === 'arithmetic' && f.id === 'expression' ? data.expression(x, locale) : x;
+    v[f.id] =
+      f.type === 'items' && Array.isArray(x)
+        ? x.map((item) => ({ ...item, currency: currencyCode(item?.currency) }))
+        : slug === 'arithmetic' && f.id === 'expression'
+          ? data.expression(x, locale)
+          : x;
   }
   let rows;
   try {
@@ -500,6 +518,7 @@ export function interpret(plan, text, locale = 'en') {
       if (input && typeof input === 'object' && !input.ref && input.value === null) input = null;
       if (input === undefined || input === null) {
         if (input === null && Object.hasOwn(s.inputs || {}, f.id)) {
+          values[f.id] = null;
           missing.push(f.id);
           continue;
         }
@@ -543,7 +562,7 @@ export function interpret(plan, text, locale = 'en') {
             bad('numeric_evidence_mismatch', f.id);
           if (!safe(input.unit || '', 40)) bad('unit_mismatch');
           if (f.unit === 'currency' && input.unit && input.unit !== 'currency') {
-            const next = input.unit.toUpperCase();
+            const next = currencyCode(input.unit);
             if (currency !== 'currency' && currency !== next) bad('mixed_currency');
             currency = next;
           }
@@ -566,7 +585,7 @@ export function interpret(plan, text, locale = 'en') {
             ...new Set(text.match(/\b(?:CNY|USD|EUR|GBP|JPY|INR|IDR|RUB|BRL|TRY|NGN)\b/g) || []),
           ];
           value = value.map((item) => {
-            const v = { ...item };
+            const v = { ...item, currency: currencyCode(item.currency) };
             v.quantity ??= item.qty;
             v.price ??= item.unit_price;
             v.perUnit ??= item.priceUnit;
@@ -694,9 +713,22 @@ export function recompute(steps, locale = 'en') {
         if (f.unit === 'currency') currency = linkedCurrency(currency, row.unit);
       }
       if (values[f.id] === undefined || values[f.id] === null || values[f.id] === '') {
-        if (f.optional !== undefined) values[f.id] = f.optional;
+        if (!Object.hasOwn(values, f.id) && f.optional !== undefined) values[f.id] = f.optional;
         else missing.push(f.id);
       }
+    }
+    if (Array.isArray(values.items)) {
+      if (values.items.some((item) => !item || typeof item !== 'object' || Array.isArray(item)))
+        bad('invalid_items');
+      if (
+        !values.items.length ||
+        values.items.some((item) =>
+          ['name', 'quantity', 'unit', 'price', 'perUnit', 'currency'].some(
+            (key) => item[key] === undefined || item[key] === null || item[key] === '',
+          ),
+        )
+      )
+        if (!missing.includes('items')) missing.push('items');
     }
     const result = missing.length ? null : calculate(s.tool, values, currency, locale);
     out.push({

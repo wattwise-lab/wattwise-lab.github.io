@@ -246,7 +246,72 @@ test('explicit unknown optional fee is not zero', () => {
     'shipping unknown',
   );
   assert.ok(r.steps[0].missing.includes('shipping'));
-  assert.equal(r.steps[0].values.shipping, undefined);
+  assert.equal(r.steps[0].values.shipping, null);
+  assert.ok(recompute(JSON.parse(JSON.stringify(r.steps)))[0].missing.includes('shipping'));
+});
+test('unknown optional loan payment survives recompute', () => {
+  const step = recompute([
+    { id: 'loan', tool: 'loan-calculator', values: { prin: 12000, rate: 0, term: 1, extra: null } },
+  ])[0];
+  assert.equal(step.result, null);
+  assert.deepEqual(step.missing, ['extra']);
+});
+test('partial shopping does not block independent results', () => {
+  const steps = [
+    { id: 'math', tool: 'arithmetic', values: { expression: '2+3', mode: 'deg' } },
+    {
+      id: 'shop',
+      tool: 'shopping-total',
+      values: {
+        items: [
+          { name: 'A', quantity: 2, unit: 'kg', price: null, perUnit: 'kg', currency: 'CNY' },
+        ],
+        shipping: null,
+      },
+    },
+  ];
+  let out = recompute(steps);
+  assert.equal(out[0].result.rows[0].value, 5);
+  assert.equal(out[1].result, null);
+  assert.ok(out[1].missing.includes('items'));
+  assert.ok(out[1].missing.includes('shipping'));
+  steps[1].values.items[0].price = 3;
+  steps[1].values.shipping = 2;
+  out = recompute(steps);
+  assert.equal(out[1].result.rows[0].value, 8);
+});
+test('Chinese yuan aliases retain original amounts', () => {
+  const out = interpret(
+    {
+      steps: [
+        {
+          id: 's',
+          tool: 'shopping-total',
+          inputs: {
+            items: {
+              value: [
+                {
+                  name: '西红柿',
+                  quantity: 2,
+                  unit: '公斤',
+                  price: 6,
+                  perUnit: '公斤',
+                  currency: '元',
+                  source: '西红柿2公斤，每公斤6元',
+                },
+              ],
+            },
+            shipping: { value: 5, unit: '元', source: '运费5元' },
+          },
+        },
+      ],
+    },
+    '西红柿2公斤，每公斤6元；运费5元',
+    'zh-CN',
+  );
+  assert.equal(out.steps[0].result.rows[0].value, 17);
+  assert.equal(out.steps[0].currency, 'CNY');
+  assert.equal(out.steps[0].normalized[0].originalUnit, '元');
 });
 test('shopping half-cent rounds up', () =>
   near(

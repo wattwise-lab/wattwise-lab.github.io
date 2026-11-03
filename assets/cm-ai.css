@@ -141,6 +141,9 @@
 .cm-ai-card {
   margin-bottom: 20px;
 }
+.cm-ai-card {
+  scroll-margin-top: 150px;
+}
 .cm-ai-card h2 {
   font-size: 21px;
   margin: 0 0 18px;
@@ -215,10 +218,15 @@
   border-bottom: 1px solid var(--line);
 }
 .cm-ai-result dt {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-size: 14px;
   line-height: 1.6;
 }
 .cm-ai-result dd {
+  min-width: 0;
+  max-width: 100%;
   margin: 0;
   text-align: end;
   font-weight: 700;
@@ -277,49 +285,19 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
-.cm-ai-item > strong {
+.cm-ai-item-head {
   grid-column: 1/-1;
-}
-.cm-ai-entry {
   display: flex;
   align-items: center;
-  gap: 14px;
-  border: 1px solid var(--line);
-  background: var(--surface, var(--paper));
-  border-radius: 12px;
-  padding: 16px 20px;
-  color: var(--ink);
-  text-decoration: none;
-  max-width: 680px;
-  margin: 16px auto 0;
-  text-align: start;
+  justify-content: space-between;
+  gap: 12px;
 }
-.cm-ai-entry:hover {
-  border-color: var(--brand);
-}
-.cm-ai-entry__icon {
-  color: var(--brand);
-  font-size: 25px;
-}
-.cm-ai-entry > span:nth-child(2) {
-  flex: 1;
+.cm-ai-item > small {
+  grid-column: 1/-1;
   min-width: 0;
-}
-.cm-ai-entry strong {
-  display: block;
-  font-size: 16px;
-}
-.cm-ai-entry strong + span {
-  display: block;
-  font-size: 13px;
+  overflow-wrap: anywhere;
   color: var(--muted);
-  line-height: 1.5;
-  margin-top: 4px;
-}
-.ws-search-panel + .cm-ai-entry,
-.cm-ai-entry:has(+ .ws-search-panel) {
-  margin: 16px 0;
-  max-width: none;
+  line-height: 1.6;
 }
 @media (max-width: 800px) {
   .cm-ai {
@@ -351,6 +329,8 @@
     gap: 5px;
   }
   .cm-ai-result dd {
+    min-width: 0;
+    max-width: 100%;
     text-align: start;
   }
   .cm-ai-composer,

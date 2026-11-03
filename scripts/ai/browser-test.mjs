@@ -37,6 +37,44 @@ const chain = interpret(
   },
   text,
 );
+const shoppingText = '西红柿2kg6CNY/kg；鸡蛋3盒12CNY/盒；运费5CNY';
+const shopping = interpret(
+  {
+    steps: [
+      {
+        id: 'shop',
+        tool: 'shopping-total',
+        inputs: {
+          items: {
+            value: [
+              {
+                name: '西红柿',
+                quantity: 2,
+                unit: 'kg',
+                price: 6,
+                perUnit: 'kg',
+                currency: 'CNY',
+                source: '西红柿2kg6CNY/kg',
+              },
+              {
+                name: '鸡蛋',
+                quantity: 3,
+                unit: '盒',
+                price: 12,
+                perUnit: '盒',
+                currency: 'CNY',
+                source: '鸡蛋3盒12CNY/盒',
+              },
+            ],
+          },
+          shipping: { value: 5, unit: 'CNY', source: '运费5CNY' },
+        },
+      },
+    ],
+  },
+  shoppingText,
+  'zh-CN',
+);
 let fixture = chain,
   serviceFailure = false;
 await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
@@ -148,6 +186,16 @@ try {
     await page.evaluate(() => globalThis.document.activeElement?.textContent),
     '1. 质量加速度求力',
   );
+  await page.locator('[data-ai-step="p"] summary').click();
+  await page.locator('#ai-p-a').fill('0.005');
+  await page.locator('#ai-f-m').fill('30');
+  await page.locator('[data-ai-step="f"] form button[type="submit"]').click();
+  await page.waitForFunction(() =>
+    globalThis.document
+      .querySelector('[data-ai-step="p"] .cm-ai-results')
+      ?.textContent.includes('12,000'),
+  );
+  assert.equal(await page.locator('#ai-p-a').inputValue(), '0.005');
   await page.screenshot({ path: new URL('chain-desktop.png', out).pathname, fullPage: true });
   await page.setViewportSize({ width: 375, height: 812 });
   assert.ok(
@@ -195,6 +243,161 @@ try {
     path: new URL('missing-arabic-phone.png', out).pathname,
     fullPage: true,
   });
+  fixture = shopping;
+  await page.goto(base + '/zh-cn/ai');
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.locator('#cm-ai-question').fill(shoppingText);
+  await page.locator('#cm-ai-send').click();
+  await page.locator('.cm-ai-results').waitFor();
+  assert.ok((await page.locator('.cm-ai-results').innerText()).includes('53.00'));
+  await page.locator('.cm-ai-card summary').click();
+  await page.locator('#ai-shop-item-0-price').fill('7');
+  await page.locator('.cm-ai-card form button[type=submit]').click();
+  await page.waitForFunction(() =>
+    globalThis.document.querySelector('.cm-ai-results')?.textContent.includes('55.00'),
+  );
+  assert.ok((await page.locator('.cm-ai-card details').getAttribute('open')) !== null);
+  await page.locator('[data-ai-add-item]').click();
+  assert.equal(await page.locator('.cm-ai-item').count(), 3);
+  assert.equal(await page.locator('.cm-ai-results').count(), 0);
+  assert.equal(await page.locator('#ai-shop-item-0-price').inputValue(), '7');
+  assert.equal(
+    await page.evaluate(() => globalThis.document.activeElement?.id),
+    'ai-shop-item-2-name',
+  );
+  for (const [key, value] of Object.entries({
+    name: 'SKU' + 'x'.repeat(90),
+    quantity: '1',
+    unit: 'kg',
+    price: '2',
+    perUnit: 'kg',
+  }))
+    await page.locator('#ai-shop-item-2-' + key).fill(value);
+  await page.locator('.cm-ai-card form button[type=submit]').click();
+  await page.waitForFunction(() =>
+    globalThis.document.querySelector('.cm-ai-results')?.textContent.includes('57.00'),
+  );
+  await page.locator('[data-ai-remove-item="1"]').click();
+  assert.equal(await page.locator('.cm-ai-item').count(), 2);
+  assert.equal(await page.locator('.cm-ai-results').count(), 0);
+  assert.equal(await page.locator('#ai-shop-item-0-price').inputValue(), '7');
+  await page.locator('.cm-ai-card form button[type=submit]').click();
+  await page.waitForFunction(() =>
+    globalThis.document.querySelector('.cm-ai-results')?.textContent.includes('21.00'),
+  );
+  await page.locator('#ai-shop-item-0-quantity').fill('3');
+  await page.locator('#cm-site-language').selectOption('fr');
+  assert.equal(await page.locator('#ai-shop-item-0-quantity').inputValue(), '3');
+  assert.ok((await page.locator('.cm-ai-card details').getAttribute('open')) !== null);
+  await page.locator('.cm-ai-card form button[type=submit]').click();
+  await page.waitForFunction(() =>
+    globalThis.document.querySelector('.cm-ai-results')?.textContent.includes('28,00'),
+  );
+  assert.ok(
+    await page.evaluate(
+      () => globalThis.document.documentElement.scrollWidth <= globalThis.innerWidth,
+    ),
+  );
+  await page.screenshot({ path: new URL('shopping-phone.png', out).pathname, fullPage: true });
+  fixture = {
+    questions: [],
+    steps: recompute([
+      { id: 'math', tool: 'arithmetic', values: { expression: '2+3', mode: 'deg' }, sources: {} },
+      {
+        id: 'shop',
+        tool: 'shopping-total',
+        values: {
+          items: [
+            { name: '苹果', quantity: 2, unit: 'kg', price: null, perUnit: 'kg', currency: 'CNY' },
+          ],
+          shipping: null,
+        },
+        sources: {},
+      },
+    ]),
+  };
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('部分条件未知');
+  await page.locator('#cm-ai-send').click();
+  await page.locator('#ai-shop-shipping').waitFor();
+  await page.locator('[data-ai-step="math"] summary').click();
+  await page.locator('#ai-math-expression').fill('3+4');
+  await page.locator('[data-ai-step="math"] form button[type="submit"]').click();
+  await page.waitForFunction(() =>
+    globalThis.document
+      .querySelector('[data-ai-step="math"] .cm-ai-results')
+      ?.textContent.includes('7'),
+  );
+  assert.equal(await page.locator('[data-ai-step="shop"] .cm-ai-results').count(), 0);
+  assert.equal(await page.locator('#ai-shop-shipping').inputValue(), '');
+  await page.locator('#ai-shop-item-0-price').fill('3');
+  await page.locator('#ai-shop-shipping').fill('2');
+  await page.locator('[data-ai-step="shop"] form button[type="submit"]').click();
+  await page.waitForFunction(() =>
+    globalThis.document
+      .querySelector('[data-ai-step="shop"] .cm-ai-results')
+      ?.textContent.includes('8.00'),
+  );
+  await page.screenshot({ path: new URL('partial-desktop.png', out).pathname, fullPage: true });
+  fixture = {
+    title: '住房支出',
+    questions: [],
+    steps: recompute([
+      {
+        id: 'home',
+        tool: 'mortgage-calculator',
+        currency: 'NGN',
+        sources: {},
+        values: {
+          price: 120000,
+          down: 24000,
+          rate: 0,
+          term: 8,
+          tax: 1200,
+          ins: 120,
+          pmirate: 1,
+          hoa: 20,
+          extra: 50,
+        },
+      },
+    ]),
+  };
+  await page.goto(base + '/zh-cn/ai');
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.locator('#cm-ai-question').fill('每月住房支出');
+  await page.locator('#cm-ai-send').click();
+  await page.locator('.cm-ai-results').waitFor();
+  assert.ok((await page.locator('.cm-ai-results').innerText()).includes('1,180.00'));
+  await page.locator('.cm-ai-card summary').click();
+  assert.equal(await page.locator('#ai-home-extra').inputValue(), '50');
+  await page.screenshot({ path: new URL('mortgage-desktop.png', out).pathname, fullPage: true });
+  fixture = interpret(
+    {
+      steps: [
+        {
+          id: 'math',
+          tool: 'arithmetic',
+          inputs: {
+            expression: { value: 'sin(pi/2)', unit: '', source: 'sin(pi/2)' },
+            mode: { value: 'rad', unit: '', source: 'rad' },
+          },
+        },
+      ],
+    },
+    'sin(pi/2) rad',
+    'zh-CN',
+  );
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('sin(pi/2) rad');
+  await page.locator('#cm-ai-send').click();
+  await page.locator('.cm-ai-results').waitFor();
+  await page.locator('.cm-ai-card summary').click();
+  assert.equal(await page.locator('label[for=ai-math-mode]').innerText(), '单位');
+  await page.locator('#ai-math-mode').selectOption('deg');
+  await page.locator('.cm-ai-card form button[type=submit]').click();
+  await page.waitForFunction(() =>
+    globalThis.document.querySelector('.cm-ai-results')?.textContent.includes('0.027412'),
+  );
   serviceFailure = true;
   await page.goto(base + '/zh-cn/ai');
   await page.locator('#cm-ai-question').fill('保留这段输入');
