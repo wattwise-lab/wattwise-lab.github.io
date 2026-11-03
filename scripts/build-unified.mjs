@@ -1035,7 +1035,7 @@ for (const page of ['directory', 'workspace']) {
   }
   $('head').append(await scriptTags(['assets/cm-shell.js']));
   if (page === 'workspace') {
-    $('.ws-search-panel').before(aiEntry(context.window.CMAICopy.en, esc));
+    $('.ws-intro').after(aiEntry(context.window.CMAICopy.en, esc));
     $(
       'script[src*="cm-workspace-tools"],script[src*="cm-intent-core"],script[src*="cm-intent-schema"],script[src*="cm-workspace-intent"],script[src*="cm-workspace-links"],script[src*="cm-unit-contracts"]',
     ).remove();

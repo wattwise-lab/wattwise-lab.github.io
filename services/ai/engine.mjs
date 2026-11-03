@@ -381,6 +381,11 @@ function shoppingRows(v) {
     ...rows,
   ];
 }
+function linkedCurrency(current, incoming) {
+  if (!incoming || incoming === 'currency') return current;
+  if (current !== 'currency' && current !== incoming) bad('mixed_currency');
+  return incoming;
+}
 export function calculate(slug, values, currency = 'currency', locale = 'en') {
   const m = bySlug.get(slug);
   if (!m) bad('unknown_tool', slug);
@@ -416,6 +421,7 @@ export function calculate(slug, values, currency = 'currency', locale = 'en') {
     if (typeof r.value === 'number' && !Number.isFinite(r.value)) bad('invalid_result');
   if (!/^(?:currency|USD|CNY|EUR|GBP|JPY|INR|IDR|RUB|BRL|TRY|NGN)$/.test(currency))
     bad('mixed_currency');
+  if (slug === 'shopping-total') currency = linkedCurrency(currency, rows[0].unit);
   if (financeTools.includes(m))
     rows = rows.map((r) => ({ ...r, unit: (r.unit || '').replaceAll('USD', currency) }));
   return {
@@ -502,6 +508,7 @@ export function interpret(plan, text, locale = 'en') {
         }
         if (!row || typeof row.value !== 'number') bad('invalid_reference');
         values[f.id] = convert(row.value, row.unit || '', f.unit);
+        if (f.unit === 'currency') currency = linkedCurrency(currency, row.unit);
         sources[f.id] = { ref: input.ref };
       } else {
         if (
@@ -611,7 +618,10 @@ export function interpret(plan, text, locale = 'en') {
       }
     }
     let result = null;
-    if (!missing.length) result = calculate(s.tool, values, currency, locale);
+    if (!missing.length) {
+      result = calculate(s.tool, values, currency, locale);
+      currency = result.currency;
+    }
     for (const field of missing)
       questions.push({
         step: s.id,
@@ -654,6 +664,7 @@ export function recompute(steps, locale = 'en') {
     const spec = schema(s.tool),
       values = { ...s.values },
       missing = [];
+    let currency = s.currency || 'currency';
     for (const f of spec.fields) {
       const ref = s.sources?.[f.id]?.ref;
       if (ref) {
@@ -667,18 +678,21 @@ export function recompute(steps, locale = 'en') {
         const row = parent.result.rows[ref.row];
         if (!row || typeof row.value !== 'number') bad('invalid_reference');
         values[f.id] = convert(row.value, row.unit || '', f.unit);
+        if (f.unit === 'currency') currency = linkedCurrency(currency, row.unit);
       }
       if (values[f.id] === undefined || values[f.id] === null || values[f.id] === '') {
         if (f.optional !== undefined) values[f.id] = f.optional;
         else missing.push(f.id);
       }
     }
+    const result = missing.length ? null : calculate(s.tool, values, currency, locale);
     out.push({
       ...s,
+      currency: result?.currency || currency,
       schema: spec,
       values,
       missing,
-      result: missing.length ? null : calculate(s.tool, values, s.currency, locale),
+      result,
     });
   }
   return out;

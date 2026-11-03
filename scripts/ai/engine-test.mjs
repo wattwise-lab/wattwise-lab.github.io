@@ -328,6 +328,48 @@ test('typographic spaces recover exact original quote', () => {
   );
   assert.equal(r.steps[0].sources.a.source, '加速度2 m/s²');
 });
+test('money links retain currency and reject implicit exchange', () => {
+  const steps = [
+    {
+      id: 's',
+      tool: 'shopping-total',
+      values: {
+        items: [
+          { name: 'A', quantity: 1, unit: 'each', price: 12000, perUnit: 'each', currency: 'CNY' },
+        ],
+      },
+    },
+    {
+      id: 'l',
+      tool: 'loan-calculator',
+      values: { rate: 0, term: 1 },
+      sources: { prin: { ref: { step: 's', row: 0 } } },
+    },
+  ];
+  const r = recompute(steps);
+  near(r[1].result.rows[0].value, 1000);
+  assert.equal(r[0].currency, 'CNY');
+  assert.equal(r[1].currency, 'CNY');
+  assert.equal(r[1].result.currency, 'CNY');
+  steps[1].currency = 'USD';
+  assert.throws(() => recompute(steps), InputError);
+});
+test('shopping charges cannot silently change currency', () => {
+  assert.throws(
+    () =>
+      calculate(
+        'shopping-total',
+        {
+          items: [
+            { name: 'A', quantity: 1, unit: 'each', price: 5, perUnit: 'each', currency: 'USD' },
+          ],
+          shipping: 2,
+        },
+        'CNY',
+      ),
+    InputError,
+  );
+});
 const fake = { AI: { run: async () => ({ response: 'malformed' }) } };
 await assert.rejects(planQuestion(fake, 'x', 'en'), InputError);
 checks++;

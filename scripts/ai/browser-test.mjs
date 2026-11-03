@@ -120,6 +120,14 @@ try {
     checked++;
   }
   assert.equal(requests.length, 0, 'Browsing and selecting examples must not transmit text');
+  await page.goto(base + '/zh-cn/workspace');
+  assert.equal(await page.locator('main .cm-ai-entry').count(), 1);
+  assert.ok(await page.locator('main .cm-ai-entry').isVisible());
+  await page.locator('main .cm-ai-entry').click();
+  assert.equal(new URL(page.url()).pathname, '/zh-cn/ai');
+  await page.goto(base + '/zh-cn/');
+  await page.locator('main .cm-ai-entry').click();
+  assert.equal(new URL(page.url()).pathname, '/zh-cn/ai');
   await page.goto(base + '/zh-cn/ai');
   await page.locator('#cm-ai-question').fill(text);
   await page.locator('#cm-ai-send').click();
