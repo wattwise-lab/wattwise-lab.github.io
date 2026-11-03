@@ -583,6 +583,83 @@ const covered = await planQuestion(
 assert.equal(coverageCalls, 3);
 assert.equal(covered.steps[1].result.rows[0].value, 2000);
 checks++;
+for (let requestIndex = 0; requestIndex <= 40; requestIndex++) {
+  const r = await worker.fetch(
+    new Request('https://calcmintly-ai.pages.dev/calculate', {
+      method: 'POST',
+      headers: {
+        Origin: 'https://calcmintly.com',
+        'Content-Type': 'application/json',
+        'CF-Connecting-IP': 'qa-calculation-limit',
+      },
+      body: JSON.stringify({ tool: 'arithmetic', values: { expression: '2+3' } }),
+    }),
+    {},
+  );
+  assert.equal(r.status, requestIndex < 40 ? 200 : 429);
+  if (requestIndex === 40) assert.equal((await r.json()).error, 'calculation_rate_limited');
+}
+checks++;
+{
+  let releaseGate,
+    allStarted,
+    startedCount = 0;
+  const gate = new Promise((resolve) => {
+    releaseGate = resolve;
+  });
+  const started = new Promise((resolve) => {
+    allStarted = resolve;
+  });
+  const resultFor = (options) =>
+    options.messages[0].content.startsWith('You extract')
+      ? {
+          steps: [
+            {
+              id: 's',
+              tool: 'arithmetic',
+              inputs: { expression: { value: '2+3', unit: '', source: '2+3' } },
+            },
+          ],
+        }
+      : { tools: ['arithmetic'] };
+  const waiting = {
+    AI: {
+      run: async (_model, options) => {
+        if (++startedCount === 3) allStarted();
+        await gate;
+        return { response: JSON.stringify(resultFor(options)) };
+      },
+    },
+  };
+  const immediate = {
+    AI: { run: async (_model, options) => ({ response: JSON.stringify(resultFor(options)) }) },
+  };
+  const req = (ip) =>
+    new Request('https://calcmintly-ai.pages.dev/plan', {
+      method: 'POST',
+      headers: {
+        Origin: 'https://calcmintly.com',
+        'Content-Type': 'application/json',
+        'CF-Connecting-IP': ip,
+      },
+      body: JSON.stringify({ text: '2+3', locale: 'en' }),
+    });
+  const pending = ['qa-lease-1', 'qa-lease-2', 'qa-lease-3'].map((ip) =>
+    worker.fetch(req(ip), waiting),
+  );
+  await started;
+  assert.equal((await worker.fetch(req('qa-lease-4'), immediate)).status, 429);
+  const realNow = Date.now;
+  try {
+    Date.now = () => realNow() + 120001;
+    assert.equal((await worker.fetch(req('qa-lease-4'), immediate)).status, 200);
+  } finally {
+    Date.now = realNow;
+    releaseGate();
+  }
+  assert.ok((await Promise.all(pending)).every((r) => r.status === 200));
+  checks++;
+}
 console.log(
   JSON.stringify({
     checks,

@@ -6,7 +6,7 @@ const origins = new Set([
   'http://127.0.0.1:4173',
 ]);
 const visits = new Map();
-let active = 0;
+const active = new Map();
 const headers = (origin) => ({
   'Content-Type': 'application/json; charset=utf-8',
   'Cache-Control': 'no-store',
@@ -53,10 +53,11 @@ function throttle(ip, kind = 'ai') {
   const now = Date.now(),
     key = kind + '|' + ip + '|' + new Date(now).toISOString().slice(0, 10),
     v = visits.get(key) || [];
+  for (const [lease, expiry] of active) if (expiry <= now) active.delete(lease);
   if (
     v.length >= (kind === 'ai' ? 60 : 3000) ||
     v.filter((t) => now - t < 60000).length >= (kind === 'ai' ? 3 : 40) ||
-    (kind === 'ai' && active >= 3)
+    (kind === 'ai' && active.size >= 3)
   )
     return false;
   v.push(now);
@@ -231,7 +232,7 @@ export default {
         path !== '/plan' &&
         !throttle(request.headers.get('CF-Connecting-IP') || 'unknown', 'calculate')
       )
-        return reply({ error: 'rate_limited' }, 429, origin);
+        return reply({ error: 'calculation_rate_limited' }, 429, origin);
       if (path === '/recalculate')
         return reply({ steps: recompute(data.steps, data.locale) }, 200, origin);
       if (path === '/calculate')
@@ -271,7 +272,10 @@ export default {
       if (!env.AI) return reply({ error: 'ai_not_configured' }, 503, origin);
       if (!throttle(request.headers.get('CF-Connecting-IP') || 'unknown'))
         return reply({ error: 'rate_limited' }, 429, origin);
-      active++;
+      const lease = Symbol();
+      active.set(lease, Date.now() + 120000);
+      const release = () => active.delete(lease);
+      request.signal.addEventListener('abort', release, { once: true });
       try {
         return reply(
           {
@@ -283,7 +287,8 @@ export default {
           origin,
         );
       } finally {
-        active--;
+        request.signal.removeEventListener('abort', release);
+        release();
       }
     } catch (e) {
       return reply(
