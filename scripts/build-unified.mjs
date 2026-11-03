@@ -13,6 +13,7 @@ import { compileTranslations } from './compile-translations.mjs';
 import { finishMetadata, secureMarkup } from './site-metadata.mjs';
 import { upgradeCorePage } from './upgrade-core-pages.mjs';
 import { pruneAssets } from './prune-assets.mjs';
+import { renderAI, aiEntry } from './render-ai.mjs';
 
 const root = new URL('../', import.meta.url);
 const read = (p) => fs.readFile(new URL(p, root), 'utf8');
@@ -58,6 +59,7 @@ const context = { window: {} };
 for (const file of [
   'cm-home-copy-v3.js',
   'cm-appearance-copy.js',
+  'cm-ai-copy.js',
   'cm-legacy-copy.js',
   'cm-ui-copy.js',
   'cm-preferences-core.js',
@@ -312,6 +314,7 @@ const commonSourceScripts = [
   'assets/cm-metadata-core.js',
   'assets/cm-info-metadata.js',
   'assets/cm-home-copy-v3.js',
+  'assets/cm-ai-copy.js',
   'assets/cm-legacy-copy.js',
   'assets/cm-ui-copy.js',
   'assets/cm-preferences-core.js',
@@ -381,7 +384,10 @@ function shellHeader(lang) {
     link('/percentage-calculator', 'percentage') +
     link('/unit-converter', 'unit');
   const secondary =
-    link('/methodology', 'methods') + link('/about', 'about') + link('/contact', 'contact');
+    `<a href="${href('/ai', lang)}" data-cm-href="/ai"><span data-ai-key="title" data-cm-no-translate>${esc(context.window.CMAICopy[lang].title)}</span></a>` +
+    link('/methodology', 'methods') +
+    link('/about', 'about') +
+    link('/contact', 'contact');
   const a = context.window.CMAppearanceCopy[lang];
   const appearance = `<details class="cm-appearance-menu"><summary class="cm-appearance-trigger" aria-label="${esc(a[0])}">${shellIcons.palette}<span data-cm-appearance-title>${esc(a[0])}</span>${shellIcons['chevron-down']}</summary><section class="cm-appearance-panel" aria-label="${esc(a[0])}"><div class="cm-appearance-palettes">${palettes.map((value, i) => `<button type="button" data-cm-theme-choice="${value}" aria-pressed="${value === 'system'}"><span class="cm-theme-preview" data-palette="${value}" aria-hidden="true"><span></span><span></span><span></span>${shellIcons.check}</span><span data-cm-palette-name="${i}">${esc(a[i + 4])}</span></button>`).join('')}</div><div class="cm-appearance-modes" role="group" aria-label="${esc(a[0])}">${['auto', 'light', 'dark'].map((mode, i) => `<button type="button" data-cm-mode-choice="${mode}" aria-pressed="${i === 0}">${shellIcons[['monitor', 'sun', 'moon'][i]]}<span data-cm-mode-name="${i}">${esc(a[i + 1])}</span></button>`).join('')}</div></section></details>`;
   const command = `<button type="button" class="cm-header-search" data-cm-command-open data-cm-label="searchLabel" aria-label="${esc(t(lang, 'searchLabel'))}" data-cm-catalog-source="${commandCatalogURL}" aria-haspopup="dialog">${shellIcons.search}<span data-cm-i18n="searchLabel">${esc(t(lang, 'searchLabel'))}</span><kbd>Ctrl K</kbd></button>`;
@@ -397,12 +403,13 @@ function shellFooter(lang) {
     link('/scientific-calculator', 'scientific') +
     link('/unit-converter', 'unit');
   const explore =
+    `<a data-cm-href="/ai" href="${href('/ai', lang)}"><span data-ai-key="title" data-cm-no-translate>${esc(context.window.CMAICopy[lang].title)}</span></a>` +
     link('/workspace', 'workspace') +
     link('/ranking', 'ranking') +
     link('/methodology', 'methods') +
     link('/about', 'about') +
     link('/contact', 'contact');
-  return `<footer class="cm-site-footer"><div class="cm-site-footer__inner"><div class="cm-site-footer__main"><div class="cm-site-footer__identity"><a class="cm-site-footer__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><p data-cm-i18n="note">${esc(t(lang, 'note'))}</p></div><nav class="cm-site-footer__group" aria-labelledby="cm-footer-tools"><h2 id="cm-footer-tools" data-cm-i18n="heading">${esc(t(lang, 'heading'))}</h2>${tools}</nav><nav class="cm-site-footer__group" aria-labelledby="cm-footer-explore"><h2 id="cm-footer-explore" data-cm-i18n="explore">${esc(t(lang, 'explore'))}</h2>${explore}</nav></div><div class="cm-site-footer__bottom"><p><bdi dir="ltr">© CalcMintly</bdi></p><nav class="cm-site-footer__legal" data-cm-label="privacy" aria-label="${esc(t(lang, 'privacy'))}">${link('/privacy', 'privacy') + link('/terms', 'terms')}</nav></div></div></footer>`;
+  return `<footer class="cm-site-footer"><div class="cm-site-footer__inner"><div class="cm-site-footer__main"><div class="cm-site-footer__identity"><a class="cm-site-footer__brand" data-cm-href="/" href="${href('/', lang)}" aria-label="CalcMintly"><img src="/assets/cm-mark-v3.svg" alt="" width="32" height="32"><span>calc<b>mintly</b></span></a><p data-ai-key="ordinary" data-cm-no-translate>${esc(context.window.CMAICopy[lang].ordinary)}</p></div><nav class="cm-site-footer__group" aria-labelledby="cm-footer-tools"><h2 id="cm-footer-tools" data-cm-i18n="heading">${esc(t(lang, 'heading'))}</h2>${tools}</nav><nav class="cm-site-footer__group" aria-labelledby="cm-footer-explore"><h2 id="cm-footer-explore" data-cm-i18n="explore">${esc(t(lang, 'explore'))}</h2>${explore}</nav></div><div class="cm-site-footer__bottom"><p><bdi dir="ltr">© CalcMintly</bdi></p><nav class="cm-site-footer__legal" data-cm-label="privacy" aria-label="${esc(t(lang, 'privacy'))}">${link('/privacy', 'privacy') + link('/terms', 'terms')}</nav></div></div></footer>`;
 }
 
 function schemas(title, slug) {
@@ -500,7 +507,7 @@ for (const lang of locales) {
       )
       .join('') + '<link rel="alternate" hreflang="x-default" href="https://calcmintly.com/">';
   const homeHeadline = `<h1>${esc(tr(lang, homeKeys.headline))}<br><em>${esc(tr(lang, homeKeys.em))}</em><span data-cm-pair=".|里。">${lang === 'zh-CN' ? '里。' : '.'}</span></h1>`;
-  const main = `<main class="cm-home" id="main-content" data-cm-home><section class="cm-home__hero"><span class="cm-home__eyebrow">${esc(tr(lang, '一个入口，解决日常计算'))}</span>${homeHeadline}<p>${esc(tr(lang, homeKeys.intro))}</p><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label></section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2><p>${esc(t(lang, 'pinnedHint'))}</p></div><div class="cm-pinned__grid">${pinned.map(([slug, key]) => `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`).join('')}</div></section><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}"><span data-cm-i18n="workspace">${esc(t(lang, 'workspace'))}</span><span aria-hidden="true"> →</span></a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
+  const main = `<main class="cm-home" id="main-content" data-cm-home><section class="cm-home__hero"><span class="cm-home__eyebrow">${esc(tr(lang, '一个入口，解决日常计算'))}</span>${homeHeadline}<p>${esc(tr(lang, homeKeys.intro))}</p><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label>${aiEntry(context.window.CMAICopy[lang], esc, href('/ai', lang))}</section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2><p>${esc(t(lang, 'pinnedHint'))}</p></div><div class="cm-pinned__grid">${pinned.map(([slug, key]) => `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`).join('')}</div></section><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}"><span data-cm-i18n="workspace">${esc(t(lang, 'workspace'))}</span><span aria-hidden="true"> →</span></a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
     ['实时反馈', '没有“计算”按钮。输入变化，结果、图表和提示同步更新。'],
     ['公式透明', '显示计算方法、默认值和适用限制，方便检查和复算。'],
     ['情境解释', '把结果转换成可行动的区间和提示，而不是制造伪精确。'],
@@ -518,7 +525,7 @@ for (const lang of locales) {
   ]
     .map(
       ([q, a]) =>
-        `<details><summary>${esc(tr(lang, q))}</summary><p>${esc(tr(lang, a))}</p></details>`,
+        `<details><summary>${esc(tr(lang, q))}</summary><p${q === '数据会被上传吗？' ? ' data-ai-key="privacy" data-cm-no-translate' : ''}>${esc(q === '数据会被上传吗？' ? context.window.CMAICopy[lang].privacy : tr(lang, a))}</p></details>`,
     )
     .join('')}</section></main>`;
   const html =
@@ -979,6 +986,10 @@ if (!(await exists('src/info-pages.json'))) {
 for (const [slug, page] of Object.entries(JSON.parse(await read('src/info-pages.json')))) {
   const $ = load('<main class="cm-info" id="main-content">' + page.html + '</main>');
   $('header,footer,script,link').remove();
+  $('[data-ai-key]').each((_, e) => {
+    const key = $(e).attr('data-ai-key');
+    if (context.window.CMAICopy.en[key]) $(e).text(context.window.CMAICopy.en[key]);
+  });
   if (slug === 'privacy')
     $('main').append(
       '<section><h2>Local data controls</h2><p>Saved layouts, language preferences and optional device-only usage history are stored in this browser. Use this button to remove CalcMintly local data.</p><p data-cm-i18n="preferencePrivacy">' +
@@ -1004,7 +1015,7 @@ for (const [slug, page] of Object.entries(JSON.parse(await read('src/info-pages.
 // Upgrade the existing directory and four-card workspace to the same public shell.
 for (const page of ['directory', 'workspace']) {
   const $ = load(await read(page + '.html'));
-  $('header,footer,.cm-site-header,.cm-site-footer,.cm-site-skip').remove();
+  $('header,footer,.cm-site-header,.cm-site-footer,.cm-site-skip,.cm-ai-entry').remove();
   $(
     'script[src*="cm-data-core"],script[src*="cm-shell"],script[src*="cm-i18n"],script[src*="cm-ui-copy"],script[src*="cm-legacy-copy"],script[src*="cm-translation-index"],script[src*="cm-home-copy"],script[src*="cm-catalog"]',
   ).remove();
@@ -1024,6 +1035,7 @@ for (const page of ['directory', 'workspace']) {
   }
   $('head').append(await scriptTags(['assets/cm-shell.js']));
   if (page === 'workspace') {
+    $('.ws-intro').after(aiEntry(context.window.CMAICopy.en, esc));
     $(
       'script[src*="cm-workspace-tools"],script[src*="cm-intent-core"],script[src*="cm-intent-schema"],script[src*="cm-workspace-intent"],script[src*="cm-workspace-links"],script[src*="cm-unit-contracts"]',
     ).remove();
@@ -1164,6 +1176,16 @@ for (const file of [
   await write(file, $.html());
 }
 
+await write(
+  'ai.html',
+  await renderAI({
+    head,
+    header: shellHeader,
+    footer: shellFooter,
+    copy: context.window.CMAICopy.en,
+    esc,
+  }),
+);
 const metadataPages = await finishMetadata(root, catalog);
 await secureMarkup(root, [
   ...metadataPages.map((p) => p.file),

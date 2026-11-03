@@ -20,6 +20,7 @@ const manifest = JSON.parse(await read('src/asset-manifest.json')),
     ...catalog.map((t) => t.slug + '.html'),
     ...[
       'index',
+      'ai',
       'directory',
       'workspace',
       'ranking',

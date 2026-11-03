@@ -60000,6 +60000,126 @@
     "indexable": true
   },
   {
+    "file": "ai.html",
+    "path": "/ai",
+    "locale": "en",
+    "indexable": true
+  },
+  {
+    "file": "zh-cn/ai.html",
+    "path": "/zh-cn/ai",
+    "locale": "zh-CN",
+    "indexable": true
+  },
+  {
+    "file": "hi/ai.html",
+    "path": "/hi/ai",
+    "locale": "hi",
+    "indexable": true
+  },
+  {
+    "file": "es/ai.html",
+    "path": "/es/ai",
+    "locale": "es",
+    "indexable": true
+  },
+  {
+    "file": "ar/ai.html",
+    "path": "/ar/ai",
+    "locale": "ar",
+    "indexable": true
+  },
+  {
+    "file": "fr/ai.html",
+    "path": "/fr/ai",
+    "locale": "fr",
+    "indexable": true
+  },
+  {
+    "file": "bn/ai.html",
+    "path": "/bn/ai",
+    "locale": "bn",
+    "indexable": true
+  },
+  {
+    "file": "pt/ai.html",
+    "path": "/pt/ai",
+    "locale": "pt",
+    "indexable": true
+  },
+  {
+    "file": "id/ai.html",
+    "path": "/id/ai",
+    "locale": "id",
+    "indexable": true
+  },
+  {
+    "file": "ur/ai.html",
+    "path": "/ur/ai",
+    "locale": "ur",
+    "indexable": true
+  },
+  {
+    "file": "ru/ai.html",
+    "path": "/ru/ai",
+    "locale": "ru",
+    "indexable": true
+  },
+  {
+    "file": "de/ai.html",
+    "path": "/de/ai",
+    "locale": "de",
+    "indexable": true
+  },
+  {
+    "file": "ja/ai.html",
+    "path": "/ja/ai",
+    "locale": "ja",
+    "indexable": true
+  },
+  {
+    "file": "pcm/ai.html",
+    "path": "/pcm/ai",
+    "locale": "pcm",
+    "indexable": true
+  },
+  {
+    "file": "mr/ai.html",
+    "path": "/mr/ai",
+    "locale": "mr",
+    "indexable": true
+  },
+  {
+    "file": "vi/ai.html",
+    "path": "/vi/ai",
+    "locale": "vi",
+    "indexable": true
+  },
+  {
+    "file": "te/ai.html",
+    "path": "/te/ai",
+    "locale": "te",
+    "indexable": true
+  },
+  {
+    "file": "sw/ai.html",
+    "path": "/sw/ai",
+    "locale": "sw",
+    "indexable": true
+  },
+  {
+    "file": "ha/ai.html",
+    "path": "/ha/ai",
+    "locale": "ha",
+    "indexable": true
+  },
+  {
+    "file": "tr/ai.html",
+    "path": "/tr/ai",
+    "locale": "tr",
+    "indexable": true
+  },
+  {
     "file": "directory.html",
     "path": "/directory",
     "locale": "en",

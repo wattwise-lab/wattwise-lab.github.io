@@ -299,6 +299,11 @@
   }
   function render() {
     I.apply();
+    const aiCopy = window.CMAICopy?.[I.language];
+    if (aiCopy)
+      document.querySelectorAll('[data-ai-key]').forEach((n) => {
+        if (aiCopy[n.dataset.aiKey]) n.textContent = aiCopy[n.dataset.aiKey];
+      });
     document.querySelectorAll('[data-cm-language]').forEach((s) => {
       s.value = I.language;
       s.title = s.selectedOptions[0]?.textContent || I.language;

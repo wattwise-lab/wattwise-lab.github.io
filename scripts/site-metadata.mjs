@@ -65,6 +65,7 @@ export async function finishMetadata(root, catalog) {
       purpose: t.description,
     })),
     ...[
+      'ai',
       'directory',
       'workspace',
       'ranking',
@@ -210,10 +211,13 @@ export async function secureMarkup(root, files) {
     $('meta[http-equiv]')
       .filter((_, e) => $(e).attr('http-equiv').toLowerCase() === 'content-security-policy')
       .remove();
+    const aiPage = /(?:^|\/)ai\.html$/.test(file);
     const csp =
       "default-src 'self'; script-src " +
       [...new Set(hashes)].join(' ') +
-      " 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'";
+      " 'strict-dynamic' 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src " +
+      (aiPage ? 'https://calcmintly-ai.pages.dev' : "'none'") +
+      "; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'";
     $('head meta[charset]').after(
       '<meta data-cm-csp http-equiv="Content-Security-Policy" content="' +
         csp.replaceAll('&', '&amp;').replaceAll('"', '&quot;') +

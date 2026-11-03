@@ -1,0 +1,123 @@
+/* shopping, finance, arithmetic, constant-load energy */
+window.CMAINotes = {
+  en: [
+    'Prices come from your input. Unstated discount, tax and shipping are excluded (0). Use one currency; each line rounds half-up to two decimal places.',
+    'Fixed-rate estimate. Unstated charges and extra payments are excluded (0). Mortgage PMI uses an80% loan-to-value threshold; lender rules may differ. No currency exchange.',
+    'Check that the expression matches your question. Trigonometry uses degrees unless you select radians. Expressions do not automatically handle units.',
+    'Assumes constant rated power and the same operating hours each day. Standby consumption and changing loads are excluded.',
+  ],
+  'zh-CN': [
+    '价格来自你的输入。未提供的折扣、税费、运费按不计入（0）处理。只使用同一币种；各行金额四舍五入到两位小数。',
+    '按固定利率估算，未提供的费用和额外还款按不计入（0）处理。房贷PMI采用80%贷款价值比阈值，银行规则可能不同；不进行换汇。',
+    '请核对算式是否表达了你的问题。三角函数默认角度制，也可选择弧度制；算式不会自动处理单位。',
+    '假设恒定额定功率和每天相同运行时长，不包含待机耗电及变化的负载。',
+  ],
+  hi: [
+    'कीमतें आपके इनपुट से हैं। न बताए गए छूट, कर और डिलीवरी को शामिल नहीं किया जाता (0)। एक मुद्रा रखें; हर पंक्ति दो दशमलव तक पूर्णांकित है।',
+    'स्थिर ब्याज दर का अनुमान। न बताए शुल्क और अतिरिक्त भुगतान शामिल नहीं हैं (0)। बंधक PMI में80% ऋण-मूल्य सीमा है; बैंक के नियम अलग हो सकते हैं। मुद्रा विनिमय नहीं।',
+    'सूत्र जाँचें। रेडियन चुनने तक त्रिकोणमिति डिग्री में है। सूत्र अपने आप इकाइयाँ नहीं संभालता।',
+    'स्थिर रेटेड शक्ति और रोज समान समय मानता है। स्टैंडबाय खपत और बदलते लोड शामिल नहीं हैं।',
+  ],
+  es: [
+    'Los precios son los introducidos. Se excluyen descuentos, impuestos y envío no indicados (0). Usa una moneda; cada línea se redondea a dos decimales.',
+    'Estimación a interés fijo. Se excluyen cargos y pagos extra no indicados (0). PMI usa un umbral préstamo/valor del80%; cada banco puede tener otras reglas. Sin cambio de moneda.',
+    'Comprueba la expresión. La trigonometría usa grados salvo que selecciones radianes. Las expresiones no gestionan unidades automáticamente.',
+    'Supone potencia nominal constante y las mismas horas cada día. Excluye consumo en espera y cargas variables.',
+  ],
+  ar: [
+    'الأسعار من مدخلاتك. تُستبعد الخصومات والضرائب والتوصيل غير المذكورة (0). استخدم عملة واحدة؛ تُقرّب قيمة كل بند إلى منزلتين عشريتين.',
+    'تقدير بفائدة ثابتة. تُستبعد الرسوم والدفعات الإضافية غير المذكورة (0). يستخدم PMI حد80% لنسبة القرض إلى القيمة؛ قد تختلف قواعد البنك. لا تحويل للعملات.',
+    'تحقق من التعبير. تستخدم الدوال المثلثية الدرجات إلا إذا اخترت الراديان. لا تعالج التعبيرات الوحدات تلقائياً.',
+    'يفترض قدرة ثابتة وعدد ساعات متساوياً يومياً. يستبعد استهلاك الاستعداد والأحمال المتغيرة.',
+  ],
+  fr: [
+    'Les prix viennent de vos données. Remises, taxes et livraison non indiquées sont exclues (0). Une seule devise ; chaque ligne est arrondie à deux décimales.',
+    'Estimation à taux fixe. Frais et versements supplémentaires non indiqués exclus (0). Le PMI utilise un seuil prêt/valeur de80% ; les règles du prêteur peuvent différer. Aucune conversion de devises.',
+    'Vérifiez l’expression. La trigonométrie utilise les degrés sauf si vous choisissez les radians. Les unités ne sont pas traitées automatiquement.',
+    'Suppose une puissance nominale constante et la même durée chaque jour. Veille et charges variables exclues.',
+  ],
+  bn: [
+    'দাম আপনার তথ্য থেকে নেওয়া। উল্লেখ না করা ছাড়, কর ও ডেলিভারি বাদ (0)। এক মুদ্রা ব্যবহার করুন; প্রতি সারির টাকা দুই দশমিকে রাউন্ড করা হয়।',
+    'স্থির সুদের হিসাব। উল্লেখ না করা ফি ও অতিরিক্ত কিস্তি বাদ (0)। বন্ধকী PMI-তে80% ঋণ-মূল্য সীমা ব্যবহৃত; ব্যাংকের নিয়ম ভিন্ন হতে পারে। মুদ্রা বিনিময় নেই।',
+    'রাশি যাচাই করুন। রেডিয়ান না বাছলে ত্রিকোণমিতিতে ডিগ্রি ব্যবহৃত হয়। একক স্বয়ংক্রিয়ভাবে হিসাব হয় না।',
+    'স্থির ক্ষমতা এবং প্রতিদিন একই সময় ধরা হয়। স্ট্যান্ডবাই খরচ ও পরিবর্তনশীল লোড বাদ।',
+  ],
+  pt: [
+    'Os preços vêm dos dados informados. Desconto, imposto e frete não informados são excluídos (0). Use uma moeda; cada linha é arredondada a duas casas decimais.',
+    'Estimativa com taxa fixa. Custos e pagamentos extras não informados são excluídos (0). O PMI usa limite de80% da relação empréstimo/valor; regras bancárias podem variar. Sem câmbio.',
+    'Confira a expressão. A trigonometria usa graus, salvo se você escolher radianos. As unidades não são tratadas automaticamente.',
+    'Supõe potência nominal constante e as mesmas horas diárias. Exclui consumo em espera e cargas variáveis.',
+  ],
+  id: [
+    'Harga berasal dari masukan Anda. Diskon, pajak, dan ongkir yang tidak disebutkan dikecualikan (0). Gunakan satu mata uang; tiap baris dibulatkan ke dua desimal.',
+    'Estimasi bunga tetap. Biaya dan pembayaran tambahan yang tidak disebutkan dikecualikan (0). PMI memakai ambang rasio pinjaman/nilai80%; aturan bank dapat berbeda. Tanpa penukaran mata uang.',
+    'Periksa ekspresi. Trigonometri memakai derajat kecuali Anda memilih radian. Ekspresi tidak menangani satuan secara otomatis.',
+    'Mengasumsikan daya tetap dan jam operasi yang sama tiap hari. Konsumsi siaga dan beban berubah dikecualikan.',
+  ],
+  ur: [
+    'قیمتیں آپ کی معلومات سے ہیں۔ نہ بتائی گئی رعایت، ٹیکس اور ترسیل شامل نہیں (0)۔ ایک کرنسی رکھیں؛ ہر سطر دو اعشاری مقامات تک گول ہوتی ہے۔',
+    'مقرر شرح سود کا تخمینہ۔ نہ بتائے اخراجات اور اضافی ادائیگیاں شامل نہیں (0)۔ رہن PMI میں80% قرض وقیمت حد ہے؛ بینک کے اصول مختلف ہو سکتے ہیں۔ کرنسی تبادلہ نہیں۔',
+    'عبارت جانچیں۔ ریڈین منتخب نہ کریں تو مثلثیات ڈگری میں ہے۔ اکائیوں کا خودکار حساب نہیں ہوتا۔',
+    'مستقل طاقت اور روز یکساں وقت فرض ہے۔ اسٹینڈبائی استعمال اور بدلتے بوجھ شامل نہیں۔',
+  ],
+  ru: [
+    'Цены взяты из ваших данных. Неуказанные скидки, налоги и доставка исключены (0). Одна валюта; каждая строка округляется до двух знаков.',
+    'Оценка с фиксированной ставкой. Неуказанные сборы и дополнительные платежи исключены (0). PMI использует порог отношения кредита к стоимости80%; правила банка могут отличаться. Без обмена валют.',
+    'Проверьте выражение. Тригонометрия использует градусы, если не выбраны радианы. Единицы не обрабатываются автоматически.',
+    'Постоянная номинальная мощность и одинаковое время работы каждый день. Режим ожидания и переменные нагрузки исключены.',
+  ],
+  de: [
+    'Preise stammen aus deinen Eingaben. Nicht genannte Rabatte, Steuern und Versandkosten sind ausgeschlossen (0). Eine Währung; jede Zeile wird auf zwei Dezimalstellen gerundet.',
+    'Schätzung mit festem Zinssatz. Nicht genannte Kosten und Sonderzahlungen sind ausgeschlossen (0). PMI nutzt eine Beleihungsgrenze von80%; Bankregeln können abweichen. Keine Währungsumrechnung.',
+    'Prüfe den Ausdruck. Trigonometrie nutzt Grad, sofern du nicht Bogenmaß auswählst. Einheiten werden nicht automatisch verarbeitet.',
+    'Konstante Nennleistung und gleiche tägliche Laufzeit. Standby-Verbrauch und wechselnde Lasten sind ausgeschlossen.',
+  ],
+  ja: [
+    '価格は入力値を使います。未入力の割引・税・送料は含めません（0）。通貨は統一し、各行を小数点以下2桁に四捨五入します。',
+    '固定金利での概算です。未入力の費用・追加返済は含めません（0）。PMIは融資比率80%を基準にしますが、銀行の規則は異なる場合があります。通貨換算はしません。',
+    '式が質問を表しているか確認してください。三角関数は既定で度数法を使用し、ラジアンも選べます。単位は自動処理しません。',
+    '一定の定格電力と毎日同じ使用時間を仮定します。待機電力や変動する負荷は含めません。',
+  ],
+  pcm: [
+    'Na di prices wey you enter we use. Discount, tax and delivery wey you no state no dey included (0). Use one currency; each line round to two decimal places.',
+    'Na fixed-rate estimate. Charges and extra payment wey you no state no dey included (0). Mortgage PMI use80% loan-to-value limit; bank rules fit differ. No currency exchange.',
+    'Check say di expression match your question. Trigonometry use degrees unless you choose radians. Expression no dey handle units automatically.',
+    'We assume steady rated power and same working hours every day. Standby use and changing loads no dey included.',
+  ],
+  mr: [
+    'किंमती तुमच्या माहितीतून येतात. न सांगितलेली सूट, कर व वितरण वगळले जाते (0)। एक चलन वापरा; प्रत्येक रक्कम दोन दशांशांपर्यंत गोल केली जाते.',
+    'स्थिर व्याजदराचा अंदाज. न सांगितलेले खर्च व अतिरिक्त परतफेड वगळली जाते (0)। PMI साठी80% कर्ज-मूल्य मर्यादा; बँकेचे नियम वेगळे असू शकतात. चलन बदल नाही.',
+    'गणिती पद तपासा. रेडियन निवडले नाही तर त्रिकोणमिती अंशांत आहे. एकके आपोआप हाताळली जात नाहीत.',
+    'स्थिर शक्ती आणि रोज समान वेळ गृहीत आहे. स्टँडबाय वापर व बदलते भार वगळले आहेत.',
+  ],
+  vi: [
+    'Giá lấy từ dữ liệu bạn nhập. Bỏ qua giảm giá, thuế và phí giao hàng chưa nêu (0). Dùng một loại tiền; mỗi dòng làm tròn đến hai chữ số thập phân.',
+    'Ước tính lãi suất cố định. Bỏ qua phí và khoản trả thêm chưa nêu (0). PMI dùng ngưỡng vay/giá trị80%; quy tắc ngân hàng có thể khác. Không đổi tiền tệ.',
+    'Kiểm tra biểu thức. Lượng giác dùng độ trừ khi bạn chọn radian. Biểu thức không tự xử lý đơn vị.',
+    'Giả định công suất cố định và cùng số giờ mỗi ngày. Bỏ qua điện chờ và tải thay đổi.',
+  ],
+  te: [
+    'ధరలు మీ సమాచారం నుండి. పేర్కొనని తగ్గింపు, పన్ను, డెలివరీ చేర్చబడవు (0). ఒకే కరెన్సీ వాడండి; ప్రతి వరుసను రెండు దశాంశాలకు రౌండ్ చేస్తారు.',
+    'స్థిర వడ్డీ అంచనా. పేర్కొనని ఫీజులు, అదనపు చెల్లింపులు చేర్చబడవు (0). PMIలో80% రుణ-విలువ పరిమితి; బ్యాంకు నియమాలు వేరుగా ఉండవచ్చు. కరెన్సీ మార్పిడి లేదు.',
+    'వ్యక్తీకరణ తనిఖీ చేయండి. రేడియన్లు ఎంచుకోకపోతే త్రికోణమితి డిగ్రీలలో ఉంటుంది. ప్రమాణాలు స్వయంచాలకంగా నిర్వహించబడవు.',
+    'స్థిర శక్తి మరియు రోజూ ఒకే సమయం అని భావిస్తుంది. స్టాండ్‌బై వినియోగం, మారే లోడ్లు చేర్చబడవు.',
+  ],
+  sw: [
+    'Bei hutoka kwenye taarifa zako. Punguzo, kodi na usafirishaji usiotajwa huondolewa (0). Tumia sarafu moja; kila mstari huzungushwa hadi desimali mbili.',
+    'Makadirio ya riba isiyobadilika. Gharama na malipo ya ziada yasiyotajwa huondolewa (0). PMI hutumia mpaka wa80% wa mkopo kwa thamani; kanuni za benki zinaweza kutofautiana. Hakuna ubadilishaji wa sarafu.',
+    'Hakiki usemi. Trigonometria hutumia digrii isipokuwa uchague radiani. Vipimo havishughulikiwi kiotomatiki.',
+    'Huchukulia nguvu thabiti na muda uleule kila siku. Matumizi ya kusubiri na mizigo inayobadilika hayajajumuishwa.',
+  ],
+  ha: [
+    'Farashi daga bayananka yake. Rangwame, haraji da kai kaya da ba a faɗa ba ba sa ciki (0). Yi amfani da kuɗi iri ɗaya; kowace layi tana zagayawa zuwa wurare biyu na goma.',
+    'Ƙiyasin riba tsayayyiya. Kuɗaɗe da ƙarin biya da ba a faɗa ba ba sa ciki (0). PMI yana amfani da iyakar80% rance zuwa ƙima; dokar banki na iya bambanta. Babu musayar kuɗi.',
+    'Duba furucin lissafi. Ana amfani da digiri sai ka zaɓi radian. Ba a sarrafa ma’aunai kai tsaye.',
+    'Ana ɗaukar ƙarfin wuta tsayayye da awanni iri ɗaya kullum. Ba a haɗa jiran aiki da nauyi mai sauyawa ba.',
+  ],
+  tr: [
+    'Fiyatlar girdilerinizden alınır. Belirtilmeyen indirim, vergi ve kargo dahil edilmez (0). Tek para birimi kullanın; her satır iki ondalığa yuvarlanır.',
+    'Sabit faiz tahmini. Belirtilmeyen masraflar ve ek ödemeler dahil edilmez (0). PMI,%80 kredi/değer eşiği kullanır; banka kuralları değişebilir. Döviz çevrimi yoktur.',
+    'İfadeyi kontrol edin. Radyan seçilmedikçe trigonometri derece kullanır. İfadeler birimleri otomatik işlemez.',
+    'Sabit güç ve her gün aynı çalışma süresi varsayılır. Bekleme tüketimi ve değişen yükler dahil edilmez.',
+  ],
+};

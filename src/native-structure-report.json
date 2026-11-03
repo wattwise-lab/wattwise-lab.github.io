@@ -1,8 +1,8 @@
 {
-  "routes": 10220,
-  "passedPages": 10220,
+  "routes": 10240,
+  "passedPages": 10240,
   "embeds": 501,
-  "integrityReferences": 93714,
-  "indexedRoutes": 10200,
+  "integrityReferences": 93893,
+  "indexedRoutes": 10220,
   "failures": []
 }

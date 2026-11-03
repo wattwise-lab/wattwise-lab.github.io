@@ -5,7 +5,7 @@ import { load } from 'cheerio';
 const root = new URL('../', import.meta.url),
   read = (f) => fs.readFile(new URL(f, root), 'utf8');
 const routes = JSON.parse(await read('src/locale-routes.json'));
-assert.equal(routes.length, 10220);
+assert.equal(routes.length, 10240);
 assert.equal(new Set(routes.map((r) => r.path)).size, routes.length);
 const known = new Set(routes.map((r) => r.path)),
   hashes = new Map(),

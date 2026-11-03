@@ -15,6 +15,7 @@ export async function localizeSite(root, catalog, pages, selected) {
     'cm-info-metadata.js',
     'cm-ui-copy.js',
     'cm-appearance-copy.js',
+    'cm-ai-copy.js',
     'cm-preferences-copy.js',
     'cm-keypad-copy.js',
     'cm-home-copy-v3.js',
@@ -76,6 +77,10 @@ export async function localizeSite(root, catalog, pages, selected) {
           $(element).text(categoryName(domain) + ' · ' + categoryCount(domain));
         });
       }
+      $('[data-ai-key]').each((_, e) => {
+        const key = $(e).attr('data-ai-key');
+        if (context.window.CMAICopy[locale][key]) $(e).text(context.window.CMAICopy[locale][key]);
+      });
       $('script[data-cm-locale-dictionary]').remove();
       $('script[data-cm-merchant-dictionary]').remove();
       if (page.path === '/merchant-profit-planner') {
@@ -293,15 +298,19 @@ export async function localizeSite(root, catalog, pages, selected) {
       const title =
         locale === 'en'
           ? sourceTitle
-          : context.window.CMInfoMetadata[page.path]
-            ? translate(context.window.CMInfoMetadata[page.path].title, locale)
-            : metadata.title;
+          : page.path === '/ai'
+            ? context.window.CMAICopy[locale].title + ' | CalcMintly'
+            : context.window.CMInfoMetadata[page.path]
+              ? translate(context.window.CMInfoMetadata[page.path].title, locale)
+              : metadata.title;
       const description =
         locale === 'en'
           ? $('meta[name=description]').attr('content')
-          : context.window.CMInfoMetadata[page.path]
-            ? translate(context.window.CMInfoMetadata[page.path].description, locale)
-            : metadata.description;
+          : page.path === '/ai'
+            ? context.window.CMAICopy[locale].lead + ' ' + context.window.CMAICopy[locale].privacy
+            : context.window.CMInfoMetadata[page.path]
+              ? translate(context.window.CMInfoMetadata[page.path].description, locale)
+              : metadata.description;
       $('title').text(title);
       $('body')
         .attr('data-cm-title-en', sourceTitle)
@@ -346,6 +355,8 @@ export async function localizeSite(root, catalog, pages, selected) {
           if (typeof value !== 'string' || key.startsWith('@')) return value;
           if (['url', 'item', 'mainEntityOfPage'].includes(key) && value.startsWith(origin))
             return origin + routes.url(value, locale, origin);
+          if (page.path === '/ai' && key === 'name' && value === sourceName)
+            return context.window.CMAICopy[locale].title;
           if (['name', 'description', 'text'].includes(key)) return translate(value, locale);
           return value;
         }
