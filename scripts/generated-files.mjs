@@ -6,6 +6,8 @@ import { execFileSync } from 'node:child_process';
 // One inventory shared by release preparation and the clean-check gate.
 export const generatedPaths = [
   '*.html',
+  'services/ai/library.mjs',
+  'services/ai/public',
   'assets',
   'sitemap.xml',
   'robots.txt',
@@ -41,6 +43,7 @@ async function snapshot(root) {
         entry.isFile() &&
         (relative.endsWith('.html') ||
           relative.startsWith('assets/') ||
+          relative.startsWith('services/ai/public/') ||
           generatedPaths.includes(relative))
       ) {
         files[relative] = createHash('sha256')

@@ -6,6 +6,8 @@ export default [
       'node_modules/**',
       '_next/**',
       'assets/dist/**',
+      'services/ai/library.mjs',
+      'services/ai/public/**',
       'assets/catalog-slices/**',
       'assets/cm-common.js',
       'assets/cm-form-state.js',
@@ -22,6 +24,10 @@ export default [
     ],
   },
   js.configs.recommended,
+  {
+    files: ['services/ai/worker.mjs'],
+    languageOptions: { globals: { CM_AI_VERSION: 'readonly', ...globals.browser } },
+  },
   {
     rules: {
       'no-empty': ['error', { allowEmptyCatch: true }],
@@ -59,7 +65,7 @@ export default [
     },
   },
   {
-    files: ['scripts/**/*.mjs', '*.mjs'],
+    files: ['scripts/**/*.mjs', 'services/ai/*.mjs', '*.mjs'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: globals.node },
     rules: { 'no-unused-vars': ['error', { argsIgnorePattern: '^_', caughtErrors: 'none' }] },
   },

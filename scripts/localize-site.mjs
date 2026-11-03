@@ -15,6 +15,7 @@ export async function localizeSite(root, catalog, pages, selected) {
     'cm-info-metadata.js',
     'cm-ui-copy.js',
     'cm-appearance-copy.js',
+    'cm-ai-copy.js',
     'cm-preferences-copy.js',
     'cm-keypad-copy.js',
     'cm-home-copy-v3.js',
@@ -76,6 +77,10 @@ export async function localizeSite(root, catalog, pages, selected) {
           $(element).text(categoryName(domain) + ' · ' + categoryCount(domain));
         });
       }
+      $('[data-ai-key]').each((_, e) => {
+        const key = $(e).attr('data-ai-key');
+        if (context.window.CMAICopy[locale][key]) $(e).text(context.window.CMAICopy[locale][key]);
+      });
       $('script[data-cm-locale-dictionary]').remove();
       $('script[data-cm-merchant-dictionary]').remove();
       if (page.path === '/merchant-profit-planner') {

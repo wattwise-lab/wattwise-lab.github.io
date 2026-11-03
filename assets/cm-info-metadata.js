@@ -1,4 +1,9 @@
 window.CMInfoMetadata = {
+  '/ai': {
+    title: 'AI Calculator: Inputs, Units and Clear Results | CalcMintly',
+    description:
+      'Describe calculations in your own words. AI identifies tools and missing inputs. Validated models show results with units, methods and assumptions to review.',
+  },
   '/': {
     title: 'Free Online Calculators for Everyday Life | CalcMintly',
     description:
