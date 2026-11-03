@@ -33,6 +33,11 @@ jobs:
           BROWSER: ${{ matrix.browser }}
           SHARD: ${{ matrix.shard }}
           SHARDS: 5
+      - name: Check touch workspace entry and full-card replacement
+        if: matrix.shard == 0
+        run: node scripts/workspace-mobile-browser-test.mjs
+        env:
+          BROWSER: ${{ matrix.browser }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
