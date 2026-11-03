@@ -103,7 +103,11 @@
     return value;
   }
   const statusCopy = (key) =>
-    key === 'limited' ? window.CMAIRateCopy[I.language] || window.CMAIRateCopy.en : copy(key);
+    key === 'quota'
+      ? window.CMAIQuotaCopy[I.language] || window.CMAIQuotaCopy.en
+      : key === 'limited'
+        ? window.CMAIRateCopy[I.language] || window.CMAIRateCopy.en
+        : copy(key);
   function setStatus(key, suffix = '') {
     if (key) {
       status.dataset.aiStatusKey = key;
@@ -116,7 +120,13 @@
     }
   }
   const failure = (e) => {
-    setStatus(e.message === 'rate_limited' ? 'limited' : 'error');
+    setStatus(
+      e.message === 'ai_quota_exceeded'
+        ? 'quota'
+        : e.message === 'rate_limited'
+          ? 'limited'
+          : 'error',
+    );
     status.dataset.errorCode = e.message;
   };
   function textReport() {

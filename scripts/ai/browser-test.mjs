@@ -77,7 +77,8 @@ const shopping = interpret(
 );
 let fixture = chain,
   serviceFailure = false,
-  rateLimited = false;
+  rateLimited = false,
+  quotaExhausted = false;
 await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
   const req = route.request();
   requests.push(new URL(req.url()).pathname);
@@ -92,11 +93,17 @@ await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
     });
     return;
   }
-  if (serviceFailure || rateLimited) {
+  if (serviceFailure || rateLimited || quotaExhausted) {
     await route.fulfill({
       status: rateLimited ? 429 : 503,
       contentType: 'application/json',
-      body: JSON.stringify({ error: rateLimited ? 'rate_limited' : 'ai_unavailable' }),
+      body: JSON.stringify({
+        error: quotaExhausted
+          ? 'ai_quota_exceeded'
+          : rateLimited
+            ? 'rate_limited'
+            : 'ai_unavailable',
+      }),
       headers: { 'Access-Control-Allow-Origin': '*' },
     });
     return;
@@ -444,6 +451,24 @@ try {
   assert.ok((await page.locator('#cm-ai-status').innerText()).includes('60'));
   await page.locator('#cm-site-language').selectOption('fr');
   assert.ok((await page.locator('#cm-ai-status').innerText()).startsWith('Trop de demandes IA.'));
+  rateLimited = false;
+  quotaExhausted = true;
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('water flow');
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () =>
+      globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'ai_quota_exceeded',
+  );
+  assert.ok((await page.locator('#cm-ai-status').innerText()).includes('额度'));
+  await page.locator('#cm-site-language').selectOption('ar');
+  assert.ok(
+    (await page.locator('#cm-ai-status').innerText()).startsWith('بلغت خدمة الذكاء الاصطناعي'),
+  );
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.locator('h1').click();
+  await page.keyboard.press('Control+Home');
+  await page.screenshot({ path: new URL('quota-arabic-phone.png', out).pathname, fullPage: true });
   assert.deepEqual(failures, []);
   await fs.writeFile(
     new URL('report.json', out),

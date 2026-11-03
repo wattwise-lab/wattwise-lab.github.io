@@ -469,12 +469,13 @@ for (const file of ['cm-ai-copy.js', 'cm-ai-examples.js', 'cm-ai-notes.js'])
 const locales = 'en zh-CN hi es ar fr bn pt id ur ru de ja pcm mr vi te sw ha tr'.split(' ');
 for (const locale of locales)
   test('AI copy and examples ' + locale, () => {
-    const { CMAICopy, CMAIExamples, CMAINotes, CMAIRateCopy } = copyContext.window;
+    const { CMAICopy, CMAIExamples, CMAINotes, CMAIRateCopy, CMAIQuotaCopy } = copyContext.window;
     assert.deepEqual(Object.keys(CMAICopy[locale]), Object.keys(CMAICopy.en));
     assert.ok(Object.values(CMAICopy[locale]).every((v) => typeof v === 'string' && v.trim()));
     assert.equal(CMAIExamples[locale].length, 4);
     assert.equal(CMAINotes[locale].length, 4);
     assert.ok(CMAIRateCopy[locale].includes('60') && CMAIRateCopy[locale].includes('3'));
+    assert.ok(typeof CMAIQuotaCopy[locale] === 'string' && CMAIQuotaCopy[locale].trim());
     assert.ok([...CMAIExamples[locale], ...CMAINotes[locale]].every((v) => v.trim()));
   });
 let repairCalls = 0;
@@ -660,6 +661,26 @@ checks++;
   assert.ok((await Promise.all(pending)).every((r) => r.status === 200));
   checks++;
 }
+await assert.rejects(
+  planQuestion(
+    {
+      AI: {
+        run: async () => {
+          throw Error('3036: daily free allocation of neurons exceeded');
+        },
+      },
+    },
+    '2+3',
+    'en',
+  ),
+  (error) => error instanceof InputError && error.code === 'ai_quota_exceeded',
+);
+checks++;
+await assert.rejects(
+  planQuestion({ AI: { run: async () => ({ response: 'malformed' }) } }, '2+3', 'en'),
+  (error) => error instanceof InputError && error.code === 'ai_invalid_response',
+);
+checks++;
 console.log(
   JSON.stringify({
     checks,

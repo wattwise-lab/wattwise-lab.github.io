@@ -89,7 +89,24 @@ async function ask(env, messages, max_tokens = 1800) {
     return JSON.parse(content.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, ''));
   } catch (e) {
     if (e instanceof InputError) throw e;
-    throw new InputError('ai_unavailable');
+    if (e instanceof SyntaxError) throw new InputError('ai_invalid_response', 'invalid_json');
+    const message = String(e?.message || ''),
+      providerCode = message.match(/\b(?:3036|3040|4006|429|503)\b/)?.[0] || '';
+    if (/3036|daily free allocation|neuron.*(?:exceed|limit)|quota.*exceed/i.test(message))
+      throw new InputError(
+        'ai_quota_exceeded',
+        [
+          providerCode || 'provider_quota',
+          [
+            ...new Set(
+              message
+                .toLowerCase()
+                .match(/\b(?:daily|free|allocation|neurons?|quota|limit|exceeded)\b/g) || [],
+            ),
+          ].join(','),
+        ].join(':'),
+      );
+    throw new InputError('ai_unavailable', providerCode || 'provider_error');
   } finally {
     clearTimeout(timer);
   }

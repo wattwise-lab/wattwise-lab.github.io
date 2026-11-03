@@ -145,3 +145,26 @@ window.CMAIRateCopy = {
   ha: 'Buƙatun AI sun yi yawa. Sake gwadawa daga baya. Iyakar kowane IP ita ce 3 a minti da 60 a rana; za ka iya gyara sakamakon da ake da shi ka sake lissafi.',
   tr: 'Çok fazla AI isteği var. Daha sonra tekrar deneyin. IP başına dakikada 3, günde 60 istek; mevcut sonuçlar düzenlenip yeniden hesaplanabilir.',
 };
+
+window.CMAIQuotaCopy = {
+  en: 'The AI service has reached its usage allowance. Please try again later. Existing results can still be edited, recalculated and exported.',
+  'zh-CN': 'AI 服务额度暂时用完，请稍后再试。已有结果仍可修改、重新计算和导出。',
+  hi: 'AI सेवा की उपयोग सीमा पूरी हो गई है। बाद में फिर प्रयास करें। मौजूदा परिणाम संपादित, दोबारा गणना और निर्यात किए जा सकते हैं।',
+  es: 'El servicio de IA ha alcanzado su cuota de uso. Inténtalo más tarde. Puedes editar, recalcular y exportar los resultados existentes.',
+  ar: 'بلغت خدمة الذكاء الاصطناعي حد الاستخدام. حاول لاحقاً. يمكنك تعديل النتائج الحالية وإعادة حسابها وتصديرها.',
+  fr: 'Le quota du service IA est atteint. Réessayez plus tard. Les résultats existants restent modifiables, recalculables et exportables.',
+  bn: 'AI পরিষেবার ব্যবহারের সীমা পূর্ণ হয়েছে। পরে আবার চেষ্টা করুন। আগের ফল সম্পাদনা, পুনরায় গণনা ও রপ্তানি করা যাবে।',
+  pt: 'O serviço de IA atingiu a cota de uso. Tente mais tarde. Os resultados existentes ainda podem ser editados, recalculados e exportados.',
+  id: 'Kuota layanan AI telah tercapai. Coba lagi nanti. Hasil yang ada tetap dapat diedit, dihitung ulang, dan diekspor.',
+  ur: 'AI سروس کی استعمال کی حد پوری ہو گئی ہے۔ بعد میں کوشش کریں۔ موجودہ نتائج میں ترمیم، دوبارہ حساب اور برآمد ممکن ہے۔',
+  ru: 'Лимит использования сервиса ИИ исчерпан. Попробуйте позже. Существующие результаты можно редактировать, пересчитывать и экспортировать.',
+  de: 'Das Nutzungskontingent des KI-Dienstes ist aufgebraucht. Bitte später erneut versuchen. Vorhandene Ergebnisse bleiben bearbeitbar, neu berechenbar und exportierbar.',
+  ja: 'AIサービスの利用枠に達しました。後でもう一度お試しください。既存の結果は編集・再計算・エクスポートできます。',
+  pcm: 'AI service don reach its usage limit. Try again later. You still fit edit, recalculate and export results wey you already get.',
+  mr: 'AI सेवेची वापरमर्यादा पूर्ण झाली आहे. नंतर पुन्हा प्रयत्न करा. आधीचे निकाल बदलता, पुन्हा मोजता आणि निर्यात करता येतात.',
+  vi: 'Dịch vụ AI đã hết hạn mức sử dụng. Hãy thử lại sau. Vẫn có thể sửa, tính lại và xuất các kết quả hiện có.',
+  te: 'AI సేవ వినియోగ పరిమితి పూర్తయింది. తర్వాత మళ్లీ ప్రయత్నించండి. ఉన్న ఫలితాలను సవరించవచ్చు, మళ్లీ లెక్కించవచ్చు, ఎగుమతి చేయవచ్చు.',
+  sw: 'Huduma ya AI imefikia kiwango chake cha matumizi. Jaribu baadaye. Bado unaweza kuhariri, kuhesabu tena na kuhamisha matokeo yaliyopo.',
+  ha: 'Sabis ɗin AI ya kai iyakar amfani. Sake gwadawa daga baya. Har yanzu za ka iya gyara sakamakon da ake da shi, sake lissafi da fitar da shi.',
+  tr: 'AI hizmetinin kullanım kotası doldu. Daha sonra tekrar deneyin. Mevcut sonuçlar düzenlenebilir, yeniden hesaplanabilir ve dışa aktarılabilir.',
+};
