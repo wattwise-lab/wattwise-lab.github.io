@@ -584,22 +584,31 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!question.value.trim()) return;
+    captureDraft();
+    const previousPlan = plan;
     const current = ++generation;
     controller?.abort();
     controller = new AbortController();
     const timer = setTimeout(() => controller?.abort(), 100000);
+    let received = false;
     send.disabled = true;
-    plan = null;
-    output.inert = false;
-    output.replaceChildren();
+    output.inert = true;
     output.setAttribute('aria-busy', 'true');
     setStatus('working');
     delete status.dataset.errorCode;
     try {
       const response = await request('/plan', { text: question.value, locale: I.language });
       if (current !== generation) return;
+      if (
+        !response.plan ||
+        !Array.isArray(response.plan.steps) ||
+        !Array.isArray(response.plan.questions)
+      )
+        throw Error('invalid_response');
       plan = response.plan;
+      output.inert = false;
       renderPlan();
+      received = true;
       setStatus(plan.questions.length ? 'missing' : 'results');
       const target = output.querySelector('h2') || output;
       target.tabIndex = -1;
@@ -611,6 +620,7 @@
         });
     } catch (error) {
       if (current === generation) {
+        if (!received) plan = previousPlan;
         if (error.name === 'AbortError') setStatus('error');
         else failure(error);
       }
@@ -619,7 +629,9 @@
       if (current === generation) {
         controller = null;
         send.disabled = false;
+        output.inert = false;
         output.setAttribute('aria-busy', 'false');
+        if (!received && plan) renderPlan();
       }
     }
   });
