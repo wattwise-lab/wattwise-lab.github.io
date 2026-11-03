@@ -103,6 +103,8 @@ try {
     await page.goto(`${base}/${lang === 'en' ? '' : lang + '/'}ai`, { waitUntil: 'networkidle' });
     assert.ok((await page.locator('h1').innerText()).trim());
     assert.equal(await page.locator('h1').count(), 1);
+    if (lang !== 'en')
+      assert.ok((await page.title()).includes(await page.locator('h1').innerText()));
     assert.equal(await page.locator('[data-ai-example]').count(), 4);
     assert.ok((await page.locator('#cm-ai-question').getAttribute('placeholder')).trim());
     assert.equal(

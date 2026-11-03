@@ -483,6 +483,33 @@
     document.querySelectorAll('[data-ai-key]').forEach((n) => {
       if (c[n.dataset.aiKey]) n.textContent = c[n.dataset.aiKey];
     });
+    const metadata =
+      I.language === 'en'
+        ? window.CMInfoMetadata['/ai']
+        : { title: c.title + ' | CalcMintly', description: c.lead + ' ' + c.privacy };
+    document.title = metadata.title;
+    document
+      .querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]')
+      .forEach((n) => {
+        n.content = metadata.title;
+      });
+    document
+      .querySelectorAll(
+        'meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]',
+      )
+      .forEach((n) => {
+        n.content = metadata.description;
+      });
+    for (const node of document.querySelectorAll('script[data-cm-breadcrumb]')) {
+      try {
+        const value = JSON.parse(node.textContent);
+        if (Array.isArray(value.itemListElement) && value.itemListElement.length)
+          value.itemListElement.at(-1).name = c.title;
+        node.textContent = JSON.stringify(value).replaceAll('<', '\\u003c');
+      } catch {
+        /* Invalid unrelated metadata does not block calculation. */
+      }
+    }
     question.placeholder = c.placeholder;
     output.setAttribute('aria-label', c.results);
     if (!controller) {
@@ -551,7 +578,15 @@
       question.focus();
     }),
   );
-  document.addEventListener('cm:language', renderCopy);
-  document.addEventListener('cm:translations', renderCopy);
+  function ready() {
+    // The shared shell loads after this page module. Register last so its generic
+    // metadata pass cannot replace the page's authored AI translations.
+    document.addEventListener('cm:language', renderCopy);
+    document.addEventListener('cm:translations', renderCopy);
+    renderCopy();
+  }
+  if (document.readyState !== 'complete')
+    document.addEventListener('DOMContentLoaded', ready, { once: true });
+  else ready();
   renderCopy();
 })();

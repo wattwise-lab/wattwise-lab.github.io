@@ -298,15 +298,19 @@ export async function localizeSite(root, catalog, pages, selected) {
       const title =
         locale === 'en'
           ? sourceTitle
-          : context.window.CMInfoMetadata[page.path]
-            ? translate(context.window.CMInfoMetadata[page.path].title, locale)
-            : metadata.title;
+          : page.path === '/ai'
+            ? context.window.CMAICopy[locale].title + ' | CalcMintly'
+            : context.window.CMInfoMetadata[page.path]
+              ? translate(context.window.CMInfoMetadata[page.path].title, locale)
+              : metadata.title;
       const description =
         locale === 'en'
           ? $('meta[name=description]').attr('content')
-          : context.window.CMInfoMetadata[page.path]
-            ? translate(context.window.CMInfoMetadata[page.path].description, locale)
-            : metadata.description;
+          : page.path === '/ai'
+            ? context.window.CMAICopy[locale].lead + ' ' + context.window.CMAICopy[locale].privacy
+            : context.window.CMInfoMetadata[page.path]
+              ? translate(context.window.CMInfoMetadata[page.path].description, locale)
+              : metadata.description;
       $('title').text(title);
       $('body')
         .attr('data-cm-title-en', sourceTitle)
@@ -351,6 +355,8 @@ export async function localizeSite(root, catalog, pages, selected) {
           if (typeof value !== 'string' || key.startsWith('@')) return value;
           if (['url', 'item', 'mainEntityOfPage'].includes(key) && value.startsWith(origin))
             return origin + routes.url(value, locale, origin);
+          if (page.path === '/ai' && key === 'name' && value === sourceName)
+            return context.window.CMAICopy[locale].title;
           if (['name', 'description', 'text'].includes(key)) return translate(value, locale);
           return value;
         }
