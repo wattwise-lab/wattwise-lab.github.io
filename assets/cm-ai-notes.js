@@ -121,3 +121,27 @@ window.CMAINotes = {
     'Sabit güç ve her gün aynı çalışma süresi varsayılır. Bekleme tüketimi ve değişen yükler dahil edilmez.',
   ],
 };
+
+window.CMAIRateCopy = {
+  en: 'Too many AI requests. Try again later. The limit is 3 per minute and 60 per day per IP; editing and recalculating existing results remains available.',
+  'zh-CN':
+    'AI 请求过多，请稍后再试。每个 IP 每分钟最多3次、每天最多60次；已有结果仍可修改和重新计算。',
+  hi: 'AI अनुरोध बहुत अधिक हैं। बाद में प्रयास करें। प्रति IP प्रति मिनट3 और प्रतिदिन60 अनुरोध; मौजूदा परिणाम संपादित करके फिर गणना कर सकते हैं।',
+  es: 'Demasiadas solicitudes de IA. Inténtalo más tarde. Máximo3 por minuto y60 al día por IP; puedes editar y recalcular los resultados existentes.',
+  ar: 'طلبات الذكاء الاصطناعي كثيرة. حاول لاحقاً. الحد3 في الدقيقة و60 يومياً لكل عنوان IP؛ يظل تعديل النتائج الحالية وإعادة حسابها متاحاً.',
+  fr: 'Trop de demandes IA. Réessayez plus tard. Limite de 3 par minute et 60 par jour par IP ; les résultats existants restent modifiables et recalculables.',
+  bn: 'অনেক বেশি AI অনুরোধ। পরে চেষ্টা করুন। প্রতি IP প্রতি মিনিটে3 ও দিনে60টি; আগের ফল সম্পাদনা করে আবার গণনা করা যাবে।',
+  pt: 'Muitos pedidos de IA. Tente mais tarde. Limite de 3 por minuto e60 por dia por IP; os resultados existentes continuam editáveis e podem ser recalculados.',
+  id: 'Terlalu banyak permintaan AI. Coba lagi nanti. Batas 3 per menit dan60 per hari per IP; hasil yang ada tetap dapat diedit dan dihitung ulang.',
+  ur: 'AI کی درخواستیں بہت زیادہ ہیں۔ بعد میں کوشش کریں۔ ہر IP پر فی منٹ3 اور روزانہ60؛ موجودہ نتائج میں ترمیم اور دوبارہ حساب ممکن ہے۔',
+  ru: 'Слишком много запросов к ИИ. Попробуйте позже. До 3 в минуту и60 в день на IP; существующие результаты можно менять и пересчитывать.',
+  de: 'Zu viele KI-Anfragen. Bitte später erneut versuchen. Maximal 3 pro Minute und60 pro Tag je IP; vorhandene Ergebnisse bleiben bearbeitbar und neu berechenbar.',
+  ja: 'AIへのリクエストが多すぎます。後でもう一度お試しください。IPごとに1分3回、1日60回までです。既存の結果は編集・再計算できます。',
+  pcm: 'AI requests too plenty. Try again later. Each IP fit send 3 per minute and 60 per day; you still fit edit and recalculate old results.',
+  mr: 'AI विनंत्या खूप झाल्या आहेत. नंतर पुन्हा प्रयत्न करा. प्रत्येक IP साठी मिनिटाला3 व दिवसाला60; आधीचे निकाल बदलून पुन्हा गणना करता येते.',
+  vi: 'Quá nhiều yêu cầu AI. Hãy thử lại sau. Tối đa 3 lần/phút và60 lần/ngày cho mỗi IP; vẫn có thể sửa và tính lại kết quả hiện có.',
+  te: 'AI అభ్యర్థనలు ఎక్కువయ్యాయి. తర్వాత మళ్లీ ప్రయత్నించండి. ప్రతి IPకి నిమిషానికి3, రోజుకు60; ఉన్న ఫలితాలను సవరించి మళ్లీ లెక్కించవచ్చు.',
+  sw: 'Maombi ya AI ni mengi. Jaribu baadaye. Kikomo ni 3 kwa dakika na 60 kwa siku kwa kila IP; matokeo yaliyopo yanaweza kuhaririwa na kuhesabiwa tena.',
+  ha: 'Buƙatun AI sun yi yawa. Sake gwadawa daga baya. Iyakar kowane IP ita ce 3 a minti da 60 a rana; za ka iya gyara sakamakon da ake da shi ka sake lissafi.',
+  tr: 'Çok fazla AI isteği var. Daha sonra tekrar deneyin. IP başına dakikada 3, günde 60 istek; mevcut sonuçlar düzenlenip yeniden hesaplanabilir.',
+};

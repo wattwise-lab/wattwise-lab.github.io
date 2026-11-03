@@ -54,7 +54,7 @@ function throttle(ip, kind = 'ai') {
     key = kind + '|' + ip + '|' + new Date(now).toISOString().slice(0, 10),
     v = visits.get(key) || [];
   if (
-    v.length >= (kind === 'ai' ? 12 : 3000) ||
+    v.length >= (kind === 'ai' ? 60 : 3000) ||
     v.filter((t) => now - t < 60000).length >= (kind === 'ai' ? 3 : 40) ||
     (kind === 'ai' && active >= 3)
   )

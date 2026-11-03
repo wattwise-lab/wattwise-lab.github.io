@@ -102,11 +102,13 @@
     if (!r.ok) throw Error(value.error || 'service_error');
     return value;
   }
+  const statusCopy = (key) =>
+    key === 'limited' ? window.CMAIRateCopy[I.language] || window.CMAIRateCopy.en : copy(key);
   function setStatus(key, suffix = '') {
     if (key) {
       status.dataset.aiStatusKey = key;
       status.dataset.aiStatusSuffix = suffix;
-      status.textContent = copy(key) + suffix;
+      status.textContent = statusCopy(key) + suffix;
     } else {
       delete status.dataset.aiStatusKey;
       delete status.dataset.aiStatusSuffix;
@@ -114,7 +116,7 @@
     }
   }
   const failure = (e) => {
-    setStatus('error');
+    setStatus(e.message === 'rate_limited' ? 'limited' : 'error');
     status.dataset.errorCode = e.message;
   };
   function textReport() {
@@ -561,7 +563,8 @@
     }
     question.placeholder = c.placeholder;
     if (status.dataset.aiStatusKey)
-      status.textContent = c[status.dataset.aiStatusKey] + (status.dataset.aiStatusSuffix || '');
+      status.textContent =
+        statusCopy(status.dataset.aiStatusKey) + (status.dataset.aiStatusSuffix || '');
     output.setAttribute('aria-label', c.results);
     if (!controller) {
       captureDraft();

@@ -76,7 +76,8 @@ const shopping = interpret(
   'zh-CN',
 );
 let fixture = chain,
-  serviceFailure = false;
+  serviceFailure = false,
+  rateLimited = false;
 await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
   const req = route.request();
   requests.push(new URL(req.url()).pathname);
@@ -91,11 +92,11 @@ await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
     });
     return;
   }
-  if (serviceFailure) {
+  if (serviceFailure || rateLimited) {
     await route.fulfill({
-      status: 503,
+      status: rateLimited ? 429 : 503,
       contentType: 'application/json',
-      body: JSON.stringify({ error: 'ai_unavailable' }),
+      body: JSON.stringify({ error: rateLimited ? 'rate_limited' : 'ai_unavailable' }),
       headers: { 'Access-Control-Allow-Origin': '*' },
     });
     return;
@@ -432,6 +433,17 @@ try {
   );
   await page.locator('#cm-ai-clear').click();
   assert.equal(await page.locator('#cm-ai-status').innerText(), '');
+  serviceFailure = false;
+  rateLimited = true;
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('water flow');
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () => globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'rate_limited',
+  );
+  assert.ok((await page.locator('#cm-ai-status').innerText()).includes('60'));
+  await page.locator('#cm-site-language').selectOption('fr');
+  assert.ok((await page.locator('#cm-ai-status').innerText()).startsWith('Trop de demandes IA.'));
   assert.deepEqual(failures, []);
   await fs.writeFile(
     new URL('report.json', out),
