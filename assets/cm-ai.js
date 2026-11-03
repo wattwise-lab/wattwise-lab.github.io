@@ -307,6 +307,7 @@
         const current = ++generation;
         controller?.abort();
         controller = new AbortController();
+        const timer = setTimeout(() => controller?.abort(), 20000);
         const values = {};
         for (const f of s.schema.fields) {
           if (f.type === 'items')
@@ -334,7 +335,7 @@
           )
             delete s.sources[f.id];
         recalc.disabled = true;
-        status.textContent = copy('working');
+        status.textContent = copy('recalc') + '…';
         try {
           const steps = plan.steps.map((step) => ({
             id: step.id,
@@ -347,12 +348,23 @@
           }));
           const response = await request('/recalculate', { steps, locale: I.language });
           if (current !== generation) return;
+          const hadMissing = plan.steps.some((step) => step.missing.length);
           plan.steps = response.steps;
-          status.textContent = '';
+          const missing = plan.steps.some((step) => step.missing.length);
+          if (hadMissing && !missing) plan.explanation = '';
+          status.textContent = copy(missing ? 'missing' : 'results');
           renderPlan();
+          const heading = [...output.querySelectorAll('[data-ai-step]')]
+            .find((node) => node.dataset.aiStep === s.id)
+            ?.querySelector('h2');
+          if (heading) {
+            heading.tabIndex = -1;
+            heading.focus({ preventScroll: true });
+          }
         } catch (error) {
           if (error.name !== 'AbortError') failure(error);
         } finally {
+          clearTimeout(timer);
           recalc.disabled = false;
           if (current === generation) controller = null;
         }
