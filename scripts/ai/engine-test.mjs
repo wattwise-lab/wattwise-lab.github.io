@@ -538,6 +538,50 @@ const formatResult = await planQuestion(
 near(formatResult.steps[0].result.rows[0].value, 20);
 assert.equal(formatCalls, 4);
 checks++;
+let coverageCalls = 0;
+const coverageResponses = [
+  { tools: ['force-calculator', 'pressure-calculator'] },
+  {
+    steps: [
+      {
+        id: 'f',
+        tool: 'force-calculator',
+        inputs: {
+          m: { value: 10, unit: 'kg', source: '10 kg' },
+          a: { value: 2, unit: 'm/s²', source: '2 m/s²' },
+        },
+      },
+    ],
+  },
+  {
+    steps: [
+      {
+        id: 'f',
+        tool: 'force-calculator',
+        inputs: {
+          m: { value: 10, unit: 'kg', source: '10 kg' },
+          a: { value: 2, unit: 'm/s²', source: '2 m/s²' },
+        },
+      },
+      {
+        id: 'p',
+        tool: 'pressure-calculator',
+        inputs: {
+          f: { ref: { step: 'f', row: 0 } },
+          a: { value: 0.01, unit: 'm²', source: '0.01 m²' },
+        },
+      },
+    ],
+  },
+];
+const covered = await planQuestion(
+  { AI: { run: async () => ({ response: JSON.stringify(coverageResponses[coverageCalls++]) }) } },
+  '10 kg; 2 m/s²; 0.01 m²',
+  'en',
+);
+assert.equal(coverageCalls, 3);
+assert.equal(covered.steps[1].result.rows[0].value, 2000);
+checks++;
 console.log(
   JSON.stringify({
     checks,
