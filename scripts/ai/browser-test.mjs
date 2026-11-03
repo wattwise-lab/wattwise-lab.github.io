@@ -76,7 +76,9 @@ const shopping = interpret(
   'zh-CN',
 );
 let fixture = chain,
-  serviceFailure = false;
+  serviceFailure = false,
+  rateLimited = false,
+  quotaExhausted = false;
 await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
   const req = route.request();
   requests.push(new URL(req.url()).pathname);
@@ -91,11 +93,17 @@ await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
     });
     return;
   }
-  if (serviceFailure) {
+  if (serviceFailure || rateLimited || quotaExhausted) {
     await route.fulfill({
-      status: 503,
+      status: rateLimited ? 429 : 503,
       contentType: 'application/json',
-      body: JSON.stringify({ error: 'ai_unavailable' }),
+      body: JSON.stringify({
+        error: quotaExhausted
+          ? 'ai_quota_exceeded'
+          : rateLimited
+            ? 'rate_limited'
+            : 'ai_unavailable',
+      }),
       headers: { 'Access-Control-Allow-Origin': '*' },
     });
     return;
@@ -290,6 +298,7 @@ try {
   );
   await page.locator('#ai-shop-item-0-quantity').fill('3');
   await page.locator('#cm-site-language').selectOption('fr');
+  assert.equal(await page.locator('#cm-ai-status').innerText(), 'Résultats');
   assert.equal(await page.locator('#ai-shop-item-0-quantity').inputValue(), '3');
   assert.ok((await page.locator('.cm-ai-card details').getAttribute('open')) !== null);
   await page.locator('.cm-ai-card form button[type=submit]').click();
@@ -424,8 +433,42 @@ try {
   assert.equal(await page.locator('#cm-ai-question').inputValue(), '保留这段输入');
   assert.ok(await page.locator('#cm-ai-send').isEnabled());
   assert.equal(await page.locator('.cm-ai-results').count(), 0);
+  await page.locator('#cm-site-language').selectOption('ar');
+  assert.equal(
+    await page.locator('#cm-ai-status').innerText(),
+    'تعذر إكمال الطلب. راجع الشروط أو حاول مجدداً.',
+  );
   await page.locator('#cm-ai-clear').click();
   assert.equal(await page.locator('#cm-ai-status').innerText(), '');
+  serviceFailure = false;
+  rateLimited = true;
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('water flow');
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () => globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'rate_limited',
+  );
+  assert.ok((await page.locator('#cm-ai-status').innerText()).includes('60'));
+  await page.locator('#cm-site-language').selectOption('fr');
+  assert.ok((await page.locator('#cm-ai-status').innerText()).startsWith('Trop de demandes IA.'));
+  rateLimited = false;
+  quotaExhausted = true;
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('water flow');
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () =>
+      globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'ai_quota_exceeded',
+  );
+  assert.ok((await page.locator('#cm-ai-status').innerText()).includes('额度'));
+  await page.locator('#cm-site-language').selectOption('ar');
+  assert.ok(
+    (await page.locator('#cm-ai-status').innerText()).startsWith('بلغت خدمة الذكاء الاصطناعي'),
+  );
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.locator('h1').click();
+  await page.keyboard.press('Control+Home');
+  await page.screenshot({ path: new URL('quota-arabic-phone.png', out).pathname, fullPage: true });
   assert.deepEqual(failures, []);
   await fs.writeFile(
     new URL('report.json', out),
