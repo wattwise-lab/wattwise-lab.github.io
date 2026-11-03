@@ -308,6 +308,8 @@
         controller?.abort();
         controller = new AbortController();
         const timer = setTimeout(() => controller?.abort(), 20000);
+        send.disabled = false;
+        output.setAttribute('aria-busy', 'true');
         const values = {};
         for (const f of s.schema.fields) {
           if (f.type === 'items')
@@ -362,11 +364,14 @@
             heading.focus({ preventScroll: true });
           }
         } catch (error) {
-          if (error.name !== 'AbortError') failure(error);
+          if (current === generation) failure(error);
         } finally {
           clearTimeout(timer);
           recalc.disabled = false;
-          if (current === generation) controller = null;
+          if (current === generation) {
+            controller = null;
+            output.setAttribute('aria-busy', 'false');
+          }
         }
       });
       if (s.result) {
@@ -491,6 +496,8 @@
     controller = new AbortController();
     const timer = setTimeout(() => controller?.abort(), 100000);
     send.disabled = true;
+    plan = null;
+    output.replaceChildren();
     output.setAttribute('aria-busy', 'true');
     status.textContent = copy('working');
     delete status.dataset.errorCode;

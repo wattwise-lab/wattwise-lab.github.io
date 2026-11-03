@@ -37,7 +37,8 @@ const chain = interpret(
   },
   text,
 );
-let fixture = chain;
+let fixture = chain,
+  serviceFailure = false;
 await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
   const req = route.request();
   requests.push(new URL(req.url()).pathname);
@@ -49,6 +50,15 @@ await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST,OPTIONS',
       },
+    });
+    return;
+  }
+  if (serviceFailure) {
+    await route.fulfill({
+      status: 503,
+      contentType: 'application/json',
+      body: JSON.stringify({ error: 'ai_unavailable' }),
+      headers: { 'Access-Control-Allow-Origin': '*' },
     });
     return;
   }
@@ -171,6 +181,19 @@ try {
     path: new URL('missing-arabic-phone.png', out).pathname,
     fullPage: true,
   });
+  serviceFailure = true;
+  await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill('保留这段输入');
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () =>
+      globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'ai_unavailable',
+  );
+  assert.equal(await page.locator('#cm-ai-question').inputValue(), '保留这段输入');
+  assert.ok(await page.locator('#cm-ai-send').isEnabled());
+  assert.equal(await page.locator('.cm-ai-results').count(), 0);
+  await page.locator('#cm-ai-clear').click();
+  assert.equal(await page.locator('#cm-ai-status').innerText(), '');
   assert.deepEqual(failures, []);
   await fs.writeFile(
     new URL('report.json', out),
