@@ -196,6 +196,7 @@ try {
       ?.textContent.includes('12,000'),
   );
   assert.equal(await page.locator('#ai-p-a').inputValue(), '0.005');
+  await page.locator('h1').click();
   await page.screenshot({ path: new URL('chain-desktop.png', out).pathname, fullPage: true });
   await page.setViewportSize({ width: 375, height: 812 });
   assert.ok(
@@ -203,6 +204,7 @@ try {
       () => globalThis.document.documentElement.scrollWidth <= globalThis.innerWidth,
     ),
   );
+  await page.locator('h1').click();
   await page.screenshot({ path: new URL('chain-phone.png', out).pathname, fullPage: true });
   await page.locator('#cm-ai-clear').click();
   assert.equal(await page.locator('#cm-ai-question').inputValue(), '');
@@ -239,6 +241,7 @@ try {
       () => globalThis.document.documentElement.scrollWidth <= globalThis.innerWidth,
     ),
   );
+  await page.locator('h1').click();
   await page.screenshot({
     path: new URL('missing-arabic-phone.png', out).pathname,
     fullPage: true,
@@ -298,13 +301,21 @@ try {
       () => globalThis.document.documentElement.scrollWidth <= globalThis.innerWidth,
     ),
   );
+  await page.locator('h1').click();
   await page.screenshot({ path: new URL('shopping-phone.png', out).pathname, fullPage: true });
   fixture = {
     questions: [],
     steps: recompute([
-      { id: 'math', tool: 'arithmetic', values: { expression: '2+3', mode: 'deg' }, sources: {} },
+      {
+        id: 'math',
+        index: 1,
+        tool: 'arithmetic',
+        values: { expression: '2+3', mode: 'deg' },
+        sources: {},
+      },
       {
         id: 'shop',
+        index: 2,
         tool: 'shopping-total',
         values: {
           items: [
@@ -338,6 +349,7 @@ try {
       .querySelector('[data-ai-step="shop"] .cm-ai-results')
       ?.textContent.includes('8.00'),
   );
+  await page.locator('h1').click();
   await page.screenshot({ path: new URL('partial-desktop.png', out).pathname, fullPage: true });
   fixture = {
     title: '住房支出',
@@ -345,6 +357,7 @@ try {
     steps: recompute([
       {
         id: 'home',
+        index: 1,
         tool: 'mortgage-calculator',
         currency: 'NGN',
         sources: {},
@@ -368,8 +381,10 @@ try {
   await page.locator('#cm-ai-send').click();
   await page.locator('.cm-ai-results').waitFor();
   assert.ok((await page.locator('.cm-ai-results').innerText()).includes('1,180.00'));
+  assert.equal(await page.locator('.cm-ai-card h2').innerText(), '1. 房贷计算器');
   await page.locator('.cm-ai-card summary').click();
   assert.equal(await page.locator('#ai-home-extra').inputValue(), '50');
+  await page.locator('h1').click();
   await page.screenshot({ path: new URL('mortgage-desktop.png', out).pathname, fullPage: true });
   fixture = interpret(
     {
