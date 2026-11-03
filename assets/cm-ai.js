@@ -230,7 +230,19 @@
         if (source?.source) field.append(el('small', copy('source') + ': ' + source.source));
         if (source?.ref) {
           n.disabled = true;
-          field.append(el('small', '↳ ' + source.ref.step + ' · ' + source.ref.row));
+          const parent = plan.steps.find((step) => step.id === source.ref.step);
+          if (parent)
+            field.append(
+              el(
+                'small',
+                '↳ ' +
+                  parent.index +
+                  '. ' +
+                  taskName(parent) +
+                  ' · ' +
+                  pick(parent.result?.rows?.[source.ref.row]?.label),
+              ),
+            );
         }
         if (source?.assumption)
           field.append(el('small', copy('limits') + ': ' + String(value ?? '')));
@@ -383,6 +395,14 @@
           results.append(row);
         }
         card.append(results);
+        if (s.result.truncated)
+          card.append(
+            el(
+              'p',
+              copy('results') + ': ' + s.result.rows.length + ' / ' + s.result.totalRows,
+              'cm-ai-note',
+            ),
+          );
       }
       card.append(
         valuesDetails,

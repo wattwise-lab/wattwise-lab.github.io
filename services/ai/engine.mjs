@@ -426,6 +426,7 @@ export function calculate(slug, values, currency = 'currency', locale = 'en') {
     currency,
     inputs: v,
     fields: schema(slug).fields,
+    totalRows: rows.length,
     rows: rows.slice(0, 100),
     truncated: rows.length > 100,
   };
