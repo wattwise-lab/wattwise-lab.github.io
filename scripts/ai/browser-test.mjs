@@ -93,7 +93,11 @@ await page.route('https://calcmintly-ai.pages.dev/**', async (route) => {
     });
     return;
   }
-  if (serviceFailure || rateLimited || quotaExhausted) {
+  if (
+    serviceFailure ||
+    rateLimited ||
+    (quotaExhausted && new URL(req.url()).pathname === '/plan')
+  ) {
     await route.fulfill({
       status: rateLimited ? 429 : 503,
       contentType: 'application/json',
@@ -452,8 +456,14 @@ try {
   await page.locator('#cm-site-language').selectOption('fr');
   assert.ok((await page.locator('#cm-ai-status').innerText()).startsWith('Trop de demandes IA.'));
   rateLimited = false;
-  quotaExhausted = true;
+  fixture = chain;
   await page.goto(base + '/zh-cn/ai');
+  await page.locator('#cm-ai-question').fill(text);
+  await page.locator('#cm-ai-send').click();
+  await page.locator('[data-ai-step="p"] .cm-ai-results').waitFor();
+  await page.locator('[data-ai-step="f"] summary').click();
+  await page.locator('#ai-f-m').fill('12');
+  quotaExhausted = true;
   await page.locator('#cm-ai-question').fill('water flow');
   await page.locator('#cm-ai-send').click();
   await page.waitForFunction(
@@ -461,10 +471,34 @@ try {
       globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode === 'ai_quota_exceeded',
   );
   assert.ok((await page.locator('#cm-ai-status').innerText()).includes('额度'));
+  assert.equal(await page.locator('[data-ai-step]').count(), 2);
+  assert.equal(await page.locator('#ai-f-m').inputValue(), '12');
+  assert.ok(
+    (await page.locator('[data-ai-step="p"] .cm-ai-results').innerText()).includes('2,000'),
+  );
+  await page.locator('[data-ai-step="f"] form button[type="submit"]').click();
+  await page.waitForFunction(() =>
+    globalThis.document
+      .querySelector('[data-ai-step="p"] .cm-ai-results')
+      ?.textContent.includes('2,400'),
+  );
+  await page.locator('#cm-ai-send').click();
+  await page.waitForFunction(
+    () =>
+      globalThis.document.querySelector('#cm-ai-status')?.dataset.errorCode ===
+        'ai_quota_exceeded' &&
+      globalThis.document.querySelector('#cm-ai-status')?.dataset.aiStatusKey === 'quota',
+  );
   await page.locator('#cm-site-language').selectOption('ar');
+  await page.waitForLoadState('networkidle');
   assert.ok(
     (await page.locator('#cm-ai-status').innerText()).startsWith('بلغت خدمة الذكاء الاصطناعي'),
   );
+  assert.equal(await page.locator('[data-ai-step]').count(), 2);
+  assert.equal(await page.locator('#ai-f-m').inputValue(), '12');
+  const quotaDownload = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'تنزيل النتائج', exact: true }).click();
+  assert.ok((await fs.readFile(await (await quotaDownload).path(), 'utf8')).includes('2400'));
   await page.setViewportSize({ width: 375, height: 812 });
   await page.locator('h1').click();
   await page.keyboard.press('Control+Home');
