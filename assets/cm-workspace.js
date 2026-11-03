@@ -561,7 +561,9 @@
       ),
     );
     $('slot-count').textContent = t('count')(cards.length);
-    $('add-tool').disabled = cards.length === 4;
+    $('add-tool').disabled = false;
+    $('add-tool').dataset.w = cards.length === 4 ? 'replace' : 'add';
+    $('add-tool').textContent = t(cards.length === 4 ? 'replace' : 'add');
     $('add-tool').title = cards.length === 4 ? t('fullHint') : t('add');
     document.dispatchEvent(new Event('cm:workspace-change'));
   }
@@ -627,17 +629,13 @@
     cards[j].node.focus({ preventScroll: true });
   }
   function openPicker(id, query = '') {
-    if (id === null && cards.length >= 4) {
-      announce(t('fullHint'));
-      return;
-    }
     replaceId = id;
     pickerPage = 1;
     pickerQuery = query;
     pickerDomain = 'all';
     $('picker-search').value = query;
     $('picker-domain').value = 'all';
-    $('picker-title').textContent = t(id === null ? 'add' : 'replace');
+    $('picker-title').textContent = t(id === null && cards.length < 4 ? 'add' : 'replace');
     $('picker-hint').textContent = t(id === null ? 'pickerHint' : 'replaceHint');
     drawPicker();
     $('picker').showModal();
@@ -703,6 +701,10 @@
           () => {
             const id = replaceId;
             $('picker').close();
+            if (id === null && cards.length === 4 && window.CMWorkspace.chooseTool) {
+              window.CMWorkspace.chooseTool(x.slug);
+              return;
+            }
             add(x.slug, id);
           },
           'pick-tool',

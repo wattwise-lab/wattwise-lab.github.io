@@ -371,6 +371,7 @@
   document.addEventListener('cm:workspace-results', resultSummary);
   document.addEventListener('cm:language', refresh);
   document.addEventListener('cm:translations', refresh);
+  A.chooseTool = choose;
   refresh();
   if (A.pendingAdd) choose(A.pendingAdd);
 })();
