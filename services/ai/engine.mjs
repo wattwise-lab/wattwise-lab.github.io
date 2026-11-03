@@ -239,7 +239,8 @@ const financeTools = [
     slug: 'loan-calculator',
     name: 'Loan Payment|贷款月供',
     domain: 'Finance',
-    purpose: 'Fixed-rate amortizing loan payment.',
+    purpose:
+      'Fixed-rate payment from an already known loan principal, annual interest rate, term and extra payment. For home price/down payment and housing costs use mortgage-calculator.|由已知贷款本金、年利率、期限与额外还款计算月供；房价、首付与住房费用使用房贷工具。',
     fields: [
       nf('prin', 'Principal (currency)|本金（货币）'),
       nf('rate', 'Annual interest (%)|年利率（%）', 0, 1000),
@@ -255,7 +256,8 @@ const financeTools = [
     slug: 'mortgage-calculator',
     name: 'Mortgage Payment|房贷月供',
     domain: 'Finance',
-    purpose: 'Mortgage principal and interest plus entered recurring costs.',
+    purpose:
+      'Monthly housing outflow from home price, down payment, annual interest, property tax, insurance, PMI, HOA and extra principal payments. Computes the loan principal itself.|由房价、首付、年利率、房产税、保险、PMI、物业费和额外还本计算每月住房支出，自动计算贷款本金。',
     fields: [
       nf('price', 'Home price (currency)|房价（货币）', 0.000001),
       nf('down', 'Down payment (currency)|首付（货币）'),

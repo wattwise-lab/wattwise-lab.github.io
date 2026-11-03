@@ -449,6 +449,30 @@ const repaired = await planQuestion(repairEnv, '20 mm; 12 L/min', 'en');
 near(repaired.steps[0].result.rows[0].value, 2 / Math.PI);
 assert.equal(repairCalls, 3);
 checks++;
+let formatCalls = 0;
+const correctPlan = {
+  steps: [
+    {
+      id: 's',
+      tool: 'arithmetic',
+      inputs: { expression: { value: '(2+3)*4', unit: '', source: '(2+3)*4' } },
+    },
+  ],
+};
+const formatResponses = [
+  { tools: ['not-registered'] },
+  { tools: ['arithmetic'] },
+  { steps: [{ id: 's', tool: 'not-registered', inputs: {} }] },
+  correctPlan,
+];
+const formatResult = await planQuestion(
+  { AI: { run: async () => ({ response: JSON.stringify(formatResponses[formatCalls++]) }) } },
+  '(2+3)*4',
+  'en',
+);
+near(formatResult.steps[0].result.rows[0].value, 20);
+assert.equal(formatCalls, 4);
+checks++;
 console.log(
   JSON.stringify({
     checks,
