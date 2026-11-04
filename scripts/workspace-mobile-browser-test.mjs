@@ -14,7 +14,7 @@ const context = await browser.newContext({
 });
 const page = await context.newPage();
 const failures = [];
-page.on('pageerror', (error) => failures.push(error.message));
+page.on('pageerror', (error) => failures.push(error.stack || error.message));
 async function pick(query) {
   await page.locator('#picker-search').fill(query);
   await page.locator('#picker-results button').first().tap();
