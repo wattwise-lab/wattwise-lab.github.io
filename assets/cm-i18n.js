@@ -505,6 +505,7 @@ window.CMI18n = (() => {
         !records.some((record) => {
           const node =
             record.target.nodeType === Node.TEXT_NODE ? record.target.parentElement : record.target;
+          if (!node) return false;
           return !node.closest?.(
             'script,style,code,pre,textarea,input,[data-cm-no-translate],[data-cm-i18n],[data-cm-pair],[data-cm-value],.kp-value,.kp-expression',
           );

@@ -182,8 +182,8 @@ function domFixture(markup) {
   function changed(target, type) {
     if (!connected(target)) return;
     stats.mutations++;
-    if (observers.some((observer) => inside(target, observer.root)))
-      records.push({ target: adapt(target), type });
+    const receivers = observers.filter((observer) => inside(target, observer.root));
+    if (receivers.length) records.push({ target: adapt(target), type, receivers });
   }
   function adapt(node) {
     if (!node || adapted.has(node)) return node;
@@ -334,7 +334,7 @@ function domFixture(markup) {
         if (records.length) {
           const batch = records.splice(0);
           for (const observer of observers)
-            observer.callback(batch.filter((record) => inside(record.target, observer.root)));
+            observer.callback(batch.filter((record) => record.receivers.includes(observer)));
         }
         for (const callback of raf.splice(0)) callback();
       }
@@ -550,6 +550,14 @@ rtl.setLanguage('ur');
 fixture.flush();
 assert.equal(fixture.element('#example').textContent, urMessages[areaExample]);
 assert.ok(fixture.all('#example bdi[dir="ltr"]').length > 0);
+
+// Mutation records retain their original targets even when a later mutation
+// detaches the text before the observer microtask is delivered.
+const transient = fixture.element('#plain');
+transient.firstChild.textContent = 'Transient text';
+transient.replaceChildren(fixture.document.createTextNode('Stable text'));
+assert.doesNotThrow(() => fixture.flush(), 'Detached text mutation records must be ignored.');
+assert.equal(transient.textContent, 'Stable text');
 
 console.log(
   'Translation runtime PASS: dates/authored Chinese/email/rate units/negative zero; real RTL guide splitting, full-source ar-en-ar/ur lifecycle, unchanged input, exclusions, repeat no-op and observer convergence.',

@@ -33,9 +33,12 @@
   search.id = 'ws-direct-search';
   search.maxLength = 120;
   search.autocomplete = 'off';
+  search.dataset.cmPlaceholder = 'search';
   search.placeholder = I.t('search');
+  label.dataset.cmI18n = 'searchLabel';
   label.htmlFor = search.id;
   results.id = 'ws-direct-results';
+  results.dataset.cmLabel = 'results';
   results.setAttribute('aria-label', I.t('results'));
   hint.id = 'ws-direct-status';
   hint.setAttribute('role', 'status');

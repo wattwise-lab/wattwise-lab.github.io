@@ -14,7 +14,7 @@ const context = await browser.newContext({
 });
 const page = await context.newPage();
 const failures = [];
-page.on('pageerror', (error) => failures.push(error.message));
+page.on('pageerror', (error) => failures.push(error.stack || error.message));
 async function pick(query) {
   await page.locator('#picker-search').fill(query);
   await page.locator('#picker-results button').first().tap();
@@ -84,6 +84,16 @@ try {
   await page.screenshot({ path: new URL('replacement-arabic-phone.png', out).pathname });
   assert.equal(await page.locator('html').getAttribute('dir'), 'rtl');
   assert.equal(await page.locator('#ws-tool-choice button[type=submit]').isEnabled(), false);
+  await page.locator('#ws-tool-choice button').first().tap();
+  await page.locator('#cm-site-language').selectOption('en');
+  await page.waitForFunction(() => {
+    const I = globalThis.CMI18n;
+    return (
+      globalThis.document.getElementById('ws-direct-search').placeholder === I.t('search') &&
+      globalThis.document.querySelector('label[for="ws-direct-search"]').textContent ===
+        I.t('searchLabel')
+    );
+  });
   assert.deepEqual(failures, []);
   await fs.writeFile(
     new URL('report.json', out),
