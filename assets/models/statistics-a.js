@@ -61,10 +61,13 @@
     (v) => {
       const [a, w] = pairs(v.values, v.weights);
       check(
-        w.every((x) => x >= 0) && sum(w) > 0,
+        w.every((x) => x >= 0) && w.some((x) => x > 0),
         'Weights must be nonnegative and have a positive sum.|权重应非负且总和大于零。',
       );
-      const total = sum(w),
+      const weightScale = Math.max(...w),
+        normalizedWeights = w.map((x) => x / weightScale),
+        normalizedTotal = sum(normalizedWeights),
+        total = weightScale * normalizedTotal,
         scale = Math.max(...a.map(Math.abs));
       // Normalize both values and weights to avoid overflowing a finite convex
       // average. Keep tiny terms separately if normalization underflows them.
@@ -72,20 +75,33 @@
         correction = 0,
         residual = 0;
       for (let index = 0; index < a.length; index++) {
-        const ratio = w[index] / total,
+        const ratio = normalizedWeights[index] / normalizedTotal,
           term = scale === 0 ? 0 : (a[index] / scale) * ratio,
           next = average + term;
         if (term === 0 && a[index] !== 0 && w[index] > 0)
-          residual += ratio === 0 ? (a[index] * w[index]) / total : a[index] * ratio;
+          residual +=
+            ratio === 0 ? (a[index] * w[index]) / weightScale / normalizedTotal : a[index] * ratio;
         correction +=
           Math.abs(average) >= Math.abs(term) ? average - next + term : term - next + average;
         average = next;
       }
       const value =
         scale === 0 ? 0 : scale * Math.max(-1, Math.min(1, average + correction)) + residual;
+      // A finite sum may exceed the double-precision numeric range. Keep its
+      // scientific notation as text rather than invalidate the finite mean.
+      let displayedTotal = total;
+      if (!Number.isFinite(total)) {
+        const [coefficient, exponent] = weightScale.toExponential().split('e'),
+          combined = Number(coefficient) * normalizedTotal,
+          shift = Math.floor(Math.log10(combined));
+        displayedTotal =
+          Number((combined / 10 ** shift).toPrecision(15)) + 'e+' + (Number(exponent) + shift);
+      }
       return [
         R('Weighted average|加权平均数', Math.max(Math.min(...a), Math.min(Math.max(...a), value))),
-        R('Total weight|权重总和', total),
+        R('Total weight|权重总和', displayedTotal, '', {
+          literal: typeof displayedTotal === 'string',
+        }),
       ];
     },
     'Σ(wᵢxᵢ) / Σwᵢ',

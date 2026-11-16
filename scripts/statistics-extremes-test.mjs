@@ -59,6 +59,25 @@ for (const [values, weights, expected] of [
 ])
   near(calculate('weighted-average', { values, weights })[0].value, expected, 'Weighted ' + values);
 
+// Multiplying every weight by a common factor cannot change a weighted mean,
+// even when the sum of those finite weights exceeds Number.MAX_VALUE.
+for (const [values, weights, expected, total] of [
+  ['1,3', '1e308,1e308', 2, '2e+308'],
+  ['-1,3', '1e308,1e308', 1, '2e+308'],
+  ['1,3', '5e307,1.5e308', 2.5, '2e+308'],
+  ['1e308,-1e308', '1e308,1e308', 0, '2e+308'],
+  ['0,0', '1e308,1e308', 0, '2e+308'],
+]) {
+  const rows = calculate('weighted-average', { values, weights });
+  near(rows[0].value, expected, 'Overflowing weight sum ' + values);
+  assert.equal(rows[1].value, total);
+  assert.equal(rows[1].literal, true);
+  // The actual page and AI engine reject the whole result if any numeric row
+  // is nonfinite; the explanatory total must not hide a correct finite mean.
+  assert.ok(rows.every((row) => typeof row.value !== 'number' || Number.isFinite(row.value)));
+  checks++;
+}
+
 // A two-point type-7 percentile is a straight segment. Symmetric +/-a has
 // quartiles -a/2, 0, a/2, with exact extrema at 0% and 100%.
 for (const scale of [1, 1e200, 1e308]) {
