@@ -61,12 +61,47 @@
     (v) => {
       const [a, w] = pairs(v.values, v.weights);
       check(
-        w.every((x) => x >= 0) && sum(w) > 0,
+        w.every((x) => x >= 0) && w.some((x) => x > 0),
         'Weights must be nonnegative and have a positive sum.|权重应非负且总和大于零。',
       );
+      const weightScale = Math.max(...w),
+        normalizedWeights = w.map((x) => x / weightScale),
+        normalizedTotal = sum(normalizedWeights),
+        total = weightScale * normalizedTotal,
+        scale = Math.max(...a.map(Math.abs));
+      // Normalize both values and weights to avoid overflowing a finite convex
+      // average. Keep tiny terms separately if normalization underflows them.
+      let average = 0,
+        correction = 0,
+        residual = 0;
+      for (let index = 0; index < a.length; index++) {
+        const ratio = normalizedWeights[index] / normalizedTotal,
+          term = scale === 0 ? 0 : (a[index] / scale) * ratio,
+          next = average + term;
+        if (term === 0 && a[index] !== 0 && w[index] > 0)
+          residual +=
+            ratio === 0 ? (a[index] * w[index]) / weightScale / normalizedTotal : a[index] * ratio;
+        correction +=
+          Math.abs(average) >= Math.abs(term) ? average - next + term : term - next + average;
+        average = next;
+      }
+      const value =
+        scale === 0 ? 0 : scale * Math.max(-1, Math.min(1, average + correction)) + residual;
+      // A finite sum may exceed the double-precision numeric range. Keep its
+      // scientific notation as text rather than invalidate the finite mean.
+      let displayedTotal = total;
+      if (!Number.isFinite(total)) {
+        const [coefficient, exponent] = weightScale.toExponential().split('e'),
+          combined = Number(coefficient) * normalizedTotal,
+          shift = Math.floor(Math.log10(combined));
+        displayedTotal =
+          Number((combined / 10 ** shift).toPrecision(15)) + 'e+' + (Number(exponent) + shift);
+      }
       return [
-        R('Weighted average|加权平均数', sum(a.map((x, k) => x * w[k])) / sum(w)),
-        R('Total weight|权重总和', sum(w)),
+        R('Weighted average|加权平均数', Math.max(Math.min(...a), Math.min(Math.max(...a), value))),
+        R('Total weight|权重总和', displayedTotal, '', {
+          literal: typeof displayedTotal === 'string',
+        }),
       ];
     },
     'Σ(wᵢxᵢ) / Σwᵢ',
@@ -99,7 +134,10 @@
         a.every((x) => x > 0),
         'Every rate must be positive.|所有比率都需大于零。',
       );
-      return [R('Harmonic mean|调和平均数', a.length / sum(a.map((x) => 1 / x)))];
+      // Scale by the smallest rate so every reciprocal ratio is at most one.
+      // Direct 1/x overflows for valid subnormal inputs such as 1e-310.
+      const scale = Math.min(...a);
+      return [R('Harmonic mean|调和平均数', scale / mean(a.map((x) => scale / x)))];
     },
     'HM = n / Σ(1/xᵢ)',
     [40],
@@ -111,8 +149,15 @@
     'Find the quadratic mean of signed observations.|计算可含正负数的观测值的均方根。',
     [text('values', 'Observations|观测值', '3,4')],
     (v) => {
-      const a = nums(v.values);
-      return [R('Root mean square|均方根', Math.sqrt(mean(a.map((x) => x * x))))];
+      const a = nums(v.values),
+        scale = Math.max(...a.map(Math.abs));
+      // Square normalized observations, preserving finite large and tiny RMS.
+      return [
+        R(
+          'Root mean square|均方根',
+          scale === 0 ? 0 : scale * Math.sqrt(mean(a.map((x) => (x / scale) ** 2))),
+        ),
+      ];
     },
     "Use R = √[Σxᵢ²/n]. xᵢ are observations and n is their count. The root mean square R is nonnegative and uses the observations' unit.|使用 R = √[Σxᵢ²/n]。xᵢ 为观测值，n 为数量；均方根 R 非负，使用观测值的单位。",
     [3.5355339059327378],

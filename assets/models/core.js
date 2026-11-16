@@ -63,8 +63,16 @@ var CMModels = (() => {
   const quantile = (a, q) => {
     const b = [...a].sort((x, y) => x - y),
       j = (b.length - 1) * q,
-      k = Math.floor(j);
-    return b[k] + (b[Math.min(k + 1, b.length - 1)] - b[k]) * (j - k);
+      k = Math.floor(j),
+      lower = b[k],
+      upper = b[Math.min(k + 1, b.length - 1)],
+      fraction = j - k;
+    // Exact endpoints also avoid Infinity * 0 when opposite-sign data span
+    // more than Number.MAX_VALUE. Interpolate without forming that difference.
+    if (fraction === 0 || lower === upper) return lower;
+    return lower <= 0 && upper >= 0
+      ? lower * (1 - fraction) + upper * fraction
+      : lower + (upper - lower) * fraction;
   };
   const gcd = (a, b) => {
     a = Math.abs(a);
