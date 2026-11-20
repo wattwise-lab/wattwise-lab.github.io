@@ -732,7 +732,7 @@ async function run(config) {
         }),
       );
       const normalizeHeading = (value) => value.replace(/\s+/gu, '');
-      const japaneseHeading = '複雑な数式に、答えを隠さない。';
+      const japaneseHeading = '普通電卓';
       const stages = [],
         images = [];
       const captureStage = async (name, locale, expectedHeading, response) => {
