@@ -506,8 +506,47 @@ for (const lang of locales) {
           `<link rel="alternate" hreflang="${l}" href="https://calcmintly.com${l === 'en' ? '/' : '/' + l.toLowerCase() + '/'}">`,
       )
       .join('') + '<link rel="alternate" hreflang="x-default" href="https://calcmintly.com/">';
-  const homeHeadline = `<h1>${esc(tr(lang, homeKeys.headline))}<br><em>${esc(tr(lang, homeKeys.em))}</em><span data-cm-pair=".|里。">${lang === 'zh-CN' ? '里。' : '.'}</span></h1>`;
-  const main = `<main class="cm-home" id="main-content" data-cm-home><section class="cm-home__hero"><span class="cm-home__eyebrow">${esc(tr(lang, '一个入口，解决日常计算'))}</span>${homeHeadline}<p>${esc(tr(lang, homeKeys.intro))}</p><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label>${aiEntry(context.window.CMAICopy[lang], esc, href('/ai', lang))}</section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2><p>${esc(t(lang, 'pinnedHint'))}</p></div><div class="cm-pinned__grid">${pinned.map(([slug, key]) => `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`).join('')}</div></section><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}"><span data-cm-i18n="workspace">${esc(t(lang, 'workspace'))}</span><span aria-hidden="true"> →</span></a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
+  const keyRows = [
+    'AC',
+    'back',
+    '%',
+    '/',
+    '7',
+    '8',
+    '9',
+    '*',
+    '4',
+    '5',
+    '6',
+    '-',
+    '1',
+    '2',
+    '3',
+    '+',
+    'sign',
+    '0',
+    '.',
+    '=',
+  ];
+  const marks = { back: '⌫', '/': '÷', '*': '×', '-': '−', sign: '±' };
+  const quick = `<section class="cm-quick" aria-labelledby="quick-title"><h1 id="quick-title" class="cm-sr-only">${esc(t(lang, 'basic'))}</h1><div class="quick-modes">${pinned
+    .slice(0, 2)
+    .map(
+      ([slug, key], i) =>
+        `<a class="cm-pinned__tool" data-mode="${key}" href="${href('/' + slug, lang)}" aria-current="${i === 0}">${esc(t(lang, key))}</a>`,
+    )
+    .join(
+      '',
+    )}</div><div class="quick-screen" dir="ltr"><input id="quick-expression" hidden maxlength="500" aria-label="${esc(t(lang, 'expression'))}"><small id="quick-trail"></small><output id="quick-value" aria-live="polite">0</output></div><div class="quick-functions" hidden>${['sin(', 'cos(', 'tan(', 'sqrt(', '^', '(', ')', 'pi'].map((k) => `<button type="button" data-key="${k}">${k === 'sqrt(' ? '√' : k === 'pi' ? 'π' : k}</button>`).join('')}</div><div class="quick-keys" dir="ltr">${keyRows.map((k) => `<button type="button" data-key="${k}"${k === 'back' ? ' aria-label="' + esc(t(lang, 'backspace')) + '"' : ''}>${marks[k] || k}</button>`).join('')}</div><details><summary>${esc(t(lang, 'history'))}</summary><p id="quick-empty">${esc(t(lang, 'emptyHistory'))}</p><ol id="quick-history"></ol></details></section>`;
+  const main = `<main class="cm-home" id="main-content" data-cm-home><div class="quick-layout">${quick}<div class="quick-discovery"><section class="cm-home__hero"><label class="cm-home__search" for="cm-home-search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><span class="cm-sr-only">${esc(t(lang, 'searchLabel'))}</span><input type="search" id="cm-home-search" autocomplete="off" maxlength="120" placeholder="${esc(t(lang, 'search'))}"></label>${aiEntry(context.window.CMAICopy[lang], esc, href('/ai', lang))}</section><section class="cm-pinned" aria-labelledby="cm-pinned-heading"><div class="cm-pinned__heading"><h2 id="cm-pinned-heading">${esc(t(lang, 'pinnedTitle'))}</h2></div><div class="cm-pinned__grid">${pinned
+    .slice(2)
+    .map(
+      ([slug, key]) =>
+        `<a class="cm-pinned__tool" href="${href('/' + slug, lang)}"><span aria-hidden="true">${svgIcon(key)}</span><strong>${esc(t(lang, key))}</strong></a>`,
+    )
+    .join(
+      '',
+    )}</div></section></div></div><section class="cm-home__promo"><div><h2>${esc(tr(lang, homeKeys.workTitle))}</h2><p>${esc(tr(lang, homeKeys.workIntro))}</p></div><a href="${href('/workspace', lang)}"><span data-cm-i18n="workspace">${esc(t(lang, 'workspace'))}</span><span aria-hidden="true"> →</span></a></section><section class="cm-originals" aria-labelledby="cm-originals-title"><div class="cm-originals__heading"><h2 id="cm-originals-title" data-cm-i18n="originalsTitle">${esc(t(lang, 'originalsTitle'))}</h2><p data-cm-i18n="originalsHint">${esc(t(lang, 'originalsHint'))}</p></div><div class="cm-originals__grid">${originalCards(lang)}</div></section><section class="cm-directory" id="calculators"><div class="cm-directory__heading"><div><span class="cm-home__eyebrow">${esc(tr(lang, '计算器目录'))}</span><h2 tabindex="-1" id="cm-home-heading">${esc(tr(lang, '从问题出发，不从公式出发'))}</h2></div><p>${esc(tr(lang, '选择一个工具，修改任何数值，结果都会立即更新。'))}</p></div><div class="cm-directory__tabs" role="tablist" aria-label="${esc(t(lang, 'categories'))}">${[['all', t(lang, 'all')], ...Object.keys(C.en.domains).map((d) => [d, C[lang].domains[d] || d])].map(([d, n], i) => `<button type="button" role="tab" data-cm-category="${d}" aria-selected="${i === 0}">${esc(n)}</button>`).join('')}</div><div class="cm-directory__grid" id="cm-home-grid">${homeCards(lang)}</div><nav class="cm-directory__pager" aria-label="${esc(t(lang, 'ranking'))}"><button type="button" id="cm-home-prev" data-cm-i18n="previous" disabled>${esc(t(lang, 'previous'))}</button><span id="cm-home-position" role="status" aria-live="polite">1–12 / ${catalog.length}</span><button type="button" id="cm-home-next" data-cm-i18n="next">${esc(t(lang, 'next'))}</button><a href="${href('/directory', lang)}">${esc(t(lang, 'all'))} · ${catalog.length}</a></nav></section><section class="cm-home__standards"><span class="cm-home__eyebrow">CALCMINTLY</span><h2>${esc(tr(lang, '不只给一个数字，还告诉你数字怎么来的。'))}</h2><div class="cm-home__principles">${[
     ['实时反馈', '没有“计算”按钮。输入变化，结果、图表和提示同步更新。'],
     ['公式透明', '显示计算方法、默认值和适用限制，方便检查和复算。'],
     ['情境解释', '把结果转换成可行动的区间和提示，而不是制造伪精确。'],
@@ -534,8 +573,8 @@ for (const lang of locales) {
       description: desc,
       canonical: lang === 'en' ? '/' : '/' + lang.toLowerCase() + '/',
       lang,
-      styles: ['assets/cm-home.css'],
-      scripts: ['assets/cm-home-app.js'],
+      styles: ['assets/cm-home.css', 'assets/cm-quick.css'],
+      scripts: ['assets/cm-home-app.js', 'assets/cm-keypad-core.js', 'assets/cm-quick.js'],
       alternates: alternatives,
       schema:
         '<script type="application/ld+json">' +
